@@ -1,0 +1,9 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "commonjs",
+    "outDir": "./lib",
+    "declaration": false // already built by `tsconfig.esm.json`
+  },
+  "exclude": ["src/__tests__", "lib"]
+}
