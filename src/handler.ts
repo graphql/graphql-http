@@ -176,6 +176,7 @@ export function createHandler<RawRequest = unknown>(
   const {
     schema,
     context,
+    validate = graphqlValidate,
     execute = graphqlExecute,
     authenticate,
     onSubscribe,
@@ -332,7 +333,22 @@ export function createHandler<RawRequest = unknown>(
         typeof context === 'function' ? await context(req, args) : context;
     }
 
-    // TODO: validate
+    const validationErrs = validate(args.schema, args.document);
+    if (validationErrs.length) {
+      return [
+        JSON.stringify({ errors: validationErrs }),
+        {
+          status: 400,
+          statusText: 'Bad Request',
+          headers: {
+            'content-type':
+              accept === 'application/json'
+                ? 'application/json; charset=utf-8'
+                : 'application/graphql+json; charset=utf-8',
+          },
+        },
+      ];
+    }
 
     let result = await execute(args);
     const maybeResOrResult = await onOperation?.(req, args, result);
