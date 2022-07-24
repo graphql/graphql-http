@@ -60,7 +60,7 @@ const handler = createHandler({
 const server = http.createServer((req, res) => {
   if (req.url.startsWith('/graphql')) {
     try {
-      const [body, init] = await handle({
+      const [body, init] = await handler({
         url: req.url,
         method: req.method,
         headers: req.headers,
@@ -111,7 +111,7 @@ const server = http2.createSecureServer(
   (req, res) => {
     if (req.url.startsWith('/graphql')) {
       try {
-        const [body, init] = await handle({
+        const [body, init] = await handler({
           url: req.url,
           method: req.method,
           headers: req.headers,
@@ -148,7 +148,7 @@ const handler = createHandler({ schema });
 const app = express();
 app.use('/graphql', (req, res) => {
   try {
-    const [body, init] = await handle({
+    const [body, init] = await handler({
       url: req.url,
       method: req.method,
       headers: req.headers,
@@ -182,7 +182,7 @@ const handler = createHandler({ schema });
 const fastify = Fastify();
 fastify.all('/graphql', (req, res) => {
   try {
-    const [body, init] = await handle({
+    const [body, init] = await handler({
       url: req.url,
       method: req.method,
       headers: req.headers,
