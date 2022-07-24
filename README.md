@@ -20,7 +20,7 @@ yarn add graphql-http
 
 #### Create a GraphQL schema
 
-```ts
+```js
 import { GraphQLSchema, GraphQLObjectType, GraphQLString } from 'graphql';
 
 /**
@@ -92,7 +92,7 @@ $ openssl req -x509 -newkey rsa:2048 -nodes -sha256 -subj '/CN=localhost' \
   -keyout localhost-privkey.pem -out localhost-cert.pem
 ```
 
-```ts
+```js
 import fs from 'fs';
 import http2 from 'http2';
 import { createHandler } from 'graphql-http';
@@ -137,7 +137,7 @@ console.log('Listening to port 4000');
 
 ##### With [`express`](https://expressjs.com/)
 
-```ts
+```js
 import express from 'express'; // yarn add express
 import { createHandler } from 'graphql-http';
 
@@ -171,7 +171,7 @@ console.log('Listening to port 4000');
 
 ##### With [`fastify`](https://www.fastify.io/)
 
-```ts
+```js
 import Fastify from 'fastify'; // yarn add fastify
 import { createHandler } from 'graphql-http';
 
