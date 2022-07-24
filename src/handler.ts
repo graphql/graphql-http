@@ -44,7 +44,7 @@ export interface HandlerOptions<RawRequest = unknown> {
    * be executed and validated against.
    *
    * If a function is provided, it will be called on every
-   * subscription request allowing you to manipulate schema
+   * operation request allowing you to manipulate schema
    * dynamically.
    *
    * If the schema is left undefined, you're trusted to
@@ -61,11 +61,6 @@ export interface HandlerOptions<RawRequest = unknown> {
    * A value which is provided to every resolver and holds
    * important contextual information like the currently
    * logged in user, or access to a database.
-   *
-   * Note that the context function is invoked on each operation only once.
-   * Meaning, for subscriptions, only at the point of initialising the subscription;
-   * not on every subscription event emission. Read more about the context lifecycle
-   * in subscriptions here: https://github.com/graphql/graphql-js/issues/894.
    */
   context?:
     | ExecutionContext
@@ -118,11 +113,7 @@ export interface HandlerOptions<RawRequest = unknown> {
     | Response
     | void;
   /**
-   * Executed after the operation call resolves. For streaming
-   * operations, triggering this callback does not necessarely
-   * mean that there is already a result available - it means
-   * that the subscription process for the stream has resolved
-   * and that the client is now subscribed.
+   * Executed after the operation call resolves.
    *
    * The `OperationResult` argument is the result of operation
    * execution. It can be an iterator or already a value.
