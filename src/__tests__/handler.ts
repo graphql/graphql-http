@@ -8,7 +8,7 @@ describe('Media Types', () => {
     const [serverUrl] = startTServer({ schema });
 
     const url = new URL(serverUrl);
-    url.searchParams.set('query', '{ hello }');
+    url.searchParams.set('query', '{ __typename }');
 
     const res = await fetch(url.toString(), {
       headers: {
@@ -25,7 +25,7 @@ describe('Media Types', () => {
     const [serverUrl] = startTServer({ schema });
 
     const url = new URL(serverUrl);
-    url.searchParams.set('query', '{ hello }');
+    url.searchParams.set('query', '{ __typename }');
 
     const res = await fetch(url.toString(), {
       headers: {
@@ -42,7 +42,7 @@ describe('Media Types', () => {
     const [serverUrl] = startTServer({ schema });
 
     const url = new URL(serverUrl);
-    url.searchParams.set('query', '{ hello }');
+    url.searchParams.set('query', '{ __typename }');
 
     const res = await fetch(url.toString(), {
       headers: {
@@ -59,7 +59,7 @@ describe('Media Types', () => {
     const [serverUrl] = startTServer({ schema });
 
     const url = new URL(serverUrl);
-    url.searchParams.set('query', '{ hello }');
+    url.searchParams.set('query', '{ __typename }');
 
     const res = await fetch(url.toString());
     expect(res.status).toBe(200);
