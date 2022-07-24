@@ -27,7 +27,7 @@ export interface Request<RawRequest> {
   readonly method: string;
   readonly url: string;
   readonly headers: Headers;
-  readonly body: string | null;
+  readonly body: string | Record<string, unknown> | null;
   readonly raw: RawRequest;
 }
 

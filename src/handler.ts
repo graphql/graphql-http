@@ -235,7 +235,8 @@ export function createHandler<RawRequest = unknown>(
           throw new Error('Missing body');
         }
         try {
-          const data = JSON.parse(req.body);
+          const data =
+            typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
           partParams.operationName = data.operationName;
           partParams.query = data.query;
           partParams.variables = data.variables;
