@@ -105,12 +105,9 @@ execution. It can be an iterator or already a value.
 Use this callback to listen for GraphQL operations and
 execution result manipulation.
 
-If you want to respond to the client with a custom status or body,
-you should do so using the provided `res` argument which will stop
+If you want to respond to the client with a custom status and/or body,
+you should do by returning a `Request` argument which will stop
 further execution.
-
-First argument, the request, is always the GraphQL operation
-request.
 
 ##### Parameters
 
@@ -147,6 +144,10 @@ provided `context` option, if available.
 Useful for preparing the execution arguments following a custom logic. A typical
 use-case is persisted queries. You can identify the query from the request parameters
 and supply the appropriate GraphQL operation execution arguments.
+
+If you want to respond to the client with a custom status and/or body,
+you should do by returning a `Request` argument which will stop
+further execution.
 
 ##### Parameters
 
