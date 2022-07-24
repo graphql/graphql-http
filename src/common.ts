@@ -11,7 +11,12 @@ import { isObject } from './utils';
  *
  * @category Common
  */
-export type Headers = Record<string, string>;
+export interface Headers {
+  accept?: string | undefined;
+  allow?: string | undefined;
+  'content-type'?: string | undefined;
+  [key: string]: string | undefined;
+}
 
 /**
  * TODO: document

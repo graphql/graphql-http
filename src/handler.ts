@@ -10,6 +10,10 @@ import {
   GraphQLSchema,
   validate as graphqlValidate,
   execute as graphqlExecute,
+  parse,
+  DocumentNode,
+  getOperationAST,
+  OperationTypeNode,
 } from 'graphql';
 import { isResponse, Request, RequestParams, Response } from './common';
 
@@ -142,21 +146,6 @@ export interface HandlerOptions<RawRequest = unknown> {
     | ExecutionResult
     | Response
     | void;
-  /**
-   * The complete callback is executed after the operation
-   * has completed and the client has been notified.
-   *
-   * Since the library makes sure to complete streaming
-   * operations even after an abrupt closure, this callback
-   * will always be called.
-   *
-   * First argument, the request, is always the GraphQL operation
-   * request.
-   */
-  onComplete?: (
-    req: Request<RawRequest>,
-    args: ExecutionArgs,
-  ) => Promise<void> | void;
 }
 
 /**
@@ -185,12 +174,12 @@ export function createHandler<RawRequest = unknown>(
   options: HandlerOptions<RawRequest>,
 ): Handler<RawRequest> {
   const {
-    // schema,
-    // context,
-    // validate = graphqlValidate,
-    // execute = graphqlExecute,
-    // subscribe = graphqlSubscribe,
+    schema,
+    context,
+    execute = graphqlExecute,
     authenticate,
+    onSubscribe,
+    onOperation,
   } = options;
 
   return async function handler(req) {
@@ -202,51 +191,166 @@ export function createHandler<RawRequest = unknown>(
       return res;
     }
 
-    const params = parseReq(req);
+    if (req.method !== 'GET' && req.method !== 'POST') {
+      return [
+        null,
+        {
+          status: 405,
+          statusText: 'Method Not Allowed',
+          headers: {
+            allow: 'GET, POST',
+          },
+        },
+      ];
+    }
 
-    const body = JSON.stringify(params);
+    const accept = req.headers.accept || '*/*';
+    if (
+      accept !== 'application/graphql+json' &&
+      accept !== 'application/json' &&
+      accept !== '*/*'
+    ) {
+      return [
+        null,
+        {
+          status: 406,
+          statusText: 'Not Acceptable',
+          headers: {
+            accept: 'application/graphql+json, application/json',
+          },
+        },
+      ];
+    }
 
-    return [body, { status: 200, ContentType: 'application/json' }];
+    let params;
+    try {
+      const partParams: Partial<RequestParams> = {};
+      if (req.method === 'GET') {
+        try {
+          const url = new URL(req.url ?? '', 'http://localhost/');
+          partParams.operationName =
+            url.searchParams.get('operationName') ?? undefined;
+          partParams.query = url.searchParams.get('query') ?? undefined;
+          const variables = url.searchParams.get('variables');
+          if (variables) partParams.variables = JSON.parse(variables);
+          const extensions = url.searchParams.get('extensions');
+          if (extensions) partParams.extensions = JSON.parse(extensions);
+        } catch {
+          throw new Error('Unparsable URL');
+        }
+      } else {
+        if (!req.body) {
+          throw new Error('Missing body');
+        }
+        try {
+          const data = JSON.parse(req.body);
+          partParams.operationName = data.operationName;
+          partParams.query = data.query;
+          partParams.variables = data.variables;
+          partParams.extensions = data.extensions;
+        } catch {
+          throw new Error('Unparsable body');
+        }
+      }
+
+      if (!partParams.query) throw new Error('Missing query');
+      if (partParams.variables && typeof partParams.variables !== 'object')
+        throw new Error('Invalid variables');
+      if (partParams.extensions && typeof partParams.extensions !== 'object')
+        throw new Error('Invalid extensions');
+
+      // request parameters are checked and now complete
+      params = partParams as RequestParams;
+    } catch (err) {
+      return [err.message, { status: 400, statusText: 'Bad Request' }];
+    }
+
+    let args: ExecutionArgs;
+    const maybeResOrExecArgs = await onSubscribe?.(req, params);
+    if (isResponse(maybeResOrExecArgs)) return maybeResOrExecArgs;
+    else if (maybeResOrExecArgs) args = maybeResOrExecArgs;
+    else {
+      if (!schema) throw new Error('The GraphQL schema is not provided');
+
+      const { operationName, query, variables } = params;
+
+      let document: DocumentNode;
+      try {
+        document = parse(query);
+      } catch {
+        return [
+          'GraphQL query syntax error',
+          { status: 400, statusText: 'Bad Request' },
+        ];
+      }
+
+      const argsWithoutSchema = {
+        operationName,
+        document,
+        variableValues: variables,
+      };
+      args = {
+        ...argsWithoutSchema,
+        schema:
+          typeof schema === 'function'
+            ? await schema(req, argsWithoutSchema)
+            : schema,
+      };
+    }
+
+    let operation: OperationTypeNode;
+    try {
+      const ast = getOperationAST(args.document, args.operationName);
+      if (!ast) throw null;
+      operation = ast.operation;
+    } catch {
+      return [
+        'Unable to detect operation AST',
+        { status: 400, statusText: 'Bad Request' },
+      ];
+    }
+
+    // mutations cannot happen over GETs
+    // https://github.com/graphql/graphql-over-http/blob/main/spec/GraphQLOverHTTP.md#get
+    if (operation === 'mutation' && req.method === 'GET') {
+      return [
+        'Cannot perform mutations over GET',
+        {
+          status: 405,
+          statusText: 'Method Not Allowed',
+          headers: {
+            allow: 'POST',
+          },
+        },
+      ];
+    }
+
+    // TODO: what happens if operation is 'subscription'
+
+    if (!('contextValue' in args)) {
+      args.contextValue =
+        typeof context === 'function' ? await context(req, args) : context;
+    }
+
+    // TODO: validate
+
+    let result = await execute(args);
+    const maybeResOrResult = await onOperation?.(req, args, result);
+    if (isResponse(maybeResOrResult)) return maybeResOrResult;
+    else if (maybeResOrResult) result = maybeResOrResult;
+
+    return [
+      JSON.stringify(result),
+      {
+        status: 200,
+        statusText: 'OK',
+        headers: {
+          'content-type':
+            accept === 'application/json'
+              ? 'application/json; charset=utf-8'
+              : 'application/graphql+json; charset=utf-8',
+        },
+      },
+    ];
   };
-}
-
-function parseReq(req: Request<unknown>): RequestParams {
-  const params: Partial<RequestParams> = {};
-
-  if (req.method === 'GET') {
-    try {
-      const url = new URL(req.url ?? '', 'http://localhost/');
-      params.operationName = url.searchParams.get('operationName') ?? undefined;
-      params.query = url.searchParams.get('query') ?? undefined;
-      const variables = url.searchParams.get('variables');
-      if (variables) params.variables = JSON.parse(variables);
-      const extensions = url.searchParams.get('extensions');
-      if (extensions) params.extensions = JSON.parse(extensions);
-    } catch {
-      throw new Error('Unparsable URL');
-    }
-  } else if (req.method === 'POST') {
-    if (!req.body) {
-      throw new Error('Missing body');
-    }
-    try {
-      const data = JSON.parse(req.body);
-      params.operationName = data.operationName;
-      params.query = data.query;
-      params.variables = data.variables;
-      params.extensions = data.extensions;
-    } catch {
-      throw new Error('Unparsable body');
-    }
-  } else {
-    throw new Error(`Unsupported method ${req.method}`);
-  }
-
-  if (!params.query) throw new Error('Missing query');
-  if (params.variables && typeof params.variables !== 'object')
-    throw new Error('Invalid variables');
-  if (params.extensions && typeof params.extensions !== 'object')
-    throw new Error('Invalid extensions');
-
-  return params as RequestParams;
 }
