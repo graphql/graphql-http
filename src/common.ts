@@ -4,12 +4,18 @@
  *
  */
 
+import { isObject } from './utils';
+
 /**
+ * TODO: document
+ *
  * @category Common
  */
 export type Headers = Record<string, string>;
 
 /**
+ * TODO: document
+ *
  * @category Common
  */
 export interface Request<RawRequest> {
@@ -35,11 +41,15 @@ export interface RequestParams {
 }
 
 /**
+ * TODO: document
+ *
  * @category Common
  */
 export type ResponseBody = string;
 
 /**
+ * TODO: document
+ *
  * @category Common
  */
 export interface ResponseInit {
@@ -49,6 +59,8 @@ export interface ResponseInit {
 }
 
 /**
+ * TODO: document
+ *
  * @category Common
  */
 export type Response = readonly [body: ResponseBody | null, init: ResponseInit];
