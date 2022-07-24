@@ -10,9 +10,9 @@ export const schemaConfig: GraphQLSchemaConfig = {
   query: new GraphQLObjectType({
     name: 'Query',
     fields: {
-      hey: {
+      hello: {
         type: new GraphQLNonNull(GraphQLString),
-        resolve: () => 'hello',
+        resolve: () => 'world',
       },
     },
   }),
