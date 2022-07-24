@@ -1,7 +1,6 @@
 import { createHandler, HandlerOptions } from '../../handler';
 import http from 'http';
 import net from 'net';
-import { Request } from '../../common';
 
 type Dispose = () => Promise<void>;
 
@@ -23,7 +22,23 @@ export function startTServer(
   return startDisposableServer(
     http.createServer(async (req, res) => {
       try {
-        const [body, init] = await handle(await incomingMessageToRequest(req));
+        if (!req.url) {
+          throw new Error('Missing request URL');
+        }
+        if (!req.method) {
+          throw new Error('Missing request method');
+        }
+        const [body, init] = await handle({
+          url: req.url,
+          method: req.method,
+          headers: req.headers as Record<string, string>,
+          body: await new Promise<string>((resolve) => {
+            let body = '';
+            req.on('data', (chunk) => (body += chunk));
+            req.on('end', () => resolve(body));
+          }),
+          raw: req,
+        });
         res.writeHead(init.status, init.statusText, init.headers).end(body);
       } catch (err) {
         if (err instanceof Error) {
@@ -67,27 +82,4 @@ export function startDisposableServer(
   const url = `http://localhost:${port}`;
 
   return [url, dispose];
-}
-
-/** Converts the node http incoming message to a graphql-http request.  */
-export async function incomingMessageToRequest(
-  req: http.IncomingMessage,
-): Promise<Request<http.IncomingMessage>> {
-  if (!req.url) {
-    throw new Error('Missing request URL');
-  }
-  if (!req.method) {
-    throw new Error('Missing request method');
-  }
-  return {
-    url: req.url,
-    method: req.method,
-    headers: req.headers as Record<string, string>,
-    body: await new Promise<string>((resolve) => {
-      let body = '';
-      req.on('data', (chunk) => (body += chunk));
-      req.on('end', () => resolve(body));
-    }),
-    raw: req,
-  };
 }
