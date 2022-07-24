@@ -12,5 +12,10 @@ it('should work', async () => {
 
   const body = await res.text();
 
-  console.log({ statusCode: res.status, statusText: res.statusText, body });
+  console.log({
+    statusCode: res.status,
+    statusText: res.statusText,
+    body,
+    headers: res.headers,
+  });
 });
