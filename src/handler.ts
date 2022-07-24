@@ -200,6 +200,7 @@ export function createHandler<RawRequest = unknown>(
     if (
       accept !== 'application/graphql+json' &&
       accept !== 'application/json' &&
+      accept !== 'application/x-www-form-urlencoded' &&
       accept !== '*/*'
     ) {
       return [
@@ -208,7 +209,8 @@ export function createHandler<RawRequest = unknown>(
           status: 406,
           statusText: 'Not Acceptable',
           headers: {
-            accept: 'application/graphql+json, application/json',
+            accept:
+              'application/graphql+json, application/json, application/x-www-form-urlencoded',
           },
         },
       ];
