@@ -66,6 +66,16 @@ export interface ResponseInit {
 export type Response = readonly [body: ResponseBody | null, init: ResponseInit];
 
 /**
+ * TODO: document
+ *
+ * @category Common
+ */
+export function isResponse(val: unknown): val is Response {
+  // TODO: make sure the contents of init match ResponseInit
+  return Array.isArray(val) && typeof val[0] === 'string' && isObject(val[1]);
+}
+
+/**
  * A representation of any set of values over any amount of time.
  *
  * @category Common

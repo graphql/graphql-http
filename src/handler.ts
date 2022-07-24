@@ -7,14 +7,11 @@
 import {
   ExecutionArgs,
   ExecutionResult,
-  getOperationAST,
   GraphQLSchema,
-  OperationTypeNode,
-  parse,
   validate as graphqlValidate,
   execute as graphqlExecute,
 } from 'graphql';
-import { Request, RequestParams, Response } from './common';
+import { isResponse, Request, RequestParams, Response } from './common';
 
 /**
  * A concrete GraphQL execution context value type.
@@ -187,40 +184,24 @@ export type Handler<RawRequest = unknown> = (
 export function createHandler<RawRequest = unknown>(
   options: HandlerOptions<RawRequest>,
 ): Handler<RawRequest> {
-  // const {
-  //   schema,
-  //   context,
-  //   validate = graphqlValidate,
-  //   execute = graphqlExecute,
-  //   subscribe = graphqlSubscribe,
-  //   authenticate = function extractOrCreateStreamToken(req) {
-  //     const headerToken =
-  //       req.headers[TOKEN_HEADER_KEY] || req.headers['x-graphql-stream-token']; // @deprecated >v1.0.0
-  //     if (headerToken)
-  //       return Array.isArray(headerToken) ? headerToken.join('') : headerToken;
-
-  //     const urlToken = new URL(
-  //       req.url ?? '',
-  //       'http://localhost/',
-  //     ).searchParams.get(TOKEN_QUERY_KEY);
-  //     if (urlToken) return urlToken;
-
-  //     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
-  //       const r = (Math.random() * 16) | 0,
-  //         v = c == 'x' ? r : (r & 0x3) | 0x8;
-  //       return v.toString(16);
-  //     });
-  //   },
-  //   onConnecting,
-  //   onConnected,
-  //   onSubscribe,
-  //   onOperation,
-  //   onNext,
-  //   onComplete,
-  //   onDisconnect,
-  // } = options;
+  const {
+    // schema,
+    // context,
+    // validate = graphqlValidate,
+    // execute = graphqlExecute,
+    // subscribe = graphqlSubscribe,
+    authenticate,
+  } = options;
 
   return async function handler(req) {
+    const res = await authenticate?.(req);
+    if (res === false) {
+      return [null, { status: 401, statusText: 'Unauthorized' }];
+    }
+    if (isResponse(res)) {
+      return res;
+    }
+
     const params = parseReq(req);
 
     const body = JSON.stringify(params);
