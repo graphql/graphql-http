@@ -5,9 +5,9 @@ import { startTServer } from './utils/tserver';
 
 describe('Media Types', () => {
   it('should accept application/graphql+json and match the content-type', async () => {
-    const [serverUrl] = startTServer({ schema });
+    const server = startTServer({ schema });
 
-    const url = new URL(serverUrl);
+    const url = new URL(server.url);
     url.searchParams.set('query', '{ __typename }');
 
     const res = await fetch(url.toString(), {
@@ -22,9 +22,9 @@ describe('Media Types', () => {
   });
 
   it('should accept application/json and match the content-type', async () => {
-    const [serverUrl] = startTServer({ schema });
+    const server = startTServer({ schema });
 
-    const url = new URL(serverUrl);
+    const url = new URL(server.url);
     url.searchParams.set('query', '{ __typename }');
 
     const res = await fetch(url.toString(), {
@@ -39,9 +39,9 @@ describe('Media Types', () => {
   });
 
   it('should accept */* and use application/graphql+json for the content-type', async () => {
-    const [serverUrl] = startTServer({ schema });
+    const server = startTServer({ schema });
 
-    const url = new URL(serverUrl);
+    const url = new URL(server.url);
     url.searchParams.set('query', '{ __typename }');
 
     const res = await fetch(url.toString(), {
@@ -56,9 +56,9 @@ describe('Media Types', () => {
   });
 
   it('should assume application/graphql+json content-type when accept is missing', async () => {
-    const [serverUrl] = startTServer({ schema });
+    const server = startTServer({ schema });
 
-    const url = new URL(serverUrl);
+    const url = new URL(server.url);
     url.searchParams.set('query', '{ __typename }');
 
     const res = await fetch(url.toString());

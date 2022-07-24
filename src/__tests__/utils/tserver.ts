@@ -15,11 +15,15 @@ afterEach(async () => {
   }
 });
 
+export interface TServer {
+  url: string;
+  dispose: Dispose;
+}
 export function startTServer(
   options: HandlerOptions<http.IncomingMessage>,
-): [url: string, dispose: Dispose] {
+): TServer {
   const handle = createHandler(options);
-  return startDisposableServer(
+  const [url, dispose] = startDisposableServer(
     http.createServer(async (req, res) => {
       try {
         if (!req.url) {
@@ -51,6 +55,10 @@ export function startTServer(
       }
     }),
   );
+  return {
+    url,
+    dispose,
+  };
 }
 
 /**
