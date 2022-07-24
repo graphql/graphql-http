@@ -17,14 +17,14 @@ TODO: document
 - [body](Request.md#body)
 - [headers](Request.md#headers)
 - [method](Request.md#method)
-- [raw](Request.md#raw)
+- [req](Request.md#req)
 - [url](Request.md#url)
 
 ## Properties
 
 ### body
 
-• `Readonly` **body**: ``null`` \| `string`
+• `Readonly` **body**: ``null`` \| `string` \| `Record`<`string`, `unknown`\>
 
 ___
 
@@ -40,9 +40,9 @@ ___
 
 ___
 
-### raw
+### req
 
-• `Readonly` **raw**: `RawRequest`
+• `Readonly` **req**: `RawRequest`
 
 ___
 

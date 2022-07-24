@@ -30,7 +30,13 @@
 
 ▸ (`req`): `undefined` \| `boolean` \| `void` \| [`Response`](../README.md#response) \| `Promise`<`undefined` \| `boolean` \| `void` \| [`Response`](../README.md#response)\>
 
-TODO
+Authenticate the request before proceeding with the GraphQL operation.
+
+Returning `false` will automatically respond with `401: Unauthorized`.
+
+If you want to respond to the client with a custom status and/or body,
+you should do by returning a `Request` argument which will stop
+further execution.
 
 ##### Parameters
 
