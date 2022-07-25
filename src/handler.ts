@@ -246,10 +246,20 @@ export function createHandler<RawRequest = unknown>(
       }
 
       if (!partParams.query) throw new Error('Missing query');
-      if (partParams.variables && typeof partParams.variables !== 'object')
+      if (
+        partParams.variables != null &&
+        (typeof partParams.variables !== 'object' ||
+          Array.isArray(partParams.variables))
+      ) {
         throw new Error('Invalid variables');
-      if (partParams.extensions && typeof partParams.extensions !== 'object')
+      }
+      if (
+        partParams.extensions != null &&
+        (typeof partParams.extensions !== 'object' ||
+          Array.isArray(partParams.extensions))
+      ) {
         throw new Error('Invalid extensions');
+      }
 
       // request parameters are checked and now complete
       params = partParams as RequestParams;
