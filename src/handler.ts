@@ -50,13 +50,17 @@ export interface HandlerOptions<RawRequest = unknown> {
    * If the schema is left undefined, you're trusted to
    * provide one in the returned `ExecutionArgs` from the
    * `onSubscribe` callback.
+   *
+   * If you want to respond to the client with a custom status and/or body,
+   * you should do by returning a `Request` argument which will stop
+   * further execution.
    */
   schema?:
     | GraphQLSchema
     | ((
         req: Request<RawRequest>,
         args: Omit<ExecutionArgs, 'schema'>,
-      ) => Promise<GraphQLSchema> | GraphQLSchema);
+      ) => Promise<GraphQLSchema | Response> | GraphQLSchema | Response);
   /**
    * A value which is provided to every resolver and holds
    * important contextual information like the currently
@@ -265,13 +269,20 @@ export function createHandler<RawRequest = unknown>(
         document,
         variableValues: variables,
       };
-      args = {
-        ...argsWithoutSchema,
-        schema:
-          typeof schema === 'function'
-            ? await schema(req, argsWithoutSchema)
-            : schema,
-      };
+
+      if (typeof schema === 'function') {
+        const resOrSchema = await schema(req, argsWithoutSchema);
+        if (isResponse(resOrSchema)) return resOrSchema;
+        args = {
+          ...argsWithoutSchema,
+          schema: resOrSchema,
+        };
+      } else {
+        args = {
+          ...argsWithoutSchema,
+          schema,
+        };
+      }
     }
 
     let operation: OperationTypeNode;

@@ -135,7 +135,7 @@ ___
 
 ### schema
 
-• `Optional` **schema**: `GraphQLSchema` \| (`req`: [`Request`](Request.md)<`RawRequest`\>, `args`: `Omit`<`ExecutionArgs`, ``"schema"``\>) => `GraphQLSchema` \| `Promise`<`GraphQLSchema`\>
+• `Optional` **schema**: `GraphQLSchema` \| (`req`: [`Request`](Request.md)<`RawRequest`\>, `args`: `Omit`<`ExecutionArgs`, ``"schema"``\>) => [`Response`](../README.md#response) \| `GraphQLSchema` \| `Promise`<[`Response`](../README.md#response) \| `GraphQLSchema`\>
 
 The GraphQL schema on which the operations will
 be executed and validated against.
@@ -147,6 +147,10 @@ dynamically.
 If the schema is left undefined, you're trusted to
 provide one in the returned `ExecutionArgs` from the
 `onSubscribe` callback.
+
+If you want to respond to the client with a custom status and/or body,
+you should do by returning a `Request` argument which will stop
+further execution.
 
 ___
 
