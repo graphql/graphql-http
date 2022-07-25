@@ -79,23 +79,6 @@ export interface HandlerOptions<RawRequest = unknown> {
    */
   execute?: typeof graphqlExecute;
   /**
-   * Authenticate the request before proceeding with the GraphQL operation.
-   *
-   * Returning `false` will automatically respond with `401: Unauthorized`.
-   *
-   * If you want to respond to the client with a custom status and/or body,
-   * you should do by returning a `Request` argument which will stop
-   * further execution.
-   */
-  authenticate?: (
-    req: Request<RawRequest>,
-  ) =>
-    | Promise<Response | boolean | undefined | void>
-    | Response
-    | boolean
-    | undefined
-    | void;
-  /**
    * The subscribe callback executed right after processing the request
    * before proceeding with the GraphQL operation execution.
    *
@@ -176,20 +159,11 @@ export function createHandler<RawRequest = unknown>(
     context,
     validate = graphqlValidate,
     execute = graphqlExecute,
-    authenticate,
     onSubscribe,
     onOperation,
   } = options;
 
   return async function handler(req) {
-    const res = await authenticate?.(req);
-    if (res === false) {
-      return [null, { status: 401, statusText: 'Unauthorized' }];
-    }
-    if (isResponse(res)) {
-      return res;
-    }
-
     if (req.method !== 'GET' && req.method !== 'POST') {
       return [
         null,
