@@ -6,7 +6,7 @@ type Dispose = () => Promise<void>;
 
 // distinct server for each test; if you forget to dispose, the fixture wont
 const leftovers: Dispose[] = [];
-afterEach(async () => {
+afterAll(async () => {
   while (leftovers.length > 0) {
     // if not disposed by test, cleanup
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
