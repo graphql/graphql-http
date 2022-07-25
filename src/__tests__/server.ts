@@ -9,7 +9,7 @@ beforeAll(() => {
 });
 
 describe('Media Types', () => {
-  it('should accept application/graphql+json and match the content-type', async () => {
+  it('must accept application/graphql+json and match the content-type', async () => {
     const url = new URL(server.url);
     url.searchParams.set('query', '{ __typename }');
 
@@ -19,12 +19,12 @@ describe('Media Types', () => {
       },
     });
     expect(res.status).toBe(200);
-    expect(res.headers.get('content-type')).toBe(
-      'application/graphql+json; charset=utf-8',
+    expect(res.headers.get('content-type')).toContain(
+      'application/graphql+json',
     );
   });
 
-  it('should accept application/json and match the content-type', async () => {
+  it('must accept application/json and match the content-type', async () => {
     const url = new URL(server.url);
     url.searchParams.set('query', '{ __typename }');
 
@@ -34,12 +34,10 @@ describe('Media Types', () => {
       },
     });
     expect(res.status).toBe(200);
-    expect(res.headers.get('content-type')).toBe(
-      'application/json; charset=utf-8',
-    );
+    expect(res.headers.get('content-type')).toContain('application/json');
   });
 
-  it('should accept */* and use application/graphql+json for the content-type', async () => {
+  it('must accept */* and use application/graphql+json for the content-type', async () => {
     const url = new URL(server.url);
     url.searchParams.set('query', '{ __typename }');
 
@@ -49,19 +47,19 @@ describe('Media Types', () => {
       },
     });
     expect(res.status).toBe(200);
-    expect(res.headers.get('content-type')).toBe(
-      'application/graphql+json; charset=utf-8',
+    expect(res.headers.get('content-type')).toContain(
+      'application/graphql+json',
     );
   });
 
-  it('should assume application/graphql+json content-type when accept is missing', async () => {
+  it('must assume application/graphql+json content-type when accept is missing', async () => {
     const url = new URL(server.url);
     url.searchParams.set('query', '{ __typename }');
 
     const res = await fetch(url.toString());
     expect(res.status).toBe(200);
-    expect(res.headers.get('content-type')).toBe(
-      'application/graphql+json; charset=utf-8',
+    expect(res.headers.get('content-type')).toContain(
+      'application/graphql+json',
     );
   });
 });
