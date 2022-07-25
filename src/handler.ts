@@ -181,13 +181,25 @@ export function createHandler<RawRequest = unknown>(
       ];
     }
 
-    const accept = req.headers.accept || '*/*';
-    if (
-      accept !== 'application/graphql+json' &&
-      accept !== 'application/json' &&
-      accept !== 'application/x-www-form-urlencoded' &&
-      accept !== '*/*'
-    ) {
+    let acceptedMediaType = '';
+    const accepts = (req.headers.accept || '*/*')
+      .replace(/\s/g, '')
+      .toLowerCase()
+      .split(',');
+    for (const accept of accepts) {
+      const [mediaType, charset = 'charset=utf-8'] = accept.split(';');
+      if (
+        (mediaType === 'application/graphql+json' ||
+          mediaType === 'application/json' ||
+          mediaType === 'application/x-www-form-urlencoded' ||
+          mediaType === '*/*') &&
+        charset === 'charset=utf-8'
+      ) {
+        acceptedMediaType = mediaType;
+        break;
+      }
+    }
+    if (!acceptedMediaType) {
       return [
         null,
         {
@@ -195,7 +207,7 @@ export function createHandler<RawRequest = unknown>(
           statusText: 'Not Acceptable',
           headers: {
             accept:
-              'application/graphql+json, application/json, application/x-www-form-urlencoded',
+              'application/graphql+json; charset=utf-8, application/json; charset=utf-8, application/x-www-form-urlencoded; charset=utf-8',
           },
         },
       ];
@@ -328,7 +340,7 @@ export function createHandler<RawRequest = unknown>(
           statusText: 'Bad Request',
           headers: {
             'content-type':
-              accept === 'application/json'
+              acceptedMediaType === 'application/json'
                 ? 'application/json; charset=utf-8'
                 : 'application/graphql+json; charset=utf-8',
           },
@@ -348,7 +360,7 @@ export function createHandler<RawRequest = unknown>(
         statusText: 'OK',
         headers: {
           'content-type':
-            accept === 'application/json'
+            acceptedMediaType === 'application/json'
               ? 'application/json; charset=utf-8'
               : 'application/graphql+json; charset=utf-8',
         },

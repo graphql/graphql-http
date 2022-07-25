@@ -62,4 +62,26 @@ describe('Media Types', () => {
       'application/graphql+json',
     );
   });
+
+  it('must use utf-8 charset when encoding info is not specified', async () => {
+    const url = new URL(server.url);
+    url.searchParams.set('query', '{ __typename }');
+
+    const res = await fetch(url.toString());
+    expect(res.status).toBe(200);
+    expect(res.headers.get('content-type')).toContain('charset=utf-8');
+  });
+
+  it('must allow exlusively utf-8 encoding', async () => {
+    const url = new URL(server.url);
+    url.searchParams.set('query', '{ __typename }');
+
+    const res = await fetch(url.toString(), {
+      headers: {
+        accept: 'application/graphql+json; charset=iso-8859-1',
+      },
+    });
+    expect(res.status).toBe(406);
+    expect(res.headers.get('accept')).toContain('charset=utf-8');
+  });
 });
