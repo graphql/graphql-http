@@ -191,7 +191,6 @@ export function createHandler<RawRequest = unknown>(
       if (
         (mediaType === 'application/graphql+json' ||
           mediaType === 'application/json' ||
-          mediaType === 'application/x-www-form-urlencoded' ||
           mediaType === '*/*') &&
         charset === 'charset=utf-8'
       ) {
@@ -207,7 +206,7 @@ export function createHandler<RawRequest = unknown>(
           statusText: 'Not Acceptable',
           headers: {
             accept:
-              'application/graphql+json; charset=utf-8, application/json; charset=utf-8, application/x-www-form-urlencoded; charset=utf-8',
+              'application/graphql+json; charset=utf-8, application/json; charset=utf-8',
           },
         },
       ];
