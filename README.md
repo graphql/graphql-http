@@ -57,26 +57,27 @@ const handler = createHandler({
 });
 
 // Create a HTTP server using the handler on `/graphql`
-const server = http.createServer((req, res) => {
-  if (req.url.startsWith('/graphql')) {
-    try {
-      const [body, init] = await handler({
-        url: req.url,
-        method: req.method,
-        headers: req.headers,
-        body: await new Promise((resolve) => {
-          let body = '';
-          req.on('data', (chunk) => (body += chunk));
-          req.on('end', () => resolve(body));
-        }),
-        raw: req,
-      });
-      res.writeHead(init.status, init.statusText, init.headers).end(body);
-    } catch (err) {
-      res.writeHead(500).end(err.message);
-    }
+const server = http.createServer(async (req, res) => {
+  if (!req.url.startsWith('/graphql')) {
+    return res.writeHead(404).end();
   }
-  return res.writeHead(404).end();
+
+  try {
+    const [body, init] = await handler({
+      url: req.url,
+      method: req.method,
+      headers: req.headers,
+      body: await new Promise((resolve) => {
+        let body = '';
+        req.on('data', (chunk) => (body += chunk));
+        req.on('end', () => resolve(body));
+      }),
+      raw: req,
+    });
+    res.writeHead(init.status, init.statusText, init.headers).end(body);
+  } catch (err) {
+    res.writeHead(500).end(err.message);
+  }
 });
 
 server.listen(4000);
@@ -108,26 +109,27 @@ const server = http2.createSecureServer(
     key: fs.readFileSync('localhost-privkey.pem'),
     cert: fs.readFileSync('localhost-cert.pem'),
   },
-  (req, res) => {
-    if (req.url.startsWith('/graphql')) {
-      try {
-        const [body, init] = await handler({
-          url: req.url,
-          method: req.method,
-          headers: req.headers,
-          body: await new Promise((resolve) => {
-            let body = '';
-            req.on('data', (chunk) => (body += chunk));
-            req.on('end', () => resolve(body));
-          }),
-          raw: req,
-        });
-        res.writeHead(init.status, init.statusText, init.headers).end(body);
-      } catch (err) {
-        res.writeHead(500).end(err.message);
-      }
+  async (req, res) => {
+    if (!req.url.startsWith('/graphql')) {
+      return res.writeHead(404).end();
     }
-    return res.writeHead(404).end();
+
+    try {
+      const [body, init] = await handler({
+        url: req.url,
+        method: req.method,
+        headers: req.headers,
+        body: await new Promise((resolve) => {
+          let body = '';
+          req.on('data', (chunk) => (body += chunk));
+          req.on('end', () => resolve(body));
+        }),
+        raw: req,
+      });
+      res.writeHead(init.status, init.statusText, init.headers).end(body);
+    } catch (err) {
+      res.writeHead(500).end(err.message);
+    }
   },
 );
 
@@ -146,7 +148,7 @@ const handler = createHandler({ schema });
 
 // Create an express app serving all methods on `/graphql`
 const app = express();
-app.use('/graphql', (req, res) => {
+app.use('/graphql', async (req, res) => {
   try {
     const [body, init] = await handler({
       url: req.url,
@@ -180,13 +182,17 @@ const handler = createHandler({ schema });
 
 // Create a fastify instance serving all methods on `/graphql`
 const fastify = Fastify();
-fastify.all('/graphql', (req, res) => {
+fastify.all('/graphql', async (req, res) => {
   try {
     const [body, init] = await handler({
       url: req.url,
       method: req.method,
       headers: req.headers,
-      body: req.body, // fastify parses the body for you
+      body: await new Promise((resolve) => {
+        let body = '';
+        req.on('data', (chunk) => (body += chunk));
+        req.on('end', () => resolve(body));
+      }),
       raw: req,
     });
     res.writeHead(init.status, init.statusText, init.headers).end(body);
