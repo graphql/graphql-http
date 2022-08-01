@@ -7,7 +7,7 @@ type Dispose = () => Promise<void>;
 const leftovers: Dispose[] = [];
 afterAll(async () => {
   while (leftovers.length > 0) {
-    await leftovers.pop();
+    await leftovers.pop()?.();
   }
 });
 
