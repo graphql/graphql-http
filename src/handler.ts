@@ -187,12 +187,15 @@ export function createHandler<RawRequest = unknown>(
       .toLowerCase()
       .split(',');
     for (const accept of accepts) {
-      const [mediaType, charset = 'charset=utf-8'] = accept.split(';');
+      // charset in accept header's media-types is not officially specified (https://datatracker.ietf.org/doc/html/rfc7231#section-5.3.2)
+      // accept-charset became obsolete, shouldnt be used (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Charset)
+      // TODO: handle the weight parameter "q"
+      const [mediaType] = accept.split(';');
       if (
-        (mediaType === 'application/graphql+json' ||
-          mediaType === 'application/json' ||
-          mediaType === '*/*') &&
-        charset === 'charset=utf-8'
+        mediaType === 'application/graphql+json' ||
+        mediaType === 'application/json' ||
+        mediaType === 'application/*' ||
+        mediaType === '*/*'
       ) {
         acceptedMediaType = mediaType;
         break;
@@ -205,8 +208,7 @@ export function createHandler<RawRequest = unknown>(
           status: 406,
           statusText: 'Not Acceptable',
           headers: {
-            accept:
-              'application/graphql+json; charset=utf-8, application/json; charset=utf-8',
+            accept: 'application/graphql+json, application/json',
           },
         },
       ];
