@@ -214,41 +214,70 @@ export function createHandler<RawRequest = unknown>(
       ];
     }
 
+    const [
+      mediaType,
+      charset = 'charset=utf-8', // utf-8 is assumed when not specified
+    ] = (req.headers['content-type'] || '')
+      .replace(/\s/g, '')
+      .toLowerCase()
+      .split(';');
+
+    if (charset !== 'charset=utf-8') {
+      return [
+        null,
+        {
+          status: 415,
+          statusText: 'Unsupported Media Type',
+        },
+      ];
+    }
+
+    // TODO: check whether the media-type matches the method? (GET for url encoded, POST for json body)
+    // TODO: should graphql-http care about content-encoding? I'd say unzipping should happen before handler is reached
+
     let params;
     try {
       const partParams: Partial<RequestParams> = {};
-      if (req.method === 'GET') {
-        try {
-          const url = new URL(req.url ?? '', 'http://localhost/');
-          partParams.operationName =
-            url.searchParams.get('operationName') ?? undefined;
-          partParams.query = url.searchParams.get('query') ?? undefined;
-          const variables = url.searchParams.get('variables');
-          if (variables) partParams.variables = JSON.parse(variables);
-          const extensions = url.searchParams.get('extensions');
-          if (extensions) partParams.extensions = JSON.parse(extensions);
-        } catch {
-          throw new Error('Unparsable URL');
+      switch (mediaType) {
+        case 'application/x-www-form-urlencoded': {
+          try {
+            const url = new URL(req.url ?? '', 'http://localhost/');
+            partParams.operationName =
+              url.searchParams.get('operationName') ?? undefined;
+            partParams.query = url.searchParams.get('query') ?? undefined;
+            const variables = url.searchParams.get('variables');
+            if (variables) partParams.variables = JSON.parse(variables);
+            const extensions = url.searchParams.get('extensions');
+            if (extensions) partParams.extensions = JSON.parse(extensions);
+          } catch {
+            throw new Error('Unparsable URL');
+          }
+          break;
         }
-      } else {
-        if (!req.body) {
-          throw new Error('Missing body');
+        case 'application/json': {
+          if (!req.body) {
+            throw new Error('Missing body');
+          }
+          try {
+            const data =
+              typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
+            partParams.operationName = data.operationName;
+            partParams.query = data.query;
+            partParams.variables = data.variables;
+            partParams.extensions = data.extensions;
+          } catch {
+            throw new Error('Unparsable JSON body');
+          }
+          break;
         }
-
-        // TODO: accept body only if content-type is passed, otherwise 415 Unsupported Media Type
-
-        // TODO: should graphql-http care about content-encoding? I'd say unzipping should happen before handler is reached
-
-        try {
-          const data =
-            typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
-          partParams.operationName = data.operationName;
-          partParams.query = data.query;
-          partParams.variables = data.variables;
-          partParams.extensions = data.extensions;
-        } catch {
-          throw new Error('Unparsable body');
-        }
+        default: // graphql-http doesnt support any other content type
+          return [
+            null,
+            {
+              status: 415,
+              statusText: 'Unsupported Media Type',
+            },
+          ];
       }
 
       if (!partParams.query) throw new Error('Missing query');

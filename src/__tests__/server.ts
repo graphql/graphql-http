@@ -15,6 +15,7 @@ describe('Media Types', () => {
 
     const res = await fetch(url.toString(), {
       headers: {
+        'content-type': 'application/x-www-form-urlencoded',
         accept: 'application/graphql+json',
       },
     });
@@ -30,6 +31,7 @@ describe('Media Types', () => {
 
     const res = await fetch(url.toString(), {
       headers: {
+        'content-type': 'application/x-www-form-urlencoded',
         accept: 'application/json',
       },
     });
@@ -43,6 +45,7 @@ describe('Media Types', () => {
 
     const res = await fetch(url.toString(), {
       headers: {
+        'content-type': 'application/x-www-form-urlencoded',
         accept: '*/*',
       },
     });
@@ -56,7 +59,11 @@ describe('Media Types', () => {
     const url = new URL(server.url);
     url.searchParams.set('query', '{ __typename }');
 
-    const res = await fetch(url.toString());
+    const res = await fetch(url.toString(), {
+      headers: {
+        'content-type': 'application/x-www-form-urlencoded',
+      },
+    });
     expect(res.status).toBe(200);
     expect(res.headers.get('content-type')).toContain(
       'application/graphql+json',
@@ -67,26 +74,35 @@ describe('Media Types', () => {
     const url = new URL(server.url);
     url.searchParams.set('query', '{ __typename }');
 
-    const res = await fetch(url.toString());
+    const res = await fetch(url.toString(), {
+      headers: {
+        'content-type': 'application/x-www-form-urlencoded',
+      },
+    });
     expect(res.status).toBe(200);
     expect(res.headers.get('content-type')).toContain('charset=utf-8');
   });
 });
 
 describe('Request', () => {
-  it('must accept POST requests', async () => {
-    const res = await fetch(server.url, {
-      method: 'POST',
-      body: JSON.stringify({ query: '{ __typename }' }),
+  it('must accept application/x-www-form-urlencoded requests', async () => {
+    const url = new URL(server.url);
+    url.searchParams.set('query', '{ __typename }');
+
+    const res = await fetch(url.toString(), {
+      headers: {
+        'content-type': 'application/x-www-form-urlencoded',
+      },
     });
     expect(res.status).toBe(200);
   });
 
-  it('may accept GET requests', async () => {
-    const url = new URL(server.url);
-    url.searchParams.set('query', '{ __typename }');
-
-    const res = await fetch(url.toString());
+  it('must accept application/json requests', async () => {
+    const res = await fetch(server.url, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ query: '{ __typename }' }),
+    });
     expect(res.status).toBe(200);
   });
 
@@ -94,6 +110,7 @@ describe('Request', () => {
     it('must require the {query} parameter', async () => {
       const res = await fetch(server.url, {
         method: 'POST',
+        headers: { 'content-type': 'application/json' },
         body: JSON.stringify({ notquery: '{ __typename }' }),
       });
       expect(res.status).toBe(400);
@@ -103,6 +120,7 @@ describe('Request', () => {
       async (invalid) => {
         const res = await fetch(server.url, {
           method: 'POST',
+          headers: { 'content-type': 'application/json' },
           body: JSON.stringify({
             query: invalid,
           }),
@@ -113,6 +131,7 @@ describe('Request', () => {
     it('must accept a string for the {query} parameter', async () => {
       const res = await fetch(server.url, {
         method: 'POST',
+        headers: { 'content-type': 'application/json' },
         body: JSON.stringify({
           query: '{ __typename }',
         }),
@@ -125,6 +144,7 @@ describe('Request', () => {
       async (invalid) => {
         const res = await fetch(server.url, {
           method: 'POST',
+          headers: { 'content-type': 'application/json' },
           body: JSON.stringify({
             operationName: invalid,
             query: '{ __typename }',
@@ -136,6 +156,7 @@ describe('Request', () => {
     it('must accept a string for the {operationName} parameter', async () => {
       const res = await fetch(server.url, {
         method: 'POST',
+        headers: { 'content-type': 'application/json' },
         body: JSON.stringify({
           operationName: 'Query',
           query: 'query Query { __typename }',
@@ -149,6 +170,7 @@ describe('Request', () => {
       async (invalid) => {
         const res = await fetch(server.url, {
           method: 'POST',
+          headers: { 'content-type': 'application/json' },
           body: JSON.stringify({
             query: '{ __typename }',
             variables: invalid,
@@ -160,6 +182,7 @@ describe('Request', () => {
     it('must accept a map for the {variables} parameter', async () => {
       const res = await fetch(server.url, {
         method: 'POST',
+        headers: { 'content-type': 'application/json' },
         body: JSON.stringify({
           query: '{ __typename }',
           variables: { some: 'value' },
@@ -173,6 +196,7 @@ describe('Request', () => {
       async (invalid) => {
         const res = await fetch(server.url, {
           method: 'POST',
+          headers: { 'content-type': 'application/json' },
           body: JSON.stringify({
             query: '{ __typename }',
             extensions: invalid,
@@ -184,6 +208,7 @@ describe('Request', () => {
     it('must accept a map for the {extensions} parameter', async () => {
       const res = await fetch(server.url, {
         method: 'POST',
+        headers: { 'content-type': 'application/json' },
         body: JSON.stringify({
           query: '{ __typename }',
           extensions: { some: 'value' },
