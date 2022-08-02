@@ -234,6 +234,11 @@ export function createHandler<RawRequest = unknown>(
         if (!req.body) {
           throw new Error('Missing body');
         }
+
+        // TODO: accept body only if content-type is passed, otherwise 415 Unsupported Media Type
+
+        // TODO: should graphql-http care about content-encoding? I'd say unzipping should happen before handler is reached
+
         try {
           const data =
             typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
