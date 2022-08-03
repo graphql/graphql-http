@@ -249,3 +249,135 @@ describe('Request', () => {
     );
   });
 });
+
+describe('Response', () => {
+  describe('application/json', () => {
+    it('should use 200 status code on JSON parsing failure', async () => {
+      const res = await fetch(server.url, {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+          accept: 'application/json',
+        },
+        body: '{ "not a JSON',
+      });
+      expect(res.status).toBe(200);
+    });
+
+    it('should use 200 status code if parameters are invalid', async () => {
+      const url = new URL(server.url);
+      url.searchParams.set('qeury' /* typo */, '{ __typename }');
+      const res = await fetch(url.toString(), {
+        method: 'GET',
+        headers: { accept: 'application/json' },
+      });
+      expect(res.status).toBe(200);
+    });
+
+    it('should use 200 status code on document parsing failure', async () => {
+      const url = new URL(server.url);
+      url.searchParams.set('query', '{');
+      const res = await fetch(url.toString(), {
+        method: 'GET',
+        headers: { accept: 'application/json' },
+      });
+      expect(res.status).toBe(200);
+    });
+
+    it('should use 200 status code on document validation failure', async () => {
+      const url = new URL(server.url);
+      url.searchParams.set('query', '{ 8f31403dfe404bccbb0e835f2629c6a7 }'); // making sure the field doesnt exist
+      const res = await fetch(url.toString(), {
+        method: 'GET',
+        headers: { accept: 'application/json' },
+      });
+      expect(res.status).toBe(200);
+    });
+  });
+
+  describe('application/graphql+json', () => {
+    it('must use 4xx or 5xx status codes on JSON parsing failure', async () => {
+      const res = await fetch(server.url, {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+          accept: 'application/graphql+json',
+        },
+        body: '{ "not a JSON',
+      });
+      expect(res.status).toBeGreaterThanOrEqual(400);
+      expect(res.status).toBeLessThanOrEqual(599);
+    });
+    it('should use 400 status code on JSON parsing failure', async () => {
+      const res = await fetch(server.url, {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+          accept: 'application/graphql+json',
+        },
+        body: '{ "not a JSON',
+      });
+      expect(res.status).toBe(400);
+    });
+
+    it('must use 4xx or 5xx status codes if parameters are invalid', async () => {
+      const url = new URL(server.url);
+      url.searchParams.set('qeury' /* typo */, '{ __typename }');
+      const res = await fetch(url.toString(), {
+        method: 'GET',
+        headers: { accept: 'application/graphql+json' },
+      });
+      expect(res.status).toBeGreaterThanOrEqual(400);
+      expect(res.status).toBeLessThanOrEqual(599);
+    });
+    it('should use 400 status code if parameters are invalid', async () => {
+      const url = new URL(server.url);
+      url.searchParams.set('qeury' /* typo */, '{ __typename }');
+      const res = await fetch(url.toString(), {
+        method: 'GET',
+        headers: { accept: 'application/graphql+json' },
+      });
+      expect(res.status).toBe(400);
+    });
+
+    it('must use 4xx or 5xx status codes on document parsing failure', async () => {
+      const url = new URL(server.url);
+      url.searchParams.set('query', '{');
+      const res = await fetch(url.toString(), {
+        method: 'GET',
+        headers: { accept: 'application/graphql+json' },
+      });
+      expect(res.status).toBeGreaterThanOrEqual(400);
+      expect(res.status).toBeLessThanOrEqual(599);
+    });
+    it('should use 400 status code on document parsing failure', async () => {
+      const url = new URL(server.url);
+      url.searchParams.set('query', '{');
+      const res = await fetch(url.toString(), {
+        method: 'GET',
+        headers: { accept: 'application/graphql+json' },
+      });
+      expect(res.status).toBe(400);
+    });
+
+    it('must use 4xx or 5xx status codes on document validation failure', async () => {
+      const url = new URL(server.url);
+      url.searchParams.set('query', '{ 8f31403dfe404bccbb0e835f2629c6a7 }'); // making sure the field doesnt exist
+      const res = await fetch(url.toString(), {
+        method: 'GET',
+        headers: { accept: 'application/graphql+json' },
+      });
+      expect(res.status).toBeGreaterThanOrEqual(400);
+      expect(res.status).toBeLessThanOrEqual(599);
+    });
+    it('should use 400 status code on document validation failure', async () => {
+      const url = new URL(server.url);
+      url.searchParams.set('query', '{ 8f31403dfe404bccbb0e835f2629c6a7 }'); // making sure the field doesnt exist
+      const res = await fetch(url.toString(), {
+        method: 'GET',
+        headers: { accept: 'application/graphql+json' },
+      });
+      expect(res.status).toBe(400);
+    });
+  });
+});

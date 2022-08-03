@@ -182,7 +182,10 @@ export function createHandler<RawRequest = unknown>(
       ];
     }
 
-    let acceptedMediaType = '';
+    let acceptedMediaType:
+      | 'application/graphql+json'
+      | 'application/json'
+      | undefined;
     const accepts = (req.headers.accept || '*/*')
       .replace(/\s/g, '')
       .toLowerCase()
@@ -192,13 +195,18 @@ export function createHandler<RawRequest = unknown>(
       // accept-charset became obsolete, shouldnt be used (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Charset)
       // TODO: handle the weight parameter "q"
       const [mediaType] = accept.split(';');
+
+      if (mediaType === 'application/json') {
+        acceptedMediaType = 'application/json';
+        break;
+      }
+
       if (
         mediaType === 'application/graphql+json' ||
-        mediaType === 'application/json' ||
         mediaType === 'application/*' ||
         mediaType === '*/*'
       ) {
-        acceptedMediaType = mediaType;
+        acceptedMediaType = 'application/graphql+json';
         break;
       }
     }
@@ -230,8 +238,7 @@ export function createHandler<RawRequest = unknown>(
       const partParams: Partial<RequestParams> = {};
       switch (true) {
         case method === 'GET': {
-          // TODO: what if mediaType != application/x-www-form-urlencoded?
-          // TODO: also what if charset != 'charset=utf-8'
+          // TODO: what if content-type is specified and is not application/x-www-form-urlencoded?
           try {
             const url = new URL(req.url ?? '', 'http://localhost/');
             partParams.operationName =
@@ -293,7 +300,13 @@ export function createHandler<RawRequest = unknown>(
       // request parameters are checked and now complete
       params = partParams as RequestParams;
     } catch (err) {
-      return [err.message, { status: 400, statusText: 'Bad Request' }];
+      return [
+        err.message,
+        {
+          status: acceptedMediaType === 'application/json' ? 200 : 400,
+          statusText: 'Bad Request',
+        },
+      ];
     }
 
     let args: ExecutionArgs;
@@ -311,7 +324,10 @@ export function createHandler<RawRequest = unknown>(
       } catch {
         return [
           'GraphQL query syntax error',
-          { status: 400, statusText: 'Bad Request' },
+          {
+            status: acceptedMediaType === 'application/json' ? 200 : 400,
+            statusText: 'Bad Request',
+          },
         ];
       }
 
@@ -344,7 +360,10 @@ export function createHandler<RawRequest = unknown>(
     } catch {
       return [
         'Unable to detect operation AST',
-        { status: 400, statusText: 'Bad Request' },
+        {
+          status: acceptedMediaType === 'application/json' ? 200 : 400,
+          statusText: 'Bad Request',
+        },
       ];
     }
 
@@ -375,7 +394,7 @@ export function createHandler<RawRequest = unknown>(
       return [
         JSON.stringify({ errors: validationErrs }),
         {
-          status: 400,
+          status: acceptedMediaType === 'application/json' ? 200 : 400,
           statusText: 'Bad Request',
           headers: {
             'content-type':
