@@ -240,7 +240,7 @@ export function createHandler<RawRequest = unknown>(
         case method === 'GET': {
           // TODO: what if content-type is specified and is not application/x-www-form-urlencoded?
           try {
-            const url = new URL(req.url ?? '', 'http://localhost/');
+            const url = new URL(req.url || '', 'http://localhost/');
             partParams.operationName =
               url.searchParams.get('operationName') ?? undefined;
             partParams.query = url.searchParams.get('query') ?? undefined;
