@@ -191,20 +191,22 @@ export function createHandler<RawRequest = unknown>(
       .toLowerCase()
       .split(',');
     for (const accept of accepts) {
-      // charset in accept header's media-types is not officially specified (https://datatracker.ietf.org/doc/html/rfc7231#section-5.3.2)
       // accept-charset became obsolete, shouldnt be used (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Charset)
       // TODO: handle the weight parameter "q"
-      const [mediaType] = accept.split(';');
+      const [mediaType, ...params] = accept.split(';');
+      const charset =
+        params?.find((param) => param.includes('charset=')) || 'charset=utf8'; // utf-8 is assumed when not specified;
 
-      if (mediaType === 'application/json') {
+      if (mediaType === 'application/json' && charset === 'charset=utf8') {
         acceptedMediaType = 'application/json';
         break;
       }
 
       if (
-        mediaType === 'application/graphql+json' ||
-        mediaType === 'application/*' ||
-        mediaType === '*/*'
+        (mediaType === 'application/graphql+json' ||
+          mediaType === 'application/*' ||
+          mediaType === '*/*') &&
+        charset === 'charset=utf8'
       ) {
         acceptedMediaType = 'application/graphql+json';
         break;
@@ -217,7 +219,8 @@ export function createHandler<RawRequest = unknown>(
           status: 406,
           statusText: 'Not Acceptable',
           headers: {
-            accept: 'application/graphql+json, application/json',
+            accept:
+              'application/graphql+json; charset=utf-8, application/json; charset=utf-8',
           },
         },
       ];
@@ -227,7 +230,7 @@ export function createHandler<RawRequest = unknown>(
 
     const [
       mediaType,
-      charset = 'charset=utf-8', // utf-8 is assumed when not specified
+      charset = 'charset=utf-8', // utf-8 is assumed when not specified. this parameter is either "charset" or "boundary" (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Length)
     ] = (req.headers['content-type'] || '')
       .replace(/\s/g, '')
       .toLowerCase()
