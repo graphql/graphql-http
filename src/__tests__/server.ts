@@ -72,7 +72,7 @@ describe('Media Types', () => {
     expect(res.headers.get('content-type')).toContain('charset=utf-8');
   });
 
-  it('must accept only utf-8 encoding', async () => {
+  it('must accept only utf-8 charset', async () => {
     const url = new URL(server.url);
     url.searchParams.set('query', '{ __typename }');
 
