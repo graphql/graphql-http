@@ -15,7 +15,6 @@ describe('Media Types', () => {
 
     const res = await fetch(url.toString(), {
       headers: {
-        'content-type': 'application/x-www-form-urlencoded',
         accept: 'application/graphql+json',
       },
     });
@@ -31,7 +30,6 @@ describe('Media Types', () => {
 
     const res = await fetch(url.toString(), {
       headers: {
-        'content-type': 'application/x-www-form-urlencoded',
         accept: 'application/json',
       },
     });
@@ -45,7 +43,6 @@ describe('Media Types', () => {
 
     const res = await fetch(url.toString(), {
       headers: {
-        'content-type': 'application/x-www-form-urlencoded',
         accept: '*/*',
       },
     });
@@ -59,11 +56,7 @@ describe('Media Types', () => {
     const url = new URL(server.url);
     url.searchParams.set('query', '{ __typename }');
 
-    const res = await fetch(url.toString(), {
-      headers: {
-        'content-type': 'application/x-www-form-urlencoded',
-      },
-    });
+    const res = await fetch(url.toString());
     expect(res.status).toBe(200);
     expect(res.headers.get('content-type')).toContain(
       'application/graphql+json',
@@ -74,11 +67,7 @@ describe('Media Types', () => {
     const url = new URL(server.url);
     url.searchParams.set('query', '{ __typename }');
 
-    const res = await fetch(url.toString(), {
-      headers: {
-        'content-type': 'application/x-www-form-urlencoded',
-      },
-    });
+    const res = await fetch(url.toString());
     expect(res.status).toBe(200);
     expect(res.headers.get('content-type')).toContain('charset=utf-8');
   });
@@ -86,22 +75,10 @@ describe('Media Types', () => {
 
 describe('Request', () => {
   describe('GET', () => {
-    it('must accept application/x-www-form-urlencoded requests', async () => {
+    it('must accept application/x-www-form-urlencoded formatted requests', async () => {
       const url = new URL(server.url);
       url.searchParams.set('query', '{ __typename }');
 
-      const res = await fetch(url.toString(), {
-        headers: {
-          'content-type': 'application/x-www-form-urlencoded',
-        },
-      });
-      expect(res.status).toBe(200);
-    });
-
-    // TODO: is this the case? the spec doesnt mention content-type requirements in GETs
-    it('must assume application/x-www-form-urlencoded even if not specified', async () => {
-      const url = new URL(server.url);
-      url.searchParams.set('query', '{ __typename }');
       const res = await fetch(url.toString());
       expect(res.status).toBe(200);
     });
@@ -114,7 +91,6 @@ describe('Request', () => {
 
       const res = await fetch(url.toString(), {
         headers: {
-          'content-type': 'application/x-www-form-urlencoded',
           accept: 'application/graphql+json',
         },
       });
