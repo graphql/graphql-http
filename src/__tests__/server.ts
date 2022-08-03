@@ -1,7 +1,7 @@
 import fetch from 'node-fetch';
 
 import { schema } from './fixtures/simple';
-import { startTServer, TServer } from './utils/tserver';
+import { bodyAsExecResult, startTServer, TServer } from './utils/tserver';
 
 let server!: TServer;
 beforeAll(() => {
@@ -85,25 +85,60 @@ describe('Media Types', () => {
 });
 
 describe('Request', () => {
-  it('must accept application/x-www-form-urlencoded requests', async () => {
-    const url = new URL(server.url);
-    url.searchParams.set('query', '{ __typename }');
+  describe('GET', () => {
+    it('must accept application/x-www-form-urlencoded requests', async () => {
+      const url = new URL(server.url);
+      url.searchParams.set('query', '{ __typename }');
 
-    const res = await fetch(url.toString(), {
-      headers: {
-        'content-type': 'application/x-www-form-urlencoded',
-      },
+      const res = await fetch(url.toString(), {
+        headers: {
+          'content-type': 'application/x-www-form-urlencoded',
+        },
+      });
+      expect(res.status).toBe(200);
     });
-    expect(res.status).toBe(200);
+
+    // TODO: is this the case? the spec doesnt mention content-type requirements in GETs
+    it('must assume application/x-www-form-urlencoded even if not specified', async () => {
+      const url = new URL(server.url);
+      url.searchParams.set('query', '{ __typename }');
+      const res = await fetch(url.toString());
+      expect(res.status).toBe(200);
+    });
+
+    // TODO: which mutation to use?
+    // TODO: use introspection to find one?
+    it('must not allow executing mutations', async () => {
+      const url = new URL(server.url);
+      url.searchParams.set('query', 'mutation { dontChange }');
+
+      const res = await fetch(url.toString(), {
+        headers: {
+          'content-type': 'application/x-www-form-urlencoded',
+          accept: 'application/graphql+json',
+        },
+      });
+      expect(res.status).toBe(405);
+    });
   });
 
-  it('must accept application/json requests', async () => {
-    const res = await fetch(server.url, {
-      method: 'POST',
-      headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({ query: '{ __typename }' }),
+  describe('POST', () => {
+    it('must accept application/json requests', async () => {
+      const res = await fetch(server.url, {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ query: '{ __typename }' }),
+      });
+      expect(res.status).toBe(200);
     });
-    expect(res.status).toBe(200);
+
+    it('must require a request body', async () => {
+      const res = await fetch(server.url, {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+      });
+      expect(res.status).toBe(400);
+    });
   });
 
   describe('Request Parameters', () => {
@@ -184,11 +219,27 @@ describe('Request', () => {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify({
-          query: '{ __typename }',
-          variables: { some: 'value' },
+          query: 'query Type($name: String!) { __type(name: $name) { name } }',
+          variables: { name: 'sometype' },
         }),
       });
       expect(res.status).toBe(200);
+      const result = await bodyAsExecResult(res);
+      expect(result).not.toHaveProperty('errors');
+    });
+    it('must accept a URL-encoded JSON string for the {variable} parameter in GETs', async () => {
+      const url = new URL(server.url);
+      url.searchParams.set(
+        'query',
+        'query Type($name: String!) { __type(name: $name) { name } }',
+      );
+      url.searchParams.set('variables', JSON.stringify({ name: 'sometype' }));
+      const res = await fetch(url.toString(), {
+        method: 'GET',
+      });
+      expect(res.status).toBe(200);
+      const result = await bodyAsExecResult(res);
+      expect(result).not.toHaveProperty('errors');
     });
 
     it.each(['string', 0, false, ['array']])(
@@ -216,5 +267,8 @@ describe('Request', () => {
       });
       expect(res.status).toBe(200);
     });
+    it.todo(
+      'must accept a URL-encoded JSON string for the {extensions} parameter in GETs',
+    );
   });
 });

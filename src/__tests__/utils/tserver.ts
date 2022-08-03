@@ -1,6 +1,8 @@
 import { createHandler, HandlerOptions } from '../../handler';
 import http from 'http';
 import net from 'net';
+import { Response } from 'node-fetch';
+import { ExecutionResult } from 'graphql';
 
 type Dispose = () => Promise<void>;
 
@@ -86,4 +88,13 @@ export function startDisposableServer(
   const url = `http://localhost:${port}`;
 
   return [url, dispose];
+}
+
+/**
+ * Reads out the response body as JSON and assumes it's the GraphQL execution result.
+ */
+export async function bodyAsExecResult(
+  res: Response,
+): Promise<ExecutionResult> {
+  return (await res.json()) as ExecutionResult;
 }

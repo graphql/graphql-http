@@ -168,7 +168,8 @@ export function createHandler<RawRequest = unknown>(
   } = options;
 
   return async function handler(req) {
-    if (req.method !== 'GET' && req.method !== 'POST') {
+    const method = req.method;
+    if (method !== 'GET' && method !== 'POST') {
       return [
         null,
         {
@@ -214,6 +215,8 @@ export function createHandler<RawRequest = unknown>(
       ];
     }
 
+    // TODO: should graphql-http care about content-encoding? I'd say unzipping should happen before handler is reached
+
     const [
       mediaType,
       charset = 'charset=utf-8', // utf-8 is assumed when not specified
@@ -222,24 +225,13 @@ export function createHandler<RawRequest = unknown>(
       .toLowerCase()
       .split(';');
 
-    if (charset !== 'charset=utf-8') {
-      return [
-        null,
-        {
-          status: 415,
-          statusText: 'Unsupported Media Type',
-        },
-      ];
-    }
-
-    // TODO: check whether the media-type matches the method? (GET for url encoded, POST for json body)
-    // TODO: should graphql-http care about content-encoding? I'd say unzipping should happen before handler is reached
-
     let params;
     try {
       const partParams: Partial<RequestParams> = {};
-      switch (mediaType) {
-        case 'application/x-www-form-urlencoded': {
+      switch (true) {
+        case method === 'GET': {
+          // TODO: what if mediaType != application/x-www-form-urlencoded?
+          // TODO: also what if charset != 'charset=utf-8'
           try {
             const url = new URL(req.url ?? '', 'http://localhost/');
             partParams.operationName =
@@ -254,7 +246,9 @@ export function createHandler<RawRequest = unknown>(
           }
           break;
         }
-        case 'application/json': {
+        case method === 'POST' &&
+          mediaType === 'application/json' &&
+          charset === 'charset=utf-8': {
           if (!req.body) {
             throw new Error('Missing body');
           }
@@ -356,7 +350,7 @@ export function createHandler<RawRequest = unknown>(
 
     // mutations cannot happen over GETs
     // https://github.com/graphql/graphql-over-http/blob/main/spec/GraphQLOverHTTP.md#get
-    if (operation === 'mutation' && req.method === 'GET') {
+    if (operation === 'mutation' && method === 'GET') {
       return [
         'Cannot perform mutations over GET',
         {
