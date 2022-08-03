@@ -63,7 +63,7 @@ describe('Media Types', () => {
     );
   });
 
-  it('must use utf-8 charset when encoding info is not specified', async () => {
+  it('must use utf-8 charset in response', async () => {
     const url = new URL(server.url);
     url.searchParams.set('query', '{ __typename }');
 
