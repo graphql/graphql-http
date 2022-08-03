@@ -83,11 +83,12 @@ describe('Request', () => {
       expect(res.status).toBe(200);
     });
 
-    // TODO: which mutation to use?
-    // TODO: use introspection to find one?
     it('must not allow executing mutations', async () => {
       const url = new URL(server.url);
-      url.searchParams.set('query', 'mutation { dontChange }');
+      url.searchParams.set(
+        'query',
+        'mutation { f10d019f15804f92a7c7470205c866da }', // making sure the field doesnt exist
+      );
 
       const res = await fetch(url.toString(), {
         headers: {
