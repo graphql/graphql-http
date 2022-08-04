@@ -437,6 +437,35 @@ const link = new HTTPLink({
 
 </details>
 
+<details id="request-retries">
+<summary><a href="#request-retries">🔗</a> Client usage with request retries</summary>
+
+```ts
+import { createClient, NetworkError } from 'graphql-http';
+
+const client = createClient({
+  url: 'http://unstable.service:4000/graphql',
+  shouldRetry: async (err: NetworkError, retries: number) => {
+    if (retries > 3) {
+      // max 3 retries and then report service down
+      return false;
+    }
+
+    // try again when service unavailable, could be temporary
+    if (err.response?.status === 503) {
+      // wait one second (you can alternatively time the promise resolution to your preference)
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      return true;
+    }
+
+    // otherwise report error immediately
+    return false;
+  },
+});
+```
+
+</details>
+
 <details id="auth">
 <summary><a href="#auth">🔗</a> Server handler usage with authentication</summary>
 
