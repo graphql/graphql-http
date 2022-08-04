@@ -2,7 +2,8 @@
 
 # Interface: ResponseInit
 
-TODO: document
+Server agnostic response options (ex. status and headers) returned from
+`graphql-http` needing to be coerced to the server implementation in use.
 
 ## Table of contents
 

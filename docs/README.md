@@ -31,7 +31,8 @@ graphql-http
 
 Ƭ **Response**: readonly [body: ResponseBody \| null, init: ResponseInit]
 
-TODO: document
+Server agnostic response returned from `graphql-http` containing the
+body and init options needing to be coerced to the server implementation in use.
 
 ___
 
@@ -39,7 +40,8 @@ ___
 
 Ƭ **ResponseBody**: `string`
 
-TODO: document
+Server agnostic response body returned from `graphql-http` needing
+to be coerced to the server implementation in use.
 
 ___
 
@@ -47,7 +49,7 @@ ___
 
 ▸ **isResponse**(`val`): val is Response
 
-TODO: document
+Checks whether the passed value is the `graphql-http` server agnostic response.
 
 #### Parameters
 

@@ -2,7 +2,7 @@
 
 # Interface: Headers
 
-TODO: document
+Concrete interface that the headers map should implement.
 
 ## Indexable
 

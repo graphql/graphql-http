@@ -2,7 +2,8 @@
 
 # Interface: Request<RawRequest\>
 
-TODO: document
+Server agnostic request interface containing the raw request
+which is server dependant.
 
 ## Type parameters
 

@@ -7,7 +7,7 @@
 import { isObject } from './utils';
 
 /**
- * TODO: document
+ * Concrete interface that the headers map should implement.
  *
  * @category Common
  */
@@ -19,7 +19,8 @@ export interface Headers {
 }
 
 /**
- * TODO: document
+ * Server agnostic request interface containing the raw request
+ * which is server dependant.
  *
  * @category Common
  */
@@ -46,14 +47,16 @@ export interface RequestParams {
 }
 
 /**
- * TODO: document
+ * Server agnostic response body returned from `graphql-http` needing
+ * to be coerced to the server implementation in use.
  *
  * @category Common
  */
 export type ResponseBody = string;
 
 /**
- * TODO: document
+ * Server agnostic response options (ex. status and headers) returned from
+ * `graphql-http` needing to be coerced to the server implementation in use.
  *
  * @category Common
  */
@@ -64,14 +67,15 @@ export interface ResponseInit {
 }
 
 /**
- * TODO: document
+ * Server agnostic response returned from `graphql-http` containing the
+ * body and init options needing to be coerced to the server implementation in use.
  *
  * @category Common
  */
 export type Response = readonly [body: ResponseBody | null, init: ResponseInit];
 
 /**
- * TODO: document
+ * Checks whether the passed value is the `graphql-http` server agnostic response.
  *
  * @category Common
  */
