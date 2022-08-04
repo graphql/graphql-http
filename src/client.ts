@@ -219,15 +219,13 @@ export function createClient(options: ClientOptions): Client {
               typeof options.url === 'function'
                 ? await options.url()
                 : options.url;
-            if (control.signal.aborted)
-              throw new Error('Request aborted by the client');
+            if (control.signal.aborted) return;
 
             const headers =
               typeof options.headers === 'function'
                 ? await options.headers()
                 : options.headers ?? {};
-            if (control.signal.aborted)
-              throw new Error('Request aborted by the client');
+            if (control.signal.aborted) return;
 
             let res;
             try {
