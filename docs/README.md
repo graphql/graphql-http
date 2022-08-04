@@ -152,7 +152,7 @@ const server = http.createServer(async (req, res) => {
         req.on('data', (chunk) => (body += chunk));
         req.on('end', () => resolve(body));
       }),
-      raw: req,
+      req,
     });
     res.writeHead(init.status, init.statusText, init.headers).end(body);
   } catch (err) {
