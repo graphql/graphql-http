@@ -251,10 +251,11 @@ const client = createClient({
   url: 'http://hey.there:4000/graphql',
   headers: async () => {
     const session = await getSession();
-    if (!session) return {};
-    return {
-      Authorization: `Bearer ${session.token}`,
-    };
+    if (session) {
+      return {
+        Authorization: `Bearer ${session.token}`,
+      };
+    }
   },
 });
 
@@ -314,10 +315,11 @@ const client = createClient({
   url: 'http://graphql.loves:4000/observables',
   headers: async () => {
     const session = await getSession();
-    if (!session) return {};
-    return {
-      Authorization: `Bearer ${session.token}`,
-    };
+    if (session) {
+      return {
+        Authorization: `Bearer ${session.token}`,
+      };
+    }
   },
 });
 
@@ -355,10 +357,11 @@ const client = createClient({
   url: 'http://i.love:4000/graphql',
   headers: async () => {
     const session = await getSession();
-    if (!session) return {};
-    return {
-      Authorization: `Bearer ${session.token}`,
-    };
+    if (session) {
+      return {
+        Authorization: `Bearer ${session.token}`,
+      };
+    }
   },
 });
 
@@ -423,10 +426,11 @@ const link = new HTTPLink({
   url: 'http://where.is:4000/graphql',
   headers: async () => {
     const session = await getSession();
-    if (!session) return {};
-    return {
-      Authorization: `Bearer ${session.token}`,
-    };
+    if (session) {
+      return {
+        Authorization: `Bearer ${session.token}`,
+      };
+    }
   },
 });
 ```

@@ -65,7 +65,7 @@ ___
 
 ### headers
 
-• `Optional` **headers**: `Record`<`string`, `string`\> \| () => `Record`<`string`, `string`\> \| `Promise`<`Record`<`string`, `string`\>\>
+• `Optional` **headers**: `Record`<`string`, `string`\> \| () => ``null`` \| `void` \| `Record`<`string`, `string`\> \| `Promise`<``null`` \| `void` \| `Record`<`string`, `string`\>\>
 
 HTTP headers to pass along the request.
 

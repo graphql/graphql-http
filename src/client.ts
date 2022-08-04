@@ -78,7 +78,11 @@ export interface ClientOptions {
    */
   headers?:
     | Record<string, string>
-    | (() => Promise<Record<string, string>> | Record<string, string>);
+    | (() =>
+        | Promise<Record<string, string> | null | void>
+        | Record<string, string>
+        | null
+        | void);
   /**
    * Control whether the network request error should be retried.
    *
