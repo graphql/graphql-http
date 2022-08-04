@@ -87,15 +87,24 @@ describe('Media Types', () => {
 });
 
 describe('Request', () => {
-  describe('GET', () => {
-    it('must accept application/x-www-form-urlencoded formatted requests', async () => {
-      const url = new URL(server.url);
-      url.searchParams.set('query', '{ __typename }');
-
-      const res = await fetch(url.toString());
-      expect(res.status).toBe(200);
+  it('must accept POST requests', async () => {
+    const res = await fetch(server.url, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ query: '{ __typename }' }),
     });
+    expect(res.status).toBe(200);
+  });
 
+  it('may accept application/x-www-form-urlencoded formatted GET requests', async () => {
+    const url = new URL(server.url);
+    url.searchParams.set('query', '{ __typename }');
+
+    const res = await fetch(url.toString());
+    expect(res.status).toBe(200);
+  });
+
+  describe('GET', () => {
     it('must not allow executing mutations', async () => {
       const url = new URL(server.url);
       url.searchParams.set(
@@ -135,7 +144,10 @@ describe('Request', () => {
     it('must require the {query} parameter', async () => {
       const res = await fetch(server.url, {
         method: 'POST',
-        headers: { 'content-type': 'application/json' },
+        headers: {
+          'content-type': 'application/json',
+          accept: 'application/graphql+json',
+        },
         body: JSON.stringify({ notquery: '{ __typename }' }),
       });
       expect(res.status).toBe(400);
@@ -145,7 +157,10 @@ describe('Request', () => {
       async (invalid) => {
         const res = await fetch(server.url, {
           method: 'POST',
-          headers: { 'content-type': 'application/json' },
+          headers: {
+            'content-type': 'application/json',
+            accept: 'application/graphql+json',
+          },
           body: JSON.stringify({
             query: invalid,
           }),
@@ -156,7 +171,10 @@ describe('Request', () => {
     it('must accept a string for the {query} parameter', async () => {
       const res = await fetch(server.url, {
         method: 'POST',
-        headers: { 'content-type': 'application/json' },
+        headers: {
+          'content-type': 'application/json',
+          accept: 'application/graphql+json',
+        },
         body: JSON.stringify({
           query: '{ __typename }',
         }),
@@ -169,7 +187,10 @@ describe('Request', () => {
       async (invalid) => {
         const res = await fetch(server.url, {
           method: 'POST',
-          headers: { 'content-type': 'application/json' },
+          headers: {
+            'content-type': 'application/json',
+            accept: 'application/graphql+json',
+          },
           body: JSON.stringify({
             operationName: invalid,
             query: '{ __typename }',
@@ -181,7 +202,10 @@ describe('Request', () => {
     it('must accept a string for the {operationName} parameter', async () => {
       const res = await fetch(server.url, {
         method: 'POST',
-        headers: { 'content-type': 'application/json' },
+        headers: {
+          'content-type': 'application/json',
+          accept: 'application/graphql+json',
+        },
         body: JSON.stringify({
           operationName: 'Query',
           query: 'query Query { __typename }',
@@ -195,7 +219,10 @@ describe('Request', () => {
       async (invalid) => {
         const res = await fetch(server.url, {
           method: 'POST',
-          headers: { 'content-type': 'application/json' },
+          headers: {
+            'content-type': 'application/json',
+            accept: 'application/graphql+json',
+          },
           body: JSON.stringify({
             query: '{ __typename }',
             variables: invalid,
@@ -207,7 +234,10 @@ describe('Request', () => {
     it('must accept a map for the {variables} parameter', async () => {
       const res = await fetch(server.url, {
         method: 'POST',
-        headers: { 'content-type': 'application/json' },
+        headers: {
+          'content-type': 'application/json',
+          accept: 'application/graphql+json',
+        },
         body: JSON.stringify({
           query: 'query Type($name: String!) { __type(name: $name) { name } }',
           variables: { name: 'sometype' },
@@ -237,7 +267,10 @@ describe('Request', () => {
       async (invalid) => {
         const res = await fetch(server.url, {
           method: 'POST',
-          headers: { 'content-type': 'application/json' },
+          headers: {
+            'content-type': 'application/json',
+            accept: 'application/graphql+json',
+          },
           body: JSON.stringify({
             query: '{ __typename }',
             extensions: invalid,
@@ -249,7 +282,10 @@ describe('Request', () => {
     it('must accept a map for the {extensions} parameter', async () => {
       const res = await fetch(server.url, {
         method: 'POST',
-        headers: { 'content-type': 'application/json' },
+        headers: {
+          'content-type': 'application/json',
+          accept: 'application/graphql+json',
+        },
         body: JSON.stringify({
           query: '{ __typename }',
           extensions: { some: 'value' },
