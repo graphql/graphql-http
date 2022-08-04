@@ -148,10 +148,58 @@ export type Handler<RawRequest = unknown> = (
 ) => Promise<Response>;
 
 /**
- * Makes a Protocol complient HTTP GraphQL server  handler. The handler can
+ * Makes a GraphQL over HTTP Protocol compliant server handler. The handler can
  * be used with your favourite server library.
  *
- * Read more about the Protocol in the PROTOCOL.md documentation file.
+ * Beware that the handler resolves only after the whole operation completes.
+ *
+ * Errors thrown from **any** of the provided options or callbacks (or even due to
+ * library misuse or potential bugs) will reject the handler's promise. They are
+ * considered internal errors and you should take care of them accordingly.
+ *
+ * For production environments, its recommended not to transmit the exact internal
+ * error details to the client, but instead report to an error logging tool or simply
+ * the console.
+ *
+ * Simple example usage with Node.JS:
+ *
+ * ```js
+ * import http from 'http';
+ * import { createHandler } from 'graphql-http';
+ * import { schema } from './my-graphql-schema';
+ *
+ * // Create the GraphQL over HTTP handler
+ * const handler = createHandler({
+ *   schema,
+ * });
+ *
+ * // Create a HTTP server using the handler on `/graphql`
+ * const server = http.createServer(async (req, res) => {
+ *   if (!req.url.startsWith('/graphql')) {
+ *     return res.writeHead(404).end();
+ *   }
+ *
+ *   try {
+ *     const [body, init] = await handler({
+ *       url: req.url,
+ *       method: req.method,
+ *       headers: req.headers,
+ *       body: await new Promise((resolve) => {
+ *         let body = '';
+ *         req.on('data', (chunk) => (body += chunk));
+ *         req.on('end', () => resolve(body));
+ *       }),
+ *       raw: req,
+ *     });
+ *     res.writeHead(init.status, init.statusText, init.headers).end(body);
+ *   } catch (err) {
+ *     res.writeHead(500).end(err.message);
+ *   }
+ * });
+ *
+ * server.listen(4000);
+ * console.log('Listening to port 4000');
+ * ```
  *
  * @category Server
  */
