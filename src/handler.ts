@@ -421,10 +421,10 @@ export function createHandler<RawRequest = unknown>(
 
     if (operation === 'subscription') {
       return [
-        null,
+        'Subscriptions are not supported',
         {
-          status: 422,
-          statusText: 'Unprocessable Entity',
+          status: 400,
+          statusText: 'Bad Request',
         },
       ];
     }
