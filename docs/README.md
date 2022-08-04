@@ -4,8 +4,14 @@ graphql-http
 
 ## Table of contents
 
+### Classes
+
+- [NetworkError](classes/NetworkError.md)
+
 ### Interfaces
 
+- [Client](interfaces/Client.md)
+- [ClientOptions](interfaces/ClientOptions.md)
 - [HandlerOptions](interfaces/HandlerOptions.md)
 - [Headers](interfaces/Headers.md)
 - [Request](interfaces/Request.md)
@@ -22,8 +28,28 @@ graphql-http
 
 ### Functions
 
+- [createClient](README.md#createclient)
 - [createHandler](README.md#createhandler)
 - [isResponse](README.md#isresponse)
+
+## Client
+
+### createClient
+
+▸ **createClient**(`options`): [`Client`](interfaces/Client.md)
+
+Creates a disposable GraphQL over HTTP client to transmit
+GraphQL operation results.
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `options` | [`ClientOptions`](interfaces/ClientOptions.md) |
+
+#### Returns
+
+[`Client`](interfaces/Client.md)
 
 ## Common
 
