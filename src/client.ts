@@ -203,19 +203,18 @@ export function createClient(options: ClientOptions): Client {
         let retryingErr: NetworkError | null = null,
           retries = 0;
         for (;;) {
+          if (retryingErr) {
+            const should = await shouldRetry(retryingErr, retries);
+
+            // requst might've been canceled while waiting for retry
+            if (control.signal.aborted) return;
+
+            if (!should) throw retryingErr;
+
+            retries++;
+          }
+
           try {
-            if (retryingErr) {
-              const should = await shouldRetry(retryingErr, retries);
-
-              // requst might've been canceled while waiting for retry
-              if (control.signal.aborted)
-                throw new Error('Request aborted by the client');
-
-              if (!should) throw retryingErr;
-
-              retries++;
-            }
-
             const url =
               typeof options.url === 'function'
                 ? await options.url()
