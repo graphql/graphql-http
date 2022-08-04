@@ -18,7 +18,7 @@ which is server dependant.
 - [body](Request.md#body)
 - [headers](Request.md#headers)
 - [method](Request.md#method)
-- [req](Request.md#req)
+- [raw](Request.md#raw)
 - [url](Request.md#url)
 
 ## Properties
@@ -41,9 +41,14 @@ ___
 
 ___
 
-### req
+### raw
 
-• `Readonly` **req**: `RawRequest`
+• `Readonly` **raw**: `RawRequest`
+
+The raw request itself from the implementing server.
+
+For example: `express.Request` when using Express, or maybe
+`http.IncomingMessage` when just using Node with `http.createServer`.
 
 ___
 

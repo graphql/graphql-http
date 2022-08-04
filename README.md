@@ -71,7 +71,7 @@ const server = http.createServer(async (req, res) => {
         req.on('data', (chunk) => (body += chunk));
         req.on('end', () => resolve(body));
       }),
-      req,
+      raw: req,
     });
     res.writeHead(init.status, init.statusText, init.headers).end(body);
   } catch (err) {
@@ -122,7 +122,7 @@ const server = http2.createSecureServer(
           req.on('data', (chunk) => (body += chunk));
           req.on('end', () => resolve(body));
         }),
-        req,
+        raw: req,
       });
       res.writeHead(init.status, init.statusText, init.headers).end(body);
     } catch (err) {
@@ -158,7 +158,7 @@ app.use('/graphql', async (req, res) => {
         req.on('data', (chunk) => (body += chunk));
         req.on('end', () => resolve(body));
       }),
-      req,
+      raw: req,
     });
     res.writeHead(init.status, init.statusText, init.headers).end(body);
   } catch (err) {
@@ -193,7 +193,7 @@ fastify.all('/graphql', async (req, res) => {
         req.on('data', (chunk) => (body += chunk));
         req.on('end', () => resolve(body));
       }),
-      req,
+      raw: req,
     });
     res.writeHead(init.status, init.statusText, init.headers).end(body);
   } catch (err) {
@@ -224,7 +224,7 @@ const handler = createHandler({
   schema,
   context: async (req) => {
     // user is authenticated early (see below), simply attach it to the graphql context
-    return { userId: req.req.userId };
+    return { userId: req.raw.userId };
   },
 });
 
@@ -255,7 +255,7 @@ const server = http.createServer(async (req, res) => {
         req.on('data', (chunk) => (body += chunk));
         req.on('end', () => resolve(body));
       }),
-      req,
+      raw: req,
     });
     res.writeHead(init.status, init.statusText, init.headers).end(body);
   } catch (err) {

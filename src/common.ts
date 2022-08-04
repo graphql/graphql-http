@@ -29,7 +29,13 @@ export interface Request<RawRequest> {
   readonly url: string;
   readonly headers: Headers;
   readonly body: string | Record<string, unknown> | null;
-  readonly req: RawRequest;
+  /**
+   * The raw request itself from the implementing server.
+   *
+   * For example: `express.Request` when using Express, or maybe
+   * `http.IncomingMessage` when just using Node with `http.createServer`.
+   */
+  readonly raw: RawRequest;
 }
 
 /**
