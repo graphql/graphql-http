@@ -15,7 +15,13 @@ export interface Headers {
   accept?: string | undefined;
   allow?: string | undefined;
   'content-type'?: string | undefined;
-  [key: string]: string | undefined;
+  /**
+   * Always an array in Node. Duplicates are added to it.
+   * Not necessarily true for other environments, make sure
+   * to check the type during runtime.
+   */
+  'set-cookie'?: string | string[] | undefined;
+  [key: string]: string | string[] | undefined;
 }
 
 /**

@@ -33,7 +33,7 @@ export function startTServer(
         const [body, init] = await handle({
           url: req.url,
           method: req.method,
-          headers: req.headers as Record<string, string>,
+          headers: req.headers,
           body: await new Promise<string>((resolve) => {
             let body = '';
             req.on('data', (chunk) => (body += chunk));
