@@ -1,5 +1,5 @@
 import fetch from 'node-fetch';
-import { createClient } from '../client';
+import { createClient, NetworkError } from '../client';
 import { startTServer } from './utils/tserver';
 import { texecute } from './utils/texecute';
 
@@ -31,4 +31,17 @@ it('should execute mutation, next the result and then complete', async () => {
   const result = await request;
 
   expect(result).toEqual({ data: { dontChange: 'didntChange' } });
+});
+
+it('should report invalid request', async () => {
+  const server = startTServer();
+
+  const client = createClient({
+    url: server.url,
+    fetchFn: fetch,
+  });
+
+  const [request] = texecute(client, { query: 'query {' });
+
+  await expect(request).rejects.toBeInstanceOf(NetworkError);
 });
