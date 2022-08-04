@@ -122,6 +122,14 @@ describe('Request', () => {
   });
 
   describe('POST', () => {
+    it('should respond with 4xx status code if content-type is not supplied', async () => {
+      const res = await fetch(server.url, {
+        method: 'POST',
+      });
+      expect(res.status).toBeGreaterThanOrEqual(400);
+      expect(res.status).toBeLessThanOrEqual(599);
+    });
+
     it('must accept application/json requests', async () => {
       const res = await fetch(server.url, {
         method: 'POST',
