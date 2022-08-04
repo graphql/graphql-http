@@ -1,0 +1,125 @@
+[graphql-http](../README.md) / ClientOptions
+
+# Interface: ClientOptions
+
+## Table of contents
+
+### Properties
+
+- [abortControllerImpl](ClientOptions.md#abortcontrollerimpl)
+- [credentials](ClientOptions.md#credentials)
+- [fetchFn](ClientOptions.md#fetchfn)
+- [headers](ClientOptions.md#headers)
+- [referrer](ClientOptions.md#referrer)
+- [referrerPolicy](ClientOptions.md#referrerpolicy)
+- [url](ClientOptions.md#url)
+
+## Properties
+
+### abortControllerImpl
+
+• `Optional` **abortControllerImpl**: `unknown`
+
+The AbortController implementation to use.
+
+For NodeJS environments before v15 consider using [`node-abort-controller`](https://github.com/southpolesteve/node-abort-controller).
+
+**`Default`**
+
+global.AbortController
+
+___
+
+### credentials
+
+• `Optional` **credentials**: ``"omit"`` \| ``"same-origin"`` \| ``"include"``
+
+Indicates whether the user agent should send cookies from the other domain in the case
+of cross-origin requests.
+
+Possible options are:
+  - `omit`: Never send or receive cookies.
+  - `same-origin`: Send user credentials (cookies, basic http auth, etc..) if the URL is on the same origin as the calling script.
+  - `include`: Always send user credentials (cookies, basic http auth, etc..), even for cross-origin calls.
+
+**`Default`**
+
+same-origin
+
+___
+
+### fetchFn
+
+• `Optional` **fetchFn**: `unknown`
+
+The Fetch function to use.
+
+For NodeJS environments consider using [`node-fetch`](https://github.com/node-fetch/node-fetch).
+
+**`Default`**
+
+global.fetch
+
+___
+
+### headers
+
+• `Optional` **headers**: `Record`<`string`, `string`\> \| () => `Record`<`string`, `string`\> \| `Promise`<`Record`<`string`, `string`\>\>
+
+HTTP headers to pass along the request.
+
+If the option is a function, it will be called on each request.
+Returning a Promise is supported too and the request will stall until it
+resolves.
+
+A good use-case for having a function is when using the URL for authentication,
+where subsequent requests (due to auth) may have a refreshed identity token.
+
+___
+
+### referrer
+
+• `Optional` **referrer**: `string`
+
+A string specifying the referrer of the request. This can be a same-origin URL, about:client, or an empty string.
+
+**`Default`**
+
+undefined
+
+___
+
+### referrerPolicy
+
+• `Optional` **referrerPolicy**: ``"same-origin"`` \| ``"no-referrer"`` \| ``"no-referrer-when-downgrade"`` \| ``"origin"`` \| ``"strict-origin"`` \| ``"origin-when-cross-origin"`` \| ``"strict-origin-when-cross-origin"`` \| ``"unsafe-url"``
+
+Specifies the referrer policy to use for the request.
+
+Possible options are:
+  - `no-referrer`: Does not send referrer information along with requests to any origin.
+  - `no-referrer-when-downgrade`: Sends full referrerURL for requests: whose referrerURL and current URL are both potentially trustworthy URLs, or whose referrerURL is a non-potentially trustworthy URL.
+  - `same-origin`: Sends full referrerURL as referrer information when making same-origin-referrer requests.
+  - `origin`: Sends only the ASCII serialization of the request’s referrerURL when making both same-origin-referrer requests and cross-origin-referrer requests.
+  - `strict-origin`: Sends the ASCII serialization of the origin of the referrerURL for requests: whose referrerURL and current URL are both potentially trustworthy URLs, or whose referrerURL is a non-potentially trustworthy URL
+  - `origin-when-cross-origin`: Sends full referrerURL when making same-origin-referrer requests, and only the ASCII serialization of the origin of the request’s referrerURL is sent when making cross-origin-referrer requests
+  - `strict-origin-when-cross-origin`: Sends full referrerURL when making same-origin-referrer requests, and only the ASCII serialization of the origin of the request’s referrerURL when making cross-origin-referrer requests: whose referrerURL and current URL are both potentially trustworthy URLs, or whose referrerURL is a non-potentially trustworthy URL.
+  - `unsafe-url`: Sends full referrerURL along for both same-origin-referrer requests and cross-origin-referrer requests.
+
+**`Default`**
+
+undefined
+
+___
+
+### url
+
+• **url**: `string` \| () => `string` \| `Promise`<`string`\>
+
+URL of the GraphQL over HTTP server to connect.
+
+If the option is a function, it will be called on each request.
+Returning a Promise is supported too and the request will stall until it
+resolves.
+
+A good use-case for having a function is when using the URL for authentication,
+where subsequent requests (due to auth) may have a refreshed identity token.
