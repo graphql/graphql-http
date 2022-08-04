@@ -156,6 +156,7 @@ const server = http.createServer(async (req, res) => {
     });
     res.writeHead(init.status, init.statusText, init.headers).end(body);
   } catch (err) {
+    // BEWARE not to transmit the exact internal error message in production environments
     res.writeHead(500).end(err.message);
   }
 });
