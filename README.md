@@ -205,6 +205,52 @@ fastify.listen(4000);
 console.log('Listening to port 4000');
 ```
 
+## Recipes
+
+<details id="context">
+<summary><a href="#context">🔗</a> Server handler usage with custom context value</summary>
+
+```typescript
+import { createHandler } from 'graphql-http';
+import { schema, getDynamicContext } from './my-graphql';
+
+const handler = createHandler({
+  schema,
+  context: async (req, args) => {
+    return getDynamicContext(req, args);
+  },
+  // or static context by supplying the value direcly
+});
+```
+
+</details>
+
+<details id="custom-exec">
+<summary><a href="#custom-exec">🔗</a> Server handler usage with custom execution arguments</summary>
+
+```typescript
+import { parse } from 'graphql';
+import { createHandler } from 'graphql-http';
+import { getSchemaForRequest, myValidationRules } from './my-graphql';
+
+const handler = createHandler({
+  onSubscribe: async (req, params) => {
+    const schema = await getSchemaForRequest(req);
+
+    const args = {
+      schema,
+      operationName: params.operationName,
+      document: parse(params.query),
+      variableValues: params.variables,
+    };
+
+    return args;
+  },
+});
+```
+
+</details>
+
 ## [Documentation](docs/)
 
 Check the [docs folder](docs/) out for [TypeDoc](https://typedoc.org) generated documentation.
