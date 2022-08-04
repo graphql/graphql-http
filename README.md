@@ -265,7 +265,7 @@ function execute<Data, Extensions>(
   const request = new Promise<ExecutionResult<Data, Extensions>>(
     (resolve, reject) => {
       let result: ExecutionResult<Data, Extensions>;
-      client.subscribe<Data, Extensions>(params, {
+      cancel = client.subscribe<Data, Extensions>(params, {
         next: (data) => (result = data),
         error: reject,
         complete: () => resolve(result),
