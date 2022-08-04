@@ -502,7 +502,7 @@ const client = createClient({
 ```js
 const fetch = require('node-fetch'); // yarn add node-fetch
 const { AbortController } = require('node-abort-controller'); // (node < v15) yarn add node-abort-controller
-const { createClient } = require('graphql-sse');
+const { createClient } = require('graphql-http');
 
 const client = createClient({
   url: 'http://no.browser:4000/graphql',
