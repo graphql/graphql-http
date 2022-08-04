@@ -134,9 +134,7 @@ import { createHandler } from 'graphql-http';
 import { schema } from './my-graphql-schema';
 
 // Create the GraphQL over HTTP handler
-const handler = createHandler({
-  schema,
-});
+const handler = createHandler({ schema });
 
 // Create a HTTP server using the handler on `/graphql`
 const server = http.createServer(async (req, res) => {
