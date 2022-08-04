@@ -370,6 +370,16 @@ export function createHandler<RawRequest = unknown>(
       ];
     }
 
+    if (operation === 'subscription') {
+      return [
+        null,
+        {
+          status: 422,
+          statusText: 'Unprocessable Entity',
+        },
+      ];
+    }
+
     // mutations cannot happen over GETs
     // https://github.com/graphql/graphql-over-http/blob/main/spec/GraphQLOverHTTP.md#get
     if (operation === 'mutation' && method === 'GET') {
@@ -384,8 +394,6 @@ export function createHandler<RawRequest = unknown>(
         },
       ];
     }
-
-    // TODO: what happens if operation is 'subscription'
 
     if (!('contextValue' in args)) {
       args.contextValue =
