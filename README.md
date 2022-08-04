@@ -272,7 +272,7 @@ console.log('Listening to port 4000');
 <details id="auth">
 <summary><a href="#auth">🔗</a> Server handler usage with authentication</summary>
 
-Authenticate the user within `graphql-http` during GraphQL execution context assembly. This is a approach is less safe compared to early authentication ([see early authentication in Node above](#auth-node-early)) because some GraphQL preparations or operations are executed even if the user is not unauthorized.
+Authenticate the user within `graphql-http` during GraphQL execution context assembly. This is a approach is less safe compared to early authentication ([see early authentication in Node](#auth-node-early)) because some GraphQL preparations or operations are executed even if the user is not unauthorized.
 
 ```js
 import { createHandler } from 'graphql-http';
