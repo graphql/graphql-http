@@ -210,7 +210,7 @@ console.log('Listening to port 4000');
 <details id="context">
 <summary><a href="#context">🔗</a> Server handler usage with custom context value</summary>
 
-```typescript
+```js
 import { createHandler } from 'graphql-http';
 import { schema, getDynamicContext } from './my-graphql';
 
@@ -228,7 +228,7 @@ const handler = createHandler({
 <details id="custom-exec">
 <summary><a href="#custom-exec">🔗</a> Server handler usage with custom execution arguments</summary>
 
-```typescript
+```js
 import { parse } from 'graphql';
 import { createHandler } from 'graphql-http';
 import { getSchemaForRequest, myValidationRules } from './my-graphql';
