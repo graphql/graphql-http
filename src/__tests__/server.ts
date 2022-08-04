@@ -436,5 +436,11 @@ describe('Response', () => {
       });
       expect(res.status).toBe(400);
     });
+
+    // TODO: how to make an unauthorized request?
+    // https://graphql.github.io/graphql-over-http/draft/#sel-EANNNDTAAEVBAAqqc
+    it.todo(
+      'should use 401 or 403 status codes when the request is not permitted',
+    );
   });
 });
