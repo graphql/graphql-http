@@ -1,7 +1,7 @@
 {
   "name": "graphql-http",
   "version": "1.0.0",
-  "description": "GraphQL over HTTP Protocol compliant server and client",
+  "description": "Simple, plugable, zero-dependency, GraphQL over HTTP Protocol compliant server and client",
   "keywords": [
     "graphql",
     "client",
