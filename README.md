@@ -239,6 +239,200 @@ const client = createClient({
 
 ## Recipes
 
+<details id="promise">
+<summary><a href="#promise">🔗</a> Client usage with Promise</summary>
+
+```ts
+import { ExecutionResult } from 'graphql';
+import { createClient, RequestParams } from 'graphql-http';
+import { getSession } from './my-auth';
+
+const client = createClient({
+  url: 'http://hey.there:4000/graphql',
+  headers: async () => {
+    const session = await getSession();
+    if (!session) return {};
+    return {
+      Authorization: `Bearer ${session.token}`,
+    };
+  },
+});
+
+function execute<Data, Extensions>(
+  params: RequestParams,
+): [request: Promise<ExecutionResult<Data, Extensions>>, cancel: () => void] {
+  let cancel!: () => void;
+  const request = new Promise<ExecutionResult<Data, Extensions>>(
+    (resolve, reject) => {
+      let result: ExecutionResult<Data, Extensions>;
+      client.subscribe<Data, Extensions>(params, {
+        next: (data) => (result = data),
+        error: reject,
+        complete: () => resolve(result),
+      });
+    },
+  );
+  return [request, cancel];
+}
+
+(async () => {
+  const [request, cancel] = execute({
+    query: '{ hello }',
+  });
+
+  // just an example, not a real function
+  onUserLeavePage(() => {
+    cancel();
+  });
+
+  const result = await request;
+
+  expect(result).toBe({ data: { hello: 'world' } });
+})();
+```
+
+</details>
+
+</details>
+
+<details id="observable">
+<summary><a href="#observable">🔗</a> Client usage with <a href="https://github.com/tc39/proposal-observable">Observable</a></summary>
+
+```js
+import { Observable } from 'relay-runtime';
+// or
+import { Observable } from '@apollo/client/core';
+// or
+import { Observable } from 'rxjs';
+// or
+import Observable from 'zen-observable';
+// or any other lib which implements Observables as per the ECMAScript proposal: https://github.com/tc39/proposal-observable
+import { createClient } from 'graphql-http';
+import { getSession } from './my-auth';
+
+const client = createClient({
+  url: 'http://graphql.loves:4000/observables',
+  headers: async () => {
+    const session = await getSession();
+    if (!session) return {};
+    return {
+      Authorization: `Bearer ${session.token}`,
+    };
+  },
+});
+
+const observable = new Observable((observer) =>
+  client.subscribe({ query: '{ hello }' }, observer),
+);
+
+const subscription = observable.subscribe({
+  next: (result) => {
+    expect(result).toBe({ data: { hello: 'world' } });
+  },
+});
+
+// unsubscribe will cancel the request if it is pending
+subscription.unsubscribe();
+```
+
+</details>
+
+<details id="relay">
+<summary><a href="#relay">🔗</a> Client usage with <a href="https://relay.dev">Relay</a></summary>
+
+```ts
+import { GraphQLError } from 'graphql';
+import {
+  Network,
+  Observable,
+  RequestParameters,
+  Variables,
+} from 'relay-runtime';
+import { createClient } from 'graphql-http';
+import { getSession } from './my-auth';
+
+const client = createClient({
+  url: 'http://i.love:4000/graphql',
+  headers: async () => {
+    const session = await getSession();
+    if (!session) return {};
+    return {
+      Authorization: `Bearer ${session.token}`,
+    };
+  },
+});
+
+function fetch(operation: RequestParameters, variables: Variables) {
+  return Observable.create((sink) => {
+    if (!operation.text) {
+      return sink.error(new Error('Operation text cannot be empty'));
+    }
+    return client.subscribe(
+      {
+        operationName: operation.name,
+        query: operation.text,
+        variables,
+      },
+      sink,
+    );
+  });
+}
+
+export const network = Network.create(fetch);
+```
+
+</details>
+
+<details id="apollo-client">
+<summary><a href="#apollo-client">🔗</a> Client usage with <a href="https://www.apollographql.com">Apollo</a></summary>
+
+```ts
+import {
+  ApolloLink,
+  Operation,
+  FetchResult,
+  Observable,
+} from '@apollo/client/core';
+import { print, GraphQLError } from 'graphql';
+import { createClient, ClientOptions, Client } from 'graphql-http';
+import { getSession } from './my-auth';
+
+class HTTPLink extends ApolloLink {
+  private client: Client;
+
+  constructor(options: ClientOptions) {
+    super();
+    this.client = createClient(options);
+  }
+
+  public request(operation: Operation): Observable<FetchResult> {
+    return new Observable((sink) => {
+      return this.client.subscribe<FetchResult>(
+        { ...operation, query: print(operation.query) },
+        {
+          next: sink.next.bind(sink),
+          complete: sink.complete.bind(sink),
+          error: sink.error.bind(sink),
+        },
+      );
+    });
+  }
+}
+
+const link = new HTTPLink({
+  url: 'http://where.is:4000/graphql',
+  headers: async () => {
+    const session = await getSession();
+    if (!session) return {};
+    return {
+      Authorization: `Bearer ${session.token}`,
+    };
+  },
+});
+```
+
+</details>
+
 <details id="auth">
 <summary><a href="#auth">🔗</a> Server handler usage with authentication</summary>
 
