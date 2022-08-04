@@ -42,8 +42,7 @@
     "lib",
     "umd",
     "README.md",
-    "LICENSE.md",
-    "PROTOCOL.md"
+    "LICENSE.md"
   ],
   "sideEffects": [
     "umd/*"
