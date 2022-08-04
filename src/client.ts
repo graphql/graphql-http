@@ -80,6 +80,25 @@ export interface ClientOptions {
     | Record<string, string>
     | (() => Promise<Record<string, string>> | Record<string, string>);
   /**
+   * Control whether the network request error should be retried.
+   *
+   * Please note that you can **only** control network errors, all other
+   * errors are considered fatal and will be reported immediately.
+   *
+   * You may implement your own waiting strategy by timing the resolution of the returned promise.
+   *
+   * Useful for retrying requests that failed because the service is temporarely unavailable.
+   *
+   * `retries` argument counts actual retries, so it will begin with
+   * 0 after the first failed request.
+   *
+   * Returning `false` will report the `err` argument; however, throwing a different error from
+   * the `err` argument, will report it instead.
+   *
+   * @default '() => false'
+   */
+  shouldRetry?: (err: NetworkError, retries: number) => Promise<boolean>;
+  /**
    * The Fetch function to use.
    *
    * For NodeJS environments consider using [`node-fetch`](https://github.com/node-fetch/node-fetch).
@@ -122,7 +141,12 @@ export interface Client {
  * @category Client
  */
 export function createClient(options: ClientOptions): Client {
-  const { credentials = 'same-origin', referrer, referrerPolicy } = options;
+  const {
+    credentials = 'same-origin',
+    referrer,
+    referrerPolicy,
+    shouldRetry = () => false,
+  } = options;
 
   const fetchFn = (options.fetchFn || fetch) as typeof fetch;
   const AbortControllerImpl = (options.abortControllerImpl ||
@@ -172,64 +196,82 @@ export function createClient(options: ClientOptions): Client {
       });
 
       (async () => {
-        try {
-          const url =
-            typeof options.url === 'function'
-              ? await options.url()
-              : options.url;
-          if (control.signal.aborted)
-            throw new Error('Connection aborted by the client');
-
-          const headers =
-            typeof options.headers === 'function'
-              ? await options.headers()
-              : options.headers ?? {};
-          if (control.signal.aborted)
-            throw new Error('Connection aborted by the client');
-
-          let res;
+        let retryingErr: NetworkError | null = null,
+          retries = 0;
+        for (;;) {
           try {
-            res = await fetchFn(url, {
-              signal: control.signal,
-              method: 'POST',
-              headers: {
-                ...headers,
-                'content-type': 'application/json; charset=utf-8',
-                accept: 'application/graphql+json, application/json',
-              },
-              credentials,
-              referrer,
-              referrerPolicy,
-              body: JSON.stringify(request),
-            });
+            if (retryingErr) {
+              const should = await shouldRetry(retryingErr, retries);
+
+              // requst might've been canceled while waiting for retry
+              if (control.signal.aborted)
+                throw new Error('Connection aborted by the client');
+
+              if (!should) throw retryingErr;
+
+              retries++;
+            }
+
+            const url =
+              typeof options.url === 'function'
+                ? await options.url()
+                : options.url;
+            if (control.signal.aborted)
+              throw new Error('Connection aborted by the client');
+
+            const headers =
+              typeof options.headers === 'function'
+                ? await options.headers()
+                : options.headers ?? {};
+            if (control.signal.aborted)
+              throw new Error('Connection aborted by the client');
+
+            let res;
+            try {
+              res = await fetchFn(url, {
+                signal: control.signal,
+                method: 'POST',
+                headers: {
+                  ...headers,
+                  'content-type': 'application/json; charset=utf-8',
+                  accept: 'application/graphql+json, application/json',
+                },
+                credentials,
+                referrer,
+                referrerPolicy,
+                body: JSON.stringify(request),
+              });
+            } catch (err) {
+              throw new NetworkError(err);
+            }
+            if (!res.ok) throw new NetworkError(res);
+            if (!res.body) throw new Error('Missing response body');
+
+            const contentType = res.headers.get('content-type');
+            if (!contentType) throw new Error('Missing response content-type');
+            if (
+              !contentType.includes('application/graphql+json') &&
+              !contentType.includes('application/json')
+            ) {
+              throw new Error(
+                `Unsupported response content-type ${contentType}`,
+              );
+            }
+
+            const result = await res.json();
+
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            sink.next(result as any);
+
+            return control.abort();
           } catch (err) {
-            throw new NetworkError(err);
-          }
-          if (!res.ok) throw new NetworkError(res);
-          if (!res.body) throw new Error('Missing response body');
+            if (control.signal.aborted) return;
 
-          const contentType = res.headers.get('content-type');
-          if (!contentType)
-            throw new NetworkError('Missing response content-type');
-          if (
-            !contentType.includes('application/graphql+json') &&
-            !contentType.includes('application/json')
-          ) {
-            throw new NetworkError(
-              `Unsupported response content-type: ${contentType}`,
-            );
-          }
+            // all non-network errors are worth reporting immediately
+            if (!(err instanceof NetworkError)) throw err;
 
-          const result = await res.json();
-
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          sink.next(result as any);
-
-          return control.abort();
-        } catch (err) {
-          if (!control.signal.aborted) {
-            // not aborted, probably a serious error
-            throw err;
+            // try again
+            retryingErr = err;
           }
         }
       })()

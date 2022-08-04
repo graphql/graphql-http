@@ -12,6 +12,7 @@
 - [headers](ClientOptions.md#headers)
 - [referrer](ClientOptions.md#referrer)
 - [referrerPolicy](ClientOptions.md#referrerpolicy)
+- [shouldRetry](ClientOptions.md#shouldretry)
 - [url](ClientOptions.md#url)
 
 ## Properties
@@ -108,6 +109,46 @@ Possible options are:
 **`Default`**
 
 undefined
+
+___
+
+### shouldRetry
+
+• `Optional` **shouldRetry**: (`err`: [`NetworkError`](../classes/NetworkError.md)<`ResponseLike`\>, `retries`: `number`) => `Promise`<`boolean`\>
+
+#### Type declaration
+
+▸ (`err`, `retries`): `Promise`<`boolean`\>
+
+Control whether the network request error should be retried.
+
+Please note that you can **only** control network errors, all other
+errors are considered fatal and will be reported immediately.
+
+You may implement your own waiting strategy by timing the resolution of the returned promise.
+
+Useful for retrying requests that failed because the service is temporarely unavailable.
+
+`retries` argument counts actual retries, so it will begin with
+0 after the first failed request.
+
+Returning `false` will report the `err` argument; however, throwing a different error from
+the `err` argument, will report it instead.
+
+**`Default`**
+
+'() => false'
+
+##### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `err` | [`NetworkError`](../classes/NetworkError.md)<`ResponseLike`\> |
+| `retries` | `number` |
+
+##### Returns
+
+`Promise`<`boolean`\>
 
 ___
 
