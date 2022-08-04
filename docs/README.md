@@ -126,7 +126,7 @@ For production environments, its recommended not to transmit the exact internal
 error details to the client, but instead report to an error logging tool or simply
 the console.
 
-Simple example usage with Node.JS:
+Simple example usage with Node:
 
 ```js
 import http from 'http';
