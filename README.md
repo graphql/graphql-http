@@ -468,6 +468,53 @@ const client = createClient({
 
 </details>
 
+<details id="browser">
+<summary><a href="#browser">🔗</a> Client usage in browser</summary>
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>GraphQL over HTTP</title>
+    <script
+      type="text/javascript"
+      src="https://unpkg.com/graphql-http/umd/graphql-http.min.js"
+    ></script>
+  </head>
+  <body>
+    <script type="text/javascript">
+      const client = graphqlHttp.createClient({
+        url: 'http://umdfor.the:4000/win/graphql',
+      });
+
+      // consider other recipes for usage inspiration
+    </script>
+  </body>
+</html>
+```
+
+</details>
+
+<details id="node-client">
+<summary><a href="#node-client">🔗</a> Client usage in Node</summary>
+
+```js
+const fetch = require('node-fetch'); // yarn add node-fetch
+const { AbortController } = require('node-abort-controller'); // (node < v15) yarn add node-abort-controller
+const { createClient } = require('graphql-sse');
+
+const client = createClient({
+  url: 'http://no.browser:4000/graphql',
+  fetchFn: fetch,
+  abortControllerImpl: AbortController, // node < v15
+});
+
+// consider other recipes for usage inspiration
+```
+
+</details>
+
 <details id="auth">
 <summary><a href="#auth">🔗</a> Server handler usage with authentication</summary>
 
