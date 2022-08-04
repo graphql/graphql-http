@@ -3,7 +3,7 @@
 
   <h3>graphql-http</h3>
 
-  <h6><a href="https://github.com/graphql/graphql-over-http/blob/main/spec/GraphQLOverHTTP.md">GraphQL over HTTP Protocol</a> compliant server and client.</h6>
+  <h6><a href="https://graphql.github.io/graphql-over-http">GraphQL over HTTP Protocol</a> compliant server and client.</h6>
 
 [![Continuous integration](https://github.com/enisdenjo/graphql-http/workflows/Continuous%20integration/badge.svg)](https://github.com/enisdenjo/graphql-http/actions?query=workflow%3A%22Continuous+integration%22) [![graphql-http](https://img.shields.io/npm/v/graphql-http.svg?label=graphql-http&logo=npm)](https://www.npmjs.com/package/graphql-http)
 

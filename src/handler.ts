@@ -430,7 +430,7 @@ export function createHandler<RawRequest = unknown>(
     }
 
     // mutations cannot happen over GETs
-    // https://github.com/graphql/graphql-over-http/blob/main/spec/GraphQLOverHTTP.md#get
+    // https://graphql.github.io/graphql-over-http/draft/#sel-CALFJRPAAELBAAxwP
     if (operation === 'mutation' && method === 'GET') {
       return [
         'Cannot perform mutations over GET',

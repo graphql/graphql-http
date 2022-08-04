@@ -4,7 +4,7 @@
 
 Parameters for GraphQL's request for execution.
 
-Reference: https://github.com/graphql/graphql-over-http/blob/main/spec/GraphQLOverHTTP.md#request
+Reference: https://graphql.github.io/graphql-over-http/draft/#sec-Request-Parameters
 
 ## Table of contents
 
