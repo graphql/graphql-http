@@ -50,11 +50,10 @@ const schema = new GraphQLSchema({
 ```js
 import http from 'http';
 import { createHandler } from 'graphql-http';
+import { schema } from './previous-step';
 
 // Create the GraphQL over HTTP handler
-const handler = createHandler({
-  schema, // from the previous step
-});
+const handler = createHandler({ schema });
 
 // Create a HTTP server using the handler on `/graphql`
 const server = http.createServer(async (req, res) => {
@@ -97,11 +96,10 @@ $ openssl req -x509 -newkey rsa:2048 -nodes -sha256 -subj '/CN=localhost' \
 import fs from 'fs';
 import http2 from 'http2';
 import { createHandler } from 'graphql-http';
+import { schema } from './previous-step';
 
 // Create the GraphQL over HTTP handler
-const handler = createHandler({
-  schema, // from the previous step
-});
+const handler = createHandler({ schema });
 
 // Create a HTTP/2 server using the handler on `/graphql`
 const server = http2.createSecureServer(
@@ -142,6 +140,7 @@ console.log('Listening to port 4000');
 ```js
 import express from 'express'; // yarn add express
 import { createHandler } from 'graphql-http';
+import { schema } from './previous-step';
 
 // Create the GraphQL over HTTP handler
 const handler = createHandler({ schema });
@@ -176,6 +175,7 @@ console.log('Listening to port 4000');
 ```js
 import Fastify from 'fastify'; // yarn add fastify
 import { createHandler } from 'graphql-http';
+import { schema } from './previous-step';
 
 // Create the GraphQL over HTTP handler
 const handler = createHandler({ schema });
