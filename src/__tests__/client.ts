@@ -1,7 +1,30 @@
 import fetch from 'node-fetch';
+import { Headers } from '../common';
 import { createClient, NetworkError } from '../client';
 import { startTServer } from './utils/tserver';
 import { texecute } from './utils/texecute';
+
+it('should use the provided headers', async () => {
+  let headers: Headers = {};
+  const server = startTServer({
+    onSubscribe: (req) => {
+      headers = req.headers;
+    },
+  });
+
+  const client = createClient({
+    url: server.url,
+    fetchFn: fetch,
+    headers: async () => {
+      return { 'x-some': 'header' };
+    },
+  });
+
+  const [request] = texecute(client, { query: '{ hello }' });
+  await request;
+
+  expect(headers['x-some']).toBe('header');
+});
 
 it('should execute query, next the result and then complete', async () => {
   const server = startTServer();
