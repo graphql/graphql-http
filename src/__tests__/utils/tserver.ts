@@ -3,6 +3,7 @@ import http from 'http';
 import net from 'net';
 import { Response } from 'node-fetch';
 import { ExecutionResult } from 'graphql';
+import { schema } from '../fixtures/simple';
 
 type Dispose = () => Promise<void>;
 
@@ -18,9 +19,12 @@ export interface TServer {
   dispose: Dispose;
 }
 export function startTServer(
-  options: HandlerOptions<http.IncomingMessage>,
+  options: HandlerOptions<http.IncomingMessage> = {},
 ): TServer {
-  const handle = createHandler(options);
+  const handle = createHandler({
+    schema,
+    ...options,
+  });
   const [url, dispose] = startDisposableServer(
     http.createServer(async (req, res) => {
       try {
