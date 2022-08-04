@@ -207,7 +207,7 @@ console.log('Listening to port 4000');
 
 #### Use the client
 
-```ts
+```js
 import { createClient } from 'graphql-http';
 
 const client = createClient({
