@@ -7,6 +7,8 @@
 
 [![Continuous integration](https://github.com/enisdenjo/graphql-http/workflows/Continuous%20integration/badge.svg)](https://github.com/enisdenjo/graphql-http/actions?query=workflow%3A%22Continuous+integration%22) [![graphql-http](https://img.shields.io/npm/v/graphql-http.svg?label=graphql-http&logo=npm)](https://www.npmjs.com/package/graphql-http)
 
+<i>Need subscriptions? Try <b>[graphql-ws](https://github.com/enisdenjo/graphql-ws)</b> or <b>[graphql-sse](https://github.com/enisdenjo/graphql-sse)</b> instead!</i>
+
   <br />
 </div>
 
