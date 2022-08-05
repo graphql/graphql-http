@@ -453,8 +453,10 @@ export function createHandler<RawRequest = unknown>(
     }
 
     if (!('contextValue' in args)) {
-      args.contextValue =
+      const maybeResOrContext =
         typeof context === 'function' ? await context(req, args) : context;
+      if (isResponse(maybeResOrContext)) return maybeResOrContext;
+      args.contextValue = maybeResOrContext;
     }
 
     const validationErrs = validate(args.schema, args.document);
