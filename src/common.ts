@@ -85,7 +85,7 @@ export type ResponseBody = string;
  */
 export interface ResponseInit {
   readonly status: number;
-  readonly statusText?: string;
+  readonly statusText: string;
   readonly headers?: ResponseHeaders;
 }
 
