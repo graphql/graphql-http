@@ -22,8 +22,11 @@ export interface ClientOptions {
    *
    * A good use-case for having a function is when using the URL for authentication,
    * where subsequent requests (due to auth) may have a refreshed identity token.
+   *
+   * Function receives the request params. Useful for example, to ease up debugging and DevTools
+   * navigation you might want to use the operation name in the URL's search params (`/graphql?MyQuery`).
    */
-  url: string | (() => Promise<string> | string);
+  url: string | ((request: RequestParams) => Promise<string> | string);
   /**
    * Indicates whether the user agent should send cookies from the other domain in the case
    * of cross-origin requests.
@@ -217,7 +220,7 @@ export function createClient(options: ClientOptions): Client {
           try {
             const url =
               typeof options.url === 'function'
-                ? await options.url()
+                ? await options.url(request)
                 : options.url;
             if (control.signal.aborted) return;
 

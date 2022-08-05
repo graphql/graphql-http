@@ -154,7 +154,7 @@ ___
 
 ### url
 
-• **url**: `string` \| () => `string` \| `Promise`<`string`\>
+• **url**: `string` \| (`request`: [`RequestParams`](RequestParams.md)) => `string` \| `Promise`<`string`\>
 
 URL of the GraphQL over HTTP server to connect.
 
@@ -164,3 +164,6 @@ resolves.
 
 A good use-case for having a function is when using the URL for authentication,
 where subsequent requests (due to auth) may have a refreshed identity token.
+
+Function receives the request params. Useful for example, to ease up debugging and DevTools
+navigation you might want to use the operation name in the URL's search params (`/graphql?MyQuery`).
