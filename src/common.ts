@@ -104,7 +104,11 @@ export type Response = readonly [body: ResponseBody | null, init: ResponseInit];
  */
 export function isResponse(val: unknown): val is Response {
   // TODO: make sure the contents of init match ResponseInit
-  return Array.isArray(val) && typeof val[0] === 'string' && isObject(val[1]);
+  return (
+    Array.isArray(val) &&
+    (typeof val[0] === 'string' || val[0] === null) &&
+    isObject(val[1])
+  );
 }
 
 /**
