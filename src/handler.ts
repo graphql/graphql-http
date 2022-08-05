@@ -10,7 +10,7 @@ import {
   GraphQLSchema,
   validate as graphqlValidate,
   execute as graphqlExecute,
-  parse,
+  parse as graphqlParse,
   DocumentNode,
   getOperationAST,
   OperationTypeNode,
@@ -82,6 +82,10 @@ export interface HandlerOptions<RawRequest = unknown> {
    * used to execute the query and mutation operations.
    */
   execute?: typeof graphqlExecute;
+  /**
+   * GraphQL parse function allowing you to apply a custom parser.
+   */
+  parse?: typeof graphqlParse;
   /**
    * The subscribe callback executed right after processing the request
    * before proceeding with the GraphQL operation execution.
@@ -210,6 +214,7 @@ export function createHandler<RawRequest = unknown>(
     context,
     validate = graphqlValidate,
     execute = graphqlExecute,
+    parse = graphqlParse,
     onSubscribe,
     onOperation,
   } = options;

@@ -16,6 +16,7 @@
 - [execute](HandlerOptions.md#execute)
 - [onOperation](HandlerOptions.md#onoperation)
 - [onSubscribe](HandlerOptions.md#onsubscribe)
+- [parse](HandlerOptions.md#parse)
 - [schema](HandlerOptions.md#schema)
 - [validate](HandlerOptions.md#validate)
 
@@ -130,6 +131,30 @@ further execution.
 ##### Returns
 
 `void` \| [`Response`](../README.md#response) \| `ExecutionArgs` \| `Promise`<`void` \| [`Response`](../README.md#response) \| `ExecutionArgs`\>
+
+___
+
+### parse
+
+• `Optional` **parse**: (`source`: `string` \| `Source`, `options?`: `ParseOptions`) => `DocumentNode`
+
+#### Type declaration
+
+▸ (`source`, `options?`): `DocumentNode`
+
+Given a GraphQL source, parses it into a Document.
+Throws GraphQLError if a syntax error is encountered.
+
+##### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `source` | `string` \| `Source` |
+| `options?` | `ParseOptions` |
+
+##### Returns
+
+`DocumentNode`
 
 ___
 
