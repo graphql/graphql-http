@@ -550,6 +550,21 @@ const client = createClient({
 
 </details>
 
+<details id="deno-client">
+<summary><a href="#deno-client">🔗</a> Client usage in Deno</summary>
+
+```js
+import { createClient } from 'graphql-http';
+
+const client = createClient({
+  url: 'http://deno.earth:4000/graphql',
+});
+
+// consider other recipes for usage inspiration
+```
+
+</details>
+
 <details id="auth">
 <summary><a href="#auth">🔗</a> Server handler usage with authentication</summary>
 
