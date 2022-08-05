@@ -390,9 +390,9 @@ export function createHandler<RawRequest = unknown>(
       let document: DocumentNode;
       try {
         document = parse(query);
-      } catch {
+      } catch (err) {
         return [
-          'GraphQL query syntax error',
+          JSON.stringify({ errors: [err] }),
           {
             ...(acceptedMediaType === 'application/json'
               ? {
@@ -404,6 +404,12 @@ export function createHandler<RawRequest = unknown>(
                   statusText: 'Bad Request',
                 }),
             statusText: 'Bad Request',
+            headers: {
+              'content-type':
+                acceptedMediaType === 'application/json'
+                  ? 'application/json; charset=utf-8'
+                  : 'application/graphql+json; charset=utf-8',
+            },
           },
         ];
       }
