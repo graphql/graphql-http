@@ -363,7 +363,15 @@ export function createHandler<RawRequest = unknown>(
       return [
         err.message,
         {
-          status: acceptedMediaType === 'application/json' ? 200 : 400,
+          ...(acceptedMediaType === 'application/json'
+            ? {
+                status: 200,
+                statusText: 'OK',
+              }
+            : {
+                status: 400,
+                statusText: 'Bad Request',
+              }),
           statusText: 'Bad Request',
         },
       ];
@@ -385,7 +393,15 @@ export function createHandler<RawRequest = unknown>(
         return [
           'GraphQL query syntax error',
           {
-            status: acceptedMediaType === 'application/json' ? 200 : 400,
+            ...(acceptedMediaType === 'application/json'
+              ? {
+                  status: 200,
+                  statusText: 'OK',
+                }
+              : {
+                  status: 400,
+                  statusText: 'Bad Request',
+                }),
             statusText: 'Bad Request',
           },
         ];
@@ -421,7 +437,15 @@ export function createHandler<RawRequest = unknown>(
       return [
         'Unable to detect operation AST',
         {
-          status: acceptedMediaType === 'application/json' ? 200 : 400,
+          ...(acceptedMediaType === 'application/json'
+            ? {
+                status: 200,
+                statusText: 'OK',
+              }
+            : {
+                status: 400,
+                statusText: 'Bad Request',
+              }),
           statusText: 'Bad Request',
         },
       ];
@@ -464,8 +488,15 @@ export function createHandler<RawRequest = unknown>(
       return [
         JSON.stringify({ errors: validationErrs }),
         {
-          status: acceptedMediaType === 'application/json' ? 200 : 400,
-          statusText: 'Bad Request',
+          ...(acceptedMediaType === 'application/json'
+            ? {
+                status: 200,
+                statusText: 'OK',
+              }
+            : {
+                status: 400,
+                statusText: 'Bad Request',
+              }),
           headers: {
             'content-type':
               acceptedMediaType === 'application/json'
