@@ -31,7 +31,7 @@ ___
 
 ### headers
 
-• `Readonly` **headers**: [`Headers`](Headers.md)
+• `Readonly` **headers**: [`RequestHeaders`](RequestHeaders.md)
 
 ___
 

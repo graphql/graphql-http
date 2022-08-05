@@ -7,11 +7,11 @@
 import { isObject } from './utils';
 
 /**
- * Concrete interface that the headers map should implement.
+ * The incoming request headers the implementing server should provide.
  *
  * @category Common
  */
-export interface Headers {
+export interface RequestHeaders {
   accept?: string | undefined;
   allow?: string | undefined;
   'content-type'?: string | undefined;
@@ -33,7 +33,7 @@ export interface Headers {
 export interface Request<RawRequest> {
   readonly method: string;
   readonly url: string;
-  readonly headers: Headers;
+  readonly headers: RequestHeaders;
   readonly body: string | Record<string, unknown> | null;
   /**
    * The raw request itself from the implementing server.
@@ -59,6 +59,17 @@ export interface RequestParams {
 }
 
 /**
+ * The response headers that get returned from graphql-http.
+ *
+ * @category Common
+ */
+export type ResponseHeaders = {
+  accept?: string;
+  allow?: string;
+  'content-type'?: string;
+} & Record<string, string>;
+
+/**
  * Server agnostic response body returned from `graphql-http` needing
  * to be coerced to the server implementation in use.
  *
@@ -75,7 +86,7 @@ export type ResponseBody = string;
 export interface ResponseInit {
   readonly status: number;
   readonly statusText?: string;
-  readonly headers?: Headers;
+  readonly headers?: ResponseHeaders;
 }
 
 /**

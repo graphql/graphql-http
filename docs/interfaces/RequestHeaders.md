@@ -1,8 +1,8 @@
-[graphql-http](../README.md) / Headers
+[graphql-http](../README.md) / RequestHeaders
 
-# Interface: Headers
+# Interface: RequestHeaders
 
-Concrete interface that the headers map should implement.
+The incoming request headers the implementing server should provide.
 
 ## Indexable
 
@@ -12,10 +12,10 @@ Concrete interface that the headers map should implement.
 
 ### Properties
 
-- [accept](Headers.md#accept)
-- [allow](Headers.md#allow)
-- [content-type](Headers.md#content-type)
-- [set-cookie](Headers.md#set-cookie)
+- [accept](RequestHeaders.md#accept)
+- [allow](RequestHeaders.md#allow)
+- [content-type](RequestHeaders.md#content-type)
+- [set-cookie](RequestHeaders.md#set-cookie)
 
 ## Properties
 

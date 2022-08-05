@@ -1,11 +1,11 @@
 import fetch from 'node-fetch';
-import { Headers } from '../common';
+import { RequestHeaders } from '../common';
 import { createClient, NetworkError } from '../client';
 import { startTServer } from './utils/tserver';
 import { texecute } from './utils/texecute';
 
 it('should use the provided headers', async () => {
-  let headers: Headers = {};
+  let headers: RequestHeaders = {};
   const server = startTServer({
     onSubscribe: (req) => {
       headers = req.headers;

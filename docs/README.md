@@ -13,8 +13,8 @@ graphql-http
 - [Client](interfaces/Client.md)
 - [ClientOptions](interfaces/ClientOptions.md)
 - [HandlerOptions](interfaces/HandlerOptions.md)
-- [Headers](interfaces/Headers.md)
 - [Request](interfaces/Request.md)
+- [RequestHeaders](interfaces/RequestHeaders.md)
 - [RequestParams](interfaces/RequestParams.md)
 - [ResponseInit](interfaces/ResponseInit.md)
 - [Sink](interfaces/Sink.md)
@@ -25,6 +25,7 @@ graphql-http
 - [Handler](README.md#handler)
 - [Response](README.md#response)
 - [ResponseBody](README.md#responsebody)
+- [ResponseHeaders](README.md#responseheaders)
 
 ### Functions
 
@@ -68,6 +69,14 @@ ___
 
 Server agnostic response body returned from `graphql-http` needing
 to be coerced to the server implementation in use.
+
+___
+
+### ResponseHeaders
+
+Ƭ **ResponseHeaders**: { `accept?`: `string` ; `allow?`: `string` ; `content-type?`: `string`  } & `Record`<`string`, `string`\>
+
+The response headers that get returned from graphql-http.
 
 ___
 

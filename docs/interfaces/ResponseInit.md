@@ -17,7 +17,7 @@ Server agnostic response options (ex. status and headers) returned from
 
 ### headers
 
-• `Optional` `Readonly` **headers**: [`Headers`](Headers.md)
+• `Optional` `Readonly` **headers**: [`ResponseHeaders`](../README.md#responseheaders)
 
 ___
 
