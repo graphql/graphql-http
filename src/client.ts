@@ -4,7 +4,7 @@
  *
  */
 
-import { ExecutionResult } from 'graphql';
+import type { ExecutionResult } from 'graphql';
 import { RequestParams, Sink } from './common';
 import { isObject } from './utils';
 
