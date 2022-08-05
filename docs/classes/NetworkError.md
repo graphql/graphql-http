@@ -11,7 +11,7 @@ you should supply the `Response` generic depending on your Fetch implementation.
 
 | Name | Type |
 | :------ | :------ |
-| `Response` | extends `ResponseLike` = `ResponseLike` |
+| `Response` | extends [`ResponseLike`](../interfaces/ResponseLike.md) = [`ResponseLike`](../interfaces/ResponseLike.md) |
 
 ## Hierarchy
 
@@ -39,7 +39,7 @@ you should supply the `Response` generic depending on your Fetch implementation.
 
 | Name | Type |
 | :------ | :------ |
-| `Response` | extends `ResponseLike` = `ResponseLike` |
+| `Response` | extends [`ResponseLike`](../interfaces/ResponseLike.md) = [`ResponseLike`](../interfaces/ResponseLike.md) |
 
 #### Parameters
 

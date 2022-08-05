@@ -329,7 +329,12 @@ export class NetworkError<
   }
 }
 
-interface ResponseLike {
+/**
+ * Concrete interface a response needs to implement for the client.
+ *
+ * @category Client
+ */
+export interface ResponseLike {
   readonly ok: boolean;
   readonly status: number;
   readonly statusText: string;

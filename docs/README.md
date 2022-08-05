@@ -17,6 +17,7 @@ graphql-http
 - [RequestHeaders](interfaces/RequestHeaders.md)
 - [RequestParams](interfaces/RequestParams.md)
 - [ResponseInit](interfaces/ResponseInit.md)
+- [ResponseLike](interfaces/ResponseLike.md)
 - [Sink](interfaces/Sink.md)
 
 ### Type Aliases

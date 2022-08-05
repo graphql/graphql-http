@@ -114,7 +114,7 @@ ___
 
 ### shouldRetry
 
-• `Optional` **shouldRetry**: (`err`: [`NetworkError`](../classes/NetworkError.md)<`ResponseLike`\>, `retries`: `number`) => `Promise`<`boolean`\>
+• `Optional` **shouldRetry**: (`err`: [`NetworkError`](../classes/NetworkError.md)<[`ResponseLike`](ResponseLike.md)\>, `retries`: `number`) => `Promise`<`boolean`\>
 
 #### Type declaration
 
@@ -143,7 +143,7 @@ the `err` argument, will report it instead.
 
 | Name | Type |
 | :------ | :------ |
-| `err` | [`NetworkError`](../classes/NetworkError.md)<`ResponseLike`\> |
+| `err` | [`NetworkError`](../classes/NetworkError.md)<[`ResponseLike`](ResponseLike.md)\> |
 | `retries` | `number` |
 
 ##### Returns
