@@ -207,6 +207,41 @@ fastify.listen(4000);
 console.log('Listening to port 4000');
 ```
 
+##### With [`Deno`](https://deno.land/)
+
+```ts
+import { serve } from 'https://deno.land/std@0.151.0/http/server.ts';
+import { createHandler } from 'https://esm.sh/graphql-http';
+import { schema } from './previous-step';
+
+const handler = createHandler<Request>({ schema });
+
+await serve(
+  async (req: Request) => {
+    const [path, _search] = req.url.split('?');
+    if (!path.endsWith('/graphql')) {
+      return new Response(null, { status: 404, statusText: 'Not Found' });
+    }
+
+    const headers: Record<string, string> = {};
+    req.headers.forEach((value, key) => (headers[key] = value));
+    const [body, init] = await handler({
+      url: req.url,
+      method: req.method,
+      headers,
+      body: await req.text(),
+      raw: req,
+    });
+    return new Response(body, init);
+  },
+  {
+    port: 4000,
+  },
+);
+
+// Listening to port 4000
+```
+
 #### Use the client
 
 ```js
