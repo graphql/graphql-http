@@ -14,8 +14,10 @@ import {
   DocumentNode,
   getOperationAST as graphqlGetOperationAST,
   OperationTypeNode,
+  GraphQLError,
 } from 'graphql';
 import { isResponse, Request, RequestParams, Response } from './common';
+import { areGraphQLErrors } from './utils';
 
 /**
  * A concrete GraphQL execution context value type.
@@ -98,6 +100,9 @@ export interface HandlerOptions<RawRequest = unknown> {
    * trying to build one internally. In this case, you are responsible for providing
    * a ready set of arguments which will be directly plugged in the operation execution.
    *
+   * If you return an array of `GraphQLError` from the callback, they will be reported
+   * to the client while complying with the spec.
+   *
    * Omitting the fields `contextValue` from the returned `ExecutionArgs` will use the
    * provided `context` option, if available.
    *
@@ -113,8 +118,9 @@ export interface HandlerOptions<RawRequest = unknown> {
     req: Request<RawRequest>,
     params: RequestParams,
   ) =>
-    | Promise<ExecutionArgs | Response | void>
+    | Promise<ExecutionArgs | GraphQLError[] | Response | void>
     | ExecutionArgs
+    | GraphQLError[]
     | Response
     | void;
   /**
@@ -379,9 +385,30 @@ export function createHandler<RawRequest = unknown>(
     }
 
     let args: ExecutionArgs;
-    const maybeResOrExecArgs = await onSubscribe?.(req, params);
-    if (isResponse(maybeResOrExecArgs)) return maybeResOrExecArgs;
-    else if (maybeResOrExecArgs) args = maybeResOrExecArgs;
+    const maybeResErrsOrArgs = await onSubscribe?.(req, params);
+    if (isResponse(maybeResErrsOrArgs)) return maybeResErrsOrArgs;
+    else if (areGraphQLErrors(maybeResErrsOrArgs))
+      return [
+        JSON.stringify({ errors: maybeResErrsOrArgs }),
+        {
+          ...(acceptedMediaType === 'application/json'
+            ? {
+                status: 200,
+                statusText: 'OK',
+              }
+            : {
+                status: 400,
+                statusText: 'Bad Request',
+              }),
+          headers: {
+            'content-type':
+              acceptedMediaType === 'application/json'
+                ? 'application/json; charset=utf-8'
+                : 'application/graphql+json; charset=utf-8',
+          },
+        },
+      ];
+    else if (maybeResErrsOrArgs) args = maybeResErrsOrArgs;
     else {
       if (!schema) throw new Error('The GraphQL schema is not provided');
 

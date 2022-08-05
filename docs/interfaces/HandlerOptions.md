@@ -123,11 +123,11 @@ ___
 
 ### onSubscribe
 
-• `Optional` **onSubscribe**: (`req`: [`Request`](Request.md)<`RawRequest`\>, `params`: [`RequestParams`](RequestParams.md)) => `void` \| [`Response`](../README.md#response) \| `ExecutionArgs` \| `Promise`<`void` \| [`Response`](../README.md#response) \| `ExecutionArgs`\>
+• `Optional` **onSubscribe**: (`req`: [`Request`](Request.md)<`RawRequest`\>, `params`: [`RequestParams`](RequestParams.md)) => `void` \| `GraphQLError`[] \| [`Response`](../README.md#response) \| `ExecutionArgs` \| `Promise`<`void` \| `GraphQLError`[] \| [`Response`](../README.md#response) \| `ExecutionArgs`\>
 
 #### Type declaration
 
-▸ (`req`, `params`): `void` \| [`Response`](../README.md#response) \| `ExecutionArgs` \| `Promise`<`void` \| [`Response`](../README.md#response) \| `ExecutionArgs`\>
+▸ (`req`, `params`): `void` \| `GraphQLError`[] \| [`Response`](../README.md#response) \| `ExecutionArgs` \| `Promise`<`void` \| `GraphQLError`[] \| [`Response`](../README.md#response) \| `ExecutionArgs`\>
 
 The subscribe callback executed right after processing the request
 before proceeding with the GraphQL operation execution.
@@ -135,6 +135,9 @@ before proceeding with the GraphQL operation execution.
 If you return `ExecutionArgs` from the callback, it will be used instead of
 trying to build one internally. In this case, you are responsible for providing
 a ready set of arguments which will be directly plugged in the operation execution.
+
+If you return an array of `GraphQLError` from the callback, they will be reported
+to the client while complying with the spec.
 
 Omitting the fields `contextValue` from the returned `ExecutionArgs` will use the
 provided `context` option, if available.
@@ -156,7 +159,7 @@ further execution.
 
 ##### Returns
 
-`void` \| [`Response`](../README.md#response) \| `ExecutionArgs` \| `Promise`<`void` \| [`Response`](../README.md#response) \| `ExecutionArgs`\>
+`void` \| `GraphQLError`[] \| [`Response`](../README.md#response) \| `ExecutionArgs` \| `Promise`<`void` \| `GraphQLError`[] \| [`Response`](../README.md#response) \| `ExecutionArgs`\>
 
 ___
 

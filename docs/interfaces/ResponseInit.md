@@ -29,4 +29,4 @@ ___
 
 ### statusText
 
-• `Optional` `Readonly` **statusText**: `string`
+• `Readonly` **statusText**: `string`
