@@ -14,6 +14,7 @@
 
 - [context](HandlerOptions.md#context)
 - [execute](HandlerOptions.md#execute)
+- [getOperationAST](HandlerOptions.md#getoperationast)
 - [onOperation](HandlerOptions.md#onoperation)
 - [onSubscribe](HandlerOptions.md#onsubscribe)
 - [parse](HandlerOptions.md#parse)
@@ -58,6 +59,31 @@ a GraphQLError will be thrown immediately explaining the invalid input.
 ##### Returns
 
 `PromiseOrValue`<`ExecutionResult`\>
+
+___
+
+### getOperationAST
+
+• `Optional` **getOperationAST**: (`documentAST`: `DocumentNode`, `operationName?`: `Maybe`<`string`\>) => `Maybe`<`OperationDefinitionNode`\>
+
+#### Type declaration
+
+▸ (`documentAST`, `operationName?`): `Maybe`<`OperationDefinitionNode`\>
+
+Returns an operation AST given a document AST and optionally an operation
+name. If a name is not provided, an operation is only returned if only one is
+provided in the document.
+
+##### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `documentAST` | `DocumentNode` |
+| `operationName?` | `Maybe`<`string`\> |
+
+##### Returns
+
+`Maybe`<`OperationDefinitionNode`\>
 
 ___
 

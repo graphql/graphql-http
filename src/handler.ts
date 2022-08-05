@@ -12,7 +12,7 @@ import {
   execute as graphqlExecute,
   parse as graphqlParse,
   DocumentNode,
-  getOperationAST,
+  getOperationAST as graphqlGetOperationAST,
   OperationTypeNode,
 } from 'graphql';
 import { isResponse, Request, RequestParams, Response } from './common';
@@ -86,6 +86,10 @@ export interface HandlerOptions<RawRequest = unknown> {
    * GraphQL parse function allowing you to apply a custom parser.
    */
   parse?: typeof graphqlParse;
+  /**
+   * GraphQL operation AST getter used for detecting the operation type.
+   */
+  getOperationAST?: typeof graphqlGetOperationAST;
   /**
    * The subscribe callback executed right after processing the request
    * before proceeding with the GraphQL operation execution.
@@ -215,6 +219,7 @@ export function createHandler<RawRequest = unknown>(
     validate = graphqlValidate,
     execute = graphqlExecute,
     parse = graphqlParse,
+    getOperationAST = graphqlGetOperationAST,
     onSubscribe,
     onOperation,
   } = options;
