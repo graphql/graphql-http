@@ -300,13 +300,14 @@ export function createHandler<RawRequest = unknown>(
         case method === 'GET': {
           // TODO: what if content-type is specified and is not application/x-www-form-urlencoded?
           try {
-            const url = new URL(req.url || '', 'http://localhost/');
+            const [, search] = req.url.split('?');
+            const searchParams = new URLSearchParams(search);
             partParams.operationName =
-              url.searchParams.get('operationName') ?? undefined;
-            partParams.query = url.searchParams.get('query') ?? undefined;
-            const variables = url.searchParams.get('variables');
+              searchParams.get('operationName') ?? undefined;
+            partParams.query = searchParams.get('query') ?? undefined;
+            const variables = searchParams.get('variables');
             if (variables) partParams.variables = JSON.parse(variables);
-            const extensions = url.searchParams.get('extensions');
+            const extensions = searchParams.get('extensions');
             if (extensions) partParams.extensions = JSON.parse(extensions);
           } catch {
             throw new Error('Unparsable URL');
