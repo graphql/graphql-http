@@ -123,11 +123,11 @@ ___
 
 ### onSubscribe
 
-• `Optional` **onSubscribe**: (`req`: [`Request`](Request.md)<`RawRequest`\>, `params`: [`RequestParams`](RequestParams.md)) => `void` \| `GraphQLError`[] \| [`Response`](../README.md#response) \| `ExecutionArgs` \| `Promise`<`void` \| `GraphQLError`[] \| [`Response`](../README.md#response) \| `ExecutionArgs`\>
+• `Optional` **onSubscribe**: (`req`: [`Request`](Request.md)<`RawRequest`\>, `params`: [`RequestParams`](RequestParams.md)) => `void` \| readonly `GraphQLError`[] \| [`Response`](../README.md#response) \| `ExecutionArgs` \| `Promise`<`void` \| readonly `GraphQLError`[] \| [`Response`](../README.md#response) \| `ExecutionArgs`\>
 
 #### Type declaration
 
-▸ (`req`, `params`): `void` \| `GraphQLError`[] \| [`Response`](../README.md#response) \| `ExecutionArgs` \| `Promise`<`void` \| `GraphQLError`[] \| [`Response`](../README.md#response) \| `ExecutionArgs`\>
+▸ (`req`, `params`): `void` \| readonly `GraphQLError`[] \| [`Response`](../README.md#response) \| `ExecutionArgs` \| `Promise`<`void` \| readonly `GraphQLError`[] \| [`Response`](../README.md#response) \| `ExecutionArgs`\>
 
 The subscribe callback executed right after processing the request
 before proceeding with the GraphQL operation execution.
@@ -159,7 +159,7 @@ further execution.
 
 ##### Returns
 
-`void` \| `GraphQLError`[] \| [`Response`](../README.md#response) \| `ExecutionArgs` \| `Promise`<`void` \| `GraphQLError`[] \| [`Response`](../README.md#response) \| `ExecutionArgs`\>
+`void` \| readonly `GraphQLError`[] \| [`Response`](../README.md#response) \| `ExecutionArgs` \| `Promise`<`void` \| readonly `GraphQLError`[] \| [`Response`](../README.md#response) \| `ExecutionArgs`\>
 
 ___
 

@@ -118,9 +118,9 @@ export interface HandlerOptions<RawRequest = unknown> {
     req: Request<RawRequest>,
     params: RequestParams,
   ) =>
-    | Promise<ExecutionArgs | GraphQLError[] | Response | void>
+    | Promise<ExecutionArgs | readonly GraphQLError[] | Response | void>
     | ExecutionArgs
-    | GraphQLError[]
+    | readonly GraphQLError[]
     | Response
     | void;
   /**

@@ -12,7 +12,7 @@ export function isObject(val: unknown): val is Record<PropertyKey, unknown> {
 }
 
 /** @private */
-export function areGraphQLErrors(obj: unknown): obj is GraphQLError[] {
+export function areGraphQLErrors(obj: unknown): obj is readonly GraphQLError[] {
   return (
     Array.isArray(obj) &&
     // must be at least one error
