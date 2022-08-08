@@ -1,3 +1,4 @@
+import { jest } from '@jest/globals';
 import { GraphQLError } from 'graphql';
 import fetch from 'node-fetch';
 import { startTServer } from './utils/tserver';
@@ -30,4 +31,21 @@ it('should report graphql errors returned from onSubscribe', async () => {
   const res = await fetch(url.toString());
   expect(res.status).toBe(400);
   expect(res.json()).resolves.toEqual({ errors: [{ message: 'Woah!' }] });
+});
+
+it('should respond with result returned from onSubscribe', async () => {
+  const onOperationFn = jest.fn();
+  const server = startTServer({
+    onSubscribe: () => {
+      return { data: { __typename: 'Query' } };
+    },
+    onOperation: onOperationFn,
+  });
+
+  const url = new URL(server.url);
+  url.searchParams.set('query', '{ __typename }');
+  const res = await fetch(url.toString());
+  expect(res.status).toBe(200);
+  expect(res.json()).resolves.toEqual({ data: { __typename: 'Query' } });
+  expect(onOperationFn).not.toBeCalled(); // early result, operation did not happen
 });

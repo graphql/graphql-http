@@ -17,7 +17,7 @@ import {
   GraphQLError,
 } from 'graphql';
 import { isResponse, Request, RequestParams, Response } from './common';
-import { areGraphQLErrors } from './utils';
+import { areGraphQLErrors, isExecutionResult } from './utils';
 
 /**
  * A concrete GraphQL execution context value type.
@@ -96,6 +96,10 @@ export interface HandlerOptions<RawRequest = unknown> {
    * The subscribe callback executed right after processing the request
    * before proceeding with the GraphQL operation execution.
    *
+   * If you return `ExecutionResult` from the callback, it will be used
+   * directly for responding to the request. Useful for implementing a response
+   * cache.
+   *
    * If you return `ExecutionArgs` from the callback, it will be used instead of
    * trying to build one internally. In this case, you are responsible for providing
    * a ready set of arguments which will be directly plugged in the operation execution.
@@ -118,7 +122,14 @@ export interface HandlerOptions<RawRequest = unknown> {
     req: Request<RawRequest>,
     params: RequestParams,
   ) =>
-    | Promise<ExecutionArgs | readonly GraphQLError[] | Response | void>
+    | Promise<
+        | ExecutionResult
+        | ExecutionArgs
+        | readonly GraphQLError[]
+        | Response
+        | void
+      >
+    | ExecutionResult
     | ExecutionArgs
     | readonly GraphQLError[]
     | Response
@@ -387,6 +398,20 @@ export function createHandler<RawRequest = unknown>(
     let args: ExecutionArgs;
     const maybeResErrsOrArgs = await onSubscribe?.(req, params);
     if (isResponse(maybeResErrsOrArgs)) return maybeResErrsOrArgs;
+    else if (isExecutionResult(maybeResErrsOrArgs))
+      return [
+        JSON.stringify(maybeResErrsOrArgs),
+        {
+          status: 200,
+          statusText: 'OK',
+          headers: {
+            'content-type':
+              acceptedMediaType === 'application/json'
+                ? 'application/json; charset=utf-8'
+                : 'application/graphql+json; charset=utf-8',
+          },
+        },
+      ];
     else if (areGraphQLErrors(maybeResErrsOrArgs))
       return [
         JSON.stringify({ errors: maybeResErrsOrArgs }),

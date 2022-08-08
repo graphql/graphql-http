@@ -4,7 +4,7 @@
  *
  */
 
-import type { GraphQLError } from 'graphql';
+import type { ExecutionResult, GraphQLError } from 'graphql';
 
 /** @private */
 export function isObject(val: unknown): val is Record<PropertyKey, unknown> {
@@ -19,5 +19,12 @@ export function areGraphQLErrors(obj: unknown): obj is readonly GraphQLError[] {
     obj.length > 0 &&
     // error has at least a message
     obj.every((ob) => 'message' in ob)
+  );
+}
+
+/** @private */
+export function isExecutionResult(val: unknown): val is ExecutionResult {
+  return (
+    isObject(val) && ('data' in val || 'errors' in val || 'extensions' in val)
   );
 }

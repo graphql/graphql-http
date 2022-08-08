@@ -89,11 +89,11 @@ ___
 
 ### onOperation
 
-• `Optional` **onOperation**: (`req`: [`Request`](Request.md)<`RawRequest`\>, `args`: `ExecutionArgs`, `result`: `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\>) => `void` \| [`Response`](../README.md#response) \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> \| `Promise`<`void` \| [`Response`](../README.md#response) \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\>\>
+• `Optional` **onOperation**: (`req`: [`Request`](Request.md)<`RawRequest`\>, `args`: `ExecutionArgs`, `result`: `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\>) => `void` \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> \| [`Response`](../README.md#response) \| `Promise`<`void` \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> \| [`Response`](../README.md#response)\>
 
 #### Type declaration
 
-▸ (`req`, `args`, `result`): `void` \| [`Response`](../README.md#response) \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> \| `Promise`<`void` \| [`Response`](../README.md#response) \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\>\>
+▸ (`req`, `args`, `result`): `void` \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> \| [`Response`](../README.md#response) \| `Promise`<`void` \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> \| [`Response`](../README.md#response)\>
 
 Executed after the operation call resolves.
 
@@ -117,20 +117,24 @@ further execution.
 
 ##### Returns
 
-`void` \| [`Response`](../README.md#response) \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> \| `Promise`<`void` \| [`Response`](../README.md#response) \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\>\>
+`void` \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> \| [`Response`](../README.md#response) \| `Promise`<`void` \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> \| [`Response`](../README.md#response)\>
 
 ___
 
 ### onSubscribe
 
-• `Optional` **onSubscribe**: (`req`: [`Request`](Request.md)<`RawRequest`\>, `params`: [`RequestParams`](RequestParams.md)) => `void` \| readonly `GraphQLError`[] \| [`Response`](../README.md#response) \| `ExecutionArgs` \| `Promise`<`void` \| readonly `GraphQLError`[] \| [`Response`](../README.md#response) \| `ExecutionArgs`\>
+• `Optional` **onSubscribe**: (`req`: [`Request`](Request.md)<`RawRequest`\>, `params`: [`RequestParams`](RequestParams.md)) => `void` \| readonly `GraphQLError`[] \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> \| [`Response`](../README.md#response) \| `ExecutionArgs` \| `Promise`<`void` \| readonly `GraphQLError`[] \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> \| [`Response`](../README.md#response) \| `ExecutionArgs`\>
 
 #### Type declaration
 
-▸ (`req`, `params`): `void` \| readonly `GraphQLError`[] \| [`Response`](../README.md#response) \| `ExecutionArgs` \| `Promise`<`void` \| readonly `GraphQLError`[] \| [`Response`](../README.md#response) \| `ExecutionArgs`\>
+▸ (`req`, `params`): `void` \| readonly `GraphQLError`[] \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> \| [`Response`](../README.md#response) \| `ExecutionArgs` \| `Promise`<`void` \| readonly `GraphQLError`[] \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> \| [`Response`](../README.md#response) \| `ExecutionArgs`\>
 
 The subscribe callback executed right after processing the request
 before proceeding with the GraphQL operation execution.
+
+If you return `ExecutionResult` from the callback, it will be used
+directly for responding to the request. Useful for implementing a response
+cache.
 
 If you return `ExecutionArgs` from the callback, it will be used instead of
 trying to build one internally. In this case, you are responsible for providing
@@ -159,7 +163,7 @@ further execution.
 
 ##### Returns
 
-`void` \| readonly `GraphQLError`[] \| [`Response`](../README.md#response) \| `ExecutionArgs` \| `Promise`<`void` \| readonly `GraphQLError`[] \| [`Response`](../README.md#response) \| `ExecutionArgs`\>
+`void` \| readonly `GraphQLError`[] \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> \| [`Response`](../README.md#response) \| `ExecutionArgs` \| `Promise`<`void` \| readonly `GraphQLError`[] \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> \| [`Response`](../README.md#response) \| `ExecutionArgs`\>
 
 ___
 
