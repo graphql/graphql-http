@@ -108,10 +108,7 @@ describe('Request', () => {
   describe('GET', () => {
     it('must not allow executing mutations', async () => {
       const url = new URL(serverUrl);
-      url.searchParams.set(
-        'query',
-        'mutation { f10d019f15804f92a7c7470205c866da }', // making sure the field doesnt exist
-      );
+      url.searchParams.set('query', 'mutation { __typename }');
 
       const res = await fetch(url.toString(), {
         headers: {

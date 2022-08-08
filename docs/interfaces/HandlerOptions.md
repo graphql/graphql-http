@@ -140,6 +140,8 @@ If you return `ExecutionArgs` from the callback, it will be used instead of
 trying to build one internally. In this case, you are responsible for providing
 a ready set of arguments which will be directly plugged in the operation execution.
 
+You *must* validate the `ExecutionArgs` yourself if returning them.
+
 If you return an array of `GraphQLError` from the callback, they will be reported
 to the client while complying with the spec.
 

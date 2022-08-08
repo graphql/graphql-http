@@ -77,6 +77,8 @@ export interface HandlerOptions<RawRequest = unknown> {
   /**
    * A custom GraphQL validate function allowing you to apply your
    * own validation rules.
+   *
+   * Will not be used when implementing a custom `onSubscribe`.
    */
   validate?: typeof graphqlValidate;
   /**
@@ -103,6 +105,8 @@ export interface HandlerOptions<RawRequest = unknown> {
    * If you return `ExecutionArgs` from the callback, it will be used instead of
    * trying to build one internally. In this case, you are responsible for providing
    * a ready set of arguments which will be directly plugged in the operation execution.
+   *
+   * You *must* validate the `ExecutionArgs` yourself if returning them.
    *
    * If you return an array of `GraphQLError` from the callback, they will be reported
    * to the client while complying with the spec.
@@ -485,6 +489,30 @@ export function createHandler<RawRequest = unknown>(
           schema,
         };
       }
+
+      const validationErrs = validate(args.schema, args.document);
+      if (validationErrs.length) {
+        return [
+          JSON.stringify({ errors: validationErrs }),
+          {
+            ...(acceptedMediaType === 'application/json'
+              ? {
+                  status: 200,
+                  statusText: 'OK',
+                }
+              : {
+                  status: 400,
+                  statusText: 'Bad Request',
+                }),
+            headers: {
+              'content-type':
+                acceptedMediaType === 'application/json'
+                  ? 'application/json; charset=utf-8'
+                  : 'application/graphql+json; charset=utf-8',
+            },
+          },
+        ];
+      }
     }
 
     let operation: OperationTypeNode;
@@ -540,30 +568,6 @@ export function createHandler<RawRequest = unknown>(
         typeof context === 'function' ? await context(req, args) : context;
       if (isResponse(maybeResOrContext)) return maybeResOrContext;
       args.contextValue = maybeResOrContext;
-    }
-
-    const validationErrs = validate(args.schema, args.document);
-    if (validationErrs.length) {
-      return [
-        JSON.stringify({ errors: validationErrs }),
-        {
-          ...(acceptedMediaType === 'application/json'
-            ? {
-                status: 200,
-                statusText: 'OK',
-              }
-            : {
-                status: 400,
-                statusText: 'Bad Request',
-              }),
-          headers: {
-            'content-type':
-              acceptedMediaType === 'application/json'
-                ? 'application/json; charset=utf-8'
-                : 'application/graphql+json; charset=utf-8',
-          },
-        },
-      ];
     }
 
     let result = await execute(args);
