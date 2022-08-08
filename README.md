@@ -214,8 +214,10 @@ import { serve } from 'https://deno.land/std@0.151.0/http/server.ts';
 import { createHandler } from 'https://esm.sh/graphql-http';
 import { schema } from './previous-step';
 
+// Create the GraphQL over HTTP handler
 const handler = createHandler<Request>({ schema });
 
+// Start serving on `/graphql` using the handler
 await serve(
   async (req: Request) => {
     const [path, _search] = req.url.split('?');
