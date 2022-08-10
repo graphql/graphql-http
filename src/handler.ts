@@ -17,7 +17,7 @@ import {
   GraphQLError,
 } from 'graphql';
 import { isResponse, Request, RequestParams, Response } from './common';
-import { areGraphQLErrors, isExecutionResult } from './utils';
+import { areGraphQLErrors, isExecutionResult, isObject } from './utils';
 
 /**
  * A concrete GraphQL execution context value type.
@@ -260,36 +260,7 @@ export function createHandler<RawRequest = unknown>(
       ];
     }
 
-    let acceptedMediaType:
-      | 'application/graphql+json'
-      | 'application/json'
-      | undefined;
-    const accepts = (req.headers.accept || '*/*')
-      .replace(/\s/g, '')
-      .toLowerCase()
-      .split(',');
-    for (const accept of accepts) {
-      // accept-charset became obsolete, shouldnt be used (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Charset)
-      // TODO: handle the weight parameter "q"
-      const [mediaType, ...params] = accept.split(';');
-      const charset =
-        params?.find((param) => param.includes('charset=')) || 'charset=utf8'; // utf-8 is assumed when not specified;
-
-      if (mediaType === 'application/json' && charset === 'charset=utf8') {
-        acceptedMediaType = 'application/json';
-        break;
-      }
-
-      if (
-        (mediaType === 'application/graphql+json' ||
-          mediaType === 'application/*' ||
-          mediaType === '*/*') &&
-        charset === 'charset=utf8'
-      ) {
-        acceptedMediaType = 'application/graphql+json';
-        break;
-      }
-    }
+    const acceptedMediaType = getAcceptableMediaType(req.headers.accept);
     if (!acceptedMediaType) {
       return [
         null,
@@ -382,61 +353,17 @@ export function createHandler<RawRequest = unknown>(
       // request parameters are checked and now complete
       params = partParams as RequestParams;
     } catch (err) {
-      return [
-        err.message,
-        {
-          ...(acceptedMediaType === 'application/json'
-            ? {
-                status: 200,
-                statusText: 'OK',
-              }
-            : {
-                status: 400,
-                statusText: 'Bad Request',
-              }),
-          statusText: 'Bad Request',
-        },
-      ];
+      return makeResponse(new GraphQLError(err.message), acceptedMediaType);
     }
 
     let args: ExecutionArgs;
     const maybeResErrsOrArgs = await onSubscribe?.(req, params);
     if (isResponse(maybeResErrsOrArgs)) return maybeResErrsOrArgs;
-    else if (isExecutionResult(maybeResErrsOrArgs))
-      return [
-        JSON.stringify(maybeResErrsOrArgs),
-        {
-          status: 200,
-          statusText: 'OK',
-          headers: {
-            'content-type':
-              acceptedMediaType === 'application/json'
-                ? 'application/json; charset=utf-8'
-                : 'application/graphql+json; charset=utf-8',
-          },
-        },
-      ];
-    else if (areGraphQLErrors(maybeResErrsOrArgs))
-      return [
-        JSON.stringify({ errors: maybeResErrsOrArgs }),
-        {
-          ...(acceptedMediaType === 'application/json'
-            ? {
-                status: 200,
-                statusText: 'OK',
-              }
-            : {
-                status: 400,
-                statusText: 'Bad Request',
-              }),
-          headers: {
-            'content-type':
-              acceptedMediaType === 'application/json'
-                ? 'application/json; charset=utf-8'
-                : 'application/graphql+json; charset=utf-8',
-          },
-        },
-      ];
+    else if (
+      isExecutionResult(maybeResErrsOrArgs) ||
+      areGraphQLErrors(maybeResErrsOrArgs)
+    )
+      return makeResponse(maybeResErrsOrArgs, acceptedMediaType);
     else if (maybeResErrsOrArgs) args = maybeResErrsOrArgs;
     else {
       if (!schema) throw new Error('The GraphQL schema is not provided');
@@ -447,27 +374,7 @@ export function createHandler<RawRequest = unknown>(
       try {
         document = parse(query);
       } catch (err) {
-        return [
-          JSON.stringify({ errors: [err] }),
-          {
-            ...(acceptedMediaType === 'application/json'
-              ? {
-                  status: 200,
-                  statusText: 'OK',
-                }
-              : {
-                  status: 400,
-                  statusText: 'Bad Request',
-                }),
-            statusText: 'Bad Request',
-            headers: {
-              'content-type':
-                acceptedMediaType === 'application/json'
-                  ? 'application/json; charset=utf-8'
-                  : 'application/graphql+json; charset=utf-8',
-            },
-          },
-        ];
+        return makeResponse(err, acceptedMediaType);
       }
 
       const argsWithoutSchema = {
@@ -492,26 +399,7 @@ export function createHandler<RawRequest = unknown>(
 
       const validationErrs = validate(args.schema, args.document);
       if (validationErrs.length) {
-        return [
-          JSON.stringify({ errors: validationErrs }),
-          {
-            ...(acceptedMediaType === 'application/json'
-              ? {
-                  status: 200,
-                  statusText: 'OK',
-                }
-              : {
-                  status: 400,
-                  statusText: 'Bad Request',
-                }),
-            headers: {
-              'content-type':
-                acceptedMediaType === 'application/json'
-                  ? 'application/json; charset=utf-8'
-                  : 'application/graphql+json; charset=utf-8',
-            },
-          },
-        ];
+        return makeResponse(validationErrs, acceptedMediaType);
       }
     }
 
@@ -521,31 +409,17 @@ export function createHandler<RawRequest = unknown>(
       if (!ast) throw null;
       operation = ast.operation;
     } catch {
-      return [
-        'Unable to detect operation AST',
-        {
-          ...(acceptedMediaType === 'application/json'
-            ? {
-                status: 200,
-                statusText: 'OK',
-              }
-            : {
-                status: 400,
-                statusText: 'Bad Request',
-              }),
-          statusText: 'Bad Request',
-        },
-      ];
+      return makeResponse(
+        new GraphQLError('Unable to detect operation AST'),
+        acceptedMediaType,
+      );
     }
 
     if (operation === 'subscription') {
-      return [
-        'Subscriptions are not supported',
-        {
-          status: 400,
-          statusText: 'Bad Request',
-        },
-      ];
+      return makeResponse(
+        new GraphQLError('Subscriptions are not supported'),
+        acceptedMediaType,
+      );
     }
 
     // mutations cannot happen over GETs
@@ -571,15 +445,98 @@ export function createHandler<RawRequest = unknown>(
     }
 
     let result = await execute(args);
-    const maybeResOrResult = await onOperation?.(req, args, result);
-    if (isResponse(maybeResOrResult)) return maybeResOrResult;
-    else if (maybeResOrResult) result = maybeResOrResult;
+    const maybeResponseOrResult = await onOperation?.(req, args, result);
+    if (isResponse(maybeResponseOrResult)) return maybeResponseOrResult;
+    else if (maybeResponseOrResult) result = maybeResponseOrResult;
 
+    return makeResponse(result, acceptedMediaType);
+  };
+}
+
+/**
+ * Request's Media-Type that the server accepts.
+ *
+ * @category Server
+ */
+export type AcceptableMediaType =
+  | 'application/graphql+json'
+  | 'application/json';
+
+/**
+ * Inspects the request and detects the appropriate/acceptable Media-Type
+ * looking at the `Accept` header while complying with the GraphQL over HTTP Protocol.
+ *
+ * @category Server
+ */
+export function getAcceptableMediaType(
+  acceptHeader: string | null | undefined,
+): AcceptableMediaType | null {
+  let acceptedMediaType: AcceptableMediaType | null = null;
+  const accepts = (acceptHeader || '*/*')
+    .replace(/\s/g, '')
+    .toLowerCase()
+    .split(',');
+  for (const accept of accepts) {
+    // accept-charset became obsolete, shouldnt be used (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Charset)
+    // TODO: handle the weight parameter "q"
+    const [mediaType, ...params] = accept.split(';');
+    const charset =
+      params?.find((param) => param.includes('charset=')) || 'charset=utf8'; // utf-8 is assumed when not specified;
+
+    if (mediaType === 'application/json' && charset === 'charset=utf8') {
+      acceptedMediaType = 'application/json';
+      break;
+    }
+
+    if (
+      (mediaType === 'application/graphql+json' ||
+        mediaType === 'application/*' ||
+        mediaType === '*/*') &&
+      charset === 'charset=utf8'
+    ) {
+      acceptedMediaType = 'application/graphql+json';
+      break;
+    }
+  }
+  return acceptedMediaType;
+}
+
+/**
+ * Creates an appropriate GraphQL over HTTP response following the provided arguments.
+ *
+ * If the first argument is an `ExecutionResult`, the operation will be treated as "successful".
+ *
+ * If the first argument is _any_ object without the `data` field, it will be treated as an error (as per the spec)
+ * and the response will be constructed with the help of `acceptedMediaType` complying with the GraphQL over HTTP Protocol.
+ *
+ * @category Server
+ */
+export function makeResponse(
+  resultOrErrors:
+    | Readonly<ExecutionResult>
+    | Readonly<GraphQLError[]>
+    | Readonly<GraphQLError>,
+  acceptedMediaType: AcceptableMediaType,
+): Response {
+  if (!('data' in resultOrErrors)) {
     return [
-      JSON.stringify(result),
+      JSON.stringify({
+        errors: Array.isArray(resultOrErrors)
+          ? isObject(resultOrErrors)
+            ? resultOrErrors
+            : new GraphQLError(String(resultOrErrors))
+          : [resultOrErrors],
+      }),
       {
-        status: 200,
-        statusText: 'OK',
+        ...(acceptedMediaType === 'application/json'
+          ? {
+              status: 200,
+              statusText: 'OK',
+            }
+          : {
+              status: 400,
+              statusText: 'Bad Request',
+            }),
         headers: {
           'content-type':
             acceptedMediaType === 'application/json'
@@ -588,5 +545,19 @@ export function createHandler<RawRequest = unknown>(
         },
       },
     ];
-  };
+  }
+
+  return [
+    JSON.stringify(resultOrErrors),
+    {
+      status: 200,
+      statusText: 'OK',
+      headers: {
+        'content-type':
+          acceptedMediaType === 'application/json'
+            ? 'application/json; charset=utf-8'
+            : 'application/graphql+json; charset=utf-8',
+      },
+    },
+  ];
 }

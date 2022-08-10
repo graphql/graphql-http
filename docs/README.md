@@ -22,6 +22,7 @@ graphql-http
 
 ### Type Aliases
 
+- [AcceptableMediaType](README.md#acceptablemediatype)
 - [ExecutionContext](README.md#executioncontext)
 - [Handler](README.md#handler)
 - [Response](README.md#response)
@@ -32,7 +33,9 @@ graphql-http
 
 - [createClient](README.md#createclient)
 - [createHandler](README.md#createhandler)
+- [getAcceptableMediaType](README.md#getacceptablemediatype)
 - [isResponse](README.md#isresponse)
+- [makeResponse](README.md#makeresponse)
 
 ## Client
 
@@ -98,6 +101,14 @@ Checks whether the passed value is the `graphql-http` server agnostic response.
 val is Response
 
 ## Server
+
+### AcceptableMediaType
+
+Ƭ **AcceptableMediaType**: ``"application/graphql+json"`` \| ``"application/json"``
+
+Request's Media-Type that the server accepts.
+
+___
 
 ### ExecutionContext
 
@@ -216,3 +227,47 @@ console.log('Listening to port 4000');
 #### Returns
 
 [`Handler`](README.md#handler)<`RawRequest`\>
+
+___
+
+### getAcceptableMediaType
+
+▸ **getAcceptableMediaType**(`acceptHeader`): [`AcceptableMediaType`](README.md#acceptablemediatype) \| ``null``
+
+Inspects the request and detects the appropriate/acceptable Media-Type
+looking at the `Accept` header while complying with the GraphQL over HTTP Protocol.
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `acceptHeader` | `undefined` \| ``null`` \| `string` |
+
+#### Returns
+
+[`AcceptableMediaType`](README.md#acceptablemediatype) \| ``null``
+
+___
+
+### makeResponse
+
+▸ **makeResponse**(`resultOrErrors`, `acceptedMediaType`): [`Response`](README.md#response)
+
+Creates an appropriate GraphQL over HTTP response following the provided arguments.
+
+If the first argument is an `ExecutionResult`, the operation will be treated as "successful".
+
+If the first argument is a `GraphQLError` (or an array of), the operation will be treated as invalid
+and the response will be constructed with the help of `acceptedMediaType` complying with
+the GraphQL over HTTP Protocol.
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `resultOrErrors` | readonly `GraphQLError`[] \| `Readonly`<`ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\>\> \| `Readonly`<`GraphQLError`\> |
+| `acceptedMediaType` | [`AcceptableMediaType`](README.md#acceptablemediatype) |
+
+#### Returns
+
+[`Response`](README.md#response)
