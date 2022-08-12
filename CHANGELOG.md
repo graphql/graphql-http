@@ -1,3 +1,25 @@
+# [1.2.0](https://github.com/enisdenjo/graphql-http/compare/v1.1.0...v1.2.0) (2022-08-12)
+
+
+### Bug Fixes
+
+* **handler:** `onSubscribe` can return readonly `GraphQLError`s ([5ce6841](https://github.com/enisdenjo/graphql-http/commit/5ce68417493ae6e9c88c024dab496aca1962423c))
+* **handler:** Allow empty query string parameter (necessary for persisted operations) ([4eed1d5](https://github.com/enisdenjo/graphql-http/commit/4eed1d50c0d88d92dd8721cb8ed61ef426c53857))
+* **handler:** Don't validate if `onSubscribe` returns execution arguments ([17c8007](https://github.com/enisdenjo/graphql-http/commit/17c8007bddc72a020d6daecfb8863a66bb91c65f))
+* **handler:** Respond with error if GraphQL execution result is iterable ([d1ffdf7](https://github.com/enisdenjo/graphql-http/commit/d1ffdf7b1e538a28c27f8b8775f49019edd9247d))
+
+
+### Features
+
+* **handler:** `onSubscribe` can return an `ExecutionResult` for immediate result response ([0dcaf89](https://github.com/enisdenjo/graphql-http/commit/0dcaf89f3ffe86f5b471251eaf8959b350d11a5b))
+* **handler:** Expose `getAcceptableMediaType` and `makeResponse` for increased modularity ([ae8ea29](https://github.com/enisdenjo/graphql-http/commit/ae8ea295b8e9a04bd4d146897f2594da79bfa293))
+* **handler:** Request may contain a context value ([3a593f8](https://github.com/enisdenjo/graphql-http/commit/3a593f8184d11688b5c5e3f8d9b1624c27a667e7))
+
+
+### Performance Improvements
+
+* **handler:** Detect non-string query parameter before parsing ([4bc71ee](https://github.com/enisdenjo/graphql-http/commit/4bc71eec1c7f82f35a9b7173aa6e59fc0f2d5031))
+
 # [1.1.0](https://github.com/enisdenjo/graphql-http/compare/v1.0.0...v1.1.0) (2022-08-05)
 
 
