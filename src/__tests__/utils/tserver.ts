@@ -1,4 +1,5 @@
 import { createHandler, HandlerOptions } from '../../handler';
+import { Request } from '../../common';
 import http from 'http';
 import net from 'net';
 import { Response } from 'node-fetch';
@@ -19,11 +20,16 @@ export interface TServer {
   dispose: Dispose;
 }
 export function startTServer(
-  options: HandlerOptions<http.IncomingMessage> = {},
+  options: HandlerOptions<http.IncomingMessage> & {
+    changeRequest?: (
+      req: Request<http.IncomingMessage, unknown>,
+    ) => Request<http.IncomingMessage, unknown>;
+  } = {},
 ): TServer {
+  const { changeRequest = (req) => req, ...handlerOptions } = options;
   const handle = createHandler({
     schema,
-    ...options,
+    ...handlerOptions,
   });
   const [url, dispose] = startDisposableServer(
     http.createServer(async (req, res) => {
@@ -34,17 +40,20 @@ export function startTServer(
         if (!req.method) {
           throw new Error('Missing request method');
         }
-        const [body, init] = await handle({
-          url: req.url,
-          method: req.method,
-          headers: req.headers,
-          body: await new Promise<string>((resolve) => {
-            let body = '';
-            req.on('data', (chunk) => (body += chunk));
-            req.on('end', () => resolve(body));
+        const [body, init] = await handle(
+          changeRequest({
+            url: req.url,
+            method: req.method,
+            headers: req.headers,
+            body: await new Promise<string>((resolve) => {
+              let body = '';
+              req.on('data', (chunk) => (body += chunk));
+              req.on('end', () => resolve(body));
+            }),
+            raw: req,
+            context: null,
           }),
-          raw: req,
-        });
+        );
         res.writeHead(init.status, init.statusText, init.headers).end(body);
       } catch (err) {
         if (err instanceof Error) {

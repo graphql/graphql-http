@@ -30,7 +30,7 @@ export interface RequestHeaders {
  *
  * @category Common
  */
-export interface Request<RawRequest> {
+export interface Request<RawRequest, Context> {
   readonly method: string;
   readonly url: string;
   readonly headers: RequestHeaders;
@@ -42,6 +42,10 @@ export interface Request<RawRequest> {
    * `http.IncomingMessage` when just using Node with `http.createServer`.
    */
   readonly raw: RawRequest;
+  /**
+   * Context value about the incoming request, you're free to pass any information here.
+   */
+  readonly context: Context;
 }
 
 /**

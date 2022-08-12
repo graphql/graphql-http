@@ -125,13 +125,14 @@ ___
 
 ### Handler
 
-Ƭ **Handler**<`RawRequest`\>: (`req`: [`Request`](interfaces/Request.md)<`RawRequest`\>) => `Promise`<[`Response`](README.md#response)\>
+Ƭ **Handler**<`RawRequest`, `Context`\>: (`req`: [`Request`](interfaces/Request.md)<`RawRequest`, `Context`\>) => `Promise`<[`Response`](README.md#response)\>
 
 #### Type parameters
 
 | Name | Type |
 | :------ | :------ |
 | `RawRequest` | `unknown` |
+| `Context` | `unknown` |
 
 #### Type declaration
 
@@ -148,7 +149,7 @@ considered internal errors and you should take care of them accordingly.
 
 | Name | Type |
 | :------ | :------ |
-| `req` | [`Request`](interfaces/Request.md)<`RawRequest`\> |
+| `req` | [`Request`](interfaces/Request.md)<`RawRequest`, `Context`\> |
 
 ##### Returns
 
@@ -158,7 +159,7 @@ ___
 
 ### createHandler
 
-▸ **createHandler**<`RawRequest`\>(`options`): [`Handler`](README.md#handler)<`RawRequest`\>
+▸ **createHandler**<`RawRequest`, `Context`\>(`options`): [`Handler`](README.md#handler)<`RawRequest`, `Context`\>
 
 Makes a GraphQL over HTTP Protocol compliant server handler. The handler can
 be used with your favourite server library.
@@ -217,16 +218,17 @@ console.log('Listening to port 4000');
 | Name | Type |
 | :------ | :------ |
 | `RawRequest` | `unknown` |
+| `Context` | `unknown` |
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `options` | [`HandlerOptions`](interfaces/HandlerOptions.md)<`RawRequest`\> |
+| `options` | [`HandlerOptions`](interfaces/HandlerOptions.md)<`RawRequest`, `Context`\> |
 
 #### Returns
 
-[`Handler`](README.md#handler)<`RawRequest`\>
+[`Handler`](README.md#handler)<`RawRequest`, `Context`\>
 
 ___
 

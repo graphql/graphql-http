@@ -1,6 +1,6 @@
 [graphql-http](../README.md) / Request
 
-# Interface: Request<RawRequest\>
+# Interface: Request<RawRequest, Context\>
 
 Server agnostic request interface containing the raw request
 which is server dependant.
@@ -10,12 +10,14 @@ which is server dependant.
 | Name |
 | :------ |
 | `RawRequest` |
+| `Context` |
 
 ## Table of contents
 
 ### Properties
 
 - [body](Request.md#body)
+- [context](Request.md#context)
 - [headers](Request.md#headers)
 - [method](Request.md#method)
 - [raw](Request.md#raw)
@@ -26,6 +28,14 @@ which is server dependant.
 ### body
 
 • `Readonly` **body**: ``null`` \| `string` \| `Record`<`string`, `unknown`\>
+
+___
+
+### context
+
+• `Readonly` **context**: `Context`
+
+Context value about the incoming request, you're free to pass any information here.
 
 ___
 

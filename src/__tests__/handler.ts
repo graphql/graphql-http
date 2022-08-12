@@ -1,6 +1,7 @@
 import { jest } from '@jest/globals';
 import { GraphQLError } from 'graphql';
 import fetch from 'node-fetch';
+import { Request } from '../common';
 import { startTServer } from './utils/tserver';
 
 it.each(['schema', 'context', 'onSubscribe', 'onOperation'])(
@@ -51,3 +52,25 @@ it('should respond with result returned from onSubscribe', async () => {
   expect(res.json()).resolves.toEqual({ data: { __typename: 'Query' } });
   expect(onOperationFn).not.toBeCalled(); // early result, operation did not happen
 });
+
+it.each(['schema', 'context', 'onSubscribe', 'onOperation'])(
+  'should provide the request context to %s',
+  async (option) => {
+    const optionFn = jest.fn<(req: Request<unknown, unknown>) => void>();
+
+    const context = {};
+    const server = startTServer({
+      changeRequest: (req) => ({
+        ...req,
+        context,
+      }),
+      [option]: optionFn,
+    });
+
+    const url = new URL(server.url);
+    url.searchParams.set('query', '{ __typename }');
+    await fetch(url.toString());
+
+    expect(optionFn.mock.calls[0][0]?.context).toBe(context);
+  },
+);

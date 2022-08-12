@@ -40,7 +40,7 @@ export type ExecutionContext =
   | null;
 
 /** @category Server */
-export interface HandlerOptions<RawRequest = unknown> {
+export interface HandlerOptions<RawRequest = unknown, Context = unknown> {
   /**
    * The GraphQL schema on which the operations will
    * be executed and validated against.
@@ -60,7 +60,7 @@ export interface HandlerOptions<RawRequest = unknown> {
   schema?:
     | GraphQLSchema
     | ((
-        req: Request<RawRequest>,
+        req: Request<RawRequest, Context>,
         args: Omit<ExecutionArgs, 'schema'>,
       ) => Promise<GraphQLSchema | Response> | GraphQLSchema | Response);
   /**
@@ -71,7 +71,7 @@ export interface HandlerOptions<RawRequest = unknown> {
   context?:
     | ExecutionContext
     | ((
-        req: Request<RawRequest>,
+        req: Request<RawRequest, Context>,
         args: ExecutionArgs,
       ) => Promise<ExecutionContext | Response> | ExecutionContext | Response);
   /**
@@ -123,7 +123,7 @@ export interface HandlerOptions<RawRequest = unknown> {
    * further execution.
    */
   onSubscribe?: (
-    req: Request<RawRequest>,
+    req: Request<RawRequest, Context>,
     params: RequestParams,
   ) =>
     | Promise<
@@ -152,7 +152,7 @@ export interface HandlerOptions<RawRequest = unknown> {
    * further execution.
    */
   onOperation?: (
-    req: Request<RawRequest>,
+    req: Request<RawRequest, Context>,
     args: ExecutionArgs,
     result: ExecutionResult,
   ) =>
@@ -172,8 +172,8 @@ export interface HandlerOptions<RawRequest = unknown> {
  *
  * @category Server
  */
-export type Handler<RawRequest = unknown> = (
-  req: Request<RawRequest>,
+export type Handler<RawRequest = unknown, Context = unknown> = (
+  req: Request<RawRequest, Context>,
 ) => Promise<Response>;
 
 /**
@@ -231,9 +231,9 @@ export type Handler<RawRequest = unknown> = (
  *
  * @category Server
  */
-export function createHandler<RawRequest = unknown>(
-  options: HandlerOptions<RawRequest>,
-): Handler<RawRequest> {
+export function createHandler<RawRequest = unknown, Context = unknown>(
+  options: HandlerOptions<RawRequest, Context>,
+): Handler<RawRequest, Context> {
   const {
     schema,
     context,

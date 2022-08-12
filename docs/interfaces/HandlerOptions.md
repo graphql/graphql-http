@@ -1,12 +1,13 @@
 [graphql-http](../README.md) / HandlerOptions
 
-# Interface: HandlerOptions<RawRequest\>
+# Interface: HandlerOptions<RawRequest, Context\>
 
 ## Type parameters
 
 | Name | Type |
 | :------ | :------ |
 | `RawRequest` | `unknown` |
+| `Context` | `unknown` |
 
 ## Table of contents
 
@@ -25,7 +26,7 @@
 
 ### context
 
-• `Optional` **context**: [`ExecutionContext`](../README.md#executioncontext) \| (`req`: [`Request`](Request.md)<`RawRequest`\>, `args`: `ExecutionArgs`) => [`Response`](../README.md#response) \| [`ExecutionContext`](../README.md#executioncontext) \| `Promise`<[`Response`](../README.md#response) \| [`ExecutionContext`](../README.md#executioncontext)\>
+• `Optional` **context**: [`ExecutionContext`](../README.md#executioncontext) \| (`req`: [`Request`](Request.md)<`RawRequest`, `Context`\>, `args`: `ExecutionArgs`) => [`Response`](../README.md#response) \| [`ExecutionContext`](../README.md#executioncontext) \| `Promise`<[`Response`](../README.md#response) \| [`ExecutionContext`](../README.md#executioncontext)\>
 
 A value which is provided to every resolver and holds
 important contextual information like the currently
@@ -89,7 +90,7 @@ ___
 
 ### onOperation
 
-• `Optional` **onOperation**: (`req`: [`Request`](Request.md)<`RawRequest`\>, `args`: `ExecutionArgs`, `result`: `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\>) => `void` \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> \| [`Response`](../README.md#response) \| `Promise`<`void` \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> \| [`Response`](../README.md#response)\>
+• `Optional` **onOperation**: (`req`: [`Request`](Request.md)<`RawRequest`, `Context`\>, `args`: `ExecutionArgs`, `result`: `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\>) => `void` \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> \| [`Response`](../README.md#response) \| `Promise`<`void` \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> \| [`Response`](../README.md#response)\>
 
 #### Type declaration
 
@@ -111,7 +112,7 @@ further execution.
 
 | Name | Type |
 | :------ | :------ |
-| `req` | [`Request`](Request.md)<`RawRequest`\> |
+| `req` | [`Request`](Request.md)<`RawRequest`, `Context`\> |
 | `args` | `ExecutionArgs` |
 | `result` | `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> |
 
@@ -123,7 +124,7 @@ ___
 
 ### onSubscribe
 
-• `Optional` **onSubscribe**: (`req`: [`Request`](Request.md)<`RawRequest`\>, `params`: [`RequestParams`](RequestParams.md)) => `void` \| readonly `GraphQLError`[] \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> \| [`Response`](../README.md#response) \| `ExecutionArgs` \| `Promise`<`void` \| readonly `GraphQLError`[] \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> \| [`Response`](../README.md#response) \| `ExecutionArgs`\>
+• `Optional` **onSubscribe**: (`req`: [`Request`](Request.md)<`RawRequest`, `Context`\>, `params`: [`RequestParams`](RequestParams.md)) => `void` \| readonly `GraphQLError`[] \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> \| [`Response`](../README.md#response) \| `ExecutionArgs` \| `Promise`<`void` \| readonly `GraphQLError`[] \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> \| [`Response`](../README.md#response) \| `ExecutionArgs`\>
 
 #### Type declaration
 
@@ -160,7 +161,7 @@ further execution.
 
 | Name | Type |
 | :------ | :------ |
-| `req` | [`Request`](Request.md)<`RawRequest`\> |
+| `req` | [`Request`](Request.md)<`RawRequest`, `Context`\> |
 | `params` | [`RequestParams`](RequestParams.md) |
 
 ##### Returns
@@ -195,7 +196,7 @@ ___
 
 ### schema
 
-• `Optional` **schema**: `GraphQLSchema` \| (`req`: [`Request`](Request.md)<`RawRequest`\>, `args`: `Omit`<`ExecutionArgs`, ``"schema"``\>) => [`Response`](../README.md#response) \| `GraphQLSchema` \| `Promise`<[`Response`](../README.md#response) \| `GraphQLSchema`\>
+• `Optional` **schema**: `GraphQLSchema` \| (`req`: [`Request`](Request.md)<`RawRequest`, `Context`\>, `args`: `Omit`<`ExecutionArgs`, ``"schema"``\>) => [`Response`](../README.md#response) \| `GraphQLSchema` \| `Promise`<[`Response`](../README.md#response) \| `GraphQLSchema`\>
 
 The GraphQL schema on which the operations will
 be executed and validated against.
