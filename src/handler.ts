@@ -534,25 +534,12 @@ export function makeResponse(
     | Readonly<GraphQLError>,
   acceptedMediaType: AcceptableMediaType,
 ): Response {
-  if (!('data' in resultOrErrors)) {
+  if (isExecutionResult(resultOrErrors)) {
     return [
-      JSON.stringify({
-        errors: Array.isArray(resultOrErrors)
-          ? isObject(resultOrErrors)
-            ? resultOrErrors
-            : new GraphQLError(String(resultOrErrors))
-          : [resultOrErrors],
-      }),
+      JSON.stringify(resultOrErrors),
       {
-        ...(acceptedMediaType === 'application/json'
-          ? {
-              status: 200,
-              statusText: 'OK',
-            }
-          : {
-              status: 400,
-              statusText: 'Bad Request',
-            }),
+        status: 200,
+        statusText: 'OK',
         headers: {
           'content-type':
             acceptedMediaType === 'application/json'
@@ -564,10 +551,23 @@ export function makeResponse(
   }
 
   return [
-    JSON.stringify(resultOrErrors),
+    JSON.stringify({
+      errors: Array.isArray(resultOrErrors)
+        ? isObject(resultOrErrors)
+          ? resultOrErrors
+          : new GraphQLError(String(resultOrErrors))
+        : [resultOrErrors],
+    }),
     {
-      status: 200,
-      statusText: 'OK',
+      ...(acceptedMediaType === 'application/json'
+        ? {
+            status: 200,
+            statusText: 'OK',
+          }
+        : {
+            status: 400,
+            statusText: 'Bad Request',
+          }),
       headers: {
         'content-type':
           acceptedMediaType === 'application/json'

@@ -25,7 +25,8 @@ export function areGraphQLErrors(obj: unknown): obj is readonly GraphQLError[] {
 /** @private */
 export function isExecutionResult(val: unknown): val is ExecutionResult {
   return (
-    isObject(val) && ('data' in val || 'errors' in val || 'extensions' in val)
+    isObject(val) &&
+    ('data' in val || ('data' in val && val.data == null && 'errors' in val))
   );
 }
 
