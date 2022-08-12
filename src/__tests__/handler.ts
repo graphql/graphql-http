@@ -34,7 +34,9 @@ it('should report graphql errors returned from onSubscribe', async () => {
 });
 
 it('should respond with result returned from onSubscribe', async () => {
-  const onOperationFn = jest.fn();
+  const onOperationFn = jest.fn(() => {
+    // noop
+  });
   const server = startTServer({
     onSubscribe: () => {
       return { data: { __typename: 'Query' } };
