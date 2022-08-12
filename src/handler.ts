@@ -426,7 +426,9 @@ export function createHandler<RawRequest = unknown>(
     // https://graphql.github.io/graphql-over-http/draft/#sel-CALFJRPAAELBAAxwP
     if (operation === 'mutation' && method === 'GET') {
       return [
-        'Cannot perform mutations over GET',
+        JSON.stringify({
+          errors: [new GraphQLError('Cannot perform mutations over GET')],
+        }),
         {
           status: 405,
           statusText: 'Method Not Allowed',
