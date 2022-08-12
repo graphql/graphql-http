@@ -259,9 +259,8 @@ Creates an appropriate GraphQL over HTTP response following the provided argumen
 
 If the first argument is an `ExecutionResult`, the operation will be treated as "successful".
 
-If the first argument is a `GraphQLError` (or an array of), the operation will be treated as invalid
-and the response will be constructed with the help of `acceptedMediaType` complying with
-the GraphQL over HTTP Protocol.
+If the first argument is _any_ object without the `data` field, it will be treated as an error (as per the spec)
+and the response will be constructed with the help of `acceptedMediaType` complying with the GraphQL over HTTP Protocol.
 
 #### Parameters
 
