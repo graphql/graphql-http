@@ -74,3 +74,22 @@ it.each(['schema', 'context', 'onSubscribe', 'onOperation'])(
     expect(optionFn.mock.calls[0][0]?.context).toBe(context);
   },
 );
+
+it('should respond with error if execution result is iterable', async () => {
+  const server = startTServer({
+    // @ts-expect-error live queries for example
+    execute: () => {
+      return {
+        [Symbol.asyncIterator]() {
+          return this;
+        },
+      };
+    },
+  });
+
+  const url = new URL(server.url);
+  url.searchParams.set('query', '{ __typename }');
+  const result = await fetch(url.toString());
+
+  expect(result.status).toBe(400);
+});

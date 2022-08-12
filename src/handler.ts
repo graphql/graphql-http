@@ -17,7 +17,12 @@ import {
   GraphQLError,
 } from 'graphql';
 import { isResponse, Request, RequestParams, Response } from './common';
-import { areGraphQLErrors, isExecutionResult, isObject } from './utils';
+import {
+  areGraphQLErrors,
+  isAsyncIterable,
+  isExecutionResult,
+  isObject,
+} from './utils';
 
 /**
  * A concrete GraphQL execution context value type.
@@ -452,6 +457,13 @@ export function createHandler<RawRequest = unknown, Context = unknown>(
     const maybeResponseOrResult = await onOperation?.(req, args, result);
     if (isResponse(maybeResponseOrResult)) return maybeResponseOrResult;
     else if (maybeResponseOrResult) result = maybeResponseOrResult;
+
+    if (isAsyncIterable(result)) {
+      return makeResponse(
+        new GraphQLError('Subscriptions are not supported'),
+        acceptedMediaType,
+      );
+    }
 
     return makeResponse(result, acceptedMediaType);
   };

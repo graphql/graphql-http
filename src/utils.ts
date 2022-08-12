@@ -28,3 +28,10 @@ export function isExecutionResult(val: unknown): val is ExecutionResult {
     isObject(val) && ('data' in val || 'errors' in val || 'extensions' in val)
   );
 }
+
+/** @private */
+export function isAsyncIterable<T = unknown>(
+  val: unknown,
+): val is AsyncIterable<T> {
+  return typeof Object(val)[Symbol.asyncIterator] === 'function';
+}
