@@ -1,5 +1,4 @@
-import { createHandler, HandlerOptions } from '../../handler';
-import { Request } from '../../common';
+import { Request, createHandler, HandlerOptions } from '../../handler';
 import http from 'http';
 import net from 'net';
 import { Response } from 'node-fetch';

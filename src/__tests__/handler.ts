@@ -1,7 +1,7 @@
 import { jest } from '@jest/globals';
 import { GraphQLError } from 'graphql';
 import fetch from 'node-fetch';
-import { Request } from '../common';
+import { Request } from '../handler';
 import { startTServer } from './utils/tserver';
 
 it.each(['schema', 'context', 'onSubscribe', 'onOperation'])(
