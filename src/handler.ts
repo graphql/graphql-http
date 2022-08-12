@@ -335,6 +335,8 @@ export function createHandler<RawRequest = unknown>(
       }
 
       if (!partParams.query) throw new Error('Missing query');
+      if (typeof partParams.query !== 'string')
+        throw new Error('Invalid query');
       if (
         partParams.variables != null &&
         (typeof partParams.variables !== 'object' ||
