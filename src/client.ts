@@ -238,7 +238,7 @@ export function createClient(options: ClientOptions): Client {
                 headers: {
                   ...headers,
                   'content-type': 'application/json; charset=utf-8',
-                  accept: 'application/graphql+json, application/json',
+                  accept: 'application/graphql-response+json, application/json',
                 },
                 credentials,
                 referrer,
@@ -254,7 +254,7 @@ export function createClient(options: ClientOptions): Client {
             const contentType = res.headers.get('content-type');
             if (!contentType) throw new Error('Missing response content-type');
             if (
-              !contentType.includes('application/graphql+json') &&
+              !contentType.includes('application/graphql-response+json') &&
               !contentType.includes('application/json')
             ) {
               throw new Error(

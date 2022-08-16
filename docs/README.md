@@ -104,7 +104,7 @@ val is Response
 
 ### AcceptableMediaType
 
-Ƭ **AcceptableMediaType**: ``"application/graphql+json"`` \| ``"application/json"``
+Ƭ **AcceptableMediaType**: ``"application/graphql-response+json"`` \| ``"application/json"``
 
 Request's Media-Type that the server accepts.
 

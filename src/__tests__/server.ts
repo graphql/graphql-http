@@ -10,18 +10,18 @@ beforeAll(() => {
 });
 
 describe('Media Types', () => {
-  it('must accept application/graphql+json and match the content-type', async () => {
+  it('must accept application/graphql-response+json and match the content-type', async () => {
     const url = new URL(serverUrl);
     url.searchParams.set('query', '{ __typename }');
 
     const res = await fetch(url.toString(), {
       headers: {
-        accept: 'application/graphql+json',
+        accept: 'application/graphql-response+json',
       },
     });
     expect(res.status).toBe(200);
     expect(res.headers.get('content-type')).toContain(
-      'application/graphql+json',
+      'application/graphql-response+json',
     );
   });
 
@@ -38,7 +38,7 @@ describe('Media Types', () => {
     expect(res.headers.get('content-type')).toContain('application/json');
   });
 
-  it('must accept */* and use application/graphql+json for the content-type', async () => {
+  it('must accept */* and use application/graphql-response+json for the content-type', async () => {
     const url = new URL(serverUrl);
     url.searchParams.set('query', '{ __typename }');
 
@@ -49,18 +49,18 @@ describe('Media Types', () => {
     });
     expect(res.status).toBe(200);
     expect(res.headers.get('content-type')).toContain(
-      'application/graphql+json',
+      'application/graphql-response+json',
     );
   });
 
-  it('must assume application/graphql+json content-type when accept is missing', async () => {
+  it('must assume application/graphql-response+json content-type when accept is missing', async () => {
     const url = new URL(serverUrl);
     url.searchParams.set('query', '{ __typename }');
 
     const res = await fetch(url.toString());
     expect(res.status).toBe(200);
     expect(res.headers.get('content-type')).toContain(
-      'application/graphql+json',
+      'application/graphql-response+json',
     );
   });
 
@@ -79,7 +79,7 @@ describe('Media Types', () => {
 
     const res = await fetch(url.toString(), {
       headers: {
-        accept: 'application/graphql+json; charset=iso-8859-1',
+        accept: 'application/graphql-response+json; charset=iso-8859-1',
       },
     });
     expect(res.status).toBe(406);
@@ -112,7 +112,7 @@ describe('Request', () => {
 
       const res = await fetch(url.toString(), {
         headers: {
-          accept: 'application/graphql+json',
+          accept: 'application/graphql-response+json',
         },
       });
       expect(res.status).toBe(405);
@@ -152,7 +152,7 @@ describe('Request', () => {
         method: 'POST',
         headers: {
           'content-type': 'application/json',
-          accept: 'application/graphql+json',
+          accept: 'application/graphql-response+json',
         },
         body: JSON.stringify({ notquery: '{ __typename }' }),
       });
@@ -165,7 +165,7 @@ describe('Request', () => {
           method: 'POST',
           headers: {
             'content-type': 'application/json',
-            accept: 'application/graphql+json',
+            accept: 'application/graphql-response+json',
           },
           body: JSON.stringify({
             query: invalid,
@@ -179,7 +179,7 @@ describe('Request', () => {
         method: 'POST',
         headers: {
           'content-type': 'application/json',
-          accept: 'application/graphql+json',
+          accept: 'application/graphql-response+json',
         },
         body: JSON.stringify({
           query: '{ __typename }',
@@ -195,7 +195,7 @@ describe('Request', () => {
           method: 'POST',
           headers: {
             'content-type': 'application/json',
-            accept: 'application/graphql+json',
+            accept: 'application/graphql-response+json',
           },
           body: JSON.stringify({
             operationName: invalid,
@@ -210,7 +210,7 @@ describe('Request', () => {
         method: 'POST',
         headers: {
           'content-type': 'application/json',
-          accept: 'application/graphql+json',
+          accept: 'application/graphql-response+json',
         },
         body: JSON.stringify({
           operationName: 'Query',
@@ -227,7 +227,7 @@ describe('Request', () => {
           method: 'POST',
           headers: {
             'content-type': 'application/json',
-            accept: 'application/graphql+json',
+            accept: 'application/graphql-response+json',
           },
           body: JSON.stringify({
             query: '{ __typename }',
@@ -242,7 +242,7 @@ describe('Request', () => {
         method: 'POST',
         headers: {
           'content-type': 'application/json',
-          accept: 'application/graphql+json',
+          accept: 'application/graphql-response+json',
         },
         body: JSON.stringify({
           query: 'query Type($name: String!) { __type(name: $name) { name } }',
@@ -275,7 +275,7 @@ describe('Request', () => {
           method: 'POST',
           headers: {
             'content-type': 'application/json',
-            accept: 'application/graphql+json',
+            accept: 'application/graphql-response+json',
           },
           body: JSON.stringify({
             query: '{ __typename }',
@@ -290,7 +290,7 @@ describe('Request', () => {
         method: 'POST',
         headers: {
           'content-type': 'application/json',
-          accept: 'application/graphql+json',
+          accept: 'application/graphql-response+json',
         },
         body: JSON.stringify({
           query: '{ __typename }',
@@ -350,13 +350,13 @@ describe('Response', () => {
     });
   });
 
-  describe('application/graphql+json', () => {
+  describe('application/graphql-response+json', () => {
     it('must use 4xx or 5xx status codes on JSON parsing failure', async () => {
       const res = await fetch(serverUrl, {
         method: 'POST',
         headers: {
           'content-type': 'application/json',
-          accept: 'application/graphql+json',
+          accept: 'application/graphql-response+json',
         },
         body: '{ "not a JSON',
       });
@@ -368,7 +368,7 @@ describe('Response', () => {
         method: 'POST',
         headers: {
           'content-type': 'application/json',
-          accept: 'application/graphql+json',
+          accept: 'application/graphql-response+json',
         },
         body: '{ "not a JSON',
       });
@@ -380,7 +380,7 @@ describe('Response', () => {
       url.searchParams.set('qeury' /* typo */, '{ __typename }');
       const res = await fetch(url.toString(), {
         method: 'GET',
-        headers: { accept: 'application/graphql+json' },
+        headers: { accept: 'application/graphql-response+json' },
       });
       expect(res.status).toBeGreaterThanOrEqual(400);
       expect(res.status).toBeLessThanOrEqual(599);
@@ -390,7 +390,7 @@ describe('Response', () => {
       url.searchParams.set('qeury' /* typo */, '{ __typename }');
       const res = await fetch(url.toString(), {
         method: 'GET',
-        headers: { accept: 'application/graphql+json' },
+        headers: { accept: 'application/graphql-response+json' },
       });
       expect(res.status).toBe(400);
     });
@@ -400,7 +400,7 @@ describe('Response', () => {
       url.searchParams.set('query', '{');
       const res = await fetch(url.toString(), {
         method: 'GET',
-        headers: { accept: 'application/graphql+json' },
+        headers: { accept: 'application/graphql-response+json' },
       });
       expect(res.status).toBeGreaterThanOrEqual(400);
       expect(res.status).toBeLessThanOrEqual(599);
@@ -410,7 +410,7 @@ describe('Response', () => {
       url.searchParams.set('query', '{');
       const res = await fetch(url.toString(), {
         method: 'GET',
-        headers: { accept: 'application/graphql+json' },
+        headers: { accept: 'application/graphql-response+json' },
       });
       expect(res.status).toBe(400);
     });
@@ -420,7 +420,7 @@ describe('Response', () => {
       url.searchParams.set('query', '{ 8f31403dfe404bccbb0e835f2629c6a7 }'); // making sure the field doesnt exist
       const res = await fetch(url.toString(), {
         method: 'GET',
-        headers: { accept: 'application/graphql+json' },
+        headers: { accept: 'application/graphql-response+json' },
       });
       expect(res.status).toBeGreaterThanOrEqual(400);
       expect(res.status).toBeLessThanOrEqual(599);
@@ -430,7 +430,7 @@ describe('Response', () => {
       url.searchParams.set('query', '{ 8f31403dfe404bccbb0e835f2629c6a7 }'); // making sure the field doesnt exist
       const res = await fetch(url.toString(), {
         method: 'GET',
-        headers: { accept: 'application/graphql+json' },
+        headers: { accept: 'application/graphql-response+json' },
       });
       expect(res.status).toBe(400);
     });

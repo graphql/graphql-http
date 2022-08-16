@@ -369,7 +369,7 @@ export function createHandler<RawRequest = unknown, Context = unknown>(
           statusText: 'Not Acceptable',
           headers: {
             accept:
-              'application/graphql+json; charset=utf-8, application/json; charset=utf-8',
+              'application/graphql-response+json; charset=utf-8, application/json; charset=utf-8',
           },
         },
       ];
@@ -570,7 +570,7 @@ export function createHandler<RawRequest = unknown, Context = unknown>(
  * @category Server
  */
 export type AcceptableMediaType =
-  | 'application/graphql+json'
+  | 'application/graphql-response+json'
   | 'application/json';
 
 /**
@@ -600,12 +600,12 @@ export function getAcceptableMediaType(
     }
 
     if (
-      (mediaType === 'application/graphql+json' ||
+      (mediaType === 'application/graphql-response+json' ||
         mediaType === 'application/*' ||
         mediaType === '*/*') &&
       charset === 'charset=utf8'
     ) {
-      acceptedMediaType = 'application/graphql+json';
+      acceptedMediaType = 'application/graphql-response+json';
       break;
     }
   }
@@ -639,7 +639,7 @@ export function makeResponse(
           'content-type':
             acceptedMediaType === 'application/json'
               ? 'application/json; charset=utf-8'
-              : 'application/graphql+json; charset=utf-8',
+              : 'application/graphql-response+json; charset=utf-8',
         },
       },
     ];
@@ -667,7 +667,7 @@ export function makeResponse(
         'content-type':
           acceptedMediaType === 'application/json'
             ? 'application/json; charset=utf-8'
-            : 'application/graphql+json; charset=utf-8',
+            : 'application/graphql-response+json; charset=utf-8',
       },
     },
   ];
