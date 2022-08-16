@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/enisdenjo/graphql-http/compare/v1.2.0...v1.3.0) (2022-08-16)
+
+
+### Features
+
+* Change GraphQL acceptable media type `application/graphql+json` to `application/graphql-response+json` ([d86318a](https://github.com/enisdenjo/graphql-http/commit/d86318a7bc421ea5711200a61a50dc53db384eab))
+
 # [1.2.0](https://github.com/enisdenjo/graphql-http/compare/v1.1.0...v1.2.0) (2022-08-12)
 
 
