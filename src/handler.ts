@@ -434,6 +434,9 @@ export function createHandler<RawRequest = unknown, Context = unknown>(
           } catch (err) {
             throw new Error('Unparsable JSON body');
           }
+          if (!isObject(data)) {
+            throw new Error('JSON body must be an object');
+          }
           partParams.operationName = data.operationName;
           partParams.query = data.query;
           partParams.variables = data.variables;

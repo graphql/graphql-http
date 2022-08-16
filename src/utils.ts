@@ -7,7 +7,11 @@
 import type { ExecutionResult, GraphQLError } from 'graphql';
 
 /** @private */
-export function isObject(val: unknown): val is Record<PropertyKey, unknown> {
+export function isObject(val: unknown): val is Record<
+  PropertyKey,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  any
+> {
   return typeof val === 'object' && val !== null;
 }
 
