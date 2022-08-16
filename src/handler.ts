@@ -52,7 +52,21 @@ export interface Request<RawRequest, Context> {
   readonly method: string;
   readonly url: string;
   readonly headers: RequestHeaders;
-  readonly body: string | Record<string, unknown> | null;
+  /**
+   * Parsed request body or a parser function.
+   *
+   * If the provided function throws, the error message "Unparsable JSON body" will
+   * be in the erroneous response.
+   */
+  readonly body:
+    | string
+    | Record<string, unknown>
+    | null
+    | (() =>
+        | string
+        | Record<string, unknown>
+        | null
+        | Promise<string | Record<string, unknown> | null>);
   /**
    * The raw request itself from the implementing server.
    *
@@ -412,16 +426,18 @@ export function createHandler<RawRequest = unknown, Context = unknown>(
           if (!req.body) {
             throw new Error('Missing body');
           }
+          let data;
           try {
-            const data =
-              typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
-            partParams.operationName = data.operationName;
-            partParams.query = data.query;
-            partParams.variables = data.variables;
-            partParams.extensions = data.extensions;
-          } catch {
+            const body =
+              typeof req.body === 'function' ? await req.body() : req.body;
+            data = typeof body === 'string' ? JSON.parse(body) : body;
+          } catch (err) {
             throw new Error('Unparsable JSON body');
           }
+          partParams.operationName = data.operationName;
+          partParams.query = data.query;
+          partParams.variables = data.variables;
+          partParams.extensions = data.extensions;
           break;
         }
         default: // graphql-http doesnt support any other content type

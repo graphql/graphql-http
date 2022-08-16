@@ -27,7 +27,12 @@ which is server dependant.
 
 ### body
 
-• `Readonly` **body**: ``null`` \| `string` \| `Record`<`string`, `unknown`\>
+• `Readonly` **body**: ``null`` \| `string` \| `Record`<`string`, `unknown`\> \| () => ``null`` \| `string` \| `Record`<`string`, `unknown`\> \| `Promise`<``null`` \| `string` \| `Record`<`string`, `unknown`\>\>
+
+Parsed request body or a parser function.
+
+If the provided function throws, the error message "Unparsable JSON body" will
+be in the erroneous response.
 
 ___
 
