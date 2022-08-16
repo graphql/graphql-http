@@ -1,3 +1,15 @@
+# [1.4.0](https://github.com/enisdenjo/graphql-http/compare/v1.3.0...v1.4.0) (2022-08-16)
+
+
+### Bug Fixes
+
+* **handler:** JSON body must be an object ([f500fa7](https://github.com/enisdenjo/graphql-http/commit/f500fa70af442316732ddd0668d742a76b5fd4bb))
+
+
+### Features
+
+* **handler:** Request's `body` field may be a parser function ([268a4bf](https://github.com/enisdenjo/graphql-http/commit/268a4bf5dd4fd15191f40d3aa27ca1d71593a74d))
+
 # [1.3.0](https://github.com/enisdenjo/graphql-http/compare/v1.2.0...v1.3.0) (2022-08-16)
 
 
