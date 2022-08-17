@@ -68,11 +68,12 @@ const server = http.createServer(async (req, res) => {
       url: req.url,
       method: req.method,
       headers: req.headers,
-      body: await new Promise((resolve) => {
-        let body = '';
-        req.on('data', (chunk) => (body += chunk));
-        req.on('end', () => resolve(body));
-      }),
+      body: () =>
+        new Promise((resolve) => {
+          let body = '';
+          req.on('data', (chunk) => (body += chunk));
+          req.on('end', () => resolve(body));
+        }),
       raw: req,
     });
     res.writeHead(init.status, init.statusText, init.headers).end(body);
@@ -119,11 +120,12 @@ const server = http2.createSecureServer(
         url: req.url,
         method: req.method,
         headers: req.headers,
-        body: await new Promise((resolve) => {
-          let body = '';
-          req.on('data', (chunk) => (body += chunk));
-          req.on('end', () => resolve(body));
-        }),
+        body: () =>
+          new Promise((resolve) => {
+            let body = '';
+            req.on('data', (chunk) => (body += chunk));
+            req.on('end', () => resolve(body));
+          }),
         raw: req,
       });
       res.writeHead(init.status, init.statusText, init.headers).end(body);
@@ -155,11 +157,12 @@ app.use('/graphql', async (req, res) => {
       url: req.url,
       method: req.method,
       headers: req.headers,
-      body: await new Promise((resolve) => {
-        let body = '';
-        req.on('data', (chunk) => (body += chunk));
-        req.on('end', () => resolve(body));
-      }),
+      body: () =>
+        new Promise((resolve) => {
+          let body = '';
+          req.on('data', (chunk) => (body += chunk));
+          req.on('end', () => resolve(body));
+        }),
       raw: req,
     });
     res.writeHead(init.status, init.statusText, init.headers).end(body);
@@ -227,7 +230,7 @@ await serve(
       url: req.url,
       method: req.method,
       headers,
-      body: await req.text(),
+      body: () => req.text(),
       raw: req,
     });
     return new Response(body, init);
@@ -686,11 +689,12 @@ const server = http.createServer(async (req, res) => {
       url: req.url,
       method: req.method,
       headers: req.headers,
-      body: await new Promise((resolve) => {
-        let body = '';
-        req.on('data', (chunk) => (body += chunk));
-        req.on('end', () => resolve(body));
-      }),
+      body: () =>
+        new Promise((resolve) => {
+          let body = '';
+          req.on('data', (chunk) => (body += chunk));
+          req.on('end', () => resolve(body));
+        }),
       raw: req,
     });
     res.writeHead(init.status, init.statusText, init.headers).end(body);

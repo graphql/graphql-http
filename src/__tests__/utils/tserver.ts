@@ -44,11 +44,12 @@ export function startTServer(
             url: req.url,
             method: req.method,
             headers: req.headers,
-            body: await new Promise<string>((resolve) => {
-              let body = '';
-              req.on('data', (chunk) => (body += chunk));
-              req.on('end', () => resolve(body));
-            }),
+            body: () =>
+              new Promise<string>((resolve) => {
+                let body = '';
+                req.on('data', (chunk) => (body += chunk));
+                req.on('end', () => resolve(body));
+              }),
             raw: req,
             context: null,
           }),

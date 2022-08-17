@@ -195,7 +195,7 @@ const server = http.createServer(async (req, res) => {
       url: req.url,
       method: req.method,
       headers: req.headers,
-      body: await new Promise((resolve) => {
+      body: () => new Promise((resolve) => {
         let body = '';
         req.on('data', (chunk) => (body += chunk));
         req.on('end', () => resolve(body));
