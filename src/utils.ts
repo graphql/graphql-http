@@ -7,6 +7,29 @@
 import type { ExecutionResult, GraphQLError } from 'graphql';
 
 /** @private */
+export function extendedTypeof(
+  val: unknown,
+):
+  | 'string'
+  | 'number'
+  | 'bigint'
+  | 'boolean'
+  | 'symbol'
+  | 'undefined'
+  | 'object'
+  | 'function'
+  | 'array'
+  | 'null' {
+  if (val === null) {
+    return 'null';
+  }
+  if (Array.isArray(val)) {
+    return 'array';
+  }
+  return typeof val;
+}
+
+/** @private */
 export function isObject(val: unknown): val is Record<
   PropertyKey,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

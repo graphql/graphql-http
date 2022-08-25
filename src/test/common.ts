@@ -80,12 +80,42 @@ export function assert(actual: unknown) {
         throw `${actual} is not equal to ${expected}`;
       }
     },
+    toBeLessThanOrEqual: (expected: number) => {
+      if (typeof actual !== 'number') {
+        throw new Error(
+          'assert.toBeLessThanOrEqual can only be used with numbers',
+        );
+      }
+      if (!(actual <= expected)) {
+        throw `${actual} is not less than or equal to ${expected}`;
+      }
+    },
+    toBeGreaterThanOrEqual: (expected: number) => {
+      if (typeof actual !== 'number') {
+        throw new Error(
+          'assert.toBeGreaterThanOrEqual can only be used with numbers',
+        );
+      }
+      if (!(actual >= expected)) {
+        throw `${actual} is not greater than or equal to ${expected}`;
+      }
+    },
     toContain: (expected: string) => {
       if (typeof actual !== 'string') {
-        throw new Error(`assert.toContain can only be with strings`);
+        throw new Error('assert.toContain can only be used with strings');
       }
       if (!actual.includes(expected)) {
         throw `'${actual}' does not contain '${expected}'`;
+      }
+    },
+    notToHaveProperty: (prop: string) => {
+      if (actual == null || typeof actual !== 'object') {
+        throw new Error(
+          'assert.notToHaveProperty can only be used with objects',
+        );
+      }
+      if (prop in actual) {
+        throw `${JSON.stringify(actual)} does have a property '${prop}'`;
       }
     },
   };
