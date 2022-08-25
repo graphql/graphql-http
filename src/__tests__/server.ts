@@ -8,7 +8,7 @@ const server = startTServer({ schema });
 
 const audits = serverAudits({ url: server.url, fetchFn: fetch });
 for (const audit of audits) {
-  it(audit.requirement + ' ' + audit.name, async () => {
+  it(audit.name, async () => {
     const result = await audit.fn();
     if (result.status !== 'ok') {
       throw result.reason;

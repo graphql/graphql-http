@@ -26,8 +26,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
   return [
     // Media Types
     audit(
-      'MUST',
-      'accept application/graphql-response+json and match the content-type',
+      'MUST accept application/graphql-response+json and match the content-type',
       async () => {
         const url = new URL(opts.url);
         url.searchParams.set('query', '{ __typename }');
@@ -44,8 +43,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
       },
     ),
     audit(
-      'MUST',
-      'accept application/json and match the content-type',
+      'MUST accept application/json and match the content-type',
       async () => {
         const url = new URL(opts.url);
         url.searchParams.set('query', '{ __typename }');
@@ -60,8 +58,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
       },
     ),
     audit(
-      'MUST',
-      'accept */* and use application/graphql-response+json for the content-type',
+      'MUST accept */* and use application/graphql-response+json for the content-type',
       async () => {
         const url = new URL(opts.url);
         url.searchParams.set('query', '{ __typename }');
@@ -78,8 +75,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
       },
     ),
     audit(
-      'MUST',
-      'assume application/graphql-response+json content-type when accept is missing',
+      'MUST assume application/graphql-response+json content-type when accept is missing',
       async () => {
         const url = new URL(opts.url);
         url.searchParams.set('query', '{ __typename }');
@@ -91,7 +87,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
         );
       },
     ),
-    audit('MUST', 'use utf-8 charset in response', async () => {
+    audit('MUST use utf-8 charset in response', async () => {
       const url = new URL(opts.url);
       url.searchParams.set('query', '{ __typename }');
 
@@ -99,7 +95,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
       assert(res.status).toBe(200);
       assert(res.headers.get('content-type')).toContain('charset=utf-8');
     }),
-    audit('MUST', 'accept only utf-8 charset', async () => {
+    audit('MUST accept only utf-8 charset', async () => {
       const url = new URL(opts.url);
       url.searchParams.set('query', '{ __typename }');
 

@@ -13,7 +13,7 @@
 
 ### name
 
-• **name**: `string`
+• **name**: \`MUST ${string}\` \| \`SHOULD ${string}\` \| \`MAY ${string}\`
 
 ___
 

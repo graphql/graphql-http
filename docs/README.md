@@ -27,6 +27,7 @@ graphql-http
 ### Type Aliases
 
 - [AcceptableMediaType](README.md#acceptablemediatype)
+- [AuditName](README.md#auditname)
 - [AuditRequirement](README.md#auditrequirement)
 - [AuditResult](README.md#auditresult)
 - [ExecutionContext](README.md#executioncontext)
@@ -109,6 +110,14 @@ Checks whether the passed value is the `graphql-http` server agnostic response.
 val is Response
 
 ## Other
+
+### AuditName
+
+Ƭ **AuditName**: \`${AuditRequirement} ${string}\`
+
+Audit name starting with the audit requirement level.
+
+___
 
 ### AuditRequirement
 

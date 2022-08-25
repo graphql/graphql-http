@@ -8,7 +8,6 @@
 
 - [fn](Audit.md#fn)
 - [name](Audit.md#name)
-- [requirement](Audit.md#requirement)
 
 ## Properties
 
@@ -28,10 +27,4 @@ ___
 
 ### name
 
-• **name**: `string`
-
-___
-
-### requirement
-
-• **requirement**: [`AuditRequirement`](../README.md#auditrequirement)
+• **name**: \`MUST ${string}\` \| \`SHOULD ${string}\` \| \`MAY ${string}\`

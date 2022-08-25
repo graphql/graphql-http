@@ -9,19 +9,23 @@
  */
 export type AuditRequirement = 'MUST' | 'SHOULD' | 'MAY';
 
+/**
+ * Audit name starting with the audit requirement level.
+ */
+export type AuditName = `${AuditRequirement} ${string}`;
+
 export interface Audit {
-  requirement: AuditRequirement;
-  name: string;
+  name: AuditName;
   fn: () => Promise<AuditResult>;
 }
 
 export interface AuditOk {
-  name: string;
+  name: AuditName;
   status: 'ok';
 }
 
 export interface AuditFail {
-  name: string;
+  name: AuditName;
   status: 'warn' | 'error';
   reason: string;
 }
@@ -33,19 +37,14 @@ export type AuditResult = AuditOk | AuditFail;
  *
  * @private
  */
-export function audit(
-  requirement: AuditRequirement,
-  name: string,
-  fn: () => Promise<void>,
-): Audit {
+export function audit(name: AuditName, fn: () => Promise<void>): Audit {
   return {
-    requirement,
     name,
     fn: async () => {
       try {
         await fn();
         return {
-          name: requirement + ' ' + name,
+          name,
           status: 'ok',
         };
       } catch (errOrReason) {
@@ -54,13 +53,12 @@ export function audit(
           throw errOrReason;
         }
         return {
-          name: requirement + ' ' + name,
-          status:
-            requirement === 'MUST'
-              ? // only failing MUSTs are considered errors
-                'error'
-              : // everything else is optional and considered a warning
-                'warn',
+          name,
+          status: name.startsWith('MUST')
+            ? // only failing MUSTs are considered errors
+              'error'
+            : // everything else is optional and considered a warning
+              'warn',
           reason: errOrReason,
         };
       }
