@@ -1,95 +1,24 @@
 import fetch from 'node-fetch';
+import { serverAudits } from '../test/server';
 
 import { schema } from './fixtures/simple';
 import { bodyAsExecResult, startTServer } from './utils/tserver';
 
-let serverUrl!: string;
-beforeAll(() => {
-  const server = startTServer({ schema });
-  serverUrl = server.url;
-});
+const server = startTServer({ schema });
 
-describe('Media Types', () => {
-  it('must accept application/graphql-response+json and match the content-type', async () => {
-    const url = new URL(serverUrl);
-    url.searchParams.set('query', '{ __typename }');
-
-    const res = await fetch(url.toString(), {
-      headers: {
-        accept: 'application/graphql-response+json',
-      },
-    });
-    expect(res.status).toBe(200);
-    expect(res.headers.get('content-type')).toContain(
-      'application/graphql-response+json',
-    );
+const audits = serverAudits({ url: server.url, fetchFn: fetch });
+for (const audit of audits) {
+  it(audit.requirement + ' ' + audit.name, async () => {
+    const result = await audit.fn();
+    if (result.status !== 'ok') {
+      throw result.reason;
+    }
   });
-
-  it('must accept application/json and match the content-type', async () => {
-    const url = new URL(serverUrl);
-    url.searchParams.set('query', '{ __typename }');
-
-    const res = await fetch(url.toString(), {
-      headers: {
-        accept: 'application/json',
-      },
-    });
-    expect(res.status).toBe(200);
-    expect(res.headers.get('content-type')).toContain('application/json');
-  });
-
-  it('must accept */* and use application/graphql-response+json for the content-type', async () => {
-    const url = new URL(serverUrl);
-    url.searchParams.set('query', '{ __typename }');
-
-    const res = await fetch(url.toString(), {
-      headers: {
-        accept: '*/*',
-      },
-    });
-    expect(res.status).toBe(200);
-    expect(res.headers.get('content-type')).toContain(
-      'application/graphql-response+json',
-    );
-  });
-
-  it('must assume application/graphql-response+json content-type when accept is missing', async () => {
-    const url = new URL(serverUrl);
-    url.searchParams.set('query', '{ __typename }');
-
-    const res = await fetch(url.toString());
-    expect(res.status).toBe(200);
-    expect(res.headers.get('content-type')).toContain(
-      'application/graphql-response+json',
-    );
-  });
-
-  it('must use utf-8 charset in response', async () => {
-    const url = new URL(serverUrl);
-    url.searchParams.set('query', '{ __typename }');
-
-    const res = await fetch(url.toString());
-    expect(res.status).toBe(200);
-    expect(res.headers.get('content-type')).toContain('charset=utf-8');
-  });
-
-  it('must accept only utf-8 charset', async () => {
-    const url = new URL(serverUrl);
-    url.searchParams.set('query', '{ __typename }');
-
-    const res = await fetch(url.toString(), {
-      headers: {
-        accept: 'application/graphql-response+json; charset=iso-8859-1',
-      },
-    });
-    expect(res.status).toBe(406);
-    expect(res.headers.get('accept')).toContain('charset=utf-8');
-  });
-});
+}
 
 describe('Request', () => {
   it('must accept POST requests', async () => {
-    const res = await fetch(serverUrl, {
+    const res = await fetch(server.url, {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify({ query: '{ __typename }' }),
@@ -98,7 +27,7 @@ describe('Request', () => {
   });
 
   it('may accept application/x-www-form-urlencoded formatted GET requests', async () => {
-    const url = new URL(serverUrl);
+    const url = new URL(server.url);
     url.searchParams.set('query', '{ __typename }');
 
     const res = await fetch(url.toString());
@@ -107,7 +36,7 @@ describe('Request', () => {
 
   describe('GET', () => {
     it('must not allow executing mutations', async () => {
-      const url = new URL(serverUrl);
+      const url = new URL(server.url);
       url.searchParams.set('query', 'mutation { __typename }');
 
       const res = await fetch(url.toString(), {
@@ -121,7 +50,7 @@ describe('Request', () => {
 
   describe('POST', () => {
     it('should respond with 4xx status code if content-type is not supplied', async () => {
-      const res = await fetch(serverUrl, {
+      const res = await fetch(server.url, {
         method: 'POST',
       });
       expect(res.status).toBeGreaterThanOrEqual(400);
@@ -129,7 +58,7 @@ describe('Request', () => {
     });
 
     it('must accept application/json requests', async () => {
-      const res = await fetch(serverUrl, {
+      const res = await fetch(server.url, {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify({ query: '{ __typename }' }),
@@ -138,7 +67,7 @@ describe('Request', () => {
     });
 
     it('must require a request body', async () => {
-      const res = await fetch(serverUrl, {
+      const res = await fetch(server.url, {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
       });
@@ -148,7 +77,7 @@ describe('Request', () => {
 
   describe('Request Parameters', () => {
     it('must require the {query} parameter', async () => {
-      const res = await fetch(serverUrl, {
+      const res = await fetch(server.url, {
         method: 'POST',
         headers: {
           'content-type': 'application/json',
@@ -161,7 +90,7 @@ describe('Request', () => {
     it.each([{ obj: 'ect' }, 0, false, ['array']])(
       'must not allow `%j` for the {query} parameter',
       async (invalid) => {
-        const res = await fetch(serverUrl, {
+        const res = await fetch(server.url, {
           method: 'POST',
           headers: {
             'content-type': 'application/json',
@@ -175,7 +104,7 @@ describe('Request', () => {
       },
     );
     it('must accept a string for the {query} parameter', async () => {
-      const res = await fetch(serverUrl, {
+      const res = await fetch(server.url, {
         method: 'POST',
         headers: {
           'content-type': 'application/json',
@@ -191,7 +120,7 @@ describe('Request', () => {
     it.each([{ obj: 'ect' }, 0, false, ['array']])(
       'must not allow `%j` for the {operationName} parameter',
       async (invalid) => {
-        const res = await fetch(serverUrl, {
+        const res = await fetch(server.url, {
           method: 'POST',
           headers: {
             'content-type': 'application/json',
@@ -206,7 +135,7 @@ describe('Request', () => {
       },
     );
     it('must accept a string for the {operationName} parameter', async () => {
-      const res = await fetch(serverUrl, {
+      const res = await fetch(server.url, {
         method: 'POST',
         headers: {
           'content-type': 'application/json',
@@ -223,7 +152,7 @@ describe('Request', () => {
     it.each(['string', 0, false, ['array']])(
       'must not allow `%j` for the {variables} parameter',
       async (invalid) => {
-        const res = await fetch(serverUrl, {
+        const res = await fetch(server.url, {
           method: 'POST',
           headers: {
             'content-type': 'application/json',
@@ -238,7 +167,7 @@ describe('Request', () => {
       },
     );
     it('must accept a map for the {variables} parameter', async () => {
-      const res = await fetch(serverUrl, {
+      const res = await fetch(server.url, {
         method: 'POST',
         headers: {
           'content-type': 'application/json',
@@ -254,7 +183,7 @@ describe('Request', () => {
       expect(result).not.toHaveProperty('errors');
     });
     it('must accept a URL-encoded JSON string for the {variable} parameter in GETs', async () => {
-      const url = new URL(serverUrl);
+      const url = new URL(server.url);
       url.searchParams.set(
         'query',
         'query Type($name: String!) { __type(name: $name) { name } }',
@@ -271,7 +200,7 @@ describe('Request', () => {
     it.each(['string', 0, false, ['array']])(
       'must not allow `%j` for the {extensions} parameter',
       async (invalid) => {
-        const res = await fetch(serverUrl, {
+        const res = await fetch(server.url, {
           method: 'POST',
           headers: {
             'content-type': 'application/json',
@@ -286,7 +215,7 @@ describe('Request', () => {
       },
     );
     it('must accept a map for the {extensions} parameter', async () => {
-      const res = await fetch(serverUrl, {
+      const res = await fetch(server.url, {
         method: 'POST',
         headers: {
           'content-type': 'application/json',
@@ -308,7 +237,7 @@ describe('Request', () => {
 describe('Response', () => {
   describe('application/json', () => {
     it('should use 200 status code on JSON parsing failure', async () => {
-      const res = await fetch(serverUrl, {
+      const res = await fetch(server.url, {
         method: 'POST',
         headers: {
           'content-type': 'application/json',
@@ -320,7 +249,7 @@ describe('Response', () => {
     });
 
     it('should use 200 status code if parameters are invalid', async () => {
-      const url = new URL(serverUrl);
+      const url = new URL(server.url);
       url.searchParams.set('qeury' /* typo */, '{ __typename }');
       const res = await fetch(url.toString(), {
         method: 'GET',
@@ -330,7 +259,7 @@ describe('Response', () => {
     });
 
     it('should use 200 status code on document parsing failure', async () => {
-      const url = new URL(serverUrl);
+      const url = new URL(server.url);
       url.searchParams.set('query', '{');
       const res = await fetch(url.toString(), {
         method: 'GET',
@@ -340,7 +269,7 @@ describe('Response', () => {
     });
 
     it('should use 200 status code on document validation failure', async () => {
-      const url = new URL(serverUrl);
+      const url = new URL(server.url);
       url.searchParams.set('query', '{ 8f31403dfe404bccbb0e835f2629c6a7 }'); // making sure the field doesnt exist
       const res = await fetch(url.toString(), {
         method: 'GET',
@@ -352,7 +281,7 @@ describe('Response', () => {
 
   describe('application/graphql-response+json', () => {
     it('must use 4xx or 5xx status codes on JSON parsing failure', async () => {
-      const res = await fetch(serverUrl, {
+      const res = await fetch(server.url, {
         method: 'POST',
         headers: {
           'content-type': 'application/json',
@@ -364,7 +293,7 @@ describe('Response', () => {
       expect(res.status).toBeLessThanOrEqual(599);
     });
     it('should use 400 status code on JSON parsing failure', async () => {
-      const res = await fetch(serverUrl, {
+      const res = await fetch(server.url, {
         method: 'POST',
         headers: {
           'content-type': 'application/json',
@@ -376,7 +305,7 @@ describe('Response', () => {
     });
 
     it('must use 4xx or 5xx status codes if parameters are invalid', async () => {
-      const url = new URL(serverUrl);
+      const url = new URL(server.url);
       url.searchParams.set('qeury' /* typo */, '{ __typename }');
       const res = await fetch(url.toString(), {
         method: 'GET',
@@ -386,7 +315,7 @@ describe('Response', () => {
       expect(res.status).toBeLessThanOrEqual(599);
     });
     it('should use 400 status code if parameters are invalid', async () => {
-      const url = new URL(serverUrl);
+      const url = new URL(server.url);
       url.searchParams.set('qeury' /* typo */, '{ __typename }');
       const res = await fetch(url.toString(), {
         method: 'GET',
@@ -396,7 +325,7 @@ describe('Response', () => {
     });
 
     it('must use 4xx or 5xx status codes on document parsing failure', async () => {
-      const url = new URL(serverUrl);
+      const url = new URL(server.url);
       url.searchParams.set('query', '{');
       const res = await fetch(url.toString(), {
         method: 'GET',
@@ -406,7 +335,7 @@ describe('Response', () => {
       expect(res.status).toBeLessThanOrEqual(599);
     });
     it('should use 400 status code on document parsing failure', async () => {
-      const url = new URL(serverUrl);
+      const url = new URL(server.url);
       url.searchParams.set('query', '{');
       const res = await fetch(url.toString(), {
         method: 'GET',
@@ -416,7 +345,7 @@ describe('Response', () => {
     });
 
     it('must use 4xx or 5xx status codes on document validation failure', async () => {
-      const url = new URL(serverUrl);
+      const url = new URL(server.url);
       url.searchParams.set('query', '{ 8f31403dfe404bccbb0e835f2629c6a7 }'); // making sure the field doesnt exist
       const res = await fetch(url.toString(), {
         method: 'GET',
@@ -426,7 +355,7 @@ describe('Response', () => {
       expect(res.status).toBeLessThanOrEqual(599);
     });
     it('should use 400 status code on document validation failure', async () => {
-      const url = new URL(serverUrl);
+      const url = new URL(server.url);
       url.searchParams.set('query', '{ 8f31403dfe404bccbb0e835f2629c6a7 }'); // making sure the field doesnt exist
       const res = await fetch(url.toString(), {
         method: 'GET',
