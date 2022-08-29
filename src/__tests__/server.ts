@@ -1,5 +1,5 @@
 import fetch from 'node-fetch';
-import { serverAudits } from '../test/server';
+import { serverAudits } from '../audits/server';
 
 import { schema } from './fixtures/simple';
 import { startTServer } from './utils/tserver';

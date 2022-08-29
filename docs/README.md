@@ -38,13 +38,13 @@ graphql-http
 
 ### Functions
 
+- [auditServer](README.md#auditserver)
 - [createClient](README.md#createclient)
 - [createHandler](README.md#createhandler)
 - [getAcceptableMediaType](README.md#getacceptablemediatype)
 - [isResponse](README.md#isresponse)
 - [makeResponse](README.md#makeresponse)
 - [serverAudits](README.md#serveraudits)
-- [testServer](README.md#testserver)
 
 ## Client
 
@@ -133,6 +133,22 @@ ___
 
 ___
 
+### auditServer
+
+▸ **auditServer**(`opts`): `Promise`<[`AuditResult`](README.md#auditresult)[]\>
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `opts` | [`ServerAuditOptions`](interfaces/ServerAuditOptions.md) |
+
+#### Returns
+
+`Promise`<[`AuditResult`](README.md#auditresult)[]\>
+
+___
+
 ### serverAudits
 
 ▸ **serverAudits**(`opts`): [`Audit`](interfaces/Audit.md)[]
@@ -146,22 +162,6 @@ ___
 #### Returns
 
 [`Audit`](interfaces/Audit.md)[]
-
-___
-
-### testServer
-
-▸ **testServer**(`opts`): `Promise`<[`AuditResult`](README.md#auditresult)[]\>
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `opts` | [`ServerAuditOptions`](interfaces/ServerAuditOptions.md) |
-
-#### Returns
-
-`Promise`<[`AuditResult`](README.md#auditresult)[]\>
 
 ## Server
 

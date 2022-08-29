@@ -1,6 +1,6 @@
 /**
  *
- * test/server
+ * audit/server
  *
  */
 
@@ -494,7 +494,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
   ];
 }
 
-export async function testServer(
+export async function auditServer(
   opts: ServerAuditOptions,
 ): Promise<AuditResult[]> {
   const audits = serverAudits(opts);
