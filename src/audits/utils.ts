@@ -49,49 +49,41 @@ export function audit(name: AuditName, fn: () => Promise<void>): Audit {
  *
  * @private
  */
-export function assert(actual: unknown) {
+export function assert<T = unknown>(actual: T) {
   return {
-    toBe: (expected: unknown) => {
+    toBe: (expected: T) => {
       if (actual !== expected) {
-        throw `${actual} is not equal to ${expected}`;
+        throw `${actual} is not ${expected}`;
       }
     },
-    toBeLessThanOrEqual: (expected: number) => {
-      if (typeof actual !== 'number') {
-        throw new Error(
-          'assert.toBeLessThanOrEqual can only be used with numbers',
-        );
-      }
+    toBeLessThanOrEqual: (expected: T extends number ? T : never) => {
       if (!(actual <= expected)) {
         throw `${actual} is not less than or equal to ${expected}`;
       }
     },
-    toBeGreaterThanOrEqual: (expected: number) => {
-      if (typeof actual !== 'number') {
-        throw new Error(
-          'assert.toBeGreaterThanOrEqual can only be used with numbers',
-        );
-      }
+    toBeGreaterThanOrEqual: (expected: T extends number ? T : never) => {
       if (!(actual >= expected)) {
         throw `${actual} is not greater than or equal to ${expected}`;
       }
     },
-    toContain: (expected: string) => {
-      if (typeof actual !== 'string') {
-        throw new Error('assert.toContain can only be used with strings');
-      }
-      if (!actual.includes(expected)) {
+    toContain: (
+      expected: T extends Array<infer U> ? U : T extends string ? T : never,
+    ) => {
+      // @ts-expect-error types will match, otherwise never
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      if (!actual.includes(expected as any)) {
         throw `'${actual}' does not contain '${expected}'`;
       }
     },
-    notToHaveProperty: (prop: string) => {
-      if (actual == null || typeof actual !== 'object') {
-        throw new Error(
-          'assert.notToHaveProperty can only be used with objects',
-        );
-      }
+    notToHaveProperty: (
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      prop: T extends Record<any, any> ? PropertyKey : never,
+    ) => {
+      // @ts-expect-error types will match, otherwise never
       if (prop in actual) {
-        throw `${JSON.stringify(actual)} does have a property '${prop}'`;
+        throw `${JSON.stringify(actual)} does have a property '${String(
+          prop,
+        )}'`;
       }
     },
   };
