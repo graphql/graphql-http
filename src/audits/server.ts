@@ -5,8 +5,8 @@
  */
 
 import type { ExecutionResult } from 'graphql';
-import { assert, audit, Audit, AuditResult } from './common';
-import { extendedTypeof } from '../utils';
+import { Audit, AuditResult } from './common';
+import { assert, audit, extendedTypeof } from './utils';
 
 export interface ServerAuditOptions {
   /**
