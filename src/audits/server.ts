@@ -302,20 +302,25 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
       },
     ),
     ...['string', 0, false, ['array']].map((invalid) =>
-      audit('MUST NOT allow `%j` for the {extensions} parameter', async () => {
-        const res = await fetchFn(opts.url, {
-          method: 'POST',
-          headers: {
-            'content-type': 'application/json',
-            accept: 'application/graphql-response+json',
-          },
-          body: JSON.stringify({
-            query: '{ __typename }',
-            extensions: invalid,
-          }),
-        });
-        assert(res.status).toBe(400);
-      }),
+      audit(
+        `MUST NOT allow ${extendedTypeof(
+          invalid,
+        )} for the {extensions} parameter`,
+        async () => {
+          const res = await fetchFn(opts.url, {
+            method: 'POST',
+            headers: {
+              'content-type': 'application/json',
+              accept: 'application/graphql-response+json',
+            },
+            body: JSON.stringify({
+              query: '{ __typename }',
+              extensions: invalid,
+            }),
+          });
+          assert(res.status).toBe(400);
+        },
+      ),
     ),
     audit('MUST accept a map for the {extensions} parameter', async () => {
       const res = await fetchFn(opts.url, {
