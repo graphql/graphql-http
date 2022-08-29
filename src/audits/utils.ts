@@ -72,7 +72,9 @@ export function assert<T = unknown>(actual: T) {
       // @ts-expect-error types will match, otherwise never
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       if (!actual.includes(expected as any)) {
-        throw `'${actual}' does not contain '${expected}'`;
+        throw `${JSON.stringify(actual)} does not contain ${JSON.stringify(
+          expected,
+        )}`;
       }
     },
     notToHaveProperty: (
