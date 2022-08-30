@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/enisdenjo/graphql-http/compare/v1.4.0...v1.5.0) (2022-08-30)
+
+
+### Features
+
+* **server:** Audits and test function ([#4](https://github.com/enisdenjo/graphql-http/issues/4)) ([431e513](https://github.com/enisdenjo/graphql-http/commit/431e51302c1fb63e3546111469f2cb9a94132465))
+
 # [1.4.0](https://github.com/enisdenjo/graphql-http/compare/v1.3.0...v1.4.0) (2022-08-16)
 
 
