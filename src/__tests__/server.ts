@@ -6,8 +6,7 @@ import { startTServer } from './utils/tserver';
 
 const server = startTServer({ schema });
 
-const audits = serverAudits({ url: server.url, fetchFn: fetch });
-for (const audit of audits) {
+for (const audit of serverAudits({ url: server.url, fetchFn: fetch })) {
   it(audit.name, async () => {
     const result = await audit.fn();
     if (result.status !== 'ok') {
