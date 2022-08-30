@@ -49,21 +49,21 @@ export function audit(name: AuditName, fn: () => Promise<void>): Audit {
  *
  * @private
  */
-export function assert<T = unknown>(actual: T) {
+export function assert<T = unknown>(name: string, actual: T) {
   return {
     toBe: (expected: T) => {
       if (actual !== expected) {
-        throw `${actual} is not ${expected}`;
+        throw `${name} ${actual} is not ${expected}`;
       }
     },
     toBeLessThanOrEqual: (expected: T extends number ? T : never) => {
       if (!(actual <= expected)) {
-        throw `${actual} is not less than or equal to ${expected}`;
+        throw `${name} ${actual} is not less than or equal to ${expected}`;
       }
     },
     toBeGreaterThanOrEqual: (expected: T extends number ? T : never) => {
       if (!(actual >= expected)) {
-        throw `${actual} is not greater than or equal to ${expected}`;
+        throw `${name} ${actual} is not greater than or equal to ${expected}`;
       }
     },
     toContain: (
@@ -72,9 +72,9 @@ export function assert<T = unknown>(actual: T) {
       // @ts-expect-error types will match, otherwise never
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       if (!actual.includes(expected as any)) {
-        throw `${JSON.stringify(actual)} does not contain ${JSON.stringify(
-          expected,
-        )}`;
+        throw `${name} ${JSON.stringify(
+          actual,
+        )} does not contain ${JSON.stringify(expected)}`;
       }
     },
     notToHaveProperty: (
@@ -83,7 +83,7 @@ export function assert<T = unknown>(actual: T) {
     ) => {
       // @ts-expect-error types will match, otherwise never
       if (prop in actual) {
-        throw `${JSON.stringify(actual)} does have a property '${String(
+        throw `${name} ${JSON.stringify(actual)} does have a property '${String(
           prop,
         )}'`;
       }

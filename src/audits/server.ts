@@ -38,10 +38,11 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
             accept: 'application/graphql-response+json',
           },
         });
-        assert(res.status).toBe(200);
-        assert(res.headers.get('content-type')).toContain(
-          'application/graphql-response+json',
-        );
+        assert('Status code', res.status).toBe(200);
+        assert(
+          'Content-Type header',
+          res.headers.get('content-type'),
+        ).toContain('application/graphql-response+json');
       },
     ),
     audit(
@@ -55,8 +56,11 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
             accept: 'application/json',
           },
         });
-        assert(res.status).toBe(200);
-        assert(res.headers.get('content-type')).toContain('application/json');
+        assert('Status code', res.status).toBe(200);
+        assert(
+          'Content-Type header',
+          res.headers.get('content-type'),
+        ).toContain('application/json');
       },
     ),
     audit(
@@ -70,10 +74,11 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
             accept: '*/*',
           },
         });
-        assert(res.status).toBe(200);
-        assert(res.headers.get('content-type')).toContain(
-          'application/graphql-response+json',
-        );
+        assert('Status code', res.status).toBe(200);
+        assert(
+          'Content-Type header',
+          res.headers.get('content-type'),
+        ).toContain('application/graphql-response+json');
       },
     ),
     audit(
@@ -83,10 +88,11 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
         url.searchParams.set('query', '{ __typename }');
 
         const res = await fetchFn(url.toString());
-        assert(res.status).toBe(200);
-        assert(res.headers.get('content-type')).toContain(
-          'application/graphql-response+json',
-        );
+        assert('Status code', res.status).toBe(200);
+        assert(
+          'Content-Type header',
+          res.headers.get('content-type'),
+        ).toContain('application/graphql-response+json');
       },
     ),
     audit('MUST use utf-8 charset in response', async () => {
@@ -94,8 +100,10 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
       url.searchParams.set('query', '{ __typename }');
 
       const res = await fetchFn(url.toString());
-      assert(res.status).toBe(200);
-      assert(res.headers.get('content-type')).toContain('charset=utf-8');
+      assert('Status code', res.status).toBe(200);
+      assert('Content-Type header', res.headers.get('content-type')).toContain(
+        'charset=utf-8',
+      );
     }),
     audit('MUST accept only utf-8 charset', async () => {
       const url = new URL(opts.url);
@@ -106,8 +114,10 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
           accept: 'application/graphql-response+json; charset=iso-8859-1',
         },
       });
-      assert(res.status).toBe(406);
-      assert(res.headers.get('accept')).toContain('charset=utf-8');
+      assert('Status code', res.status).toBe(406);
+      assert('Accept header', res.headers.get('accept')).toContain(
+        'charset=utf-8',
+      );
     }),
     // Request
     audit('MUST accept POST requests', async () => {
@@ -116,7 +126,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify({ query: '{ __typename }' }),
       });
-      assert(res.status).toBe(200);
+      assert('Status code', res.status).toBe(200);
     }),
     audit(
       'MAY accept application/x-www-form-urlencoded formatted GET requests',
@@ -125,7 +135,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
         url.searchParams.set('query', '{ __typename }');
 
         const res = await fetchFn(url.toString());
-        assert(res.status).toBe(200);
+        assert('Status code', res.status).toBe(200);
       },
     ),
     // Request GET
@@ -138,7 +148,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
           accept: 'application/graphql-response+json',
         },
       });
-      assert(res.status).toBe(405);
+      assert('Status code', res.status).toBe(405);
     }),
     // Request POST
     audit(
@@ -147,8 +157,8 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
         const res = await fetchFn(opts.url, {
           method: 'POST',
         });
-        assert(res.status).toBeGreaterThanOrEqual(400);
-        assert(res.status).toBeLessThanOrEqual(599);
+        assert('Status code', res.status).toBeGreaterThanOrEqual(400);
+        assert('Status code', res.status).toBeLessThanOrEqual(599);
       },
     ),
     audit('MUST accept application/json POST requests', async () => {
@@ -157,14 +167,14 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify({ query: '{ __typename }' }),
       });
-      assert(res.status).toBe(200);
+      assert('Status code', res.status).toBe(200);
     }),
     audit('MUST require a request body on POST', async () => {
       const res = await fetchFn(opts.url, {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
       });
-      assert(res.status).toBe(400);
+      assert('Status code', res.status).toBe(400);
     }),
     // Request Parameters
     audit('MUST require the {query} parameter', async () => {
@@ -176,7 +186,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
         },
         body: JSON.stringify({ notquery: '{ __typename }' }),
       });
-      assert(res.status).toBe(400);
+      assert('Status code', res.status).toBe(400);
     }),
     ...[{ obj: 'ect' }, 0, false, ['array']].map((invalid) =>
       audit(
@@ -192,7 +202,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
               query: invalid,
             }),
           });
-          assert(res.status).toBe(400);
+          assert('Status code', res.status).toBe(400);
         },
       ),
     ),
@@ -207,7 +217,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
           query: '{ __typename }',
         }),
       });
-      assert(res.status).toBe(200);
+      assert('Status code', res.status).toBe(200);
     }),
     ...[{ obj: 'ect' }, 0, false, ['array']].map((invalid) =>
       audit(
@@ -226,7 +236,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
               query: '{ __typename }',
             }),
           });
-          assert(res.status).toBe(400);
+          assert('Status code', res.status).toBe(400);
         },
       ),
     ),
@@ -244,7 +254,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
             query: 'query Query { __typename }',
           }),
         });
-        assert(res.status).toBe(200);
+        assert('Status code', res.status).toBe(200);
       },
     ),
     ...['string', 0, false, ['array']].map((invalid) =>
@@ -264,7 +274,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
               variables: invalid,
             }),
           });
-          assert(res.status).toBe(400);
+          assert('Status code', res.status).toBe(400);
         },
       ),
     ),
@@ -280,9 +290,9 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
           variables: { name: 'sometype' },
         }),
       });
-      assert(res.status).toBe(200);
+      assert('Status code', res.status).toBe(200);
       const result = (await res.json()) as ExecutionResult;
-      assert(result).notToHaveProperty('errors');
+      assert('Execution result', result).notToHaveProperty('errors');
     }),
     audit(
       'MUST accept a URL-encoded JSON string for the {variables} parameter in GETs',
@@ -296,9 +306,9 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
         const res = await fetchFn(url.toString(), {
           method: 'GET',
         });
-        assert(res.status).toBe(200);
+        assert('Status code', res.status).toBe(200);
         const result = (await res.json()) as ExecutionResult;
-        assert(result).notToHaveProperty('errors');
+        assert('Execution result', result).notToHaveProperty('errors');
       },
     ),
     ...['string', 0, false, ['array']].map((invalid) =>
@@ -318,7 +328,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
               extensions: invalid,
             }),
           });
-          assert(res.status).toBe(400);
+          assert('Status code', res.status).toBe(400);
         },
       ),
     ),
@@ -334,7 +344,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
           extensions: { some: 'value' },
         }),
       });
-      assert(res.status).toBe(200);
+      assert('Status code', res.status).toBe(200);
     }),
     // TODO: audit('MUST accept a map for the {extensions} parameter'),
     // Response application/json
@@ -349,7 +359,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
           },
           body: '{ "not a JSON',
         });
-        assert(res.status).toBe(200);
+        assert('Status code', res.status).toBe(200);
       },
     ),
     audit(
@@ -361,7 +371,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
           method: 'GET',
           headers: { accept: 'application/json' },
         });
-        assert(res.status).toBe(200);
+        assert('Status code', res.status).toBe(200);
       },
     ),
     audit(
@@ -373,7 +383,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
           method: 'GET',
           headers: { accept: 'application/json' },
         });
-        assert(res.status).toBe(200);
+        assert('Status code', res.status).toBe(200);
       },
     ),
     audit(
@@ -385,7 +395,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
           method: 'GET',
           headers: { accept: 'application/json' },
         });
-        assert(res.status).toBe(200);
+        assert('Status code', res.status).toBe(200);
       },
     ),
     // Response application/graphql-response+json
@@ -400,8 +410,8 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
           },
           body: '{ "not a JSON',
         });
-        assert(res.status).toBeGreaterThanOrEqual(400);
-        assert(res.status).toBeLessThanOrEqual(599);
+        assert('Status code', res.status).toBeGreaterThanOrEqual(400);
+        assert('Status code', res.status).toBeLessThanOrEqual(599);
       },
     ),
     audit(
@@ -415,7 +425,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
           },
           body: '{ "not a JSON',
         });
-        assert(res.status).toBe(400);
+        assert('Status code', res.status).toBe(400);
       },
     ),
     audit(
@@ -427,8 +437,8 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
           method: 'GET',
           headers: { accept: 'application/graphql-response+json' },
         });
-        assert(res.status).toBeGreaterThanOrEqual(400);
-        assert(res.status).toBeLessThanOrEqual(599);
+        assert('Status code', res.status).toBeGreaterThanOrEqual(400);
+        assert('Status code', res.status).toBeLessThanOrEqual(599);
       },
     ),
     audit(
@@ -440,7 +450,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
           method: 'GET',
           headers: { accept: 'application/graphql-response+json' },
         });
-        assert(res.status).toBe(400);
+        assert('Status code', res.status).toBe(400);
       },
     ),
     audit(
@@ -452,8 +462,8 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
           method: 'GET',
           headers: { accept: 'application/graphql-response+json' },
         });
-        assert(res.status).toBeGreaterThanOrEqual(400);
-        assert(res.status).toBeLessThanOrEqual(599);
+        assert('Status code', res.status).toBeGreaterThanOrEqual(400);
+        assert('Status code', res.status).toBeLessThanOrEqual(599);
       },
     ),
     audit(
@@ -465,7 +475,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
           method: 'GET',
           headers: { accept: 'application/graphql-response+json' },
         });
-        assert(res.status).toBe(400);
+        assert('Status code', res.status).toBe(400);
       },
     ),
     audit(
@@ -477,8 +487,8 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
           method: 'GET',
           headers: { accept: 'application/graphql-response+json' },
         });
-        assert(res.status).toBeGreaterThanOrEqual(400);
-        assert(res.status).toBeLessThanOrEqual(599);
+        assert('Status code', res.status).toBeGreaterThanOrEqual(400);
+        assert('Status code', res.status).toBeLessThanOrEqual(599);
       },
     ),
     audit(
@@ -490,7 +500,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
           method: 'GET',
           headers: { accept: 'application/graphql-response+json' },
         });
-        assert(res.status).toBe(400);
+        assert('Status code', res.status).toBe(400);
       },
     ),
     // TODO: how to make an unauthorized request?
