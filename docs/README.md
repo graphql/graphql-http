@@ -10,6 +10,9 @@ graphql-http
 
 ### Interfaces
 
+- [Audit](interfaces/Audit.md)
+- [AuditFail](interfaces/AuditFail.md)
+- [AuditOk](interfaces/AuditOk.md)
 - [Client](interfaces/Client.md)
 - [ClientOptions](interfaces/ClientOptions.md)
 - [HandlerOptions](interfaces/HandlerOptions.md)
@@ -18,11 +21,15 @@ graphql-http
 - [RequestParams](interfaces/RequestParams.md)
 - [ResponseInit](interfaces/ResponseInit.md)
 - [ResponseLike](interfaces/ResponseLike.md)
+- [ServerAuditOptions](interfaces/ServerAuditOptions.md)
 - [Sink](interfaces/Sink.md)
 
 ### Type Aliases
 
 - [AcceptableMediaType](README.md#acceptablemediatype)
+- [AuditName](README.md#auditname)
+- [AuditRequirement](README.md#auditrequirement)
+- [AuditResult](README.md#auditresult)
 - [ExecutionContext](README.md#executioncontext)
 - [Handler](README.md#handler)
 - [Response](README.md#response)
@@ -31,11 +38,75 @@ graphql-http
 
 ### Functions
 
+- [auditServer](README.md#auditserver)
 - [createClient](README.md#createclient)
 - [createHandler](README.md#createhandler)
 - [getAcceptableMediaType](README.md#getacceptablemediatype)
 - [isResponse](README.md#isresponse)
 - [makeResponse](README.md#makeresponse)
+- [serverAudits](README.md#serveraudits)
+
+## Audits
+
+### AuditName
+
+Ƭ **AuditName**: \`${AuditRequirement} ${string}\`
+
+Audit name starting with the audit requirement level.
+
+___
+
+### AuditRequirement
+
+Ƭ **AuditRequirement**: ``"MUST"`` \| ``"SHOULD"`` \| ``"MAY"``
+
+Audit requirement levels as per [RFC2119](https://www.rfc-editor.org/rfc/rfc2119).
+
+___
+
+### AuditResult
+
+Ƭ **AuditResult**: [`AuditOk`](interfaces/AuditOk.md) \| [`AuditFail`](interfaces/AuditFail.md)
+
+Result of the performed audit. See `AuditOk` and `AuditFail` for more information.
+
+___
+
+### auditServer
+
+▸ **auditServer**(`opts`): `Promise`<[`AuditResult`](README.md#auditresult)[]\>
+
+Performs the full list of server audits required for GraphQL over HTTP spec conformance.
+
+Please consult the `AuditResult` for more information.
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `opts` | [`ServerAuditOptions`](interfaces/ServerAuditOptions.md) |
+
+#### Returns
+
+`Promise`<[`AuditResult`](README.md#auditresult)[]\>
+
+___
+
+### serverAudits
+
+▸ **serverAudits**(`opts`): [`Audit`](interfaces/Audit.md)[]
+
+List of server audits required to check GraphQL over HTTP spec conformance.
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `opts` | [`ServerAuditOptions`](interfaces/ServerAuditOptions.md) |
+
+#### Returns
+
+[`Audit`](interfaces/Audit.md)[]
 
 ## Client
 

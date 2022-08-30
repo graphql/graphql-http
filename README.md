@@ -709,6 +709,32 @@ console.log('Listening to port 4000');
 
 </details>
 
+<details id="audit-jest">
+<summary><a href="#audit-jest">🔗</a> Audit for servers usage in <a href="https://jestjs.io">Jest</a> environment</summary>
+
+```js
+import { fetch } from '@whatwg-node/fetch';
+import { serverAudits } from 'graphql-http';
+
+for (const audit of serverAudits({
+  url: 'http://localhost:4000/graphql',
+  fetchFn: fetch,
+})) {
+  test(audit.name, async () => {
+    const result = await audit.fn();
+    if (result.status === 'error') {
+      throw result.reason;
+    }
+    if (result.status === 'warn') {
+      console.warn(result.reason); // or throw if you want full compliance (warnings are not requirements)
+    }
+    // result.status === 'ok'
+  });
+}
+```
+
+</details>
+
 ## [Documentation](docs/)
 
 Check the [docs folder](docs/) out for [TypeDoc](https://typedoc.org) generated documentation.
