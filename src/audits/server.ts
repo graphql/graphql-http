@@ -23,6 +23,9 @@ export interface ServerAuditOptions {
   fetchFn?: unknown;
 }
 
+/**
+ * List of server audits required to check GraphQL over HTTP spec conformance.
+ */
 export function serverAudits(opts: ServerAuditOptions): Audit[] {
   const fetchFn = (opts.fetchFn || fetch) as typeof fetch;
   return [
@@ -509,6 +512,11 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
   ];
 }
 
+/**
+ * Performs the full list of server audits required for GraphQL over HTTP spec conformance.
+ *
+ * Please consult the `AuditResult` for more information.
+ */
 export async function auditServer(
   opts: ServerAuditOptions,
 ): Promise<AuditResult[]> {

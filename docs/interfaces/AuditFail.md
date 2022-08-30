@@ -2,6 +2,13 @@
 
 # Interface: AuditFail
 
+Indicates that the audit failed.
+
+If the status is `warn`, the audit is not a requirement but rather a recommendation.
+
+On the other hand, if the status is `error`, the audit is a requirement and the source
+is therefore not compliant.
+
 ## Table of contents
 
 ### Properties

@@ -2,6 +2,8 @@
 
 # Interface: AuditOk
 
+Indicates that the audit was successful.
+
 ## Table of contents
 
 ### Properties

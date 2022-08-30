@@ -2,6 +2,10 @@
 
 # Interface: Audit
 
+Actual audit test returning an result.
+
+The test function will throw only if the error is fatal.
+
 ## Table of contents
 
 ### Properties
