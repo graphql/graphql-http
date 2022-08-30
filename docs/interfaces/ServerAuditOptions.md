@@ -2,6 +2,8 @@
 
 # Interface: ServerAuditOptions
 
+Options for server audits required to check GraphQL over HTTP spec conformance.
+
 ## Table of contents
 
 ### Properties

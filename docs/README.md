@@ -46,6 +46,68 @@ graphql-http
 - [makeResponse](README.md#makeresponse)
 - [serverAudits](README.md#serveraudits)
 
+## Audits
+
+### AuditName
+
+Ƭ **AuditName**: \`${AuditRequirement} ${string}\`
+
+Audit name starting with the audit requirement level.
+
+___
+
+### AuditRequirement
+
+Ƭ **AuditRequirement**: ``"MUST"`` \| ``"SHOULD"`` \| ``"MAY"``
+
+Audit requirement levels as per [RFC2119](https://www.rfc-editor.org/rfc/rfc2119).
+
+___
+
+### AuditResult
+
+Ƭ **AuditResult**: [`AuditOk`](interfaces/AuditOk.md) \| [`AuditFail`](interfaces/AuditFail.md)
+
+Result of the performed audit. See `AuditOk` and `AuditFail` for more information.
+
+___
+
+### auditServer
+
+▸ **auditServer**(`opts`): `Promise`<[`AuditResult`](README.md#auditresult)[]\>
+
+Performs the full list of server audits required for GraphQL over HTTP spec conformance.
+
+Please consult the `AuditResult` for more information.
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `opts` | [`ServerAuditOptions`](interfaces/ServerAuditOptions.md) |
+
+#### Returns
+
+`Promise`<[`AuditResult`](README.md#auditresult)[]\>
+
+___
+
+### serverAudits
+
+▸ **serverAudits**(`opts`): [`Audit`](interfaces/Audit.md)[]
+
+List of server audits required to check GraphQL over HTTP spec conformance.
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `opts` | [`ServerAuditOptions`](interfaces/ServerAuditOptions.md) |
+
+#### Returns
+
+[`Audit`](interfaces/Audit.md)[]
+
 ## Client
 
 ### createClient
@@ -108,68 +170,6 @@ Checks whether the passed value is the `graphql-http` server agnostic response.
 #### Returns
 
 val is Response
-
-## Other
-
-### AuditName
-
-Ƭ **AuditName**: \`${AuditRequirement} ${string}\`
-
-Audit name starting with the audit requirement level.
-
-___
-
-### AuditRequirement
-
-Ƭ **AuditRequirement**: ``"MUST"`` \| ``"SHOULD"`` \| ``"MAY"``
-
-Audit requirement levels as per [RFC2119](https://www.rfc-editor.org/rfc/rfc2119).
-
-___
-
-### AuditResult
-
-Ƭ **AuditResult**: [`AuditOk`](interfaces/AuditOk.md) \| [`AuditFail`](interfaces/AuditFail.md)
-
-Result of the performed audit. See `AuditOk` and `AuditFail` for more information.
-
-___
-
-### auditServer
-
-▸ **auditServer**(`opts`): `Promise`<[`AuditResult`](README.md#auditresult)[]\>
-
-Performs the full list of server audits required for GraphQL over HTTP spec conformance.
-
-Please consult the `AuditResult` for more information.
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `opts` | [`ServerAuditOptions`](interfaces/ServerAuditOptions.md) |
-
-#### Returns
-
-`Promise`<[`AuditResult`](README.md#auditresult)[]\>
-
-___
-
-### serverAudits
-
-▸ **serverAudits**(`opts`): [`Audit`](interfaces/Audit.md)[]
-
-List of server audits required to check GraphQL over HTTP spec conformance.
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `opts` | [`ServerAuditOptions`](interfaces/ServerAuditOptions.md) |
-
-#### Returns
-
-[`Audit`](interfaces/Audit.md)[]
 
 ## Server
 

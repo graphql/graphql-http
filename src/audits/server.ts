@@ -8,6 +8,11 @@ import type { ExecutionResult } from 'graphql';
 import { Audit, AuditResult } from './common';
 import { assert, audit, extendedTypeof } from './utils';
 
+/**
+ * Options for server audits required to check GraphQL over HTTP spec conformance.
+ *
+ * @category Audits
+ */
 export interface ServerAuditOptions {
   /**
    * The URL of the GraphQL server for the audit.
@@ -25,6 +30,8 @@ export interface ServerAuditOptions {
 
 /**
  * List of server audits required to check GraphQL over HTTP spec conformance.
+ *
+ * @category Audits
  */
 export function serverAudits(opts: ServerAuditOptions): Audit[] {
   const fetchFn = (opts.fetchFn || fetch) as typeof fetch;
@@ -516,6 +523,8 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
  * Performs the full list of server audits required for GraphQL over HTTP spec conformance.
  *
  * Please consult the `AuditResult` for more information.
+ *
+ * @category Audits
  */
 export async function auditServer(
   opts: ServerAuditOptions,
