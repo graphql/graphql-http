@@ -439,6 +439,20 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
       },
     ),
     audit(
+      'SHOULD not contain the data entry on JSON parsing failure when accepting application/graphql-response+json',
+      async () => {
+        const res = await fetchFn(opts.url, {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json',
+            accept: 'application/graphql-response+json',
+          },
+          body: '{ "not a JSON',
+        });
+        assert('Data entry', (await res.json()).data).toBe(undefined);
+      },
+    ),
+    audit(
       'MUST use 4xx or 5xx status codes if parameters are invalid when accepting application/graphql-response+json',
       async () => {
         const url = new URL(opts.url);
@@ -461,6 +475,18 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
           headers: { accept: 'application/graphql-response+json' },
         });
         assert('Status code', res.status).toBe(400);
+      },
+    ),
+    audit(
+      'SHOULD not contain the data entry if parameters are invalid when accepting application/graphql-response+json',
+      async () => {
+        const url = new URL(opts.url);
+        url.searchParams.set('qeury' /* typo */, '{ __typename }');
+        const res = await fetchFn(url.toString(), {
+          method: 'GET',
+          headers: { accept: 'application/graphql-response+json' },
+        });
+        assert('Data entry', (await res.json()).data).toBe(undefined);
       },
     ),
     audit(
@@ -489,6 +515,18 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
       },
     ),
     audit(
+      'SHOULD not contain the data entry on document parsing failure when accepting application/graphql-response+json',
+      async () => {
+        const url = new URL(opts.url);
+        url.searchParams.set('query', '{');
+        const res = await fetchFn(url.toString(), {
+          method: 'GET',
+          headers: { accept: 'application/graphql-response+json' },
+        });
+        assert('Data entry', (await res.json()).data).toBe(undefined);
+      },
+    ),
+    audit(
       'MUST use 4xx or 5xx status codes on document validation failure when accepting application/graphql-response+json',
       async () => {
         const url = new URL(opts.url);
@@ -513,6 +551,20 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
         assert('Status code', res.status).toBe(400);
       },
     ),
+    audit(
+      'SHOULD not contain the data entry on document validation failure when accepting application/graphql-response+json',
+      async () => {
+        const url = new URL(opts.url);
+        url.searchParams.set('query', '{ 8f31403dfe404bccbb0e835f2629c6a7 }'); // making sure the field doesnt exist
+        const res = await fetchFn(url.toString(), {
+          method: 'GET',
+          headers: { accept: 'application/graphql-response+json' },
+        });
+        assert('Data entry', (await res.json()).data).toBe(undefined);
+      },
+    ),
+    // TODO: how to fail and have the data entry?
+    // audit('MUST use 2xx status code if response contains the data entry and it is not null when accepting application/graphql-response+json'),
     // TODO: how to make an unauthorized request?
     // https://graphql.github.io/graphql-over-http/draft/#sel-EANNNDTAAEVBAAqqc
     // audit('SHOULD use 401 or 403 status codes when the request is not permitted')
