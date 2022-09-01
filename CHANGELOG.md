@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/enisdenjo/graphql-http/compare/v1.5.0...v1.6.0) (2022-09-01)
+
+
+### Features
+
+* **server:** Data entry audits when accepting application/graphql-response+json ([fe6f60d](https://github.com/enisdenjo/graphql-http/commit/fe6f60d3cc866cd4f17fcc40ba0d293950be0a6d))
+
 # [1.5.0](https://github.com/enisdenjo/graphql-http/compare/v1.4.0...v1.5.0) (2022-08-30)
 
 
