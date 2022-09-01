@@ -24,7 +24,7 @@
   "engines": {
     "node": ">=12"
   },
-  "packageManager": "yarn@3.2.2",
+  "packageManager": "yarn@3.2.3",
   "main": "lib/index.js",
   "module": "lib/index.mjs",
   "browser": "umd/graphql-http.js",
@@ -88,12 +88,15 @@
     "node-fetch": "^3.2.10",
     "prettier": "^2.7.1",
     "replacestream": "^4.0.3",
-    "rollup": "^2.78.1",
+    "rollup": "^2.79.0",
     "rollup-plugin-terser": "^7.0.2",
     "semantic-release": "^19.0.5",
     "tslib": "^2.4.0",
-    "typedoc": "^0.23.11",
-    "typedoc-plugin-markdown": "^3.13.4",
+    "typedoc": "^0.23.13",
+    "typedoc-plugin-markdown": "^3.13.5",
     "typescript": "^4.8.2"
+  },
+  "resolutions": {
+    "npm/libnpmversion": "^3.0.6"
   }
 }
