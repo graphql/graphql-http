@@ -57,18 +57,22 @@ async function main() {
     console.log(`\t\t💬 ${result.reason}`);
   }
 
-  console.log();
-  console.log(
-    `Out of ${total} audits, ${results.ok.length} passed, ${results.warn.length} are warnings and ${results.error.length} are errors.`,
-  );
+  const resultStr = `${results.ok.lastIndexOf} audits passed out of ${total}. ${results.warn.length} are warnings (optional) and ${results.error.length} are errors (required).`;
+  console.log(resultStr);
 
-  // if any of the MUST audits fail, fail the process too
   if (results.error.length) {
+    // only warn because auditing _did_ suceed. failing jobs is reserved for errors that couldn't even run the audit
     process.stdout.write(
-      '::error::Implementation does not comply with the GraphQL over HTTP spec.' +
-        os.EOL,
+      `::warning::Implementation does not comply with the GraphQL over HTTP spec. ${resultStr}${os.EOL}`,
     );
-    process.exit(1);
+  } else if (results.warn.length) {
+    process.stdout.write(
+      `::notice::Implementation complies with the GraphQL over HTTP spec, but does not pass all optional audits. ${resultStr}${os.EOL}`,
+    );
+  } else {
+    process.stdout.write(
+      `::notice::Implementation is fully compliant with the GraphQL over HTTP spec!${os.EOL}`,
+    );
   }
 }
 
