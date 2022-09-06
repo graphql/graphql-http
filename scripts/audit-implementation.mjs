@@ -17,7 +17,7 @@ import fetch from 'node-fetch';
 import { auditServer } from '../lib/audits/server.mjs';
 
 async function main() {
-  const serverUrl = new URL(process.argv[2]); // will throw if missing or invalid
+  const serverUrl = new URL(`http://localhost:${process.env.PORT}/graphql`);
 
   let total = 0;
   const results = {
