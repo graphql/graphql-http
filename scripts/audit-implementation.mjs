@@ -57,7 +57,7 @@ async function main() {
     console.log(`\t\t💬 ${result.reason}`);
   }
 
-  const resultStr = `${results.ok.lastIndexOf} audits passed out of ${total}. ${results.warn.length} are warnings (optional) and ${results.error.length} are errors (required).`;
+  const resultStr = `${results.ok.length} audits passed out of ${total}. ${results.warn.length} are warnings (optional) and ${results.error.length} are errors (required).`;
   console.log(resultStr);
 
   if (results.error.length) {
