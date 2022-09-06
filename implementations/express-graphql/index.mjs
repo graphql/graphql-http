@@ -1,9 +1,9 @@
 import express from 'express';
 import { graphqlHTTP } from 'express-graphql';
-import { GraphQLSchema, GraphQLString } from 'graphql';
+import { GraphQLSchema, GraphQLString, GraphQLObjectType } from 'graphql';
 
 const schema = new GraphQLSchema({
-  query: {
+  query: new GraphQLObjectType({
     name: 'Query',
     fields: {
       _: {
@@ -11,7 +11,7 @@ const schema = new GraphQLSchema({
         resolve: () => '_',
       },
     },
-  },
+  }),
 });
 
 const app = express();
