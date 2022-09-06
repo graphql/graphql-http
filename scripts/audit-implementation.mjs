@@ -13,6 +13,7 @@
  *
  */
 
+import os from 'os';
 import fetch from 'node-fetch';
 import { auditServer } from '../lib/audits/server.mjs';
 
@@ -63,6 +64,10 @@ async function main() {
 
   // if any of the MUST audits fail, fail the process too
   if (results.error.length) {
+    process.stdout.write(
+      '::error::Implementation does not comply with the GraphQL over HTTP spec' +
+        os.EOL,
+    );
     process.exit(1);
   }
 }
