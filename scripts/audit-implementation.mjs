@@ -41,7 +41,7 @@ async function main() {
 
   console.log();
   console.log(
-    `${results.warn.length} audits are warnings. The server SHOULD support these, but is not required. `,
+    `${results.warn.length} audits are warnings. The server SHOULD support these, but is not required.`,
   );
   for (const result of results.warn) {
     console.log(`\t${'⚠️'} ${result.name}`);
@@ -50,7 +50,7 @@ async function main() {
 
   console.log();
   console.log(
-    `${results.error.length} audits are errors. The server MUST support these. `,
+    `${results.error.length} audits are errors. The server MUST support these.`,
   );
   for (const result of results.error) {
     console.log(`\t❌ ${result.name}`);
@@ -65,7 +65,7 @@ async function main() {
   // if any of the MUST audits fail, fail the process too
   if (results.error.length) {
     process.stdout.write(
-      '::error::Implementation does not comply with the GraphQL over HTTP spec' +
+      '::error::Implementation does not comply with the GraphQL over HTTP spec.' +
         os.EOL,
     );
     process.exit(1);
