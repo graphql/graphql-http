@@ -60,6 +60,11 @@ async function main() {
   console.log(
     `Out of ${total} audits, ${results.ok.length} passed, ${results.warn.length} are warnings and ${results.error.length} are errors.`,
   );
+
+  // if any of the MUST audits fail, fail the process too
+  if (results.error.length) {
+    process.exit(1);
+  }
 }
 
 main().catch((err) => {
