@@ -1,12 +1,12 @@
 /**
  *
- * Tests an endpoint for GraphQL over HTTP compliance.
+ * Tests a running local server for GraphQL over HTTP compliance.
  *
  * Usage example from root of project:
  *
  * ```sh
- * yarn build
- * node ./scripts/audit-implementation.mjs http://localhost:4000/graphql
+ * yarn build:esm
+ * PORT=4000 node scripts/audit-implementation.mjs
  * ```
  *
  * Note that graphql-http has to be built before running this script!
