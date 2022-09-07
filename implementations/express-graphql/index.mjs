@@ -1,6 +1,6 @@
+import { GraphQLSchema, GraphQLString, GraphQLObjectType } from 'graphql';
 import express from 'express';
 import { graphqlHTTP } from 'express-graphql';
-import { GraphQLSchema, GraphQLString, GraphQLObjectType } from 'graphql';
 
 const schema = new GraphQLSchema({
   query: new GraphQLObjectType({
