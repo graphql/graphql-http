@@ -253,7 +253,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
       },
     ),
     audit(
-      'MUST use 200 status code with errors field on missing {query} parameter when accepting application/json',
+      'SHOULD use 200 status code with errors field on missing {query} parameter when accepting application/json',
       async () => {
         const res = await fetchFn(opts.url, {
           method: 'POST',
@@ -293,7 +293,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
     ),
     ...[{ obj: 'ect' }, 0, false, ['array']].map((invalid) =>
       audit(
-        `MUST use 200 status code with errors field on ${extendedTypeof(
+        `SHOULD use 200 status code with errors field on ${extendedTypeof(
           invalid,
         )} {query} parameter when accepting application/json`,
         async () => {
@@ -376,7 +376,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
     ),
     ...[{ obj: 'ect' }, 0, false, ['array']].map((invalid) =>
       audit(
-        `MUST use 200 status code with errors field on ${extendedTypeof(
+        `SHOULD use 200 status code with errors field on ${extendedTypeof(
           invalid,
         )} {operationName} parameter when accepting application/json`,
         async () => {
@@ -462,7 +462,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
     ),
     ...['string', 0, false, ['array']].map((invalid) =>
       audit(
-        `MUST use 200 status code with errors field on ${extendedTypeof(
+        `SHOULD use 200 status code with errors field on ${extendedTypeof(
           invalid,
         )} {variables} parameter when accepting application/json`,
         async () => {
@@ -591,7 +591,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
     ),
     ...['string', 0, false, ['array']].map((invalid) =>
       audit(
-        `MUST use 200 status code with errors field on ${extendedTypeof(
+        `SHOULD use 200 status code with errors field on ${extendedTypeof(
           invalid,
         )} {extensions} parameter when accepting application/json`,
         async () => {
