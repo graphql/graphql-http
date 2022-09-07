@@ -4,7 +4,6 @@
  *
  */
 
-import type { ExecutionResult } from 'graphql';
 import { Audit, AuditResult } from './common';
 import {
   assert,
