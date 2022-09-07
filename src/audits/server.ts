@@ -219,7 +219,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
           method: 'POST',
         });
         assert('Status code', res.status).toBeGreaterThanOrEqual(400);
-        assert('Status code', res.status).toBeLessThanOrEqual(599);
+        assert('Status code', res.status).toBeLessThanOrEqual(499);
       },
     ),
     audit('MUST accept application/json POST requests', async () => {
