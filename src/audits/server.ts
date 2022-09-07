@@ -38,7 +38,8 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
   return [
     // Media Types
     audit(
-      'MUST accept application/graphql-response+json and match the content-type',
+      // TODO: convert to MUST after watershed
+      'SHOULD accept application/graphql-response+json and match the content-type',
       async () => {
         const url = new URL(opts.url);
         url.searchParams.set('query', '{ __typename }');
@@ -74,7 +75,8 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
       },
     ),
     audit(
-      'MUST accept */* and use application/graphql-response+json for the content-type',
+      // TODO: convert to MUST after watershed
+      'SHOULD accept */* and use application/graphql-response+json for the content-type',
       async () => {
         const url = new URL(opts.url);
         url.searchParams.set('query', '{ __typename }');
@@ -92,7 +94,8 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
       },
     ),
     audit(
-      'MUST assume application/graphql-response+json content-type when accept is missing',
+      // TODO: convert to MUST after watershed
+      'SHOULD assume application/graphql-response+json content-type when accept is missing',
       async () => {
         const url = new URL(opts.url);
         url.searchParams.set('query', '{ __typename }');
@@ -105,15 +108,40 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
         ).toContain('application/graphql-response+json');
       },
     ),
-    audit('MUST use utf-8 charset in response', async () => {
+    audit('MUST use utf-8 encoding when responding', async () => {
       const url = new URL(opts.url);
       url.searchParams.set('query', '{ __typename }');
 
       const res = await fetchFn(url.toString());
       assert('Status code', res.status).toBe(200);
-      assert('Content-Type header', res.headers.get('content-type')).toContain(
-        'charset=utf-8',
-      );
+
+      // has charset set to utf-8
+      try {
+        assert(
+          'Content-Type header',
+          res.headers.get('content-type'),
+        ).toContain('charset=utf-8');
+        return;
+      } catch {
+        // noop, continue
+      }
+
+      // has no charset specified
+      assert(
+        'Content-Type header',
+        res.headers.get('content-type'),
+      ).notToContain('charset');
+
+      // and the content is utf-8 encoded
+      try {
+        const decoder = new TextDecoder('utf-8');
+        const decoded = decoder.decode(await res.arrayBuffer());
+        assert('UTF-8 decoded body', decoded).toBe(
+          '{"data":{"__typename":"Query"}}',
+        );
+      } catch {
+        throw 'Body is not UTF-8 encoded';
+      }
     }),
     audit('MUST accept only utf-8 charset', async () => {
       const url = new URL(opts.url);
@@ -124,10 +152,26 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
           accept: 'application/graphql-response+json; charset=iso-8859-1',
         },
       });
-      assert('Status code', res.status).toBe(406);
-      assert('Accept header', res.headers.get('accept')).toContain(
-        'charset=utf-8',
-      );
+
+      // application/json is 200 + errors
+      const contentType = res.headers.get('content-type') || '';
+      if (contentType.includes('application/json')) {
+        assert(`Content-Type ${contentType} status code`, res.status).toBe(200);
+
+        const body = await res.json();
+        assert('Body data errors', body.errors).toBeDefined();
+        return;
+      }
+
+      // other content-types must be 4xx
+      assert(
+        `Content-Type ${contentType} status code`,
+        res.status,
+      ).toBeGreaterThanOrEqual(400);
+      assert(
+        `Content-Type ${contentType} status code`,
+        res.status,
+      ).toBeLessThanOrEqual(499);
     }),
     // Request
     audit('MUST accept POST requests', async () => {
