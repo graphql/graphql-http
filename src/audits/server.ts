@@ -347,6 +347,10 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
           }),
         });
         assert('Status code', res.status).toBe(200);
+        assert(
+          'Execution result',
+          await assertBodyAsExecutionResult(res),
+        ).notToHaveProperty('errors');
       },
     ),
     ...[{ obj: 'ect' }, 0, false, ['array']].map((invalid) =>
@@ -429,6 +433,10 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
           }),
         });
         assert('Status code', res.status).toBe(200);
+        assert(
+          'Execution result',
+          await assertBodyAsExecutionResult(res),
+        ).notToHaveProperty('errors');
       },
     ),
     ...['string', 0, false, ['array']].map((invalid) =>
@@ -457,7 +465,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
       audit(
         `MUST use 200 status code with errors field on ${extendedTypeof(
           invalid,
-        )} {operationName} parameter when accepting application/json`,
+        )} {variables} parameter when accepting application/json`,
         async () => {
           const res = await fetchFn(opts.url, {
             method: 'POST',
@@ -495,10 +503,6 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
           }),
         });
         assert('Status code', res.status).toBe(200);
-        const result = (await assertBodyAsExecutionResult(
-          res,
-        )) as ExecutionResult;
-        assert('Execution result', result).notToHaveProperty('errors');
       },
     ),
     audit(
@@ -517,10 +521,10 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
           }),
         });
         assert('Status code', res.status).toBe(200);
-        const result = (await assertBodyAsExecutionResult(
-          res,
-        )) as ExecutionResult;
-        assert('Execution result', result).notToHaveProperty('errors');
+        assert(
+          'Execution result',
+          await assertBodyAsExecutionResult(res),
+        ).notToHaveProperty('errors');
       },
     ),
     audit(
@@ -540,8 +544,6 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
           },
         });
         assert('Status code', res.status).toBe(200);
-        const result = await assertBodyAsExecutionResult(res);
-        assert('Execution result', result).notToHaveProperty('errors');
       },
     ),
     audit(
@@ -560,8 +562,10 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
           },
         });
         assert('Status code', res.status).toBe(200);
-        const result = await assertBodyAsExecutionResult(res);
-        assert('Execution result', result).notToHaveProperty('errors');
+        assert(
+          'Execution result',
+          await assertBodyAsExecutionResult(res),
+        ).notToHaveProperty('errors');
       },
     ),
     ...['string', 0, false, ['array']].map((invalid) =>
@@ -644,6 +648,10 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
           }),
         });
         assert('Status code', res.status).toBe(200);
+        assert(
+          'Execution result',
+          await assertBodyAsExecutionResult(res),
+        ).notToHaveProperty('errors');
       },
     ),
     // TODO: audit('MUST accept a map for the {extensions} parameter'),
