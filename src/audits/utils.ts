@@ -57,11 +57,6 @@ export function assert<T = unknown>(name: string, actual: T) {
         throw `${name} ${actual} is not ${expected}`;
       }
     },
-    toBeDefined: () => {
-      if (actual === undefined) {
-        throw `${name} is not defined`;
-      }
-    },
     toBeLessThanOrEqual: (expected: T extends number ? T : never) => {
       if (!(actual <= expected)) {
         throw `${name} ${actual} is not less than or equal to ${expected}`;
@@ -92,6 +87,17 @@ export function assert<T = unknown>(name: string, actual: T) {
         throw `${name} ${JSON.stringify(actual)} contains ${JSON.stringify(
           expected,
         )}`;
+      }
+    },
+    toHaveProperty: (
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      prop: T extends Record<any, any> ? PropertyKey : never,
+    ) => {
+      // @ts-expect-error types will match, otherwise never
+      if (!(prop in actual)) {
+        throw `${name} ${JSON.stringify(
+          actual,
+        )} does not have a property '${String(prop)}'`;
       }
     },
     notToHaveProperty: (

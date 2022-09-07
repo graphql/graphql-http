@@ -164,9 +164,9 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
         assert(`Content-Type ${contentType} status code`, res.status).toBe(200);
 
         assert(
-          'Execution result errors',
-          (await assertBodyAsExecutionResult(res)).errors,
-        ).toBeDefined();
+          'Execution result',
+          await assertBodyAsExecutionResult(res),
+        ).toHaveProperty('errors');
         return;
       }
 
@@ -266,9 +266,9 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
         });
         assert('Status code', res.status).toBe(200);
         assert(
-          'Execution result errors',
-          (await assertBodyAsExecutionResult(res)).errors,
-        ).toBeDefined();
+          'Execution result',
+          await assertBodyAsExecutionResult(res),
+        ).toHaveProperty('errors');
       },
     ),
     ...[{ obj: 'ect' }, 0, false, ['array']].map((invalid) =>
@@ -310,9 +310,9 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
           });
           assert('Status code', res.status).toBe(200);
           assert(
-            'Execution result errors',
-            (await assertBodyAsExecutionResult(res)).errors,
-          ).toBeDefined();
+            'Execution result',
+            await assertBodyAsExecutionResult(res),
+          ).toHaveProperty('errors');
         },
       ),
     ),
@@ -390,9 +390,9 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
           });
           assert('Status code', res.status).toBe(200);
           assert(
-            'Execution result errors',
-            (await assertBodyAsExecutionResult(res)).errors,
-          ).toBeDefined();
+            'Execution result',
+            await assertBodyAsExecutionResult(res),
+          ).toHaveProperty('errors');
         },
       ),
     ),
@@ -472,9 +472,9 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
           });
           assert('Status code', res.status).toBe(200);
           assert(
-            'Execution result errors',
-            (await assertBodyAsExecutionResult(res)).errors,
-          ).toBeDefined();
+            'Execution result',
+            await assertBodyAsExecutionResult(res),
+          ).toHaveProperty('errors');
         },
       ),
     ),
@@ -605,9 +605,9 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
           });
           assert('Status code', res.status).toBe(200);
           assert(
-            'Execution result errors',
-            (await assertBodyAsExecutionResult(res)).errors,
-          ).toBeDefined();
+            'Execution result',
+            await assertBodyAsExecutionResult(res),
+          ).toHaveProperty('errors');
         },
       ),
     ),
