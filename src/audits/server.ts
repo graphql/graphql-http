@@ -6,7 +6,12 @@
 
 import type { ExecutionResult } from 'graphql';
 import { Audit, AuditResult } from './common';
-import { assert, audit, extendedTypeof } from './utils';
+import {
+  assert,
+  assertBodyAsExecutionResult,
+  audit,
+  extendedTypeof,
+} from './utils';
 
 /**
  * Options for server audits required to check GraphQL over HTTP spec conformance.
@@ -158,8 +163,10 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
       if (contentType.includes('application/json')) {
         assert(`Content-Type ${contentType} status code`, res.status).toBe(200);
 
-        const body = await res.json();
-        assert('Body data errors', body.errors).toBeDefined();
+        assert(
+          'Body data errors',
+          (await assertBodyAsExecutionResult(res)).errors,
+        ).toBeDefined();
         return;
       }
 
@@ -345,7 +352,9 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
         }),
       });
       assert('Status code', res.status).toBe(200);
-      const result = (await res.json()) as ExecutionResult;
+      const result = (await assertBodyAsExecutionResult(
+        res,
+      )) as ExecutionResult;
       assert('Execution result', result).notToHaveProperty('errors');
     }),
     audit(
@@ -361,7 +370,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
           method: 'GET',
         });
         assert('Status code', res.status).toBe(200);
-        const result = (await res.json()) as ExecutionResult;
+        const result = await assertBodyAsExecutionResult(res);
         assert('Execution result', result).notToHaveProperty('errors');
       },
     ),
@@ -493,7 +502,10 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
           },
           body: '{ "not a JSON',
         });
-        assert('Data entry', (await res.json()).data).toBe(undefined);
+        assert(
+          'Data entry',
+          (await assertBodyAsExecutionResult(res)).data,
+        ).toBe(undefined);
       },
     ),
     audit(
@@ -530,7 +542,10 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
           method: 'GET',
           headers: { accept: 'application/graphql-response+json' },
         });
-        assert('Data entry', (await res.json()).data).toBe(undefined);
+        assert(
+          'Data entry',
+          (await assertBodyAsExecutionResult(res)).data,
+        ).toBe(undefined);
       },
     ),
     audit(
@@ -567,7 +582,10 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
           method: 'GET',
           headers: { accept: 'application/graphql-response+json' },
         });
-        assert('Data entry', (await res.json()).data).toBe(undefined);
+        assert(
+          'Data entry',
+          (await assertBodyAsExecutionResult(res)).data,
+        ).toBe(undefined);
       },
     ),
     audit(
@@ -604,7 +622,10 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
           method: 'GET',
           headers: { accept: 'application/graphql-response+json' },
         });
-        assert('Data entry', (await res.json()).data).toBe(undefined);
+        assert(
+          'Data entry',
+          (await assertBodyAsExecutionResult(res)).data,
+        ).toBe(undefined);
       },
     ),
     // TODO: how to fail and have the data entry?

@@ -4,6 +4,7 @@
  *
  */
 
+import { ExecutionResult } from 'graphql';
 import { Audit, AuditName } from './common';
 
 export * from '../utils';
@@ -105,4 +106,20 @@ export function assert<T = unknown>(name: string, actual: T) {
       }
     },
   };
+}
+
+/**
+ * Parses the string as JSON and safely reports parsing issues for audits.
+ *
+ * Assumes the parsed JSON will be an `ExecutionResult`.
+ *
+ * @private
+ * */
+export async function assertBodyAsExecutionResult(res: Response) {
+  const str = await res.text();
+  try {
+    return JSON.parse(str) as ExecutionResult;
+  } catch (err) {
+    throw `Response body is not valid JSON. Got ${JSON.stringify(str)}`;
+  }
 }
