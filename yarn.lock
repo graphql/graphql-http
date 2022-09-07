@@ -3121,7 +3121,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/express@npm:4.17.13":
+"@types/express@npm:4.17.13, @types/express@npm:^4.17.13":
   version: 4.17.13
   resolution: "@types/express@npm:4.17.13"
   dependencies:
@@ -5970,6 +5970,26 @@ __metadata:
   checksum: 0b8ca47263b12b228db72d9abb663ab8e02e01c677d9ffe08f7be651617fdc93ff2ff6c342465544df43dc4d507293a66b8fc2b8237c2628ebdbc5c74311b1d8
   languageName: node
   linkType: hard
+
+"graphql-helix@npm:^1.13.0":
+  version: 1.13.0
+  resolution: "graphql-helix@npm:1.13.0"
+  peerDependencies:
+    graphql: ^15.3.0 || ^16.0.0
+  checksum: 04c08557b7f118b4ccb795e91752b36ba96bd56314892ad9738de36bb602e0208e2cc978143f0969a143a07fa5a9511f96f820100eea4da2d6030b592054cb42
+  languageName: node
+  linkType: hard
+
+"graphql-helix@workspace:implementations/graphql-helix":
+  version: 0.0.0-use.local
+  resolution: "graphql-helix@workspace:implementations/graphql-helix"
+  dependencies:
+    "@types/express": ^4.17.13
+    express: ^4.18.1
+    graphql: ^16.6.0
+    graphql-helix: ^1.13.0
+  languageName: unknown
+  linkType: soft
 
 "graphql-http@workspace:.":
   version: 0.0.0-use.local
