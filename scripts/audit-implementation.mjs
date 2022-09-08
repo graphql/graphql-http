@@ -98,20 +98,20 @@ async function createReport(results) {
 
   report += `- **${grouped.total}** audits in total\n`;
   if (grouped.ok.length) {
-    report += `- **${grouped.ok.length}** pass\n`;
+    report += `- ✅ **${grouped.ok.length}** pass\n`;
   }
   if (grouped.warn.length) {
-    report += `- **${grouped.warn.length}** warnings (optional)\n`;
+    report += `- ${'⚠️'} **${grouped.warn.length}** warnings (optional)\n`;
   }
   if (grouped.error.length) {
-    report += `- **${grouped.error.length}** errors (required)\n`;
+    report += `- ❌ **${grouped.error.length}** errors (required)\n`;
   }
   report += `\n`;
 
   if (grouped.ok.length) {
     report += `## Passing\n`;
     for (const [i, result] of grouped.ok.entries()) {
-      report += `${i + 1}. ✅ ${result.name}\n`;
+      report += `${i + 1}. ${escapeMarkdown(result.name)}\n`;
     }
     report += '\n';
   }
@@ -120,8 +120,10 @@ async function createReport(results) {
     report += `## Warnings\n`;
     report += `The server _SHOULD_ support these, but is not required.\n`;
     for (const [i, result] of grouped.warn.entries()) {
-      report += `${i + 1}. ${'⚠️'} ${result.name}<br />\n`;
-      report += `  💬 ${result.reason}\n`;
+      report += `${i + 1}. ${escapeMarkdown(result.name)}<br />\n`;
+      report += '```\n';
+      report += `${result.reason}\n`;
+      report += '```\n';
     }
     report += '\n';
   }
@@ -130,8 +132,10 @@ async function createReport(results) {
     report += `## Errors\n`;
     report += `The server _MUST_ support these.\n`;
     for (const [i, result] of grouped.error.entries()) {
-      report += `${i + 1}. ❌ ${result.name}<br />\n`;
-      report += `  💬 ${result.reason}\n`;
+      report += `${i + 1}. ${escapeMarkdown(result.name)}<br />\n`;
+      report += '```\n';
+      report += `${result.reason}\n`;
+      report += '```\n';
     }
   }
 
@@ -145,4 +149,11 @@ async function createReport(results) {
       error: grouped.error.length,
     },
   };
+}
+
+/**
+ * @param {string} str
+ */
+function escapeMarkdown(str) {
+  return str.replace(/\*/g, '\\*');
 }
