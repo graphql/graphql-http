@@ -61,60 +61,61 @@ main().catch((err) => {
  * @param {AuditResult[]} results
  */
 async function createReport(results) {
-  let report = '';
-
-  let total = 0;
-
   /**
-   * @type {{ ok: AuditOk[], warn: AuditFail[], error: AuditFail[] }}
+   * @type {{ total: number, ok: AuditOk[], warn: AuditFail[], error: AuditFail[] }}
    */
-  const sorted = {
+  const grouped = {
+    total: 0,
     ok: [],
     warn: [],
     error: [],
   };
   for (const result of results) {
-    total++;
+    grouped.total++;
 
-    // trick for ts
+    // trick for TS
     if (result.status === 'ok') {
-      sorted[result.status].push(result);
+      grouped[result.status].push(result);
     } else {
-      sorted[result.status].push(result);
+      grouped[result.status].push(result);
     }
   }
 
-  report += `### ${sorted.ok.length} audits are passing.\n`;
-  for (const result of sorted.ok) {
-    report += `- ✅ ${result.name}\n`;
+  let report = '';
+
+  const summary = `${grouped.ok.length} audits passed out of ${grouped.total}. ${grouped.warn.length} are warnings (optional) and ${grouped.error.length} are errors (required)`;
+  report += `## ${summary}`;
+  report += '\n';
+
+  report += `### Passing\n`;
+  for (const [i, result] of grouped.ok.entries()) {
+    report += `${i + 1}. ✅ ${result.name}\n`;
   }
   report += '\n';
 
-  report += `### ${sorted.warn.length} audits are warnings. The server SHOULD support these, but is not required.\n`;
-  for (const result of sorted.warn) {
-    report += `- ${'⚠️'} ${result.name}\n`;
-    report += `  - 💬 ${result.reason}\n`;
+  report += `### Warnings\n`;
+  report += `The server _SHOULD_ support these, but is not required.\n`;
+  for (const [i, result] of grouped.warn.entries()) {
+    report += `${i + 1}. ${'⚠️'} ${result.name}<br />\n`;
+    report += `  💬 ${result.reason}\n`;
   }
   report += '\n';
 
-  report += `### ${sorted.error.length} audits are errors. The server MUST support these.\n`;
-  for (const result of sorted.error) {
-    report += `- ❌ ${result.name}\n`;
-    report += `  - 💬 ${result.reason}\n`;
+  report += `### Errors\n`;
+  report += `The server _MUST_ support these.\n`;
+  for (const [i, result] of grouped.error.entries()) {
+    report += `${i + 1}. ❌ ${result.name}<br />\n`;
+    report += `  💬 ${result.reason}\n`;
   }
-  report += '\n';
-
-  const summary = `${sorted.ok.length} audits passed out of ${total}. ${sorted.warn.length} are warnings (optional) and ${sorted.error.length} are errors (required).`;
-  report += summary;
 
   return {
     summary,
     report,
     counts: {
-      total,
-      ok: sorted.ok.length,
-      warn: sorted.warn.length,
-      error: sorted.error.length,
+      total: grouped.total,
+      ok: grouped.ok.length,
+      warn: grouped.warn.length,
+      error: grouped.error.length,
     },
   };
 }
