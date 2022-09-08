@@ -148,7 +148,9 @@ jobs:
   report:
     name: Report
     runs-on: ubuntu-latest
-    if: ${{ success() && !contains(github.event.head_commit.message, '[skip ci]') }}
+    if: ${{ !contains(github.event.head_commit.message, '[skip ci]') }}
+    needs:
+      [express-graphql, apollo-server, mercurius, graphql-yoga, graphql-helix]
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -179,5 +181,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add .
-          git commit -m "docs: audit report [skip ci]"
+          git commit -m "docs(implementations): audit report [skip ci]"
           git push
