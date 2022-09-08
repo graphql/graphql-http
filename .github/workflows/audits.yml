@@ -30,12 +30,12 @@ jobs:
       - name: Start
         run: node implementations/express-graphql &
       - name: Audit
-        run: node scripts/audit-implementation.mjs report.md
+        run: node scripts/audit-implementation.mjs README.md
       - name: Upload report
         uses: actions/upload-artifact@v3
         with:
           name: express-graphql-report
-          path: report.md
+          path: README.md
 
   apollo-server:
     runs-on: ubuntu-latest
@@ -57,12 +57,12 @@ jobs:
       - name: Start
         run: node implementations/apollo-server &
       - name: Audit
-        run: node scripts/audit-implementation.mjs report.md
+        run: node scripts/audit-implementation.mjs README.md
       - name: Upload report
         uses: actions/upload-artifact@v3
         with:
           name: apollo-server-report
-          path: report.md
+          path: README.md
 
   mercurius:
     runs-on: ubuntu-latest
@@ -84,12 +84,12 @@ jobs:
       - name: Start
         run: node implementations/mercurius &
       - name: Audit
-        run: node scripts/audit-implementation.mjs report.md
+        run: node scripts/audit-implementation.mjs README.md
       - name: Upload report
         uses: actions/upload-artifact@v3
         with:
           name: mercurius-report
-          path: report.md
+          path: README.md
 
   graphql-yoga:
     runs-on: ubuntu-latest
@@ -111,12 +111,12 @@ jobs:
       - name: Start
         run: node implementations/graphql-yoga &
       - name: Audit
-        run: node scripts/audit-implementation.mjs report.md
+        run: node scripts/audit-implementation.mjs README.md
       - name: Upload report
         uses: actions/upload-artifact@v3
         with:
           name: graphql-yoga-report
-          path: report.md
+          path: README.md
 
   graphql-helix:
     runs-on: ubuntu-latest
@@ -138,12 +138,12 @@ jobs:
       - name: Start
         run: node implementations/graphql-helix &
       - name: Audit
-        run: node scripts/audit-implementation.mjs report.md
+        run: node scripts/audit-implementation.mjs README.md
       - name: Upload report
         uses: actions/upload-artifact@v3
         with:
           name: graphql-helix-report
-          path: report.md
+          path: README.md
 
   report:
     name: Report
@@ -160,27 +160,27 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: express-graphql-report
-          path: implementations/express-graphql/README.md
+          path: implementations/express-graphql
       - name: Download apollo-server report
         uses: actions/download-artifact@v3
         with:
           name: apollo-server-report
-          path: implementations/apollo-server/README.md
+          path: implementations/apollo-server
       - name: Download mercurius report
         uses: actions/download-artifact@v3
         with:
           name: mercurius-report
-          path: implementations/mercurius/README.md
+          path: implementations/mercurius
       - name: Download graphql-yoga report
         uses: actions/download-artifact@v3
         with:
           name: graphql-yoga-report
-          path: implementations/graphql-yoga/README.md
+          path: implementations/graphql-yoga
       - name: Download graphql-helix report
         uses: actions/download-artifact@v3
         with:
           name: graphql-helix-report
-          path: implementations/graphql-helix/README.md
+          path: implementations/graphql-helix
       - name: Commit
         run: |
           git config user.name "github-actions[bot]"
