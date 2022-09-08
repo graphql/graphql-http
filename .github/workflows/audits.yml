@@ -186,5 +186,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add .
-          git commit -m "docs(implementations): audit report [skip ci]"
+          git commit -m "docs(implementations): audit report [skip ci]" || echo "::notice::Nothing new to report" && exit 0
           git push
