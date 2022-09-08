@@ -137,5 +137,7 @@ jobs:
         run: node scripts/audit-implementation.mjs implementations/graphql-helix/README.md
       - name: Commit
         run: |
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
           git commit -am "docs(graphql-helix): audit report [skip ci]"
           git push
