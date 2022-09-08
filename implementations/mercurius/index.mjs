@@ -1,3 +1,5 @@
+// @ts-check
+
 import { GraphQLSchema, GraphQLString, GraphQLObjectType } from 'graphql';
 import Fastify from 'fastify';
 import mercurius from 'mercurius';
@@ -18,4 +20,4 @@ const app = Fastify();
 
 app.register(mercurius, { schema });
 
-app.listen({ port: process.env.PORT });
+app.listen({ port: parseInt(process.env.PORT || '') });

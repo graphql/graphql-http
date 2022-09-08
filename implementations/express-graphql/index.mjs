@@ -1,3 +1,5 @@
+// @ts-check
+
 import { GraphQLSchema, GraphQLString, GraphQLObjectType } from 'graphql';
 import express from 'express';
 import { graphqlHTTP } from 'express-graphql';

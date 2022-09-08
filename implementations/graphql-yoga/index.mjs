@@ -1,3 +1,5 @@
+// @ts-check
+
 import { GraphQLSchema, GraphQLString, GraphQLObjectType } from 'graphql';
 import { createYoga } from 'graphql-yoga';
 import { createServer } from 'http';

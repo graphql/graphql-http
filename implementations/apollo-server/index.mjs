@@ -1,3 +1,5 @@
+// @ts-check
+
 import { GraphQLSchema, GraphQLString, GraphQLObjectType } from 'graphql';
 import { ApolloServer } from 'apollo-server';
 

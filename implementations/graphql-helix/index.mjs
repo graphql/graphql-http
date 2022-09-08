@@ -1,16 +1,12 @@
-import {
-  GraphQLSchema,
-  GraphQLString,
-  GraphQLObjectType,
-  assertWrappingType,
-} from 'graphql';
+// @ts-check
+
+import { GraphQLSchema, GraphQLString, GraphQLObjectType } from 'graphql';
 import {
   getGraphQLParameters,
   processRequest,
   sendResult,
 } from 'graphql-helix';
 import express from 'express';
-import { createServer } from 'http';
 
 const schema = new GraphQLSchema({
   query: new GraphQLObjectType({
