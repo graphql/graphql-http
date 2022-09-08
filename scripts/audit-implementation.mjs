@@ -92,7 +92,7 @@ async function createReport(results) {
 
   let report = '';
 
-  report += `# GraphQL over HTTP audit\n`;
+  report += `# GraphQL over HTTP audit report\n`;
   report += '\n';
 
   report += `- **${grouped.total}** audits in total\n`;
