@@ -33,6 +33,9 @@ jobs:
         run: node scripts/audit-implementation.mjs implementations/express-graphql/README.md
       - name: Commit
         run: |
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git add .
           git commit -am "docs(express-graphql): audit report [skip ci]"
           git push
 
@@ -59,6 +62,9 @@ jobs:
         run: node scripts/audit-implementation.mjs implementations/apollo-server/README.md
       - name: Commit
         run: |
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git add .
           git commit -am "docs(apollo-server): audit report [skip ci]"
           git push
 
@@ -85,6 +91,9 @@ jobs:
         run: node scripts/audit-implementation.mjs implementations/mercurius/README.md
       - name: Commit
         run: |
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git add .
           git commit -am "docs(mercurius): audit report [skip ci]"
           git push
 
@@ -111,6 +120,9 @@ jobs:
         run: node scripts/audit-implementation.mjs implementations/graphql-yoga/README.md
       - name: Commit
         run: |
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git add .
           git commit -am "docs(graphql-yoga): audit report [skip ci]"
           git push
 
@@ -139,5 +151,6 @@ jobs:
         run: |
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config user.name "github-actions[bot]"
-          git commit -am "docs(graphql-helix): audit report [skip ci]"
+          git add .
+          git commit -m "docs(graphql-helix): audit report [skip ci]"
           git push
