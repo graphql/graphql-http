@@ -186,5 +186,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           [ -z "$(git status --porcelain)" ] \
-            && echo "::notice::Nothing new to report" \
+            && echo "::notice::Nothing new to report." \
             || (git add . && git commit -m "docs(implementations): audit report [skip ci]" && git push)
