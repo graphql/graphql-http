@@ -30,7 +30,7 @@ jobs:
       - name: Start
         run: node implementations/express-graphql &
       - name: Audit
-        run: node scripts/audit-implementation.mjs
+        run: node scripts/audit-implementation.mjs node implementations/express-graphql/README.md
 
   apollo-server:
     runs-on: ubuntu-latest
@@ -52,7 +52,7 @@ jobs:
       - name: Start
         run: node implementations/apollo-server &
       - name: Audit
-        run: node scripts/audit-implementation.mjs
+        run: node scripts/audit-implementation.mjs node implementations/apollo-server/README.md
 
   mercurius:
     runs-on: ubuntu-latest
@@ -74,7 +74,7 @@ jobs:
       - name: Start
         run: node implementations/mercurius &
       - name: Audit
-        run: node scripts/audit-implementation.mjs
+        run: node scripts/audit-implementation.mjs node implementations/mercurius/README.md
 
   graphql-yoga:
     runs-on: ubuntu-latest
@@ -96,7 +96,7 @@ jobs:
       - name: Start
         run: node implementations/graphql-yoga &
       - name: Audit
-        run: node scripts/audit-implementation.mjs
+        run: node scripts/audit-implementation.mjs node implementations/graphql-yoga/README.md
 
   graphql-helix:
     runs-on: ubuntu-latest
@@ -118,4 +118,4 @@ jobs:
       - name: Start
         run: node implementations/graphql-helix &
       - name: Audit
-        run: node scripts/audit-implementation.mjs
+        run: node scripts/audit-implementation.mjs node implementations/graphql-helix/README.md

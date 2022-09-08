@@ -4,11 +4,13 @@
  *
  * Tests a running local server for GraphQL over HTTP compliance.
  *
+ * Optionally creates a report in markdown given the {reportPath} argument.
+ *
  * Usage example from root of project:
  *
  * ```sh
  * yarn build:esm
- * PORT=4000 node scripts/audit-implementation.mjs
+ * PORT=4000 node scripts/audit-implementation.mjs {reportPath}
  * ```
  *
  * Note that graphql-http has to be built before running this script!
@@ -17,6 +19,7 @@
 
 import os from 'os';
 import fetch from 'node-fetch';
+import fs from 'fs/promises';
 import { auditServer } from '../lib/index.mjs';
 
 /**
@@ -49,6 +52,12 @@ async function main() {
     process.stdout.write(
       `::notice::Implementation is fully compliant with the GraphQL over HTTP spec!${os.EOL}`,
     );
+  }
+
+  // write report if path specified
+  const reportPath = process.argv[2];
+  if (reportPath) {
+    await fs.writeFile(reportPath, report);
   }
 }
 
