@@ -18,8 +18,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-        with:
-          ref: ${{ github.event.pull_request.head.ref || github.ref_name }}
       - name: Set up node
         uses: actions/setup-node@v2
         with:
@@ -33,13 +31,11 @@ jobs:
         run: node implementations/express-graphql &
       - name: Audit
         run: node scripts/audit-implementation.mjs implementations/express-graphql/README.md
-      - name: Commit
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add .
-          git commit -m "docs(express-graphql): audit report [skip ci]"
-          git push
+      - name: Upload report
+        uses: actions/upload-artifact@v3
+        with:
+          name: express-graphql-report
+          path: implementations/express-graphql/README.md
 
   apollo-server:
     runs-on: ubuntu-latest
@@ -49,8 +45,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-        with:
-          ref: ${{ github.event.pull_request.head.ref || github.ref_name }}
       - name: Set up node
         uses: actions/setup-node@v2
         with:
@@ -64,13 +58,11 @@ jobs:
         run: node implementations/apollo-server &
       - name: Audit
         run: node scripts/audit-implementation.mjs implementations/apollo-server/README.md
-      - name: Commit
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add .
-          git commit -m "docs(apollo-server): audit report [skip ci]"
-          git push
+      - name: Upload report
+        uses: actions/upload-artifact@v3
+        with:
+          name: apollo-server-report
+          path: implementations/apollo-server/README.md
 
   mercurius:
     runs-on: ubuntu-latest
@@ -80,8 +72,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-        with:
-          ref: ${{ github.event.pull_request.head.ref || github.ref_name }}
       - name: Set up node
         uses: actions/setup-node@v2
         with:
@@ -95,13 +85,11 @@ jobs:
         run: node implementations/mercurius &
       - name: Audit
         run: node scripts/audit-implementation.mjs implementations/mercurius/README.md
-      - name: Commit
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add .
-          git commit -m "docs(mercurius): audit report [skip ci]"
-          git push
+      - name: Upload report
+        uses: actions/upload-artifact@v3
+        with:
+          name: mercurius-report
+          path: implementations/mercurius/README.md
 
   graphql-yoga:
     runs-on: ubuntu-latest
@@ -111,8 +99,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-        with:
-          ref: ${{ github.event.pull_request.head.ref || github.ref_name }}
       - name: Set up node
         uses: actions/setup-node@v2
         with:
@@ -126,13 +112,11 @@ jobs:
         run: node implementations/graphql-yoga &
       - name: Audit
         run: node scripts/audit-implementation.mjs implementations/graphql-yoga/README.md
-      - name: Commit
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add .
-          git commit -m "docs(graphql-yoga): audit report [skip ci]"
-          git push
+      - name: Upload report
+        uses: actions/upload-artifact@v3
+        with:
+          name: graphql-yoga-report
+          path: implementations/graphql-yoga/README.md
 
   graphql-helix:
     runs-on: ubuntu-latest
@@ -142,8 +126,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-        with:
-          ref: ${{ github.event.pull_request.head.ref || github.ref_name }}
       - name: Set up node
         uses: actions/setup-node@v2
         with:
@@ -157,10 +139,45 @@ jobs:
         run: node implementations/graphql-helix &
       - name: Audit
         run: node scripts/audit-implementation.mjs implementations/graphql-helix/README.md
+      - name: Upload report
+        uses: actions/upload-artifact@v3
+        with:
+          name: graphql-helix-report
+          path: implementations/graphql-helix/README.md
+
+  report:
+    name: Report
+    runs-on: ubuntu-latest
+    if: ${{ success() && !contains(github.event.head_commit.message, '[skip ci]') }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.ref || github.ref_name }}
+      - name: Download express-graphql report
+        uses: actions/download-artifact@v3
+        with:
+          name: express-graphql-report
+      - name: Download apollo-server report
+        uses: actions/download-artifact@v3
+        with:
+          name: apollo-server-report
+      - name: Download mercurius report
+        uses: actions/download-artifact@v3
+        with:
+          name: mercurius-report
+      - name: Download graphql-yoga report
+        uses: actions/download-artifact@v3
+        with:
+          name: graphql-yoga-report
+      - name: Download graphql-helix report
+        uses: actions/download-artifact@v3
+        with:
+          name: graphql-helix-report
       - name: Commit
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add .
-          git commit -m "docs(graphql-helix): audit report [skip ci]"
+          git commit -m "docs: audit report [skip ci]"
           git push
