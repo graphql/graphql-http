@@ -1,4 +1,4 @@
-# GraphQL over HTTP audit
+# GraphQL over HTTP audit report
 
 - **72** audits in total
 - **36** pass
