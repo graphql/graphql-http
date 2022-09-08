@@ -31,6 +31,10 @@ jobs:
         run: node implementations/express-graphql &
       - name: Audit
         run: node scripts/audit-implementation.mjs implementations/express-graphql/README.md
+      - name: Commit
+        run: |
+          git commit -am "docs(express-graphql): audit report [skip ci]"
+          git push
 
   apollo-server:
     runs-on: ubuntu-latest
@@ -53,6 +57,10 @@ jobs:
         run: node implementations/apollo-server &
       - name: Audit
         run: node scripts/audit-implementation.mjs implementations/apollo-server/README.md
+      - name: Commit
+        run: |
+          git commit -am "docs(apollo-server): audit report [skip ci]"
+          git push
 
   mercurius:
     runs-on: ubuntu-latest
@@ -75,6 +83,10 @@ jobs:
         run: node implementations/mercurius &
       - name: Audit
         run: node scripts/audit-implementation.mjs implementations/mercurius/README.md
+      - name: Commit
+        run: |
+          git commit -am "docs(mercurius): audit report [skip ci]"
+          git push
 
   graphql-yoga:
     runs-on: ubuntu-latest
@@ -97,6 +109,10 @@ jobs:
         run: node implementations/graphql-yoga &
       - name: Audit
         run: node scripts/audit-implementation.mjs implementations/graphql-yoga/README.md
+      - name: Commit
+        run: |
+          git commit -am "docs(graphql-yoga): audit report [skip ci]"
+          git push
 
   graphql-helix:
     runs-on: ubuntu-latest
@@ -119,3 +135,7 @@ jobs:
         run: node implementations/graphql-helix &
       - name: Audit
         run: node scripts/audit-implementation.mjs implementations/graphql-helix/README.md
+      - name: Commit
+        run: |
+          git commit -am "docs(graphql-helix): audit report [skip ci]"
+          git push
