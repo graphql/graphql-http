@@ -1,0 +1,190 @@
+name: Audits
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches:
+      - master
+
+jobs:
+  express-graphql:
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    env:
+      PORT: 4000
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Set up node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 18
+          cache: 'yarn'
+      - name: Install
+        run: yarn install --immutable
+      - name: Build
+        run: yarn build:esm
+      - name: Start
+        run: node implementations/express-graphql &
+      - name: Audit
+        run: node scripts/audit-implementation.mjs README.md
+      - name: Upload report
+        uses: actions/upload-artifact@v3
+        with:
+          name: express-graphql-report
+          path: README.md
+
+  apollo-server:
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    env:
+      PORT: 4000
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Set up node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 18
+          cache: 'yarn'
+      - name: Install
+        run: yarn install --immutable
+      - name: Build
+        run: yarn build:esm
+      - name: Start
+        run: node implementations/apollo-server &
+      - name: Audit
+        run: node scripts/audit-implementation.mjs README.md
+      - name: Upload report
+        uses: actions/upload-artifact@v3
+        with:
+          name: apollo-server-report
+          path: README.md
+
+  mercurius:
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    env:
+      PORT: 4000
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Set up node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 18
+          cache: 'yarn'
+      - name: Install
+        run: yarn install --immutable
+      - name: Build
+        run: yarn build:esm
+      - name: Start
+        run: node implementations/mercurius &
+      - name: Audit
+        run: node scripts/audit-implementation.mjs README.md
+      - name: Upload report
+        uses: actions/upload-artifact@v3
+        with:
+          name: mercurius-report
+          path: README.md
+
+  graphql-yoga:
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    env:
+      PORT: 4000
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Set up node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 18
+          cache: 'yarn'
+      - name: Install
+        run: yarn install --immutable
+      - name: Build
+        run: yarn build:esm
+      - name: Start
+        run: node implementations/graphql-yoga &
+      - name: Audit
+        run: node scripts/audit-implementation.mjs README.md
+      - name: Upload report
+        uses: actions/upload-artifact@v3
+        with:
+          name: graphql-yoga-report
+          path: README.md
+
+  graphql-helix:
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    env:
+      PORT: 4000
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Set up node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 18
+          cache: 'yarn'
+      - name: Install
+        run: yarn install --immutable
+      - name: Build
+        run: yarn build:esm
+      - name: Start
+        run: node implementations/graphql-helix &
+      - name: Audit
+        run: node scripts/audit-implementation.mjs README.md
+      - name: Upload report
+        uses: actions/upload-artifact@v3
+        with:
+          name: graphql-helix-report
+          path: README.md
+
+  report:
+    name: Report
+    runs-on: ubuntu-latest
+    if: ${{ !contains(github.event.head_commit.message, '[skip ci]') }}
+    needs:
+      [express-graphql, apollo-server, mercurius, graphql-yoga, graphql-helix]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.ref || github.ref_name }}
+      - name: Download express-graphql report
+        uses: actions/download-artifact@v3
+        with:
+          name: express-graphql-report
+          path: implementations/express-graphql
+      - name: Download apollo-server report
+        uses: actions/download-artifact@v3
+        with:
+          name: apollo-server-report
+          path: implementations/apollo-server
+      - name: Download mercurius report
+        uses: actions/download-artifact@v3
+        with:
+          name: mercurius-report
+          path: implementations/mercurius
+      - name: Download graphql-yoga report
+        uses: actions/download-artifact@v3
+        with:
+          name: graphql-yoga-report
+          path: implementations/graphql-yoga
+      - name: Download graphql-helix report
+        uses: actions/download-artifact@v3
+        with:
+          name: graphql-helix-report
+          path: implementations/graphql-helix
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "docs(implementations): audit report [skip ci]" || echo "::notice::Nothing new to report" && exit 0
+          git push

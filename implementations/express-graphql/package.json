@@ -1,0 +1,11 @@
+{
+  "private": true,
+  "name": "express-graphql",
+  "packageManager": "yarn@3.2.3",
+  "main": "index.mjs",
+  "dependencies": {
+    "express": "^4.18.1",
+    "express-graphql": "^0.12.0",
+    "graphql": "^16.6.0"
+  }
+}

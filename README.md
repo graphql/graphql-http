@@ -739,6 +739,10 @@ for (const audit of serverAudits({
 
 Check the [docs folder](docs/) out for [TypeDoc](https://typedoc.org) generated documentation.
 
+## [Audits](implementations/)
+
+Inspect audits of other implementations in the [implementations folder](implementations/). Adding your implementation is very welcome!
+
 ## [Want to help?](CONTRIBUTING.md)
 
 File a bug, contribute with code, or improve documentation? Read up on our guidelines for [contributing](CONTRIBUTING.md) and drive development with `yarn test --watch` away!

@@ -1,0 +1,11 @@
+{
+  "private": true,
+  "name": "mercurius",
+  "packageManager": "yarn@3.2.3",
+  "main": "index.mjs",
+  "dependencies": {
+    "fastify": "^4.5.3",
+    "graphql": "^16.6.0",
+    "mercurius": "^11.0.0"
+  }
+}

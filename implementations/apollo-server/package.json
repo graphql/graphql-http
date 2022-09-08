@@ -1,0 +1,10 @@
+{
+  "private": true,
+  "name": "apollo-server",
+  "packageManager": "yarn@3.2.3",
+  "main": "index.mjs",
+  "dependencies": {
+    "apollo-server": "^3.10.2",
+    "graphql": "^16.6.0"
+  }
+}
