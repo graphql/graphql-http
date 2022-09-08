@@ -31,3 +31,25 @@ jobs:
         run: node implementations/express-graphql &
       - name: Audit
         run: node scripts/audit-implementation.mjs
+
+  apollo-server:
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    env:
+      PORT: 4000
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Set up node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 18
+          cache: 'yarn'
+      - name: Install
+        run: yarn install --immutable
+      - name: Build
+        run: yarn build:esm
+      - name: Start
+        run: node implementations/apollo-server &
+      - name: Audit
+        run: node scripts/audit-implementation.mjs
