@@ -92,17 +92,22 @@ async function createReport(results) {
 
   let report = '';
 
-  const summary = `${grouped.ok.length} audits passed out of ${grouped.total}. ${grouped.warn.length} are warnings (optional) and ${grouped.error.length} are errors (required)`;
-  report += `## ${summary}`;
+  report += `# GraphQL over HTTP audit\n`;
   report += '\n';
 
-  report += `### Passing\n`;
+  report += `- **${grouped.total}** audits in total\n`;
+  report += `- **${grouped.ok.length}** pass\n`;
+  report += `- **${grouped.warn.length}** warnings (optional)\n`;
+  report += `- **${grouped.error.length}** errors (required)\n`;
+  report += `\n`;
+
+  report += `## Passing\n`;
   for (const [i, result] of grouped.ok.entries()) {
     report += `${i + 1}. ✅ ${result.name}\n`;
   }
   report += '\n';
 
-  report += `### Warnings\n`;
+  report += `## Warnings\n`;
   report += `The server _SHOULD_ support these, but is not required.\n`;
   for (const [i, result] of grouped.warn.entries()) {
     report += `${i + 1}. ${'⚠️'} ${result.name}<br />\n`;
@@ -110,7 +115,7 @@ async function createReport(results) {
   }
   report += '\n';
 
-  report += `### Errors\n`;
+  report += `## Errors\n`;
   report += `The server _MUST_ support these.\n`;
   for (const [i, result] of grouped.error.entries()) {
     report += `${i + 1}. ❌ ${result.name}<br />\n`;
@@ -118,7 +123,7 @@ async function createReport(results) {
   }
 
   return {
-    summary,
+    summary: `${grouped.ok.length} audits pass out of ${grouped.total} (${grouped.warn.length} warnings, ${grouped.error.length} errors)`,
     report,
     counts: {
       total: grouped.total,
