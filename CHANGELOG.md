@@ -1,3 +1,14 @@
+## [1.6.1](https://github.com/enisdenjo/graphql-http/compare/v1.6.0...v1.6.1) (2022-09-12)
+
+
+### Bug Fixes
+
+* **server:** Accepting application/json SHOULD use status code 200 ([9622ea0](https://github.com/enisdenjo/graphql-http/commit/9622ea0bd6b082d6927ab3fe47f5782a4a62c41c))
+* **server:** Adjust audits following the spec ([2b21b08](https://github.com/enisdenjo/graphql-http/commit/2b21b08beb2714c14fac919b2742132b8b295c85))
+* **server:** Audits requires 4xx shouldnt consider 5xx ([59c51fa](https://github.com/enisdenjo/graphql-http/commit/59c51fad789dafb755d4b2cb2cff0ec40350841c))
+* **server:** Audits respect legacy watershed ([050c7ba](https://github.com/enisdenjo/graphql-http/commit/050c7ba1318c732e31806864231df47f171d706b))
+* **server:** Audits safely handle unparsable JSON in response body ([f8098b6](https://github.com/enisdenjo/graphql-http/commit/f8098b62ad970fddb93257fdf5d8b6bef395723f))
+
 # [1.6.0](https://github.com/enisdenjo/graphql-http/compare/v1.5.0...v1.6.0) (2022-09-01)
 
 
