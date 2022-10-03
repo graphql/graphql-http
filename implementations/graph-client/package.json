@@ -1,0 +1,12 @@
+{
+  "private": true,
+  "name": "graph-client",
+  "packageManager": "yarn@3.2.3",
+  "main": "index.mjs",
+  "scripts": {
+    "start": "graphclient serve-dev"
+  },
+  "dependencies": {
+    "@graphprotocol/client-cli": "^2.2.11"
+  }
+}

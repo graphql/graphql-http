@@ -1,0 +1,8 @@
+serve:
+  browser: false
+
+sources:
+  - name: Sushi
+    handler:
+      graphql:
+        endpoint: https://api.thegraph.com/subgraphs/name/sushiswap/exchange
