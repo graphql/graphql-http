@@ -1,0 +1,5 @@
+{
+  "private": true,
+  "name": "thegraph",
+  "packageManager": "yarn@3.2.3"
+}
