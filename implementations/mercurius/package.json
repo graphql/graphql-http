@@ -3,6 +3,9 @@
   "name": "mercurius",
   "packageManager": "yarn@3.2.3",
   "main": "index.mjs",
+  "scripts": {
+    "start": "node ."
+  },
   "dependencies": {
     "fastify": "^4.5.3",
     "graphql": "^16.6.0",

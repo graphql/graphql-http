@@ -3,6 +3,9 @@
   "name": "graphql-yoga",
   "packageManager": "yarn@3.2.3",
   "main": "index.mjs",
+  "scripts": {
+    "start": "node ."
+  },
   "dependencies": {
     "graphql": "^16.6.0",
     "graphql-yoga": "3.0.0-alpha-20220906160826-20e2c681"

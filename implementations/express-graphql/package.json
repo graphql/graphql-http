@@ -3,6 +3,9 @@
   "name": "express-graphql",
   "packageManager": "yarn@3.2.3",
   "main": "index.mjs",
+  "scripts": {
+    "start": "node ."
+  },
   "dependencies": {
     "express": "^4.18.1",
     "express-graphql": "^0.12.0",

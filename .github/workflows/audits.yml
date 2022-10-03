@@ -28,7 +28,7 @@ jobs:
       - name: Build
         run: yarn build:esm
       - name: Start
-        run: node implementations/express-graphql &
+        run: yarn workspace express-graphql start &
       - name: Audit
         run: node scripts/audit-implementation.mjs README.md
       - name: Upload report
@@ -55,7 +55,7 @@ jobs:
       - name: Build
         run: yarn build:esm
       - name: Start
-        run: node implementations/apollo-server &
+        run: yarn workspace apollo-server start &
       - name: Audit
         run: node scripts/audit-implementation.mjs README.md
       - name: Upload report
@@ -82,7 +82,7 @@ jobs:
       - name: Build
         run: yarn build:esm
       - name: Start
-        run: node implementations/mercurius &
+        run: yarn workspace mercurius start &
       - name: Audit
         run: node scripts/audit-implementation.mjs README.md
       - name: Upload report
@@ -109,7 +109,7 @@ jobs:
       - name: Build
         run: yarn build:esm
       - name: Start
-        run: node implementations/graphql-yoga &
+        run: yarn workspace graphql-yoga start &
       - name: Audit
         run: node scripts/audit-implementation.mjs README.md
       - name: Upload report
@@ -136,7 +136,7 @@ jobs:
       - name: Build
         run: yarn build:esm
       - name: Start
-        run: node implementations/graphql-helix &
+        run: yarn workspace graphql-helix start &
       - name: Audit
         run: node scripts/audit-implementation.mjs README.md
       - name: Upload report
