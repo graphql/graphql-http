@@ -164,6 +164,8 @@ jobs:
         run: yarn build:esm
       - name: Start
         run: yarn workspace graph-client start &
+      - name: Sleep
+        run: sleep 3
       - name: Audit
         run: node scripts/audit-implementation.mjs README.md
       - name: Upload report
