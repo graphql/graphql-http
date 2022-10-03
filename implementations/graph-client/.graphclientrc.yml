@@ -1,5 +1,6 @@
 serve:
   browser: false
+  hostname: localhost
 
 sources:
   - name: Sushi
