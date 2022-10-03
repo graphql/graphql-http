@@ -12046,6 +12046,12 @@ __metadata:
   languageName: node
   linkType: hard
 
+"thegraph@workspace:implementations/thegraph":
+  version: 0.0.0-use.local
+  resolution: "thegraph@workspace:implementations/thegraph"
+  languageName: unknown
+  linkType: soft
+
 "thread-stream@npm:^2.0.0":
   version: 2.2.0
   resolution: "thread-stream@npm:2.2.0"
