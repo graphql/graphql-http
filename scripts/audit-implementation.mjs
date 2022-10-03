@@ -122,7 +122,7 @@ async function createReport(results) {
     for (const [i, result] of grouped.warn.entries()) {
       report += `${i + 1}. ${escapeMarkdown(result.name)}<br />\n`;
       report += '```\n';
-      report += `${result.reason}\n`;
+      report += `${truncate(result.reason)}\n`;
       report += '```\n';
     }
     report += '\n';
@@ -134,7 +134,7 @@ async function createReport(results) {
     for (const [i, result] of grouped.error.entries()) {
       report += `${i + 1}. ${escapeMarkdown(result.name)}<br />\n`;
       report += '```\n';
-      report += `${result.reason}\n`;
+      report += `${truncate(result.reason)}\n`;
       report += '```\n';
     }
   }
@@ -156,4 +156,15 @@ async function createReport(results) {
  */
 function escapeMarkdown(str) {
   return str.replace(/\*/g, '\\*');
+}
+
+/**
+ * @param {string} str
+ * @param {number} [len=1024]
+ */
+function truncate(str, len = 1024) {
+  if (str.length > len) {
+    return str.substring(0, len) + '...';
+  }
+  return str;
 }
