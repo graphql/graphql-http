@@ -29,7 +29,9 @@ import { auditServer } from '../lib/index.mjs';
  */
 
 async function main() {
-  const serverUrl = new URL(`http://localhost:${process.env.PORT}/graphql`);
+  const serverUrl = new URL(
+    process.env.URL || `http://localhost:${process.env.PORT}/graphql`,
+  );
 
   const results = await auditServer({
     url: serverUrl.toString(),
