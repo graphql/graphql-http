@@ -4,7 +4,7 @@
  *
  */
 
-import { ExecutionResult } from 'graphql';
+import type { ExecutionResult } from 'graphql';
 import { Audit, AuditName } from './common';
 
 export * from '../utils';
