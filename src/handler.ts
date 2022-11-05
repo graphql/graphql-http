@@ -27,7 +27,7 @@ import {
 /**
  * The incoming request headers the implementing server should provide.
  *
- * @category Common
+ * @category Server
  */
 export type RequestHeaders =
   | {
@@ -46,7 +46,7 @@ export type RequestHeaders =
  * Server agnostic request interface containing the raw request
  * which is server dependant.
  *
- * @category Common
+ * @category Server
  */
 export interface Request<RawRequest, Context> {
   readonly method: string;
@@ -83,7 +83,7 @@ export interface Request<RawRequest, Context> {
 /**
  * The response headers that get returned from graphql-http.
  *
- * @category Common
+ * @category Server
  */
 export type ResponseHeaders = {
   accept?: string;
@@ -95,7 +95,7 @@ export type ResponseHeaders = {
  * Server agnostic response body returned from `graphql-http` needing
  * to be coerced to the server implementation in use.
  *
- * @category Common
+ * @category Server
  */
 export type ResponseBody = string;
 
@@ -103,7 +103,7 @@ export type ResponseBody = string;
  * Server agnostic response options (ex. status and headers) returned from
  * `graphql-http` needing to be coerced to the server implementation in use.
  *
- * @category Common
+ * @category Server
  */
 export interface ResponseInit {
   readonly status: number;
@@ -115,14 +115,14 @@ export interface ResponseInit {
  * Server agnostic response returned from `graphql-http` containing the
  * body and init options needing to be coerced to the server implementation in use.
  *
- * @category Common
+ * @category Server
  */
 export type Response = readonly [body: ResponseBody | null, init: ResponseInit];
 
 /**
  * Checks whether the passed value is the `graphql-http` server agnostic response.
  *
- * @category Common
+ * @category Server
  */
 export function isResponse(val: unknown): val is Response {
   // TODO: make sure the contents of init match ResponseInit

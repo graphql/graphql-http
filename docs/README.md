@@ -127,50 +127,6 @@ GraphQL operation results.
 
 [`Client`](interfaces/Client.md)
 
-## Common
-
-### Response
-
-Ƭ **Response**: readonly [body: ResponseBody \| null, init: ResponseInit]
-
-Server agnostic response returned from `graphql-http` containing the
-body and init options needing to be coerced to the server implementation in use.
-
-___
-
-### ResponseBody
-
-Ƭ **ResponseBody**: `string`
-
-Server agnostic response body returned from `graphql-http` needing
-to be coerced to the server implementation in use.
-
-___
-
-### ResponseHeaders
-
-Ƭ **ResponseHeaders**: { `accept?`: `string` ; `allow?`: `string` ; `content-type?`: `string`  } & `Record`<`string`, `string`\>
-
-The response headers that get returned from graphql-http.
-
-___
-
-### isResponse
-
-▸ **isResponse**(`val`): val is Response
-
-Checks whether the passed value is the `graphql-http` server agnostic response.
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `val` | `unknown` |
-
-#### Returns
-
-val is Response
-
 ## Server
 
 ### AcceptableMediaType
@@ -233,6 +189,32 @@ ___
 Ƭ **RequestHeaders**: { `[key: string]`: `string` \| `string`[] \| `undefined`; `set-cookie?`: `string` \| `string`[]  } \| { `get`: (`key`: `string`) => `string` \| ``null``  }
 
 The incoming request headers the implementing server should provide.
+
+___
+
+### Response
+
+Ƭ **Response**: readonly [body: ResponseBody \| null, init: ResponseInit]
+
+Server agnostic response returned from `graphql-http` containing the
+body and init options needing to be coerced to the server implementation in use.
+
+___
+
+### ResponseBody
+
+Ƭ **ResponseBody**: `string`
+
+Server agnostic response body returned from `graphql-http` needing
+to be coerced to the server implementation in use.
+
+___
+
+### ResponseHeaders
+
+Ƭ **ResponseHeaders**: { `accept?`: `string` ; `allow?`: `string` ; `content-type?`: `string`  } & `Record`<`string`, `string`\>
+
+The response headers that get returned from graphql-http.
 
 ___
 
@@ -327,6 +309,24 @@ looking at the `Accept` header while complying with the GraphQL over HTTP Protoc
 #### Returns
 
 [`AcceptableMediaType`](README.md#acceptablemediatype) \| ``null``
+
+___
+
+### isResponse
+
+▸ **isResponse**(`val`): val is Response
+
+Checks whether the passed value is the `graphql-http` server agnostic response.
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `val` | `unknown` |
+
+#### Returns
+
+val is Response
 
 ___
 
