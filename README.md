@@ -155,7 +155,7 @@ await serve(
     if (!path.endsWith('/graphql')) {
       return handler(req);
     } else {
-      return new Response(null, { status: 404, statusText: 'Not Found' });
+      return new Response(null, { status: 404 });
     }
   },
   {
@@ -180,7 +180,7 @@ export default {
     if (!path.endsWith('/graphql')) {
       return handler(req);
     } else {
-      return new Response(null, { status: 404, statusText: 'Not Found' });
+      return new Response(null, { status: 404 });
     }
   },
 };
