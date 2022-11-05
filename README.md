@@ -166,7 +166,7 @@ await serve(
 
 ##### With [`Bun`](https://bun.sh/)
 
-```ts
+```js
 import { createHandler } from 'https://esm.sh/graphql-http/lib/use/fetch';
 import { schema } from './previous-step';
 
