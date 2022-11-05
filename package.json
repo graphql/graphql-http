@@ -35,6 +35,11 @@
       "types": "./lib/index.d.ts",
       "browser": "./umd/graphql-http.js"
     },
+    "./lib/use/fetch": {
+      "types": "./lib/use/fetch.d.ts",
+      "require": "./lib/use/fetch.js",
+      "import": "./lib/use/fetch.mjs"
+    },
     "./lib/use/node": {
       "types": "./lib/use/node.d.ts",
       "require": "./lib/use/node.js",

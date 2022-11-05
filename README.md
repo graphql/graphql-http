@@ -143,35 +143,47 @@ console.log('Listening to port 4000');
 
 ```ts
 import { serve } from 'https://deno.land/std@0.151.0/http/server.ts';
-import { createHandler } from 'https://esm.sh/graphql-http';
+import { createHandler } from 'https://esm.sh/graphql-http/lib/use/fetch';
 import { schema } from './previous-step';
 
-// Create the GraphQL over HTTP handler
-const handler = createHandler<Request>({ schema });
+// Create the GraphQL over HTTP native fetch handler
+const handler = createHandler({ schema });
 
 // Start serving on `/graphql` using the handler
 await serve(
-  async (req: Request) => {
-    const [path, _search] = req.url.split('?');
+  (req: Request) => {
     if (!path.endsWith('/graphql')) {
+      return handler(req);
+    } else {
       return new Response(null, { status: 404, statusText: 'Not Found' });
     }
-
-    const [body, init] = await handler({
-      url: req.url,
-      method: req.method,
-      headers: req.headers,
-      body: () => req.text(),
-      raw: req,
-    });
-    return new Response(body, init);
   },
   {
-    port: 4000,
+    port: 4000, // Listening to port 4000
   },
 );
+```
 
-// Listening to port 4000
+##### With [`Bun`](https://bun.sh/)
+
+```ts
+import { createHandler } from 'https://esm.sh/graphql-http/lib/use/fetch';
+import { schema } from './previous-step';
+
+// Create the GraphQL over HTTP native fetch handler
+const handler = createHandler({ schema });
+
+// Start serving on `/graphql` using the handler
+export default {
+  port: 4000, // Listening to port 4000
+  fetch(req) {
+    if (!path.endsWith('/graphql')) {
+      return handler(req);
+    } else {
+      return new Response(null, { status: 404, statusText: 'Not Found' });
+    }
+  },
+};
 ```
 
 #### Use the client
