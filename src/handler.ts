@@ -143,9 +143,8 @@ export function isResponse(val: unknown): val is Response {
  *
  * @category Server
  */
-export type ExecutionContext =
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  | object // you can literally pass "any" JS object as the context value
+export type OperationContext =
+  | Record<PropertyKey, unknown>
   | symbol
   | number
   | string
@@ -154,9 +153,14 @@ export type ExecutionContext =
   | null;
 
 /** @category Server */
+export type OperationArgs<Context extends OperationContext = undefined> =
+  ExecutionArgs & { contextValue?: Context };
+
+/** @category Server */
 export interface HandlerOptions<
   RequestRaw = unknown,
   RequestContext = unknown,
+  Context extends OperationContext = undefined,
 > {
   /**
    * The GraphQL schema on which the operations will
@@ -178,7 +182,7 @@ export interface HandlerOptions<
     | GraphQLSchema
     | ((
         req: Request<RequestRaw, RequestContext>,
-        args: Omit<ExecutionArgs, 'schema'>,
+        args: Omit<OperationArgs<Context>, 'schema'>,
       ) => Promise<GraphQLSchema | Response> | GraphQLSchema | Response);
   /**
    * A value which is provided to every resolver and holds
@@ -186,11 +190,11 @@ export interface HandlerOptions<
    * logged in user, or access to a database.
    */
   context?:
-    | ExecutionContext
+    | Context
     | ((
         req: Request<RequestRaw, RequestContext>,
-        args: ExecutionArgs,
-      ) => Promise<ExecutionContext | Response> | ExecutionContext | Response);
+        params: RequestParams,
+      ) => Promise<Context | Response> | Context | Response);
   /**
    * A custom GraphQL validate function allowing you to apply your
    * own validation rules.
@@ -245,13 +249,13 @@ export interface HandlerOptions<
   ) =>
     | Promise<
         | ExecutionResult
-        | ExecutionArgs
+        | OperationArgs<Context>
         | readonly GraphQLError[]
         | Response
         | void
       >
     | ExecutionResult
-    | ExecutionArgs
+    | OperationArgs<Context>
     | readonly GraphQLError[]
     | Response
     | void;
@@ -270,7 +274,7 @@ export interface HandlerOptions<
    */
   onOperation?: (
     req: Request<RequestRaw, RequestContext>,
-    args: ExecutionArgs,
+    args: OperationArgs<Context>,
     result: ExecutionResult,
   ) =>
     | Promise<ExecutionResult | Response | void>
@@ -348,8 +352,12 @@ export type Handler<RequestRaw = unknown, RequestContext = unknown> = (
  *
  * @category Server
  */
-export function createHandler<RequestRaw = unknown, RequestContext = unknown>(
-  options: HandlerOptions<RequestRaw, RequestContext>,
+export function createHandler<
+  RequestRaw = unknown,
+  RequestContext = unknown,
+  Context extends OperationContext = undefined,
+>(
+  options: HandlerOptions<RequestRaw, RequestContext, Context>,
 ): Handler<RequestRaw, RequestContext> {
   const {
     schema,
@@ -480,7 +488,7 @@ export function createHandler<RequestRaw = unknown, RequestContext = unknown>(
       return makeResponse(new GraphQLError(err.message), acceptedMediaType);
     }
 
-    let args: ExecutionArgs;
+    let args: OperationArgs<Context>;
     const maybeResErrsOrArgs = await onSubscribe?.(req, params);
     if (isResponse(maybeResErrsOrArgs)) return maybeResErrsOrArgs;
     else if (
@@ -501,10 +509,15 @@ export function createHandler<RequestRaw = unknown, RequestContext = unknown>(
         return makeResponse(err, acceptedMediaType);
       }
 
+      const resOrContext =
+        typeof context === 'function' ? await context(req, params) : context;
+      if (isResponse(resOrContext)) return resOrContext;
+
       const argsWithoutSchema = {
         operationName,
         document,
         variableValues: variables,
+        contextValue: resOrContext,
       };
 
       if (typeof schema === 'function') {
@@ -564,10 +577,10 @@ export function createHandler<RequestRaw = unknown, RequestContext = unknown>(
     }
 
     if (!('contextValue' in args)) {
-      const maybeResOrContext =
-        typeof context === 'function' ? await context(req, args) : context;
-      if (isResponse(maybeResOrContext)) return maybeResOrContext;
-      args.contextValue = maybeResOrContext;
+      const resOrContext =
+        typeof context === 'function' ? await context(req, params) : context;
+      if (isResponse(resOrContext)) return resOrContext;
+      args.contextValue = resOrContext;
     }
 
     let result = await execute(args);

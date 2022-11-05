@@ -29,8 +29,9 @@ graphql-http
 - [AuditName](README.md#auditname)
 - [AuditRequirement](README.md#auditrequirement)
 - [AuditResult](README.md#auditresult)
-- [ExecutionContext](README.md#executioncontext)
 - [Handler](README.md#handler)
+- [OperationArgs](README.md#operationargs)
+- [OperationContext](README.md#operationcontext)
 - [RequestHeaders](README.md#requestheaders)
 - [Response](README.md#response)
 - [ResponseBody](README.md#responsebody)
@@ -137,19 +138,6 @@ Request's Media-Type that the server accepts.
 
 ___
 
-### ExecutionContext
-
-Ƭ **ExecutionContext**: `object` \| `symbol` \| `number` \| `string` \| `boolean` \| `undefined` \| ``null``
-
-A concrete GraphQL execution context value type.
-
-Mainly used because TypeScript collapes unions
-with `any` or `unknown` to `any` or `unknown`. So,
-we use a custom type to allow definitions such as
-the `context` server option.
-
-___
-
 ### Handler
 
 Ƭ **Handler**<`RequestRaw`, `RequestContext`\>: (`req`: [`Request`](interfaces/Request.md)<`RequestRaw`, `RequestContext`\>) => `Promise`<[`Response`](README.md#response)\>
@@ -181,6 +169,31 @@ considered internal errors and you should take care of them accordingly.
 ##### Returns
 
 `Promise`<[`Response`](README.md#response)\>
+
+___
+
+### OperationArgs
+
+Ƭ **OperationArgs**<`Context`\>: `ExecutionArgs` & { `contextValue?`: `Context`  }
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `Context` | extends [`OperationContext`](README.md#operationcontext) = `undefined` |
+
+___
+
+### OperationContext
+
+Ƭ **OperationContext**: `Record`<`PropertyKey`, `unknown`\> \| `symbol` \| `number` \| `string` \| `boolean` \| `undefined` \| ``null``
+
+A concrete GraphQL execution context value type.
+
+Mainly used because TypeScript collapes unions
+with `any` or `unknown` to `any` or `unknown`. So,
+we use a custom type to allow definitions such as
+the `context` server option.
 
 ___
 
@@ -220,7 +233,7 @@ ___
 
 ### createHandler
 
-▸ **createHandler**<`RequestRaw`, `RequestContext`\>(`options`): [`Handler`](README.md#handler)<`RequestRaw`, `RequestContext`\>
+▸ **createHandler**<`RequestRaw`, `RequestContext`, `Context`\>(`options`): [`Handler`](README.md#handler)<`RequestRaw`, `RequestContext`\>
 
 Makes a GraphQL over HTTP Protocol compliant server handler. The handler can
 be used with your favourite server library.
@@ -280,12 +293,13 @@ console.log('Listening to port 4000');
 | :------ | :------ |
 | `RequestRaw` | `unknown` |
 | `RequestContext` | `unknown` |
+| `Context` | extends [`OperationContext`](README.md#operationcontext) = `undefined` |
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `options` | [`HandlerOptions`](interfaces/HandlerOptions.md)<`RequestRaw`, `RequestContext`\> |
+| `options` | [`HandlerOptions`](interfaces/HandlerOptions.md)<`RequestRaw`, `RequestContext`, `Context`\> |
 
 #### Returns
 

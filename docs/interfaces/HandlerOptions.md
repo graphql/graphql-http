@@ -1,6 +1,6 @@
 [graphql-http](../README.md) / HandlerOptions
 
-# Interface: HandlerOptions<RequestRaw, RequestContext\>
+# Interface: HandlerOptions<RequestRaw, RequestContext, Context\>
 
 ## Type parameters
 
@@ -8,6 +8,7 @@
 | :------ | :------ |
 | `RequestRaw` | `unknown` |
 | `RequestContext` | `unknown` |
+| `Context` | extends [`OperationContext`](../README.md#operationcontext) = `undefined` |
 
 ## Table of contents
 
@@ -26,7 +27,7 @@
 
 ### context
 
-• `Optional` **context**: [`ExecutionContext`](../README.md#executioncontext) \| (`req`: [`Request`](Request.md)<`RequestRaw`, `RequestContext`\>, `args`: `ExecutionArgs`) => [`Response`](../README.md#response) \| [`ExecutionContext`](../README.md#executioncontext) \| `Promise`<[`Response`](../README.md#response) \| [`ExecutionContext`](../README.md#executioncontext)\>
+• `Optional` **context**: `Context` \| (`req`: [`Request`](Request.md)<`RequestRaw`, `RequestContext`\>, `params`: [`RequestParams`](RequestParams.md)) => [`Response`](../README.md#response) \| `Context` \| `Promise`<[`Response`](../README.md#response) \| `Context`\>
 
 A value which is provided to every resolver and holds
 important contextual information like the currently
@@ -90,7 +91,7 @@ ___
 
 ### onOperation
 
-• `Optional` **onOperation**: (`req`: [`Request`](Request.md)<`RequestRaw`, `RequestContext`\>, `args`: `ExecutionArgs`, `result`: `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\>) => `void` \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> \| [`Response`](../README.md#response) \| `Promise`<`void` \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> \| [`Response`](../README.md#response)\>
+• `Optional` **onOperation**: (`req`: [`Request`](Request.md)<`RequestRaw`, `RequestContext`\>, `args`: [`OperationArgs`](../README.md#operationargs)<`Context`\>, `result`: `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\>) => `void` \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> \| [`Response`](../README.md#response) \| `Promise`<`void` \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> \| [`Response`](../README.md#response)\>
 
 #### Type declaration
 
@@ -113,7 +114,7 @@ further execution.
 | Name | Type |
 | :------ | :------ |
 | `req` | [`Request`](Request.md)<`RequestRaw`, `RequestContext`\> |
-| `args` | `ExecutionArgs` |
+| `args` | [`OperationArgs`](../README.md#operationargs)<`Context`\> |
 | `result` | `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> |
 
 ##### Returns
@@ -124,11 +125,11 @@ ___
 
 ### onSubscribe
 
-• `Optional` **onSubscribe**: (`req`: [`Request`](Request.md)<`RequestRaw`, `RequestContext`\>, `params`: [`RequestParams`](RequestParams.md)) => `void` \| readonly `GraphQLError`[] \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> \| [`Response`](../README.md#response) \| `ExecutionArgs` \| `Promise`<`void` \| readonly `GraphQLError`[] \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> \| [`Response`](../README.md#response) \| `ExecutionArgs`\>
+• `Optional` **onSubscribe**: (`req`: [`Request`](Request.md)<`RequestRaw`, `RequestContext`\>, `params`: [`RequestParams`](RequestParams.md)) => `void` \| readonly `GraphQLError`[] \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> \| [`Response`](../README.md#response) \| [`OperationArgs`](../README.md#operationargs)<`Context`\> \| `Promise`<`void` \| readonly `GraphQLError`[] \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> \| [`Response`](../README.md#response) \| [`OperationArgs`](../README.md#operationargs)<`Context`\>\>
 
 #### Type declaration
 
-▸ (`req`, `params`): `void` \| readonly `GraphQLError`[] \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> \| [`Response`](../README.md#response) \| `ExecutionArgs` \| `Promise`<`void` \| readonly `GraphQLError`[] \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> \| [`Response`](../README.md#response) \| `ExecutionArgs`\>
+▸ (`req`, `params`): `void` \| readonly `GraphQLError`[] \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> \| [`Response`](../README.md#response) \| [`OperationArgs`](../README.md#operationargs)<`Context`\> \| `Promise`<`void` \| readonly `GraphQLError`[] \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> \| [`Response`](../README.md#response) \| [`OperationArgs`](../README.md#operationargs)<`Context`\>\>
 
 The subscribe callback executed right after processing the request
 before proceeding with the GraphQL operation execution.
@@ -166,7 +167,7 @@ further execution.
 
 ##### Returns
 
-`void` \| readonly `GraphQLError`[] \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> \| [`Response`](../README.md#response) \| `ExecutionArgs` \| `Promise`<`void` \| readonly `GraphQLError`[] \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> \| [`Response`](../README.md#response) \| `ExecutionArgs`\>
+`void` \| readonly `GraphQLError`[] \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> \| [`Response`](../README.md#response) \| [`OperationArgs`](../README.md#operationargs)<`Context`\> \| `Promise`<`void` \| readonly `GraphQLError`[] \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> \| [`Response`](../README.md#response) \| [`OperationArgs`](../README.md#operationargs)<`Context`\>\>
 
 ___
 
@@ -196,7 +197,7 @@ ___
 
 ### schema
 
-• `Optional` **schema**: `GraphQLSchema` \| (`req`: [`Request`](Request.md)<`RequestRaw`, `RequestContext`\>, `args`: `Omit`<`ExecutionArgs`, ``"schema"``\>) => [`Response`](../README.md#response) \| `GraphQLSchema` \| `Promise`<[`Response`](../README.md#response) \| `GraphQLSchema`\>
+• `Optional` **schema**: `GraphQLSchema` \| (`req`: [`Request`](Request.md)<`RequestRaw`, `RequestContext`\>, `args`: `Omit`<[`OperationArgs`](../README.md#operationargs)<`Context`\>, ``"schema"``\>) => [`Response`](../README.md#response) \| `GraphQLSchema` \| `Promise`<[`Response`](../README.md#response) \| `GraphQLSchema`\>
 
 The GraphQL schema on which the operations will
 be executed and validated against.
