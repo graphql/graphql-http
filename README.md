@@ -59,7 +59,7 @@ const handler = createHandler({ schema });
 
 // Create a HTTP server using the listner on `/graphql`
 const server = http.createServer((req, res) => {
-  if (!req.url.startsWith('/graphql')) {
+  if (req.url.startsWith('/graphql')) {
     handler(req, res);
   } else {
     res.writeHead(404).end();
@@ -152,7 +152,7 @@ const handler = createHandler({ schema });
 // Start serving on `/graphql` using the handler
 await serve(
   (req: Request) => {
-    if (!path.endsWith('/graphql')) {
+    if (path.endsWith('/graphql')) {
       return handler(req);
     } else {
       return new Response(null, { status: 404 });
@@ -177,7 +177,7 @@ const handler = createHandler({ schema });
 export default {
   port: 4000, // Listening to port 4000
   fetch(req) {
-    if (!path.endsWith('/graphql')) {
+    if (path.endsWith('/graphql')) {
       return handler(req);
     } else {
       return new Response(null, { status: 404 });
