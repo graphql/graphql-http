@@ -167,7 +167,7 @@ await serve(
 ##### With [`Bun`](https://bun.sh/)
 
 ```js
-import { createHandler } from 'https://esm.sh/graphql-http/lib/use/fetch';
+import { createHandler } from 'graphql-http/lib/use/fetch'; // bun install graphql-http
 import { schema } from './previous-step';
 
 // Create the GraphQL over HTTP native fetch handler
@@ -498,7 +498,7 @@ const client = createClient({
 <summary><a href="#deno-client">🔗</a> Client usage in Deno</summary>
 
 ```js
-import { createClient } from 'graphql-http';
+import { createClient } from 'https://esm.sh/graphql-http';
 
 const client = createClient({
   url: 'http://deno.earth:4000/graphql',
@@ -513,7 +513,7 @@ const client = createClient({
 <summary><a href="#bun-client">🔗</a> Client usage in Bun</summary>
 
 ```js
-import { createClient } from 'graphql-http';
+import { createClient } from 'graphql-http'; // bun install graphql-http
 
 const client = createClient({
   url: 'http://bun.bread:4000/graphql',
