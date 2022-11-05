@@ -115,7 +115,7 @@ import { createHandler } from 'graphql-http/lib/use/express';
 import { schema } from './previous-step';
 
 // Create a express instance serving all methods on `/graphql`
-// where the GraphQL over HTTP express request handler is.
+// where the GraphQL over HTTP express request handler is
 const app = express();
 app.all('/graphql', createHandler({ schema }));
 
@@ -131,7 +131,7 @@ import { createHandler } from 'graphql-http/lib/use/fastify';
 import { schema } from './previous-step';
 
 // Create a fastify instance serving all methods on `/graphql`
-// where the GraphQL over HTTP fastify request handler is.
+// where the GraphQL over HTTP fastify request handler is
 const fastify = Fastify();
 fastify.all('/graphql', createHandler({ schema }));
 
