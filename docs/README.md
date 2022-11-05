@@ -17,7 +17,6 @@ graphql-http
 - [ClientOptions](interfaces/ClientOptions.md)
 - [HandlerOptions](interfaces/HandlerOptions.md)
 - [Request](interfaces/Request.md)
-- [RequestHeaders](interfaces/RequestHeaders.md)
 - [RequestParams](interfaces/RequestParams.md)
 - [ResponseInit](interfaces/ResponseInit.md)
 - [ResponseLike](interfaces/ResponseLike.md)
@@ -32,6 +31,7 @@ graphql-http
 - [AuditResult](README.md#auditresult)
 - [ExecutionContext](README.md#executioncontext)
 - [Handler](README.md#handler)
+- [RequestHeaders](README.md#requestheaders)
 - [Response](README.md#response)
 - [ResponseBody](README.md#responsebody)
 - [ResponseHeaders](README.md#responseheaders)
@@ -225,6 +225,14 @@ considered internal errors and you should take care of them accordingly.
 ##### Returns
 
 `Promise`<[`Response`](README.md#response)\>
+
+___
+
+### RequestHeaders
+
+Ƭ **RequestHeaders**: { `[key: string]`: `string` \| `string`[] \| `undefined`; `set-cookie?`: `string` \| `string`[]  } \| { `get`: (`key`: `string`) => `string` \| ``null``  }
+
+The incoming request headers the implementing server should provide.
 
 ___
 

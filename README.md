@@ -224,12 +224,10 @@ await serve(
       return new Response(null, { status: 404, statusText: 'Not Found' });
     }
 
-    const headers: Record<string, string> = {};
-    req.headers.forEach((value, key) => (headers[key] = value));
     const [body, init] = await handler({
       url: req.url,
       method: req.method,
-      headers,
+      headers: req.headers,
       body: () => req.text(),
       raw: req,
     });

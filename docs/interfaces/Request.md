@@ -46,7 +46,7 @@ ___
 
 ### headers
 
-• `Readonly` **headers**: [`RequestHeaders`](RequestHeaders.md)
+• `Readonly` **headers**: [`RequestHeaders`](../README.md#requestheaders)
 
 ___
 

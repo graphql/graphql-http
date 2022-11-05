@@ -29,18 +29,18 @@ import {
  *
  * @category Common
  */
-export interface RequestHeaders {
-  accept?: string | undefined;
-  allow?: string | undefined;
-  'content-type'?: string | undefined;
-  /**
-   * Always an array in Node. Duplicates are added to it.
-   * Not necessarily true for other environments, make sure
-   * to check the type during runtime.
-   */
-  'set-cookie'?: string | string[] | undefined;
-  [key: string]: string | string[] | undefined;
-}
+export type RequestHeaders =
+  | {
+      /**
+       * Always an array in Node. Duplicates are added to it.
+       * Not necessarily true for other environments.
+       */
+      'set-cookie'?: string | string[] | undefined;
+      [key: string]: string | string[] | undefined;
+    }
+  | {
+      get: (key: string) => string | null;
+    };
 
 /**
  * Server agnostic request interface containing the raw request
@@ -374,7 +374,7 @@ export function createHandler<RawRequest = unknown, Context = unknown>(
       ];
     }
 
-    const acceptedMediaType = getAcceptableMediaType(req.headers.accept);
+    const acceptedMediaType = getAcceptableMediaType(getHeader(req, 'accept'));
     if (!acceptedMediaType) {
       return [
         null,
@@ -394,7 +394,7 @@ export function createHandler<RawRequest = unknown, Context = unknown>(
     const [
       mediaType,
       charset = 'charset=utf-8', // utf-8 is assumed when not specified. this parameter is either "charset" or "boundary" (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Length)
-    ] = (req.headers['content-type'] || '')
+    ] = (getHeader(req, 'content-type') || '')
       .replace(/\s/g, '')
       .toLowerCase()
       .split(';');
@@ -690,4 +690,22 @@ export function makeResponse(
       },
     },
   ];
+}
+
+function getHeader(
+  req: Request<unknown, unknown>,
+  key: 'set-cookie',
+): string[] | null;
+function getHeader(
+  req: Request<unknown, unknown>,
+  key: 'accept' | 'allow' | 'content-type' | string,
+): string | null;
+function getHeader(
+  req: Request<unknown, unknown>,
+  key: string,
+): string | string[] | null {
+  if (typeof req.headers.get === 'function') {
+    return req.headers.get(key);
+  }
+  return Object(req.headers)[key];
 }
