@@ -509,6 +509,21 @@ const client = createClient({
 
 </details>
 
+<details id="bun-client">
+<summary><a href="#bun-client">🔗</a> Client usage in Bun</summary>
+
+```js
+import { createClient } from 'graphql-http';
+
+const client = createClient({
+  url: 'http://bun.bread:4000/graphql',
+});
+
+// consider other recipes for usage inspiration
+```
+
+</details>
+
 <details id="auth">
 <summary><a href="#auth">🔗</a> Server handler usage with authentication</summary>
 
