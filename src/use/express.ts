@@ -44,16 +44,18 @@ export function createHandler<Context extends OperationContext = undefined>(
       } else {
         res
           .writeHead(500, { 'content-type': 'application/json; charset=utf-8' })
-          .end({
-            errors: [
-              err instanceof Error
-                ? {
-                    message: err.message,
-                    stack: err.stack,
-                  }
-                : JSON.stringify(err),
-            ],
-          });
+          .end(
+            JSON.stringify({
+              errors: [
+                err instanceof Error
+                  ? {
+                      message: err.message,
+                      stack: err.stack,
+                    }
+                  : err,
+              ],
+            }),
+          );
       }
     }
   };
