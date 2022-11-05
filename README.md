@@ -51,34 +51,18 @@ const schema = new GraphQLSchema({
 
 ```js
 import http from 'http';
-import { createHandler } from 'graphql-http';
+import { createHandler } from 'graphql-http/lib/use/node';
 import { schema } from './previous-step';
 
-// Create the GraphQL over HTTP handler
+// Create the GraphQL over HTTP Node request handler
 const handler = createHandler({ schema });
 
-// Create a HTTP server using the handler on `/graphql`
-const server = http.createServer(async (req, res) => {
+// Create a HTTP server using the listner on `/graphql`
+const server = http.createServer((req, res) => {
   if (!req.url.startsWith('/graphql')) {
-    return res.writeHead(404).end();
-  }
-
-  try {
-    const [body, init] = await handler({
-      url: req.url,
-      method: req.method,
-      headers: req.headers,
-      body: () =>
-        new Promise((resolve) => {
-          let body = '';
-          req.on('data', (chunk) => (body += chunk));
-          req.on('end', () => resolve(body));
-        }),
-      raw: req,
-    });
-    res.writeHead(init.status, init.statusText, init.headers).end(body);
-  } catch (err) {
-    res.writeHead(500).end(err.message);
+    handler(req, res);
+  } else {
+    res.writeHead(404).end();
   }
 });
 
@@ -98,10 +82,10 @@ $ openssl req -x509 -newkey rsa:2048 -nodes -sha256 -subj '/CN=localhost' \
 ```js
 import fs from 'fs';
 import http2 from 'http2';
-import { createHandler } from 'graphql-http';
+import { createHandler } from 'graphql-http/lib/use/node';
 import { schema } from './previous-step';
 
-// Create the GraphQL over HTTP handler
+// Create the GraphQL over HTTP Node request handler
 const handler = createHandler({ schema });
 
 // Create a HTTP/2 server using the handler on `/graphql`
@@ -110,27 +94,11 @@ const server = http2.createSecureServer(
     key: fs.readFileSync('localhost-privkey.pem'),
     cert: fs.readFileSync('localhost-cert.pem'),
   },
-  async (req, res) => {
-    if (!req.url.startsWith('/graphql')) {
-      return res.writeHead(404).end();
-    }
-
-    try {
-      const [body, init] = await handler({
-        url: req.url,
-        method: req.method,
-        headers: req.headers,
-        body: () =>
-          new Promise((resolve) => {
-            let body = '';
-            req.on('data', (chunk) => (body += chunk));
-            req.on('end', () => resolve(body));
-          }),
-        raw: req,
-      });
-      res.writeHead(init.status, init.statusText, init.headers).end(body);
-    } catch (err) {
-      res.writeHead(500).end(err.message);
+  (req, res) => {
+    if (req.url.startsWith('/graphql')) {
+      handler(req, res);
+    } else {
+      res.writeHead(404).end();
     }
   },
 );
@@ -143,35 +111,15 @@ console.log('Listening to port 4000');
 
 ```js
 import express from 'express'; // yarn add express
-import { createHandler } from 'graphql-http';
+import { createHandler } from 'graphql-http/lib/use/express';
 import { schema } from './previous-step';
 
-// Create the GraphQL over HTTP handler
-const handler = createHandler({ schema });
-
-// Create an express app serving all methods on `/graphql`
+// Create a express instance serving all methods on `/graphql`
+// where the GraphQL over HTTP express request handler is.
 const app = express();
-app.use('/graphql', async (req, res) => {
-  try {
-    const [body, init] = await handler({
-      url: req.url,
-      method: req.method,
-      headers: req.headers,
-      body: () =>
-        new Promise((resolve) => {
-          let body = '';
-          req.on('data', (chunk) => (body += chunk));
-          req.on('end', () => resolve(body));
-        }),
-      raw: req,
-    });
-    res.writeHead(init.status, init.statusText, init.headers).end(body);
-  } catch (err) {
-    res.writeHead(500).end(err.message);
-  }
-});
+app.all('/graphql', createHandler({ schema }));
 
-app.listen(4000);
+app.listen({ port: 4000 });
 console.log('Listening to port 4000');
 ```
 
@@ -179,30 +127,15 @@ console.log('Listening to port 4000');
 
 ```js
 import Fastify from 'fastify'; // yarn add fastify
-import { createHandler } from 'graphql-http';
+import { createHandler } from 'graphql-http/lib/use/fastify';
 import { schema } from './previous-step';
 
-// Create the GraphQL over HTTP handler
-const handler = createHandler({ schema });
-
 // Create a fastify instance serving all methods on `/graphql`
+// where the GraphQL over HTTP fastify request handler is.
 const fastify = Fastify();
-fastify.all('/graphql', async (req, res) => {
-  try {
-    const [body, init] = await handler({
-      url: req.url,
-      method: req.method,
-      headers: req.headers,
-      body: req.body, // fastify reads the body for you
-      raw: req,
-    });
-    res.writeHead(init.status, init.statusText, init.headers).end(body);
-  } catch (err) {
-    res.writeHead(500).end(err.message);
-  }
-});
+fastify.all('/graphql', createHandler({ schema }));
 
-fastify.listen(4000);
+fastify.listen({ port: 4000 });
 console.log('Listening to port 4000');
 ```
 
