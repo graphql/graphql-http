@@ -48,7 +48,7 @@ export type RequestHeaders =
  *
  * @category Server
  */
-export interface Request<RawRequest, Context> {
+export interface Request<Raw, Context> {
   readonly method: string;
   readonly url: string;
   readonly headers: RequestHeaders;
@@ -73,7 +73,7 @@ export interface Request<RawRequest, Context> {
    * For example: `express.Request` when using Express, or maybe
    * `http.IncomingMessage` when just using Node with `http.createServer`.
    */
-  readonly raw: RawRequest;
+  readonly raw: Raw;
   /**
    * Context value about the incoming request, you're free to pass any information here.
    */
@@ -154,7 +154,10 @@ export type ExecutionContext =
   | null;
 
 /** @category Server */
-export interface HandlerOptions<RawRequest = unknown, Context = unknown> {
+export interface HandlerOptions<
+  RequestRaw = unknown,
+  RequestContext = unknown,
+> {
   /**
    * The GraphQL schema on which the operations will
    * be executed and validated against.
@@ -174,7 +177,7 @@ export interface HandlerOptions<RawRequest = unknown, Context = unknown> {
   schema?:
     | GraphQLSchema
     | ((
-        req: Request<RawRequest, Context>,
+        req: Request<RequestRaw, RequestContext>,
         args: Omit<ExecutionArgs, 'schema'>,
       ) => Promise<GraphQLSchema | Response> | GraphQLSchema | Response);
   /**
@@ -185,7 +188,7 @@ export interface HandlerOptions<RawRequest = unknown, Context = unknown> {
   context?:
     | ExecutionContext
     | ((
-        req: Request<RawRequest, Context>,
+        req: Request<RequestRaw, RequestContext>,
         args: ExecutionArgs,
       ) => Promise<ExecutionContext | Response> | ExecutionContext | Response);
   /**
@@ -237,7 +240,7 @@ export interface HandlerOptions<RawRequest = unknown, Context = unknown> {
    * further execution.
    */
   onSubscribe?: (
-    req: Request<RawRequest, Context>,
+    req: Request<RequestRaw, RequestContext>,
     params: RequestParams,
   ) =>
     | Promise<
@@ -266,7 +269,7 @@ export interface HandlerOptions<RawRequest = unknown, Context = unknown> {
    * further execution.
    */
   onOperation?: (
-    req: Request<RawRequest, Context>,
+    req: Request<RequestRaw, RequestContext>,
     args: ExecutionArgs,
     result: ExecutionResult,
   ) =>
@@ -286,8 +289,8 @@ export interface HandlerOptions<RawRequest = unknown, Context = unknown> {
  *
  * @category Server
  */
-export type Handler<RawRequest = unknown, Context = unknown> = (
-  req: Request<RawRequest, Context>,
+export type Handler<RequestRaw = unknown, RequestContext = unknown> = (
+  req: Request<RequestRaw, RequestContext>,
 ) => Promise<Response>;
 
 /**
@@ -345,9 +348,9 @@ export type Handler<RawRequest = unknown, Context = unknown> = (
  *
  * @category Server
  */
-export function createHandler<RawRequest = unknown, Context = unknown>(
-  options: HandlerOptions<RawRequest, Context>,
-): Handler<RawRequest, Context> {
+export function createHandler<RequestRaw = unknown, RequestContext = unknown>(
+  options: HandlerOptions<RequestRaw, RequestContext>,
+): Handler<RequestRaw, RequestContext> {
   const {
     schema,
     context,

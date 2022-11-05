@@ -152,14 +152,14 @@ ___
 
 ### Handler
 
-Ƭ **Handler**<`RawRequest`, `Context`\>: (`req`: [`Request`](interfaces/Request.md)<`RawRequest`, `Context`\>) => `Promise`<[`Response`](README.md#response)\>
+Ƭ **Handler**<`RequestRaw`, `RequestContext`\>: (`req`: [`Request`](interfaces/Request.md)<`RequestRaw`, `RequestContext`\>) => `Promise`<[`Response`](README.md#response)\>
 
 #### Type parameters
 
 | Name | Type |
 | :------ | :------ |
-| `RawRequest` | `unknown` |
-| `Context` | `unknown` |
+| `RequestRaw` | `unknown` |
+| `RequestContext` | `unknown` |
 
 #### Type declaration
 
@@ -176,7 +176,7 @@ considered internal errors and you should take care of them accordingly.
 
 | Name | Type |
 | :------ | :------ |
-| `req` | [`Request`](interfaces/Request.md)<`RawRequest`, `Context`\> |
+| `req` | [`Request`](interfaces/Request.md)<`RequestRaw`, `RequestContext`\> |
 
 ##### Returns
 
@@ -220,7 +220,7 @@ ___
 
 ### createHandler
 
-▸ **createHandler**<`RawRequest`, `Context`\>(`options`): [`Handler`](README.md#handler)<`RawRequest`, `Context`\>
+▸ **createHandler**<`RequestRaw`, `RequestContext`\>(`options`): [`Handler`](README.md#handler)<`RequestRaw`, `RequestContext`\>
 
 Makes a GraphQL over HTTP Protocol compliant server handler. The handler can
 be used with your favourite server library.
@@ -278,18 +278,18 @@ console.log('Listening to port 4000');
 
 | Name | Type |
 | :------ | :------ |
-| `RawRequest` | `unknown` |
-| `Context` | `unknown` |
+| `RequestRaw` | `unknown` |
+| `RequestContext` | `unknown` |
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `options` | [`HandlerOptions`](interfaces/HandlerOptions.md)<`RawRequest`, `Context`\> |
+| `options` | [`HandlerOptions`](interfaces/HandlerOptions.md)<`RequestRaw`, `RequestContext`\> |
 
 #### Returns
 
-[`Handler`](README.md#handler)<`RawRequest`, `Context`\>
+[`Handler`](README.md#handler)<`RequestRaw`, `RequestContext`\>
 
 ___
 
