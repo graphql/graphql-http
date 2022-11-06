@@ -42,7 +42,8 @@ export function createHandler<Context extends OperationContext = undefined>(
       reply
         .status(init.status)
         .headers(init.headers || {})
-        .send(body);
+        // "or undefined" because `null` will be JSON stringified
+        .send(body || undefined);
     } catch (err) {
       // The handler shouldnt throw errors.
       // If you wish to handle them differently, consider implementing your own request handler.
