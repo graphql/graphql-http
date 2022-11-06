@@ -5,6 +5,23 @@ import {
   OperationContext,
 } from '../handler';
 
+/**
+ * Create a GraphQL over HTTP Protocol compliant request handler for
+ * the Node environment.
+ *
+ * ```js
+ * import http from 'http';
+ * import { createHandler } from 'graphql-http/lib/use/node';
+ * import { schema } from './my-graphql-step';
+ *
+ * const server = http.createServer(createHandler({ schema }));
+ *
+ * server.listen(4000);
+ * console.log('Listening to port 4000');
+ * ```
+ *
+ * @category Server/node
+ */
 export function createHandler<Context extends OperationContext = undefined>(
   options: HandlerOptions<IncomingMessage, undefined, Context>,
 ): RequestListener {

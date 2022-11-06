@@ -1,19 +1,21 @@
-[graphql-http](../README.md) / ClientOptions
+[graphql-http](../README.md) / [client](../modules/client.md) / ClientOptions
 
 # Interface: ClientOptions
+
+[client](../modules/client.md).ClientOptions
 
 ## Table of contents
 
 ### Properties
 
-- [abortControllerImpl](ClientOptions.md#abortcontrollerimpl)
-- [credentials](ClientOptions.md#credentials)
-- [fetchFn](ClientOptions.md#fetchfn)
-- [headers](ClientOptions.md#headers)
-- [referrer](ClientOptions.md#referrer)
-- [referrerPolicy](ClientOptions.md#referrerpolicy)
-- [shouldRetry](ClientOptions.md#shouldretry)
-- [url](ClientOptions.md#url)
+- [abortControllerImpl](client.ClientOptions.md#abortcontrollerimpl)
+- [credentials](client.ClientOptions.md#credentials)
+- [fetchFn](client.ClientOptions.md#fetchfn)
+- [headers](client.ClientOptions.md#headers)
+- [referrer](client.ClientOptions.md#referrer)
+- [referrerPolicy](client.ClientOptions.md#referrerpolicy)
+- [shouldRetry](client.ClientOptions.md#shouldretry)
+- [url](client.ClientOptions.md#url)
 
 ## Properties
 
@@ -114,7 +116,7 @@ ___
 
 ### shouldRetry
 
-• `Optional` **shouldRetry**: (`err`: [`NetworkError`](../classes/NetworkError.md)<[`ResponseLike`](ResponseLike.md)\>, `retries`: `number`) => `Promise`<`boolean`\>
+• `Optional` **shouldRetry**: (`err`: [`NetworkError`](../classes/client.NetworkError.md)<[`ResponseLike`](client.ResponseLike.md)\>, `retries`: `number`) => `Promise`<`boolean`\>
 
 #### Type declaration
 
@@ -143,7 +145,7 @@ the `err` argument, will report it instead.
 
 | Name | Type |
 | :------ | :------ |
-| `err` | [`NetworkError`](../classes/NetworkError.md)<[`ResponseLike`](ResponseLike.md)\> |
+| `err` | [`NetworkError`](../classes/client.NetworkError.md)<[`ResponseLike`](client.ResponseLike.md)\> |
 | `retries` | `number` |
 
 ##### Returns
@@ -154,7 +156,7 @@ ___
 
 ### url
 
-• **url**: `string` \| (`request`: [`RequestParams`](RequestParams.md)) => `string` \| `Promise`<`string`\>
+• **url**: `string` \| (`request`: [`RequestParams`](common.RequestParams.md)) => `string` \| `Promise`<`string`\>
 
 URL of the GraphQL over HTTP server to connect.
 

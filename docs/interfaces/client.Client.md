@@ -1,16 +1,18 @@
-[graphql-http](../README.md) / Client
+[graphql-http](../README.md) / [client](../modules/client.md) / Client
 
 # Interface: Client
+
+[client](../modules/client.md).Client
 
 ## Table of contents
 
 ### Properties
 
-- [dispose](Client.md#dispose)
+- [dispose](client.Client.md#dispose)
 
 ### Methods
 
-- [subscribe](Client.md#subscribe)
+- [subscribe](client.Client.md#subscribe)
 
 ## Properties
 
@@ -50,8 +52,8 @@ function used for canceling active requests and cleaning up.
 
 | Name | Type |
 | :------ | :------ |
-| `request` | [`RequestParams`](RequestParams.md) |
-| `sink` | [`Sink`](Sink.md)<`ExecutionResult`<`Data`, `Extensions`\>\> |
+| `request` | [`RequestParams`](common.RequestParams.md) |
+| `sink` | [`Sink`](common.Sink.md)<`ExecutionResult`<`Data`, `Extensions`\>\> |
 
 #### Returns
 

@@ -1,6 +1,8 @@
-[graphql-http](../README.md) / ServerAuditOptions
+[graphql-http](../README.md) / [audits/server](../modules/audits_server.md) / ServerAuditOptions
 
 # Interface: ServerAuditOptions
+
+[audits/server](../modules/audits_server.md).ServerAuditOptions
 
 Options for server audits required to check GraphQL over HTTP spec conformance.
 
@@ -8,8 +10,8 @@ Options for server audits required to check GraphQL over HTTP spec conformance.
 
 ### Properties
 
-- [fetchFn](ServerAuditOptions.md#fetchfn)
-- [url](ServerAuditOptions.md#url)
+- [fetchFn](audits_server.ServerAuditOptions.md#fetchfn)
+- [url](audits_server.ServerAuditOptions.md#url)
 
 ## Properties
 

@@ -5,6 +5,24 @@ import {
   OperationContext,
 } from '../handler';
 
+/**
+ * Create a GraphQL over HTTP Protocol compliant request handler for
+ * the express framework.
+ *
+ * ```js
+ * import express from 'express'; // yarn add express
+ * import { createHandler } from 'graphql-http/lib/use/express';
+ * import { schema } from './my-graphql-schema';
+ *
+ * const app = express();
+ * app.all('/graphql', createHandler({ schema }));
+ *
+ * app.listen({ port: 4000 });
+ * console.log('Listening to port 4000');
+ * ```
+ *
+ * @category Server/express
+ */
 export function createHandler<Context extends OperationContext = undefined>(
   options: HandlerOptions<Request, undefined, Context>,
 ): Handler {

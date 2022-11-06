@@ -5,6 +5,24 @@ import {
   OperationContext,
 } from '../handler';
 
+/**
+ * Create a GraphQL over HTTP Protocol compliant request handler for
+ * the fastify framework.
+ *
+ * ```js
+ * import Fastify from 'fastify'; // yarn add fastify
+ * import { createHandler } from 'graphql-http/lib/use/express';
+ * import { schema } from './my-graphql-schema';
+ *
+ * const fastify = Fastify();
+ * fastify.all('/graphql', createHandler({ schema }));
+ *
+ * fastify.listen({ port: 4000 });
+ * console.log('Listening to port 4000');
+ * ```
+ *
+ * @category Server/fastify
+ */
 export function createHandler<Context extends OperationContext = undefined>(
   options: HandlerOptions<FastifyRequest, undefined, Context>,
 ): RouteHandler {
