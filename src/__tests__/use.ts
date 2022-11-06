@@ -47,6 +47,16 @@ describe('express', () => {
 
 describe('fastify', () => {
   const app = fastify();
+
+  // otherwise will throw error code 400 when json data is malformed
+  app.addContentTypeParser(
+    'application/json',
+    { parseAs: 'string' },
+    function (_, data, done) {
+      done(null, String(data));
+    },
+  );
+
   app.all('/', createFastifyHandler({ schema }));
 
   // call ready since we're not calling listen
