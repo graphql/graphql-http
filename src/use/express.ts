@@ -39,7 +39,7 @@ export function createHandler<Context extends OperationContext = undefined>(
             // in case express has a body parser
             return req.body;
           }
-          new Promise<string>((resolve) => {
+          return new Promise<string>((resolve) => {
             let body = '';
             req.on('data', (chunk) => (body += chunk));
             req.on('end', () => resolve(body));
