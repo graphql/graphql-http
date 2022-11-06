@@ -4517,6 +4517,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@whatwg-node/fetch@npm:^0.5.1":
+  version: 0.5.1
+  resolution: "@whatwg-node/fetch@npm:0.5.1"
+  dependencies:
+    "@peculiar/webcrypto": ^1.4.0
+    abort-controller: ^3.0.0
+    busboy: ^1.6.0
+    form-data-encoder: ^1.7.1
+    formdata-node: ^4.3.1
+    node-fetch: ^2.6.7
+    undici: ^5.12.0
+    web-streams-polyfill: ^3.2.0
+  checksum: f8d43b1bbf7ab20fc36bb9cc1d83094e1bb3d4b8256abd41045a02c3c9569d01f64309646273a4a50838929875408fc66396ada336747d81b2d3f965830bd0b6
+  languageName: node
+  linkType: hard
+
 "@whatwg-node/server@npm:0.3.0":
   version: 0.3.0
   resolution: "@whatwg-node/server@npm:0.3.0"
@@ -7451,6 +7467,7 @@ __metadata:
     "@types/jest": ^29.0.0
     "@typescript-eslint/eslint-plugin": ^5.36.1
     "@typescript-eslint/parser": ^5.36.1
+    "@whatwg-node/fetch": ^0.5.1
     babel-jest: ^29.0.1
     eslint: ^8.23.0
     eslint-config-prettier: ^8.5.0
@@ -12600,6 +12617,15 @@ __metadata:
   version: 5.10.0
   resolution: "undici@npm:5.10.0"
   checksum: 7ba2b71dccc74cd2bdf645b83e9aaef374ae04855943d0a2f42a3d0b9e5556f37cc9b5156fb5288277a2fa95fd46a56f3ae0d5cf73db3f008d75ec41104b136c
+  languageName: node
+  linkType: hard
+
+"undici@npm:^5.12.0":
+  version: 5.12.0
+  resolution: "undici@npm:5.12.0"
+  dependencies:
+    busboy: ^1.6.0
+  checksum: fbc227704943c05aa3dc1630695e10309c17d0a535678594d136db107c50593248e9ace70e1ab77496a6c837bf14aa2ab3c501a7a6c45fb6277dbf0846e15ffe
   languageName: node
   linkType: hard
 
