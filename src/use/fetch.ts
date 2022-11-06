@@ -39,6 +39,8 @@ export interface FetchAPI {
  * console.log('Listening to port 4000');
  * ```
  *
+ * @param fetchApi - Custom fetch API engine, will use from global scope if left undefined.
+ *
  * @category Server/fetch
  */
 export function createHandler<Context extends OperationContext = undefined>(

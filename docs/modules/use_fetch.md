@@ -49,10 +49,10 @@ console.log('Listening to port 4000');
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `options` | [`HandlerOptions`](../interfaces/handler.HandlerOptions.md)<`Request`, [`FetchAPI`](../interfaces/use_fetch.FetchAPI.md), `Context`\> |
-| `fetchApi` | `Partial`<[`FetchAPI`](../interfaces/use_fetch.FetchAPI.md)\> |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `options` | [`HandlerOptions`](../interfaces/handler.HandlerOptions.md)<`Request`, [`FetchAPI`](../interfaces/use_fetch.FetchAPI.md), `Context`\> | - |
+| `fetchApi` | `Partial`<[`FetchAPI`](../interfaces/use_fetch.FetchAPI.md)\> | Custom fetch API engine, will use from global scope if left undefined. |
 
 #### Returns
 
