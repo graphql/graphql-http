@@ -152,6 +152,7 @@ const handler = createHandler({ schema });
 // Start serving on `/graphql` using the handler
 await serve(
   (req: Request) => {
+    const [path, _search] = req.url.split('?');
     if (path.endsWith('/graphql')) {
       return handler(req);
     } else {
@@ -177,6 +178,7 @@ const handler = createHandler({ schema });
 export default {
   port: 4000, // Listening to port 4000
   fetch(req) {
+    const [path, _search] = req.url.split('?');
     if (path.endsWith('/graphql')) {
       return handler(req);
     } else {
