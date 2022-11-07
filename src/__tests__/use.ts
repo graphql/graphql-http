@@ -77,11 +77,7 @@ describe('fastify', () => {
 
 describe('fetch', () => {
   const [url, dispose] = startDisposableServer(
-    http.createServer(
-      createServerAdapter({
-        handleRequest: createFetchHandler({ schema }),
-      }),
-    ),
+    http.createServer(createServerAdapter(createFetchHandler({ schema }))),
   );
   afterAll(dispose);
 
