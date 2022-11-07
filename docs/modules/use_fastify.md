@@ -39,7 +39,7 @@ console.log('Listening to port 4000');
 
 | Name | Type |
 | :------ | :------ |
-| `options` | [`HandlerOptions`](../interfaces/handler.HandlerOptions.md)<`FastifyRequest`<`RouteGenericInterface`, `Server`, `IncomingMessage`, `FastifySchema`, `FastifyTypeProviderDefault`, `unknown`, `FastifyBaseLogger`, `ResolveFastifyRequestType`<`FastifyTypeProviderDefault`, `FastifySchema`, `RouteGenericInterface`\>\>, `undefined`, `Context`\> |
+| `options` | [`HandlerOptions`](../interfaces/handler.HandlerOptions.md)<`FastifyRequest`<`RouteGenericInterface`, `RawServerDefault`, `IncomingMessage`, `FastifySchema`, `FastifyTypeProviderDefault`, `unknown`, `FastifyBaseLogger`, `ResolveFastifyRequestType`<`FastifyTypeProviderDefault`, `FastifySchema`, `RouteGenericInterface`\>\>, `undefined`, `Context`\> |
 
 #### Returns
 

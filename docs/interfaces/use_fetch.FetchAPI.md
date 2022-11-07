@@ -18,16 +18,60 @@ The necessary API from the fetch environment for the handler.
 
 ### ReadableStream
 
-• **ReadableStream**: `Object`
+• **ReadableStream**: <R\>(`underlyingSource?`: `UnderlyingSource`<`R`\>, `strategy?`: `QueuingStrategy`<`R`\>) => `ReadableStream`<`R`\>
+
+#### Type declaration
+
+• **new FetchAPI**<`R`\>(`underlyingSource?`, `strategy?`): `ReadableStream`<`R`\>
+
+##### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `R` | `any` |
+
+##### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `underlyingSource?` | `UnderlyingSource`<`R`\> |
+| `strategy?` | `QueuingStrategy`<`R`\> |
+
+##### Returns
+
+`ReadableStream`<`R`\>
 
 ___
 
 ### Response
 
-• **Response**: `Object`
+• **Response**: (`body?`: ``null`` \| `BodyInit`, `init?`: `ResponseInit`) => `Response`
+
+#### Type declaration
+
+• **new FetchAPI**(`body?`, `init?`): `Response`
+
+##### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `body?` | ``null`` \| `BodyInit` |
+| `init?` | `ResponseInit` |
+
+##### Returns
+
+`Response`
 
 ___
 
 ### TextEncoder
 
-• **TextEncoder**: `Object`
+• **TextEncoder**: () => `TextEncoder`
+
+#### Type declaration
+
+• **new FetchAPI**(): `TextEncoder`
+
+##### Returns
+
+`TextEncoder`
