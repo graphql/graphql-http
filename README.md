@@ -9,6 +9,8 @@
 
 <i>Need subscriptions? Try <b>[graphql-ws](https://github.com/enisdenjo/graphql-ws)</b> or <b>[graphql-sse](https://github.com/enisdenjo/graphql-sse)</b> instead!</i>
 
+<i>Want a full-featured server? Use <b>[graphql-yoga](https://www.the-guild.dev/graphql/yoga-server)</b> instead!</i>
+
   <br />
 </div>
 
@@ -716,6 +718,14 @@ for (const audit of serverAudits({
 ```
 
 </details>
+
+## Only [GraphQL over HTTP](https://graphql.github.io/graphql-over-http/)
+
+This is the official [GraphQL over HTTP spec](https://graphql.github.io/graphql-over-http/) reference implementation and as such follows the specification strictly without any additional features (like file uploads, @stream/@defer directives and subscriptions).
+
+Having said this, graphql-http is mostly aimed for library authors and simple server setups, where the requirements are exact to what the spec offers.
+
+If you want a feature-full server with bleeding edge technologies, you're recommended to use [GraphQL Yoga](https://www.the-guild.dev/graphql/yoga-server) instead.
 
 ## [Documentation](docs/)
 
