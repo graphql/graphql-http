@@ -19,10 +19,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Set up node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: 'yarn'
+          cache: yarn
       - name: Install
         run: yarn install --immutable
       - name: Build
@@ -46,10 +46,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Set up node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: 'yarn'
+          cache: yarn
       - name: Install
         run: yarn install --immutable
       - name: Build
@@ -73,10 +73,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Set up node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: 'yarn'
+          cache: yarn
       - name: Install
         run: yarn install --immutable
       - name: Build
@@ -100,10 +100,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Set up node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: 'yarn'
+          cache: yarn
       - name: Install
         run: yarn install --immutable
       - name: Build
@@ -127,10 +127,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Set up node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: 'yarn'
+          cache: yarn
       - name: Install
         run: yarn install --immutable
       - name: Build
@@ -154,10 +154,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Set up node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: 'yarn'
+          cache: yarn
       - name: Install
         run: yarn install --immutable
       - name: Build
@@ -181,10 +181,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Set up node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: 'yarn'
+          cache: yarn
       - name: Install
         run: yarn install --immutable
       - name: Build
