@@ -16,10 +16,10 @@
   ],
   "author": "Denis Badurina <badurinadenis@gmail.com>",
   "license": "MIT",
-  "homepage": "https://github.com/enisdenjo/graphql-http#readme",
+  "homepage": "https://github.com/graphql/graphql-http#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/enisdenjo/graphql-http.git"
+    "url": "https://github.com/graphql/graphql-http.git"
   },
   "engines": {
     "node": ">=12"
