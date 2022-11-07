@@ -1,3 +1,17 @@
+# [1.7.0](https://github.com/graphql/graphql-http/compare/v1.6.1...v1.7.0) (2022-11-07)
+
+
+### Bug Fixes
+
+* **audits/server:** Server may accept other content-type encodings ([42c26f7](https://github.com/graphql/graphql-http/commit/42c26f75a8cc4d1c6141be9f8dbfb796803d1351))
+
+
+### Features
+
+* **handler:** Headers can be native to fetch ([d459991](https://github.com/graphql/graphql-http/commit/d459991e546186661c39d6b52382b4419d5e8da2))
+* **handler:** Supply context to schema option and improve typings ([01c45d8](https://github.com/graphql/graphql-http/commit/01c45d8013d9c0fa8e43009dd816ae5e4c47f5b5))
+* **use:** Built-in handlers for some environments and frameworks ([#13](https://github.com/graphql/graphql-http/issues/13)) ([750e600](https://github.com/graphql/graphql-http/commit/750e600d5061ca8b1c3734e0192c055827aa3da4))
+
 ## [1.6.1](https://github.com/enisdenjo/graphql-http/compare/v1.6.0...v1.6.1) (2022-09-12)
 
 

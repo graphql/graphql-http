@@ -1,6 +1,6 @@
 {
   "name": "graphql-http",
-  "version": "1.6.1",
+  "version": "1.7.0",
   "description": "Simple, pluggable, zero-dependency, GraphQL over HTTP Protocol compliant server and client",
   "keywords": [
     "graphql",
