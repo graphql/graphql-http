@@ -9,7 +9,7 @@
 
 <i>Need subscriptions? Try <b>[graphql-ws](https://github.com/enisdenjo/graphql-ws)</b> or <b>[graphql-sse](https://github.com/enisdenjo/graphql-sse)</b> instead!</i>
 
-<i>Want a full-featured server? Use <b>[graphql-yoga](https://www.the-guild.dev/graphql/yoga-server)</b> instead!</i>
+<i>Want a full-featured server? See the <b>[servers section](#servers)</b></i>!
 
   <br />
 </div>
@@ -725,7 +725,16 @@ This is the official [GraphQL over HTTP spec](https://graphql.github.io/graphql-
 
 Having said this, graphql-http is mostly aimed for library authors and simple server setups, where the requirements are exact to what the aforementioned spec offers.
 
-If you want a feature-full server with bleeding edge technologies, you're recommended to use [GraphQL Yoga](https://www.the-guild.dev/graphql/yoga-server) instead.
+## [Servers](/implementations)
+
+If you want a feature-full server with bleeding edge technologies, you're recommended to use one of the following.
+
+| Name                                                           | Audit                                                              |
+| -------------------------------------------------------------- | ------------------------------------------------------------------ |
+| [graphql-yoga](https://www.the-guild.dev/graphql/yoga-server)  | [✅ Fully compliant](/implementations/graphql-yoga/README.md)      |
+| [apollo-server](https://www.the-guild.dev/graphql/yoga-server) | [⚠️ Partially compliant](/implementations/apollo-server/README.md) |
+| [mercurius](https://mercurius.dev)                             | [⚠️ Partially compliant](/implementations/mercurius/README.md)     |
+| [graphql-helix](https://www.graphql-helix.com/)                | [⚠️ Partially compliant](/implementations/graphql-helix/README.md) |
 
 ## [Documentation](docs/)
 
