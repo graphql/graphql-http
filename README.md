@@ -526,6 +526,28 @@ const client = createClient({
 
 </details>
 
+<details id="migrating-express-grpahql">
+<summary><a href="#migrating-express-grpahql">🔗</a> Server handler migration from <a href="https://github.com/graphql/express-graphql">express-graphql</a></summary>
+
+```diff
+import express from 'express';
+import { schema } from './my-graphql-schema';
+
+-import { graphqlHTTP } from 'express-graphql';
++import { createHandler } from 'graphql-http/lib/use/express';
+
+const app = express();
+
+app.use(
+  '/graphql',
+-  graphqlHTTP({ schema }),
++  createHandler({ schema }),
+);
+
+app.listen(4000);
+```
+
+</details>
 <details id="auth">
 <summary><a href="#auth">🔗</a> Server handler usage with authentication</summary>
 
