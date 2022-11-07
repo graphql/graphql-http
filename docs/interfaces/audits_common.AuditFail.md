@@ -1,6 +1,8 @@
-[graphql-http](../README.md) / AuditFail
+[graphql-http](../README.md) / [audits/common](../modules/audits_common.md) / AuditFail
 
 # Interface: AuditFail
+
+[audits/common](../modules/audits_common.md).AuditFail
 
 Indicates that the audit failed.
 
@@ -13,9 +15,9 @@ is therefore not compliant.
 
 ### Properties
 
-- [name](AuditFail.md#name)
-- [reason](AuditFail.md#reason)
-- [status](AuditFail.md#status)
+- [name](audits_common.AuditFail.md#name)
+- [reason](audits_common.AuditFail.md#reason)
+- [status](audits_common.AuditFail.md#status)
 
 ## Properties
 

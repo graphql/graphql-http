@@ -1,6 +1,8 @@
-[graphql-http](../README.md) / ResponseLike
+[graphql-http](../README.md) / [client](../modules/client.md) / ResponseLike
 
 # Interface: ResponseLike
+
+[client](../modules/client.md).ResponseLike
 
 Concrete interface a response needs to implement for the client.
 
@@ -8,9 +10,9 @@ Concrete interface a response needs to implement for the client.
 
 ### Properties
 
-- [ok](ResponseLike.md#ok)
-- [status](ResponseLike.md#status)
-- [statusText](ResponseLike.md#statustext)
+- [ok](client.ResponseLike.md#ok)
+- [status](client.ResponseLike.md#status)
+- [statusText](client.ResponseLike.md#statustext)
 
 ## Properties
 

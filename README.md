@@ -51,34 +51,18 @@ const schema = new GraphQLSchema({
 
 ```js
 import http from 'http';
-import { createHandler } from 'graphql-http';
+import { createHandler } from 'graphql-http/lib/use/node';
 import { schema } from './previous-step';
 
-// Create the GraphQL over HTTP handler
+// Create the GraphQL over HTTP Node request handler
 const handler = createHandler({ schema });
 
-// Create a HTTP server using the handler on `/graphql`
-const server = http.createServer(async (req, res) => {
-  if (!req.url.startsWith('/graphql')) {
-    return res.writeHead(404).end();
-  }
-
-  try {
-    const [body, init] = await handler({
-      url: req.url,
-      method: req.method,
-      headers: req.headers,
-      body: () =>
-        new Promise((resolve) => {
-          let body = '';
-          req.on('data', (chunk) => (body += chunk));
-          req.on('end', () => resolve(body));
-        }),
-      raw: req,
-    });
-    res.writeHead(init.status, init.statusText, init.headers).end(body);
-  } catch (err) {
-    res.writeHead(500).end(err.message);
+// Create a HTTP server using the listner on `/graphql`
+const server = http.createServer((req, res) => {
+  if (req.url.startsWith('/graphql')) {
+    handler(req, res);
+  } else {
+    res.writeHead(404).end();
   }
 });
 
@@ -98,10 +82,10 @@ $ openssl req -x509 -newkey rsa:2048 -nodes -sha256 -subj '/CN=localhost' \
 ```js
 import fs from 'fs';
 import http2 from 'http2';
-import { createHandler } from 'graphql-http';
+import { createHandler } from 'graphql-http/lib/use/node';
 import { schema } from './previous-step';
 
-// Create the GraphQL over HTTP handler
+// Create the GraphQL over HTTP Node request handler
 const handler = createHandler({ schema });
 
 // Create a HTTP/2 server using the handler on `/graphql`
@@ -110,27 +94,11 @@ const server = http2.createSecureServer(
     key: fs.readFileSync('localhost-privkey.pem'),
     cert: fs.readFileSync('localhost-cert.pem'),
   },
-  async (req, res) => {
-    if (!req.url.startsWith('/graphql')) {
-      return res.writeHead(404).end();
-    }
-
-    try {
-      const [body, init] = await handler({
-        url: req.url,
-        method: req.method,
-        headers: req.headers,
-        body: () =>
-          new Promise((resolve) => {
-            let body = '';
-            req.on('data', (chunk) => (body += chunk));
-            req.on('end', () => resolve(body));
-          }),
-        raw: req,
-      });
-      res.writeHead(init.status, init.statusText, init.headers).end(body);
-    } catch (err) {
-      res.writeHead(500).end(err.message);
+  (req, res) => {
+    if (req.url.startsWith('/graphql')) {
+      handler(req, res);
+    } else {
+      res.writeHead(404).end();
     }
   },
 );
@@ -143,35 +111,15 @@ console.log('Listening to port 4000');
 
 ```js
 import express from 'express'; // yarn add express
-import { createHandler } from 'graphql-http';
+import { createHandler } from 'graphql-http/lib/use/express';
 import { schema } from './previous-step';
 
-// Create the GraphQL over HTTP handler
-const handler = createHandler({ schema });
-
-// Create an express app serving all methods on `/graphql`
+// Create a express instance serving all methods on `/graphql`
+// where the GraphQL over HTTP express request handler is
 const app = express();
-app.use('/graphql', async (req, res) => {
-  try {
-    const [body, init] = await handler({
-      url: req.url,
-      method: req.method,
-      headers: req.headers,
-      body: () =>
-        new Promise((resolve) => {
-          let body = '';
-          req.on('data', (chunk) => (body += chunk));
-          req.on('end', () => resolve(body));
-        }),
-      raw: req,
-    });
-    res.writeHead(init.status, init.statusText, init.headers).end(body);
-  } catch (err) {
-    res.writeHead(500).end(err.message);
-  }
-});
+app.all('/graphql', createHandler({ schema }));
 
-app.listen(4000);
+app.listen({ port: 4000 });
 console.log('Listening to port 4000');
 ```
 
@@ -179,30 +127,15 @@ console.log('Listening to port 4000');
 
 ```js
 import Fastify from 'fastify'; // yarn add fastify
-import { createHandler } from 'graphql-http';
+import { createHandler } from 'graphql-http/lib/use/fastify';
 import { schema } from './previous-step';
 
-// Create the GraphQL over HTTP handler
-const handler = createHandler({ schema });
-
 // Create a fastify instance serving all methods on `/graphql`
+// where the GraphQL over HTTP fastify request handler is
 const fastify = Fastify();
-fastify.all('/graphql', async (req, res) => {
-  try {
-    const [body, init] = await handler({
-      url: req.url,
-      method: req.method,
-      headers: req.headers,
-      body: req.body, // fastify reads the body for you
-      raw: req,
-    });
-    res.writeHead(init.status, init.statusText, init.headers).end(body);
-  } catch (err) {
-    res.writeHead(500).end(err.message);
-  }
-});
+fastify.all('/graphql', createHandler({ schema }));
 
-fastify.listen(4000);
+fastify.listen({ port: 4000 });
 console.log('Listening to port 4000');
 ```
 
@@ -210,35 +143,49 @@ console.log('Listening to port 4000');
 
 ```ts
 import { serve } from 'https://deno.land/std@0.151.0/http/server.ts';
-import { createHandler } from 'https://esm.sh/graphql-http';
+import { createHandler } from 'https://esm.sh/graphql-http/lib/use/fetch';
 import { schema } from './previous-step';
 
-// Create the GraphQL over HTTP handler
-const handler = createHandler<Request>({ schema });
+// Create the GraphQL over HTTP native fetch handler
+const handler = createHandler({ schema });
 
 // Start serving on `/graphql` using the handler
 await serve(
-  async (req: Request) => {
+  (req: Request) => {
     const [path, _search] = req.url.split('?');
-    if (!path.endsWith('/graphql')) {
-      return new Response(null, { status: 404, statusText: 'Not Found' });
+    if (path.endsWith('/graphql')) {
+      return handler(req);
+    } else {
+      return new Response(null, { status: 404 });
     }
-
-    const [body, init] = await handler({
-      url: req.url,
-      method: req.method,
-      headers: req.headers,
-      body: () => req.text(),
-      raw: req,
-    });
-    return new Response(body, init);
   },
   {
-    port: 4000,
+    port: 4000, // Listening to port 4000
   },
 );
+```
 
-// Listening to port 4000
+##### With [`Bun`](https://bun.sh/)
+
+```js
+import { createHandler } from 'graphql-http/lib/use/fetch'; // bun install graphql-http
+import { schema } from './previous-step';
+
+// Create the GraphQL over HTTP native fetch handler
+const handler = createHandler({ schema });
+
+// Start serving on `/graphql` using the handler
+export default {
+  port: 4000, // Listening to port 4000
+  fetch(req) {
+    const [path, _search] = req.url.split('?');
+    if (path.endsWith('/graphql')) {
+      return handler(req);
+    } else {
+      return new Response(null, { status: 404 });
+    }
+  },
+};
 ```
 
 #### Use the client
@@ -553,10 +500,25 @@ const client = createClient({
 <summary><a href="#deno-client">🔗</a> Client usage in Deno</summary>
 
 ```js
-import { createClient } from 'graphql-http';
+import { createClient } from 'https://esm.sh/graphql-http';
 
 const client = createClient({
   url: 'http://deno.earth:4000/graphql',
+});
+
+// consider other recipes for usage inspiration
+```
+
+</details>
+
+<details id="bun-client">
+<summary><a href="#bun-client">🔗</a> Client usage in Bun</summary>
+
+```js
+import { createClient } from 'graphql-http'; // bun install graphql-http
+
+const client = createClient({
+  url: 'http://bun.bread:4000/graphql',
 });
 
 // consider other recipes for usage inspiration

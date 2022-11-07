@@ -1,6 +1,8 @@
-[graphql-http](../README.md) / HandlerOptions
+[graphql-http](../README.md) / [handler](../modules/handler.md) / HandlerOptions
 
 # Interface: HandlerOptions<RequestRaw, RequestContext, Context\>
+
+[handler](../modules/handler.md).HandlerOptions
 
 ## Type parameters
 
@@ -8,26 +10,26 @@
 | :------ | :------ |
 | `RequestRaw` | `unknown` |
 | `RequestContext` | `unknown` |
-| `Context` | extends [`OperationContext`](../README.md#operationcontext) = `undefined` |
+| `Context` | extends [`OperationContext`](../modules/handler.md#operationcontext) = `undefined` |
 
 ## Table of contents
 
 ### Properties
 
-- [context](HandlerOptions.md#context)
-- [execute](HandlerOptions.md#execute)
-- [getOperationAST](HandlerOptions.md#getoperationast)
-- [onOperation](HandlerOptions.md#onoperation)
-- [onSubscribe](HandlerOptions.md#onsubscribe)
-- [parse](HandlerOptions.md#parse)
-- [schema](HandlerOptions.md#schema)
-- [validate](HandlerOptions.md#validate)
+- [context](handler.HandlerOptions.md#context)
+- [execute](handler.HandlerOptions.md#execute)
+- [getOperationAST](handler.HandlerOptions.md#getoperationast)
+- [onOperation](handler.HandlerOptions.md#onoperation)
+- [onSubscribe](handler.HandlerOptions.md#onsubscribe)
+- [parse](handler.HandlerOptions.md#parse)
+- [schema](handler.HandlerOptions.md#schema)
+- [validate](handler.HandlerOptions.md#validate)
 
 ## Properties
 
 ### context
 
-• `Optional` **context**: `Context` \| (`req`: [`Request`](Request.md)<`RequestRaw`, `RequestContext`\>, `params`: [`RequestParams`](RequestParams.md)) => [`Response`](../README.md#response) \| `Context` \| `Promise`<[`Response`](../README.md#response) \| `Context`\>
+• `Optional` **context**: `Context` \| (`req`: [`Request`](handler.Request.md)<`RequestRaw`, `RequestContext`\>, `params`: [`RequestParams`](common.RequestParams.md)) => [`Response`](../modules/handler.md#response) \| `Context` \| `Promise`<[`Response`](../modules/handler.md#response) \| `Context`\>
 
 A value which is provided to every resolver and holds
 important contextual information like the currently
@@ -91,11 +93,11 @@ ___
 
 ### onOperation
 
-• `Optional` **onOperation**: (`req`: [`Request`](Request.md)<`RequestRaw`, `RequestContext`\>, `args`: [`OperationArgs`](../README.md#operationargs)<`Context`\>, `result`: `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\>) => `void` \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> \| [`Response`](../README.md#response) \| `Promise`<`void` \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> \| [`Response`](../README.md#response)\>
+• `Optional` **onOperation**: (`req`: [`Request`](handler.Request.md)<`RequestRaw`, `RequestContext`\>, `args`: [`OperationArgs`](../modules/handler.md#operationargs)<`Context`\>, `result`: `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\>) => `void` \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> \| [`Response`](../modules/handler.md#response) \| `Promise`<`void` \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> \| [`Response`](../modules/handler.md#response)\>
 
 #### Type declaration
 
-▸ (`req`, `args`, `result`): `void` \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> \| [`Response`](../README.md#response) \| `Promise`<`void` \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> \| [`Response`](../README.md#response)\>
+▸ (`req`, `args`, `result`): `void` \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> \| [`Response`](../modules/handler.md#response) \| `Promise`<`void` \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> \| [`Response`](../modules/handler.md#response)\>
 
 Executed after the operation call resolves.
 
@@ -113,23 +115,23 @@ further execution.
 
 | Name | Type |
 | :------ | :------ |
-| `req` | [`Request`](Request.md)<`RequestRaw`, `RequestContext`\> |
-| `args` | [`OperationArgs`](../README.md#operationargs)<`Context`\> |
+| `req` | [`Request`](handler.Request.md)<`RequestRaw`, `RequestContext`\> |
+| `args` | [`OperationArgs`](../modules/handler.md#operationargs)<`Context`\> |
 | `result` | `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> |
 
 ##### Returns
 
-`void` \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> \| [`Response`](../README.md#response) \| `Promise`<`void` \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> \| [`Response`](../README.md#response)\>
+`void` \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> \| [`Response`](../modules/handler.md#response) \| `Promise`<`void` \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> \| [`Response`](../modules/handler.md#response)\>
 
 ___
 
 ### onSubscribe
 
-• `Optional` **onSubscribe**: (`req`: [`Request`](Request.md)<`RequestRaw`, `RequestContext`\>, `params`: [`RequestParams`](RequestParams.md)) => `void` \| readonly `GraphQLError`[] \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> \| [`Response`](../README.md#response) \| [`OperationArgs`](../README.md#operationargs)<`Context`\> \| `Promise`<`void` \| readonly `GraphQLError`[] \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> \| [`Response`](../README.md#response) \| [`OperationArgs`](../README.md#operationargs)<`Context`\>\>
+• `Optional` **onSubscribe**: (`req`: [`Request`](handler.Request.md)<`RequestRaw`, `RequestContext`\>, `params`: [`RequestParams`](common.RequestParams.md)) => `void` \| readonly `GraphQLError`[] \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> \| [`Response`](../modules/handler.md#response) \| [`OperationArgs`](../modules/handler.md#operationargs)<`Context`\> \| `Promise`<`void` \| readonly `GraphQLError`[] \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> \| [`Response`](../modules/handler.md#response) \| [`OperationArgs`](../modules/handler.md#operationargs)<`Context`\>\>
 
 #### Type declaration
 
-▸ (`req`, `params`): `void` \| readonly `GraphQLError`[] \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> \| [`Response`](../README.md#response) \| [`OperationArgs`](../README.md#operationargs)<`Context`\> \| `Promise`<`void` \| readonly `GraphQLError`[] \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> \| [`Response`](../README.md#response) \| [`OperationArgs`](../README.md#operationargs)<`Context`\>\>
+▸ (`req`, `params`): `void` \| readonly `GraphQLError`[] \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> \| [`Response`](../modules/handler.md#response) \| [`OperationArgs`](../modules/handler.md#operationargs)<`Context`\> \| `Promise`<`void` \| readonly `GraphQLError`[] \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> \| [`Response`](../modules/handler.md#response) \| [`OperationArgs`](../modules/handler.md#operationargs)<`Context`\>\>
 
 The subscribe callback executed right after processing the request
 before proceeding with the GraphQL operation execution.
@@ -162,12 +164,12 @@ further execution.
 
 | Name | Type |
 | :------ | :------ |
-| `req` | [`Request`](Request.md)<`RequestRaw`, `RequestContext`\> |
-| `params` | [`RequestParams`](RequestParams.md) |
+| `req` | [`Request`](handler.Request.md)<`RequestRaw`, `RequestContext`\> |
+| `params` | [`RequestParams`](common.RequestParams.md) |
 
 ##### Returns
 
-`void` \| readonly `GraphQLError`[] \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> \| [`Response`](../README.md#response) \| [`OperationArgs`](../README.md#operationargs)<`Context`\> \| `Promise`<`void` \| readonly `GraphQLError`[] \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> \| [`Response`](../README.md#response) \| [`OperationArgs`](../README.md#operationargs)<`Context`\>\>
+`void` \| readonly `GraphQLError`[] \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> \| [`Response`](../modules/handler.md#response) \| [`OperationArgs`](../modules/handler.md#operationargs)<`Context`\> \| `Promise`<`void` \| readonly `GraphQLError`[] \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> \| [`Response`](../modules/handler.md#response) \| [`OperationArgs`](../modules/handler.md#operationargs)<`Context`\>\>
 
 ___
 
@@ -197,7 +199,7 @@ ___
 
 ### schema
 
-• `Optional` **schema**: `GraphQLSchema` \| (`req`: [`Request`](Request.md)<`RequestRaw`, `RequestContext`\>, `args`: `Omit`<[`OperationArgs`](../README.md#operationargs)<`Context`\>, ``"schema"``\>) => [`Response`](../README.md#response) \| `GraphQLSchema` \| `Promise`<[`Response`](../README.md#response) \| `GraphQLSchema`\>
+• `Optional` **schema**: `GraphQLSchema` \| (`req`: [`Request`](handler.Request.md)<`RequestRaw`, `RequestContext`\>, `args`: `Omit`<[`OperationArgs`](../modules/handler.md#operationargs)<`Context`\>, ``"schema"``\>) => [`Response`](../modules/handler.md#response) \| `GraphQLSchema` \| `Promise`<[`Response`](../modules/handler.md#response) \| `GraphQLSchema`\>
 
 The GraphQL schema on which the operations will
 be executed and validated against.

@@ -93,7 +93,9 @@ export function startDisposableServer(
   };
   leftovers.push(dispose);
 
-  server.listen(0);
+  if (!server.listening) {
+    server.listen(0);
+  }
 
   const { port } = server.address() as net.AddressInfo;
   const url = `http://localhost:${port}`;

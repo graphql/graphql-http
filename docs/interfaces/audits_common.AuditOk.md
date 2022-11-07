@@ -1,6 +1,8 @@
-[graphql-http](../README.md) / AuditOk
+[graphql-http](../README.md) / [audits/common](../modules/audits_common.md) / AuditOk
 
 # Interface: AuditOk
+
+[audits/common](../modules/audits_common.md).AuditOk
 
 Indicates that the audit was successful.
 
@@ -8,8 +10,8 @@ Indicates that the audit was successful.
 
 ### Properties
 
-- [name](AuditOk.md#name)
-- [status](AuditOk.md#status)
+- [name](audits_common.AuditOk.md#name)
+- [status](audits_common.AuditOk.md#status)
 
 ## Properties
 
