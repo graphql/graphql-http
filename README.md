@@ -723,7 +723,7 @@ for (const audit of serverAudits({
 
 This is the official [GraphQL over HTTP spec](https://graphql.github.io/graphql-over-http/) reference implementation and as such follows the specification strictly without any additional features (like file uploads, @stream/@defer directives and subscriptions).
 
-Having said this, graphql-http is mostly aimed for library authors and simple server setups, where the requirements are exact to what the spec offers.
+Having said this, graphql-http is mostly aimed for library authors and simple server setups, where the requirements are exact to what the aforementioned spec offers.
 
 If you want a feature-full server with bleeding edge technologies, you're recommended to use [GraphQL Yoga](https://www.the-guild.dev/graphql/yoga-server) instead.
 
