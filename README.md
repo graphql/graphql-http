@@ -732,9 +732,9 @@ If you want a feature-full server with bleeding edge technologies, you're recomm
 | Name                                                           | Audit                                                              |
 | -------------------------------------------------------------- | ------------------------------------------------------------------ |
 | [graphql-yoga](https://www.the-guild.dev/graphql/yoga-server)  | [✅ Fully compliant](/implementations/graphql-yoga/README.md)      |
-| [apollo-server](https://www.the-guild.dev/graphql/yoga-server) | [⚠️ Partially compliant](/implementations/apollo-server/README.md) |
-| [mercurius](https://mercurius.dev)                             | [⚠️ Partially compliant](/implementations/mercurius/README.md)     |
-| [graphql-helix](https://www.graphql-helix.com/)                | [⚠️ Partially compliant](/implementations/graphql-helix/README.md) |
+| [apollo-server](https://www.the-guild.dev/graphql/yoga-server) | [✅ Partially compliant](/implementations/apollo-server/README.md) |
+| [mercurius](https://mercurius.dev)                             | [✅ Partially compliant](/implementations/mercurius/README.md)     |
+| [graphql-helix](https://www.graphql-helix.com/)                | [✅ Partially compliant](/implementations/graphql-helix/README.md) |
 
 ## [Documentation](docs/)
 
