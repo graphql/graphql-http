@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "apollo-server",
+  "name": "apollo-server_v3",
   "packageManager": "yarn@3.2.3",
   "main": "index.mjs",
   "scripts": {

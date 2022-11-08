@@ -82,7 +82,7 @@
     "release": "semantic-release"
   },
   "workspaces": [
-    "implementations/*"
+    "implementations/**/*"
   ],
   "peerDependencies": {
     "graphql": ">=0.11 <=16"

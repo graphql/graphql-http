@@ -1,0 +1,13 @@
+{
+  "private": true,
+  "name": "apollo-server_v4",
+  "packageManager": "yarn@3.2.3",
+  "main": "index.mjs",
+  "scripts": {
+    "start": "node ."
+  },
+  "dependencies": {
+    "@apollo/server": "^4.1.1",
+    "graphql": "^16.6.0"
+  }
+}

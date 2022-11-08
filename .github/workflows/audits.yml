@@ -37,7 +37,7 @@ jobs:
           name: express-graphql-report
           path: README.md
 
-  apollo-server:
+  apollo-server_v4:
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, '[skip ci]')"
     env:
@@ -55,13 +55,40 @@ jobs:
       - name: Build
         run: yarn build:esm
       - name: Start
-        run: yarn workspace apollo-server start &
+        run: yarn workspace apollo-server_v4 start &
       - name: Audit
         run: node scripts/audit-implementation.mjs README.md
       - name: Upload report
         uses: actions/upload-artifact@v3
         with:
-          name: apollo-server-report
+          name: apollo-server_v4-report
+          path: README.md
+
+  apollo-server_v3:
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    env:
+      PORT: 4000
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Set up node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: yarn
+      - name: Install
+        run: yarn install --immutable
+      - name: Build
+        run: yarn build:esm
+      - name: Start
+        run: yarn workspace apollo-server_v3 start &
+      - name: Audit
+        run: node scripts/audit-implementation.mjs README.md
+      - name: Upload report
+        uses: actions/upload-artifact@v3
+        with:
+          name: apollo-server_v3-report
           path: README.md
 
   mercurius:
@@ -204,7 +231,8 @@ jobs:
     needs:
       [
         express-graphql,
-        apollo-server,
+        apollo-server_v4,
+        apollo-server_v3,
         mercurius,
         graphql-yoga,
         graphql-helix,
@@ -221,11 +249,16 @@ jobs:
         with:
           name: express-graphql-report
           path: implementations/express-graphql
-      - name: Download apollo-server report
+      - name: Download apollo-server_v3 report
         uses: actions/download-artifact@v3
         with:
-          name: apollo-server-report
-          path: implementations/apollo-server
+          name: apollo-server_v3-report
+          path: implementations/apollo-server_v3
+      - name: Download apollo-server_v4 report
+        uses: actions/download-artifact@v3
+        with:
+          name: 'apollo-server_v4-report'
+          path: implementations/apollo-server_v4
       - name: Download mercurius report
         uses: actions/download-artifact@v3
         with:
