@@ -226,6 +226,9 @@ jobs:
         with:
           name: hotchocolate-report
           path: README.md
+      - name: Check running Docker containers
+        if: fail()
+        run: docker ps -a
 
   report:
     name: Report
