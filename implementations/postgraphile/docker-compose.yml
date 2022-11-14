@@ -2,9 +2,24 @@ services:
   database:
     image: postgres:15
     environment:
-      - POSTGRES_DB=db
-      # - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_HOST_AUTH_METHOD=trust
     healthcheck:
-      test: psql --set=ON_ERROR_STOP=1 --dbname=$$POSTGRES_DB --command='select 1 from public.user;' > /dev/null 2>&1 || exit 1
+      test: pg_isready -U postgres || exit 1
       interval: 3s
       timeout: 1s
+  server:
+    build: .
+    depends_on:
+      database:
+        condition: service_healthy
+    environment:
+      - PGHOST=database
+      - PGUSER=postgres
+      - PORT=${PORT}
+    ports:
+      - ${PORT}:${PORT}
+    entrypoint: postgraphile --host 0.0.0.0 --port ${PORT}
+    # healthcheck:
+    #   test: pg_isready -U postgres || exit 1
+    #   interval: 3s
+    #   timeout: 1s
