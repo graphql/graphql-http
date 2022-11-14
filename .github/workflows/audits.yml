@@ -215,7 +215,7 @@ jobs:
       - name: Build
         run: yarn build:esm
       - name: Start
-        run: yarn workspace hotchocolate start -d
+        run: yarn workspace hotchocolate start -d --wait
       # TODO: cache docker build artifacts
       - name: Check running Docker containers
         run: docker ps -a
