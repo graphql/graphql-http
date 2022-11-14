@@ -1,0 +1,8 @@
+services:
+  server:
+    build: .
+    environment:
+      - DOTNET_URLS=http://+:${PORT}
+    ports:
+      - ${PORT}:${PORT}
+    entrypoint: dotnet run

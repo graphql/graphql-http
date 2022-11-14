@@ -7160,6 +7160,12 @@ __metadata:
   languageName: node
   linkType: hard
 
+"hotchocolate@workspace:implementations/hotchocolate":
+  version: 0.0.0-use.local
+  resolution: "hotchocolate@workspace:implementations/hotchocolate"
+  languageName: unknown
+  linkType: soft
+
 "html-escaper@npm:^2.0.0":
   version: 2.0.2
   resolution: "html-escaper@npm:2.0.2"
