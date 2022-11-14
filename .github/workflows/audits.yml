@@ -217,8 +217,6 @@ jobs:
       - name: Start
         run: yarn workspace hotchocolate start -d --wait
       # TODO: cache docker build artifacts
-      - name: Check running Docker containers
-        run: docker ps -a
       - name: Audit
         run: node scripts/audit-implementation.mjs README.md
       - name: Upload report
@@ -226,12 +224,6 @@ jobs:
         with:
           name: hotchocolate-report
           path: README.md
-      - name: Check running Docker containers
-        if: failure()
-        run: docker ps -a
-      - name: Check logs of Docker containers
-        if: failure()
-        run: yarn workspace hotchocolate exec docker compose logs
 
   report:
     name: Report
