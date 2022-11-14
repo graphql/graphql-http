@@ -229,6 +229,9 @@ jobs:
       - name: Check running Docker containers
         if: failure()
         run: docker ps -a
+      - name: Check logs of Docker containers
+        if: failure()
+        run: yarn workspace hotchocolate exec docker compose logs
 
   report:
     name: Report
