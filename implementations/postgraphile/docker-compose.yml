@@ -1,0 +1,10 @@
+services:
+  database:
+    image: postgres:15
+    environment:
+      - POSTGRES_DB=db
+      # - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    healthcheck:
+      test: psql --set=ON_ERROR_STOP=1 --dbname=$$POSTGRES_DB --command='select 1 from public.user;' > /dev/null 2>&1 || exit 1
+      interval: 3s
+      timeout: 1s
