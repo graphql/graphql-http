@@ -3,5 +3,5 @@ FROM mcr.microsoft.com/dotnet/sdk:7.0
 WORKDIR /server
 
 RUN dotnet new web
-RUN dotnet add package HotChocolate.AspNetCore;
+RUN dotnet add package HotChocolate.AspNetCore --version 13.0.0-preview.79
 COPY Program.cs .
