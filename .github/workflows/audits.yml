@@ -215,7 +215,7 @@ jobs:
       - name: Build
         run: yarn build:esm
       - name: Start
-        run: yarn workspace hotchocolate start
+        run: yarn workspace hotchocolate start -d
       # TODO: cache docker build artifacts
       - name: Audit
         run: node scripts/audit-implementation.mjs README.md
