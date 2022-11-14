@@ -13,9 +13,10 @@ app.Run();
 
 public class Query
 {
-    public string Hello { get { return "world"; } }
+    public string Hello() => "world";
 }
 
-public class Mutation {
-    public string DontChange { get { return "ok"; } }
+public class Mutation
+{
+    public string DontChange() => "ok";
 }
