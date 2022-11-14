@@ -217,6 +217,8 @@ jobs:
       - name: Start
         run: yarn workspace hotchocolate start -d
       # TODO: cache docker build artifacts
+      - name: Check running Docker containers
+        run: docker ps -a
       - name: Audit
         run: node scripts/audit-implementation.mjs README.md
       - name: Upload report
