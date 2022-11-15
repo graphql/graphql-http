@@ -57,14 +57,12 @@ export function assert<T = unknown>(name: string, actual: T) {
         throw `${name} ${actual} is not ${expected}`;
       }
     },
-    toBeLessThanOrEqual: (expected: T extends number ? T : never) => {
-      if (!(actual <= expected)) {
-        throw `${name} ${actual} is not less than or equal to ${expected}`;
-      }
-    },
-    toBeGreaterThanOrEqual: (expected: T extends number ? T : never) => {
-      if (!(actual >= expected)) {
-        throw `${name} ${actual} is not greater than or equal to ${expected}`;
+    toBeBetween: (
+      min: T extends number ? T : never,
+      max: T extends number ? T : never,
+    ) => {
+      if (!(min <= actual && actual <= max)) {
+        throw `${name} ${actual} is not between ${min} and ${max}`;
       }
     },
     toContain: (

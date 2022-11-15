@@ -211,8 +211,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
           accept: 'application/graphql-response+json',
         },
       });
-      assert('Status code', res.status).toBeGreaterThanOrEqual(400);
-      assert('Status code', res.status).toBeLessThanOrEqual(499);
+      assert('Status code', res.status).toBeBetween(400, 499);
     }),
     // Request POST
     audit(
@@ -221,8 +220,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
         const res = await fetchFn(opts.url, {
           method: 'POST',
         });
-        assert('Status code', res.status).toBeGreaterThanOrEqual(400);
-        assert('Status code', res.status).toBeLessThanOrEqual(499);
+        assert('Status code', res.status).toBeBetween(400, 499);
       },
     ),
     audit('MUST accept application/json POST requests', async () => {
@@ -731,8 +729,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
           },
           body: '{ "not a JSON',
         });
-        assert('Status code', res.status).toBeGreaterThanOrEqual(400);
-        assert('Status code', res.status).toBeLessThanOrEqual(599);
+        assert('Status code', res.status).toBeBetween(400, 499);
       },
     ),
     audit(
@@ -780,8 +777,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
             qeury /* typo */: '{ __typename }',
           }),
         });
-        assert('Status code', res.status).toBeGreaterThanOrEqual(400);
-        assert('Status code', res.status).toBeLessThanOrEqual(599);
+        assert('Status code', res.status).toBeBetween(400, 599);
       },
     ),
     audit(
@@ -833,8 +829,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
             query: '{',
           }),
         });
-        assert('Status code', res.status).toBeGreaterThanOrEqual(400);
-        assert('Status code', res.status).toBeLessThanOrEqual(599);
+        assert('Status code', res.status).toBeBetween(400, 599);
       },
     ),
     audit(
@@ -886,8 +881,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
             query: '{ 8f31403dfe404bccbb0e835f2629c6a7 }', // making sure the field doesnt exist
           }),
         });
-        assert('Status code', res.status).toBeGreaterThanOrEqual(400);
-        assert('Status code', res.status).toBeLessThanOrEqual(599);
+        assert('Status code', res.status).toBeBetween(400, 599);
       },
     ),
     audit(
