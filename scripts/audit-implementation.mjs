@@ -48,7 +48,7 @@ async function main() {
     );
   } else if (counts.warn) {
     process.stdout.write(
-      `::notice::Implementation complies with the GraphQL over HTTP spec, but does not pass all optional audits. ${summary}${os.EOL}`,
+      `::notice::Implementation is compliant with the GraphQL over HTTP spec, but some optional audits fail. ${summary}${os.EOL}`,
     );
   } else {
     process.stdout.write(
