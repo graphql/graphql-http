@@ -1,3 +1,11 @@
+## [1.7.1](https://github.com/graphql/graphql-http/compare/v1.7.0...v1.7.1) (2022-11-15)
+
+
+### Bug Fixes
+
+* **audits/server:** A server MAY support GET requests ([#18](https://github.com/graphql/graphql-http/issues/18)) ([9c5e8d2](https://github.com/graphql/graphql-http/commit/9c5e8d21f8d6040edf21c04f03fee78cf0bc7994))
+* **audits/server:** Status code for mutations through GET should be between 400 and 499 ([#19](https://github.com/graphql/graphql-http/issues/19)) ([1021494](https://github.com/graphql/graphql-http/commit/1021494a17e2fb1b180625bed156d02c289f9c6b))
+
 # [1.7.0](https://github.com/graphql/graphql-http/compare/v1.6.1...v1.7.0) (2022-11-07)
 
 
