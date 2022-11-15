@@ -23,4 +23,3 @@ services:
       test: "curl -f -H 'content-type: application/json' -d '{ \"query\": \"{ __typename }\" }' http://localhost:${PORT}/graphql || exit 1"
       interval: 3s
       timeout: 1s
-
