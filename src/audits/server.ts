@@ -211,7 +211,8 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
           accept: 'application/graphql-response+json',
         },
       });
-      assert('Status code', res.status).toBe(405);
+      assert('Status code', res.status).toBeGreaterThanOrEqual(400);
+      assert('Status code', res.status).toBeLessThanOrEqual(499);
     }),
     // Request POST
     audit(
