@@ -225,6 +225,34 @@ jobs:
           name: hotchocolate-report
           path: README.md
 
+  postgraphile:
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    env:
+      PORT: 4000
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Set up node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: yarn
+      - name: Install
+        run: yarn install --immutable
+      - name: Build
+        run: yarn build:esm
+      - name: Start
+        run: yarn workspace postgraphile start -d --wait
+      # TODO: cache docker build artifacts
+      - name: Audit
+        run: node scripts/audit-implementation.mjs README.md
+      - name: Upload report
+        uses: actions/upload-artifact@v3
+        with:
+          name: postgraphile-report
+          path: README.md
+
   report:
     name: Report
     runs-on: ubuntu-latest
@@ -239,6 +267,7 @@ jobs:
         graph-client,
         thegraph,
         hotchocolate,
+        postgraphile,
       ]
     steps:
       - name: Checkout
@@ -285,6 +314,11 @@ jobs:
         with:
           name: hotchocolate-report
           path: implementations/hotchocolate
+      - name: Download postgraphile report
+        uses: actions/download-artifact@v3
+        with:
+          name: postgraphile-report
+          path: implementations/postgraphile
       - name: Commit
         run: |
           git config user.name "github-actions[bot]"
