@@ -733,9 +733,9 @@ If you want a feature-full server with bleeding edge technologies, you're recomm
 | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
 | [graphql-yoga](https://www.the-guild.dev/graphql/yoga-server)      | [✅ Fully compliant](/implementations/graphql-yoga/README.md)      |
 | [hotchocolate](https://chillicream.com/docs/hotchocolate)          | [✅ Fully compliant](/implementations/hotchocolate/README.md)      |
+| [apollo-server](https://www.apollographql.com/docs/apollo-server/) | [✅ Partially compliant](/implementations/apollo-server/README.md) |
 | [mercurius](https://mercurius.dev)                                 | [✅ Partially compliant](/implementations/mercurius/README.md)     |
-| [graphql-helix](https://www.graphql-helix.com/)                    | [✅ Partially compliant](/implementations/graphql-helix/README.md) |
-| [apollo-server](https://www.apollographql.com/docs/apollo-server/) | [⚠️ Not compliant](/implementations/apollo-server/README.md)       |
+| [graphql-helix](https://www.graphql-helix.com/)                    | [⚠️ Not compliant](/implementations/graphql-helix/README.md)       |
 
 ## [Documentation](docs/)
 

@@ -45,13 +45,13 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
       // TODO: convert to MUST after watershed
       'SHOULD accept application/graphql-response+json and match the content-type',
       async () => {
-        const url = new URL(opts.url);
-        url.searchParams.set('query', '{ __typename }');
-
-        const res = await fetchFn(url.toString(), {
+        const res = await fetchFn(opts.url, {
+          method: 'POST',
           headers: {
+            'content-type': 'application/json',
             accept: 'application/graphql-response+json',
           },
+          body: JSON.stringify({ query: '{ __typename }' }),
         });
         assert('Status code', res.status).toBe(200);
         assert(
@@ -63,13 +63,13 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
     audit(
       'MUST accept application/json and match the content-type',
       async () => {
-        const url = new URL(opts.url);
-        url.searchParams.set('query', '{ __typename }');
-
-        const res = await fetchFn(url.toString(), {
+        const res = await fetchFn(opts.url, {
+          method: 'POST',
           headers: {
+            'content-type': 'application/json',
             accept: 'application/json',
           },
+          body: JSON.stringify({ query: '{ __typename }' }),
         });
         assert('Status code', res.status).toBe(200);
         assert(
@@ -82,13 +82,13 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
       // TODO: convert to MUST after watershed
       'SHOULD accept */* and use application/graphql-response+json for the content-type',
       async () => {
-        const url = new URL(opts.url);
-        url.searchParams.set('query', '{ __typename }');
-
-        const res = await fetchFn(url.toString(), {
+        const res = await fetchFn(opts.url, {
+          method: 'POST',
           headers: {
+            'content-type': 'application/json',
             accept: '*/*',
           },
+          body: JSON.stringify({ query: '{ __typename }' }),
         });
         assert('Status code', res.status).toBe(200);
         assert(
@@ -101,10 +101,13 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
       // TODO: convert to MUST after watershed
       'SHOULD assume application/graphql-response+json content-type when accept is missing',
       async () => {
-        const url = new URL(opts.url);
-        url.searchParams.set('query', '{ __typename }');
-
-        const res = await fetchFn(url.toString());
+        const res = await fetchFn(opts.url, {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json',
+          },
+          body: JSON.stringify({ query: '{ __typename }' }),
+        });
         assert('Status code', res.status).toBe(200);
         assert(
           'Content-Type header',
@@ -113,10 +116,13 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
       },
     ),
     audit('MUST use utf-8 encoding when responding', async () => {
-      const url = new URL(opts.url);
-      url.searchParams.set('query', '{ __typename }');
-
-      const res = await fetchFn(url.toString());
+      const res = await fetchFn(opts.url, {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+        },
+        body: JSON.stringify({ query: '{ __typename }' }),
+      });
       assert('Status code', res.status).toBe(200);
 
       // has charset set to utf-8
@@ -148,13 +154,12 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
       }
     }),
     audit('MUST accept utf-8 encoding', async () => {
-      const url = new URL(opts.url);
-      url.searchParams.set('query', '{ __typename }');
-
-      const res = await fetchFn(url.toString(), {
+      const res = await fetchFn(opts.url, {
+        method: 'POST',
         headers: {
           'content-type': 'application/json; charset=utf-8',
         },
+        body: JSON.stringify({ query: '{ __typename }' }),
       });
 
       assert('Status code', res.status).toBe(200);
@@ -163,13 +168,12 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
       );
     }),
     audit('MUST assume utf-8 if encoding is unspecified', async () => {
-      const url = new URL(opts.url);
-      url.searchParams.set('query', '{ __typename }');
-
-      const res = await fetchFn(url.toString(), {
+      const res = await fetchFn(opts.url, {
+        method: 'POST',
         headers: {
           'content-type': 'application/json',
         },
+        body: JSON.stringify({ query: '{ __typename }' }),
       });
 
       assert('Status code', res.status).toBe(200);
@@ -197,7 +201,8 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
       },
     ),
     // Request GET
-    audit('MUST NOT allow executing mutations on GET requests', async () => {
+    // TODO: this is a MUST if the server supports GET requests
+    audit('MAY NOT allow executing mutations on GET requests', async () => {
       const url = new URL(opts.url);
       url.searchParams.set('query', 'mutation { __typename }');
 
@@ -525,8 +530,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
       },
     ),
     audit(
-      // TODO: convert to MUST after watershed
-      'SHOULD allow URL-encoded JSON string {variables} parameter in GETs when accepting application/graphql-response+json',
+      'MAY allow URL-encoded JSON string {variables} parameter in GETs when accepting application/graphql-response+json',
       async () => {
         const url = new URL(opts.url);
         url.searchParams.set(
@@ -544,7 +548,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
       },
     ),
     audit(
-      'MUST allow URL-encoded JSON string {variables} parameter in GETs when accepting application/json',
+      'MAY allow URL-encoded JSON string {variables} parameter in GETs when accepting application/json',
       async () => {
         const url = new URL(opts.url);
         url.searchParams.set(
@@ -670,11 +674,15 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
     audit(
       'SHOULD use 200 status code if parameters are invalid when accepting application/json',
       async () => {
-        const url = new URL(opts.url);
-        url.searchParams.set('qeury' /* typo */, '{ __typename }');
-        const res = await fetchFn(url.toString(), {
-          method: 'GET',
-          headers: { accept: 'application/json' },
+        const res = await fetchFn(opts.url, {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json',
+            accept: 'application/json',
+          },
+          body: JSON.stringify({
+            qeury: /* typo */ '{ __typename }',
+          }),
         });
         assert('Status code', res.status).toBe(200);
       },
@@ -682,11 +690,13 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
     audit(
       'SHOULD use 200 status code on document parsing failure when accepting application/json',
       async () => {
-        const url = new URL(opts.url);
-        url.searchParams.set('query', '{');
-        const res = await fetchFn(url.toString(), {
-          method: 'GET',
-          headers: { accept: 'application/json' },
+        const res = await fetchFn(opts.url, {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json',
+            accept: 'application/json',
+          },
+          body: JSON.stringify({ query: '{' }),
         });
         assert('Status code', res.status).toBe(200);
       },
@@ -694,11 +704,15 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
     audit(
       'SHOULD use 200 status code on document validation failure when accepting application/json',
       async () => {
-        const url = new URL(opts.url);
-        url.searchParams.set('query', '{ 8f31403dfe404bccbb0e835f2629c6a7 }'); // making sure the field doesnt exist
-        const res = await fetchFn(url.toString(), {
-          method: 'GET',
-          headers: { accept: 'application/json' },
+        const res = await fetchFn(opts.url, {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json',
+            accept: 'application/json',
+          },
+          body: JSON.stringify({
+            query: '{ 8f31403dfe404bccbb0e835f2629c6a7 }', // making sure the field doesnt exist
+          }),
         });
         assert('Status code', res.status).toBe(200);
       },
@@ -755,11 +769,15 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
       // TODO: convert to MUST after watershed
       'SHOULD use 4xx or 5xx status codes if parameters are invalid when accepting application/graphql-response+json',
       async () => {
-        const url = new URL(opts.url);
-        url.searchParams.set('qeury' /* typo */, '{ __typename }');
-        const res = await fetchFn(url.toString(), {
-          method: 'GET',
-          headers: { accept: 'application/graphql-response+json' },
+        const res = await fetchFn(opts.url, {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json',
+            accept: 'application/graphql-response+json',
+          },
+          body: JSON.stringify({
+            qeury /* typo */: '{ __typename }',
+          }),
         });
         assert('Status code', res.status).toBeGreaterThanOrEqual(400);
         assert('Status code', res.status).toBeLessThanOrEqual(599);
@@ -768,11 +786,15 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
     audit(
       'SHOULD use 400 status code if parameters are invalid when accepting application/graphql-response+json',
       async () => {
-        const url = new URL(opts.url);
-        url.searchParams.set('qeury' /* typo */, '{ __typename }');
-        const res = await fetchFn(url.toString(), {
-          method: 'GET',
-          headers: { accept: 'application/graphql-response+json' },
+        const res = await fetchFn(opts.url, {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json',
+            accept: 'application/graphql-response+json',
+          },
+          body: JSON.stringify({
+            qeury: /* typo */ '{ __typename }',
+          }),
         });
         assert('Status code', res.status).toBe(400);
       },
@@ -780,11 +802,15 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
     audit(
       'SHOULD not contain the data entry if parameters are invalid when accepting application/graphql-response+json',
       async () => {
-        const url = new URL(opts.url);
-        url.searchParams.set('qeury' /* typo */, '{ __typename }');
-        const res = await fetchFn(url.toString(), {
-          method: 'GET',
-          headers: { accept: 'application/graphql-response+json' },
+        const res = await fetchFn(opts.url, {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json',
+            accept: 'application/graphql-response+json',
+          },
+          body: JSON.stringify({
+            qeury: /* typo */ '{ __typename }',
+          }),
         });
         assert(
           'Data entry',
@@ -796,11 +822,15 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
       // TODO: convert to MUST after watershed
       'SHOULD use 4xx or 5xx status codes on document parsing failure when accepting application/graphql-response+json',
       async () => {
-        const url = new URL(opts.url);
-        url.searchParams.set('query', '{');
-        const res = await fetchFn(url.toString(), {
-          method: 'GET',
-          headers: { accept: 'application/graphql-response+json' },
+        const res = await fetchFn(opts.url, {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json',
+            accept: 'application/graphql-response+json',
+          },
+          body: JSON.stringify({
+            query: '{',
+          }),
         });
         assert('Status code', res.status).toBeGreaterThanOrEqual(400);
         assert('Status code', res.status).toBeLessThanOrEqual(599);
@@ -809,11 +839,15 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
     audit(
       'SHOULD use 400 status code on document parsing failure when accepting application/graphql-response+json',
       async () => {
-        const url = new URL(opts.url);
-        url.searchParams.set('query', '{');
-        const res = await fetchFn(url.toString(), {
-          method: 'GET',
-          headers: { accept: 'application/graphql-response+json' },
+        const res = await fetchFn(opts.url, {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json',
+            accept: 'application/graphql-response+json',
+          },
+          body: JSON.stringify({
+            query: '{',
+          }),
         });
         assert('Status code', res.status).toBe(400);
       },
@@ -821,11 +855,15 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
     audit(
       'SHOULD not contain the data entry on document parsing failure when accepting application/graphql-response+json',
       async () => {
-        const url = new URL(opts.url);
-        url.searchParams.set('query', '{');
-        const res = await fetchFn(url.toString(), {
-          method: 'GET',
-          headers: { accept: 'application/graphql-response+json' },
+        const res = await fetchFn(opts.url, {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json',
+            accept: 'application/graphql-response+json',
+          },
+          body: JSON.stringify({
+            query: '{',
+          }),
         });
         assert(
           'Data entry',
@@ -837,11 +875,15 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
       // TODO: convert to MUST after watershed
       'SHOULD use 4xx or 5xx status codes on document validation failure when accepting application/graphql-response+json',
       async () => {
-        const url = new URL(opts.url);
-        url.searchParams.set('query', '{ 8f31403dfe404bccbb0e835f2629c6a7 }'); // making sure the field doesnt exist
-        const res = await fetchFn(url.toString(), {
-          method: 'GET',
-          headers: { accept: 'application/graphql-response+json' },
+        const res = await fetchFn(opts.url, {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json',
+            accept: 'application/graphql-response+json',
+          },
+          body: JSON.stringify({
+            query: '{ 8f31403dfe404bccbb0e835f2629c6a7 }', // making sure the field doesnt exist
+          }),
         });
         assert('Status code', res.status).toBeGreaterThanOrEqual(400);
         assert('Status code', res.status).toBeLessThanOrEqual(599);
@@ -850,11 +892,15 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
     audit(
       'SHOULD use 400 status code on document validation failure when accepting application/graphql-response+json',
       async () => {
-        const url = new URL(opts.url);
-        url.searchParams.set('query', '{ 8f31403dfe404bccbb0e835f2629c6a7 }'); // making sure the field doesnt exist
-        const res = await fetchFn(url.toString(), {
-          method: 'GET',
-          headers: { accept: 'application/graphql-response+json' },
+        const res = await fetchFn(opts.url, {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json',
+            accept: 'application/graphql-response+json',
+          },
+          body: JSON.stringify({
+            query: '{ 8f31403dfe404bccbb0e835f2629c6a7 }', // making sure the field doesnt exist
+          }),
         });
         assert('Status code', res.status).toBe(400);
       },
@@ -862,11 +908,15 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
     audit(
       'SHOULD not contain the data entry on document validation failure when accepting application/graphql-response+json',
       async () => {
-        const url = new URL(opts.url);
-        url.searchParams.set('query', '{ 8f31403dfe404bccbb0e835f2629c6a7 }'); // making sure the field doesnt exist
-        const res = await fetchFn(url.toString(), {
-          method: 'GET',
-          headers: { accept: 'application/graphql-response+json' },
+        const res = await fetchFn(opts.url, {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json',
+            accept: 'application/graphql-response+json',
+          },
+          body: JSON.stringify({
+            query: '{ 8f31403dfe404bccbb0e835f2629c6a7 }', // making sure the field doesnt exist
+          }),
         });
         assert(
           'Data entry',
