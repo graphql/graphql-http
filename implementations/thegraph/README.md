@@ -32,7 +32,7 @@ Status code 404 is not 200
 ```
 4. MAY NOT allow executing mutations on GET requests<br />
 ```
-Status code 200 is not 405
+Status code 200 is not greater than or equal to 400
 ```
 5. SHOULD use 400 status code on missing {query} parameter when accepting application/graphql-response+json<br />
 ```
