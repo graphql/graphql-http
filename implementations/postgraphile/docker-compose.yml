@@ -19,7 +19,8 @@ services:
     ports:
       - ${PORT}:${PORT}
     entrypoint: postgraphile --host 0.0.0.0 --port ${PORT}
-    # healthcheck:
-    #   test: pg_isready -U postgres || exit 1
-    #   interval: 3s
-    #   timeout: 1s
+    healthcheck:
+      test: "curl -f -H 'content-type: application/json' -d '{ \"query\": \"{ __typename }\" }' http://localhost:${PORT}/graphql || exit 1"
+      interval: 3s
+      timeout: 1s
+
