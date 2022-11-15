@@ -61,7 +61,7 @@ export function assert<T = unknown>(name: string, actual: T) {
       min: T extends number ? T : never,
       max: T extends number ? T : never,
     ) => {
-      if (!(min >= actual && actual <= max)) {
+      if (!(min <= actual && actual <= max)) {
         throw `${name} ${actual} is not between ${min} and ${max}`;
       }
     },
