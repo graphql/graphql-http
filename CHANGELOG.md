@@ -1,3 +1,10 @@
+## [1.7.2](https://github.com/graphql/graphql-http/compare/v1.7.1...v1.7.2) (2022-11-18)
+
+
+### Bug Fixes
+
+* **handler,audits/server:** application/json is the default when accept is missing until watershed ([#23](https://github.com/graphql/graphql-http/issues/23)) ([050fdfe](https://github.com/graphql/graphql-http/commit/050fdfe88d007b9b2b0abe697af3311f1dc101ad))
+
 ## [1.7.1](https://github.com/graphql/graphql-http/compare/v1.7.0...v1.7.1) (2022-11-15)
 
 
