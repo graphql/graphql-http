@@ -79,8 +79,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
       },
     ),
     audit(
-      // TODO: convert to MUST after watershed
-      'SHOULD accept */* and use application/graphql-response+json for the content-type',
+      'SHOULD accept */* and use application/json for the content-type',
       async () => {
         const res = await fetchFn(opts.url, {
           method: 'POST',
@@ -94,25 +93,21 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
         assert(
           'Content-Type header',
           res.headers.get('content-type'),
-        ).toContain('application/graphql-response+json');
+        ).toContain('application/json');
       },
     ),
     audit(
-      // TODO: convert to MUST after watershed
-      'SHOULD assume application/graphql-response+json content-type when accept is missing',
+      'SHOULD assume application/json content-type when accept is missing',
       async () => {
-        const res = await fetchFn(opts.url, {
-          method: 'POST',
-          headers: {
-            'content-type': 'application/json',
-          },
-          body: JSON.stringify({ query: '{ __typename }' }),
-        });
+        const url = new URL(opts.url);
+        url.searchParams.set('query', '{ __typename }');
+
+        const res = await fetchFn(url.toString());
         assert('Status code', res.status).toBe(200);
         assert(
           'Content-Type header',
           res.headers.get('content-type'),
-        ).toContain('application/graphql-response+json');
+        ).toContain('application/json');
       },
     ),
     audit('MUST use utf-8 encoding when responding', async () => {
@@ -236,7 +231,14 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
       });
-      assert('Status code', res.status).toBe(400);
+      if (res.headers.get('content-type')?.includes('application/json')) {
+        assert(
+          'Execution result',
+          await assertBodyAsExecutionResult(res),
+        ).toHaveProperty('errors');
+      } else {
+        assert('Status code', res.status).toBe(400);
+      }
     }),
     // Request Parameters
     audit(
