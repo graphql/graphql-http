@@ -729,13 +729,13 @@ Having said this, graphql-http is mostly aimed for library authors and simple se
 
 If you want a feature-full server with bleeding edge technologies, you're recommended to use one of the following.
 
-| Name                                                               | Audit                                                                |
-| ------------------------------------------------------------------ | -------------------------------------------------------------------- |
-| [graphql-yoga](https://www.the-guild.dev/graphql/yoga-server)      | [✅ Compliant (0 warnings)](/implementations/graphql-yoga/README.md) |
-| [hotchocolate](https://chillicream.com/docs/hotchocolate)          | [✅ Compliant (0 warnings)](/implementations/hotchocolate/README.md) |
-| [postgraphile](https://www.graphile.org/postgraphile/)             | [✅ Compliant](/implementations/postgraphile/README.md)              |
-| [apollo-server](https://www.apollographql.com/docs/apollo-server/) | [✅ Compliant](/implementations/apollo-server/README.md)             |
-| [mercurius](https://mercurius.dev)                                 | [✅ Compliant](/implementations/mercurius/README.md)                 |
+| Name                                                               | Audit                                                    |
+| ------------------------------------------------------------------ | -------------------------------------------------------- |
+| [graphql-yoga](https://www.the-guild.dev/graphql/yoga-server)      | [✅ Compliant](/implementations/graphql-yoga/README.md)  |
+| [hotchocolate](https://chillicream.com/docs/hotchocolate)          | [✅ Compliant](/implementations/hotchocolate/README.md)  |
+| [postgraphile](https://www.graphile.org/postgraphile/)             | [✅ Compliant](/implementations/postgraphile/README.md)  |
+| [apollo-server](https://www.apollographql.com/docs/apollo-server/) | [✅ Compliant](/implementations/apollo-server/README.md) |
+| [mercurius](https://mercurius.dev)                                 | [✅ Compliant](/implementations/mercurius/README.md)     |
 
 ## [Documentation](docs/)
 
