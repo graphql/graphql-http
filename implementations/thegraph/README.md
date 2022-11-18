@@ -22,13 +22,13 @@ The server _SHOULD_ support these, but is not required.
 ```
 Status code 404 is not 200
 ```
-2. SHOULD accept \*/\* and use application/graphql-response+json for the content-type<br />
+2. SHOULD accept \*/\* and use application/json for the content-type<br />
 ```
 Status code 404 is not 200
 ```
-3. SHOULD assume application/graphql-response+json content-type when accept is missing<br />
+3. SHOULD assume application/json content-type when accept is missing<br />
 ```
-Status code 404 is not 200
+Content-Type header "text/html" does not contain "application/json"
 ```
 4. MAY NOT allow executing mutations on GET requests<br />
 ```

@@ -629,18 +629,21 @@ export function getAcceptableMediaType(
     const charset =
       params?.find((param) => param.includes('charset=')) || 'charset=utf8'; // utf-8 is assumed when not specified;
 
-    if (mediaType === 'application/json' && charset === 'charset=utf8') {
-      acceptedMediaType = 'application/json';
+    if (
+      mediaType === 'application/graphql-response+json' &&
+      charset === 'charset=utf8'
+    ) {
+      acceptedMediaType = 'application/graphql-response+json';
       break;
     }
 
     if (
-      (mediaType === 'application/graphql-response+json' ||
+      (mediaType === 'application/json' ||
         mediaType === 'application/*' ||
         mediaType === '*/*') &&
       charset === 'charset=utf8'
     ) {
-      acceptedMediaType = 'application/graphql-response+json';
+      acceptedMediaType = 'application/json';
       break;
     }
   }

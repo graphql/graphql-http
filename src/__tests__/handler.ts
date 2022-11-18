@@ -30,7 +30,6 @@ it('should report graphql errors returned from onSubscribe', async () => {
   const url = new URL(server.url);
   url.searchParams.set('query', '{ __typename }');
   const res = await fetch(url.toString());
-  expect(res.status).toBe(400);
   expect(res.json()).resolves.toEqual({ errors: [{ message: 'Woah!' }] });
 });
 
@@ -90,6 +89,11 @@ it('should respond with error if execution result is iterable', async () => {
   const url = new URL(server.url);
   url.searchParams.set('query', '{ __typename }');
   const result = await fetch(url.toString());
-
-  expect(result.status).toBe(400);
+  expect(result.json()).resolves.toEqual({
+    errors: [
+      {
+        message: 'Subscriptions are not supported',
+      },
+    ],
+  });
 });
