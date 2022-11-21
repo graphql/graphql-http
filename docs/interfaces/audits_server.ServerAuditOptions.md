@@ -31,6 +31,9 @@ ___
 
 ### url
 
-• **url**: `string`
+• **url**: `string` \| () => `string` \| `Promise`<`string`\>
 
 The URL of the GraphQL server for the audit.
+
+A function can be also supplied, in this case -
+every audit will invoke the function to get the URL.
