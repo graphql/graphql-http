@@ -24,7 +24,7 @@ export interface ServerAuditOptions {
    * A function can be also supplied, in this case -
    * every audit will invoke the function to get the URL.
    */
-  url: string | (() => string | Promise<string>);
+  url: string | Promise<string> | (() => string | Promise<string>);
   /**
    * The Fetch function to use.
    *
@@ -950,10 +950,10 @@ export async function auditServer(
 
 /** @private */
 async function getUrl(
-  url: string | (() => string | Promise<string>),
+  url: string | Promise<string> | (() => string | Promise<string>),
 ): Promise<string> {
-  if (typeof url === 'string') {
-    return url;
+  if (typeof url === 'function') {
+    return await url();
   }
-  return await url();
+  return url;
 }

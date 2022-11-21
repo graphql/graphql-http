@@ -31,7 +31,7 @@ ___
 
 ### url
 
-• **url**: `string` \| () => `string` \| `Promise`<`string`\>
+• **url**: `string` \| `Promise`<`string`\> \| () => `string` \| `Promise`<`string`\>
 
 The URL of the GraphQL server for the audit.
 
