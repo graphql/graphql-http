@@ -1,3 +1,10 @@
+# [1.8.0](https://github.com/graphql/graphql-http/compare/v1.7.2...v1.8.0) (2022-11-21)
+
+
+### Features
+
+* **audits/server:** Support functions for the `url` option ([f4d20a9](https://github.com/graphql/graphql-http/commit/f4d20a9f5ba9d6298c4cb1b4806fb13b37b3c42a)), closes [#24](https://github.com/graphql/graphql-http/issues/24)
+
 ## [1.7.2](https://github.com/graphql/graphql-http/compare/v1.7.1...v1.7.2) (2022-11-18)
 
 
