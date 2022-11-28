@@ -1,3 +1,15 @@
+# [1.9.0](https://github.com/graphql/graphql-http/compare/v1.8.0...v1.9.0) (2022-11-28)
+
+
+### Bug Fixes
+
+* **audits/server:** `url` option can also just be a Promise ([8844aea](https://github.com/graphql/graphql-http/commit/8844aea1dd28145834430be304394e28fa6e04bb))
+
+
+### Features
+
+* **audits/server:** Test that `null` is allowed for body parameters ([#28](https://github.com/graphql/graphql-http/issues/28)) ([2dee4ff](https://github.com/graphql/graphql-http/commit/2dee4ff6a9d89c5e079c102567b4138668038b48))
+
 # [1.8.0](https://github.com/graphql/graphql-http/compare/v1.7.2...v1.8.0) (2022-11-21)
 
 
