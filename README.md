@@ -735,7 +735,6 @@ If you want a feature-full server with bleeding edge technologies, you're recomm
 | [hotchocolate](https://chillicream.com/docs/hotchocolate)          | [✅ Compliant](/implementations/hotchocolate/README.md)  |
 | [postgraphile](https://www.graphile.org/postgraphile/)             | [✅ Compliant](/implementations/postgraphile/README.md)  |
 | [apollo-server](https://www.apollographql.com/docs/apollo-server/) | [✅ Compliant](/implementations/apollo-server/README.md) |
-| [mercurius](https://mercurius.dev)                                 | [✅ Compliant](/implementations/mercurius/README.md)     |
 
 ## [Documentation](docs/)
 
