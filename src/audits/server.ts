@@ -445,6 +445,51 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
         ).notToHaveProperty('errors');
       },
     ),
+    ...['variables', 'operationName', 'extensions'].flatMap((parameter) => [
+      audit(
+        // TODO: convert to MUST after watershed
+        `SHOULD allow null {${parameter}} parameter when accepting application/graphql-response+json`,
+        async () => {
+          const res = await fetchFn(await getUrl(opts.url), {
+            method: 'POST',
+            headers: {
+              'content-type': 'application/json',
+              accept: 'application/graphql-response+json',
+            },
+            body: JSON.stringify({
+              query: '{ __typename }',
+              [parameter]: null,
+            }),
+          });
+          assert('Status code', res.status).toBe(200);
+          assert(
+            'Execution result',
+            await assertBodyAsExecutionResult(res),
+          ).notToHaveProperty('errors');
+        },
+      ),
+      audit(
+        `MUST allow null {${parameter}} parameter when accepting application/json`,
+        async () => {
+          const res = await fetchFn(await getUrl(opts.url), {
+            method: 'POST',
+            headers: {
+              'content-type': 'application/json',
+              accept: 'application/json',
+            },
+            body: JSON.stringify({
+              query: '{ __typename }',
+              [parameter]: null,
+            }),
+          });
+          assert('Status code', res.status).toBe(200);
+          assert(
+            'Execution result',
+            await assertBodyAsExecutionResult(res),
+          ).notToHaveProperty('errors');
+        },
+      ),
+    ]),
     ...['string', 0, false, ['array']].map((invalid) =>
       audit(
         // TODO: convert to MUST after watershed
