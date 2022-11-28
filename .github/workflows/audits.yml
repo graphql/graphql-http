@@ -273,7 +273,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         with:
-          ref: ${{ github.event.pull_request.head.ref || github.ref_name }}
+          ref: ${{ github.event.pull_request.head.sha || github.ref_name }}
       - name: Download express-graphql report
         uses: actions/download-artifact@v3
         with:
