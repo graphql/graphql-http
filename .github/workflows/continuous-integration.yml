@@ -41,6 +41,9 @@ jobs:
           cache: yarn
       - name: Install
         run: yarn install --immutable
+      # necessary because the audit-implementation.mjs script requires the lib/ folder
+      - name: Build
+        run: yarn build:esm
       - name: Type check
         run: yarn type-check
 
