@@ -1,5 +1,3 @@
-// @ts-check
-
 import { GraphQLSchema, GraphQLString, GraphQLObjectType } from 'graphql';
 import Fastify from 'fastify';
 import mercurius from 'mercurius';

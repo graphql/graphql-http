@@ -1,5 +1,3 @@
-// @ts-check
-
 /**
  *
  * Tests a running local server for GraphQL over HTTP compliance.

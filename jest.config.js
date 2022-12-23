@@ -1,6 +1,10 @@
-module.exports = {
+/**
+ * @type {import('jest').Config}
+ */
+const opts = {
   testEnvironment: 'node',
-  moduleFileExtensions: ['js', 'ts'],
+  moduleFileExtensions: ['ts', 'js'],
   extensionsToTreatAsEsm: ['.ts'],
   testPathIgnorePatterns: ['/node_modules/', '/fixtures/', '/utils/'],
 };
+module.exports = opts;

@@ -1,6 +1,9 @@
-module.exports = {
+/**
+ * @type {import('@babel/core').TransformOptions}
+ */
+const opts = {
   presets: [
-    ['@babel/preset-env', { targets: { node: 'current' } }],
+    ['@babel/env', { targets: { node: 'current' } }],
     '@babel/typescript',
   ],
   plugins: [
@@ -10,3 +13,4 @@ module.exports = {
     '@babel/proposal-optional-chaining',
   ],
 };
+module.exports = opts;
