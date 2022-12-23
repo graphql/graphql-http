@@ -18,9 +18,41 @@ The necessary API from the fetch environment for the handler.
 
 ### ReadableStream
 
-• **ReadableStream**: <R\>(`underlyingSource?`: `UnderlyingSource`<`R`\>, `strategy?`: `QueuingStrategy`<`R`\>) => `ReadableStream`<`R`\>
+• **ReadableStream**: (`underlyingSource`: `UnderlyingByteSource`, `strategy?`: {}) => `ReadableStream`<`Uint8Array`\><R\>(`underlyingSource`: `UnderlyingDefaultSource`<`R`\>, `strategy?`: `QueuingStrategy`<`R`\>) => `ReadableStream`<`R`\><R\>(`underlyingSource?`: `UnderlyingSource`<`R`\>, `strategy?`: `QueuingStrategy`<`R`\>) => `ReadableStream`<`R`\>
 
 #### Type declaration
+
+• **new FetchAPI**(`underlyingSource`, `strategy?`): `ReadableStream`<`Uint8Array`\>
+
+##### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `underlyingSource` | `UnderlyingByteSource` |
+| `strategy?` | `Object` |
+
+##### Returns
+
+`ReadableStream`<`Uint8Array`\>
+
+• **new FetchAPI**<`R`\>(`underlyingSource`, `strategy?`): `ReadableStream`<`R`\>
+
+##### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `R` | `any` |
+
+##### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `underlyingSource` | `UnderlyingDefaultSource`<`R`\> |
+| `strategy?` | `QueuingStrategy`<`R`\> |
+
+##### Returns
+
+`ReadableStream`<`R`\>
 
 • **new FetchAPI**<`R`\>(`underlyingSource?`, `strategy?`): `ReadableStream`<`R`\>
 
