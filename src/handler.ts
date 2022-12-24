@@ -216,6 +216,15 @@ export interface HandlerOptions<
    */
   getOperationAST?: typeof graphqlGetOperationAST;
   /**
+   * The GraphQL root value or resolvers to go alongside the execution.
+   * Learn more about them here: https://graphql.org/learn/execution/#root-fields-resolvers.
+   *
+   * If you return from `onSubscribe`, and the returned value is
+   * missing the `rootValue` field, the relevant operation root
+   * will be used instead.
+   */
+  rootValue?: unknown;
+  /**
    * The subscribe callback executed right after processing the request
    * before proceeding with the GraphQL operation execution.
    *
@@ -366,6 +375,7 @@ export function createHandler<
     execute = graphqlExecute,
     parse = graphqlParse,
     getOperationAST = graphqlGetOperationAST,
+    rootValue,
     onSubscribe,
     onOperation,
   } = options;
@@ -574,6 +584,10 @@ export function createHandler<
           },
         },
       ];
+    }
+
+    if (!('rootValue' in args)) {
+      args.rootValue = rootValue;
     }
 
     if (!('contextValue' in args)) {

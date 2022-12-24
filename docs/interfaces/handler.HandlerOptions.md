@@ -22,6 +22,7 @@
 - [onOperation](handler.HandlerOptions.md#onoperation)
 - [onSubscribe](handler.HandlerOptions.md#onsubscribe)
 - [parse](handler.HandlerOptions.md#parse)
+- [rootValue](handler.HandlerOptions.md#rootvalue)
 - [schema](handler.HandlerOptions.md#schema)
 - [validate](handler.HandlerOptions.md#validate)
 
@@ -194,6 +195,19 @@ Throws GraphQLError if a syntax error is encountered.
 ##### Returns
 
 `DocumentNode`
+
+___
+
+### rootValue
+
+• `Optional` **rootValue**: `unknown`
+
+The GraphQL root value or resolvers to go alongside the execution.
+Learn more about them here: https://graphql.org/learn/execution/#root-fields-resolvers.
+
+If you return from `onSubscribe`, and the returned value is
+missing the `rootValue` field, the relevant operation root
+will be used instead.
 
 ___
 
