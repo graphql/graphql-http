@@ -1,3 +1,10 @@
+# [1.10.0](https://github.com/graphql/graphql-http/compare/v1.9.0...v1.10.0) (2022-12-24)
+
+
+### Features
+
+* **handler:** Accept a GraphQL execution rootValue ([0f04fa2](https://github.com/graphql/graphql-http/commit/0f04fa21aaf3c105ea2a173e482c85b6e3649a10)), closes [#30](https://github.com/graphql/graphql-http/issues/30)
+
 # [1.9.0](https://github.com/graphql/graphql-http/compare/v1.8.0...v1.9.0) (2022-11-28)
 
 
