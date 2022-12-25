@@ -10164,6 +10164,12 @@ __metadata:
   languageName: node
   linkType: hard
 
+"pioneer@workspace:implementations/pioneer":
+  version: 0.0.0-use.local
+  resolution: "pioneer@workspace:implementations/pioneer"
+  languageName: unknown
+  linkType: soft
+
 "pirates@npm:^4.0.4":
   version: 4.0.5
   resolution: "pirates@npm:4.0.5"
