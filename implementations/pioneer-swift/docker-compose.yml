@@ -1,0 +1,13 @@
+services:
+  server:
+    build: .
+    environment:
+      - HOST=0.0.0.0
+      - PORT=${PORT}
+    ports:
+      - ${PORT}:${PORT}
+    entrypoint: swift run
+    healthcheck:
+      test: curl -f http://localhost:$$PORT/graphql?query=%7B__typename%7D || exit 1
+      interval: 3s
+      timeout: 1s

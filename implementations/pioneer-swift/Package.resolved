@@ -55,6 +55,15 @@
       }
     },
     {
+      "identity" : "pioneer",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/d-exclaimation/pioneer",
+      "state" : {
+        "revision" : "5976f54c84297c8ca95ca34a70db3dfd78978b11",
+        "version" : "1.0.2"
+      }
+    },
+    {
       "identity" : "routing-kit",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/vapor/routing-kit.git",

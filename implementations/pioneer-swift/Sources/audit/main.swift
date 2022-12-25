@@ -21,5 +21,5 @@ let server = Pioneer<Void, Void>(schema: schema, resolver: ())
 
 try server.standaloneServer(
     port: ProcessInfo.processInfo.environment["PORT"]?.intValue ?? 4000,
-    host: "127.0.0.1"
+    host: ProcessInfo.processInfo.environment["HOST"] ?? "127.0.0.1"
 )
