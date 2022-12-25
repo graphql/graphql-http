@@ -11,7 +11,7 @@ let package = Package(
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0") ,
-        .package(url: "https://github.com/d-exclaimation/pioneer", from: "1.0.0"),
+        .package(path: "../../../../libs/pioneer"),
         .package(url: "https://github.com/GraphQLSwift/GraphQL", from: "2.4.4")
     ],
     targets: [
