@@ -1,6 +1,8 @@
-FROM swift:latest as builder
+FROM swift:latest
 WORKDIR /root
+RUN apt update
+RUN apt install curl
 COPY ./Package.* ./
 RUN swift package resolve
-COPY . .
-RUN swift build
+COPY ./Sources ./Sources
+RUN swift build -c release
