@@ -8,6 +8,5 @@ services:
     entrypoint: .build/release/audit
     healthcheck:
       test: curl -f http://localhost:$$PORT/graphql?query=%7B__typename%7D || exit 1
-      start_period: 2s
       interval: 3s
       timeout: 1s
