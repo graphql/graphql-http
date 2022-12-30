@@ -18,7 +18,7 @@ import {
  *
  * const app = new Koa();
  * app.use(mount('/', createHandler({ schema })));
- *  
+ *
  * app.listen({ port: 4000 });
  * console.log('Listening to port 4000');
  * ```
