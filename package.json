@@ -55,6 +55,11 @@
       "require": "./lib/use/fastify.js",
       "import": "./lib/use/fastify.mjs"
     },
+    "./lib/use/koa": {
+      "types": "./lib/use/koa.d.ts",
+      "require": "./lib/use/koa.js",
+      "import": "./lib/use/koa.mjs"
+    },
     "./package.json": "./package.json"
   },
   "types": "lib/index.d.ts",
@@ -105,6 +110,8 @@
     "@types/express": "^4.17.15",
     "@types/glob": "^8.0.0",
     "@types/jest": "^29.2.4",
+    "@types/koa": "^2.13.5",
+    "@types/koa-mount": "^4.0.2",
     "@typescript-eslint/eslint-plugin": "^5.47.0",
     "@typescript-eslint/parser": "^5.47.0",
     "@whatwg-node/fetch": "^0.5.3",
@@ -116,6 +123,8 @@
     "graphql": "^16.6.0",
     "jest": "^29.3.1",
     "jest-jasmine2": "^29.3.1",
+    "koa": "^2.14.1",
+    "koa-mount": "^4.0.0",
     "node-fetch": "^3.3.0",
     "prettier": "^2.8.1",
     "rollup": "^3.8.1",
