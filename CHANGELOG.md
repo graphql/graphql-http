@@ -1,3 +1,10 @@
+# [1.11.0](https://github.com/graphql/graphql-http/compare/v1.10.0...v1.11.0) (2023-01-04)
+
+
+### Features
+
+* **use:** Add Koa integration ([#33](https://github.com/graphql/graphql-http/issues/33)) ([e3b85ff](https://github.com/graphql/graphql-http/commit/e3b85ff901dfa6ec16cbb0b2f769a447e6829347))
+
 # [1.10.0](https://github.com/graphql/graphql-http/compare/v1.9.0...v1.10.0) (2022-12-24)
 
 
