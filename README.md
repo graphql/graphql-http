@@ -141,6 +141,21 @@ fastify.listen({ port: 4000 });
 console.log('Listening to port 4000');
 ```
 
+##### With [`Koa`](https://koajs.com/)
+
+```js
+import Koa from 'koa'; // yarn add koa
+import mount from 'koa-mount'; // yarn add koa-mount
+import { createHandler } from 'graphql-http/lib/use/koa';
+import { schema } from './previous-step';
+
+const app = new Koa();
+app.use(mount('/graphql', createHandler({ schema })));
+
+app.listen({ port: 4000 });
+console.log('Listening to port 4000');
+```
+
 ##### With [`Deno`](https://deno.land/)
 
 ```ts
@@ -188,21 +203,6 @@ export default {
     }
   },
 };
-```
-
-##### With [`Koa`](https://koajs.com/)
-
-```js
-import Koa from 'koa'; // yarn add koa
-import mount from 'koa-mount'; // yarn add koa-mount
-import { createHandler } from 'graphql-http/lib/use/koa';
-import { schema } from './previous-step';
-
-const app = new Koa();
-app.use(mount('/graphql', createHandler({ schema })));
-
-app.listen({ port: 4000 });
-console.log('Listening to port 4000');
 ```
 
 #### Use the client
