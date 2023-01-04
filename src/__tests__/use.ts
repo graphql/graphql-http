@@ -2,6 +2,8 @@ import { fetch } from '@whatwg-node/fetch';
 import http from 'http';
 import express from 'express';
 import fastify from 'fastify';
+import Koa from 'koa';
+import mount from 'koa-mount';
 import { createServerAdapter } from '@whatwg-node/server';
 import { startDisposableServer } from './utils/tserver';
 import { serverAudits } from '../audits';
@@ -11,6 +13,7 @@ import { createHandler as createNodeHandler } from '../use/node';
 import { createHandler as createExpressHandler } from '../use/express';
 import { createHandler as createFastifyHandler } from '../use/fastify';
 import { createHandler as createFetchHandler } from '../use/fetch';
+import { createHandler as createKoaHandler } from '../use/koa';
 
 describe('node', () => {
   const [url, dispose] = startDisposableServer(
@@ -79,6 +82,23 @@ describe('fetch', () => {
   const [url, dispose] = startDisposableServer(
     http.createServer(createServerAdapter(createFetchHandler({ schema }))),
   );
+  afterAll(dispose);
+
+  for (const audit of serverAudits({ url, fetchFn: fetch })) {
+    it(audit.name, async () => {
+      const result = await audit.fn();
+      if (result.status !== 'ok') {
+        throw result.reason;
+      }
+    });
+  }
+});
+
+describe('koa', () => {
+  const app = new Koa();
+  app.use(mount('/', createKoaHandler({ schema })));
+
+  const [url, dispose] = startDisposableServer(app.listen(0));
   afterAll(dispose);
 
   for (const audit of serverAudits({ url, fetchFn: fetch })) {
