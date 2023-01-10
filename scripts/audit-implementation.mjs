@@ -2,13 +2,13 @@
  *
  * Tests a running local server for GraphQL over HTTP compliance.
  *
- * Optionally creates a report in markdown given the {reportPath} argument.
+ * Optionally creates reports in Markdown and JSON given to the [reportsDir] argument.
  *
  * Usage example from root of project:
  *
  * ```sh
  * yarn build:esm
- * PORT=4000 node scripts/audit-implementation.mjs {reportPath}
+ * PORT=4000 node scripts/audit-implementation.mjs [reportsDir]
  * ```
  *
  * Note that graphql-http has to be built before running this script!
@@ -18,6 +18,7 @@
 import os from 'os';
 import fetch from 'node-fetch';
 import fs from 'fs/promises';
+import path from 'path';
 import { auditServer } from '../lib/index.mjs';
 
 /**
@@ -55,9 +56,20 @@ async function main() {
   }
 
   // write report if path specified
-  const reportPath = process.argv[2];
-  if (reportPath) {
-    await fs.writeFile(reportPath, report);
+  const reportsDir = process.argv[2];
+  if (reportsDir) {
+    await fs.writeFile(path.join(reportsDir, 'README.md'), report);
+    await fs.writeFile(
+      path.join(reportsDir, 'report.json'),
+      JSON.stringify(
+        {
+          ...counts,
+          summary,
+        },
+        undefined,
+        '  ',
+      ),
+    );
   }
 }
 

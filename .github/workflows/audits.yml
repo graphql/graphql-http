@@ -30,7 +30,7 @@ jobs:
       - name: Start
         run: yarn workspace express-graphql start &
       - name: Audit
-        run: node scripts/audit-implementation.mjs README.md
+        run: node scripts/audit-implementation.mjs .
       - name: Upload report
         uses: actions/upload-artifact@v3
         with:
@@ -57,7 +57,7 @@ jobs:
       - name: Start
         run: yarn workspace apollo-server start &
       - name: Audit
-        run: node scripts/audit-implementation.mjs README.md
+        run: node scripts/audit-implementation.mjs .
       - name: Upload report
         uses: actions/upload-artifact@v3
         with:
@@ -84,7 +84,7 @@ jobs:
       - name: Start
         run: yarn workspace mercurius start &
       - name: Audit
-        run: node scripts/audit-implementation.mjs README.md
+        run: node scripts/audit-implementation.mjs .
       - name: Upload report
         uses: actions/upload-artifact@v3
         with:
@@ -111,7 +111,7 @@ jobs:
       - name: Start
         run: yarn workspace graphql-yoga start &
       - name: Audit
-        run: node scripts/audit-implementation.mjs README.md
+        run: node scripts/audit-implementation.mjs .
       - name: Upload report
         uses: actions/upload-artifact@v3
         with:
@@ -138,7 +138,7 @@ jobs:
       - name: Start
         run: yarn workspace graphql-helix start &
       - name: Audit
-        run: node scripts/audit-implementation.mjs README.md
+        run: node scripts/audit-implementation.mjs .
       - name: Upload report
         uses: actions/upload-artifact@v3
         with:
@@ -165,7 +165,7 @@ jobs:
       - name: Start
         run: yarn workspace graph-client start &
       - name: Audit
-        run: node scripts/audit-implementation.mjs README.md
+        run: node scripts/audit-implementation.mjs .
       - name: Upload report
         uses: actions/upload-artifact@v3
         with:
@@ -190,7 +190,7 @@ jobs:
       - name: Build
         run: yarn build:esm
       - name: Audit
-        run: node scripts/audit-implementation.mjs README.md
+        run: node scripts/audit-implementation.mjs .
       - name: Upload report
         uses: actions/upload-artifact@v3
         with:
@@ -218,7 +218,7 @@ jobs:
         run: yarn workspace hotchocolate start -d --wait
       # TODO: cache docker build artifacts
       - name: Audit
-        run: node scripts/audit-implementation.mjs README.md
+        run: node scripts/audit-implementation.mjs .
       - name: Upload report
         uses: actions/upload-artifact@v3
         with:
@@ -246,7 +246,7 @@ jobs:
         run: yarn workspace postgraphile start -d --wait
       # TODO: cache docker build artifacts
       - name: Audit
-        run: node scripts/audit-implementation.mjs README.md
+        run: node scripts/audit-implementation.mjs .
       - name: Upload report
         uses: actions/upload-artifact@v3
         with:
@@ -273,7 +273,7 @@ jobs:
         run: yarn workspace pioneer start -d --wait
       # TODO: cache docker build artifacts
       - name: Audit
-        run: node scripts/audit-implementation.mjs README.md
+        run: node scripts/audit-implementation.mjs .
       - name: Upload report
         uses: actions/upload-artifact@v3
         with:
