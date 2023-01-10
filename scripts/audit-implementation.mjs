@@ -68,7 +68,7 @@ async function main() {
         },
         undefined,
         '  ',
-      ),
+      ) + '\n',
     );
   }
 }
