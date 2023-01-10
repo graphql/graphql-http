@@ -64,7 +64,7 @@ async function main() {
       JSON.stringify(
         {
           ...counts,
-          summary,
+          // TODO: more info, like what tests failed and so on
         },
         undefined,
         '  ',
