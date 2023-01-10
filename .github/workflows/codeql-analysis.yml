@@ -3,11 +3,11 @@ name: 'CodeQL analysis'
 on:
   push:
     branches:
-      - master
+      - main
   pull_request:
     types: [opened, synchronize, reopened]
     branches:
-      - master
+      - main
   schedule:
     - cron: '0 23 * * 0'
 
