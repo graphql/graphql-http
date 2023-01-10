@@ -30,12 +30,14 @@ jobs:
       - name: Start
         run: yarn workspace express-graphql start &
       - name: Audit
-        run: node scripts/audit-implementation.mjs README.md
+        run: node scripts/audit-implementation.mjs .
       - name: Upload report
         uses: actions/upload-artifact@v3
         with:
           name: express-graphql-report
-          path: README.md
+          path: |
+            README.md
+            report.json
 
   apollo-server:
     runs-on: ubuntu-latest
@@ -57,12 +59,14 @@ jobs:
       - name: Start
         run: yarn workspace apollo-server start &
       - name: Audit
-        run: node scripts/audit-implementation.mjs README.md
+        run: node scripts/audit-implementation.mjs .
       - name: Upload report
         uses: actions/upload-artifact@v3
         with:
           name: apollo-server-report
-          path: README.md
+          path: |
+            README.md
+            report.json
 
   mercurius:
     runs-on: ubuntu-latest
@@ -84,12 +88,14 @@ jobs:
       - name: Start
         run: yarn workspace mercurius start &
       - name: Audit
-        run: node scripts/audit-implementation.mjs README.md
+        run: node scripts/audit-implementation.mjs .
       - name: Upload report
         uses: actions/upload-artifact@v3
         with:
           name: mercurius-report
-          path: README.md
+          path: |
+            README.md
+            report.json
 
   graphql-yoga:
     runs-on: ubuntu-latest
@@ -111,12 +117,14 @@ jobs:
       - name: Start
         run: yarn workspace graphql-yoga start &
       - name: Audit
-        run: node scripts/audit-implementation.mjs README.md
+        run: node scripts/audit-implementation.mjs .
       - name: Upload report
         uses: actions/upload-artifact@v3
         with:
           name: graphql-yoga-report
-          path: README.md
+          path: |
+            README.md
+            report.json
 
   graphql-helix:
     runs-on: ubuntu-latest
@@ -138,12 +146,14 @@ jobs:
       - name: Start
         run: yarn workspace graphql-helix start &
       - name: Audit
-        run: node scripts/audit-implementation.mjs README.md
+        run: node scripts/audit-implementation.mjs .
       - name: Upload report
         uses: actions/upload-artifact@v3
         with:
           name: graphql-helix-report
-          path: README.md
+          path: |
+            README.md
+            report.json
 
   graph-client:
     runs-on: ubuntu-latest
@@ -165,12 +175,14 @@ jobs:
       - name: Start
         run: yarn workspace graph-client start &
       - name: Audit
-        run: node scripts/audit-implementation.mjs README.md
+        run: node scripts/audit-implementation.mjs .
       - name: Upload report
         uses: actions/upload-artifact@v3
         with:
           name: graph-client-report
-          path: README.md
+          path: |
+            README.md
+            report.json
 
   thegraph:
     runs-on: ubuntu-latest
@@ -190,12 +202,14 @@ jobs:
       - name: Build
         run: yarn build:esm
       - name: Audit
-        run: node scripts/audit-implementation.mjs README.md
+        run: node scripts/audit-implementation.mjs .
       - name: Upload report
         uses: actions/upload-artifact@v3
         with:
           name: thegraph-report
-          path: README.md
+          path: |
+            README.md
+            report.json
 
   hotchocolate:
     runs-on: ubuntu-latest
@@ -218,12 +232,14 @@ jobs:
         run: yarn workspace hotchocolate start -d --wait
       # TODO: cache docker build artifacts
       - name: Audit
-        run: node scripts/audit-implementation.mjs README.md
+        run: node scripts/audit-implementation.mjs .
       - name: Upload report
         uses: actions/upload-artifact@v3
         with:
           name: hotchocolate-report
-          path: README.md
+          path: |
+            README.md
+            report.json
 
   postgraphile:
     runs-on: ubuntu-latest
@@ -246,12 +262,14 @@ jobs:
         run: yarn workspace postgraphile start -d --wait
       # TODO: cache docker build artifacts
       - name: Audit
-        run: node scripts/audit-implementation.mjs README.md
+        run: node scripts/audit-implementation.mjs .
       - name: Upload report
         uses: actions/upload-artifact@v3
         with:
           name: postgraphile-report
-          path: README.md
+          path: |
+            README.md
+            report.json
   pioneer:
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, '[skip ci]')"
@@ -273,12 +291,14 @@ jobs:
         run: yarn workspace pioneer start -d --wait
       # TODO: cache docker build artifacts
       - name: Audit
-        run: node scripts/audit-implementation.mjs README.md
+        run: node scripts/audit-implementation.mjs .
       - name: Upload report
         uses: actions/upload-artifact@v3
         with:
           name: pioneer-report
-          path: README.md
+          path: |
+            README.md
+            report.json
 
   report:
     name: Report
