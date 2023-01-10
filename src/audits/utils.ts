@@ -50,6 +50,19 @@ export function audit(name: AuditName, fn: () => Promise<void>): Audit {
  *
  * @private
  */
+class AssertError {
+  constructor(public reason: string) {
+    this.reason = reason;
+  }
+}
+
+/**
+ * Will throw a string if the assertion fails.
+ *
+ * All fatal problems will throw an instance of Error.
+ *
+ * @private
+ */
 export function assert<T = unknown>(name: string, actual: T) {
   return {
     toBe: (expected: T) => {

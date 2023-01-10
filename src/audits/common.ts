@@ -54,6 +54,7 @@ export interface AuditFail {
   name: AuditName;
   status: 'warn' | 'error';
   reason: string;
+  response: Response;
 }
 
 /**
