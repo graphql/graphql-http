@@ -5,7 +5,7 @@
  */
 
 import { Audit, AuditResult } from './common';
-import { ressert, audit, extendedTypeof, AssertError } from './utils';
+import { ressert, audit, extendedTypeof, AuditError } from './utils';
 
 /**
  * Options for server audits required to check GraphQL over HTTP spec conformance.
@@ -125,13 +125,13 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
         const decoded = decoder.decode(await res.arrayBuffer());
         const expected = '{"data":{"__typename":"Query"}}';
         if (decoded !== expected) {
-          throw new AssertError(
+          throw new AuditError(
             res,
             `Response UTF-8 decoded body is not '${expected}'`,
           );
         }
       } catch {
-        throw new AssertError(res, 'Response body is not UTF-8 encoded');
+        throw new AuditError(res, 'Response body is not UTF-8 encoded');
       }
     }),
     audit('MUST accept utf-8 encoding', async () => {

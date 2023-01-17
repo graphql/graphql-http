@@ -25,7 +25,7 @@ export function audit(name: AuditName, fn: () => Promise<void>): Audit {
           status: 'ok',
         };
       } catch (err) {
-        if (!(err instanceof AssertError)) {
+        if (!(err instanceof AuditError)) {
           // anything thrown that is not an assertion error is considered fatal
           throw err;
         }
@@ -45,25 +45,27 @@ export function audit(name: AuditName, fn: () => Promise<void>): Audit {
 }
 
 /**
- * Will throw a string if the assertion fails.
- *
- * All fatal problems will throw an instance of Error.
+ * Error thrown when an assertion test fails.
  *
  * @private
  */
-
-/**
- * Error thrown when an assertion test fails.
- */
-export class AssertError {
-  constructor(public response: Response, public reason: string) {
-    this.reason = reason;
+export class AuditError {
+  /**
+   * Response from the server.
+   */
+  public response: Response;
+  /**
+   * Reason for the failing audit.
+   */
+  public reason: string;
+  constructor(response: Response, reason: string) {
     this.response = response;
+    this.reason = reason;
   }
 }
 
 /**
- * Will throw an AssertError if the assertion on Response fails.
+ * Will throw an AuditError if the assertion on Response fails.
  *
  * All fatal problems will throw an instance of an Error.
  *
@@ -76,12 +78,12 @@ export function ressert(res: Response) {
     status: {
       toBe(code: number) {
         if (res.status !== code) {
-          throw new AssertError(res, `Response status code is not ${code}`);
+          throw new AuditError(res, `Response status code is not ${code}`);
         }
       },
       toBeBetween: (min: number, max: number) => {
         if (!(min <= res.status && res.status <= max)) {
-          throw new AssertError(
+          throw new AuditError(
             res,
             `Response status is not between ${min} and ${max}`,
           );
@@ -92,7 +94,7 @@ export function ressert(res: Response) {
       return {
         toContain(part: string) {
           if (!res.headers.get(key)?.includes(part)) {
-            throw new AssertError(
+            throw new AuditError(
               res,
               `Response header ${key} does not contain ${part}`,
             );
@@ -100,7 +102,7 @@ export function ressert(res: Response) {
         },
         notToContain(part: string) {
           if (res.headers.get(key)?.includes(part)) {
-            throw new AssertError(
+            throw new AuditError(
               res,
               `Response header ${key} contains ${part}`,
             );
@@ -115,10 +117,10 @@ export function ressert(res: Response) {
           try {
             body = await res.json();
           } catch (err) {
-            throw new AssertError(res, 'Response body is not valid JSON');
+            throw new AuditError(res, 'Response body is not valid JSON');
           }
           if (body.data !== val) {
-            throw new AssertError(
+            throw new AuditError(
               res,
               `Response body execution result data is not "${val}"`,
             );
@@ -130,10 +132,10 @@ export function ressert(res: Response) {
         try {
           body = await res.json();
         } catch (err) {
-          throw new AssertError(res, 'Response body is not valid JSON');
+          throw new AuditError(res, 'Response body is not valid JSON');
         }
         if (!(key in body)) {
-          throw new AssertError(
+          throw new AuditError(
             res,
             `Response body execution result does not have a property "${key}"`,
           );
@@ -144,10 +146,10 @@ export function ressert(res: Response) {
         try {
           body = await res.json();
         } catch (err) {
-          throw new AssertError(res, 'Response body is not valid JSON');
+          throw new AuditError(res, 'Response body is not valid JSON');
         }
         if (key in body) {
-          throw new AssertError(
+          throw new AuditError(
             res,
             `Response body execution result has a property "${key}"`,
           );
