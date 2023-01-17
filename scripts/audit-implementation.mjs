@@ -193,6 +193,7 @@ async function printAuditFail(result, i) {
     null,
     2,
   );
+  // adding indentation to stringify doesnt work, just indent each line
   for (const line of stringified.split('\n')) {
     report += indent + line + '\n';
   }
