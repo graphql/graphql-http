@@ -136,6 +136,34 @@ async function createReport(results) {
       report += '```\n';
       report += `${truncate(result.reason)}\n`;
       report += '```\n';
+      report += '<details>\n';
+      report += '<summary>Response</summary>\n';
+      report += '```json\n';
+      const res = result.response;
+      /** @type {Record<string, string>} */
+      const headers = {};
+      for (const [key, val] of res.headers.entries()) {
+        headers[key] = val;
+      }
+      let text, json;
+      try {
+        text = await res.text();
+        json = JSON.parse(text);
+      } catch {
+        // noop
+      }
+      report += JSON.stringify(
+        {
+          status: res.status,
+          statusText: res.statusText,
+          headers,
+          body: json || text,
+        },
+        null,
+        '  ',
+      );
+      report += '```\n';
+      report += '</details>\n';
     }
     report += '\n';
   }
