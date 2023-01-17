@@ -24,10 +24,10 @@ export function audit(name: AuditName, fn: () => Promise<void>): Audit {
           name,
           status: 'ok',
         };
-      } catch (errOrReason) {
-        if (typeof errOrReason !== 'string') {
-          // anything thrown that is not an assertion string is considered fatal
-          throw errOrReason;
+      } catch (err) {
+        if (!(err instanceof AssertError)) {
+          // anything thrown that is not an assertion error is considered fatal
+          throw err;
         }
         return {
           name,
@@ -36,7 +36,8 @@ export function audit(name: AuditName, fn: () => Promise<void>): Audit {
               'error'
             : // everything else is optional and considered a warning
               'warn',
-          reason: errOrReason,
+          reason: err.reason,
+          response: err.response,
         };
       }
     },
@@ -50,93 +51,108 @@ export function audit(name: AuditName, fn: () => Promise<void>): Audit {
  *
  * @private
  */
-class AssertError {
-  constructor(public reason: string) {
+
+/**
+ * Error thrown when an assertion test fails.
+ */
+export class AssertError {
+  constructor(public response: Response, public reason: string) {
     this.reason = reason;
+    this.response = response;
   }
 }
 
 /**
- * Will throw a string if the assertion fails.
+ * Will throw an AssertError if the assertion on Response fails.
  *
- * All fatal problems will throw an instance of Error.
+ * All fatal problems will throw an instance of an Error.
+ *
+ * The name "ressert" is a wordplay combining "response" and "assert".
  *
  * @private
  */
-export function assert<T = unknown>(name: string, actual: T) {
+export function ressert(res: Response) {
   return {
-    toBe: (expected: T) => {
-      if (actual !== expected) {
-        throw `${name} ${actual} is not ${expected}`;
-      }
+    status: {
+      toBe(code: number) {
+        if (res.status !== code) {
+          throw new AssertError(res, `Response status code is not ${code}`);
+        }
+      },
+      toBeBetween: (min: number, max: number) => {
+        if (!(min <= res.status && res.status <= max)) {
+          throw new AssertError(
+            res,
+            `Response status is not between ${min} and ${max}`,
+          );
+        }
+      },
     },
-    toBeBetween: (
-      min: T extends number ? T : never,
-      max: T extends number ? T : never,
-    ) => {
-      if (!(min <= actual && actual <= max)) {
-        throw `${name} ${actual} is not between ${min} and ${max}`;
-      }
+    header(key: 'content-type') {
+      return {
+        toContain(part: string) {
+          if (!res.headers.get(key)?.includes(part)) {
+            throw new AssertError(
+              res,
+              `Response header ${key} does not contain ${part}`,
+            );
+          }
+        },
+        notToContain(part: string) {
+          if (res.headers.get(key)?.includes(part)) {
+            throw new AssertError(
+              res,
+              `Response header ${key} contains ${part}`,
+            );
+          }
+        },
+      };
     },
-    toContain: (
-      expected: T extends Array<infer U> ? U : T extends string ? T : never,
-    ) => {
-      // @ts-expect-error types will match, otherwise never
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      if (!actual.includes(expected as any)) {
-        throw `${name} ${JSON.stringify(
-          actual,
-        )} does not contain ${JSON.stringify(expected)}`;
-      }
-    },
-    notToContain: (
-      expected: T extends Array<infer U> ? U : T extends string ? T : never,
-    ) => {
-      // @ts-expect-error types will match, otherwise never
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      if (actual.includes(expected as any)) {
-        throw `${name} ${JSON.stringify(actual)} contains ${JSON.stringify(
-          expected,
-        )}`;
-      }
-    },
-    toHaveProperty: (
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      prop: T extends Record<any, any> ? PropertyKey : never,
-    ) => {
-      // @ts-expect-error types will match, otherwise never
-      if (!(prop in actual)) {
-        throw `${name} ${JSON.stringify(
-          actual,
-        )} does not have a property '${String(prop)}'`;
-      }
-    },
-    notToHaveProperty: (
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      prop: T extends Record<any, any> ? PropertyKey : never,
-    ) => {
-      // @ts-expect-error types will match, otherwise never
-      if (prop in actual) {
-        throw `${name} ${JSON.stringify(actual)} does have a property '${String(
-          prop,
-        )}'`;
-      }
+    bodyAsExecutionResult: {
+      data: {
+        async toBe(val: ExecutionResult['data']) {
+          let body: ExecutionResult;
+          try {
+            body = await res.json();
+          } catch (err) {
+            throw new AssertError(res, 'Response body is not valid JSON');
+          }
+          if (body.data !== val) {
+            throw new AssertError(
+              res,
+              `Response body execution result data is not "${val}"`,
+            );
+          }
+        },
+      },
+      async toHaveProperty(key: keyof ExecutionResult) {
+        let body: ExecutionResult;
+        try {
+          body = await res.json();
+        } catch (err) {
+          throw new AssertError(res, 'Response body is not valid JSON');
+        }
+        if (!(key in body)) {
+          throw new AssertError(
+            res,
+            `Response body execution result does not have a property "${key}"`,
+          );
+        }
+      },
+      async notToHaveProperty(key: keyof ExecutionResult) {
+        let body: ExecutionResult;
+        try {
+          body = await res.json();
+        } catch (err) {
+          throw new AssertError(res, 'Response body is not valid JSON');
+        }
+        if (key in body) {
+          throw new AssertError(
+            res,
+            `Response body execution result has a property "${key}"`,
+          );
+        }
+      },
     },
   };
-}
-
-/**
- * Parses the string as JSON and safely reports parsing issues for audits.
- *
- * Assumes the parsed JSON will be an `ExecutionResult`.
- *
- * @private
- * */
-export async function assertBodyAsExecutionResult(res: Response) {
-  const str = await res.text();
-  try {
-    return JSON.parse(str) as ExecutionResult;
-  } catch (err) {
-    throw `Response body is not valid JSON. Got ${JSON.stringify(str)}`;
-  }
 }

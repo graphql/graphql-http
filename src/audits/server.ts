@@ -5,12 +5,7 @@
  */
 
 import { Audit, AuditResult } from './common';
-import {
-  assert,
-  assertBodyAsExecutionResult,
-  audit,
-  extendedTypeof,
-} from './utils';
+import { ressert, audit, extendedTypeof, AssertError } from './utils';
 
 /**
  * Options for server audits required to check GraphQL over HTTP spec conformance.
@@ -56,11 +51,10 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
           },
           body: JSON.stringify({ query: '{ __typename }' }),
         });
-        assert('Status code', res.status).toBe(200);
-        assert(
-          'Content-Type header',
-          res.headers.get('content-type'),
-        ).toContain('application/graphql-response+json');
+        ressert(res).status.toBe(200);
+        ressert(res)
+          .header('content-type')
+          .toContain('application/graphql-response+json');
       },
     ),
     audit(
@@ -74,11 +68,8 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
           },
           body: JSON.stringify({ query: '{ __typename }' }),
         });
-        assert('Status code', res.status).toBe(200);
-        assert(
-          'Content-Type header',
-          res.headers.get('content-type'),
-        ).toContain('application/json');
+        ressert(res).status.toBe(200);
+        ressert(res).header('content-type').toContain('application/json');
       },
     ),
     audit(
@@ -92,11 +83,8 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
           },
           body: JSON.stringify({ query: '{ __typename }' }),
         });
-        assert('Status code', res.status).toBe(200);
-        assert(
-          'Content-Type header',
-          res.headers.get('content-type'),
-        ).toContain('application/json');
+        ressert(res).status.toBe(200);
+        ressert(res).header('content-type').toContain('application/json');
       },
     ),
     audit(
@@ -106,11 +94,8 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
         url.searchParams.set('query', '{ __typename }');
 
         const res = await fetchFn(url.toString());
-        assert('Status code', res.status).toBe(200);
-        assert(
-          'Content-Type header',
-          res.headers.get('content-type'),
-        ).toContain('application/json');
+        ressert(res).status.toBe(200);
+        ressert(res).header('content-type').toContain('application/json');
       },
     ),
     audit('MUST use utf-8 encoding when responding', async () => {
@@ -121,34 +106,32 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
         },
         body: JSON.stringify({ query: '{ __typename }' }),
       });
-      assert('Status code', res.status).toBe(200);
+      ressert(res).status.toBe(200);
 
       // has charset set to utf-8
       try {
-        assert(
-          'Content-Type header',
-          res.headers.get('content-type'),
-        ).toContain('charset=utf-8');
+        ressert(res).header('content-type').toContain('charset=utf-8');
         return;
       } catch {
         // noop, continue
       }
 
       // has no charset specified
-      assert(
-        'Content-Type header',
-        res.headers.get('content-type'),
-      ).notToContain('charset');
+      ressert(res).header('content-type').notToContain('charset');
 
       // and the content is utf-8 encoded
       try {
         const decoder = new TextDecoder('utf-8');
         const decoded = decoder.decode(await res.arrayBuffer());
-        assert('UTF-8 decoded body', decoded).toBe(
-          '{"data":{"__typename":"Query"}}',
-        );
+        const expected = '{"data":{"__typename":"Query"}}';
+        if (decoded !== expected) {
+          throw new AssertError(
+            res,
+            `Response UTF-8 decoded body is not '${expected}'`,
+          );
+        }
       } catch {
-        throw 'Body is not UTF-8 encoded';
+        throw new AssertError(res, 'Response body is not UTF-8 encoded');
       }
     }),
     audit('MUST accept utf-8 encoding', async () => {
@@ -160,10 +143,8 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
         body: JSON.stringify({ query: '{ __typename }' }),
       });
 
-      assert('Status code', res.status).toBe(200);
-      assert('Content-Type header', res.headers.get('content-type')).toContain(
-        'utf-8',
-      );
+      ressert(res).status.toBe(200);
+      ressert(res).header('content-type').toContain('utf-8');
     }),
     audit('MUST assume utf-8 if encoding is unspecified', async () => {
       const res = await fetchFn(await getUrl(opts.url), {
@@ -174,10 +155,8 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
         body: JSON.stringify({ query: '{ __typename }' }),
       });
 
-      assert('Status code', res.status).toBe(200);
-      assert('Content-Type header', res.headers.get('content-type')).toContain(
-        'utf-8',
-      );
+      ressert(res).status.toBe(200);
+      ressert(res).header('content-type').toContain('utf-8');
     }),
     // Request
     audit('MUST accept POST requests', async () => {
@@ -186,7 +165,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify({ query: '{ __typename }' }),
       });
-      assert('Status code', res.status).toBe(200);
+      ressert(res).status.toBe(200);
     }),
     audit(
       'MAY accept application/x-www-form-urlencoded formatted GET requests',
@@ -195,7 +174,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
         url.searchParams.set('query', '{ __typename }');
 
         const res = await fetchFn(url.toString());
-        assert('Status code', res.status).toBe(200);
+        ressert(res).status.toBe(200);
       },
     ),
     // Request GET
@@ -209,7 +188,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
           accept: 'application/graphql-response+json',
         },
       });
-      assert('Status code', res.status).toBeBetween(400, 499);
+      ressert(res).status.toBeBetween(400, 499);
     }),
     // Request POST
     audit(
@@ -218,7 +197,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
         const res = await fetchFn(await getUrl(opts.url), {
           method: 'POST',
         });
-        assert('Status code', res.status).toBeBetween(400, 499);
+        ressert(res).status.toBeBetween(400, 499);
       },
     ),
     audit('MUST accept application/json POST requests', async () => {
@@ -227,7 +206,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify({ query: '{ __typename }' }),
       });
-      assert('Status code', res.status).toBe(200);
+      ressert(res).status.toBe(200);
     }),
     audit('MUST require a request body on POST', async () => {
       const res = await fetchFn(await getUrl(opts.url), {
@@ -235,12 +214,9 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
         headers: { 'content-type': 'application/json' },
       });
       if (res.headers.get('content-type')?.includes('application/json')) {
-        assert(
-          'Execution result',
-          await assertBodyAsExecutionResult(res),
-        ).toHaveProperty('errors');
+        await ressert(res).bodyAsExecutionResult.toHaveProperty('errors');
       } else {
-        assert('Status code', res.status).toBe(400);
+        ressert(res).status.toBe(400);
       }
     }),
     // Request Parameters
@@ -256,7 +232,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
           },
           body: JSON.stringify({ notquery: '{ __typename }' }),
         });
-        assert('Status code', res.status).toBe(400);
+        ressert(res).status.toBe(400);
       },
     ),
     audit(
@@ -270,11 +246,8 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
           },
           body: JSON.stringify({ notquery: '{ __typename }' }),
         });
-        assert('Status code', res.status).toBe(200);
-        assert(
-          'Execution result',
-          await assertBodyAsExecutionResult(res),
-        ).toHaveProperty('errors');
+        ressert(res).status.toBe(200);
+        await ressert(res).bodyAsExecutionResult.toHaveProperty('errors');
       },
     ),
     ...[{ obj: 'ect' }, 0, false, ['array']].map((invalid) =>
@@ -294,7 +267,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
               query: invalid,
             }),
           });
-          assert('Status code', res.status).toBe(400);
+          ressert(res).status.toBe(400);
         },
       ),
     ),
@@ -314,11 +287,8 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
               query: invalid,
             }),
           });
-          assert('Status code', res.status).toBe(200);
-          assert(
-            'Execution result',
-            await assertBodyAsExecutionResult(res),
-          ).toHaveProperty('errors');
+          ressert(res).status.toBe(200);
+          await ressert(res).bodyAsExecutionResult.toHaveProperty('errors');
         },
       ),
     ),
@@ -336,7 +306,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
             query: '{ __typename }',
           }),
         });
-        assert('Status code', res.status).toBe(200);
+        ressert(res).status.toBe(200);
       },
     ),
     audit(
@@ -352,11 +322,8 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
             query: '{ __typename }',
           }),
         });
-        assert('Status code', res.status).toBe(200);
-        assert(
-          'Execution result',
-          await assertBodyAsExecutionResult(res),
-        ).notToHaveProperty('errors');
+        ressert(res).status.toBe(200);
+        await ressert(res).bodyAsExecutionResult.notToHaveProperty('errors');
       },
     ),
     ...[{ obj: 'ect' }, 0, false, ['array']].map((invalid) =>
@@ -377,7 +344,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
               query: '{ __typename }',
             }),
           });
-          assert('Status code', res.status).toBe(400);
+          ressert(res).status.toBe(400);
         },
       ),
     ),
@@ -398,11 +365,8 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
               query: '{ __typename }',
             }),
           });
-          assert('Status code', res.status).toBe(200);
-          assert(
-            'Execution result',
-            await assertBodyAsExecutionResult(res),
-          ).toHaveProperty('errors');
+          ressert(res).status.toBe(200);
+          await ressert(res).bodyAsExecutionResult.toHaveProperty('errors');
         },
       ),
     ),
@@ -421,7 +385,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
             query: 'query Query { __typename }',
           }),
         });
-        assert('Status code', res.status).toBe(200);
+        ressert(res).status.toBe(200);
       },
     ),
     audit(
@@ -438,11 +402,8 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
             query: 'query Query { __typename }',
           }),
         });
-        assert('Status code', res.status).toBe(200);
-        assert(
-          'Execution result',
-          await assertBodyAsExecutionResult(res),
-        ).notToHaveProperty('errors');
+        ressert(res).status.toBe(200);
+        await ressert(res).bodyAsExecutionResult.notToHaveProperty('errors');
       },
     ),
     ...['variables', 'operationName', 'extensions'].flatMap((parameter) => [
@@ -461,11 +422,8 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
               [parameter]: null,
             }),
           });
-          assert('Status code', res.status).toBe(200);
-          assert(
-            'Execution result',
-            await assertBodyAsExecutionResult(res),
-          ).notToHaveProperty('errors');
+          ressert(res).status.toBe(200);
+          await ressert(res).bodyAsExecutionResult.notToHaveProperty('errors');
         },
       ),
       audit(
@@ -482,11 +440,8 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
               [parameter]: null,
             }),
           });
-          assert('Status code', res.status).toBe(200);
-          assert(
-            'Execution result',
-            await assertBodyAsExecutionResult(res),
-          ).notToHaveProperty('errors');
+          ressert(res).status.toBe(200);
+          await ressert(res).bodyAsExecutionResult.notToHaveProperty('errors');
         },
       ),
     ]),
@@ -508,7 +463,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
               variables: invalid,
             }),
           });
-          assert('Status code', res.status).toBe(400);
+          ressert(res).status.toBe(400);
         },
       ),
     ),
@@ -529,11 +484,8 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
               variables: invalid,
             }),
           });
-          assert('Status code', res.status).toBe(200);
-          assert(
-            'Execution result',
-            await assertBodyAsExecutionResult(res),
-          ).toHaveProperty('errors');
+          ressert(res).status.toBe(200);
+          await ressert(res).bodyAsExecutionResult.toHaveProperty('errors');
         },
       ),
     ),
@@ -553,7 +505,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
             variables: { name: 'sometype' },
           }),
         });
-        assert('Status code', res.status).toBe(200);
+        ressert(res).status.toBe(200);
       },
     ),
     audit(
@@ -571,11 +523,8 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
             variables: { name: 'sometype' },
           }),
         });
-        assert('Status code', res.status).toBe(200);
-        assert(
-          'Execution result',
-          await assertBodyAsExecutionResult(res),
-        ).notToHaveProperty('errors');
+        ressert(res).status.toBe(200);
+        await ressert(res).bodyAsExecutionResult.notToHaveProperty('errors');
       },
     ),
     audit(
@@ -593,7 +542,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
             accept: 'application/graphql-response+json',
           },
         });
-        assert('Status code', res.status).toBe(200);
+        ressert(res).status.toBe(200);
       },
     ),
     audit(
@@ -611,11 +560,8 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
             accept: 'application/json',
           },
         });
-        assert('Status code', res.status).toBe(200);
-        assert(
-          'Execution result',
-          await assertBodyAsExecutionResult(res),
-        ).notToHaveProperty('errors');
+        ressert(res).status.toBe(200);
+        await ressert(res).bodyAsExecutionResult.notToHaveProperty('errors');
       },
     ),
     ...['string', 0, false, ['array']].map((invalid) =>
@@ -636,7 +582,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
               extensions: invalid,
             }),
           });
-          assert('Status code', res.status).toBe(400);
+          ressert(res).status.toBe(400);
         },
       ),
     ),
@@ -657,11 +603,8 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
               extensions: invalid,
             }),
           });
-          assert('Status code', res.status).toBe(200);
-          assert(
-            'Execution result',
-            await assertBodyAsExecutionResult(res),
-          ).toHaveProperty('errors');
+          ressert(res).status.toBe(200);
+          await ressert(res).bodyAsExecutionResult.toHaveProperty('errors');
         },
       ),
     ),
@@ -680,7 +623,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
             extensions: { some: 'value' },
           }),
         });
-        assert('Status code', res.status).toBe(200);
+        ressert(res).status.toBe(200);
       },
     ),
     audit(
@@ -697,11 +640,8 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
             extensions: { some: 'value' },
           }),
         });
-        assert('Status code', res.status).toBe(200);
-        assert(
-          'Execution result',
-          await assertBodyAsExecutionResult(res),
-        ).notToHaveProperty('errors');
+        ressert(res).status.toBe(200);
+        await ressert(res).bodyAsExecutionResult.notToHaveProperty('errors');
       },
     ),
     // TODO: audit('MUST accept a map for the {extensions} parameter'),
@@ -717,7 +657,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
           },
           body: '{ "not a JSON',
         });
-        assert('Status code', res.status).toBe(200);
+        ressert(res).status.toBe(200);
       },
     ),
     audit(
@@ -733,7 +673,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
             qeury: /* typo */ '{ __typename }',
           }),
         });
-        assert('Status code', res.status).toBe(200);
+        ressert(res).status.toBe(200);
       },
     ),
     audit(
@@ -747,7 +687,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
           },
           body: JSON.stringify({ query: '{' }),
         });
-        assert('Status code', res.status).toBe(200);
+        ressert(res).status.toBe(200);
       },
     ),
     audit(
@@ -763,7 +703,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
             query: '{ 8f31403dfe404bccbb0e835f2629c6a7 }', // making sure the field doesnt exist
           }),
         });
-        assert('Status code', res.status).toBe(200);
+        ressert(res).status.toBe(200);
       },
     ),
     // Response application/graphql-response+json
@@ -779,7 +719,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
           },
           body: '{ "not a JSON',
         });
-        assert('Status code', res.status).toBeBetween(400, 499);
+        ressert(res).status.toBeBetween(400, 499);
       },
     ),
     audit(
@@ -793,7 +733,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
           },
           body: '{ "not a JSON',
         });
-        assert('Status code', res.status).toBe(400);
+        ressert(res).status.toBe(400);
       },
     ),
     audit(
@@ -807,10 +747,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
           },
           body: '{ "not a JSON',
         });
-        assert(
-          'Data entry',
-          (await assertBodyAsExecutionResult(res)).data,
-        ).toBe(undefined);
+        await ressert(res).bodyAsExecutionResult.data.toBe(undefined);
       },
     ),
     audit(
@@ -827,7 +764,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
             qeury /* typo */: '{ __typename }',
           }),
         });
-        assert('Status code', res.status).toBeBetween(400, 599);
+        ressert(res).status.toBeBetween(400, 599);
       },
     ),
     audit(
@@ -843,7 +780,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
             qeury: /* typo */ '{ __typename }',
           }),
         });
-        assert('Status code', res.status).toBe(400);
+        ressert(res).status.toBe(400);
       },
     ),
     audit(
@@ -859,10 +796,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
             qeury: /* typo */ '{ __typename }',
           }),
         });
-        assert(
-          'Data entry',
-          (await assertBodyAsExecutionResult(res)).data,
-        ).toBe(undefined);
+        await ressert(res).bodyAsExecutionResult.data.toBe(undefined);
       },
     ),
     audit(
@@ -879,7 +813,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
             query: '{',
           }),
         });
-        assert('Status code', res.status).toBeBetween(400, 599);
+        ressert(res).status.toBeBetween(400, 599);
       },
     ),
     audit(
@@ -895,7 +829,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
             query: '{',
           }),
         });
-        assert('Status code', res.status).toBe(400);
+        ressert(res).status.toBe(400);
       },
     ),
     audit(
@@ -911,10 +845,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
             query: '{',
           }),
         });
-        assert(
-          'Data entry',
-          (await assertBodyAsExecutionResult(res)).data,
-        ).toBe(undefined);
+        await ressert(res).bodyAsExecutionResult.data.toBe(undefined);
       },
     ),
     audit(
@@ -931,7 +862,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
             query: '{ 8f31403dfe404bccbb0e835f2629c6a7 }', // making sure the field doesnt exist
           }),
         });
-        assert('Status code', res.status).toBeBetween(400, 599);
+        ressert(res).status.toBeBetween(400, 599);
       },
     ),
     audit(
@@ -947,7 +878,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
             query: '{ 8f31403dfe404bccbb0e835f2629c6a7 }', // making sure the field doesnt exist
           }),
         });
-        assert('Status code', res.status).toBe(400);
+        ressert(res).status.toBe(400);
       },
     ),
     audit(
@@ -963,10 +894,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
             query: '{ 8f31403dfe404bccbb0e835f2629c6a7 }', // making sure the field doesnt exist
           }),
         });
-        assert(
-          'Data entry',
-          (await assertBodyAsExecutionResult(res)).data,
-        ).toBe(undefined);
+        await ressert(res).bodyAsExecutionResult.data.toBe(undefined);
       },
     ),
     // TODO: how to fail and have the data entry?
