@@ -138,6 +138,7 @@ async function createReport(results) {
       report += '```\n';
       report += '<details>\n';
       report += '<summary>Response</summary>\n';
+      report += '\n';
       report += '```json\n';
       const res = result.response;
       /** @type {Record<string, string>} */
@@ -152,18 +153,20 @@ async function createReport(results) {
       } catch {
         // noop
       }
-      report += JSON.stringify(
-        {
-          status: res.status,
-          statusText: res.statusText,
-          headers,
-          body: json || text,
-        },
-        null,
-        '  ',
-      );
+      report +=
+        JSON.stringify(
+          {
+            status: res.status,
+            statusText: res.statusText,
+            headers,
+            body: json || text,
+          },
+          null,
+          '  ',
+        ) + '\n';
       report += '```\n';
       report += '</details>\n';
+      report += '\n\n';
     }
     report += '\n';
   }
