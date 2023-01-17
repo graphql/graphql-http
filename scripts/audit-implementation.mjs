@@ -128,45 +128,51 @@ async function createReport(results) {
     report += '\n';
   }
 
+  /**
+   * @param {AuditFail} result
+   */
+  async function printAuditFail(result) {
+    let report = '';
+    report += '<details>\n';
+    report += `<summary>${truncate(result.reason)}</summary>\n`;
+    report += '\n';
+    report += '```json\n';
+    const res = result.response;
+    /** @type {Record<string, string>} */
+    const headers = {};
+    for (const [key, val] of res.headers.entries()) {
+      headers[key] = val;
+    }
+    let text, json;
+    try {
+      text = await res.text();
+      json = JSON.parse(text);
+    } catch {
+      // noop
+    }
+    report +=
+      JSON.stringify(
+        {
+          status: res.status,
+          statusText: res.statusText,
+          headers,
+          body: json || text,
+        },
+        null,
+        '  ',
+      ) + '\n';
+    report += '```\n';
+    report += '</details>\n';
+    report += '\n';
+    return report;
+  }
+
   if (grouped.warn.length) {
     report += `## Warnings\n`;
     report += `The server _SHOULD_ support these, but is not required.\n`;
     for (const [i, result] of grouped.warn.entries()) {
-      report += `${i + 1}. ${escapeMarkdown(result.name)}<br />\n`;
-      report += '```\n';
-      report += `${truncate(result.reason)}\n`;
-      report += '```\n';
-      report += '<details>\n';
-      report += '<summary>Response</summary>\n';
-      report += '\n';
-      report += '```json\n';
-      const res = result.response;
-      /** @type {Record<string, string>} */
-      const headers = {};
-      for (const [key, val] of res.headers.entries()) {
-        headers[key] = val;
-      }
-      let text, json;
-      try {
-        text = await res.text();
-        json = JSON.parse(text);
-      } catch {
-        // noop
-      }
-      report +=
-        JSON.stringify(
-          {
-            status: res.status,
-            statusText: res.statusText,
-            headers,
-            body: json || text,
-          },
-          null,
-          '  ',
-        ) + '\n';
-      report += '```\n';
-      report += '</details>\n';
-      report += '\n\n';
+      report += `${i + 1}. ${escapeMarkdown(result.name)}<br />\n\n`;
+      report += await printAuditFail(result);
     }
     report += '\n';
   }
@@ -175,10 +181,8 @@ async function createReport(results) {
     report += `## Errors\n`;
     report += `The server _MUST_ support these.\n`;
     for (const [i, result] of grouped.error.entries()) {
-      report += `${i + 1}. ${escapeMarkdown(result.name)}<br />\n`;
-      report += '```\n';
-      report += `${truncate(result.reason)}\n`;
-      report += '```\n';
+      report += `${i + 1}. ${escapeMarkdown(result.name)}<br />\n\n`;
+      report += await printAuditFail(result);
     }
   }
 
