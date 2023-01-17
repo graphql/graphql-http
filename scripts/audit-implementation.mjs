@@ -128,54 +128,11 @@ async function createReport(results) {
     report += '\n';
   }
 
-  /**
-   * @param {AuditFail} result
-   * @param {string} indent
-   */
-  async function printAuditFail(result, indent) {
-    let report = '';
-    report += indent + '<details>\n';
-    report += indent + `<summary>${truncate(result.reason)}</summary>\n`;
-    report += indent + '\n';
-    report += indent + '```json\n';
-    const res = result.response;
-    /** @type {Record<string, string>} */
-    const headers = {};
-    for (const [key, val] of res.headers.entries()) {
-      headers[key] = val;
-    }
-    let text, json;
-    try {
-      text = await res.text();
-      json = JSON.parse(text);
-    } catch {
-      // noop
-    }
-    const stringified = JSON.stringify(
-      {
-        status: res.status,
-        statusText: res.statusText,
-        headers,
-        body: json || text,
-      },
-      null,
-      2,
-    );
-    for (const line of stringified.split('\n')) {
-      report += indent + line + '\n';
-    }
-    report += indent + '```\n';
-    report += indent + '</details>\n';
-    report += indent + '\n';
-    return report;
-  }
-
   if (grouped.warn.length) {
     report += `## Warnings\n`;
     report += `The server _SHOULD_ support these, but is not required.\n\n`;
     for (const [i, result] of grouped.warn.entries()) {
-      report += `${i + 1}. ${escapeMarkdown(result.name)}<br />\n\n`;
-      report += await printAuditFail(result, '    ');
+      report += await printAuditFail(result, i);
     }
     report += '\n';
   }
@@ -184,8 +141,7 @@ async function createReport(results) {
     report += `## Errors\n`;
     report += `The server _MUST_ support these.\n\n`;
     for (const [i, result] of grouped.error.entries()) {
-      report += `${i + 1}. ${escapeMarkdown(result.name)}<br />\n\n`;
-      report += await printAuditFail(result, '    ');
+      report += await printAuditFail(result, i);
     }
   }
 
@@ -199,6 +155,51 @@ async function createReport(results) {
       error: grouped.error.length,
     },
   };
+}
+
+/**
+ * @param {AuditFail} result
+ * @param {number} i
+ */
+async function printAuditFail(result, i) {
+  let indent = '  ';
+  let report = '';
+  report += indent + `${i + 1}. ${escapeMarkdown(result.name)}<br />\n\n`;
+  indent += indent + '  '; // double the indent for details
+  report += indent + '<details>\n';
+  report += indent + `<summary>${truncate(result.reason)}</summary>\n`;
+  report += indent + '\n';
+  report += indent + '```json\n';
+  const res = result.response;
+  /** @type {Record<string, string>} */
+  const headers = {};
+  for (const [key, val] of res.headers.entries()) {
+    headers[key] = val;
+  }
+  let text, json;
+  try {
+    text = await res.text();
+    json = JSON.parse(text);
+  } catch {
+    // noop
+  }
+  const stringified = JSON.stringify(
+    {
+      status: res.status,
+      statusText: res.statusText,
+      headers,
+      body: json || text,
+    },
+    null,
+    2,
+  );
+  for (const line of stringified.split('\n')) {
+    report += indent + line + '\n';
+  }
+  report += indent + '```\n';
+  report += indent + '</details>\n';
+  report += indent + '\n';
+  return report;
 }
 
 /**
