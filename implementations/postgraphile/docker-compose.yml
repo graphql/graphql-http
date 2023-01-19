@@ -9,6 +9,7 @@ services:
       timeout: 1s
   server:
     build: .
+    image: postgraphile-server
     depends_on:
       database:
         condition: service_healthy

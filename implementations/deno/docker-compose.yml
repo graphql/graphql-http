@@ -1,6 +1,7 @@
 services:
   server:
     build: .
+    image: deno-server
     environment:
       - PORT=${PORT}
     ports:

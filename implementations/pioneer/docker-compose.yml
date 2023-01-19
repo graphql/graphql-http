@@ -1,5 +1,6 @@
 services:
   server:
+    image: pioneer-server
     build: .
     environment:
       - PORT=${PORT}
