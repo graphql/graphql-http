@@ -3,6 +3,6 @@
   "name": "pioneer",
   "packageManager": "yarn@3.2.3",
   "scripts": {
-    "start": "docker compose up"
+    "start": "docker compose up --no-build"
   }
 }
