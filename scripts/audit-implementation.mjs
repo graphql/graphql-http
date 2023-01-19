@@ -205,7 +205,11 @@ async function printAuditFail(result, i) {
         const acc = {};
         return Object.keys(v)
           .sort()
-          .reduce((acc, k) => (acc[k] = v[k]), acc);
+          .reverse() // body on bottom
+          .reduce((acc, k) => {
+            acc[k] = v[k];
+            return acc;
+          }, acc);
       }
       return v;
     },
