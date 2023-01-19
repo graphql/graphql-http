@@ -175,7 +175,9 @@ async function printAuditFail(result, i) {
   const headers = {};
   for (const [key, val] of res.headers.entries()) {
     // date header changes on each run, dont report it
-    if (key !== 'date') {
+    if (key === 'date') {
+      headers[key] = '<timestamp>';
+    } else {
       headers[key] = val;
     }
   }
