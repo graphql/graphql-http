@@ -17,6 +17,7 @@ is therefore not compliant.
 
 - [name](audits_common.AuditFail.md#name)
 - [reason](audits_common.AuditFail.md#reason)
+- [response](audits_common.AuditFail.md#response)
 - [status](audits_common.AuditFail.md#status)
 
 ## Properties
@@ -30,6 +31,12 @@ ___
 ### reason
 
 • **reason**: `string`
+
+___
+
+### response
+
+• **response**: `Response`
 
 ___
 
