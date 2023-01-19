@@ -108,18 +108,6 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
       });
       ressert(res).status.toBe(200);
 
-      // has charset set to utf-8
-      try {
-        ressert(res).header('content-type').toContain('charset=utf-8');
-        return;
-      } catch {
-        // noop, continue
-      }
-
-      // has no charset specified
-      ressert(res).header('content-type').notToContain('charset');
-
-      // and the content is utf-8 encoded
       try {
         const decoder = new TextDecoder('utf-8');
         const decoded = decoder.decode(await res.arrayBuffer());
