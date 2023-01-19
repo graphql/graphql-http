@@ -100,13 +100,13 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "57",
           "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>"
+          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT"
         },
         "body": {
           "errors": [
             {
-              "path": [],
-              "message": "Unable to parse JSON"
+              "message": "Unable to parse JSON",
+              "path": []
             }
           ]
         }
@@ -127,7 +127,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "95",
           "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>"
+          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT"
         },
         "body": {
           "errors": [
@@ -154,7 +154,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "95",
           "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>"
+          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT"
         },
         "body": {
           "errors": [

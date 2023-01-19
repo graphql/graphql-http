@@ -56,7 +56,7 @@ The server _SHOULD_ support these, but is not required.
         "headers": {
           "content-length": "14",
           "content-type": "text/plain;charset=UTF-8",
-          "date": "<timestamp>",
+          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
           "vary": "Accept-Encoding"
         },
         "body": "Not Acceptable"
@@ -76,7 +76,7 @@ The server _SHOULD_ support these, but is not required.
         "headers": {
           "content-length": "14",
           "content-type": "text/plain;charset=UTF-8",
-          "date": "<timestamp>",
+          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
           "vary": "Accept-Encoding"
         },
         "body": "Not Acceptable"
@@ -96,7 +96,7 @@ The server _SHOULD_ support these, but is not required.
         "headers": {
           "content-length": "14",
           "content-type": "text/plain;charset=UTF-8",
-          "date": "<timestamp>",
+          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
           "vary": "Accept-Encoding"
         },
         "body": "Not Acceptable"
@@ -116,7 +116,7 @@ The server _SHOULD_ support these, but is not required.
         "headers": {
           "content-length": "14",
           "content-type": "text/plain;charset=UTF-8",
-          "date": "<timestamp>",
+          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
           "vary": "Accept-Encoding"
         },
         "body": "Not Acceptable"
@@ -136,7 +136,7 @@ The server _SHOULD_ support these, but is not required.
         "headers": {
           "content-length": "14",
           "content-type": "text/plain;charset=UTF-8",
-          "date": "<timestamp>",
+          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
           "vary": "Accept-Encoding"
         },
         "body": "Not Acceptable"
@@ -156,7 +156,7 @@ The server _SHOULD_ support these, but is not required.
         "headers": {
           "content-length": "14",
           "content-type": "text/plain;charset=UTF-8",
-          "date": "<timestamp>",
+          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
           "vary": "Accept-Encoding"
         },
         "body": "Not Acceptable"
@@ -176,7 +176,7 @@ The server _SHOULD_ support these, but is not required.
         "headers": {
           "content-length": "14",
           "content-type": "text/plain;charset=UTF-8",
-          "date": "<timestamp>",
+          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
           "vary": "Accept-Encoding"
         },
         "body": "Not Acceptable"
@@ -196,7 +196,7 @@ The server _SHOULD_ support these, but is not required.
         "headers": {
           "content-length": "14",
           "content-type": "text/plain;charset=UTF-8",
-          "date": "<timestamp>",
+          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
           "vary": "Accept-Encoding"
         },
         "body": "Not Acceptable"
@@ -216,7 +216,7 @@ The server _SHOULD_ support these, but is not required.
         "headers": {
           "content-length": "14",
           "content-type": "text/plain;charset=UTF-8",
-          "date": "<timestamp>",
+          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
           "vary": "Accept-Encoding"
         },
         "body": "Not Acceptable"
@@ -236,7 +236,7 @@ The server _SHOULD_ support these, but is not required.
         "headers": {
           "content-length": "14",
           "content-type": "text/plain;charset=UTF-8",
-          "date": "<timestamp>",
+          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
           "vary": "Accept-Encoding"
         },
         "body": "Not Acceptable"
@@ -256,7 +256,7 @@ The server _SHOULD_ support these, but is not required.
         "headers": {
           "content-length": "14",
           "content-type": "text/plain;charset=UTF-8",
-          "date": "<timestamp>",
+          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
           "vary": "Accept-Encoding"
         },
         "body": "Not Acceptable"
@@ -276,7 +276,7 @@ The server _SHOULD_ support these, but is not required.
         "headers": {
           "content-length": "14",
           "content-type": "text/plain;charset=UTF-8",
-          "date": "<timestamp>",
+          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
           "vary": "Accept-Encoding"
         },
         "body": "Not Acceptable"
@@ -296,7 +296,7 @@ The server _SHOULD_ support these, but is not required.
         "headers": {
           "content-length": "14",
           "content-type": "text/plain;charset=UTF-8",
-          "date": "<timestamp>",
+          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
           "vary": "Accept-Encoding"
         },
         "body": "Not Acceptable"
@@ -316,7 +316,7 @@ The server _SHOULD_ support these, but is not required.
         "headers": {
           "content-length": "14",
           "content-type": "text/plain;charset=UTF-8",
-          "date": "<timestamp>",
+          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
           "vary": "Accept-Encoding"
         },
         "body": "Not Acceptable"
@@ -336,7 +336,7 @@ The server _SHOULD_ support these, but is not required.
         "headers": {
           "content-length": "14",
           "content-type": "text/plain;charset=UTF-8",
-          "date": "<timestamp>",
+          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
           "vary": "Accept-Encoding"
         },
         "body": "Not Acceptable"
@@ -356,7 +356,7 @@ The server _SHOULD_ support these, but is not required.
         "headers": {
           "content-length": "14",
           "content-type": "text/plain;charset=UTF-8",
-          "date": "<timestamp>",
+          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
           "vary": "Accept-Encoding"
         },
         "body": "Not Acceptable"
@@ -376,7 +376,7 @@ The server _SHOULD_ support these, but is not required.
         "headers": {
           "content-length": "14",
           "content-type": "text/plain;charset=UTF-8",
-          "date": "<timestamp>",
+          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
           "vary": "Accept-Encoding"
         },
         "body": "Not Acceptable"
@@ -396,7 +396,7 @@ The server _SHOULD_ support these, but is not required.
         "headers": {
           "content-length": "14",
           "content-type": "text/plain;charset=UTF-8",
-          "date": "<timestamp>",
+          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
           "vary": "Accept-Encoding"
         },
         "body": "Not Acceptable"
@@ -416,7 +416,7 @@ The server _SHOULD_ support these, but is not required.
         "headers": {
           "content-length": "14",
           "content-type": "text/plain;charset=UTF-8",
-          "date": "<timestamp>",
+          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
           "vary": "Accept-Encoding"
         },
         "body": "Not Acceptable"
@@ -437,7 +437,7 @@ The server _SHOULD_ support these, but is not required.
           "content-encoding": "gzip",
           "content-length": "42",
           "content-type": "text/plain;charset=UTF-8",
-          "date": "<timestamp>",
+          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
           "vary": "Accept-Encoding"
         },
         "body": "Malformed Request Body"
@@ -458,7 +458,7 @@ The server _SHOULD_ support these, but is not required.
           "content-encoding": "gzip",
           "content-length": "42",
           "content-type": "text/plain;charset=UTF-8",
-          "date": "<timestamp>",
+          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
           "vary": "Accept-Encoding"
         },
         "body": "Malformed Request Body"
@@ -479,7 +479,7 @@ The server _SHOULD_ support these, but is not required.
           "content-encoding": "gzip",
           "content-length": "42",
           "content-type": "text/plain;charset=UTF-8",
-          "date": "<timestamp>",
+          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
           "vary": "Accept-Encoding"
         },
         "body": "Malformed Request Body"
@@ -500,7 +500,7 @@ The server _SHOULD_ support these, but is not required.
           "content-encoding": "gzip",
           "content-length": "59",
           "content-type": "application/json",
-          "date": "<timestamp>",
+          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
           "vary": "Accept-Encoding"
         }
       }
@@ -519,7 +519,7 @@ The server _SHOULD_ support these, but is not required.
         "headers": {
           "content-length": "14",
           "content-type": "text/plain;charset=UTF-8",
-          "date": "<timestamp>",
+          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
           "vary": "Accept-Encoding"
         },
         "body": "Not Acceptable"
@@ -539,7 +539,7 @@ The server _SHOULD_ support these, but is not required.
         "headers": {
           "content-length": "14",
           "content-type": "text/plain;charset=UTF-8",
-          "date": "<timestamp>",
+          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
           "vary": "Accept-Encoding"
         },
         "body": "Not Acceptable"
@@ -560,7 +560,7 @@ The server _SHOULD_ support these, but is not required.
           "content-encoding": "gzip",
           "content-length": "163",
           "content-type": "application/json",
-          "date": "<timestamp>",
+          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
           "vary": "Accept-Encoding"
         }
       }
@@ -579,7 +579,7 @@ The server _SHOULD_ support these, but is not required.
         "headers": {
           "content-length": "14",
           "content-type": "text/plain;charset=UTF-8",
-          "date": "<timestamp>",
+          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
           "vary": "Accept-Encoding"
         },
         "body": "Not Acceptable"
@@ -599,7 +599,7 @@ The server _SHOULD_ support these, but is not required.
         "headers": {
           "content-length": "14",
           "content-type": "text/plain;charset=UTF-8",
-          "date": "<timestamp>",
+          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
           "vary": "Accept-Encoding"
         },
         "body": "Not Acceptable"
@@ -619,7 +619,7 @@ The server _SHOULD_ support these, but is not required.
         "headers": {
           "content-length": "14",
           "content-type": "text/plain;charset=UTF-8",
-          "date": "<timestamp>",
+          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
           "vary": "Accept-Encoding"
         },
         "body": "Not Acceptable"
@@ -639,7 +639,7 @@ The server _SHOULD_ support these, but is not required.
         "headers": {
           "content-length": "14",
           "content-type": "text/plain;charset=UTF-8",
-          "date": "<timestamp>",
+          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
           "vary": "Accept-Encoding"
         },
         "body": "Not Acceptable"
@@ -660,7 +660,7 @@ The server _SHOULD_ support these, but is not required.
           "content-encoding": "gzip",
           "content-length": "59",
           "content-type": "application/json",
-          "date": "<timestamp>",
+          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
           "vary": "Accept-Encoding"
         }
       }
@@ -680,7 +680,7 @@ The server _SHOULD_ support these, but is not required.
           "content-encoding": "gzip",
           "content-length": "59",
           "content-type": "application/json",
-          "date": "<timestamp>",
+          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
           "vary": "Accept-Encoding"
         }
       }
@@ -700,7 +700,7 @@ The server _SHOULD_ support these, but is not required.
           "content-encoding": "gzip",
           "content-length": "59",
           "content-type": "application/json",
-          "date": "<timestamp>",
+          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
           "vary": "Accept-Encoding"
         }
       }
@@ -720,7 +720,7 @@ The server _SHOULD_ support these, but is not required.
           "content-encoding": "gzip",
           "content-length": "59",
           "content-type": "application/json",
-          "date": "<timestamp>",
+          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
           "vary": "Accept-Encoding"
         }
       }
@@ -739,7 +739,7 @@ The server _SHOULD_ support these, but is not required.
         "headers": {
           "content-length": "14",
           "content-type": "text/plain;charset=UTF-8",
-          "date": "<timestamp>",
+          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
           "vary": "Accept-Encoding"
         },
         "body": "Not Acceptable"
@@ -760,7 +760,7 @@ The server _SHOULD_ support these, but is not required.
           "content-encoding": "gzip",
           "content-length": "42",
           "content-type": "text/plain;charset=UTF-8",
-          "date": "<timestamp>",
+          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
           "vary": "Accept-Encoding"
         },
         "body": "Malformed Request Body"
@@ -780,7 +780,7 @@ The server _SHOULD_ support these, but is not required.
         "headers": {
           "content-length": "14",
           "content-type": "text/plain;charset=UTF-8",
-          "date": "<timestamp>",
+          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
           "vary": "Accept-Encoding"
         },
         "body": "Not Acceptable"
@@ -800,7 +800,7 @@ The server _SHOULD_ support these, but is not required.
         "headers": {
           "content-length": "14",
           "content-type": "text/plain;charset=UTF-8",
-          "date": "<timestamp>",
+          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
           "vary": "Accept-Encoding"
         }
       }
@@ -819,7 +819,7 @@ The server _SHOULD_ support these, but is not required.
         "headers": {
           "content-length": "14",
           "content-type": "text/plain;charset=UTF-8",
-          "date": "<timestamp>",
+          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
           "vary": "Accept-Encoding"
         },
         "body": "Not Acceptable"
@@ -839,7 +839,7 @@ The server _SHOULD_ support these, but is not required.
         "headers": {
           "content-length": "14",
           "content-type": "text/plain;charset=UTF-8",
-          "date": "<timestamp>",
+          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
           "vary": "Accept-Encoding"
         }
       }
@@ -858,7 +858,7 @@ The server _SHOULD_ support these, but is not required.
         "headers": {
           "content-length": "14",
           "content-type": "text/plain;charset=UTF-8",
-          "date": "<timestamp>",
+          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
           "vary": "Accept-Encoding"
         },
         "body": "Not Acceptable"
@@ -878,7 +878,7 @@ The server _SHOULD_ support these, but is not required.
         "headers": {
           "content-length": "14",
           "content-type": "text/plain;charset=UTF-8",
-          "date": "<timestamp>",
+          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
           "vary": "Accept-Encoding"
         }
       }
@@ -897,7 +897,7 @@ The server _SHOULD_ support these, but is not required.
         "headers": {
           "content-length": "14",
           "content-type": "text/plain;charset=UTF-8",
-          "date": "<timestamp>",
+          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
           "vary": "Accept-Encoding"
         },
         "body": "Not Acceptable"
@@ -917,7 +917,7 @@ The server _SHOULD_ support these, but is not required.
         "headers": {
           "content-length": "14",
           "content-type": "text/plain;charset=UTF-8",
-          "date": "<timestamp>",
+          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
           "vary": "Accept-Encoding"
         }
       }
@@ -941,7 +941,7 @@ The server _MUST_ support these.
           "content-encoding": "gzip",
           "content-length": "59",
           "content-type": "application/json",
-          "date": "<timestamp>",
+          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
           "vary": "Accept-Encoding"
         }
       }
@@ -961,7 +961,7 @@ The server _MUST_ support these.
           "content-encoding": "gzip",
           "content-length": "59",
           "content-type": "application/json",
-          "date": "<timestamp>",
+          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
           "vary": "Accept-Encoding"
         },
         "body": {
@@ -986,7 +986,7 @@ The server _MUST_ support these.
           "content-encoding": "gzip",
           "content-length": "59",
           "content-type": "application/json",
-          "date": "<timestamp>",
+          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
           "vary": "Accept-Encoding"
         },
         "body": {
