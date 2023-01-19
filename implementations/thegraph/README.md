@@ -1646,7 +1646,7 @@ The server _MUST_ support these.
       ```
       </details>
       
-  3. MUST accept utf-8 encoding<br />
+  3. MUST accept utf-8 encoded request<br />
 
       <details>
       <summary>Response status code is not 200</summary>
@@ -1673,7 +1673,7 @@ The server _MUST_ support these.
       ```
       </details>
       
-  4. MUST assume utf-8 if encoding is unspecified<br />
+  4. MUST assume utf-8 in request if encoding is unspecified<br />
 
       <details>
       <summary>Response status code is not 200</summary>
