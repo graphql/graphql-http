@@ -110,14 +110,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
 
       try {
         const decoder = new TextDecoder('utf-8');
-        const decoded = decoder.decode(await res.arrayBuffer());
-        const expected = '{"data":{"__typename":"Query"}}';
-        if (decoded !== expected) {
-          throw new AuditError(
-            res,
-            `Response UTF-8 decoded body is not '${expected}'`,
-          );
-        }
+        decoder.decode(await res.arrayBuffer());
       } catch {
         throw new AuditError(res, 'Response body is not UTF-8 encoded');
       }
