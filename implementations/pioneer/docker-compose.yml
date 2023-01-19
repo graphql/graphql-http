@@ -5,7 +5,7 @@ services:
       - PORT=${PORT}
     ports:
       - ${PORT}:${PORT}
-    entrypoint: swift run
+    entrypoint: .build/release/audit
     healthcheck:
       test: curl -f http://localhost:$$PORT/graphql?query=%7B__typename%7D || exit 1
       interval: 3s
