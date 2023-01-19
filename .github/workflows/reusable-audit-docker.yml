@@ -29,13 +29,14 @@ jobs:
         run: yarn build:esm
       - name: Bake
         uses: docker/bake-action@v2
+        working-directory: implementations/${{ inputs.workspace }}
         with:
-          workdir: implementations/${{ inputs.workspace }}
           set: |
             *.cache-from=type=gha
             *.cache-to=type=gha,mode=max
       - name: Start
-        run: yarn workspace ${{ inputs.workspace }} start -d --wait
+        working-directory: implementations/${{ inputs.workspace }}
+        run: yarn start -d --wait
       - name: Audit
         run: node scripts/audit-implementation.mjs implementations/${{ inputs.workspace }}
       - name: Upload audit report
