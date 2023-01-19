@@ -174,14 +174,17 @@ async function printAuditFail(result, i) {
   /** @type {Record<string, string>} */
   const headers = {};
   for (const [key, val] of res.headers.entries()) {
-    // date header changes on each run, dont report it
+    // some headers change on each run, dont report it
     if (key === 'date') {
       headers[key] = '<timestamp>';
+    } else if (['cf-ray', 'server-timing'].includes(key)) {
+      headers[key] = '<omitted>';
     } else {
       headers[key] = val;
     }
   }
-  let text, json;
+  let text = '',
+    json;
   try {
     text = await res.text();
     json = JSON.parse(text);
@@ -193,9 +196,23 @@ async function printAuditFail(result, i) {
       status: res.status,
       statusText: res.statusText,
       headers,
-      body: json || text,
+      body: json || (text?.length > 5120 ? '<body is too long>' : text) || null,
     },
-    null,
+    (_k, v) => {
+      if (v != null && typeof v === 'object' && !Array.isArray(v)) {
+        // sort object fields for stable stringify
+        /** @type {Record<string, unknown>} */
+        const acc = {};
+        return Object.keys(v)
+          .sort()
+          .reverse() // body on bottom
+          .reduce((acc, k) => {
+            acc[k] = v[k];
+            return acc;
+          }, acc);
+      }
+      return v;
+    },
     2,
   );
   // adding indentation to stringify doesnt work, just indent each line

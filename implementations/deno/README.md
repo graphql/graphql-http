@@ -51,13 +51,13 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 406,
         "statusText": "Not Acceptable",
+        "status": 406,
         "headers": {
-          "content-length": "14",
-          "content-type": "text/plain;charset=UTF-8",
+          "vary": "Accept-Encoding",
           "date": "<timestamp>",
-          "vary": "Accept-Encoding"
+          "content-type": "text/plain;charset=UTF-8",
+          "content-length": "14"
         },
         "body": "Not Acceptable"
       }
@@ -71,13 +71,13 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 406,
         "statusText": "Not Acceptable",
+        "status": 406,
         "headers": {
-          "content-length": "14",
-          "content-type": "text/plain;charset=UTF-8",
+          "vary": "Accept-Encoding",
           "date": "<timestamp>",
-          "vary": "Accept-Encoding"
+          "content-type": "text/plain;charset=UTF-8",
+          "content-length": "14"
         },
         "body": "Not Acceptable"
       }
@@ -91,13 +91,13 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 406,
         "statusText": "Not Acceptable",
+        "status": 406,
         "headers": {
-          "content-length": "14",
-          "content-type": "text/plain;charset=UTF-8",
+          "vary": "Accept-Encoding",
           "date": "<timestamp>",
-          "vary": "Accept-Encoding"
+          "content-type": "text/plain;charset=UTF-8",
+          "content-length": "14"
         },
         "body": "Not Acceptable"
       }
@@ -111,13 +111,13 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 406,
         "statusText": "Not Acceptable",
+        "status": 406,
         "headers": {
-          "content-length": "14",
-          "content-type": "text/plain;charset=UTF-8",
+          "vary": "Accept-Encoding",
           "date": "<timestamp>",
-          "vary": "Accept-Encoding"
+          "content-type": "text/plain;charset=UTF-8",
+          "content-length": "14"
         },
         "body": "Not Acceptable"
       }
@@ -131,13 +131,13 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 406,
         "statusText": "Not Acceptable",
+        "status": 406,
         "headers": {
-          "content-length": "14",
-          "content-type": "text/plain;charset=UTF-8",
+          "vary": "Accept-Encoding",
           "date": "<timestamp>",
-          "vary": "Accept-Encoding"
+          "content-type": "text/plain;charset=UTF-8",
+          "content-length": "14"
         },
         "body": "Not Acceptable"
       }
@@ -151,13 +151,13 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 406,
         "statusText": "Not Acceptable",
+        "status": 406,
         "headers": {
-          "content-length": "14",
-          "content-type": "text/plain;charset=UTF-8",
+          "vary": "Accept-Encoding",
           "date": "<timestamp>",
-          "vary": "Accept-Encoding"
+          "content-type": "text/plain;charset=UTF-8",
+          "content-length": "14"
         },
         "body": "Not Acceptable"
       }
@@ -171,13 +171,13 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 406,
         "statusText": "Not Acceptable",
+        "status": 406,
         "headers": {
-          "content-length": "14",
-          "content-type": "text/plain;charset=UTF-8",
+          "vary": "Accept-Encoding",
           "date": "<timestamp>",
-          "vary": "Accept-Encoding"
+          "content-type": "text/plain;charset=UTF-8",
+          "content-length": "14"
         },
         "body": "Not Acceptable"
       }
@@ -191,13 +191,13 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 406,
         "statusText": "Not Acceptable",
+        "status": 406,
         "headers": {
-          "content-length": "14",
-          "content-type": "text/plain;charset=UTF-8",
+          "vary": "Accept-Encoding",
           "date": "<timestamp>",
-          "vary": "Accept-Encoding"
+          "content-type": "text/plain;charset=UTF-8",
+          "content-length": "14"
         },
         "body": "Not Acceptable"
       }
@@ -211,13 +211,13 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 406,
         "statusText": "Not Acceptable",
+        "status": 406,
         "headers": {
-          "content-length": "14",
-          "content-type": "text/plain;charset=UTF-8",
+          "vary": "Accept-Encoding",
           "date": "<timestamp>",
-          "vary": "Accept-Encoding"
+          "content-type": "text/plain;charset=UTF-8",
+          "content-length": "14"
         },
         "body": "Not Acceptable"
       }
@@ -231,13 +231,13 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 406,
         "statusText": "Not Acceptable",
+        "status": 406,
         "headers": {
-          "content-length": "14",
-          "content-type": "text/plain;charset=UTF-8",
+          "vary": "Accept-Encoding",
           "date": "<timestamp>",
-          "vary": "Accept-Encoding"
+          "content-type": "text/plain;charset=UTF-8",
+          "content-length": "14"
         },
         "body": "Not Acceptable"
       }
@@ -251,13 +251,13 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 406,
         "statusText": "Not Acceptable",
+        "status": 406,
         "headers": {
-          "content-length": "14",
-          "content-type": "text/plain;charset=UTF-8",
+          "vary": "Accept-Encoding",
           "date": "<timestamp>",
-          "vary": "Accept-Encoding"
+          "content-type": "text/plain;charset=UTF-8",
+          "content-length": "14"
         },
         "body": "Not Acceptable"
       }
@@ -271,13 +271,13 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 406,
         "statusText": "Not Acceptable",
+        "status": 406,
         "headers": {
-          "content-length": "14",
-          "content-type": "text/plain;charset=UTF-8",
+          "vary": "Accept-Encoding",
           "date": "<timestamp>",
-          "vary": "Accept-Encoding"
+          "content-type": "text/plain;charset=UTF-8",
+          "content-length": "14"
         },
         "body": "Not Acceptable"
       }
@@ -291,13 +291,13 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 406,
         "statusText": "Not Acceptable",
+        "status": 406,
         "headers": {
-          "content-length": "14",
-          "content-type": "text/plain;charset=UTF-8",
+          "vary": "Accept-Encoding",
           "date": "<timestamp>",
-          "vary": "Accept-Encoding"
+          "content-type": "text/plain;charset=UTF-8",
+          "content-length": "14"
         },
         "body": "Not Acceptable"
       }
@@ -311,13 +311,13 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 406,
         "statusText": "Not Acceptable",
+        "status": 406,
         "headers": {
-          "content-length": "14",
-          "content-type": "text/plain;charset=UTF-8",
+          "vary": "Accept-Encoding",
           "date": "<timestamp>",
-          "vary": "Accept-Encoding"
+          "content-type": "text/plain;charset=UTF-8",
+          "content-length": "14"
         },
         "body": "Not Acceptable"
       }
@@ -331,13 +331,13 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 406,
         "statusText": "Not Acceptable",
+        "status": 406,
         "headers": {
-          "content-length": "14",
-          "content-type": "text/plain;charset=UTF-8",
+          "vary": "Accept-Encoding",
           "date": "<timestamp>",
-          "vary": "Accept-Encoding"
+          "content-type": "text/plain;charset=UTF-8",
+          "content-length": "14"
         },
         "body": "Not Acceptable"
       }
@@ -351,13 +351,13 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 406,
         "statusText": "Not Acceptable",
+        "status": 406,
         "headers": {
-          "content-length": "14",
-          "content-type": "text/plain;charset=UTF-8",
+          "vary": "Accept-Encoding",
           "date": "<timestamp>",
-          "vary": "Accept-Encoding"
+          "content-type": "text/plain;charset=UTF-8",
+          "content-length": "14"
         },
         "body": "Not Acceptable"
       }
@@ -371,13 +371,13 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 406,
         "statusText": "Not Acceptable",
+        "status": 406,
         "headers": {
-          "content-length": "14",
-          "content-type": "text/plain;charset=UTF-8",
+          "vary": "Accept-Encoding",
           "date": "<timestamp>",
-          "vary": "Accept-Encoding"
+          "content-type": "text/plain;charset=UTF-8",
+          "content-length": "14"
         },
         "body": "Not Acceptable"
       }
@@ -391,13 +391,13 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 406,
         "statusText": "Not Acceptable",
+        "status": 406,
         "headers": {
-          "content-length": "14",
-          "content-type": "text/plain;charset=UTF-8",
+          "vary": "Accept-Encoding",
           "date": "<timestamp>",
-          "vary": "Accept-Encoding"
+          "content-type": "text/plain;charset=UTF-8",
+          "content-length": "14"
         },
         "body": "Not Acceptable"
       }
@@ -411,13 +411,13 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 406,
         "statusText": "Not Acceptable",
+        "status": 406,
         "headers": {
-          "content-length": "14",
-          "content-type": "text/plain;charset=UTF-8",
+          "vary": "Accept-Encoding",
           "date": "<timestamp>",
-          "vary": "Accept-Encoding"
+          "content-type": "text/plain;charset=UTF-8",
+          "content-length": "14"
         },
         "body": "Not Acceptable"
       }
@@ -431,14 +431,14 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "content-encoding": "gzip",
-          "content-length": "42",
-          "content-type": "text/plain;charset=UTF-8",
+          "vary": "Accept-Encoding",
           "date": "<timestamp>",
-          "vary": "Accept-Encoding"
+          "content-type": "text/plain;charset=UTF-8",
+          "content-length": "42",
+          "content-encoding": "gzip"
         },
         "body": "Malformed Request Body"
       }
@@ -452,14 +452,14 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "content-encoding": "gzip",
-          "content-length": "42",
-          "content-type": "text/plain;charset=UTF-8",
+          "vary": "Accept-Encoding",
           "date": "<timestamp>",
-          "vary": "Accept-Encoding"
+          "content-type": "text/plain;charset=UTF-8",
+          "content-length": "42",
+          "content-encoding": "gzip"
         },
         "body": "Malformed Request Body"
       }
@@ -473,14 +473,14 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "content-encoding": "gzip",
-          "content-length": "42",
-          "content-type": "text/plain;charset=UTF-8",
+          "vary": "Accept-Encoding",
           "date": "<timestamp>",
-          "vary": "Accept-Encoding"
+          "content-type": "text/plain;charset=UTF-8",
+          "content-length": "42",
+          "content-encoding": "gzip"
         },
         "body": "Malformed Request Body"
       }
@@ -494,15 +494,16 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 200,
         "statusText": "OK",
+        "status": 200,
         "headers": {
-          "content-encoding": "gzip",
-          "content-length": "59",
-          "content-type": "application/json",
+          "vary": "Accept-Encoding",
           "date": "<timestamp>",
-          "vary": "Accept-Encoding"
-        }
+          "content-type": "application/json",
+          "content-length": "59",
+          "content-encoding": "gzip"
+        },
+        "body": null
       }
       ```
       </details>
@@ -514,13 +515,13 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 406,
         "statusText": "Not Acceptable",
+        "status": 406,
         "headers": {
-          "content-length": "14",
-          "content-type": "text/plain;charset=UTF-8",
+          "vary": "Accept-Encoding",
           "date": "<timestamp>",
-          "vary": "Accept-Encoding"
+          "content-type": "text/plain;charset=UTF-8",
+          "content-length": "14"
         },
         "body": "Not Acceptable"
       }
@@ -534,13 +535,13 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 406,
         "statusText": "Not Acceptable",
+        "status": 406,
         "headers": {
-          "content-length": "14",
-          "content-type": "text/plain;charset=UTF-8",
+          "vary": "Accept-Encoding",
           "date": "<timestamp>",
-          "vary": "Accept-Encoding"
+          "content-type": "text/plain;charset=UTF-8",
+          "content-length": "14"
         },
         "body": "Not Acceptable"
       }
@@ -554,15 +555,16 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 200,
         "statusText": "OK",
+        "status": 200,
         "headers": {
-          "content-encoding": "gzip",
-          "content-length": "163",
-          "content-type": "application/json",
+          "vary": "Accept-Encoding",
           "date": "<timestamp>",
-          "vary": "Accept-Encoding"
-        }
+          "content-type": "application/json",
+          "content-length": "163",
+          "content-encoding": "gzip"
+        },
+        "body": null
       }
       ```
       </details>
@@ -574,13 +576,13 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 406,
         "statusText": "Not Acceptable",
+        "status": 406,
         "headers": {
-          "content-length": "14",
-          "content-type": "text/plain;charset=UTF-8",
+          "vary": "Accept-Encoding",
           "date": "<timestamp>",
-          "vary": "Accept-Encoding"
+          "content-type": "text/plain;charset=UTF-8",
+          "content-length": "14"
         },
         "body": "Not Acceptable"
       }
@@ -594,13 +596,13 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 406,
         "statusText": "Not Acceptable",
+        "status": 406,
         "headers": {
-          "content-length": "14",
-          "content-type": "text/plain;charset=UTF-8",
+          "vary": "Accept-Encoding",
           "date": "<timestamp>",
-          "vary": "Accept-Encoding"
+          "content-type": "text/plain;charset=UTF-8",
+          "content-length": "14"
         },
         "body": "Not Acceptable"
       }
@@ -614,13 +616,13 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 406,
         "statusText": "Not Acceptable",
+        "status": 406,
         "headers": {
-          "content-length": "14",
-          "content-type": "text/plain;charset=UTF-8",
+          "vary": "Accept-Encoding",
           "date": "<timestamp>",
-          "vary": "Accept-Encoding"
+          "content-type": "text/plain;charset=UTF-8",
+          "content-length": "14"
         },
         "body": "Not Acceptable"
       }
@@ -634,13 +636,13 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 406,
         "statusText": "Not Acceptable",
+        "status": 406,
         "headers": {
-          "content-length": "14",
-          "content-type": "text/plain;charset=UTF-8",
+          "vary": "Accept-Encoding",
           "date": "<timestamp>",
-          "vary": "Accept-Encoding"
+          "content-type": "text/plain;charset=UTF-8",
+          "content-length": "14"
         },
         "body": "Not Acceptable"
       }
@@ -654,15 +656,16 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 200,
         "statusText": "OK",
+        "status": 200,
         "headers": {
-          "content-encoding": "gzip",
-          "content-length": "59",
-          "content-type": "application/json",
+          "vary": "Accept-Encoding",
           "date": "<timestamp>",
-          "vary": "Accept-Encoding"
-        }
+          "content-type": "application/json",
+          "content-length": "59",
+          "content-encoding": "gzip"
+        },
+        "body": null
       }
       ```
       </details>
@@ -674,15 +677,16 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 200,
         "statusText": "OK",
+        "status": 200,
         "headers": {
-          "content-encoding": "gzip",
-          "content-length": "59",
-          "content-type": "application/json",
+          "vary": "Accept-Encoding",
           "date": "<timestamp>",
-          "vary": "Accept-Encoding"
-        }
+          "content-type": "application/json",
+          "content-length": "59",
+          "content-encoding": "gzip"
+        },
+        "body": null
       }
       ```
       </details>
@@ -694,15 +698,16 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 200,
         "statusText": "OK",
+        "status": 200,
         "headers": {
-          "content-encoding": "gzip",
-          "content-length": "59",
-          "content-type": "application/json",
+          "vary": "Accept-Encoding",
           "date": "<timestamp>",
-          "vary": "Accept-Encoding"
-        }
+          "content-type": "application/json",
+          "content-length": "59",
+          "content-encoding": "gzip"
+        },
+        "body": null
       }
       ```
       </details>
@@ -714,15 +719,16 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 200,
         "statusText": "OK",
+        "status": 200,
         "headers": {
-          "content-encoding": "gzip",
-          "content-length": "59",
-          "content-type": "application/json",
+          "vary": "Accept-Encoding",
           "date": "<timestamp>",
-          "vary": "Accept-Encoding"
-        }
+          "content-type": "application/json",
+          "content-length": "59",
+          "content-encoding": "gzip"
+        },
+        "body": null
       }
       ```
       </details>
@@ -734,13 +740,13 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 406,
         "statusText": "Not Acceptable",
+        "status": 406,
         "headers": {
-          "content-length": "14",
-          "content-type": "text/plain;charset=UTF-8",
+          "vary": "Accept-Encoding",
           "date": "<timestamp>",
-          "vary": "Accept-Encoding"
+          "content-type": "text/plain;charset=UTF-8",
+          "content-length": "14"
         },
         "body": "Not Acceptable"
       }
@@ -754,14 +760,14 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "content-encoding": "gzip",
-          "content-length": "42",
-          "content-type": "text/plain;charset=UTF-8",
+          "vary": "Accept-Encoding",
           "date": "<timestamp>",
-          "vary": "Accept-Encoding"
+          "content-type": "text/plain;charset=UTF-8",
+          "content-length": "42",
+          "content-encoding": "gzip"
         },
         "body": "Malformed Request Body"
       }
@@ -775,13 +781,13 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 406,
         "statusText": "Not Acceptable",
+        "status": 406,
         "headers": {
-          "content-length": "14",
-          "content-type": "text/plain;charset=UTF-8",
+          "vary": "Accept-Encoding",
           "date": "<timestamp>",
-          "vary": "Accept-Encoding"
+          "content-type": "text/plain;charset=UTF-8",
+          "content-length": "14"
         },
         "body": "Not Acceptable"
       }
@@ -795,14 +801,15 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 406,
         "statusText": "Not Acceptable",
+        "status": 406,
         "headers": {
-          "content-length": "14",
-          "content-type": "text/plain;charset=UTF-8",
+          "vary": "Accept-Encoding",
           "date": "<timestamp>",
-          "vary": "Accept-Encoding"
-        }
+          "content-type": "text/plain;charset=UTF-8",
+          "content-length": "14"
+        },
+        "body": null
       }
       ```
       </details>
@@ -814,13 +821,13 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 406,
         "statusText": "Not Acceptable",
+        "status": 406,
         "headers": {
-          "content-length": "14",
-          "content-type": "text/plain;charset=UTF-8",
+          "vary": "Accept-Encoding",
           "date": "<timestamp>",
-          "vary": "Accept-Encoding"
+          "content-type": "text/plain;charset=UTF-8",
+          "content-length": "14"
         },
         "body": "Not Acceptable"
       }
@@ -834,14 +841,15 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 406,
         "statusText": "Not Acceptable",
+        "status": 406,
         "headers": {
-          "content-length": "14",
-          "content-type": "text/plain;charset=UTF-8",
+          "vary": "Accept-Encoding",
           "date": "<timestamp>",
-          "vary": "Accept-Encoding"
-        }
+          "content-type": "text/plain;charset=UTF-8",
+          "content-length": "14"
+        },
+        "body": null
       }
       ```
       </details>
@@ -853,13 +861,13 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 406,
         "statusText": "Not Acceptable",
+        "status": 406,
         "headers": {
-          "content-length": "14",
-          "content-type": "text/plain;charset=UTF-8",
+          "vary": "Accept-Encoding",
           "date": "<timestamp>",
-          "vary": "Accept-Encoding"
+          "content-type": "text/plain;charset=UTF-8",
+          "content-length": "14"
         },
         "body": "Not Acceptable"
       }
@@ -873,14 +881,15 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 406,
         "statusText": "Not Acceptable",
+        "status": 406,
         "headers": {
-          "content-length": "14",
-          "content-type": "text/plain;charset=UTF-8",
+          "vary": "Accept-Encoding",
           "date": "<timestamp>",
-          "vary": "Accept-Encoding"
-        }
+          "content-type": "text/plain;charset=UTF-8",
+          "content-length": "14"
+        },
+        "body": null
       }
       ```
       </details>
@@ -892,13 +901,13 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 406,
         "statusText": "Not Acceptable",
+        "status": 406,
         "headers": {
-          "content-length": "14",
-          "content-type": "text/plain;charset=UTF-8",
+          "vary": "Accept-Encoding",
           "date": "<timestamp>",
-          "vary": "Accept-Encoding"
+          "content-type": "text/plain;charset=UTF-8",
+          "content-length": "14"
         },
         "body": "Not Acceptable"
       }
@@ -912,14 +921,15 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 406,
         "statusText": "Not Acceptable",
+        "status": 406,
         "headers": {
-          "content-length": "14",
-          "content-type": "text/plain;charset=UTF-8",
+          "vary": "Accept-Encoding",
           "date": "<timestamp>",
-          "vary": "Accept-Encoding"
-        }
+          "content-type": "text/plain;charset=UTF-8",
+          "content-length": "14"
+        },
+        "body": null
       }
       ```
       </details>
@@ -935,15 +945,16 @@ The server _MUST_ support these.
       
       ```json
       {
-        "status": 200,
         "statusText": "OK",
+        "status": 200,
         "headers": {
-          "content-encoding": "gzip",
-          "content-length": "59",
-          "content-type": "application/json",
+          "vary": "Accept-Encoding",
           "date": "<timestamp>",
-          "vary": "Accept-Encoding"
-        }
+          "content-type": "application/json",
+          "content-length": "59",
+          "content-encoding": "gzip"
+        },
+        "body": null
       }
       ```
       </details>
@@ -955,14 +966,14 @@ The server _MUST_ support these.
       
       ```json
       {
-        "status": 200,
         "statusText": "OK",
+        "status": 200,
         "headers": {
-          "content-encoding": "gzip",
-          "content-length": "59",
-          "content-type": "application/json",
+          "vary": "Accept-Encoding",
           "date": "<timestamp>",
-          "vary": "Accept-Encoding"
+          "content-type": "application/json",
+          "content-length": "59",
+          "content-encoding": "gzip"
         },
         "body": {
           "data": {
@@ -980,14 +991,14 @@ The server _MUST_ support these.
       
       ```json
       {
-        "status": 200,
         "statusText": "OK",
+        "status": 200,
         "headers": {
-          "content-encoding": "gzip",
-          "content-length": "59",
-          "content-type": "application/json",
+          "vary": "Accept-Encoding",
           "date": "<timestamp>",
-          "vary": "Accept-Encoding"
+          "content-type": "application/json",
+          "content-length": "59",
+          "content-encoding": "gzip"
         },
         "body": {
           "data": {

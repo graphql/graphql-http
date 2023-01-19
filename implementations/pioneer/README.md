@@ -94,13 +94,13 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "connection": "close",
-          "content-length": "57",
+          "date": "<timestamp>",
           "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>"
+          "content-length": "57",
+          "connection": "close"
         },
         "body": {
           "errors": [
@@ -121,19 +121,19 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "connection": "close",
-          "content-length": "95",
+          "date": "<timestamp>",
           "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>"
+          "content-length": "95",
+          "connection": "close"
         },
         "body": {
           "errors": [
             {
-              "message": "Operation of this type is not allowed and has been blocked",
-              "path": []
+              "path": [],
+              "message": "Operation of this type is not allowed and has been blocked"
             }
           ]
         }
@@ -148,19 +148,19 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "connection": "close",
-          "content-length": "95",
+          "date": "<timestamp>",
           "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>"
+          "content-length": "95",
+          "connection": "close"
         },
         "body": {
           "errors": [
             {
-              "message": "Operation of this type is not allowed and has been blocked",
-              "path": []
+              "path": [],
+              "message": "Operation of this type is not allowed and has been blocked"
             }
           ]
         }

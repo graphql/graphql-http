@@ -64,15 +64,15 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 200,
         "statusText": "OK",
+        "status": 200,
         "headers": {
-          "connection": "close",
-          "content-length": "31",
-          "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>",
+          "x-powered-by": "Express",
           "etag": "W/\"1f-yOwhVHjWKeagyuteVuktj+6mcMg\"",
-          "x-powered-by": "Express"
+          "date": "<timestamp>",
+          "content-type": "application/json; charset=utf-8",
+          "content-length": "31",
+          "connection": "close"
         },
         "body": {
           "data": {
@@ -90,15 +90,15 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "connection": "close",
-          "content-length": "53",
-          "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>",
+          "x-powered-by": "Express",
           "etag": "W/\"35-rkfaW07yp80JIwkYI6hoaXIO3bI\"",
-          "x-powered-by": "Express"
+          "date": "<timestamp>",
+          "content-type": "application/json; charset=utf-8",
+          "content-length": "53",
+          "connection": "close"
         },
         "body": {
           "errors": [
@@ -118,15 +118,15 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "connection": "close",
-          "content-length": "53",
-          "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>",
+          "x-powered-by": "Express",
           "etag": "W/\"35-rkfaW07yp80JIwkYI6hoaXIO3bI\"",
-          "x-powered-by": "Express"
+          "date": "<timestamp>",
+          "content-type": "application/json; charset=utf-8",
+          "content-length": "53",
+          "connection": "close"
         },
         "body": {
           "errors": [
@@ -146,15 +146,15 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "connection": "close",
-          "content-length": "53",
-          "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>",
+          "x-powered-by": "Express",
           "etag": "W/\"35-rkfaW07yp80JIwkYI6hoaXIO3bI\"",
-          "x-powered-by": "Express"
+          "date": "<timestamp>",
+          "content-type": "application/json; charset=utf-8",
+          "content-length": "53",
+          "connection": "close"
         },
         "body": {
           "errors": [
@@ -174,15 +174,15 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "connection": "close",
-          "content-length": "53",
-          "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>",
+          "x-powered-by": "Express",
           "etag": "W/\"35-rkfaW07yp80JIwkYI6hoaXIO3bI\"",
-          "x-powered-by": "Express"
+          "date": "<timestamp>",
+          "content-type": "application/json; charset=utf-8",
+          "content-length": "53",
+          "connection": "close"
         },
         "body": {
           "errors": [
@@ -202,15 +202,15 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "connection": "close",
-          "content-length": "53",
-          "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>",
+          "x-powered-by": "Express",
           "etag": "W/\"35-rkfaW07yp80JIwkYI6hoaXIO3bI\"",
-          "x-powered-by": "Express"
+          "date": "<timestamp>",
+          "content-type": "application/json; charset=utf-8",
+          "content-length": "53",
+          "connection": "close"
         },
         "body": {
           "errors": [
@@ -230,15 +230,15 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 200,
         "statusText": "OK",
+        "status": 200,
         "headers": {
-          "connection": "close",
-          "content-length": "31",
-          "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>",
+          "x-powered-by": "Express",
           "etag": "W/\"1f-yOwhVHjWKeagyuteVuktj+6mcMg\"",
-          "x-powered-by": "Express"
+          "date": "<timestamp>",
+          "content-type": "application/json; charset=utf-8",
+          "content-length": "31",
+          "connection": "close"
         },
         "body": {
           "data": {
@@ -256,15 +256,15 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 200,
         "statusText": "OK",
+        "status": 200,
         "headers": {
-          "connection": "close",
-          "content-length": "31",
-          "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>",
+          "x-powered-by": "Express",
           "etag": "W/\"1f-yOwhVHjWKeagyuteVuktj+6mcMg\"",
-          "x-powered-by": "Express"
+          "date": "<timestamp>",
+          "content-type": "application/json; charset=utf-8",
+          "content-length": "31",
+          "connection": "close"
         },
         "body": {
           "data": {
@@ -282,15 +282,15 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 200,
         "statusText": "OK",
+        "status": 200,
         "headers": {
-          "connection": "close",
-          "content-length": "31",
-          "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>",
+          "x-powered-by": "Express",
           "etag": "W/\"1f-yOwhVHjWKeagyuteVuktj+6mcMg\"",
-          "x-powered-by": "Express"
+          "date": "<timestamp>",
+          "content-type": "application/json; charset=utf-8",
+          "content-length": "31",
+          "connection": "close"
         },
         "body": {
           "data": {
@@ -308,15 +308,15 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 200,
         "statusText": "OK",
+        "status": 200,
         "headers": {
-          "connection": "close",
-          "content-length": "31",
-          "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>",
+          "x-powered-by": "Express",
           "etag": "W/\"1f-yOwhVHjWKeagyuteVuktj+6mcMg\"",
-          "x-powered-by": "Express"
+          "date": "<timestamp>",
+          "content-type": "application/json; charset=utf-8",
+          "content-length": "31",
+          "connection": "close"
         },
         "body": {
           "data": {
@@ -334,16 +334,17 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 200,
         "statusText": "OK",
+        "status": 200,
         "headers": {
-          "connection": "close",
-          "content-length": "31",
-          "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>",
+          "x-powered-by": "Express",
           "etag": "W/\"1f-yOwhVHjWKeagyuteVuktj+6mcMg\"",
-          "x-powered-by": "Express"
-        }
+          "date": "<timestamp>",
+          "content-type": "application/json; charset=utf-8",
+          "content-length": "31",
+          "connection": "close"
+        },
+        "body": null
       }
       ```
       </details>
@@ -355,16 +356,17 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 200,
         "statusText": "OK",
+        "status": 200,
         "headers": {
-          "connection": "close",
-          "content-length": "31",
-          "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>",
+          "x-powered-by": "Express",
           "etag": "W/\"1f-yOwhVHjWKeagyuteVuktj+6mcMg\"",
-          "x-powered-by": "Express"
-        }
+          "date": "<timestamp>",
+          "content-type": "application/json; charset=utf-8",
+          "content-length": "31",
+          "connection": "close"
+        },
+        "body": null
       }
       ```
       </details>
@@ -376,16 +378,17 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 200,
         "statusText": "OK",
+        "status": 200,
         "headers": {
-          "connection": "close",
-          "content-length": "31",
-          "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>",
+          "x-powered-by": "Express",
           "etag": "W/\"1f-yOwhVHjWKeagyuteVuktj+6mcMg\"",
-          "x-powered-by": "Express"
-        }
+          "date": "<timestamp>",
+          "content-type": "application/json; charset=utf-8",
+          "content-length": "31",
+          "connection": "close"
+        },
+        "body": null
       }
       ```
       </details>
@@ -397,16 +400,17 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 200,
         "statusText": "OK",
+        "status": 200,
         "headers": {
-          "connection": "close",
-          "content-length": "31",
-          "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>",
+          "x-powered-by": "Express",
           "etag": "W/\"1f-yOwhVHjWKeagyuteVuktj+6mcMg\"",
-          "x-powered-by": "Express"
-        }
+          "date": "<timestamp>",
+          "content-type": "application/json; charset=utf-8",
+          "content-length": "31",
+          "connection": "close"
+        },
+        "body": null
       }
       ```
       </details>
@@ -418,15 +422,15 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 200,
         "statusText": "OK",
+        "status": 200,
         "headers": {
-          "connection": "close",
-          "content-length": "31",
-          "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>",
+          "x-powered-by": "Express",
           "etag": "W/\"1f-yOwhVHjWKeagyuteVuktj+6mcMg\"",
-          "x-powered-by": "Express"
+          "date": "<timestamp>",
+          "content-type": "application/json; charset=utf-8",
+          "content-length": "31",
+          "connection": "close"
         },
         "body": {
           "data": {
@@ -444,15 +448,15 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 200,
         "statusText": "OK",
+        "status": 200,
         "headers": {
-          "connection": "close",
-          "content-length": "31",
-          "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>",
+          "x-powered-by": "Express",
           "etag": "W/\"1f-yOwhVHjWKeagyuteVuktj+6mcMg\"",
-          "x-powered-by": "Express"
+          "date": "<timestamp>",
+          "content-type": "application/json; charset=utf-8",
+          "content-length": "31",
+          "connection": "close"
         },
         "body": {
           "data": {
@@ -470,15 +474,15 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 200,
         "statusText": "OK",
+        "status": 200,
         "headers": {
-          "connection": "close",
-          "content-length": "31",
-          "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>",
+          "x-powered-by": "Express",
           "etag": "W/\"1f-yOwhVHjWKeagyuteVuktj+6mcMg\"",
-          "x-powered-by": "Express"
+          "date": "<timestamp>",
+          "content-type": "application/json; charset=utf-8",
+          "content-length": "31",
+          "connection": "close"
         },
         "body": {
           "data": {
@@ -496,15 +500,15 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "connection": "close",
-          "content-length": "54",
-          "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>",
+          "x-powered-by": "Express",
           "etag": "W/\"36-+LiPix1LCLv9gfzrc5wfPL4GHbM\"",
-          "x-powered-by": "Express"
+          "date": "<timestamp>",
+          "content-type": "application/json; charset=utf-8",
+          "content-length": "54",
+          "connection": "close"
         },
         "body": {
           "errors": [
@@ -524,16 +528,17 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 200,
         "statusText": "OK",
+        "status": 200,
         "headers": {
-          "connection": "close",
-          "content-length": "31",
-          "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>",
+          "x-powered-by": "Express",
           "etag": "W/\"1f-yOwhVHjWKeagyuteVuktj+6mcMg\"",
-          "x-powered-by": "Express"
-        }
+          "date": "<timestamp>",
+          "content-type": "application/json; charset=utf-8",
+          "content-length": "31",
+          "connection": "close"
+        },
+        "body": null
       }
       ```
       </details>
@@ -545,16 +550,17 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 200,
         "statusText": "OK",
+        "status": 200,
         "headers": {
-          "connection": "close",
-          "content-length": "31",
-          "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>",
+          "x-powered-by": "Express",
           "etag": "W/\"1f-yOwhVHjWKeagyuteVuktj+6mcMg\"",
-          "x-powered-by": "Express"
-        }
+          "date": "<timestamp>",
+          "content-type": "application/json; charset=utf-8",
+          "content-length": "31",
+          "connection": "close"
+        },
+        "body": null
       }
       ```
       </details>
@@ -566,16 +572,17 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 200,
         "statusText": "OK",
+        "status": 200,
         "headers": {
-          "connection": "close",
-          "content-length": "31",
-          "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>",
+          "x-powered-by": "Express",
           "etag": "W/\"1f-yOwhVHjWKeagyuteVuktj+6mcMg\"",
-          "x-powered-by": "Express"
-        }
+          "date": "<timestamp>",
+          "content-type": "application/json; charset=utf-8",
+          "content-length": "31",
+          "connection": "close"
+        },
+        "body": null
       }
       ```
       </details>
@@ -587,15 +594,15 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 200,
         "statusText": "OK",
+        "status": 200,
         "headers": {
-          "connection": "close",
-          "content-length": "31",
-          "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>",
+          "x-powered-by": "Express",
           "etag": "W/\"1f-yOwhVHjWKeagyuteVuktj+6mcMg\"",
-          "x-powered-by": "Express"
+          "date": "<timestamp>",
+          "content-type": "application/json; charset=utf-8",
+          "content-length": "31",
+          "connection": "close"
         },
         "body": {
           "data": {
@@ -613,15 +620,15 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 200,
         "statusText": "OK",
+        "status": 200,
         "headers": {
-          "connection": "close",
-          "content-length": "31",
-          "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>",
+          "x-powered-by": "Express",
           "etag": "W/\"1f-yOwhVHjWKeagyuteVuktj+6mcMg\"",
-          "x-powered-by": "Express"
+          "date": "<timestamp>",
+          "content-type": "application/json; charset=utf-8",
+          "content-length": "31",
+          "connection": "close"
         },
         "body": {
           "data": {
@@ -639,15 +646,15 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 200,
         "statusText": "OK",
+        "status": 200,
         "headers": {
-          "connection": "close",
-          "content-length": "31",
-          "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>",
+          "x-powered-by": "Express",
           "etag": "W/\"1f-yOwhVHjWKeagyuteVuktj+6mcMg\"",
-          "x-powered-by": "Express"
+          "date": "<timestamp>",
+          "content-type": "application/json; charset=utf-8",
+          "content-length": "31",
+          "connection": "close"
         },
         "body": {
           "data": {
@@ -665,15 +672,15 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 200,
         "statusText": "OK",
+        "status": 200,
         "headers": {
-          "connection": "close",
-          "content-length": "31",
-          "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>",
+          "x-powered-by": "Express",
           "etag": "W/\"1f-yOwhVHjWKeagyuteVuktj+6mcMg\"",
-          "x-powered-by": "Express"
+          "date": "<timestamp>",
+          "content-type": "application/json; charset=utf-8",
+          "content-length": "31",
+          "connection": "close"
         },
         "body": {
           "data": {
@@ -691,16 +698,17 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 200,
         "statusText": "OK",
+        "status": 200,
         "headers": {
-          "connection": "close",
-          "content-length": "31",
-          "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>",
+          "x-powered-by": "Express",
           "etag": "W/\"1f-yOwhVHjWKeagyuteVuktj+6mcMg\"",
-          "x-powered-by": "Express"
-        }
+          "date": "<timestamp>",
+          "content-type": "application/json; charset=utf-8",
+          "content-length": "31",
+          "connection": "close"
+        },
+        "body": null
       }
       ```
       </details>
@@ -712,16 +720,17 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 200,
         "statusText": "OK",
+        "status": 200,
         "headers": {
-          "connection": "close",
-          "content-length": "31",
-          "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>",
+          "x-powered-by": "Express",
           "etag": "W/\"1f-yOwhVHjWKeagyuteVuktj+6mcMg\"",
-          "x-powered-by": "Express"
-        }
+          "date": "<timestamp>",
+          "content-type": "application/json; charset=utf-8",
+          "content-length": "31",
+          "connection": "close"
+        },
+        "body": null
       }
       ```
       </details>
@@ -733,16 +742,17 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 200,
         "statusText": "OK",
+        "status": 200,
         "headers": {
-          "connection": "close",
-          "content-length": "31",
-          "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>",
+          "x-powered-by": "Express",
           "etag": "W/\"1f-yOwhVHjWKeagyuteVuktj+6mcMg\"",
-          "x-powered-by": "Express"
-        }
+          "date": "<timestamp>",
+          "content-type": "application/json; charset=utf-8",
+          "content-length": "31",
+          "connection": "close"
+        },
+        "body": null
       }
       ```
       </details>
@@ -754,16 +764,17 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 200,
         "statusText": "OK",
+        "status": 200,
         "headers": {
-          "connection": "close",
-          "content-length": "31",
-          "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>",
+          "x-powered-by": "Express",
           "etag": "W/\"1f-yOwhVHjWKeagyuteVuktj+6mcMg\"",
-          "x-powered-by": "Express"
-        }
+          "date": "<timestamp>",
+          "content-type": "application/json; charset=utf-8",
+          "content-length": "31",
+          "connection": "close"
+        },
+        "body": null
       }
       ```
       </details>
@@ -775,15 +786,15 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "connection": "close",
-          "content-length": "55",
-          "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>",
+          "x-powered-by": "Express",
           "etag": "W/\"37-xijHDWdp/snSS4p0BKd+UCmvfYk\"",
-          "x-powered-by": "Express"
+          "date": "<timestamp>",
+          "content-type": "application/json; charset=utf-8",
+          "content-length": "55",
+          "connection": "close"
         },
         "body": {
           "errors": [
@@ -803,15 +814,15 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "connection": "close",
-          "content-length": "53",
-          "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>",
+          "x-powered-by": "Express",
           "etag": "W/\"35-rkfaW07yp80JIwkYI6hoaXIO3bI\"",
-          "x-powered-by": "Express"
+          "date": "<timestamp>",
+          "content-type": "application/json; charset=utf-8",
+          "content-length": "53",
+          "connection": "close"
         },
         "body": {
           "errors": [
@@ -831,15 +842,15 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "connection": "close",
-          "content-length": "104",
-          "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>",
+          "x-powered-by": "Express",
           "etag": "W/\"68-Xc/MwYKGMF54XYivaA3tsxvGHZM\"",
-          "x-powered-by": "Express"
+          "date": "<timestamp>",
+          "content-type": "application/json; charset=utf-8",
+          "content-length": "104",
+          "connection": "close"
         },
         "body": {
           "errors": [
@@ -865,15 +876,15 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "connection": "close",
-          "content-length": "123",
-          "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>",
+          "x-powered-by": "Express",
           "etag": "W/\"7b-vh2QJW5nlT/MclH/TbhHlNDXWZE\"",
-          "x-powered-by": "Express"
+          "date": "<timestamp>",
+          "content-type": "application/json; charset=utf-8",
+          "content-length": "123",
+          "connection": "close"
         },
         "body": {
           "errors": [

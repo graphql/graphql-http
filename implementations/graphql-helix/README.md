@@ -66,14 +66,14 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 200,
         "statusText": "OK",
+        "status": 200,
         "headers": {
-          "connection": "close",
-          "content-length": "31",
-          "content-type": "application/json",
+          "x-powered-by": "Express",
           "date": "<timestamp>",
-          "x-powered-by": "Express"
+          "content-type": "application/json",
+          "content-length": "31",
+          "connection": "close"
         },
         "body": {
           "data": {
@@ -91,14 +91,14 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "connection": "close",
-          "content-length": "53",
-          "content-type": "application/json",
+          "x-powered-by": "Express",
           "date": "<timestamp>",
-          "x-powered-by": "Express"
+          "content-type": "application/json",
+          "content-length": "53",
+          "connection": "close"
         },
         "body": {
           "errors": [
@@ -118,14 +118,14 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "connection": "close",
-          "content-length": "15",
-          "content-type": "application/json",
+          "x-powered-by": "Express",
           "date": "<timestamp>",
-          "x-powered-by": "Express"
+          "content-type": "application/json",
+          "content-length": "15",
+          "connection": "close"
         },
         "body": {
           "errors": [
@@ -143,14 +143,14 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "connection": "close",
-          "content-length": "15",
-          "content-type": "application/json",
+          "x-powered-by": "Express",
           "date": "<timestamp>",
-          "x-powered-by": "Express"
+          "content-type": "application/json",
+          "content-length": "15",
+          "connection": "close"
         },
         "body": {
           "errors": [
@@ -168,14 +168,14 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "connection": "close",
-          "content-length": "15",
-          "content-type": "application/json",
+          "x-powered-by": "Express",
           "date": "<timestamp>",
-          "x-powered-by": "Express"
+          "content-type": "application/json",
+          "content-length": "15",
+          "connection": "close"
         },
         "body": {
           "errors": [
@@ -193,14 +193,14 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "connection": "close",
-          "content-length": "15",
-          "content-type": "application/json",
+          "x-powered-by": "Express",
           "date": "<timestamp>",
-          "x-powered-by": "Express"
+          "content-type": "application/json",
+          "content-length": "15",
+          "connection": "close"
         },
         "body": {
           "errors": [
@@ -218,14 +218,14 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "connection": "close",
-          "content-length": "73",
-          "content-type": "application/json",
+          "x-powered-by": "Express",
           "date": "<timestamp>",
-          "x-powered-by": "Express"
+          "content-type": "application/json",
+          "content-length": "73",
+          "connection": "close"
         },
         "body": {
           "errors": [
@@ -245,14 +245,14 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "connection": "close",
-          "content-length": "73",
-          "content-type": "application/json",
+          "x-powered-by": "Express",
           "date": "<timestamp>",
-          "x-powered-by": "Express"
+          "content-type": "application/json",
+          "content-length": "73",
+          "connection": "close"
         },
         "body": {
           "errors": [
@@ -272,14 +272,14 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "connection": "close",
-          "content-length": "73",
-          "content-type": "application/json",
+          "x-powered-by": "Express",
           "date": "<timestamp>",
-          "x-powered-by": "Express"
+          "content-type": "application/json",
+          "content-length": "73",
+          "connection": "close"
         },
         "body": {
           "errors": [
@@ -299,14 +299,14 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "connection": "close",
-          "content-length": "73",
-          "content-type": "application/json",
+          "x-powered-by": "Express",
           "date": "<timestamp>",
-          "x-powered-by": "Express"
+          "content-type": "application/json",
+          "content-length": "73",
+          "connection": "close"
         },
         "body": {
           "errors": [
@@ -326,14 +326,14 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 200,
         "statusText": "OK",
+        "status": 200,
         "headers": {
-          "connection": "close",
-          "content-length": "31",
-          "content-type": "application/json",
+          "x-powered-by": "Express",
           "date": "<timestamp>",
-          "x-powered-by": "Express"
+          "content-type": "application/json",
+          "content-length": "31",
+          "connection": "close"
         },
         "body": {
           "data": {
@@ -351,14 +351,14 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 200,
         "statusText": "OK",
+        "status": 200,
         "headers": {
-          "connection": "close",
-          "content-length": "31",
-          "content-type": "application/json",
+          "x-powered-by": "Express",
           "date": "<timestamp>",
-          "x-powered-by": "Express"
+          "content-type": "application/json",
+          "content-length": "31",
+          "connection": "close"
         },
         "body": {
           "data": {
@@ -376,14 +376,14 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 200,
         "statusText": "OK",
+        "status": 200,
         "headers": {
-          "connection": "close",
-          "content-length": "31",
-          "content-type": "application/json",
+          "x-powered-by": "Express",
           "date": "<timestamp>",
-          "x-powered-by": "Express"
+          "content-type": "application/json",
+          "content-length": "31",
+          "connection": "close"
         },
         "body": {
           "data": {
@@ -401,14 +401,14 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "connection": "close",
-          "content-length": "54",
-          "content-type": "application/json",
+          "x-powered-by": "Express",
           "date": "<timestamp>",
-          "x-powered-by": "Express"
+          "content-type": "application/json",
+          "content-length": "54",
+          "connection": "close"
         },
         "body": {
           "errors": [
@@ -428,15 +428,16 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 200,
         "statusText": "OK",
+        "status": 200,
         "headers": {
-          "connection": "close",
-          "content-length": "31",
-          "content-type": "application/json",
+          "x-powered-by": "Express",
           "date": "<timestamp>",
-          "x-powered-by": "Express"
-        }
+          "content-type": "application/json",
+          "content-length": "31",
+          "connection": "close"
+        },
+        "body": null
       }
       ```
       </details>
@@ -448,15 +449,16 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 200,
         "statusText": "OK",
+        "status": 200,
         "headers": {
-          "connection": "close",
-          "content-length": "31",
-          "content-type": "application/json",
+          "x-powered-by": "Express",
           "date": "<timestamp>",
-          "x-powered-by": "Express"
-        }
+          "content-type": "application/json",
+          "content-length": "31",
+          "connection": "close"
+        },
+        "body": null
       }
       ```
       </details>
@@ -468,15 +470,16 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 200,
         "statusText": "OK",
+        "status": 200,
         "headers": {
-          "connection": "close",
-          "content-length": "31",
-          "content-type": "application/json",
+          "x-powered-by": "Express",
           "date": "<timestamp>",
-          "x-powered-by": "Express"
-        }
+          "content-type": "application/json",
+          "content-length": "31",
+          "connection": "close"
+        },
+        "body": null
       }
       ```
       </details>
@@ -488,14 +491,14 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 200,
         "statusText": "OK",
+        "status": 200,
         "headers": {
-          "connection": "close",
-          "content-length": "31",
-          "content-type": "application/json",
+          "x-powered-by": "Express",
           "date": "<timestamp>",
-          "x-powered-by": "Express"
+          "content-type": "application/json",
+          "content-length": "31",
+          "connection": "close"
         },
         "body": {
           "data": {
@@ -513,14 +516,14 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 200,
         "statusText": "OK",
+        "status": 200,
         "headers": {
-          "connection": "close",
-          "content-length": "31",
-          "content-type": "application/json",
+          "x-powered-by": "Express",
           "date": "<timestamp>",
-          "x-powered-by": "Express"
+          "content-type": "application/json",
+          "content-length": "31",
+          "connection": "close"
         },
         "body": {
           "data": {
@@ -538,14 +541,14 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 200,
         "statusText": "OK",
+        "status": 200,
         "headers": {
-          "connection": "close",
-          "content-length": "31",
-          "content-type": "application/json",
+          "x-powered-by": "Express",
           "date": "<timestamp>",
-          "x-powered-by": "Express"
+          "content-type": "application/json",
+          "content-length": "31",
+          "connection": "close"
         },
         "body": {
           "data": {
@@ -563,14 +566,14 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 200,
         "statusText": "OK",
+        "status": 200,
         "headers": {
-          "connection": "close",
-          "content-length": "31",
-          "content-type": "application/json",
+          "x-powered-by": "Express",
           "date": "<timestamp>",
-          "x-powered-by": "Express"
+          "content-type": "application/json",
+          "content-length": "31",
+          "connection": "close"
         },
         "body": {
           "data": {
@@ -588,15 +591,16 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 200,
         "statusText": "OK",
+        "status": 200,
         "headers": {
-          "connection": "close",
-          "content-length": "31",
-          "content-type": "application/json",
+          "x-powered-by": "Express",
           "date": "<timestamp>",
-          "x-powered-by": "Express"
-        }
+          "content-type": "application/json",
+          "content-length": "31",
+          "connection": "close"
+        },
+        "body": null
       }
       ```
       </details>
@@ -608,15 +612,16 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 200,
         "statusText": "OK",
+        "status": 200,
         "headers": {
-          "connection": "close",
-          "content-length": "31",
-          "content-type": "application/json",
+          "x-powered-by": "Express",
           "date": "<timestamp>",
-          "x-powered-by": "Express"
-        }
+          "content-type": "application/json",
+          "content-length": "31",
+          "connection": "close"
+        },
+        "body": null
       }
       ```
       </details>
@@ -628,15 +633,16 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 200,
         "statusText": "OK",
+        "status": 200,
         "headers": {
-          "connection": "close",
-          "content-length": "31",
-          "content-type": "application/json",
+          "x-powered-by": "Express",
           "date": "<timestamp>",
-          "x-powered-by": "Express"
-        }
+          "content-type": "application/json",
+          "content-length": "31",
+          "connection": "close"
+        },
+        "body": null
       }
       ```
       </details>
@@ -648,15 +654,16 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 200,
         "statusText": "OK",
+        "status": 200,
         "headers": {
-          "connection": "close",
-          "content-length": "31",
-          "content-type": "application/json",
+          "x-powered-by": "Express",
           "date": "<timestamp>",
-          "x-powered-by": "Express"
-        }
+          "content-type": "application/json",
+          "content-length": "31",
+          "connection": "close"
+        },
+        "body": null
       }
       ```
       </details>
@@ -668,16 +675,16 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "connection": "close",
-          "content-length": "1108",
-          "content-security-policy": "default-src 'none'",
-          "content-type": "text/html; charset=utf-8",
-          "date": "<timestamp>",
+          "x-powered-by": "Express",
           "x-content-type-options": "nosniff",
-          "x-powered-by": "Express"
+          "date": "<timestamp>",
+          "content-type": "text/html; charset=utf-8",
+          "content-security-policy": "default-src 'none'",
+          "content-length": "1108",
+          "connection": "close"
         },
         "body": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</title>\n</head>\n<body>\n<pre>SyntaxError: Unexpected end of JSON input<br> &nbsp; &nbsp;at JSON.parse (&lt;anonymous&gt;)<br> &nbsp; &nbsp;at parse (/home/runner/work/graphql-http/graphql-http/node_modules/body-parser/lib/types/json.js:89:19)<br> &nbsp; &nbsp;at /home/runner/work/graphql-http/graphql-http/node_modules/body-parser/lib/read.js:128:18<br> &nbsp; &nbsp;at AsyncResource.runInAsyncScope (node:async_hooks:204:9)<br> &nbsp; &nbsp;at invokeCallback (/home/runner/work/graphql-http/graphql-http/node_modules/raw-body/index.js:231:16)<br> &nbsp; &nbsp;at done (/home/runner/work/graphql-http/graphql-http/node_modules/raw-body/index.js:220:7)<br> &nbsp; &nbsp;at IncomingMessage.onEnd (/home/runner/work/graphql-http/graphql-http/node_modules/raw-body/index.js:280:7)<br> &nbsp; &nbsp;at IncomingMessage.emit (node:events:513:28)<br> &nbsp; &nbsp;at endReadableNT (node:internal/streams/readable:1359:12)<br> &nbsp; &nbsp;at process.processTicksAndRejections (node:internal/process/task_queues:82:21)</pre>\n</body>\n</html>\n"
       }
@@ -691,14 +698,14 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "connection": "close",
-          "content-length": "53",
-          "content-type": "application/json",
+          "x-powered-by": "Express",
           "date": "<timestamp>",
-          "x-powered-by": "Express"
+          "content-type": "application/json",
+          "content-length": "53",
+          "connection": "close"
         },
         "body": {
           "errors": [
@@ -718,14 +725,14 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "connection": "close",
-          "content-length": "104",
-          "content-type": "application/json",
+          "x-powered-by": "Express",
           "date": "<timestamp>",
-          "x-powered-by": "Express"
+          "content-type": "application/json",
+          "content-length": "104",
+          "connection": "close"
         },
         "body": {
           "errors": [
@@ -751,14 +758,14 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "connection": "close",
-          "content-length": "123",
-          "content-type": "application/json",
+          "x-powered-by": "Express",
           "date": "<timestamp>",
-          "x-powered-by": "Express"
+          "content-type": "application/json",
+          "content-length": "123",
+          "connection": "close"
         },
         "body": {
           "errors": [
@@ -784,17 +791,18 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "connection": "close",
-          "content-length": "1108",
-          "content-security-policy": "default-src 'none'",
-          "content-type": "text/html; charset=utf-8",
-          "date": "<timestamp>",
+          "x-powered-by": "Express",
           "x-content-type-options": "nosniff",
-          "x-powered-by": "Express"
-        }
+          "date": "<timestamp>",
+          "content-type": "text/html; charset=utf-8",
+          "content-security-policy": "default-src 'none'",
+          "content-length": "1108",
+          "connection": "close"
+        },
+        "body": null
       }
       ```
       </details>
@@ -810,14 +818,14 @@ The server _MUST_ support these.
       
       ```json
       {
-        "status": 200,
         "statusText": "OK",
+        "status": 200,
         "headers": {
-          "connection": "close",
-          "content-length": "31",
-          "content-type": "application/json",
+          "x-powered-by": "Express",
           "date": "<timestamp>",
-          "x-powered-by": "Express"
+          "content-type": "application/json",
+          "content-length": "31",
+          "connection": "close"
         },
         "body": {
           "data": {
@@ -835,14 +843,14 @@ The server _MUST_ support these.
       
       ```json
       {
-        "status": 200,
         "statusText": "OK",
+        "status": 200,
         "headers": {
-          "connection": "close",
-          "content-length": "31",
-          "content-type": "application/json",
+          "x-powered-by": "Express",
           "date": "<timestamp>",
-          "x-powered-by": "Express"
+          "content-type": "application/json",
+          "content-length": "31",
+          "connection": "close"
         },
         "body": {
           "data": {
