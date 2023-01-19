@@ -113,12 +113,7 @@ export function ressert(res: Response) {
     bodyAsExecutionResult: {
       data: {
         async toBe(val: ExecutionResult['data']) {
-          let body: ExecutionResult;
-          try {
-            body = await res.json();
-          } catch (err) {
-            throw new AuditError(res, 'Response body is not valid JSON');
-          }
+          const body = await assertBodyAsExecutionResult(res);
           if (body.data !== val) {
             throw new AuditError(
               res,
@@ -128,12 +123,7 @@ export function ressert(res: Response) {
         },
       },
       async toHaveProperty(key: keyof ExecutionResult) {
-        let body: ExecutionResult;
-        try {
-          body = await res.json();
-        } catch (err) {
-          throw new AuditError(res, 'Response body is not valid JSON');
-        }
+        const body = await assertBodyAsExecutionResult(res);
         if (!(key in body)) {
           throw new AuditError(
             res,
@@ -142,12 +132,7 @@ export function ressert(res: Response) {
         }
       },
       async notToHaveProperty(key: keyof ExecutionResult) {
-        let body: ExecutionResult;
-        try {
-          body = await res.json();
-        } catch (err) {
-          throw new AuditError(res, 'Response body is not valid JSON');
-        }
+        const body = await assertBodyAsExecutionResult(res);
         if (key in body) {
           throw new AuditError(
             res,
@@ -157,4 +142,27 @@ export function ressert(res: Response) {
       },
     },
   };
+}
+
+/** @private */
+async function assertBodyAsExecutionResult(
+  res: Response,
+): Promise<ExecutionResult> {
+  let decoded: string;
+  try {
+    const decoder = new TextDecoder('utf-8');
+    const buff = await res.arrayBuffer();
+    decoded = decoder.decode(buff);
+  } catch (err) {
+    throw new AuditError(res, 'Response body is not UTF-8 encoded');
+  }
+
+  let body: ExecutionResult;
+  try {
+    body = JSON.parse(decoded);
+  } catch (err) {
+    throw new AuditError(res, 'Response body is not valid JSON');
+  }
+
+  return body;
 }
