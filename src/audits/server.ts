@@ -115,7 +115,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
         throw new AuditError(res, 'Response body is not UTF-8 encoded');
       }
     }),
-    audit('MUST accept utf-8 encoding', async () => {
+    audit('MUST accept utf-8 encoded request', async () => {
       const res = await fetchFn(await getUrl(opts.url), {
         method: 'POST',
         headers: {
@@ -126,17 +126,20 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
 
       ressert(res).status.toBe(200);
     }),
-    audit('MUST assume utf-8 if encoding is unspecified', async () => {
-      const res = await fetchFn(await getUrl(opts.url), {
-        method: 'POST',
-        headers: {
-          'content-type': 'application/json',
-        },
-        body: JSON.stringify({ query: '{ __typename }' }),
-      });
+    audit(
+      'MUST assume utf-8 in request if encoding is unspecified',
+      async () => {
+        const res = await fetchFn(await getUrl(opts.url), {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json',
+          },
+          body: JSON.stringify({ query: '{ __typename }' }),
+        });
 
-      ressert(res).status.toBe(200);
-    }),
+        ressert(res).status.toBe(200);
+      },
+    ),
     // Request
     audit('MUST accept POST requests', async () => {
       const res = await fetchFn(await getUrl(opts.url), {
