@@ -74,7 +74,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "31",
           "content-type": "application/json; charset=utf-8",
-          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT"
+          "date": "<timestamp>"
         },
         "body": {
           "data": {
@@ -98,7 +98,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "52",
           "content-type": "application/json; charset=utf-8",
-          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT"
+          "date": "<timestamp>"
         },
         "body": {
           "data": null,
@@ -125,7 +125,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "64",
           "content-type": "application/json; charset=utf-8",
-          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT"
+          "date": "<timestamp>"
         },
         "body": {
           "data": null,
@@ -152,7 +152,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "110",
           "content-type": "application/json; charset=utf-8",
-          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT"
+          "date": "<timestamp>"
         },
         "body": {
           "data": null,
@@ -185,7 +185,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "115",
           "content-type": "application/json; charset=utf-8",
-          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT"
+          "date": "<timestamp>"
         },
         "body": {
           "data": null,
@@ -218,7 +218,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "115",
           "content-type": "application/json; charset=utf-8",
-          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT"
+          "date": "<timestamp>"
         },
         "body": {
           "data": null,
@@ -251,7 +251,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "69",
           "content-type": "application/json; charset=utf-8",
-          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT"
+          "date": "<timestamp>"
         },
         "body": {
           "data": null,
@@ -278,7 +278,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "73",
           "content-type": "application/json; charset=utf-8",
-          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT"
+          "date": "<timestamp>"
         },
         "body": {
           "data": null,
@@ -305,7 +305,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "77",
           "content-type": "application/json; charset=utf-8",
-          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT"
+          "date": "<timestamp>"
         },
         "body": {
           "data": null,
@@ -332,7 +332,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "77",
           "content-type": "application/json; charset=utf-8",
-          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT"
+          "date": "<timestamp>"
         },
         "body": {
           "data": null,
@@ -359,7 +359,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "69",
           "content-type": "application/json; charset=utf-8",
-          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT"
+          "date": "<timestamp>"
         },
         "body": {
           "data": null,
@@ -386,7 +386,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "31",
           "content-type": "application/json; charset=utf-8",
-          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT"
+          "date": "<timestamp>"
         },
         "body": {
           "data": {
@@ -410,7 +410,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "31",
           "content-type": "application/json; charset=utf-8",
-          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT"
+          "date": "<timestamp>"
         },
         "body": {
           "data": {
@@ -434,7 +434,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "73",
           "content-type": "application/json; charset=utf-8",
-          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT"
+          "date": "<timestamp>"
         },
         "body": {
           "data": null,
@@ -461,8 +461,9 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "31",
           "content-type": "application/json; charset=utf-8",
-          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT"
-        }
+          "date": "<timestamp>"
+        },
+        "body": null
       }
       ```
       </details>
@@ -480,8 +481,9 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "31",
           "content-type": "application/json; charset=utf-8",
-          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT"
-        }
+          "date": "<timestamp>"
+        },
+        "body": null
       }
       ```
       </details>
@@ -499,7 +501,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "73",
           "content-type": "application/json; charset=utf-8",
-          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT"
+          "date": "<timestamp>"
         },
         "body": {
           "data": null,
@@ -526,7 +528,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "69",
           "content-type": "application/json; charset=utf-8",
-          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT"
+          "date": "<timestamp>"
         },
         "body": {
           "data": null,
@@ -553,7 +555,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "69",
           "content-type": "application/json; charset=utf-8",
-          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT"
+          "date": "<timestamp>"
         },
         "body": {
           "data": null,
@@ -580,7 +582,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "69",
           "content-type": "application/json; charset=utf-8",
-          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT"
+          "date": "<timestamp>"
         },
         "body": {
           "data": null,
@@ -607,7 +609,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "69",
           "content-type": "application/json; charset=utf-8",
-          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT"
+          "date": "<timestamp>"
         },
         "body": {
           "data": null,
@@ -634,7 +636,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "67",
           "content-type": "application/json; charset=utf-8",
-          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT"
+          "date": "<timestamp>"
         },
         "body": {
           "data": null,
@@ -661,7 +663,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "52",
           "content-type": "application/json; charset=utf-8",
-          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT"
+          "date": "<timestamp>"
         },
         "body": {
           "data": null,
@@ -688,7 +690,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "116",
           "content-type": "application/json; charset=utf-8",
-          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT"
+          "date": "<timestamp>"
         },
         "body": {
           "data": null,
@@ -721,7 +723,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "135",
           "content-type": "application/json; charset=utf-8",
-          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT"
+          "date": "<timestamp>"
         },
         "body": {
           "data": null,
@@ -754,8 +756,9 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "67",
           "content-type": "application/json; charset=utf-8",
-          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT"
-        }
+          "date": "<timestamp>"
+        },
+        "body": null
       }
       ```
       </details>
@@ -773,8 +776,9 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "52",
           "content-type": "application/json; charset=utf-8",
-          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT"
-        }
+          "date": "<timestamp>"
+        },
+        "body": null
       }
       ```
       </details>
@@ -792,8 +796,9 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "116",
           "content-type": "application/json; charset=utf-8",
-          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT"
-        }
+          "date": "<timestamp>"
+        },
+        "body": null
       }
       ```
       </details>
@@ -811,8 +816,9 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "135",
           "content-type": "application/json; charset=utf-8",
-          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT"
-        }
+          "date": "<timestamp>"
+        },
+        "body": null
       }
       ```
       </details>
@@ -834,7 +840,7 @@ The server _MUST_ support these.
           "connection": "close",
           "content-length": "69",
           "content-type": "application/json; charset=utf-8",
-          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT"
+          "date": "<timestamp>"
         },
         "body": {
           "data": null,

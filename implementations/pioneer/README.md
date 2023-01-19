@@ -100,7 +100,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "57",
           "content-type": "application/json; charset=utf-8",
-          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT"
+          "date": "<timestamp>"
         },
         "body": {
           "errors": [
@@ -127,7 +127,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "95",
           "content-type": "application/json; charset=utf-8",
-          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT"
+          "date": "<timestamp>"
         },
         "body": {
           "errors": [
@@ -154,7 +154,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "95",
           "content-type": "application/json; charset=utf-8",
-          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT"
+          "date": "<timestamp>"
         },
         "body": {
           "errors": [

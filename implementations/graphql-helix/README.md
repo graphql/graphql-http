@@ -72,7 +72,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "31",
           "content-type": "application/json",
-          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
+          "date": "<timestamp>",
           "x-powered-by": "Express"
         },
         "body": {
@@ -97,7 +97,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "53",
           "content-type": "application/json",
-          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
+          "date": "<timestamp>",
           "x-powered-by": "Express"
         },
         "body": {
@@ -124,7 +124,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "15",
           "content-type": "application/json",
-          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
+          "date": "<timestamp>",
           "x-powered-by": "Express"
         },
         "body": {
@@ -149,7 +149,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "15",
           "content-type": "application/json",
-          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
+          "date": "<timestamp>",
           "x-powered-by": "Express"
         },
         "body": {
@@ -174,7 +174,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "15",
           "content-type": "application/json",
-          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
+          "date": "<timestamp>",
           "x-powered-by": "Express"
         },
         "body": {
@@ -199,7 +199,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "15",
           "content-type": "application/json",
-          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
+          "date": "<timestamp>",
           "x-powered-by": "Express"
         },
         "body": {
@@ -224,7 +224,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "73",
           "content-type": "application/json",
-          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
+          "date": "<timestamp>",
           "x-powered-by": "Express"
         },
         "body": {
@@ -251,7 +251,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "73",
           "content-type": "application/json",
-          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
+          "date": "<timestamp>",
           "x-powered-by": "Express"
         },
         "body": {
@@ -278,7 +278,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "73",
           "content-type": "application/json",
-          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
+          "date": "<timestamp>",
           "x-powered-by": "Express"
         },
         "body": {
@@ -305,7 +305,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "73",
           "content-type": "application/json",
-          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
+          "date": "<timestamp>",
           "x-powered-by": "Express"
         },
         "body": {
@@ -332,7 +332,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "31",
           "content-type": "application/json",
-          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
+          "date": "<timestamp>",
           "x-powered-by": "Express"
         },
         "body": {
@@ -357,7 +357,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "31",
           "content-type": "application/json",
-          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
+          "date": "<timestamp>",
           "x-powered-by": "Express"
         },
         "body": {
@@ -382,7 +382,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "31",
           "content-type": "application/json",
-          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
+          "date": "<timestamp>",
           "x-powered-by": "Express"
         },
         "body": {
@@ -407,7 +407,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "54",
           "content-type": "application/json",
-          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
+          "date": "<timestamp>",
           "x-powered-by": "Express"
         },
         "body": {
@@ -434,9 +434,10 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "31",
           "content-type": "application/json",
-          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
+          "date": "<timestamp>",
           "x-powered-by": "Express"
-        }
+        },
+        "body": null
       }
       ```
       </details>
@@ -454,9 +455,10 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "31",
           "content-type": "application/json",
-          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
+          "date": "<timestamp>",
           "x-powered-by": "Express"
-        }
+        },
+        "body": null
       }
       ```
       </details>
@@ -474,9 +476,10 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "31",
           "content-type": "application/json",
-          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
+          "date": "<timestamp>",
           "x-powered-by": "Express"
-        }
+        },
+        "body": null
       }
       ```
       </details>
@@ -494,7 +497,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "31",
           "content-type": "application/json",
-          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
+          "date": "<timestamp>",
           "x-powered-by": "Express"
         },
         "body": {
@@ -519,7 +522,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "31",
           "content-type": "application/json",
-          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
+          "date": "<timestamp>",
           "x-powered-by": "Express"
         },
         "body": {
@@ -544,7 +547,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "31",
           "content-type": "application/json",
-          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
+          "date": "<timestamp>",
           "x-powered-by": "Express"
         },
         "body": {
@@ -569,7 +572,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "31",
           "content-type": "application/json",
-          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
+          "date": "<timestamp>",
           "x-powered-by": "Express"
         },
         "body": {
@@ -594,9 +597,10 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "31",
           "content-type": "application/json",
-          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
+          "date": "<timestamp>",
           "x-powered-by": "Express"
-        }
+        },
+        "body": null
       }
       ```
       </details>
@@ -614,9 +618,10 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "31",
           "content-type": "application/json",
-          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
+          "date": "<timestamp>",
           "x-powered-by": "Express"
-        }
+        },
+        "body": null
       }
       ```
       </details>
@@ -634,9 +639,10 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "31",
           "content-type": "application/json",
-          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
+          "date": "<timestamp>",
           "x-powered-by": "Express"
-        }
+        },
+        "body": null
       }
       ```
       </details>
@@ -654,9 +660,10 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "31",
           "content-type": "application/json",
-          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
+          "date": "<timestamp>",
           "x-powered-by": "Express"
-        }
+        },
+        "body": null
       }
       ```
       </details>
@@ -675,7 +682,7 @@ The server _SHOULD_ support these, but is not required.
           "content-length": "1108",
           "content-security-policy": "default-src 'none'",
           "content-type": "text/html; charset=utf-8",
-          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
+          "date": "<timestamp>",
           "x-content-type-options": "nosniff",
           "x-powered-by": "Express"
         },
@@ -697,7 +704,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "53",
           "content-type": "application/json",
-          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
+          "date": "<timestamp>",
           "x-powered-by": "Express"
         },
         "body": {
@@ -724,7 +731,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "104",
           "content-type": "application/json",
-          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
+          "date": "<timestamp>",
           "x-powered-by": "Express"
         },
         "body": {
@@ -757,7 +764,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "123",
           "content-type": "application/json",
-          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
+          "date": "<timestamp>",
           "x-powered-by": "Express"
         },
         "body": {
@@ -791,10 +798,11 @@ The server _SHOULD_ support these, but is not required.
           "content-length": "1108",
           "content-security-policy": "default-src 'none'",
           "content-type": "text/html; charset=utf-8",
-          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
+          "date": "<timestamp>",
           "x-content-type-options": "nosniff",
           "x-powered-by": "Express"
-        }
+        },
+        "body": null
       }
       ```
       </details>
@@ -816,7 +824,7 @@ The server _MUST_ support these.
           "connection": "close",
           "content-length": "31",
           "content-type": "application/json",
-          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
+          "date": "<timestamp>",
           "x-powered-by": "Express"
         },
         "body": {
@@ -841,7 +849,7 @@ The server _MUST_ support these.
           "connection": "close",
           "content-length": "31",
           "content-type": "application/json",
-          "date": "<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT",
+          "date": "<timestamp>",
           "x-powered-by": "Express"
         },
         "body": {
