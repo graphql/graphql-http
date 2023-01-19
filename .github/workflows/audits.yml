@@ -37,6 +37,7 @@ jobs:
   thegraph:
     uses: ./.github/workflows/reusable-audit-url.yml
     with:
+      workspace: thegraph
       url: https://api.thegraph.com/subgraphs/name/sushiswap/exchange/graphql
   hotchocolate:
     uses: ./.github/workflows/reusable-audit-docker.yml

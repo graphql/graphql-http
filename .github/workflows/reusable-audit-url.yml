@@ -3,6 +3,9 @@ name: Reusable audit URL
 on:
   workflow_call:
     inputs:
+      workspace:
+        required: true
+        type: string
       url:
         required: true
         type: string
