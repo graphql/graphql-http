@@ -198,7 +198,17 @@ async function printAuditFail(result, i) {
       headers,
       body: json || (text?.length > 5120 ? '<body is too long>' : text) || null,
     },
-    null,
+    (_k, v) => {
+      if (v != null && typeof v === 'object' && !Array.isArray(v)) {
+        // sort object fields for stable stringify
+        /** @type {Record<string, unknown>} */
+        const acc = v;
+        return Object.keys(v)
+          .sort()
+          .reduce((acc, k) => (acc[k] = v[k]), acc);
+      }
+      return v;
+    },
     2,
   );
   // adding indentation to stringify doesnt work, just indent each line
