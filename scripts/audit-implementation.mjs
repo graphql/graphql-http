@@ -182,7 +182,8 @@ async function printAuditFail(result, i) {
       headers[key] = val;
     }
   }
-  let text, json;
+  let text = '',
+    json;
   try {
     text = await res.text();
     json = JSON.parse(text);
@@ -194,7 +195,7 @@ async function printAuditFail(result, i) {
       status: res.status,
       statusText: res.statusText,
       headers,
-      body: json || text,
+      body: json || (text?.length > 5120 ? '<body is too long>' : text) || null,
     },
     null,
     2,
