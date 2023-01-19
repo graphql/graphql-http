@@ -99,7 +99,8 @@ The server _SHOULD_ support these, but is not required.
         "headers": {
           "connection": "close",
           "content-length": "57",
-          "content-type": "application/json; charset=utf-8"
+          "content-type": "application/json; charset=utf-8",
+          "date": "<timestamp>"
         },
         "body": {
           "errors": [
@@ -125,7 +126,8 @@ The server _SHOULD_ support these, but is not required.
         "headers": {
           "connection": "close",
           "content-length": "95",
-          "content-type": "application/json; charset=utf-8"
+          "content-type": "application/json; charset=utf-8",
+          "date": "<timestamp>"
         },
         "body": {
           "errors": [
@@ -151,7 +153,8 @@ The server _SHOULD_ support these, but is not required.
         "headers": {
           "connection": "close",
           "content-length": "95",
-          "content-type": "application/json; charset=utf-8"
+          "content-type": "application/json; charset=utf-8",
+          "date": "<timestamp>"
         },
         "body": {
           "errors": [

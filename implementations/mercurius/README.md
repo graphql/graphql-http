@@ -73,7 +73,8 @@ The server _SHOULD_ support these, but is not required.
         "headers": {
           "connection": "close",
           "content-length": "31",
-          "content-type": "application/json; charset=utf-8"
+          "content-type": "application/json; charset=utf-8",
+          "date": "<timestamp>"
         },
         "body": {
           "data": {
@@ -96,7 +97,8 @@ The server _SHOULD_ support these, but is not required.
         "headers": {
           "connection": "close",
           "content-length": "52",
-          "content-type": "application/json; charset=utf-8"
+          "content-type": "application/json; charset=utf-8",
+          "date": "<timestamp>"
         },
         "body": {
           "data": null,
@@ -122,7 +124,8 @@ The server _SHOULD_ support these, but is not required.
         "headers": {
           "connection": "close",
           "content-length": "64",
-          "content-type": "application/json; charset=utf-8"
+          "content-type": "application/json; charset=utf-8",
+          "date": "<timestamp>"
         },
         "body": {
           "data": null,
@@ -148,7 +151,8 @@ The server _SHOULD_ support these, but is not required.
         "headers": {
           "connection": "close",
           "content-length": "110",
-          "content-type": "application/json; charset=utf-8"
+          "content-type": "application/json; charset=utf-8",
+          "date": "<timestamp>"
         },
         "body": {
           "data": null,
@@ -180,7 +184,8 @@ The server _SHOULD_ support these, but is not required.
         "headers": {
           "connection": "close",
           "content-length": "115",
-          "content-type": "application/json; charset=utf-8"
+          "content-type": "application/json; charset=utf-8",
+          "date": "<timestamp>"
         },
         "body": {
           "data": null,
@@ -212,7 +217,8 @@ The server _SHOULD_ support these, but is not required.
         "headers": {
           "connection": "close",
           "content-length": "115",
-          "content-type": "application/json; charset=utf-8"
+          "content-type": "application/json; charset=utf-8",
+          "date": "<timestamp>"
         },
         "body": {
           "data": null,
@@ -244,7 +250,8 @@ The server _SHOULD_ support these, but is not required.
         "headers": {
           "connection": "close",
           "content-length": "69",
-          "content-type": "application/json; charset=utf-8"
+          "content-type": "application/json; charset=utf-8",
+          "date": "<timestamp>"
         },
         "body": {
           "data": null,
@@ -270,7 +277,8 @@ The server _SHOULD_ support these, but is not required.
         "headers": {
           "connection": "close",
           "content-length": "73",
-          "content-type": "application/json; charset=utf-8"
+          "content-type": "application/json; charset=utf-8",
+          "date": "<timestamp>"
         },
         "body": {
           "data": null,
@@ -296,7 +304,8 @@ The server _SHOULD_ support these, but is not required.
         "headers": {
           "connection": "close",
           "content-length": "77",
-          "content-type": "application/json; charset=utf-8"
+          "content-type": "application/json; charset=utf-8",
+          "date": "<timestamp>"
         },
         "body": {
           "data": null,
@@ -322,7 +331,8 @@ The server _SHOULD_ support these, but is not required.
         "headers": {
           "connection": "close",
           "content-length": "77",
-          "content-type": "application/json; charset=utf-8"
+          "content-type": "application/json; charset=utf-8",
+          "date": "<timestamp>"
         },
         "body": {
           "data": null,
@@ -348,7 +358,8 @@ The server _SHOULD_ support these, but is not required.
         "headers": {
           "connection": "close",
           "content-length": "69",
-          "content-type": "application/json; charset=utf-8"
+          "content-type": "application/json; charset=utf-8",
+          "date": "<timestamp>"
         },
         "body": {
           "data": null,
@@ -374,7 +385,8 @@ The server _SHOULD_ support these, but is not required.
         "headers": {
           "connection": "close",
           "content-length": "31",
-          "content-type": "application/json; charset=utf-8"
+          "content-type": "application/json; charset=utf-8",
+          "date": "<timestamp>"
         },
         "body": {
           "data": {
@@ -397,7 +409,8 @@ The server _SHOULD_ support these, but is not required.
         "headers": {
           "connection": "close",
           "content-length": "31",
-          "content-type": "application/json; charset=utf-8"
+          "content-type": "application/json; charset=utf-8",
+          "date": "<timestamp>"
         },
         "body": {
           "data": {
@@ -420,7 +433,8 @@ The server _SHOULD_ support these, but is not required.
         "headers": {
           "connection": "close",
           "content-length": "73",
-          "content-type": "application/json; charset=utf-8"
+          "content-type": "application/json; charset=utf-8",
+          "date": "<timestamp>"
         },
         "body": {
           "data": null,
@@ -446,7 +460,8 @@ The server _SHOULD_ support these, but is not required.
         "headers": {
           "connection": "close",
           "content-length": "31",
-          "content-type": "application/json; charset=utf-8"
+          "content-type": "application/json; charset=utf-8",
+          "date": "<timestamp>"
         }
       }
       ```
@@ -464,7 +479,8 @@ The server _SHOULD_ support these, but is not required.
         "headers": {
           "connection": "close",
           "content-length": "31",
-          "content-type": "application/json; charset=utf-8"
+          "content-type": "application/json; charset=utf-8",
+          "date": "<timestamp>"
         }
       }
       ```
@@ -482,7 +498,8 @@ The server _SHOULD_ support these, but is not required.
         "headers": {
           "connection": "close",
           "content-length": "73",
-          "content-type": "application/json; charset=utf-8"
+          "content-type": "application/json; charset=utf-8",
+          "date": "<timestamp>"
         },
         "body": {
           "data": null,
@@ -508,7 +525,8 @@ The server _SHOULD_ support these, but is not required.
         "headers": {
           "connection": "close",
           "content-length": "69",
-          "content-type": "application/json; charset=utf-8"
+          "content-type": "application/json; charset=utf-8",
+          "date": "<timestamp>"
         },
         "body": {
           "data": null,
@@ -534,7 +552,8 @@ The server _SHOULD_ support these, but is not required.
         "headers": {
           "connection": "close",
           "content-length": "69",
-          "content-type": "application/json; charset=utf-8"
+          "content-type": "application/json; charset=utf-8",
+          "date": "<timestamp>"
         },
         "body": {
           "data": null,
@@ -560,7 +579,8 @@ The server _SHOULD_ support these, but is not required.
         "headers": {
           "connection": "close",
           "content-length": "69",
-          "content-type": "application/json; charset=utf-8"
+          "content-type": "application/json; charset=utf-8",
+          "date": "<timestamp>"
         },
         "body": {
           "data": null,
@@ -586,7 +606,8 @@ The server _SHOULD_ support these, but is not required.
         "headers": {
           "connection": "close",
           "content-length": "69",
-          "content-type": "application/json; charset=utf-8"
+          "content-type": "application/json; charset=utf-8",
+          "date": "<timestamp>"
         },
         "body": {
           "data": null,
@@ -612,7 +633,8 @@ The server _SHOULD_ support these, but is not required.
         "headers": {
           "connection": "close",
           "content-length": "67",
-          "content-type": "application/json; charset=utf-8"
+          "content-type": "application/json; charset=utf-8",
+          "date": "<timestamp>"
         },
         "body": {
           "data": null,
@@ -638,7 +660,8 @@ The server _SHOULD_ support these, but is not required.
         "headers": {
           "connection": "close",
           "content-length": "52",
-          "content-type": "application/json; charset=utf-8"
+          "content-type": "application/json; charset=utf-8",
+          "date": "<timestamp>"
         },
         "body": {
           "data": null,
@@ -664,7 +687,8 @@ The server _SHOULD_ support these, but is not required.
         "headers": {
           "connection": "close",
           "content-length": "116",
-          "content-type": "application/json; charset=utf-8"
+          "content-type": "application/json; charset=utf-8",
+          "date": "<timestamp>"
         },
         "body": {
           "data": null,
@@ -696,7 +720,8 @@ The server _SHOULD_ support these, but is not required.
         "headers": {
           "connection": "close",
           "content-length": "135",
-          "content-type": "application/json; charset=utf-8"
+          "content-type": "application/json; charset=utf-8",
+          "date": "<timestamp>"
         },
         "body": {
           "data": null,
@@ -728,7 +753,8 @@ The server _SHOULD_ support these, but is not required.
         "headers": {
           "connection": "close",
           "content-length": "67",
-          "content-type": "application/json; charset=utf-8"
+          "content-type": "application/json; charset=utf-8",
+          "date": "<timestamp>"
         }
       }
       ```
@@ -746,7 +772,8 @@ The server _SHOULD_ support these, but is not required.
         "headers": {
           "connection": "close",
           "content-length": "52",
-          "content-type": "application/json; charset=utf-8"
+          "content-type": "application/json; charset=utf-8",
+          "date": "<timestamp>"
         }
       }
       ```
@@ -764,7 +791,8 @@ The server _SHOULD_ support these, but is not required.
         "headers": {
           "connection": "close",
           "content-length": "116",
-          "content-type": "application/json; charset=utf-8"
+          "content-type": "application/json; charset=utf-8",
+          "date": "<timestamp>"
         }
       }
       ```
@@ -782,7 +810,8 @@ The server _SHOULD_ support these, but is not required.
         "headers": {
           "connection": "close",
           "content-length": "135",
-          "content-type": "application/json; charset=utf-8"
+          "content-type": "application/json; charset=utf-8",
+          "date": "<timestamp>"
         }
       }
       ```
@@ -804,7 +833,8 @@ The server _MUST_ support these.
         "headers": {
           "connection": "close",
           "content-length": "69",
-          "content-type": "application/json; charset=utf-8"
+          "content-type": "application/json; charset=utf-8",
+          "date": "<timestamp>"
         },
         "body": {
           "data": null,

@@ -100,6 +100,7 @@ The server _SHOULD_ support these, but is not required.
         "headers": {
           "connection": "close",
           "content-type": "application/graphql-response+json;charset=utf-8",
+          "date": "<timestamp>",
           "server": "Kestrel",
           "transfer-encoding": "chunked"
         },
@@ -124,6 +125,7 @@ The server _SHOULD_ support these, but is not required.
         "headers": {
           "connection": "close",
           "content-type": "application/graphql-response+json;charset=utf-8",
+          "date": "<timestamp>",
           "server": "Kestrel",
           "transfer-encoding": "chunked"
         },

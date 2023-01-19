@@ -70,6 +70,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "31",
           "content-type": "application/json; charset=utf-8",
+          "date": "<timestamp>",
           "etag": "W/\"1f-yOwhVHjWKeagyuteVuktj+6mcMg\"",
           "x-powered-by": "Express"
         },
@@ -95,6 +96,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "53",
           "content-type": "application/json; charset=utf-8",
+          "date": "<timestamp>",
           "etag": "W/\"35-rkfaW07yp80JIwkYI6hoaXIO3bI\"",
           "x-powered-by": "Express"
         },
@@ -122,6 +124,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "53",
           "content-type": "application/json; charset=utf-8",
+          "date": "<timestamp>",
           "etag": "W/\"35-rkfaW07yp80JIwkYI6hoaXIO3bI\"",
           "x-powered-by": "Express"
         },
@@ -149,6 +152,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "53",
           "content-type": "application/json; charset=utf-8",
+          "date": "<timestamp>",
           "etag": "W/\"35-rkfaW07yp80JIwkYI6hoaXIO3bI\"",
           "x-powered-by": "Express"
         },
@@ -176,6 +180,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "53",
           "content-type": "application/json; charset=utf-8",
+          "date": "<timestamp>",
           "etag": "W/\"35-rkfaW07yp80JIwkYI6hoaXIO3bI\"",
           "x-powered-by": "Express"
         },
@@ -203,6 +208,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "53",
           "content-type": "application/json; charset=utf-8",
+          "date": "<timestamp>",
           "etag": "W/\"35-rkfaW07yp80JIwkYI6hoaXIO3bI\"",
           "x-powered-by": "Express"
         },
@@ -230,6 +236,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "31",
           "content-type": "application/json; charset=utf-8",
+          "date": "<timestamp>",
           "etag": "W/\"1f-yOwhVHjWKeagyuteVuktj+6mcMg\"",
           "x-powered-by": "Express"
         },
@@ -255,6 +262,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "31",
           "content-type": "application/json; charset=utf-8",
+          "date": "<timestamp>",
           "etag": "W/\"1f-yOwhVHjWKeagyuteVuktj+6mcMg\"",
           "x-powered-by": "Express"
         },
@@ -280,6 +288,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "31",
           "content-type": "application/json; charset=utf-8",
+          "date": "<timestamp>",
           "etag": "W/\"1f-yOwhVHjWKeagyuteVuktj+6mcMg\"",
           "x-powered-by": "Express"
         },
@@ -305,6 +314,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "31",
           "content-type": "application/json; charset=utf-8",
+          "date": "<timestamp>",
           "etag": "W/\"1f-yOwhVHjWKeagyuteVuktj+6mcMg\"",
           "x-powered-by": "Express"
         },
@@ -330,6 +340,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "31",
           "content-type": "application/json; charset=utf-8",
+          "date": "<timestamp>",
           "etag": "W/\"1f-yOwhVHjWKeagyuteVuktj+6mcMg\"",
           "x-powered-by": "Express"
         }
@@ -350,6 +361,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "31",
           "content-type": "application/json; charset=utf-8",
+          "date": "<timestamp>",
           "etag": "W/\"1f-yOwhVHjWKeagyuteVuktj+6mcMg\"",
           "x-powered-by": "Express"
         }
@@ -370,6 +382,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "31",
           "content-type": "application/json; charset=utf-8",
+          "date": "<timestamp>",
           "etag": "W/\"1f-yOwhVHjWKeagyuteVuktj+6mcMg\"",
           "x-powered-by": "Express"
         }
@@ -390,6 +403,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "31",
           "content-type": "application/json; charset=utf-8",
+          "date": "<timestamp>",
           "etag": "W/\"1f-yOwhVHjWKeagyuteVuktj+6mcMg\"",
           "x-powered-by": "Express"
         }
@@ -410,6 +424,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "31",
           "content-type": "application/json; charset=utf-8",
+          "date": "<timestamp>",
           "etag": "W/\"1f-yOwhVHjWKeagyuteVuktj+6mcMg\"",
           "x-powered-by": "Express"
         },
@@ -435,6 +450,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "31",
           "content-type": "application/json; charset=utf-8",
+          "date": "<timestamp>",
           "etag": "W/\"1f-yOwhVHjWKeagyuteVuktj+6mcMg\"",
           "x-powered-by": "Express"
         },
@@ -460,6 +476,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "31",
           "content-type": "application/json; charset=utf-8",
+          "date": "<timestamp>",
           "etag": "W/\"1f-yOwhVHjWKeagyuteVuktj+6mcMg\"",
           "x-powered-by": "Express"
         },
@@ -485,6 +502,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "54",
           "content-type": "application/json; charset=utf-8",
+          "date": "<timestamp>",
           "etag": "W/\"36-+LiPix1LCLv9gfzrc5wfPL4GHbM\"",
           "x-powered-by": "Express"
         },
@@ -512,6 +530,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "31",
           "content-type": "application/json; charset=utf-8",
+          "date": "<timestamp>",
           "etag": "W/\"1f-yOwhVHjWKeagyuteVuktj+6mcMg\"",
           "x-powered-by": "Express"
         }
@@ -532,6 +551,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "31",
           "content-type": "application/json; charset=utf-8",
+          "date": "<timestamp>",
           "etag": "W/\"1f-yOwhVHjWKeagyuteVuktj+6mcMg\"",
           "x-powered-by": "Express"
         }
@@ -552,6 +572,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "31",
           "content-type": "application/json; charset=utf-8",
+          "date": "<timestamp>",
           "etag": "W/\"1f-yOwhVHjWKeagyuteVuktj+6mcMg\"",
           "x-powered-by": "Express"
         }
@@ -572,6 +593,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "31",
           "content-type": "application/json; charset=utf-8",
+          "date": "<timestamp>",
           "etag": "W/\"1f-yOwhVHjWKeagyuteVuktj+6mcMg\"",
           "x-powered-by": "Express"
         },
@@ -597,6 +619,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "31",
           "content-type": "application/json; charset=utf-8",
+          "date": "<timestamp>",
           "etag": "W/\"1f-yOwhVHjWKeagyuteVuktj+6mcMg\"",
           "x-powered-by": "Express"
         },
@@ -622,6 +645,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "31",
           "content-type": "application/json; charset=utf-8",
+          "date": "<timestamp>",
           "etag": "W/\"1f-yOwhVHjWKeagyuteVuktj+6mcMg\"",
           "x-powered-by": "Express"
         },
@@ -647,6 +671,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "31",
           "content-type": "application/json; charset=utf-8",
+          "date": "<timestamp>",
           "etag": "W/\"1f-yOwhVHjWKeagyuteVuktj+6mcMg\"",
           "x-powered-by": "Express"
         },
@@ -672,6 +697,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "31",
           "content-type": "application/json; charset=utf-8",
+          "date": "<timestamp>",
           "etag": "W/\"1f-yOwhVHjWKeagyuteVuktj+6mcMg\"",
           "x-powered-by": "Express"
         }
@@ -692,6 +718,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "31",
           "content-type": "application/json; charset=utf-8",
+          "date": "<timestamp>",
           "etag": "W/\"1f-yOwhVHjWKeagyuteVuktj+6mcMg\"",
           "x-powered-by": "Express"
         }
@@ -712,6 +739,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "31",
           "content-type": "application/json; charset=utf-8",
+          "date": "<timestamp>",
           "etag": "W/\"1f-yOwhVHjWKeagyuteVuktj+6mcMg\"",
           "x-powered-by": "Express"
         }
@@ -732,6 +760,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "31",
           "content-type": "application/json; charset=utf-8",
+          "date": "<timestamp>",
           "etag": "W/\"1f-yOwhVHjWKeagyuteVuktj+6mcMg\"",
           "x-powered-by": "Express"
         }
@@ -752,6 +781,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "55",
           "content-type": "application/json; charset=utf-8",
+          "date": "<timestamp>",
           "etag": "W/\"37-xijHDWdp/snSS4p0BKd+UCmvfYk\"",
           "x-powered-by": "Express"
         },
@@ -779,6 +809,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "53",
           "content-type": "application/json; charset=utf-8",
+          "date": "<timestamp>",
           "etag": "W/\"35-rkfaW07yp80JIwkYI6hoaXIO3bI\"",
           "x-powered-by": "Express"
         },
@@ -806,6 +837,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "104",
           "content-type": "application/json; charset=utf-8",
+          "date": "<timestamp>",
           "etag": "W/\"68-Xc/MwYKGMF54XYivaA3tsxvGHZM\"",
           "x-powered-by": "Express"
         },
@@ -839,6 +871,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "123",
           "content-type": "application/json; charset=utf-8",
+          "date": "<timestamp>",
           "etag": "W/\"7b-vh2QJW5nlT/MclH/TbhHlNDXWZE\"",
           "x-powered-by": "Express"
         },
