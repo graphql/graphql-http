@@ -174,10 +174,11 @@ async function printAuditFail(result, i) {
   /** @type {Record<string, string>} */
   const headers = {};
   for (const [key, val] of res.headers.entries()) {
-    // date header changes on each run, mask it
+    // some headers change on each run, dont report it
     if (key === 'date') {
-      headers[key] =
-        '<day-name>, <day> <month> <year> <hour>:<minute>:<second> GMT';
+      headers[key] = '<timestamp>';
+    } else if (['cf-ray', 'server-timing'].includes(key)) {
+      headers[key] = '<omitted>';
     } else {
       headers[key] = val;
     }
