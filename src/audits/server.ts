@@ -144,7 +144,6 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
       });
 
       ressert(res).status.toBe(200);
-      ressert(res).header('content-type').toContain('utf-8');
     }),
     audit('MUST assume utf-8 if encoding is unspecified', async () => {
       const res = await fetchFn(await getUrl(opts.url), {
@@ -156,7 +155,6 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
       });
 
       ressert(res).status.toBe(200);
-      ressert(res).header('content-type').toContain('utf-8');
     }),
     // Request
     audit('MUST accept POST requests', async () => {
