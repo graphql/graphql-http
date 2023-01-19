@@ -409,6 +409,8 @@ jobs:
         with:
           name: deno-report
           path: implementations/deno
+      - name: Diff
+        run: git diff --minimal
       - name: Commit
         run: |
           git config user.name "github-actions[bot]"
