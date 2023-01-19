@@ -33,6 +33,11 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: audit-reports
+          # > If multiple paths are provided as input, the least common ancestor of all the search paths will be used as the root directory of the artifact.
+          # https://github.com/actions/upload-artifact#upload-using-multiple-paths-and-exclusions
+          #
+          # Because of this, we include the root README.md to maintain the paths during artifact downloads
           path: |
+            README.md
             implementations/${{ inputs.workspace }}/README.md
             implementations/${{ inputs.workspace }}/report.json
