@@ -95,14 +95,14 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 200,
         "statusText": "OK",
+        "status": 200,
         "headers": {
-          "connection": "close",
-          "content-type": "application/graphql-response+json;charset=utf-8",
-          "date": "<timestamp>",
+          "transfer-encoding": "chunked",
           "server": "Kestrel",
-          "transfer-encoding": "chunked"
+          "date": "<timestamp>",
+          "content-type": "application/graphql-response+json;charset=utf-8",
+          "connection": "close"
         },
         "body": {
           "data": {
@@ -120,14 +120,14 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 200,
         "statusText": "OK",
+        "status": 200,
         "headers": {
-          "connection": "close",
-          "content-type": "application/graphql-response+json;charset=utf-8",
-          "date": "<timestamp>",
+          "transfer-encoding": "chunked",
           "server": "Kestrel",
-          "transfer-encoding": "chunked"
+          "date": "<timestamp>",
+          "content-type": "application/graphql-response+json;charset=utf-8",
+          "connection": "close"
         },
         "body": {
           "data": {

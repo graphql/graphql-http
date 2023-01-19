@@ -68,13 +68,13 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 200,
         "statusText": "OK",
+        "status": 200,
         "headers": {
-          "connection": "close",
-          "content-length": "31",
+          "date": "<timestamp>",
           "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>"
+          "content-length": "31",
+          "connection": "close"
         },
         "body": {
           "data": {
@@ -92,21 +92,21 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "connection": "close",
-          "content-length": "52",
+          "date": "<timestamp>",
           "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>"
+          "content-length": "52",
+          "connection": "close"
         },
         "body": {
-          "data": null,
           "errors": [
             {
               "message": "Unknown query"
             }
-          ]
+          ],
+          "data": null
         }
       }
       ```
@@ -119,21 +119,21 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "connection": "close",
-          "content-length": "64",
+          "date": "<timestamp>",
           "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>"
+          "content-length": "64",
+          "connection": "close"
         },
         "body": {
-          "data": null,
           "errors": [
             {
               "message": "body/query must be string"
             }
-          ]
+          ],
+          "data": null
         }
       }
       ```
@@ -146,16 +146,15 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "connection": "close",
-          "content-length": "110",
+          "date": "<timestamp>",
           "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>"
+          "content-length": "110",
+          "connection": "close"
         },
         "body": {
-          "data": null,
           "errors": [
             {
               "message": "Syntax Error: Unexpected Int \"0\".",
@@ -166,7 +165,8 @@ The server _SHOULD_ support these, but is not required.
                 }
               ]
             }
-          ]
+          ],
+          "data": null
         }
       }
       ```
@@ -179,16 +179,15 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "connection": "close",
-          "content-length": "115",
+          "date": "<timestamp>",
           "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>"
+          "content-length": "115",
+          "connection": "close"
         },
         "body": {
-          "data": null,
           "errors": [
             {
               "message": "Syntax Error: Unexpected Name \"false\".",
@@ -199,7 +198,8 @@ The server _SHOULD_ support these, but is not required.
                 }
               ]
             }
-          ]
+          ],
+          "data": null
         }
       }
       ```
@@ -212,16 +212,15 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "connection": "close",
-          "content-length": "115",
+          "date": "<timestamp>",
           "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>"
+          "content-length": "115",
+          "connection": "close"
         },
         "body": {
-          "data": null,
           "errors": [
             {
               "message": "Syntax Error: Unexpected Name \"array\".",
@@ -232,7 +231,8 @@ The server _SHOULD_ support these, but is not required.
                 }
               ]
             }
-          ]
+          ],
+          "data": null
         }
       }
       ```
@@ -245,21 +245,21 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 200,
         "statusText": "OK",
+        "status": 200,
         "headers": {
-          "connection": "close",
-          "content-length": "69",
+          "date": "<timestamp>",
           "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>"
+          "content-length": "69",
+          "connection": "close"
         },
         "body": {
-          "data": null,
           "errors": [
             {
               "message": "Unknown operation named \"0\"."
             }
-          ]
+          ],
+          "data": null
         }
       }
       ```
@@ -272,21 +272,21 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 200,
         "statusText": "OK",
+        "status": 200,
         "headers": {
-          "connection": "close",
-          "content-length": "73",
+          "date": "<timestamp>",
           "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>"
+          "content-length": "73",
+          "connection": "close"
         },
         "body": {
-          "data": null,
           "errors": [
             {
               "message": "Unknown operation named \"false\"."
             }
-          ]
+          ],
+          "data": null
         }
       }
       ```
@@ -299,21 +299,21 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "connection": "close",
-          "content-length": "77",
+          "date": "<timestamp>",
           "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>"
+          "content-length": "77",
+          "connection": "close"
         },
         "body": {
-          "data": null,
           "errors": [
             {
               "message": "body/operationName must be string,null"
             }
-          ]
+          ],
+          "data": null
         }
       }
       ```
@@ -326,21 +326,21 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "connection": "close",
-          "content-length": "77",
+          "date": "<timestamp>",
           "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>"
+          "content-length": "77",
+          "connection": "close"
         },
         "body": {
-          "data": null,
           "errors": [
             {
               "message": "body/operationName must be string,null"
             }
-          ]
+          ],
+          "data": null
         }
       }
       ```
@@ -353,21 +353,21 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "connection": "close",
-          "content-length": "69",
+          "date": "<timestamp>",
           "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>"
+          "content-length": "69",
+          "connection": "close"
         },
         "body": {
-          "data": null,
           "errors": [
             {
               "message": "body/extensions must be object"
             }
-          ]
+          ],
+          "data": null
         }
       }
       ```
@@ -380,13 +380,13 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 200,
         "statusText": "OK",
+        "status": 200,
         "headers": {
-          "connection": "close",
-          "content-length": "31",
+          "date": "<timestamp>",
           "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>"
+          "content-length": "31",
+          "connection": "close"
         },
         "body": {
           "data": {
@@ -404,13 +404,13 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 200,
         "statusText": "OK",
+        "status": 200,
         "headers": {
-          "connection": "close",
-          "content-length": "31",
+          "date": "<timestamp>",
           "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>"
+          "content-length": "31",
+          "connection": "close"
         },
         "body": {
           "data": {
@@ -428,21 +428,21 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "connection": "close",
-          "content-length": "73",
+          "date": "<timestamp>",
           "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>"
+          "content-length": "73",
+          "connection": "close"
         },
         "body": {
-          "data": null,
           "errors": [
             {
               "message": "body/variables must be object,null"
             }
-          ]
+          ],
+          "data": null
         }
       }
       ```
@@ -455,13 +455,13 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 200,
         "statusText": "OK",
+        "status": 200,
         "headers": {
-          "connection": "close",
-          "content-length": "31",
+          "date": "<timestamp>",
           "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>"
+          "content-length": "31",
+          "connection": "close"
         },
         "body": null
       }
@@ -475,13 +475,13 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 200,
         "statusText": "OK",
+        "status": 200,
         "headers": {
-          "connection": "close",
-          "content-length": "31",
+          "date": "<timestamp>",
           "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>"
+          "content-length": "31",
+          "connection": "close"
         },
         "body": null
       }
@@ -495,21 +495,21 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "connection": "close",
-          "content-length": "73",
+          "date": "<timestamp>",
           "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>"
+          "content-length": "73",
+          "connection": "close"
         },
         "body": {
-          "data": null,
           "errors": [
             {
               "message": "body/variables must be object,null"
             }
-          ]
+          ],
+          "data": null
         }
       }
       ```
@@ -522,21 +522,21 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "connection": "close",
-          "content-length": "69",
+          "date": "<timestamp>",
           "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>"
+          "content-length": "69",
+          "connection": "close"
         },
         "body": {
-          "data": null,
           "errors": [
             {
               "message": "body/extensions must be object"
             }
-          ]
+          ],
+          "data": null
         }
       }
       ```
@@ -549,21 +549,21 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "connection": "close",
-          "content-length": "69",
+          "date": "<timestamp>",
           "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>"
+          "content-length": "69",
+          "connection": "close"
         },
         "body": {
-          "data": null,
           "errors": [
             {
               "message": "body/extensions must be object"
             }
-          ]
+          ],
+          "data": null
         }
       }
       ```
@@ -576,21 +576,21 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "connection": "close",
-          "content-length": "69",
+          "date": "<timestamp>",
           "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>"
+          "content-length": "69",
+          "connection": "close"
         },
         "body": {
-          "data": null,
           "errors": [
             {
               "message": "body/extensions must be object"
             }
-          ]
+          ],
+          "data": null
         }
       }
       ```
@@ -603,21 +603,21 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "connection": "close",
-          "content-length": "69",
+          "date": "<timestamp>",
           "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>"
+          "content-length": "69",
+          "connection": "close"
         },
         "body": {
-          "data": null,
           "errors": [
             {
               "message": "body/extensions must be object"
             }
-          ]
+          ],
+          "data": null
         }
       }
       ```
@@ -630,21 +630,21 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "connection": "close",
-          "content-length": "67",
+          "date": "<timestamp>",
           "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>"
+          "content-length": "67",
+          "connection": "close"
         },
         "body": {
-          "data": null,
           "errors": [
             {
               "message": "Unexpected end of JSON input"
             }
-          ]
+          ],
+          "data": null
         }
       }
       ```
@@ -657,21 +657,21 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "connection": "close",
-          "content-length": "52",
+          "date": "<timestamp>",
           "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>"
+          "content-length": "52",
+          "connection": "close"
         },
         "body": {
-          "data": null,
           "errors": [
             {
               "message": "Unknown query"
             }
-          ]
+          ],
+          "data": null
         }
       }
       ```
@@ -684,16 +684,15 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "connection": "close",
-          "content-length": "116",
+          "date": "<timestamp>",
           "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>"
+          "content-length": "116",
+          "connection": "close"
         },
         "body": {
-          "data": null,
           "errors": [
             {
               "message": "Syntax Error: Expected Name, found <EOF>.",
@@ -704,7 +703,8 @@ The server _SHOULD_ support these, but is not required.
                 }
               ]
             }
-          ]
+          ],
+          "data": null
         }
       }
       ```
@@ -717,16 +717,15 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "connection": "close",
-          "content-length": "135",
+          "date": "<timestamp>",
           "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>"
+          "content-length": "135",
+          "connection": "close"
         },
         "body": {
-          "data": null,
           "errors": [
             {
               "message": "Syntax Error: Invalid number, expected digit but got: \"f\".",
@@ -737,7 +736,8 @@ The server _SHOULD_ support these, but is not required.
                 }
               ]
             }
-          ]
+          ],
+          "data": null
         }
       }
       ```
@@ -750,13 +750,13 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "connection": "close",
-          "content-length": "67",
+          "date": "<timestamp>",
           "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>"
+          "content-length": "67",
+          "connection": "close"
         },
         "body": null
       }
@@ -770,13 +770,13 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "connection": "close",
-          "content-length": "52",
+          "date": "<timestamp>",
           "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>"
+          "content-length": "52",
+          "connection": "close"
         },
         "body": null
       }
@@ -790,13 +790,13 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "connection": "close",
-          "content-length": "116",
+          "date": "<timestamp>",
           "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>"
+          "content-length": "116",
+          "connection": "close"
         },
         "body": null
       }
@@ -810,13 +810,13 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "connection": "close",
-          "content-length": "135",
+          "date": "<timestamp>",
           "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>"
+          "content-length": "135",
+          "connection": "close"
         },
         "body": null
       }
@@ -834,21 +834,21 @@ The server _MUST_ support these.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "connection": "close",
-          "content-length": "69",
+          "date": "<timestamp>",
           "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>"
+          "content-length": "69",
+          "connection": "close"
         },
         "body": {
-          "data": null,
           "errors": [
             {
               "message": "body/extensions must be object"
             }
-          ]
+          ],
+          "data": null
         }
       }
       ```

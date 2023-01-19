@@ -26,20 +26,20 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 404,
         "statusText": "Not Found",
+        "status": 404,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cf-cache-status": "DYNAMIC",
-          "cf-ray": "<omitted>",
-          "connection": "close",
-          "content-length": "9",
-          "content-type": "text/plain",
-          "date": "<timestamp>",
-          "server": "cloudflare",
-          "server-timing": "<omitted>",
+          "vary": "Accept-Encoding",
           "strict-transport-security": "max-age=15724800; includeSubDomains",
-          "vary": "Accept-Encoding"
+          "server-timing": "<omitted>",
+          "server": "cloudflare",
+          "date": "<timestamp>",
+          "content-type": "text/plain",
+          "content-length": "9",
+          "connection": "close",
+          "cf-ray": "<omitted>",
+          "cf-cache-status": "DYNAMIC",
+          "access-control-allow-origin": "*"
         },
         "body": "Not found"
       }
@@ -53,20 +53,20 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 404,
         "statusText": "Not Found",
+        "status": 404,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cf-cache-status": "DYNAMIC",
-          "cf-ray": "<omitted>",
-          "connection": "close",
-          "content-length": "9",
-          "content-type": "text/plain",
-          "date": "<timestamp>",
-          "server": "cloudflare",
-          "server-timing": "<omitted>",
+          "vary": "Accept-Encoding",
           "strict-transport-security": "max-age=15724800; includeSubDomains",
-          "vary": "Accept-Encoding"
+          "server-timing": "<omitted>",
+          "server": "cloudflare",
+          "date": "<timestamp>",
+          "content-type": "text/plain",
+          "content-length": "9",
+          "connection": "close",
+          "cf-ray": "<omitted>",
+          "cf-cache-status": "DYNAMIC",
+          "access-control-allow-origin": "*"
         },
         "body": "Not found"
       }
@@ -80,21 +80,21 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 200,
         "statusText": "OK",
+        "status": 200,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cf-cache-status": "DYNAMIC",
-          "cf-ray": "<omitted>",
-          "connection": "close",
-          "content-encoding": "br",
-          "content-type": "text/html",
-          "date": "<timestamp>",
-          "server": "cloudflare",
-          "server-timing": "<omitted>",
-          "strict-transport-security": "max-age=15724800; includeSubDomains",
+          "vary": "Accept-Encoding",
           "transfer-encoding": "chunked",
-          "vary": "Accept-Encoding"
+          "strict-transport-security": "max-age=15724800; includeSubDomains",
+          "server-timing": "<omitted>",
+          "server": "cloudflare",
+          "date": "<timestamp>",
+          "content-type": "text/html",
+          "content-encoding": "br",
+          "connection": "close",
+          "cf-ray": "<omitted>",
+          "cf-cache-status": "DYNAMIC",
+          "access-control-allow-origin": "*"
         },
         "body": "<body is too long>"
       }
@@ -108,21 +108,21 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 200,
         "statusText": "OK",
+        "status": 200,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cf-cache-status": "DYNAMIC",
-          "cf-ray": "<omitted>",
-          "connection": "close",
-          "content-encoding": "br",
-          "content-type": "text/html",
-          "date": "<timestamp>",
-          "server": "cloudflare",
-          "server-timing": "<omitted>",
-          "strict-transport-security": "max-age=15724800; includeSubDomains",
+          "vary": "Accept-Encoding",
           "transfer-encoding": "chunked",
-          "vary": "Accept-Encoding"
+          "strict-transport-security": "max-age=15724800; includeSubDomains",
+          "server-timing": "<omitted>",
+          "server": "cloudflare",
+          "date": "<timestamp>",
+          "content-type": "text/html",
+          "content-encoding": "br",
+          "connection": "close",
+          "cf-ray": "<omitted>",
+          "cf-cache-status": "DYNAMIC",
+          "access-control-allow-origin": "*"
         },
         "body": "<body is too long>"
       }
@@ -136,20 +136,20 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 404,
         "statusText": "Not Found",
+        "status": 404,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cf-cache-status": "DYNAMIC",
-          "cf-ray": "<omitted>",
-          "connection": "close",
-          "content-length": "9",
-          "content-type": "text/plain",
-          "date": "<timestamp>",
-          "server": "cloudflare",
-          "server-timing": "<omitted>",
+          "vary": "Accept-Encoding",
           "strict-transport-security": "max-age=15724800; includeSubDomains",
-          "vary": "Accept-Encoding"
+          "server-timing": "<omitted>",
+          "server": "cloudflare",
+          "date": "<timestamp>",
+          "content-type": "text/plain",
+          "content-length": "9",
+          "connection": "close",
+          "cf-ray": "<omitted>",
+          "cf-cache-status": "DYNAMIC",
+          "access-control-allow-origin": "*"
         },
         "body": "Not found"
       }
@@ -163,20 +163,20 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 404,
         "statusText": "Not Found",
+        "status": 404,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cf-cache-status": "DYNAMIC",
-          "cf-ray": "<omitted>",
-          "connection": "close",
-          "content-length": "9",
-          "content-type": "text/plain",
-          "date": "<timestamp>",
-          "server": "cloudflare",
-          "server-timing": "<omitted>",
+          "vary": "Accept-Encoding",
           "strict-transport-security": "max-age=15724800; includeSubDomains",
-          "vary": "Accept-Encoding"
+          "server-timing": "<omitted>",
+          "server": "cloudflare",
+          "date": "<timestamp>",
+          "content-type": "text/plain",
+          "content-length": "9",
+          "connection": "close",
+          "cf-ray": "<omitted>",
+          "cf-cache-status": "DYNAMIC",
+          "access-control-allow-origin": "*"
         },
         "body": "Not found"
       }
@@ -190,20 +190,20 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 404,
         "statusText": "Not Found",
+        "status": 404,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cf-cache-status": "DYNAMIC",
-          "cf-ray": "<omitted>",
-          "connection": "close",
-          "content-length": "9",
-          "content-type": "text/plain",
-          "date": "<timestamp>",
-          "server": "cloudflare",
-          "server-timing": "<omitted>",
+          "vary": "Accept-Encoding",
           "strict-transport-security": "max-age=15724800; includeSubDomains",
-          "vary": "Accept-Encoding"
+          "server-timing": "<omitted>",
+          "server": "cloudflare",
+          "date": "<timestamp>",
+          "content-type": "text/plain",
+          "content-length": "9",
+          "connection": "close",
+          "cf-ray": "<omitted>",
+          "cf-cache-status": "DYNAMIC",
+          "access-control-allow-origin": "*"
         },
         "body": "Not found"
       }
@@ -217,20 +217,20 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 404,
         "statusText": "Not Found",
+        "status": 404,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cf-cache-status": "DYNAMIC",
-          "cf-ray": "<omitted>",
-          "connection": "close",
-          "content-length": "9",
-          "content-type": "text/plain",
-          "date": "<timestamp>",
-          "server": "cloudflare",
-          "server-timing": "<omitted>",
+          "vary": "Accept-Encoding",
           "strict-transport-security": "max-age=15724800; includeSubDomains",
-          "vary": "Accept-Encoding"
+          "server-timing": "<omitted>",
+          "server": "cloudflare",
+          "date": "<timestamp>",
+          "content-type": "text/plain",
+          "content-length": "9",
+          "connection": "close",
+          "cf-ray": "<omitted>",
+          "cf-cache-status": "DYNAMIC",
+          "access-control-allow-origin": "*"
         },
         "body": "Not found"
       }
@@ -244,20 +244,20 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 404,
         "statusText": "Not Found",
+        "status": 404,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cf-cache-status": "DYNAMIC",
-          "cf-ray": "<omitted>",
-          "connection": "close",
-          "content-length": "9",
-          "content-type": "text/plain",
-          "date": "<timestamp>",
-          "server": "cloudflare",
-          "server-timing": "<omitted>",
+          "vary": "Accept-Encoding",
           "strict-transport-security": "max-age=15724800; includeSubDomains",
-          "vary": "Accept-Encoding"
+          "server-timing": "<omitted>",
+          "server": "cloudflare",
+          "date": "<timestamp>",
+          "content-type": "text/plain",
+          "content-length": "9",
+          "connection": "close",
+          "cf-ray": "<omitted>",
+          "cf-cache-status": "DYNAMIC",
+          "access-control-allow-origin": "*"
         },
         "body": "Not found"
       }
@@ -271,20 +271,20 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 404,
         "statusText": "Not Found",
+        "status": 404,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cf-cache-status": "DYNAMIC",
-          "cf-ray": "<omitted>",
-          "connection": "close",
-          "content-length": "9",
-          "content-type": "text/plain",
-          "date": "<timestamp>",
-          "server": "cloudflare",
-          "server-timing": "<omitted>",
+          "vary": "Accept-Encoding",
           "strict-transport-security": "max-age=15724800; includeSubDomains",
-          "vary": "Accept-Encoding"
+          "server-timing": "<omitted>",
+          "server": "cloudflare",
+          "date": "<timestamp>",
+          "content-type": "text/plain",
+          "content-length": "9",
+          "connection": "close",
+          "cf-ray": "<omitted>",
+          "cf-cache-status": "DYNAMIC",
+          "access-control-allow-origin": "*"
         },
         "body": "Not found"
       }
@@ -298,20 +298,20 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 404,
         "statusText": "Not Found",
+        "status": 404,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cf-cache-status": "DYNAMIC",
-          "cf-ray": "<omitted>",
-          "connection": "close",
-          "content-length": "9",
-          "content-type": "text/plain",
-          "date": "<timestamp>",
-          "server": "cloudflare",
-          "server-timing": "<omitted>",
+          "vary": "Accept-Encoding",
           "strict-transport-security": "max-age=15724800; includeSubDomains",
-          "vary": "Accept-Encoding"
+          "server-timing": "<omitted>",
+          "server": "cloudflare",
+          "date": "<timestamp>",
+          "content-type": "text/plain",
+          "content-length": "9",
+          "connection": "close",
+          "cf-ray": "<omitted>",
+          "cf-cache-status": "DYNAMIC",
+          "access-control-allow-origin": "*"
         },
         "body": "Not found"
       }
@@ -325,20 +325,20 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 404,
         "statusText": "Not Found",
+        "status": 404,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cf-cache-status": "DYNAMIC",
-          "cf-ray": "<omitted>",
-          "connection": "close",
-          "content-length": "9",
-          "content-type": "text/plain",
-          "date": "<timestamp>",
-          "server": "cloudflare",
-          "server-timing": "<omitted>",
+          "vary": "Accept-Encoding",
           "strict-transport-security": "max-age=15724800; includeSubDomains",
-          "vary": "Accept-Encoding"
+          "server-timing": "<omitted>",
+          "server": "cloudflare",
+          "date": "<timestamp>",
+          "content-type": "text/plain",
+          "content-length": "9",
+          "connection": "close",
+          "cf-ray": "<omitted>",
+          "cf-cache-status": "DYNAMIC",
+          "access-control-allow-origin": "*"
         },
         "body": "Not found"
       }
@@ -352,20 +352,20 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 404,
         "statusText": "Not Found",
+        "status": 404,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cf-cache-status": "DYNAMIC",
-          "cf-ray": "<omitted>",
-          "connection": "close",
-          "content-length": "9",
-          "content-type": "text/plain",
-          "date": "<timestamp>",
-          "server": "cloudflare",
-          "server-timing": "<omitted>",
+          "vary": "Accept-Encoding",
           "strict-transport-security": "max-age=15724800; includeSubDomains",
-          "vary": "Accept-Encoding"
+          "server-timing": "<omitted>",
+          "server": "cloudflare",
+          "date": "<timestamp>",
+          "content-type": "text/plain",
+          "content-length": "9",
+          "connection": "close",
+          "cf-ray": "<omitted>",
+          "cf-cache-status": "DYNAMIC",
+          "access-control-allow-origin": "*"
         },
         "body": "Not found"
       }
@@ -379,20 +379,20 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 404,
         "statusText": "Not Found",
+        "status": 404,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cf-cache-status": "DYNAMIC",
-          "cf-ray": "<omitted>",
-          "connection": "close",
-          "content-length": "9",
-          "content-type": "text/plain",
-          "date": "<timestamp>",
-          "server": "cloudflare",
-          "server-timing": "<omitted>",
+          "vary": "Accept-Encoding",
           "strict-transport-security": "max-age=15724800; includeSubDomains",
-          "vary": "Accept-Encoding"
+          "server-timing": "<omitted>",
+          "server": "cloudflare",
+          "date": "<timestamp>",
+          "content-type": "text/plain",
+          "content-length": "9",
+          "connection": "close",
+          "cf-ray": "<omitted>",
+          "cf-cache-status": "DYNAMIC",
+          "access-control-allow-origin": "*"
         },
         "body": "Not found"
       }
@@ -406,20 +406,20 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 404,
         "statusText": "Not Found",
+        "status": 404,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cf-cache-status": "DYNAMIC",
-          "cf-ray": "<omitted>",
-          "connection": "close",
-          "content-length": "9",
-          "content-type": "text/plain",
-          "date": "<timestamp>",
-          "server": "cloudflare",
-          "server-timing": "<omitted>",
+          "vary": "Accept-Encoding",
           "strict-transport-security": "max-age=15724800; includeSubDomains",
-          "vary": "Accept-Encoding"
+          "server-timing": "<omitted>",
+          "server": "cloudflare",
+          "date": "<timestamp>",
+          "content-type": "text/plain",
+          "content-length": "9",
+          "connection": "close",
+          "cf-ray": "<omitted>",
+          "cf-cache-status": "DYNAMIC",
+          "access-control-allow-origin": "*"
         },
         "body": "Not found"
       }
@@ -433,20 +433,20 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 404,
         "statusText": "Not Found",
+        "status": 404,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cf-cache-status": "DYNAMIC",
-          "cf-ray": "<omitted>",
-          "connection": "close",
-          "content-length": "9",
-          "content-type": "text/plain",
-          "date": "<timestamp>",
-          "server": "cloudflare",
-          "server-timing": "<omitted>",
+          "vary": "Accept-Encoding",
           "strict-transport-security": "max-age=15724800; includeSubDomains",
-          "vary": "Accept-Encoding"
+          "server-timing": "<omitted>",
+          "server": "cloudflare",
+          "date": "<timestamp>",
+          "content-type": "text/plain",
+          "content-length": "9",
+          "connection": "close",
+          "cf-ray": "<omitted>",
+          "cf-cache-status": "DYNAMIC",
+          "access-control-allow-origin": "*"
         },
         "body": "Not found"
       }
@@ -460,20 +460,20 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 404,
         "statusText": "Not Found",
+        "status": 404,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cf-cache-status": "DYNAMIC",
-          "cf-ray": "<omitted>",
-          "connection": "close",
-          "content-length": "9",
-          "content-type": "text/plain",
-          "date": "<timestamp>",
-          "server": "cloudflare",
-          "server-timing": "<omitted>",
+          "vary": "Accept-Encoding",
           "strict-transport-security": "max-age=15724800; includeSubDomains",
-          "vary": "Accept-Encoding"
+          "server-timing": "<omitted>",
+          "server": "cloudflare",
+          "date": "<timestamp>",
+          "content-type": "text/plain",
+          "content-length": "9",
+          "connection": "close",
+          "cf-ray": "<omitted>",
+          "cf-cache-status": "DYNAMIC",
+          "access-control-allow-origin": "*"
         },
         "body": "Not found"
       }
@@ -487,20 +487,20 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 404,
         "statusText": "Not Found",
+        "status": 404,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cf-cache-status": "DYNAMIC",
-          "cf-ray": "<omitted>",
-          "connection": "close",
-          "content-length": "9",
-          "content-type": "text/plain",
-          "date": "<timestamp>",
-          "server": "cloudflare",
-          "server-timing": "<omitted>",
+          "vary": "Accept-Encoding",
           "strict-transport-security": "max-age=15724800; includeSubDomains",
-          "vary": "Accept-Encoding"
+          "server-timing": "<omitted>",
+          "server": "cloudflare",
+          "date": "<timestamp>",
+          "content-type": "text/plain",
+          "content-length": "9",
+          "connection": "close",
+          "cf-ray": "<omitted>",
+          "cf-cache-status": "DYNAMIC",
+          "access-control-allow-origin": "*"
         },
         "body": "Not found"
       }
@@ -514,20 +514,20 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 404,
         "statusText": "Not Found",
+        "status": 404,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cf-cache-status": "DYNAMIC",
-          "cf-ray": "<omitted>",
-          "connection": "close",
-          "content-length": "9",
-          "content-type": "text/plain",
-          "date": "<timestamp>",
-          "server": "cloudflare",
-          "server-timing": "<omitted>",
+          "vary": "Accept-Encoding",
           "strict-transport-security": "max-age=15724800; includeSubDomains",
-          "vary": "Accept-Encoding"
+          "server-timing": "<omitted>",
+          "server": "cloudflare",
+          "date": "<timestamp>",
+          "content-type": "text/plain",
+          "content-length": "9",
+          "connection": "close",
+          "cf-ray": "<omitted>",
+          "cf-cache-status": "DYNAMIC",
+          "access-control-allow-origin": "*"
         },
         "body": "Not found"
       }
@@ -541,20 +541,20 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 404,
         "statusText": "Not Found",
+        "status": 404,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cf-cache-status": "DYNAMIC",
-          "cf-ray": "<omitted>",
-          "connection": "close",
-          "content-length": "9",
-          "content-type": "text/plain",
-          "date": "<timestamp>",
-          "server": "cloudflare",
-          "server-timing": "<omitted>",
+          "vary": "Accept-Encoding",
           "strict-transport-security": "max-age=15724800; includeSubDomains",
-          "vary": "Accept-Encoding"
+          "server-timing": "<omitted>",
+          "server": "cloudflare",
+          "date": "<timestamp>",
+          "content-type": "text/plain",
+          "content-length": "9",
+          "connection": "close",
+          "cf-ray": "<omitted>",
+          "cf-cache-status": "DYNAMIC",
+          "access-control-allow-origin": "*"
         },
         "body": "Not found"
       }
@@ -568,20 +568,20 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 404,
         "statusText": "Not Found",
+        "status": 404,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cf-cache-status": "DYNAMIC",
-          "cf-ray": "<omitted>",
-          "connection": "close",
-          "content-length": "9",
-          "content-type": "text/plain",
-          "date": "<timestamp>",
-          "server": "cloudflare",
-          "server-timing": "<omitted>",
+          "vary": "Accept-Encoding",
           "strict-transport-security": "max-age=15724800; includeSubDomains",
-          "vary": "Accept-Encoding"
+          "server-timing": "<omitted>",
+          "server": "cloudflare",
+          "date": "<timestamp>",
+          "content-type": "text/plain",
+          "content-length": "9",
+          "connection": "close",
+          "cf-ray": "<omitted>",
+          "cf-cache-status": "DYNAMIC",
+          "access-control-allow-origin": "*"
         },
         "body": "Not found"
       }
@@ -595,20 +595,20 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 404,
         "statusText": "Not Found",
+        "status": 404,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cf-cache-status": "DYNAMIC",
-          "cf-ray": "<omitted>",
-          "connection": "close",
-          "content-length": "9",
-          "content-type": "text/plain",
-          "date": "<timestamp>",
-          "server": "cloudflare",
-          "server-timing": "<omitted>",
+          "vary": "Accept-Encoding",
           "strict-transport-security": "max-age=15724800; includeSubDomains",
-          "vary": "Accept-Encoding"
+          "server-timing": "<omitted>",
+          "server": "cloudflare",
+          "date": "<timestamp>",
+          "content-type": "text/plain",
+          "content-length": "9",
+          "connection": "close",
+          "cf-ray": "<omitted>",
+          "cf-cache-status": "DYNAMIC",
+          "access-control-allow-origin": "*"
         },
         "body": "Not found"
       }
@@ -622,20 +622,20 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 404,
         "statusText": "Not Found",
+        "status": 404,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cf-cache-status": "DYNAMIC",
-          "cf-ray": "<omitted>",
-          "connection": "close",
-          "content-length": "9",
-          "content-type": "text/plain",
-          "date": "<timestamp>",
-          "server": "cloudflare",
-          "server-timing": "<omitted>",
+          "vary": "Accept-Encoding",
           "strict-transport-security": "max-age=15724800; includeSubDomains",
-          "vary": "Accept-Encoding"
+          "server-timing": "<omitted>",
+          "server": "cloudflare",
+          "date": "<timestamp>",
+          "content-type": "text/plain",
+          "content-length": "9",
+          "connection": "close",
+          "cf-ray": "<omitted>",
+          "cf-cache-status": "DYNAMIC",
+          "access-control-allow-origin": "*"
         },
         "body": "Not found"
       }
@@ -649,20 +649,20 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 404,
         "statusText": "Not Found",
+        "status": 404,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cf-cache-status": "DYNAMIC",
-          "cf-ray": "<omitted>",
-          "connection": "close",
-          "content-length": "9",
-          "content-type": "text/plain",
-          "date": "<timestamp>",
-          "server": "cloudflare",
-          "server-timing": "<omitted>",
+          "vary": "Accept-Encoding",
           "strict-transport-security": "max-age=15724800; includeSubDomains",
-          "vary": "Accept-Encoding"
+          "server-timing": "<omitted>",
+          "server": "cloudflare",
+          "date": "<timestamp>",
+          "content-type": "text/plain",
+          "content-length": "9",
+          "connection": "close",
+          "cf-ray": "<omitted>",
+          "cf-cache-status": "DYNAMIC",
+          "access-control-allow-origin": "*"
         },
         "body": "Not found"
       }
@@ -676,20 +676,20 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 404,
         "statusText": "Not Found",
+        "status": 404,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cf-cache-status": "DYNAMIC",
-          "cf-ray": "<omitted>",
-          "connection": "close",
-          "content-length": "9",
-          "content-type": "text/plain",
-          "date": "<timestamp>",
-          "server": "cloudflare",
-          "server-timing": "<omitted>",
+          "vary": "Accept-Encoding",
           "strict-transport-security": "max-age=15724800; includeSubDomains",
-          "vary": "Accept-Encoding"
+          "server-timing": "<omitted>",
+          "server": "cloudflare",
+          "date": "<timestamp>",
+          "content-type": "text/plain",
+          "content-length": "9",
+          "connection": "close",
+          "cf-ray": "<omitted>",
+          "cf-cache-status": "DYNAMIC",
+          "access-control-allow-origin": "*"
         },
         "body": "Not found"
       }
@@ -703,20 +703,20 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 404,
         "statusText": "Not Found",
+        "status": 404,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cf-cache-status": "DYNAMIC",
-          "cf-ray": "<omitted>",
-          "connection": "close",
-          "content-length": "9",
-          "content-type": "text/plain",
-          "date": "<timestamp>",
-          "server": "cloudflare",
-          "server-timing": "<omitted>",
+          "vary": "Accept-Encoding",
           "strict-transport-security": "max-age=15724800; includeSubDomains",
-          "vary": "Accept-Encoding"
+          "server-timing": "<omitted>",
+          "server": "cloudflare",
+          "date": "<timestamp>",
+          "content-type": "text/plain",
+          "content-length": "9",
+          "connection": "close",
+          "cf-ray": "<omitted>",
+          "cf-cache-status": "DYNAMIC",
+          "access-control-allow-origin": "*"
         },
         "body": "Not found"
       }
@@ -730,20 +730,20 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 404,
         "statusText": "Not Found",
+        "status": 404,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cf-cache-status": "DYNAMIC",
-          "cf-ray": "<omitted>",
-          "connection": "close",
-          "content-length": "9",
-          "content-type": "text/plain",
-          "date": "<timestamp>",
-          "server": "cloudflare",
-          "server-timing": "<omitted>",
+          "vary": "Accept-Encoding",
           "strict-transport-security": "max-age=15724800; includeSubDomains",
-          "vary": "Accept-Encoding"
+          "server-timing": "<omitted>",
+          "server": "cloudflare",
+          "date": "<timestamp>",
+          "content-type": "text/plain",
+          "content-length": "9",
+          "connection": "close",
+          "cf-ray": "<omitted>",
+          "cf-cache-status": "DYNAMIC",
+          "access-control-allow-origin": "*"
         },
         "body": "Not found"
       }
@@ -757,20 +757,20 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 404,
         "statusText": "Not Found",
+        "status": 404,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cf-cache-status": "DYNAMIC",
-          "cf-ray": "<omitted>",
-          "connection": "close",
-          "content-length": "9",
-          "content-type": "text/plain",
-          "date": "<timestamp>",
-          "server": "cloudflare",
-          "server-timing": "<omitted>",
+          "vary": "Accept-Encoding",
           "strict-transport-security": "max-age=15724800; includeSubDomains",
-          "vary": "Accept-Encoding"
+          "server-timing": "<omitted>",
+          "server": "cloudflare",
+          "date": "<timestamp>",
+          "content-type": "text/plain",
+          "content-length": "9",
+          "connection": "close",
+          "cf-ray": "<omitted>",
+          "cf-cache-status": "DYNAMIC",
+          "access-control-allow-origin": "*"
         },
         "body": "Not found"
       }
@@ -784,20 +784,20 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 404,
         "statusText": "Not Found",
+        "status": 404,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cf-cache-status": "DYNAMIC",
-          "cf-ray": "<omitted>",
-          "connection": "close",
-          "content-length": "9",
-          "content-type": "text/plain",
-          "date": "<timestamp>",
-          "server": "cloudflare",
-          "server-timing": "<omitted>",
+          "vary": "Accept-Encoding",
           "strict-transport-security": "max-age=15724800; includeSubDomains",
-          "vary": "Accept-Encoding"
+          "server-timing": "<omitted>",
+          "server": "cloudflare",
+          "date": "<timestamp>",
+          "content-type": "text/plain",
+          "content-length": "9",
+          "connection": "close",
+          "cf-ray": "<omitted>",
+          "cf-cache-status": "DYNAMIC",
+          "access-control-allow-origin": "*"
         },
         "body": "Not found"
       }
@@ -811,20 +811,20 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 404,
         "statusText": "Not Found",
+        "status": 404,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cf-cache-status": "DYNAMIC",
-          "cf-ray": "<omitted>",
-          "connection": "close",
-          "content-length": "9",
-          "content-type": "text/plain",
-          "date": "<timestamp>",
-          "server": "cloudflare",
-          "server-timing": "<omitted>",
+          "vary": "Accept-Encoding",
           "strict-transport-security": "max-age=15724800; includeSubDomains",
-          "vary": "Accept-Encoding"
+          "server-timing": "<omitted>",
+          "server": "cloudflare",
+          "date": "<timestamp>",
+          "content-type": "text/plain",
+          "content-length": "9",
+          "connection": "close",
+          "cf-ray": "<omitted>",
+          "cf-cache-status": "DYNAMIC",
+          "access-control-allow-origin": "*"
         },
         "body": "Not found"
       }
@@ -838,20 +838,20 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 404,
         "statusText": "Not Found",
+        "status": 404,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cf-cache-status": "DYNAMIC",
-          "cf-ray": "<omitted>",
-          "connection": "close",
-          "content-length": "9",
-          "content-type": "text/plain",
-          "date": "<timestamp>",
-          "server": "cloudflare",
-          "server-timing": "<omitted>",
+          "vary": "Accept-Encoding",
           "strict-transport-security": "max-age=15724800; includeSubDomains",
-          "vary": "Accept-Encoding"
+          "server-timing": "<omitted>",
+          "server": "cloudflare",
+          "date": "<timestamp>",
+          "content-type": "text/plain",
+          "content-length": "9",
+          "connection": "close",
+          "cf-ray": "<omitted>",
+          "cf-cache-status": "DYNAMIC",
+          "access-control-allow-origin": "*"
         },
         "body": "Not found"
       }
@@ -865,20 +865,20 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 404,
         "statusText": "Not Found",
+        "status": 404,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cf-cache-status": "DYNAMIC",
-          "cf-ray": "<omitted>",
-          "connection": "close",
-          "content-length": "9",
-          "content-type": "text/plain",
-          "date": "<timestamp>",
-          "server": "cloudflare",
-          "server-timing": "<omitted>",
+          "vary": "Accept-Encoding",
           "strict-transport-security": "max-age=15724800; includeSubDomains",
-          "vary": "Accept-Encoding"
+          "server-timing": "<omitted>",
+          "server": "cloudflare",
+          "date": "<timestamp>",
+          "content-type": "text/plain",
+          "content-length": "9",
+          "connection": "close",
+          "cf-ray": "<omitted>",
+          "cf-cache-status": "DYNAMIC",
+          "access-control-allow-origin": "*"
         },
         "body": "Not found"
       }
@@ -892,20 +892,20 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 404,
         "statusText": "Not Found",
+        "status": 404,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cf-cache-status": "DYNAMIC",
-          "cf-ray": "<omitted>",
-          "connection": "close",
-          "content-length": "9",
-          "content-type": "text/plain",
-          "date": "<timestamp>",
-          "server": "cloudflare",
-          "server-timing": "<omitted>",
+          "vary": "Accept-Encoding",
           "strict-transport-security": "max-age=15724800; includeSubDomains",
-          "vary": "Accept-Encoding"
+          "server-timing": "<omitted>",
+          "server": "cloudflare",
+          "date": "<timestamp>",
+          "content-type": "text/plain",
+          "content-length": "9",
+          "connection": "close",
+          "cf-ray": "<omitted>",
+          "cf-cache-status": "DYNAMIC",
+          "access-control-allow-origin": "*"
         },
         "body": "Not found"
       }
@@ -919,20 +919,20 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 404,
         "statusText": "Not Found",
+        "status": 404,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cf-cache-status": "DYNAMIC",
-          "cf-ray": "<omitted>",
-          "connection": "close",
-          "content-length": "9",
-          "content-type": "text/plain",
-          "date": "<timestamp>",
-          "server": "cloudflare",
-          "server-timing": "<omitted>",
+          "vary": "Accept-Encoding",
           "strict-transport-security": "max-age=15724800; includeSubDomains",
-          "vary": "Accept-Encoding"
+          "server-timing": "<omitted>",
+          "server": "cloudflare",
+          "date": "<timestamp>",
+          "content-type": "text/plain",
+          "content-length": "9",
+          "connection": "close",
+          "cf-ray": "<omitted>",
+          "cf-cache-status": "DYNAMIC",
+          "access-control-allow-origin": "*"
         },
         "body": "Not found"
       }
@@ -946,20 +946,20 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 404,
         "statusText": "Not Found",
+        "status": 404,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cf-cache-status": "DYNAMIC",
-          "cf-ray": "<omitted>",
-          "connection": "close",
-          "content-length": "9",
-          "content-type": "text/plain",
-          "date": "<timestamp>",
-          "server": "cloudflare",
-          "server-timing": "<omitted>",
+          "vary": "Accept-Encoding",
           "strict-transport-security": "max-age=15724800; includeSubDomains",
-          "vary": "Accept-Encoding"
+          "server-timing": "<omitted>",
+          "server": "cloudflare",
+          "date": "<timestamp>",
+          "content-type": "text/plain",
+          "content-length": "9",
+          "connection": "close",
+          "cf-ray": "<omitted>",
+          "cf-cache-status": "DYNAMIC",
+          "access-control-allow-origin": "*"
         },
         "body": "Not found"
       }
@@ -973,20 +973,20 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 404,
         "statusText": "Not Found",
+        "status": 404,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cf-cache-status": "DYNAMIC",
-          "cf-ray": "<omitted>",
-          "connection": "close",
-          "content-length": "9",
-          "content-type": "text/plain",
-          "date": "<timestamp>",
-          "server": "cloudflare",
-          "server-timing": "<omitted>",
+          "vary": "Accept-Encoding",
           "strict-transport-security": "max-age=15724800; includeSubDomains",
-          "vary": "Accept-Encoding"
+          "server-timing": "<omitted>",
+          "server": "cloudflare",
+          "date": "<timestamp>",
+          "content-type": "text/plain",
+          "content-length": "9",
+          "connection": "close",
+          "cf-ray": "<omitted>",
+          "cf-cache-status": "DYNAMIC",
+          "access-control-allow-origin": "*"
         },
         "body": "Not found"
       }
@@ -1000,21 +1000,21 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 200,
         "statusText": "OK",
+        "status": 200,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cf-cache-status": "DYNAMIC",
-          "cf-ray": "<omitted>",
-          "connection": "close",
-          "content-encoding": "br",
-          "content-type": "text/html",
-          "date": "<timestamp>",
-          "server": "cloudflare",
-          "server-timing": "<omitted>",
-          "strict-transport-security": "max-age=15724800; includeSubDomains",
+          "vary": "Accept-Encoding",
           "transfer-encoding": "chunked",
-          "vary": "Accept-Encoding"
+          "strict-transport-security": "max-age=15724800; includeSubDomains",
+          "server-timing": "<omitted>",
+          "server": "cloudflare",
+          "date": "<timestamp>",
+          "content-type": "text/html",
+          "content-encoding": "br",
+          "connection": "close",
+          "cf-ray": "<omitted>",
+          "cf-cache-status": "DYNAMIC",
+          "access-control-allow-origin": "*"
         },
         "body": null
       }
@@ -1028,20 +1028,20 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 404,
         "statusText": "Not Found",
+        "status": 404,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cf-cache-status": "DYNAMIC",
-          "cf-ray": "<omitted>",
-          "connection": "close",
-          "content-length": "9",
-          "content-type": "text/plain",
-          "date": "<timestamp>",
-          "server": "cloudflare",
-          "server-timing": "<omitted>",
+          "vary": "Accept-Encoding",
           "strict-transport-security": "max-age=15724800; includeSubDomains",
-          "vary": "Accept-Encoding"
+          "server-timing": "<omitted>",
+          "server": "cloudflare",
+          "date": "<timestamp>",
+          "content-type": "text/plain",
+          "content-length": "9",
+          "connection": "close",
+          "cf-ray": "<omitted>",
+          "cf-cache-status": "DYNAMIC",
+          "access-control-allow-origin": "*"
         },
         "body": "Not found"
       }
@@ -1055,20 +1055,20 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 404,
         "statusText": "Not Found",
+        "status": 404,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cf-cache-status": "DYNAMIC",
-          "cf-ray": "<omitted>",
-          "connection": "close",
-          "content-length": "9",
-          "content-type": "text/plain",
-          "date": "<timestamp>",
-          "server": "cloudflare",
-          "server-timing": "<omitted>",
+          "vary": "Accept-Encoding",
           "strict-transport-security": "max-age=15724800; includeSubDomains",
-          "vary": "Accept-Encoding"
+          "server-timing": "<omitted>",
+          "server": "cloudflare",
+          "date": "<timestamp>",
+          "content-type": "text/plain",
+          "content-length": "9",
+          "connection": "close",
+          "cf-ray": "<omitted>",
+          "cf-cache-status": "DYNAMIC",
+          "access-control-allow-origin": "*"
         },
         "body": "Not found"
       }
@@ -1082,20 +1082,20 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 404,
         "statusText": "Not Found",
+        "status": 404,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cf-cache-status": "DYNAMIC",
-          "cf-ray": "<omitted>",
-          "connection": "close",
-          "content-length": "9",
-          "content-type": "text/plain",
-          "date": "<timestamp>",
-          "server": "cloudflare",
-          "server-timing": "<omitted>",
+          "vary": "Accept-Encoding",
           "strict-transport-security": "max-age=15724800; includeSubDomains",
-          "vary": "Accept-Encoding"
+          "server-timing": "<omitted>",
+          "server": "cloudflare",
+          "date": "<timestamp>",
+          "content-type": "text/plain",
+          "content-length": "9",
+          "connection": "close",
+          "cf-ray": "<omitted>",
+          "cf-cache-status": "DYNAMIC",
+          "access-control-allow-origin": "*"
         },
         "body": "Not found"
       }
@@ -1109,20 +1109,20 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 404,
         "statusText": "Not Found",
+        "status": 404,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cf-cache-status": "DYNAMIC",
-          "cf-ray": "<omitted>",
-          "connection": "close",
-          "content-length": "9",
-          "content-type": "text/plain",
-          "date": "<timestamp>",
-          "server": "cloudflare",
-          "server-timing": "<omitted>",
+          "vary": "Accept-Encoding",
           "strict-transport-security": "max-age=15724800; includeSubDomains",
-          "vary": "Accept-Encoding"
+          "server-timing": "<omitted>",
+          "server": "cloudflare",
+          "date": "<timestamp>",
+          "content-type": "text/plain",
+          "content-length": "9",
+          "connection": "close",
+          "cf-ray": "<omitted>",
+          "cf-cache-status": "DYNAMIC",
+          "access-control-allow-origin": "*"
         },
         "body": "Not found"
       }
@@ -1136,20 +1136,20 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 404,
         "statusText": "Not Found",
+        "status": 404,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cf-cache-status": "DYNAMIC",
-          "cf-ray": "<omitted>",
-          "connection": "close",
-          "content-length": "9",
-          "content-type": "text/plain",
-          "date": "<timestamp>",
-          "server": "cloudflare",
-          "server-timing": "<omitted>",
+          "vary": "Accept-Encoding",
           "strict-transport-security": "max-age=15724800; includeSubDomains",
-          "vary": "Accept-Encoding"
+          "server-timing": "<omitted>",
+          "server": "cloudflare",
+          "date": "<timestamp>",
+          "content-type": "text/plain",
+          "content-length": "9",
+          "connection": "close",
+          "cf-ray": "<omitted>",
+          "cf-cache-status": "DYNAMIC",
+          "access-control-allow-origin": "*"
         },
         "body": "Not found"
       }
@@ -1163,20 +1163,20 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 404,
         "statusText": "Not Found",
+        "status": 404,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cf-cache-status": "DYNAMIC",
-          "cf-ray": "<omitted>",
-          "connection": "close",
-          "content-length": "9",
-          "content-type": "text/plain",
-          "date": "<timestamp>",
-          "server": "cloudflare",
-          "server-timing": "<omitted>",
+          "vary": "Accept-Encoding",
           "strict-transport-security": "max-age=15724800; includeSubDomains",
-          "vary": "Accept-Encoding"
+          "server-timing": "<omitted>",
+          "server": "cloudflare",
+          "date": "<timestamp>",
+          "content-type": "text/plain",
+          "content-length": "9",
+          "connection": "close",
+          "cf-ray": "<omitted>",
+          "cf-cache-status": "DYNAMIC",
+          "access-control-allow-origin": "*"
         },
         "body": "Not found"
       }
@@ -1190,20 +1190,20 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 404,
         "statusText": "Not Found",
+        "status": 404,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cf-cache-status": "DYNAMIC",
-          "cf-ray": "<omitted>",
-          "connection": "close",
-          "content-length": "9",
-          "content-type": "text/plain",
-          "date": "<timestamp>",
-          "server": "cloudflare",
-          "server-timing": "<omitted>",
+          "vary": "Accept-Encoding",
           "strict-transport-security": "max-age=15724800; includeSubDomains",
-          "vary": "Accept-Encoding"
+          "server-timing": "<omitted>",
+          "server": "cloudflare",
+          "date": "<timestamp>",
+          "content-type": "text/plain",
+          "content-length": "9",
+          "connection": "close",
+          "cf-ray": "<omitted>",
+          "cf-cache-status": "DYNAMIC",
+          "access-control-allow-origin": "*"
         },
         "body": "Not found"
       }
@@ -1217,20 +1217,20 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 404,
         "statusText": "Not Found",
+        "status": 404,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cf-cache-status": "DYNAMIC",
-          "cf-ray": "<omitted>",
-          "connection": "close",
-          "content-length": "9",
-          "content-type": "text/plain",
-          "date": "<timestamp>",
-          "server": "cloudflare",
-          "server-timing": "<omitted>",
+          "vary": "Accept-Encoding",
           "strict-transport-security": "max-age=15724800; includeSubDomains",
-          "vary": "Accept-Encoding"
+          "server-timing": "<omitted>",
+          "server": "cloudflare",
+          "date": "<timestamp>",
+          "content-type": "text/plain",
+          "content-length": "9",
+          "connection": "close",
+          "cf-ray": "<omitted>",
+          "cf-cache-status": "DYNAMIC",
+          "access-control-allow-origin": "*"
         },
         "body": "Not found"
       }
@@ -1244,20 +1244,20 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 404,
         "statusText": "Not Found",
+        "status": 404,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cf-cache-status": "DYNAMIC",
-          "cf-ray": "<omitted>",
-          "connection": "close",
-          "content-length": "9",
-          "content-type": "text/plain",
-          "date": "<timestamp>",
-          "server": "cloudflare",
-          "server-timing": "<omitted>",
+          "vary": "Accept-Encoding",
           "strict-transport-security": "max-age=15724800; includeSubDomains",
-          "vary": "Accept-Encoding"
+          "server-timing": "<omitted>",
+          "server": "cloudflare",
+          "date": "<timestamp>",
+          "content-type": "text/plain",
+          "content-length": "9",
+          "connection": "close",
+          "cf-ray": "<omitted>",
+          "cf-cache-status": "DYNAMIC",
+          "access-control-allow-origin": "*"
         },
         "body": "Not found"
       }
@@ -1271,20 +1271,20 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 404,
         "statusText": "Not Found",
+        "status": 404,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cf-cache-status": "DYNAMIC",
-          "cf-ray": "<omitted>",
-          "connection": "close",
-          "content-length": "9",
-          "content-type": "text/plain",
-          "date": "<timestamp>",
-          "server": "cloudflare",
-          "server-timing": "<omitted>",
+          "vary": "Accept-Encoding",
           "strict-transport-security": "max-age=15724800; includeSubDomains",
-          "vary": "Accept-Encoding"
+          "server-timing": "<omitted>",
+          "server": "cloudflare",
+          "date": "<timestamp>",
+          "content-type": "text/plain",
+          "content-length": "9",
+          "connection": "close",
+          "cf-ray": "<omitted>",
+          "cf-cache-status": "DYNAMIC",
+          "access-control-allow-origin": "*"
         },
         "body": "Not found"
       }
@@ -1298,20 +1298,20 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 404,
         "statusText": "Not Found",
+        "status": 404,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cf-cache-status": "DYNAMIC",
-          "cf-ray": "<omitted>",
-          "connection": "close",
-          "content-length": "9",
-          "content-type": "text/plain",
-          "date": "<timestamp>",
-          "server": "cloudflare",
-          "server-timing": "<omitted>",
+          "vary": "Accept-Encoding",
           "strict-transport-security": "max-age=15724800; includeSubDomains",
-          "vary": "Accept-Encoding"
+          "server-timing": "<omitted>",
+          "server": "cloudflare",
+          "date": "<timestamp>",
+          "content-type": "text/plain",
+          "content-length": "9",
+          "connection": "close",
+          "cf-ray": "<omitted>",
+          "cf-cache-status": "DYNAMIC",
+          "access-control-allow-origin": "*"
         },
         "body": "Not found"
       }
@@ -1325,20 +1325,20 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 404,
         "statusText": "Not Found",
+        "status": 404,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cf-cache-status": "DYNAMIC",
-          "cf-ray": "<omitted>",
-          "connection": "close",
-          "content-length": "9",
-          "content-type": "text/plain",
-          "date": "<timestamp>",
-          "server": "cloudflare",
-          "server-timing": "<omitted>",
+          "vary": "Accept-Encoding",
           "strict-transport-security": "max-age=15724800; includeSubDomains",
-          "vary": "Accept-Encoding"
+          "server-timing": "<omitted>",
+          "server": "cloudflare",
+          "date": "<timestamp>",
+          "content-type": "text/plain",
+          "content-length": "9",
+          "connection": "close",
+          "cf-ray": "<omitted>",
+          "cf-cache-status": "DYNAMIC",
+          "access-control-allow-origin": "*"
         },
         "body": "Not found"
       }
@@ -1352,20 +1352,20 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 404,
         "statusText": "Not Found",
+        "status": 404,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cf-cache-status": "DYNAMIC",
-          "cf-ray": "<omitted>",
-          "connection": "close",
-          "content-length": "9",
-          "content-type": "text/plain",
-          "date": "<timestamp>",
-          "server": "cloudflare",
-          "server-timing": "<omitted>",
+          "vary": "Accept-Encoding",
           "strict-transport-security": "max-age=15724800; includeSubDomains",
-          "vary": "Accept-Encoding"
+          "server-timing": "<omitted>",
+          "server": "cloudflare",
+          "date": "<timestamp>",
+          "content-type": "text/plain",
+          "content-length": "9",
+          "connection": "close",
+          "cf-ray": "<omitted>",
+          "cf-cache-status": "DYNAMIC",
+          "access-control-allow-origin": "*"
         },
         "body": "Not found"
       }
@@ -1379,20 +1379,20 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 404,
         "statusText": "Not Found",
+        "status": 404,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cf-cache-status": "DYNAMIC",
-          "cf-ray": "<omitted>",
-          "connection": "close",
-          "content-length": "9",
-          "content-type": "text/plain",
-          "date": "<timestamp>",
-          "server": "cloudflare",
-          "server-timing": "<omitted>",
+          "vary": "Accept-Encoding",
           "strict-transport-security": "max-age=15724800; includeSubDomains",
-          "vary": "Accept-Encoding"
+          "server-timing": "<omitted>",
+          "server": "cloudflare",
+          "date": "<timestamp>",
+          "content-type": "text/plain",
+          "content-length": "9",
+          "connection": "close",
+          "cf-ray": "<omitted>",
+          "cf-cache-status": "DYNAMIC",
+          "access-control-allow-origin": "*"
         },
         "body": "Not found"
       }
@@ -1406,20 +1406,20 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 404,
         "statusText": "Not Found",
+        "status": 404,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cf-cache-status": "DYNAMIC",
-          "cf-ray": "<omitted>",
-          "connection": "close",
-          "content-length": "9",
-          "content-type": "text/plain",
-          "date": "<timestamp>",
-          "server": "cloudflare",
-          "server-timing": "<omitted>",
+          "vary": "Accept-Encoding",
           "strict-transport-security": "max-age=15724800; includeSubDomains",
-          "vary": "Accept-Encoding"
+          "server-timing": "<omitted>",
+          "server": "cloudflare",
+          "date": "<timestamp>",
+          "content-type": "text/plain",
+          "content-length": "9",
+          "connection": "close",
+          "cf-ray": "<omitted>",
+          "cf-cache-status": "DYNAMIC",
+          "access-control-allow-origin": "*"
         },
         "body": null
       }
@@ -1433,20 +1433,20 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 404,
         "statusText": "Not Found",
+        "status": 404,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cf-cache-status": "DYNAMIC",
-          "cf-ray": "<omitted>",
-          "connection": "close",
-          "content-length": "9",
-          "content-type": "text/plain",
-          "date": "<timestamp>",
-          "server": "cloudflare",
-          "server-timing": "<omitted>",
+          "vary": "Accept-Encoding",
           "strict-transport-security": "max-age=15724800; includeSubDomains",
-          "vary": "Accept-Encoding"
+          "server-timing": "<omitted>",
+          "server": "cloudflare",
+          "date": "<timestamp>",
+          "content-type": "text/plain",
+          "content-length": "9",
+          "connection": "close",
+          "cf-ray": "<omitted>",
+          "cf-cache-status": "DYNAMIC",
+          "access-control-allow-origin": "*"
         },
         "body": "Not found"
       }
@@ -1460,20 +1460,20 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 404,
         "statusText": "Not Found",
+        "status": 404,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cf-cache-status": "DYNAMIC",
-          "cf-ray": "<omitted>",
-          "connection": "close",
-          "content-length": "9",
-          "content-type": "text/plain",
-          "date": "<timestamp>",
-          "server": "cloudflare",
-          "server-timing": "<omitted>",
+          "vary": "Accept-Encoding",
           "strict-transport-security": "max-age=15724800; includeSubDomains",
-          "vary": "Accept-Encoding"
+          "server-timing": "<omitted>",
+          "server": "cloudflare",
+          "date": "<timestamp>",
+          "content-type": "text/plain",
+          "content-length": "9",
+          "connection": "close",
+          "cf-ray": "<omitted>",
+          "cf-cache-status": "DYNAMIC",
+          "access-control-allow-origin": "*"
         },
         "body": null
       }
@@ -1487,20 +1487,20 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 404,
         "statusText": "Not Found",
+        "status": 404,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cf-cache-status": "DYNAMIC",
-          "cf-ray": "<omitted>",
-          "connection": "close",
-          "content-length": "9",
-          "content-type": "text/plain",
-          "date": "<timestamp>",
-          "server": "cloudflare",
-          "server-timing": "<omitted>",
+          "vary": "Accept-Encoding",
           "strict-transport-security": "max-age=15724800; includeSubDomains",
-          "vary": "Accept-Encoding"
+          "server-timing": "<omitted>",
+          "server": "cloudflare",
+          "date": "<timestamp>",
+          "content-type": "text/plain",
+          "content-length": "9",
+          "connection": "close",
+          "cf-ray": "<omitted>",
+          "cf-cache-status": "DYNAMIC",
+          "access-control-allow-origin": "*"
         },
         "body": "Not found"
       }
@@ -1514,20 +1514,20 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 404,
         "statusText": "Not Found",
+        "status": 404,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cf-cache-status": "DYNAMIC",
-          "cf-ray": "<omitted>",
-          "connection": "close",
-          "content-length": "9",
-          "content-type": "text/plain",
-          "date": "<timestamp>",
-          "server": "cloudflare",
-          "server-timing": "<omitted>",
+          "vary": "Accept-Encoding",
           "strict-transport-security": "max-age=15724800; includeSubDomains",
-          "vary": "Accept-Encoding"
+          "server-timing": "<omitted>",
+          "server": "cloudflare",
+          "date": "<timestamp>",
+          "content-type": "text/plain",
+          "content-length": "9",
+          "connection": "close",
+          "cf-ray": "<omitted>",
+          "cf-cache-status": "DYNAMIC",
+          "access-control-allow-origin": "*"
         },
         "body": null
       }
@@ -1541,20 +1541,20 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 404,
         "statusText": "Not Found",
+        "status": 404,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cf-cache-status": "DYNAMIC",
-          "cf-ray": "<omitted>",
-          "connection": "close",
-          "content-length": "9",
-          "content-type": "text/plain",
-          "date": "<timestamp>",
-          "server": "cloudflare",
-          "server-timing": "<omitted>",
+          "vary": "Accept-Encoding",
           "strict-transport-security": "max-age=15724800; includeSubDomains",
-          "vary": "Accept-Encoding"
+          "server-timing": "<omitted>",
+          "server": "cloudflare",
+          "date": "<timestamp>",
+          "content-type": "text/plain",
+          "content-length": "9",
+          "connection": "close",
+          "cf-ray": "<omitted>",
+          "cf-cache-status": "DYNAMIC",
+          "access-control-allow-origin": "*"
         },
         "body": "Not found"
       }
@@ -1568,20 +1568,20 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 404,
         "statusText": "Not Found",
+        "status": 404,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cf-cache-status": "DYNAMIC",
-          "cf-ray": "<omitted>",
-          "connection": "close",
-          "content-length": "9",
-          "content-type": "text/plain",
-          "date": "<timestamp>",
-          "server": "cloudflare",
-          "server-timing": "<omitted>",
+          "vary": "Accept-Encoding",
           "strict-transport-security": "max-age=15724800; includeSubDomains",
-          "vary": "Accept-Encoding"
+          "server-timing": "<omitted>",
+          "server": "cloudflare",
+          "date": "<timestamp>",
+          "content-type": "text/plain",
+          "content-length": "9",
+          "connection": "close",
+          "cf-ray": "<omitted>",
+          "cf-cache-status": "DYNAMIC",
+          "access-control-allow-origin": "*"
         },
         "body": null
       }
@@ -1599,20 +1599,20 @@ The server _MUST_ support these.
       
       ```json
       {
-        "status": 404,
         "statusText": "Not Found",
+        "status": 404,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cf-cache-status": "DYNAMIC",
-          "cf-ray": "<omitted>",
-          "connection": "close",
-          "content-length": "9",
-          "content-type": "text/plain",
-          "date": "<timestamp>",
-          "server": "cloudflare",
-          "server-timing": "<omitted>",
+          "vary": "Accept-Encoding",
           "strict-transport-security": "max-age=15724800; includeSubDomains",
-          "vary": "Accept-Encoding"
+          "server-timing": "<omitted>",
+          "server": "cloudflare",
+          "date": "<timestamp>",
+          "content-type": "text/plain",
+          "content-length": "9",
+          "connection": "close",
+          "cf-ray": "<omitted>",
+          "cf-cache-status": "DYNAMIC",
+          "access-control-allow-origin": "*"
         },
         "body": "Not found"
       }
@@ -1626,20 +1626,20 @@ The server _MUST_ support these.
       
       ```json
       {
-        "status": 404,
         "statusText": "Not Found",
+        "status": 404,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cf-cache-status": "DYNAMIC",
-          "cf-ray": "<omitted>",
-          "connection": "close",
-          "content-length": "9",
-          "content-type": "text/plain",
-          "date": "<timestamp>",
-          "server": "cloudflare",
-          "server-timing": "<omitted>",
+          "vary": "Accept-Encoding",
           "strict-transport-security": "max-age=15724800; includeSubDomains",
-          "vary": "Accept-Encoding"
+          "server-timing": "<omitted>",
+          "server": "cloudflare",
+          "date": "<timestamp>",
+          "content-type": "text/plain",
+          "content-length": "9",
+          "connection": "close",
+          "cf-ray": "<omitted>",
+          "cf-cache-status": "DYNAMIC",
+          "access-control-allow-origin": "*"
         },
         "body": "Not found"
       }
@@ -1653,20 +1653,20 @@ The server _MUST_ support these.
       
       ```json
       {
-        "status": 404,
         "statusText": "Not Found",
+        "status": 404,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cf-cache-status": "DYNAMIC",
-          "cf-ray": "<omitted>",
-          "connection": "close",
-          "content-length": "9",
-          "content-type": "text/plain",
-          "date": "<timestamp>",
-          "server": "cloudflare",
-          "server-timing": "<omitted>",
+          "vary": "Accept-Encoding",
           "strict-transport-security": "max-age=15724800; includeSubDomains",
-          "vary": "Accept-Encoding"
+          "server-timing": "<omitted>",
+          "server": "cloudflare",
+          "date": "<timestamp>",
+          "content-type": "text/plain",
+          "content-length": "9",
+          "connection": "close",
+          "cf-ray": "<omitted>",
+          "cf-cache-status": "DYNAMIC",
+          "access-control-allow-origin": "*"
         },
         "body": "Not found"
       }
@@ -1680,20 +1680,20 @@ The server _MUST_ support these.
       
       ```json
       {
-        "status": 404,
         "statusText": "Not Found",
+        "status": 404,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cf-cache-status": "DYNAMIC",
-          "cf-ray": "<omitted>",
-          "connection": "close",
-          "content-length": "9",
-          "content-type": "text/plain",
-          "date": "<timestamp>",
-          "server": "cloudflare",
-          "server-timing": "<omitted>",
+          "vary": "Accept-Encoding",
           "strict-transport-security": "max-age=15724800; includeSubDomains",
-          "vary": "Accept-Encoding"
+          "server-timing": "<omitted>",
+          "server": "cloudflare",
+          "date": "<timestamp>",
+          "content-type": "text/plain",
+          "content-length": "9",
+          "connection": "close",
+          "cf-ray": "<omitted>",
+          "cf-cache-status": "DYNAMIC",
+          "access-control-allow-origin": "*"
         },
         "body": "Not found"
       }
@@ -1707,20 +1707,20 @@ The server _MUST_ support these.
       
       ```json
       {
-        "status": 404,
         "statusText": "Not Found",
+        "status": 404,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cf-cache-status": "DYNAMIC",
-          "cf-ray": "<omitted>",
-          "connection": "close",
-          "content-length": "9",
-          "content-type": "text/plain",
-          "date": "<timestamp>",
-          "server": "cloudflare",
-          "server-timing": "<omitted>",
+          "vary": "Accept-Encoding",
           "strict-transport-security": "max-age=15724800; includeSubDomains",
-          "vary": "Accept-Encoding"
+          "server-timing": "<omitted>",
+          "server": "cloudflare",
+          "date": "<timestamp>",
+          "content-type": "text/plain",
+          "content-length": "9",
+          "connection": "close",
+          "cf-ray": "<omitted>",
+          "cf-cache-status": "DYNAMIC",
+          "access-control-allow-origin": "*"
         },
         "body": "Not found"
       }
@@ -1734,20 +1734,20 @@ The server _MUST_ support these.
       
       ```json
       {
-        "status": 404,
         "statusText": "Not Found",
+        "status": 404,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cf-cache-status": "DYNAMIC",
-          "cf-ray": "<omitted>",
-          "connection": "close",
-          "content-length": "9",
-          "content-type": "text/plain",
-          "date": "<timestamp>",
-          "server": "cloudflare",
-          "server-timing": "<omitted>",
+          "vary": "Accept-Encoding",
           "strict-transport-security": "max-age=15724800; includeSubDomains",
-          "vary": "Accept-Encoding"
+          "server-timing": "<omitted>",
+          "server": "cloudflare",
+          "date": "<timestamp>",
+          "content-type": "text/plain",
+          "content-length": "9",
+          "connection": "close",
+          "cf-ray": "<omitted>",
+          "cf-cache-status": "DYNAMIC",
+          "access-control-allow-origin": "*"
         },
         "body": "Not found"
       }
@@ -1761,20 +1761,20 @@ The server _MUST_ support these.
       
       ```json
       {
-        "status": 404,
         "statusText": "Not Found",
+        "status": 404,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cf-cache-status": "DYNAMIC",
-          "cf-ray": "<omitted>",
-          "connection": "close",
-          "content-length": "9",
-          "content-type": "text/plain",
-          "date": "<timestamp>",
-          "server": "cloudflare",
-          "server-timing": "<omitted>",
+          "vary": "Accept-Encoding",
           "strict-transport-security": "max-age=15724800; includeSubDomains",
-          "vary": "Accept-Encoding"
+          "server-timing": "<omitted>",
+          "server": "cloudflare",
+          "date": "<timestamp>",
+          "content-type": "text/plain",
+          "content-length": "9",
+          "connection": "close",
+          "cf-ray": "<omitted>",
+          "cf-cache-status": "DYNAMIC",
+          "access-control-allow-origin": "*"
         },
         "body": "Not found"
       }
@@ -1788,20 +1788,20 @@ The server _MUST_ support these.
       
       ```json
       {
-        "status": 404,
         "statusText": "Not Found",
+        "status": 404,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cf-cache-status": "DYNAMIC",
-          "cf-ray": "<omitted>",
-          "connection": "close",
-          "content-length": "9",
-          "content-type": "text/plain",
-          "date": "<timestamp>",
-          "server": "cloudflare",
-          "server-timing": "<omitted>",
+          "vary": "Accept-Encoding",
           "strict-transport-security": "max-age=15724800; includeSubDomains",
-          "vary": "Accept-Encoding"
+          "server-timing": "<omitted>",
+          "server": "cloudflare",
+          "date": "<timestamp>",
+          "content-type": "text/plain",
+          "content-length": "9",
+          "connection": "close",
+          "cf-ray": "<omitted>",
+          "cf-cache-status": "DYNAMIC",
+          "access-control-allow-origin": "*"
         },
         "body": "Not found"
       }
@@ -1815,20 +1815,20 @@ The server _MUST_ support these.
       
       ```json
       {
-        "status": 404,
         "statusText": "Not Found",
+        "status": 404,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cf-cache-status": "DYNAMIC",
-          "cf-ray": "<omitted>",
-          "connection": "close",
-          "content-length": "9",
-          "content-type": "text/plain",
-          "date": "<timestamp>",
-          "server": "cloudflare",
-          "server-timing": "<omitted>",
+          "vary": "Accept-Encoding",
           "strict-transport-security": "max-age=15724800; includeSubDomains",
-          "vary": "Accept-Encoding"
+          "server-timing": "<omitted>",
+          "server": "cloudflare",
+          "date": "<timestamp>",
+          "content-type": "text/plain",
+          "content-length": "9",
+          "connection": "close",
+          "cf-ray": "<omitted>",
+          "cf-cache-status": "DYNAMIC",
+          "access-control-allow-origin": "*"
         },
         "body": "Not found"
       }
@@ -1842,20 +1842,20 @@ The server _MUST_ support these.
       
       ```json
       {
-        "status": 404,
         "statusText": "Not Found",
+        "status": 404,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cf-cache-status": "DYNAMIC",
-          "cf-ray": "<omitted>",
-          "connection": "close",
-          "content-length": "9",
-          "content-type": "text/plain",
-          "date": "<timestamp>",
-          "server": "cloudflare",
-          "server-timing": "<omitted>",
+          "vary": "Accept-Encoding",
           "strict-transport-security": "max-age=15724800; includeSubDomains",
-          "vary": "Accept-Encoding"
+          "server-timing": "<omitted>",
+          "server": "cloudflare",
+          "date": "<timestamp>",
+          "content-type": "text/plain",
+          "content-length": "9",
+          "connection": "close",
+          "cf-ray": "<omitted>",
+          "cf-cache-status": "DYNAMIC",
+          "access-control-allow-origin": "*"
         },
         "body": "Not found"
       }
@@ -1869,20 +1869,20 @@ The server _MUST_ support these.
       
       ```json
       {
-        "status": 404,
         "statusText": "Not Found",
+        "status": 404,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cf-cache-status": "DYNAMIC",
-          "cf-ray": "<omitted>",
-          "connection": "close",
-          "content-length": "9",
-          "content-type": "text/plain",
-          "date": "<timestamp>",
-          "server": "cloudflare",
-          "server-timing": "<omitted>",
+          "vary": "Accept-Encoding",
           "strict-transport-security": "max-age=15724800; includeSubDomains",
-          "vary": "Accept-Encoding"
+          "server-timing": "<omitted>",
+          "server": "cloudflare",
+          "date": "<timestamp>",
+          "content-type": "text/plain",
+          "content-length": "9",
+          "connection": "close",
+          "cf-ray": "<omitted>",
+          "cf-cache-status": "DYNAMIC",
+          "access-control-allow-origin": "*"
         },
         "body": "Not found"
       }
@@ -1896,20 +1896,20 @@ The server _MUST_ support these.
       
       ```json
       {
-        "status": 404,
         "statusText": "Not Found",
+        "status": 404,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cf-cache-status": "DYNAMIC",
-          "cf-ray": "<omitted>",
-          "connection": "close",
-          "content-length": "9",
-          "content-type": "text/plain",
-          "date": "<timestamp>",
-          "server": "cloudflare",
-          "server-timing": "<omitted>",
+          "vary": "Accept-Encoding",
           "strict-transport-security": "max-age=15724800; includeSubDomains",
-          "vary": "Accept-Encoding"
+          "server-timing": "<omitted>",
+          "server": "cloudflare",
+          "date": "<timestamp>",
+          "content-type": "text/plain",
+          "content-length": "9",
+          "connection": "close",
+          "cf-ray": "<omitted>",
+          "cf-cache-status": "DYNAMIC",
+          "access-control-allow-origin": "*"
         },
         "body": "Not found"
       }
@@ -1923,20 +1923,20 @@ The server _MUST_ support these.
       
       ```json
       {
-        "status": 404,
         "statusText": "Not Found",
+        "status": 404,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cf-cache-status": "DYNAMIC",
-          "cf-ray": "<omitted>",
-          "connection": "close",
-          "content-length": "9",
-          "content-type": "text/plain",
-          "date": "<timestamp>",
-          "server": "cloudflare",
-          "server-timing": "<omitted>",
+          "vary": "Accept-Encoding",
           "strict-transport-security": "max-age=15724800; includeSubDomains",
-          "vary": "Accept-Encoding"
+          "server-timing": "<omitted>",
+          "server": "cloudflare",
+          "date": "<timestamp>",
+          "content-type": "text/plain",
+          "content-length": "9",
+          "connection": "close",
+          "cf-ray": "<omitted>",
+          "cf-cache-status": "DYNAMIC",
+          "access-control-allow-origin": "*"
         },
         "body": "Not found"
       }
@@ -1950,20 +1950,20 @@ The server _MUST_ support these.
       
       ```json
       {
-        "status": 404,
         "statusText": "Not Found",
+        "status": 404,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cf-cache-status": "DYNAMIC",
-          "cf-ray": "<omitted>",
-          "connection": "close",
-          "content-length": "9",
-          "content-type": "text/plain",
-          "date": "<timestamp>",
-          "server": "cloudflare",
-          "server-timing": "<omitted>",
+          "vary": "Accept-Encoding",
           "strict-transport-security": "max-age=15724800; includeSubDomains",
-          "vary": "Accept-Encoding"
+          "server-timing": "<omitted>",
+          "server": "cloudflare",
+          "date": "<timestamp>",
+          "content-type": "text/plain",
+          "content-length": "9",
+          "connection": "close",
+          "cf-ray": "<omitted>",
+          "cf-cache-status": "DYNAMIC",
+          "access-control-allow-origin": "*"
         },
         "body": "Not found"
       }

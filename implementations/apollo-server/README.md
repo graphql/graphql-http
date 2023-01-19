@@ -71,23 +71,22 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "access-control-allow-origin": "*",
-          "connection": "close",
-          "content-length": "1461",
-          "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>",
+          "x-powered-by": "Express",
           "etag": "W/\"5b5-gDRXf8j0lbjWbmQpeY60iENT2cI\"",
-          "x-powered-by": "Express"
+          "date": "<timestamp>",
+          "content-type": "application/json; charset=utf-8",
+          "content-length": "1461",
+          "connection": "close",
+          "access-control-allow-origin": "*"
         },
         "body": {
           "errors": [
             {
               "message": "This operation has been blocked as a potential Cross-Site Request Forgery (CSRF). Please either specify a 'content-type' header (with a type that is not one of application/x-www-form-urlencoded, multipart/form-data, text/plain) or provide a non-empty value for one of the following headers: x-apollo-operation-name, apollo-require-preflight\n",
               "extensions": {
-                "code": "BAD_REQUEST",
                 "stacktrace": [
                   "BadRequestError: This operation has been blocked as a potential Cross-Site Request Forgery (CSRF). Please either specify a 'content-type' header (with a type that is not one of application/x-www-form-urlencoded, multipart/form-data, text/plain) or provide a non-empty value for one of the following headers: x-apollo-operation-name, apollo-require-preflight",
                   "",
@@ -96,7 +95,8 @@ The server _SHOULD_ support these, but is not required.
                   "    at preventCsrf (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/preventCsrf.js:29:11)",
                   "    at ApolloServer.executeHTTPGraphQLRequest (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/ApolloServer.js:478:17)",
                   "    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)"
-                ]
+                ],
+                "code": "BAD_REQUEST"
               }
             }
           ]
@@ -112,23 +112,22 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "access-control-allow-origin": "*",
-          "connection": "close",
-          "content-length": "1461",
-          "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>",
+          "x-powered-by": "Express",
           "etag": "W/\"5b5-gDRXf8j0lbjWbmQpeY60iENT2cI\"",
-          "x-powered-by": "Express"
+          "date": "<timestamp>",
+          "content-type": "application/json; charset=utf-8",
+          "content-length": "1461",
+          "connection": "close",
+          "access-control-allow-origin": "*"
         },
         "body": {
           "errors": [
             {
               "message": "This operation has been blocked as a potential Cross-Site Request Forgery (CSRF). Please either specify a 'content-type' header (with a type that is not one of application/x-www-form-urlencoded, multipart/form-data, text/plain) or provide a non-empty value for one of the following headers: x-apollo-operation-name, apollo-require-preflight\n",
               "extensions": {
-                "code": "BAD_REQUEST",
                 "stacktrace": [
                   "BadRequestError: This operation has been blocked as a potential Cross-Site Request Forgery (CSRF). Please either specify a 'content-type' header (with a type that is not one of application/x-www-form-urlencoded, multipart/form-data, text/plain) or provide a non-empty value for one of the following headers: x-apollo-operation-name, apollo-require-preflight",
                   "",
@@ -137,7 +136,8 @@ The server _SHOULD_ support these, but is not required.
                   "    at preventCsrf (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/preventCsrf.js:29:11)",
                   "    at ApolloServer.executeHTTPGraphQLRequest (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/ApolloServer.js:478:17)",
                   "    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)"
-                ]
+                ],
+                "code": "BAD_REQUEST"
               }
             }
           ]
@@ -153,24 +153,23 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cache-control": "no-store",
-          "connection": "close",
-          "content-length": "1416",
-          "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>",
+          "x-powered-by": "Express",
           "etag": "W/\"588-sZ+sg/c+DRv3ORN3VlSdMHvZRkc\"",
-          "x-powered-by": "Express"
+          "date": "<timestamp>",
+          "content-type": "application/json; charset=utf-8",
+          "content-length": "1416",
+          "connection": "close",
+          "cache-control": "no-store",
+          "access-control-allow-origin": "*"
         },
         "body": {
           "errors": [
             {
               "message": "GraphQL operations must contain a non-empty `query` or a `persistedQuery` extension.",
               "extensions": {
-                "code": "BAD_REQUEST",
                 "stacktrace": [
                   "BadRequestError: GraphQL operations must contain a non-empty `query` or a `persistedQuery` extension.",
                   "    at new GraphQLErrorWithCode (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/internalErrorClasses.js:7:9)",
@@ -181,7 +180,8 @@ The server _SHOULD_ support these, but is not required.
                   "    at async runHttpQuery (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/runHttpQuery.js:129:29)",
                   "    at async runPotentiallyBatchedHttpQuery (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/httpBatching.js:34:16)",
                   "    at async ApolloServer.executeHTTPGraphQLRequest (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/ApolloServer.js:496:20)"
-                ]
+                ],
+                "code": "BAD_REQUEST"
               }
             }
           ]
@@ -197,23 +197,22 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "access-control-allow-origin": "*",
-          "connection": "close",
-          "content-length": "1144",
-          "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>",
+          "x-powered-by": "Express",
           "etag": "W/\"478-8ij0f1w1MThNqXuYJcCeFgzpLvg\"",
-          "x-powered-by": "Express"
+          "date": "<timestamp>",
+          "content-type": "application/json; charset=utf-8",
+          "content-length": "1144",
+          "connection": "close",
+          "access-control-allow-origin": "*"
         },
         "body": {
           "errors": [
             {
               "message": "GraphQL queries must be strings.",
               "extensions": {
-                "code": "BAD_REQUEST",
                 "stacktrace": [
                   "BadRequestError: GraphQL queries must be strings.",
                   "    at new GraphQLErrorWithCode (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/internalErrorClasses.js:7:9)",
@@ -223,7 +222,8 @@ The server _SHOULD_ support these, but is not required.
                   "    at runPotentiallyBatchedHttpQuery (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/httpBatching.js:34:22)",
                   "    at ApolloServer.executeHTTPGraphQLRequest (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/ApolloServer.js:496:26)",
                   "    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)"
-                ]
+                ],
+                "code": "BAD_REQUEST"
               }
             }
           ]
@@ -239,24 +239,23 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cache-control": "no-store",
-          "connection": "close",
-          "content-length": "1416",
-          "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>",
+          "x-powered-by": "Express",
           "etag": "W/\"588-sZ+sg/c+DRv3ORN3VlSdMHvZRkc\"",
-          "x-powered-by": "Express"
+          "date": "<timestamp>",
+          "content-type": "application/json; charset=utf-8",
+          "content-length": "1416",
+          "connection": "close",
+          "cache-control": "no-store",
+          "access-control-allow-origin": "*"
         },
         "body": {
           "errors": [
             {
               "message": "GraphQL operations must contain a non-empty `query` or a `persistedQuery` extension.",
               "extensions": {
-                "code": "BAD_REQUEST",
                 "stacktrace": [
                   "BadRequestError: GraphQL operations must contain a non-empty `query` or a `persistedQuery` extension.",
                   "    at new GraphQLErrorWithCode (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/internalErrorClasses.js:7:9)",
@@ -267,7 +266,8 @@ The server _SHOULD_ support these, but is not required.
                   "    at async runHttpQuery (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/runHttpQuery.js:129:29)",
                   "    at async runPotentiallyBatchedHttpQuery (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/httpBatching.js:34:16)",
                   "    at async ApolloServer.executeHTTPGraphQLRequest (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/ApolloServer.js:496:20)"
-                ]
+                ],
+                "code": "BAD_REQUEST"
               }
             }
           ]
@@ -283,24 +283,23 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cache-control": "no-store",
-          "connection": "close",
-          "content-length": "1416",
-          "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>",
+          "x-powered-by": "Express",
           "etag": "W/\"588-sZ+sg/c+DRv3ORN3VlSdMHvZRkc\"",
-          "x-powered-by": "Express"
+          "date": "<timestamp>",
+          "content-type": "application/json; charset=utf-8",
+          "content-length": "1416",
+          "connection": "close",
+          "cache-control": "no-store",
+          "access-control-allow-origin": "*"
         },
         "body": {
           "errors": [
             {
               "message": "GraphQL operations must contain a non-empty `query` or a `persistedQuery` extension.",
               "extensions": {
-                "code": "BAD_REQUEST",
                 "stacktrace": [
                   "BadRequestError: GraphQL operations must contain a non-empty `query` or a `persistedQuery` extension.",
                   "    at new GraphQLErrorWithCode (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/internalErrorClasses.js:7:9)",
@@ -311,7 +310,8 @@ The server _SHOULD_ support these, but is not required.
                   "    at async runHttpQuery (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/runHttpQuery.js:129:29)",
                   "    at async runPotentiallyBatchedHttpQuery (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/httpBatching.js:34:16)",
                   "    at async ApolloServer.executeHTTPGraphQLRequest (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/ApolloServer.js:496:20)"
-                ]
+                ],
+                "code": "BAD_REQUEST"
               }
             }
           ]
@@ -327,23 +327,22 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "access-control-allow-origin": "*",
-          "connection": "close",
-          "content-length": "1144",
-          "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>",
+          "x-powered-by": "Express",
           "etag": "W/\"478-8ij0f1w1MThNqXuYJcCeFgzpLvg\"",
-          "x-powered-by": "Express"
+          "date": "<timestamp>",
+          "content-type": "application/json; charset=utf-8",
+          "content-length": "1144",
+          "connection": "close",
+          "access-control-allow-origin": "*"
         },
         "body": {
           "errors": [
             {
               "message": "GraphQL queries must be strings.",
               "extensions": {
-                "code": "BAD_REQUEST",
                 "stacktrace": [
                   "BadRequestError: GraphQL queries must be strings.",
                   "    at new GraphQLErrorWithCode (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/internalErrorClasses.js:7:9)",
@@ -353,7 +352,8 @@ The server _SHOULD_ support these, but is not required.
                   "    at runPotentiallyBatchedHttpQuery (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/httpBatching.js:34:22)",
                   "    at ApolloServer.executeHTTPGraphQLRequest (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/ApolloServer.js:496:26)",
                   "    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)"
-                ]
+                ],
+                "code": "BAD_REQUEST"
               }
             }
           ]
@@ -369,23 +369,22 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "access-control-allow-origin": "*",
-          "connection": "close",
-          "content-length": "1050",
-          "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>",
+          "x-powered-by": "Express",
           "etag": "W/\"41a-nyphxrE/ooK9c9ewfugL9Rqrh2Y\"",
-          "x-powered-by": "Express"
+          "date": "<timestamp>",
+          "content-type": "application/json; charset=utf-8",
+          "content-length": "1050",
+          "connection": "close",
+          "access-control-allow-origin": "*"
         },
         "body": {
           "errors": [
             {
               "message": "`operationName` in a POST body must be a string if provided.",
               "extensions": {
-                "code": "BAD_REQUEST",
                 "stacktrace": [
                   "BadRequestError: `operationName` in a POST body must be a string if provided.",
                   "    at new GraphQLErrorWithCode (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/internalErrorClasses.js:7:9)",
@@ -394,7 +393,8 @@ The server _SHOULD_ support these, but is not required.
                   "    at runPotentiallyBatchedHttpQuery (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/httpBatching.js:34:22)",
                   "    at ApolloServer.executeHTTPGraphQLRequest (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/ApolloServer.js:496:26)",
                   "    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)"
-                ]
+                ],
+                "code": "BAD_REQUEST"
               }
             }
           ]
@@ -410,23 +410,22 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "access-control-allow-origin": "*",
-          "connection": "close",
-          "content-length": "1050",
-          "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>",
+          "x-powered-by": "Express",
           "etag": "W/\"41a-nyphxrE/ooK9c9ewfugL9Rqrh2Y\"",
-          "x-powered-by": "Express"
+          "date": "<timestamp>",
+          "content-type": "application/json; charset=utf-8",
+          "content-length": "1050",
+          "connection": "close",
+          "access-control-allow-origin": "*"
         },
         "body": {
           "errors": [
             {
               "message": "`operationName` in a POST body must be a string if provided.",
               "extensions": {
-                "code": "BAD_REQUEST",
                 "stacktrace": [
                   "BadRequestError: `operationName` in a POST body must be a string if provided.",
                   "    at new GraphQLErrorWithCode (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/internalErrorClasses.js:7:9)",
@@ -435,7 +434,8 @@ The server _SHOULD_ support these, but is not required.
                   "    at runPotentiallyBatchedHttpQuery (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/httpBatching.js:34:22)",
                   "    at ApolloServer.executeHTTPGraphQLRequest (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/ApolloServer.js:496:26)",
                   "    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)"
-                ]
+                ],
+                "code": "BAD_REQUEST"
               }
             }
           ]
@@ -451,23 +451,22 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "access-control-allow-origin": "*",
-          "connection": "close",
-          "content-length": "1050",
-          "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>",
+          "x-powered-by": "Express",
           "etag": "W/\"41a-nyphxrE/ooK9c9ewfugL9Rqrh2Y\"",
-          "x-powered-by": "Express"
+          "date": "<timestamp>",
+          "content-type": "application/json; charset=utf-8",
+          "content-length": "1050",
+          "connection": "close",
+          "access-control-allow-origin": "*"
         },
         "body": {
           "errors": [
             {
               "message": "`operationName` in a POST body must be a string if provided.",
               "extensions": {
-                "code": "BAD_REQUEST",
                 "stacktrace": [
                   "BadRequestError: `operationName` in a POST body must be a string if provided.",
                   "    at new GraphQLErrorWithCode (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/internalErrorClasses.js:7:9)",
@@ -476,7 +475,8 @@ The server _SHOULD_ support these, but is not required.
                   "    at runPotentiallyBatchedHttpQuery (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/httpBatching.js:34:22)",
                   "    at ApolloServer.executeHTTPGraphQLRequest (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/ApolloServer.js:496:26)",
                   "    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)"
-                ]
+                ],
+                "code": "BAD_REQUEST"
               }
             }
           ]
@@ -492,23 +492,22 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "access-control-allow-origin": "*",
-          "connection": "close",
-          "content-length": "1050",
-          "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>",
+          "x-powered-by": "Express",
           "etag": "W/\"41a-nyphxrE/ooK9c9ewfugL9Rqrh2Y\"",
-          "x-powered-by": "Express"
+          "date": "<timestamp>",
+          "content-type": "application/json; charset=utf-8",
+          "content-length": "1050",
+          "connection": "close",
+          "access-control-allow-origin": "*"
         },
         "body": {
           "errors": [
             {
               "message": "`operationName` in a POST body must be a string if provided.",
               "extensions": {
-                "code": "BAD_REQUEST",
                 "stacktrace": [
                   "BadRequestError: `operationName` in a POST body must be a string if provided.",
                   "    at new GraphQLErrorWithCode (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/internalErrorClasses.js:7:9)",
@@ -517,7 +516,8 @@ The server _SHOULD_ support these, but is not required.
                   "    at runPotentiallyBatchedHttpQuery (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/httpBatching.js:34:22)",
                   "    at ApolloServer.executeHTTPGraphQLRequest (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/ApolloServer.js:496:26)",
                   "    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)"
-                ]
+                ],
+                "code": "BAD_REQUEST"
               }
             }
           ]
@@ -533,23 +533,22 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "access-control-allow-origin": "*",
-          "connection": "close",
-          "content-length": "1126",
-          "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>",
+          "x-powered-by": "Express",
           "etag": "W/\"466-OpPmHAsn4oM5zvBonndNbzxWo1s\"",
-          "x-powered-by": "Express"
+          "date": "<timestamp>",
+          "content-type": "application/json; charset=utf-8",
+          "content-length": "1126",
+          "connection": "close",
+          "access-control-allow-origin": "*"
         },
         "body": {
           "errors": [
             {
               "message": "`variables` in a POST body should be provided as an object, not a recursively JSON-encoded string.",
               "extensions": {
-                "code": "BAD_REQUEST",
                 "stacktrace": [
                   "BadRequestError: `variables` in a POST body should be provided as an object, not a recursively JSON-encoded string.",
                   "    at new GraphQLErrorWithCode (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/internalErrorClasses.js:7:9)",
@@ -558,7 +557,8 @@ The server _SHOULD_ support these, but is not required.
                   "    at runPotentiallyBatchedHttpQuery (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/httpBatching.js:34:22)",
                   "    at ApolloServer.executeHTTPGraphQLRequest (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/ApolloServer.js:496:26)",
                   "    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)"
-                ]
+                ],
+                "code": "BAD_REQUEST"
               }
             }
           ]
@@ -574,23 +574,22 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "access-control-allow-origin": "*",
-          "connection": "close",
-          "content-length": "1044",
-          "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>",
+          "x-powered-by": "Express",
           "etag": "W/\"414-E6rr7b7CJtPuHGippFX8oDrojxw\"",
-          "x-powered-by": "Express"
+          "date": "<timestamp>",
+          "content-type": "application/json; charset=utf-8",
+          "content-length": "1044",
+          "connection": "close",
+          "access-control-allow-origin": "*"
         },
         "body": {
           "errors": [
             {
               "message": "`variables` in a POST body must be an object if provided.",
               "extensions": {
-                "code": "BAD_REQUEST",
                 "stacktrace": [
                   "BadRequestError: `variables` in a POST body must be an object if provided.",
                   "    at new GraphQLErrorWithCode (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/internalErrorClasses.js:7:9)",
@@ -599,7 +598,8 @@ The server _SHOULD_ support these, but is not required.
                   "    at runPotentiallyBatchedHttpQuery (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/httpBatching.js:34:22)",
                   "    at ApolloServer.executeHTTPGraphQLRequest (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/ApolloServer.js:496:26)",
                   "    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)"
-                ]
+                ],
+                "code": "BAD_REQUEST"
               }
             }
           ]
@@ -615,23 +615,22 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "access-control-allow-origin": "*",
-          "connection": "close",
-          "content-length": "1044",
-          "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>",
+          "x-powered-by": "Express",
           "etag": "W/\"414-E6rr7b7CJtPuHGippFX8oDrojxw\"",
-          "x-powered-by": "Express"
+          "date": "<timestamp>",
+          "content-type": "application/json; charset=utf-8",
+          "content-length": "1044",
+          "connection": "close",
+          "access-control-allow-origin": "*"
         },
         "body": {
           "errors": [
             {
               "message": "`variables` in a POST body must be an object if provided.",
               "extensions": {
-                "code": "BAD_REQUEST",
                 "stacktrace": [
                   "BadRequestError: `variables` in a POST body must be an object if provided.",
                   "    at new GraphQLErrorWithCode (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/internalErrorClasses.js:7:9)",
@@ -640,7 +639,8 @@ The server _SHOULD_ support these, but is not required.
                   "    at runPotentiallyBatchedHttpQuery (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/httpBatching.js:34:22)",
                   "    at ApolloServer.executeHTTPGraphQLRequest (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/ApolloServer.js:496:26)",
                   "    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)"
-                ]
+                ],
+                "code": "BAD_REQUEST"
               }
             }
           ]
@@ -656,23 +656,22 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "access-control-allow-origin": "*",
-          "connection": "close",
-          "content-length": "1044",
-          "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>",
+          "x-powered-by": "Express",
           "etag": "W/\"414-E6rr7b7CJtPuHGippFX8oDrojxw\"",
-          "x-powered-by": "Express"
+          "date": "<timestamp>",
+          "content-type": "application/json; charset=utf-8",
+          "content-length": "1044",
+          "connection": "close",
+          "access-control-allow-origin": "*"
         },
         "body": {
           "errors": [
             {
               "message": "`variables` in a POST body must be an object if provided.",
               "extensions": {
-                "code": "BAD_REQUEST",
                 "stacktrace": [
                   "BadRequestError: `variables` in a POST body must be an object if provided.",
                   "    at new GraphQLErrorWithCode (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/internalErrorClasses.js:7:9)",
@@ -681,7 +680,8 @@ The server _SHOULD_ support these, but is not required.
                   "    at runPotentiallyBatchedHttpQuery (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/httpBatching.js:34:22)",
                   "    at ApolloServer.executeHTTPGraphQLRequest (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/ApolloServer.js:496:26)",
                   "    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)"
-                ]
+                ],
+                "code": "BAD_REQUEST"
               }
             }
           ]
@@ -697,23 +697,22 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "access-control-allow-origin": "*",
-          "connection": "close",
-          "content-length": "1461",
-          "content-type": "application/graphql-response+json; charset=utf-8",
-          "date": "<timestamp>",
+          "x-powered-by": "Express",
           "etag": "W/\"5b5-gDRXf8j0lbjWbmQpeY60iENT2cI\"",
-          "x-powered-by": "Express"
+          "date": "<timestamp>",
+          "content-type": "application/graphql-response+json; charset=utf-8",
+          "content-length": "1461",
+          "connection": "close",
+          "access-control-allow-origin": "*"
         },
         "body": {
           "errors": [
             {
               "message": "This operation has been blocked as a potential Cross-Site Request Forgery (CSRF). Please either specify a 'content-type' header (with a type that is not one of application/x-www-form-urlencoded, multipart/form-data, text/plain) or provide a non-empty value for one of the following headers: x-apollo-operation-name, apollo-require-preflight\n",
               "extensions": {
-                "code": "BAD_REQUEST",
                 "stacktrace": [
                   "BadRequestError: This operation has been blocked as a potential Cross-Site Request Forgery (CSRF). Please either specify a 'content-type' header (with a type that is not one of application/x-www-form-urlencoded, multipart/form-data, text/plain) or provide a non-empty value for one of the following headers: x-apollo-operation-name, apollo-require-preflight",
                   "",
@@ -722,7 +721,8 @@ The server _SHOULD_ support these, but is not required.
                   "    at preventCsrf (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/preventCsrf.js:29:11)",
                   "    at ApolloServer.executeHTTPGraphQLRequest (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/ApolloServer.js:478:17)",
                   "    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)"
-                ]
+                ],
+                "code": "BAD_REQUEST"
               }
             }
           ]
@@ -738,23 +738,22 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "access-control-allow-origin": "*",
-          "connection": "close",
-          "content-length": "1461",
-          "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>",
+          "x-powered-by": "Express",
           "etag": "W/\"5b5-gDRXf8j0lbjWbmQpeY60iENT2cI\"",
-          "x-powered-by": "Express"
+          "date": "<timestamp>",
+          "content-type": "application/json; charset=utf-8",
+          "content-length": "1461",
+          "connection": "close",
+          "access-control-allow-origin": "*"
         },
         "body": {
           "errors": [
             {
               "message": "This operation has been blocked as a potential Cross-Site Request Forgery (CSRF). Please either specify a 'content-type' header (with a type that is not one of application/x-www-form-urlencoded, multipart/form-data, text/plain) or provide a non-empty value for one of the following headers: x-apollo-operation-name, apollo-require-preflight\n",
               "extensions": {
-                "code": "BAD_REQUEST",
                 "stacktrace": [
                   "BadRequestError: This operation has been blocked as a potential Cross-Site Request Forgery (CSRF). Please either specify a 'content-type' header (with a type that is not one of application/x-www-form-urlencoded, multipart/form-data, text/plain) or provide a non-empty value for one of the following headers: x-apollo-operation-name, apollo-require-preflight",
                   "",
@@ -763,7 +762,8 @@ The server _SHOULD_ support these, but is not required.
                   "    at preventCsrf (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/preventCsrf.js:29:11)",
                   "    at ApolloServer.executeHTTPGraphQLRequest (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/ApolloServer.js:478:17)",
                   "    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)"
-                ]
+                ],
+                "code": "BAD_REQUEST"
               }
             }
           ]
@@ -779,23 +779,22 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "access-control-allow-origin": "*",
-          "connection": "close",
-          "content-length": "1128",
-          "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>",
+          "x-powered-by": "Express",
           "etag": "W/\"468-TPRc6cNxt9MLpN3l67KK+40WYlI\"",
-          "x-powered-by": "Express"
+          "date": "<timestamp>",
+          "content-type": "application/json; charset=utf-8",
+          "content-length": "1128",
+          "connection": "close",
+          "access-control-allow-origin": "*"
         },
         "body": {
           "errors": [
             {
               "message": "`extensions` in a POST body should be provided as an object, not a recursively JSON-encoded string.",
               "extensions": {
-                "code": "BAD_REQUEST",
                 "stacktrace": [
                   "BadRequestError: `extensions` in a POST body should be provided as an object, not a recursively JSON-encoded string.",
                   "    at new GraphQLErrorWithCode (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/internalErrorClasses.js:7:9)",
@@ -804,7 +803,8 @@ The server _SHOULD_ support these, but is not required.
                   "    at runPotentiallyBatchedHttpQuery (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/httpBatching.js:34:22)",
                   "    at ApolloServer.executeHTTPGraphQLRequest (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/ApolloServer.js:496:26)",
                   "    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)"
-                ]
+                ],
+                "code": "BAD_REQUEST"
               }
             }
           ]
@@ -820,23 +820,22 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "access-control-allow-origin": "*",
-          "connection": "close",
-          "content-length": "1046",
-          "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>",
+          "x-powered-by": "Express",
           "etag": "W/\"416-3vSw59SW7xtE8bbw+NTHlFLLef4\"",
-          "x-powered-by": "Express"
+          "date": "<timestamp>",
+          "content-type": "application/json; charset=utf-8",
+          "content-length": "1046",
+          "connection": "close",
+          "access-control-allow-origin": "*"
         },
         "body": {
           "errors": [
             {
               "message": "`extensions` in a POST body must be an object if provided.",
               "extensions": {
-                "code": "BAD_REQUEST",
                 "stacktrace": [
                   "BadRequestError: `extensions` in a POST body must be an object if provided.",
                   "    at new GraphQLErrorWithCode (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/internalErrorClasses.js:7:9)",
@@ -845,7 +844,8 @@ The server _SHOULD_ support these, but is not required.
                   "    at runPotentiallyBatchedHttpQuery (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/httpBatching.js:34:22)",
                   "    at ApolloServer.executeHTTPGraphQLRequest (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/ApolloServer.js:496:26)",
                   "    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)"
-                ]
+                ],
+                "code": "BAD_REQUEST"
               }
             }
           ]
@@ -861,23 +861,22 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "access-control-allow-origin": "*",
-          "connection": "close",
-          "content-length": "1046",
-          "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>",
+          "x-powered-by": "Express",
           "etag": "W/\"416-3vSw59SW7xtE8bbw+NTHlFLLef4\"",
-          "x-powered-by": "Express"
+          "date": "<timestamp>",
+          "content-type": "application/json; charset=utf-8",
+          "content-length": "1046",
+          "connection": "close",
+          "access-control-allow-origin": "*"
         },
         "body": {
           "errors": [
             {
               "message": "`extensions` in a POST body must be an object if provided.",
               "extensions": {
-                "code": "BAD_REQUEST",
                 "stacktrace": [
                   "BadRequestError: `extensions` in a POST body must be an object if provided.",
                   "    at new GraphQLErrorWithCode (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/internalErrorClasses.js:7:9)",
@@ -886,7 +885,8 @@ The server _SHOULD_ support these, but is not required.
                   "    at runPotentiallyBatchedHttpQuery (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/httpBatching.js:34:22)",
                   "    at ApolloServer.executeHTTPGraphQLRequest (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/ApolloServer.js:496:26)",
                   "    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)"
-                ]
+                ],
+                "code": "BAD_REQUEST"
               }
             }
           ]
@@ -902,23 +902,22 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "access-control-allow-origin": "*",
-          "connection": "close",
-          "content-length": "1046",
-          "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>",
+          "x-powered-by": "Express",
           "etag": "W/\"416-3vSw59SW7xtE8bbw+NTHlFLLef4\"",
-          "x-powered-by": "Express"
+          "date": "<timestamp>",
+          "content-type": "application/json; charset=utf-8",
+          "content-length": "1046",
+          "connection": "close",
+          "access-control-allow-origin": "*"
         },
         "body": {
           "errors": [
             {
               "message": "`extensions` in a POST body must be an object if provided.",
               "extensions": {
-                "code": "BAD_REQUEST",
                 "stacktrace": [
                   "BadRequestError: `extensions` in a POST body must be an object if provided.",
                   "    at new GraphQLErrorWithCode (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/internalErrorClasses.js:7:9)",
@@ -927,7 +926,8 @@ The server _SHOULD_ support these, but is not required.
                   "    at runPotentiallyBatchedHttpQuery (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/httpBatching.js:34:22)",
                   "    at ApolloServer.executeHTTPGraphQLRequest (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/ApolloServer.js:496:26)",
                   "    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)"
-                ]
+                ],
+                "code": "BAD_REQUEST"
               }
             }
           ]
@@ -943,17 +943,17 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "access-control-allow-origin": "*",
-          "connection": "close",
-          "content-length": "1108",
-          "content-security-policy": "default-src 'none'",
-          "content-type": "text/html; charset=utf-8",
-          "date": "<timestamp>",
+          "x-powered-by": "Express",
           "x-content-type-options": "nosniff",
-          "x-powered-by": "Express"
+          "date": "<timestamp>",
+          "content-type": "text/html; charset=utf-8",
+          "content-security-policy": "default-src 'none'",
+          "content-length": "1108",
+          "connection": "close",
+          "access-control-allow-origin": "*"
         },
         "body": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</title>\n</head>\n<body>\n<pre>SyntaxError: Unexpected end of JSON input<br> &nbsp; &nbsp;at JSON.parse (&lt;anonymous&gt;)<br> &nbsp; &nbsp;at parse (/home/runner/work/graphql-http/graphql-http/node_modules/body-parser/lib/types/json.js:89:19)<br> &nbsp; &nbsp;at /home/runner/work/graphql-http/graphql-http/node_modules/body-parser/lib/read.js:128:18<br> &nbsp; &nbsp;at AsyncResource.runInAsyncScope (node:async_hooks:204:9)<br> &nbsp; &nbsp;at invokeCallback (/home/runner/work/graphql-http/graphql-http/node_modules/raw-body/index.js:231:16)<br> &nbsp; &nbsp;at done (/home/runner/work/graphql-http/graphql-http/node_modules/raw-body/index.js:220:7)<br> &nbsp; &nbsp;at IncomingMessage.onEnd (/home/runner/work/graphql-http/graphql-http/node_modules/raw-body/index.js:280:7)<br> &nbsp; &nbsp;at IncomingMessage.emit (node:events:513:28)<br> &nbsp; &nbsp;at endReadableNT (node:internal/streams/readable:1359:12)<br> &nbsp; &nbsp;at process.processTicksAndRejections (node:internal/process/task_queues:82:21)</pre>\n</body>\n</html>\n"
       }
@@ -967,24 +967,23 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cache-control": "no-store",
-          "connection": "close",
-          "content-length": "1416",
-          "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>",
+          "x-powered-by": "Express",
           "etag": "W/\"588-sZ+sg/c+DRv3ORN3VlSdMHvZRkc\"",
-          "x-powered-by": "Express"
+          "date": "<timestamp>",
+          "content-type": "application/json; charset=utf-8",
+          "content-length": "1416",
+          "connection": "close",
+          "cache-control": "no-store",
+          "access-control-allow-origin": "*"
         },
         "body": {
           "errors": [
             {
               "message": "GraphQL operations must contain a non-empty `query` or a `persistedQuery` extension.",
               "extensions": {
-                "code": "BAD_REQUEST",
                 "stacktrace": [
                   "BadRequestError: GraphQL operations must contain a non-empty `query` or a `persistedQuery` extension.",
                   "    at new GraphQLErrorWithCode (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/internalErrorClasses.js:7:9)",
@@ -995,7 +994,8 @@ The server _SHOULD_ support these, but is not required.
                   "    at async runHttpQuery (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/runHttpQuery.js:129:29)",
                   "    at async runPotentiallyBatchedHttpQuery (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/httpBatching.js:34:16)",
                   "    at async ApolloServer.executeHTTPGraphQLRequest (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/ApolloServer.js:496:20)"
-                ]
+                ],
+                "code": "BAD_REQUEST"
               }
             }
           ]
@@ -1011,17 +1011,17 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cache-control": "no-store",
-          "connection": "close",
-          "content-length": "1439",
-          "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>",
+          "x-powered-by": "Express",
           "etag": "W/\"59f-wZcL/SqdL2p72c+22U9112bt9Sk\"",
-          "x-powered-by": "Express"
+          "date": "<timestamp>",
+          "content-type": "application/json; charset=utf-8",
+          "content-length": "1439",
+          "connection": "close",
+          "cache-control": "no-store",
+          "access-control-allow-origin": "*"
         },
         "body": {
           "errors": [
@@ -1034,7 +1034,6 @@ The server _SHOULD_ support these, but is not required.
                 }
               ],
               "extensions": {
-                "code": "GRAPHQL_PARSE_FAILED",
                 "stacktrace": [
                   "GraphQLError: Syntax Error: Expected Name, found <EOF>.",
                   "    at syntaxError (/home/runner/work/graphql-http/graphql-http/node_modules/graphql/error/syntaxError.js:15:10)",
@@ -1047,7 +1046,8 @@ The server _SHOULD_ support these, but is not required.
                   "    at Parser.parseOperationDefinition (/home/runner/work/graphql-http/graphql-http/node_modules/graphql/language/parser.js:231:28)",
                   "    at Parser.parseDefinition (/home/runner/work/graphql-http/graphql-http/node_modules/graphql/language/parser.js:155:19)",
                   "    at Parser.many (/home/runner/work/graphql-http/graphql-http/node_modules/graphql/language/parser.js:1511:26)"
-                ]
+                ],
+                "code": "GRAPHQL_PARSE_FAILED"
               }
             }
           ]
@@ -1063,17 +1063,17 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "access-control-allow-origin": "*",
-          "cache-control": "no-store",
-          "connection": "close",
-          "content-length": "1454",
-          "content-type": "application/json; charset=utf-8",
-          "date": "<timestamp>",
+          "x-powered-by": "Express",
           "etag": "W/\"5ae-cH8StyqXwjsvF8Ml3ZMaXdrpW14\"",
-          "x-powered-by": "Express"
+          "date": "<timestamp>",
+          "content-type": "application/json; charset=utf-8",
+          "content-length": "1454",
+          "connection": "close",
+          "cache-control": "no-store",
+          "access-control-allow-origin": "*"
         },
         "body": {
           "errors": [
@@ -1086,7 +1086,6 @@ The server _SHOULD_ support these, but is not required.
                 }
               ],
               "extensions": {
-                "code": "GRAPHQL_PARSE_FAILED",
                 "stacktrace": [
                   "GraphQLError: Syntax Error: Invalid number, expected digit but got: \"f\".",
                   "    at syntaxError (/home/runner/work/graphql-http/graphql-http/node_modules/graphql/error/syntaxError.js:15:10)",
@@ -1099,7 +1098,8 @@ The server _SHOULD_ support these, but is not required.
                   "    at Parser.many (/home/runner/work/graphql-http/graphql-http/node_modules/graphql/language/parser.js:1507:10)",
                   "    at Parser.parseSelectionSet (/home/runner/work/graphql-http/graphql-http/node_modules/graphql/language/parser.js:320:24)",
                   "    at Parser.parseOperationDefinition (/home/runner/work/graphql-http/graphql-http/node_modules/graphql/language/parser.js:231:28)"
-                ]
+                ],
+                "code": "GRAPHQL_PARSE_FAILED"
               }
             }
           ]
@@ -1115,17 +1115,17 @@ The server _SHOULD_ support these, but is not required.
       
       ```json
       {
-        "status": 400,
         "statusText": "Bad Request",
+        "status": 400,
         "headers": {
-          "access-control-allow-origin": "*",
-          "connection": "close",
-          "content-length": "1108",
-          "content-security-policy": "default-src 'none'",
-          "content-type": "text/html; charset=utf-8",
-          "date": "<timestamp>",
+          "x-powered-by": "Express",
           "x-content-type-options": "nosniff",
-          "x-powered-by": "Express"
+          "date": "<timestamp>",
+          "content-type": "text/html; charset=utf-8",
+          "content-security-policy": "default-src 'none'",
+          "content-length": "1108",
+          "connection": "close",
+          "access-control-allow-origin": "*"
         },
         "body": null
       }
