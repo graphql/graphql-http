@@ -191,7 +191,6 @@ async function printAuditFail(result, i) {
   } catch {
     // noop
   }
-
   const stringified = JSON.stringify(
     {
       status: res.status,
