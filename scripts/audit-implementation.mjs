@@ -202,7 +202,7 @@ async function printAuditFail(result, i) {
       if (v != null && typeof v === 'object' && !Array.isArray(v)) {
         // sort object fields for stable stringify
         /** @type {Record<string, unknown>} */
-        const acc = v;
+        const acc = {};
         return Object.keys(v)
           .sort()
           .reduce((acc, k) => (acc[k] = v[k]), acc);
