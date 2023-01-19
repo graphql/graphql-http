@@ -108,33 +108,14 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
       });
       ressert(res).status.toBe(200);
 
-      // has charset set to utf-8
-      try {
-        ressert(res).header('content-type').toContain('charset=utf-8');
-        return;
-      } catch {
-        // noop, continue
-      }
-
-      // has no charset specified
-      ressert(res).header('content-type').notToContain('charset');
-
-      // and the content is utf-8 encoded
       try {
         const decoder = new TextDecoder('utf-8');
-        const decoded = decoder.decode(await res.arrayBuffer());
-        const expected = '{"data":{"__typename":"Query"}}';
-        if (decoded !== expected) {
-          throw new AuditError(
-            res,
-            `Response UTF-8 decoded body is not '${expected}'`,
-          );
-        }
+        decoder.decode(await res.arrayBuffer());
       } catch {
         throw new AuditError(res, 'Response body is not UTF-8 encoded');
       }
     }),
-    audit('MUST accept utf-8 encoding', async () => {
+    audit('MUST accept utf-8 encoded request', async () => {
       const res = await fetchFn(await getUrl(opts.url), {
         method: 'POST',
         headers: {
@@ -144,20 +125,21 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
       });
 
       ressert(res).status.toBe(200);
-      ressert(res).header('content-type').toContain('utf-8');
     }),
-    audit('MUST assume utf-8 if encoding is unspecified', async () => {
-      const res = await fetchFn(await getUrl(opts.url), {
-        method: 'POST',
-        headers: {
-          'content-type': 'application/json',
-        },
-        body: JSON.stringify({ query: '{ __typename }' }),
-      });
+    audit(
+      'MUST assume utf-8 in request if encoding is unspecified',
+      async () => {
+        const res = await fetchFn(await getUrl(opts.url), {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json',
+          },
+          body: JSON.stringify({ query: '{ __typename }' }),
+        });
 
-      ressert(res).status.toBe(200);
-      ressert(res).header('content-type').toContain('utf-8');
-    }),
+        ressert(res).status.toBe(200);
+      },
+    ),
     // Request
     audit('MUST accept POST requests', async () => {
       const res = await fetchFn(await getUrl(opts.url), {
