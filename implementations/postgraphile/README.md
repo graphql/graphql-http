@@ -70,7 +70,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "31",
           "content-type": "application/json; charset=utf-8",
-          "date": "Tue, 17 Jan 2023 22:27:36 GMT"
+          "date": "<timestamp>"
         },
         "body": {
           "data": {
@@ -95,7 +95,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "60",
           "content-type": "application/json; charset=utf-8",
-          "date": "Tue, 17 Jan 2023 22:27:36 GMT"
+          "date": "<timestamp>"
         },
         "body": {
           "errors": [
@@ -122,7 +122,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "60",
           "content-type": "application/json; charset=utf-8",
-          "date": "Tue, 17 Jan 2023 22:27:36 GMT"
+          "date": "<timestamp>"
         },
         "body": {
           "errors": [
@@ -148,7 +148,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "55",
           "content-type": "application/json; charset=utf-8",
-          "date": "Tue, 17 Jan 2023 22:27:36 GMT"
+          "date": "<timestamp>"
         },
         "body": {
           "errors": [
@@ -174,7 +174,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "77",
           "content-type": "application/json; charset=utf-8",
-          "date": "Tue, 17 Jan 2023 22:27:36 GMT"
+          "date": "<timestamp>"
         },
         "body": {
           "errors": [
@@ -200,7 +200,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "152",
           "content-type": "application/json; charset=utf-8",
-          "date": "Tue, 17 Jan 2023 22:27:36 GMT"
+          "date": "<timestamp>"
         },
         "body": {
           "errors": [
@@ -226,7 +226,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "77",
           "content-type": "application/json; charset=utf-8",
-          "date": "Tue, 17 Jan 2023 22:27:36 GMT"
+          "date": "<timestamp>"
         },
         "body": {
           "errors": [
@@ -252,7 +252,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "55",
           "content-type": "application/json; charset=utf-8",
-          "date": "Tue, 17 Jan 2023 22:27:36 GMT"
+          "date": "<timestamp>"
         },
         "body": {
           "errors": [
@@ -278,7 +278,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "55",
           "content-type": "application/json; charset=utf-8",
-          "date": "Tue, 17 Jan 2023 22:27:36 GMT"
+          "date": "<timestamp>"
         },
         "body": {
           "errors": [
@@ -304,7 +304,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "152",
           "content-type": "application/json; charset=utf-8",
-          "date": "Tue, 17 Jan 2023 22:27:36 GMT"
+          "date": "<timestamp>"
         },
         "body": {
           "errors": [
@@ -330,7 +330,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "73",
           "content-type": "application/json; charset=utf-8",
-          "date": "Tue, 17 Jan 2023 22:27:36 GMT"
+          "date": "<timestamp>"
         },
         "body": {
           "errors": [
@@ -356,7 +356,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "73",
           "content-type": "application/json; charset=utf-8",
-          "date": "Tue, 17 Jan 2023 22:27:36 GMT"
+          "date": "<timestamp>"
         },
         "body": {
           "errors": [
@@ -382,7 +382,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "74",
           "content-type": "application/json; charset=utf-8",
-          "date": "Tue, 17 Jan 2023 22:27:36 GMT"
+          "date": "<timestamp>"
         },
         "body": {
           "errors": [
@@ -408,7 +408,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "73",
           "content-type": "application/json; charset=utf-8",
-          "date": "Tue, 17 Jan 2023 22:27:36 GMT"
+          "date": "<timestamp>"
         },
         "body": {
           "errors": [
@@ -434,7 +434,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "31",
           "content-type": "application/json; charset=utf-8",
-          "date": "Tue, 17 Jan 2023 22:27:37 GMT"
+          "date": "<timestamp>"
         },
         "body": {
           "data": {
@@ -458,7 +458,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "67",
           "content-type": "application/json; charset=utf-8",
-          "date": "Tue, 17 Jan 2023 22:27:37 GMT"
+          "date": "<timestamp>"
         },
         "body": {
           "errors": [
@@ -484,7 +484,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "69",
           "content-type": "application/json; charset=utf-8",
-          "date": "Tue, 17 Jan 2023 22:27:37 GMT"
+          "date": "<timestamp>"
         },
         "body": {
           "errors": [
@@ -510,7 +510,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "70",
           "content-type": "application/json; charset=utf-8",
-          "date": "Tue, 17 Jan 2023 22:27:37 GMT"
+          "date": "<timestamp>"
         },
         "body": {
           "errors": [
@@ -536,7 +536,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "31",
           "content-type": "application/json; charset=utf-8",
-          "date": "Tue, 17 Jan 2023 22:27:37 GMT"
+          "date": "<timestamp>"
         }
       }
       ```
@@ -556,7 +556,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "60",
           "content-type": "application/json; charset=utf-8",
-          "date": "Tue, 17 Jan 2023 22:27:37 GMT"
+          "date": "<timestamp>"
         },
         "body": {
           "errors": [
@@ -583,7 +583,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "60",
           "content-type": "application/json; charset=utf-8",
-          "date": "Tue, 17 Jan 2023 22:27:37 GMT"
+          "date": "<timestamp>"
         },
         "body": {
           "errors": [
@@ -609,7 +609,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "31",
           "content-type": "application/json; charset=utf-8",
-          "date": "Tue, 17 Jan 2023 22:27:37 GMT"
+          "date": "<timestamp>"
         },
         "body": {
           "data": {
@@ -633,7 +633,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "31",
           "content-type": "application/json; charset=utf-8",
-          "date": "Tue, 17 Jan 2023 22:27:37 GMT"
+          "date": "<timestamp>"
         },
         "body": {
           "data": {
@@ -657,7 +657,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "31",
           "content-type": "application/json; charset=utf-8",
-          "date": "Tue, 17 Jan 2023 22:27:37 GMT"
+          "date": "<timestamp>"
         },
         "body": {
           "data": {
@@ -681,7 +681,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "31",
           "content-type": "application/json; charset=utf-8",
-          "date": "Tue, 17 Jan 2023 22:27:37 GMT"
+          "date": "<timestamp>"
         },
         "body": {
           "data": {
@@ -705,7 +705,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "31",
           "content-type": "application/json; charset=utf-8",
-          "date": "Tue, 17 Jan 2023 22:27:37 GMT"
+          "date": "<timestamp>"
         }
       }
       ```
@@ -724,7 +724,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "31",
           "content-type": "application/json; charset=utf-8",
-          "date": "Tue, 17 Jan 2023 22:27:37 GMT"
+          "date": "<timestamp>"
         }
       }
       ```
@@ -743,7 +743,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "31",
           "content-type": "application/json; charset=utf-8",
-          "date": "Tue, 17 Jan 2023 22:27:37 GMT"
+          "date": "<timestamp>"
         }
       }
       ```
@@ -762,7 +762,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "31",
           "content-type": "application/json; charset=utf-8",
-          "date": "Tue, 17 Jan 2023 22:27:37 GMT"
+          "date": "<timestamp>"
         }
       }
       ```
@@ -781,7 +781,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "55",
           "content-type": "application/json; charset=utf-8",
-          "date": "Tue, 17 Jan 2023 22:27:37 GMT"
+          "date": "<timestamp>"
         },
         "body": {
           "errors": [
@@ -807,7 +807,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "55",
           "content-type": "application/json; charset=utf-8",
-          "date": "Tue, 17 Jan 2023 22:27:37 GMT"
+          "date": "<timestamp>"
         },
         "body": {
           "errors": [
@@ -833,7 +833,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "104",
           "content-type": "application/json; charset=utf-8",
-          "date": "Tue, 17 Jan 2023 22:27:37 GMT"
+          "date": "<timestamp>"
         },
         "body": {
           "errors": [
@@ -865,7 +865,7 @@ The server _SHOULD_ support these, but is not required.
           "connection": "close",
           "content-length": "123",
           "content-type": "application/json; charset=utf-8",
-          "date": "Tue, 17 Jan 2023 22:27:37 GMT"
+          "date": "<timestamp>"
         },
         "body": {
           "errors": [

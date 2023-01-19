@@ -174,7 +174,12 @@ async function printAuditFail(result, i) {
   /** @type {Record<string, string>} */
   const headers = {};
   for (const [key, val] of res.headers.entries()) {
-    headers[key] = val;
+    // date header changes on each run, dont report it
+    if (key === 'date') {
+      headers[key] = '<timestamp>';
+    } else {
+      headers[key] = val;
+    }
   }
   let text, json;
   try {
