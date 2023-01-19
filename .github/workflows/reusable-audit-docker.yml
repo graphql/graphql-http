@@ -31,6 +31,7 @@ jobs:
         uses: docker/bake-action@v2
         with:
           workdir: implementations/${{ inputs.workspace }}
+          load: true # load image into docker, otherwise `docker compose up` will rebuild
           set: |
             *.cache-from=type=gha
             *.cache-to=type=gha,mode=max
