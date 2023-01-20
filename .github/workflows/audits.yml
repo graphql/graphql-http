@@ -11,7 +11,9 @@ on:
 
 jobs:
   javascript:
-    uses: ./.github/workflows/reusable-audit-javascript.yml
+    name: JavaScript
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
     strategy:
       matrix:
         workspace:
@@ -21,10 +23,41 @@ jobs:
           - graphql-yoga
           - graphql-helix
           - graph-client
-    with:
-      workspace: ${{ matrix.workspace }}
+    env:
+      PORT: 4000
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Set up node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: yarn
+      - name: Install
+        run: yarn install --immutable
+      - name: Build
+        run: yarn build:esm
+      - name: Start
+        run: yarn workspace ${{ matrix.workspace }} start &
+      - name: Audit
+        run: node scripts/audit-implementation.mjs implementations/${{ matrix.workspace }}
+      - name: Upload audit report
+        uses: actions/upload-artifact@v3
+        with:
+          name: audit-reports
+          # > If multiple paths are provided as input, the least common ancestor of all the search paths will be used as the root directory of the artifact.
+          # https://github.com/actions/upload-artifact#upload-using-multiple-paths-and-exclusions
+          #
+          # Because of this, we include the root README.md to maintain the paths during artifact downloads
+          path: |
+            README.md
+            implementations/${{ matrix.workspace }}/README.md
+            implementations/${{ matrix.workspace }}/report.json
+
   docker:
-    uses: ./.github/workflows/reusable-audit-docker.yml
+    name: Docker
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
     strategy:
       matrix:
         workspace:
@@ -32,18 +65,84 @@ jobs:
           - postgraphile
           - pioneer
           - deno
-    with:
-      workspace: ${{ matrix.workspace }}
+    env:
+      PORT: 4000
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Set up docker buildx
+        uses: docker/setup-buildx-action@v2
+      - name: Set up node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: yarn
+      - name: Install
+        run: yarn install --immutable
+      - name: Build
+        run: yarn build:esm
+      - name: Bake
+        uses: docker/bake-action@v2
+        with:
+          workdir: implementations/${{ matrix.workspace }}
+          load: true # load image into docker, otherwise `docker compose up` will rebuild
+          set: |
+            *.cache-from=type=gha
+            *.cache-to=type=gha,mode=max
+      - name: Start
+        run: yarn workspace ${{ matrix.workspace }} start -d --wait
+      - name: Audit
+        run: node scripts/audit-implementation.mjs implementations/${{ matrix.workspace }}
+      - name: Upload audit report
+        uses: actions/upload-artifact@v3
+        with:
+          name: audit-reports
+          # > If multiple paths are provided as input, the least common ancestor of all the search paths will be used as the root directory of the artifact.
+          # https://github.com/actions/upload-artifact#upload-using-multiple-paths-and-exclusions
+          #
+          # Because of this, we include the root README.md to maintain the paths during artifact downloads
+          path: |
+            README.md
+            implementations/${{ matrix.workspace }}/README.md
+            implementations/${{ matrix.workspace }}/report.json
+
   url:
-    uses: ./.github/workflows/reusable-audit-url.yml
+    name: URL
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
     strategy:
       matrix:
         workspace:
           - name: thegraph
             url: https://api.thegraph.com/subgraphs/name/sushiswap/exchange/graphql
-    with:
-      workspace: ${{ matrix.workspace.name }}
-      url: ${{ matrix.workspace.url }}
+    env:
+      URL: ${{ matrix.workspace.url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Set up node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: yarn
+      - name: Install
+        run: yarn install --immutable
+      - name: Build
+        run: yarn build:esm
+      - name: Audit
+        run: node scripts/audit-implementation.mjs implementations/${{ matrix.workspace.name }}
+      - name: Upload audit report
+        uses: actions/upload-artifact@v3
+        with:
+          name: audit-reports
+          # > If multiple paths are provided as input, the least common ancestor of all the search paths will be used as the root directory of the artifact.
+          # https://github.com/actions/upload-artifact#upload-using-multiple-paths-and-exclusions
+          #
+          # Because of this, we include the root README.md to maintain the paths during artifact downloads
+          path: |
+            README.md
+            implementations/${{ matrix.workspace.name }}/README.md
+            implementations/${{ matrix.workspace.name }}/report.json
 
   report:
     name: Report
