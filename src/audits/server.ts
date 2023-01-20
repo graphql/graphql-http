@@ -719,20 +719,6 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
       },
     ),
     audit(
-      'SHOULD not contain the data entry on JSON parsing failure when accepting application/graphql-response+json',
-      async () => {
-        const res = await fetchFn(await getUrl(opts.url), {
-          method: 'POST',
-          headers: {
-            'content-type': 'application/json',
-            accept: 'application/graphql-response+json',
-          },
-          body: '{ "not a JSON',
-        });
-        await ressert(res).bodyAsExecutionResult.data.toBe(undefined);
-      },
-    ),
-    audit(
       // TODO: convert to MUST after watershed
       'SHOULD use 4xx or 5xx status codes if parameters are invalid when accepting application/graphql-response+json',
       async () => {
