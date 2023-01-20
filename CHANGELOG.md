@@ -1,3 +1,16 @@
+# [1.12.0](https://github.com/graphql/graphql-http/compare/v1.11.0...v1.12.0) (2023-01-20)
+
+
+### Bug Fixes
+
+* **audits/server:** Check the actual content encoding instead of the indication ([#41](https://github.com/graphql/graphql-http/issues/41)) ([67778a8](https://github.com/graphql/graphql-http/commit/67778a889bd31fdc8d55a1e905f04e084af5772b))
+* **handler:** Response maker handles errors correctly ([#45](https://github.com/graphql/graphql-http/issues/45)) ([5a10e0b](https://github.com/graphql/graphql-http/commit/5a10e0bb28b5f01f821330c0be655933faa3b88c))
+
+
+### Features
+
+* **audits/server:** Server response in failing audits ([#39](https://github.com/graphql/graphql-http/issues/39)) ([4385ecb](https://github.com/graphql/graphql-http/commit/4385ecb6cc6de7881ca4356ed2149dd1a64f788a))
+
 # [1.11.0](https://github.com/graphql/graphql-http/compare/v1.10.0...v1.11.0) (2023-01-04)
 
 
