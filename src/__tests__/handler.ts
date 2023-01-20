@@ -97,3 +97,26 @@ it('should respond with error if execution result is iterable', async () => {
     ],
   });
 });
+
+it('should correctly serialise execution result errors', async () => {
+  const server = startTServer();
+  const url = new URL(server.url);
+  url.searchParams.set('query', 'query ($num: Int) { num(num: $num) }');
+  url.searchParams.set('variables', JSON.stringify({ num: 'foo' }));
+  const result = await fetch(url.toString());
+  expect(result.json()).resolves.toMatchInlineSnapshot(`
+    {
+      "errors": [
+        {
+          "locations": [
+            {
+              "column": 8,
+              "line": 1,
+            },
+          ],
+          "message": "Variable "$num" got invalid value "foo"; Int cannot represent non-integer value: "foo"",
+        },
+      ],
+    }
+  `);
+});
