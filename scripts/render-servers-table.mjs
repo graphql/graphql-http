@@ -45,6 +45,10 @@ async function renderTable(implsDir) {
         await fs.readFile(path.join(implsDir, implDir, 'package.json'))
       ).toString(),
     );
+    if (pkg.name === 'express-graphql') {
+      // deprecated
+      continue;
+    }
 
     out += '\n';
     if (pkg.url) {
