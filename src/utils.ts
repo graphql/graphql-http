@@ -4,7 +4,8 @@
  *
  */
 
-import type { ExecutionResult, GraphQLError } from 'graphql';
+import type { ExecutionResult } from 'graphql';
+import { GraphQLError } from 'graphql';
 
 /** @private */
 export function extendedTypeof(
@@ -42,11 +43,15 @@ export function isObject(val: unknown): val is Record<
 export function areGraphQLErrors(obj: unknown): obj is readonly GraphQLError[] {
   return (
     Array.isArray(obj) &&
-    // must be at least one error
     obj.length > 0 &&
-    // error has at least a message
-    obj.every((ob) => 'message' in ob)
+    // if one item in the array is a GraphQLError, we're good
+    obj.some(isGraphQLError)
   );
+}
+
+/** @private */
+export function isGraphQLError(obj: unknown): obj is GraphQLError {
+  return obj instanceof GraphQLError;
 }
 
 /** @private */
