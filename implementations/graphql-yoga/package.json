@@ -1,6 +1,7 @@
 {
   "private": true,
   "name": "graphql-yoga",
+  "url": "https://www.the-guild.dev/graphql/yoga-server",
   "packageManager": "yarn@3.2.3",
   "main": "index.mjs",
   "scripts": {

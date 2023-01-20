@@ -1,6 +1,7 @@
 {
   "private": true,
   "name": "apollo-server",
+  "url": "https://www.apollographql.com/docs/apollo-server",
   "packageManager": "yarn@3.2.3",
   "main": "index.mjs",
   "scripts": {

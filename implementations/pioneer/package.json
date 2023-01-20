@@ -1,6 +1,7 @@
 {
   "private": true,
   "name": "pioneer",
+  "url": "https://pioneer.dexclaimation.com",
   "packageManager": "yarn@3.2.3",
   "scripts": {
     "start": "docker compose up"

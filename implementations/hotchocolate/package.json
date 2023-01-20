@@ -1,6 +1,7 @@
 {
   "private": true,
   "name": "hotchocolate",
+  "url": "https://chillicream.com/docs/hotchocolate",
   "packageManager": "yarn@3.2.3",
   "scripts": {
     "start": "docker compose up"

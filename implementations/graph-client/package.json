@@ -1,6 +1,7 @@
 {
   "private": true,
   "name": "graph-client",
+  "url": "https://github.com/graphprotocol/graph-client",
   "packageManager": "yarn@3.2.3",
   "main": "index.mjs",
   "scripts": {

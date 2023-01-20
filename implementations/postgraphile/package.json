@@ -1,6 +1,7 @@
 {
   "private": true,
   "name": "postgraphile",
+  "url": "https://www.graphile.org/postgraphile",
   "packageManager": "yarn@3.2.3",
   "scripts": {
     "start": "docker compose up"
