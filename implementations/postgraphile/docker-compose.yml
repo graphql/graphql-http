@@ -7,7 +7,7 @@ services:
       test: pg_isready -U postgres || exit 1
       interval: 3s
       timeout: 1s
-  server:
+  postgraphile-server:
     build: .
     image: postgraphile-server
     depends_on:

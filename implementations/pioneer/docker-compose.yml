@@ -1,5 +1,5 @@
 services:
-  server:
+  pioneer-server:
     image: pioneer-server
     build: .
     environment:
