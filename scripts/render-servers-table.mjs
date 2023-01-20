@@ -47,7 +47,12 @@ async function renderTable(implsDir) {
     );
 
     out += '\n';
-    out += `| [${pkg.name}](${pkg.url}) | [✅ Compliant](/implementations/${implDir}/README.md) |`;
+    if (pkg.url) {
+      out += `| [${pkg.name}](${pkg.url}) `;
+    } else {
+      out += `| ${pkg.name} `;
+    }
+    out += `| [✅ Compliant](/implementations/${implDir}/README.md) |`;
   }
   out += '\n<!-- prettier-ignore-end -->';
   return out;
