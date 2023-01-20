@@ -744,15 +744,22 @@ Having said this, graphql-http is mostly aimed for library authors and simple se
 
 If you want a feature-full server with bleeding edge technologies, you're recommended to use one of the following.
 
-| Name                                                               | Audit                                                    |
-| ------------------------------------------------------------------ | -------------------------------------------------------- |
-| [graphql-yoga](https://www.the-guild.dev/graphql/yoga-server)      | [✅ Compliant](/implementations/graphql-yoga/README.md)  |
-| [graphql-helix](https://www.graphql-helix.com/)                    | [✅ Compliant](/implementations/graphql-helix/README.md) |
-| [hotchocolate](https://chillicream.com/docs/hotchocolate)          | [✅ Compliant](/implementations/hotchocolate/README.md)  |
-| [pioneer](https://pioneer.dexclaimation.com/)                      | [✅ Compliant](/implementations/pioneer/README.md)       |
-| [postgraphile](https://www.graphile.org/postgraphile/)             | [✅ Compliant](/implementations/postgraphile/README.md)  |
-| [apollo-server](https://www.apollographql.com/docs/apollo-server/) | [✅ Compliant](/implementations/apollo-server/README.md) |
-| [deno](https://deno.com/blog/build-a-graphql-server-with-deno)     | [✅ Compliant](/implementations/deno/README.md)          |
+<!-- <ServersTable> -->
+<!-- prettier-ignore-start -->
+| Name | Audit |
+|------|-------|
+| [apollo-server](undefined) | [✅ Compliant](/implementations/apollo-server/README.md) |
+| [deno](undefined) | [✅ Compliant](/implementations/deno/README.md) |
+| [express-graphql](undefined) | [✅ Compliant](/implementations/express-graphql/README.md) |
+| [graph-client](undefined) | [✅ Compliant](/implementations/graph-client/README.md) |
+| [graphql-helix](undefined) | [✅ Compliant](/implementations/graphql-helix/README.md) |
+| [graphql-yoga](undefined) | [✅ Compliant](/implementations/graphql-yoga/README.md) |
+| [hotchocolate](undefined) | [✅ Compliant](/implementations/hotchocolate/README.md) |
+| [pioneer](undefined) | [✅ Compliant](/implementations/pioneer/README.md) |
+| [postgraphile](undefined) | [✅ Compliant](/implementations/postgraphile/README.md) |
+<!-- prettier-ignore-end -->
+
+<!-- </ServersTable> -->
 
 ## [Documentation](docs/)
 

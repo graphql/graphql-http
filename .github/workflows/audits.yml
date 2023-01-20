@@ -159,6 +159,8 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: audit-reports
+      - name: Render servers table
+        run: node scripts/render-servers-table.mjs
       - name: Diff
         run: git diff --minimal
       - name: Commit
