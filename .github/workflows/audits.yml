@@ -10,70 +10,46 @@ on:
       - main
 
 jobs:
-  express-graphql:
+  javascript:
     uses: ./.github/workflows/reusable-audit-javascript.yml
+    strategy:
+      matrix:
+        workspace:
+          - express-graphql
+          - apollo-server
+          - mercurius
+          - graphql-yoga
+          - graphql-helix
+          - graph-client
     with:
-      workspace: express-graphql
-  apollo-server:
-    uses: ./.github/workflows/reusable-audit-javascript.yml
+      workspace: ${{ matrix.workspace }}
+  docker:
+    uses: ./.github/workflows/reusable-audit-docker.yml
+    strategy:
+      matrix:
+        workspace:
+          - hotchocolate
+          - postgraphile
+          - pioneer
+          - deno
     with:
-      workspace: apollo-server
-  mercurius:
-    uses: ./.github/workflows/reusable-audit-javascript.yml
-    with:
-      workspace: mercurius
-  graphql-yoga:
-    uses: ./.github/workflows/reusable-audit-javascript.yml
-    with:
-      workspace: graphql-yoga
-  graphql-helix:
-    uses: ./.github/workflows/reusable-audit-javascript.yml
-    with:
-      workspace: graphql-helix
-  graph-client:
-    uses: ./.github/workflows/reusable-audit-javascript.yml
-    with:
-      workspace: graph-client
-  thegraph:
+      workspace: ${{ matrix.workspace }}
+  url:
     uses: ./.github/workflows/reusable-audit-url.yml
+    strategy:
+      matrix:
+        workspace:
+          - name: thegraph
+            url: https://api.thegraph.com/subgraphs/name/sushiswap/exchange/graphql
     with:
-      workspace: thegraph
-      url: https://api.thegraph.com/subgraphs/name/sushiswap/exchange/graphql
-  hotchocolate:
-    uses: ./.github/workflows/reusable-audit-docker.yml
-    with:
-      workspace: hotchocolate
-  postgraphile:
-    uses: ./.github/workflows/reusable-audit-docker.yml
-    with:
-      workspace: postgraphile
-  pioneer:
-    uses: ./.github/workflows/reusable-audit-docker.yml
-    with:
-      workspace: pioneer
-  deno:
-    uses: ./.github/workflows/reusable-audit-docker.yml
-    with:
-      workspace: deno
+      workspace: ${{ matrix.workspace.name }}
+      url: ${{ matrix.workspace.url }}
 
   report:
     name: Report
     runs-on: ubuntu-latest
     if: ${{ !contains(github.event.head_commit.message, '[skip ci]') }}
-    needs:
-      [
-        express-graphql,
-        apollo-server,
-        mercurius,
-        graphql-yoga,
-        graphql-helix,
-        graph-client,
-        thegraph,
-        hotchocolate,
-        postgraphile,
-        pioneer,
-        deno,
-      ]
+    needs: [javascript, docker, url]
     steps:
       - name: Checkout
         uses: actions/checkout@v3
