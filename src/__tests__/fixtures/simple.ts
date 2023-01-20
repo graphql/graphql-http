@@ -4,6 +4,7 @@ import {
   GraphQLString,
   GraphQLNonNull,
   GraphQLSchemaConfig,
+  GraphQLInt,
 } from 'graphql';
 
 export const schemaConfig: GraphQLSchemaConfig = {
@@ -13,6 +14,14 @@ export const schemaConfig: GraphQLSchemaConfig = {
       hello: {
         type: new GraphQLNonNull(GraphQLString),
         resolve: () => 'world',
+      },
+      num: {
+        type: GraphQLInt,
+        args: {
+          num: {
+            type: GraphQLInt,
+          },
+        },
       },
     },
   }),

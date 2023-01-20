@@ -21,6 +21,7 @@ import {
   areGraphQLErrors,
   isAsyncIterable,
   isExecutionResult,
+  isGraphQLError,
   isObject,
 } from './utils';
 
@@ -681,12 +682,24 @@ export function makeResponse(
     | Readonly<GraphQLError>,
   acceptedMediaType: AcceptableMediaType,
 ): Response {
-  if (isExecutionResult(resultOrErrors)) {
+  const errors = isGraphQLError(resultOrErrors)
+    ? [resultOrErrors]
+    : areGraphQLErrors(resultOrErrors)
+    ? resultOrErrors
+    : null;
+  if (errors) {
     return [
-      JSON.stringify(resultOrErrors),
+      JSON.stringify({ errors }),
       {
-        status: 200,
-        statusText: 'OK',
+        ...(acceptedMediaType === 'application/json'
+          ? {
+              status: 200,
+              statusText: 'OK',
+            }
+          : {
+              status: 400,
+              statusText: 'Bad Request',
+            }),
         headers: {
           'content-type':
             acceptedMediaType === 'application/json'
@@ -698,23 +711,10 @@ export function makeResponse(
   }
 
   return [
-    JSON.stringify({
-      errors: Array.isArray(resultOrErrors)
-        ? isObject(resultOrErrors)
-          ? resultOrErrors
-          : new GraphQLError(String(resultOrErrors))
-        : [resultOrErrors],
-    }),
+    JSON.stringify(resultOrErrors),
     {
-      ...(acceptedMediaType === 'application/json'
-        ? {
-            status: 200,
-            statusText: 'OK',
-          }
-        : {
-            status: 400,
-            statusText: 'Bad Request',
-          }),
+      status: 200,
+      statusText: 'OK',
       headers: {
         'content-type':
           acceptedMediaType === 'application/json'
