@@ -1,6 +1,7 @@
 {
   "private": true,
   "name": "mercurius",
+  "url": "https://mercurius.dev",
   "packageManager": "yarn@3.2.3",
   "main": "index.mjs",
   "scripts": {

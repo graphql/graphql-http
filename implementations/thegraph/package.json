@@ -1,5 +1,6 @@
 {
   "private": true,
   "name": "thegraph",
+  "url": "https://thegraph.com/docs/en/",
   "packageManager": "yarn@3.2.3"
 }

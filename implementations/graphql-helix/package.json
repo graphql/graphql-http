@@ -1,6 +1,7 @@
 {
   "private": true,
   "name": "graphql-helix",
+  "url": "https://www.graphql-helix.com",
   "packageManager": "yarn@3.2.3",
   "main": "index.mjs",
   "scripts": {

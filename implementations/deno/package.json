@@ -1,6 +1,7 @@
 {
   "private": true,
   "name": "deno",
+  "url": "https://deno.com/blog/build-a-graphql-server-with-deno",
   "packageManager": "yarn@3.2.3",
   "scripts": {
     "start": "docker compose up"

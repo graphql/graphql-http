@@ -1,6 +1,7 @@
 {
   "private": true,
   "name": "express-graphql",
+  "url": "https://github.com/graphql/express-graphql",
   "packageManager": "yarn@3.2.3",
   "main": "index.mjs",
   "scripts": {
