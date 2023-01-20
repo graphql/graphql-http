@@ -22,7 +22,7 @@ The necessary API from the fetch environment for the handler.
 
 #### Type declaration
 
-• **new FetchAPI**(`underlyingSource`, `strategy?`): `ReadableStream`<`Uint8Array`\>
+• **new ReadableStream**(`underlyingSource`, `strategy?`): `ReadableStream`<`Uint8Array`\>
 
 ##### Parameters
 
@@ -35,7 +35,7 @@ The necessary API from the fetch environment for the handler.
 
 `ReadableStream`<`Uint8Array`\>
 
-• **new FetchAPI**<`R`\>(`underlyingSource`, `strategy?`): `ReadableStream`<`R`\>
+• **new ReadableStream**<`R`\>(`underlyingSource`, `strategy?`): `ReadableStream`<`R`\>
 
 ##### Type parameters
 
@@ -54,7 +54,7 @@ The necessary API from the fetch environment for the handler.
 
 `ReadableStream`<`R`\>
 
-• **new FetchAPI**<`R`\>(`underlyingSource?`, `strategy?`): `ReadableStream`<`R`\>
+• **new ReadableStream**<`R`\>(`underlyingSource?`, `strategy?`): `ReadableStream`<`R`\>
 
 ##### Type parameters
 
@@ -81,7 +81,7 @@ ___
 
 #### Type declaration
 
-• **new FetchAPI**(`body?`, `init?`): `Response`
+• **new Response**(`body?`, `init?`): `Response`
 
 ##### Parameters
 
@@ -102,7 +102,7 @@ ___
 
 #### Type declaration
 
-• **new FetchAPI**(): `TextEncoder`
+• **new TextEncoder**(): `TextEncoder`
 
 ##### Returns
 

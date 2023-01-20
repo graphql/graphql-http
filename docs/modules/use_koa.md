@@ -1,0 +1,47 @@
+[graphql-http](../README.md) / use/koa
+
+# Module: use/koa
+
+## Table of contents
+
+### Functions
+
+- [createHandler](use_koa.md#createhandler)
+
+## Server/koa
+
+### createHandler
+
+▸ **createHandler**<`Context`\>(`options`): `Middleware`
+
+Create a GraphQL over HTTP Protocol compliant request handler for
+the Koa framework.
+
+```js
+import Koa from 'koa'; // yarn add koa
+import mount from 'koa-mount'; // yarn add koa-mount
+import { createHandler } from 'graphql-http/lib/use/koa';
+import { schema } from './my-graphql-schema';
+
+const app = new Koa();
+app.use(mount('/', createHandler({ schema })));
+
+app.listen({ port: 4000 });
+console.log('Listening to port 4000');
+```
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `Context` | extends [`OperationContext`](handler.md#operationcontext) = `undefined` |
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `options` | [`HandlerOptions`](../interfaces/handler.HandlerOptions.md)<`IncomingMessage`, `undefined`, `Context`\> |
+
+#### Returns
+
+`Middleware`

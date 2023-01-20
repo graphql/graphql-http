@@ -46,14 +46,8 @@ ___
 
 ▸ (`args`): `PromiseOrValue`<`ExecutionResult`\>
 
-Implements the "Executing requests" section of the GraphQL specification.
-
-Returns either a synchronous ExecutionResult (if all encountered resolvers
-are synchronous), or a Promise of an ExecutionResult that will eventually be
-resolved and never rejected.
-
-If the arguments to this function do not result in a legal execution context,
-a GraphQLError will be thrown immediately explaining the invalid input.
+Is the `execute` function from GraphQL which is
+used to execute the query and mutation operations.
 
 ##### Parameters
 
@@ -75,9 +69,7 @@ ___
 
 ▸ (`documentAST`, `operationName?`): `Maybe`<`OperationDefinitionNode`\>
 
-Returns an operation AST given a document AST and optionally an operation
-name. If a name is not provided, an operation is only returned if only one is
-provided in the document.
+GraphQL operation AST getter used for detecting the operation type.
 
 ##### Parameters
 
@@ -182,8 +174,7 @@ ___
 
 ▸ (`source`, `options?`): `DocumentNode`
 
-Given a GraphQL source, parses it into a Document.
-Throws GraphQLError if a syntax error is encountered.
+GraphQL parse function allowing you to apply a custom parser.
 
 ##### Parameters
 
@@ -240,24 +231,10 @@ ___
 
 ▸ (`schema`, `documentAST`, `rules?`, `options?`, `typeInfo?`): `ReadonlyArray`<`GraphQLError`\>
 
-Implements the "Validation" section of the spec.
+A custom GraphQL validate function allowing you to apply your
+own validation rules.
 
-Validation runs synchronously, returning an array of encountered errors, or
-an empty array if no errors were encountered and the document is valid.
-
-A list of specific validation rules may be provided. If not provided, the
-default list of rules defined by the GraphQL specification will be used.
-
-Each validation rules is a function which returns a visitor
-(see the language/visitor API). Visitor methods are expected to return
-GraphQLErrors, or Arrays of GraphQLErrors when invalid.
-
-Validate will stop validation after a `maxErrors` limit has been reached.
-Attackers can send pathologically invalid queries to induce a DoS attack,
-so by default `maxErrors` set to 100 errors.
-
-Optionally a custom TypeInfo instance may be provided. If not provided, one
-will be created from the provided schema.
+Will not be used when implementing a custom `onSubscribe`.
 
 ##### Parameters
 
