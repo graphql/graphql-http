@@ -3,6 +3,6 @@
   "name": "hotchocolate",
   "packageManager": "yarn@3.2.3",
   "scripts": {
-    "start": "docker compose up --build"
+    "start": "docker compose up"
   }
 }

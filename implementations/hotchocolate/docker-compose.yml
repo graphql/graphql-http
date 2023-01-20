@@ -1,5 +1,6 @@
 services:
-  server:
+  hotchocolate-server:
+    image: hotchocolate-server
     build: .
     environment:
       - DOTNET_URLS=http://+:${PORT}

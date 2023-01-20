@@ -10,9 +10,19 @@ on:
       - main
 
 jobs:
-  express-graphql:
+  javascript:
+    name: JavaScript
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    strategy:
+      matrix:
+        workspace:
+          - express-graphql
+          - apollo-server
+          - mercurius
+          - graphql-yoga
+          - graphql-helix
+          - graph-client
     env:
       PORT: 4000
     steps:
@@ -28,25 +38,40 @@ jobs:
       - name: Build
         run: yarn build:esm
       - name: Start
-        run: yarn workspace express-graphql start &
+        run: yarn workspace ${{ matrix.workspace }} start &
       - name: Audit
-        run: node scripts/audit-implementation.mjs .
-      - name: Upload report
+        run: node scripts/audit-implementation.mjs implementations/${{ matrix.workspace }}
+      - name: Upload audit report
         uses: actions/upload-artifact@v3
         with:
-          name: express-graphql-report
+          name: audit-reports
+          # > If multiple paths are provided as input, the least common ancestor of all the search paths will be used as the root directory of the artifact.
+          # https://github.com/actions/upload-artifact#upload-using-multiple-paths-and-exclusions
+          #
+          # Because of this, we include the root README.md to maintain the paths during artifact downloads
           path: |
             README.md
-            report.json
+            implementations/${{ matrix.workspace }}/README.md
+            implementations/${{ matrix.workspace }}/report.json
 
-  apollo-server:
+  docker:
+    name: Docker
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    strategy:
+      matrix:
+        workspace:
+          - hotchocolate
+          - postgraphile
+          - pioneer
+          - deno
     env:
       PORT: 4000
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      - name: Set up docker buildx
+        uses: docker/setup-buildx-action@v2
       - name: Set up node
         uses: actions/setup-node@v3
         with:
@@ -56,139 +81,42 @@ jobs:
         run: yarn install --immutable
       - name: Build
         run: yarn build:esm
+      - name: Bake
+        uses: docker/bake-action@v2
+        with:
+          workdir: implementations/${{ matrix.workspace }}
+          load: true # load image into docker, otherwise `docker compose up` will rebuild
+          set: |
+            *.cache-from=type=gha
+            *.cache-to=type=gha,mode=max
       - name: Start
-        run: yarn workspace apollo-server start &
+        run: yarn workspace ${{ matrix.workspace }} start -d --wait
       - name: Audit
-        run: node scripts/audit-implementation.mjs .
-      - name: Upload report
+        run: node scripts/audit-implementation.mjs implementations/${{ matrix.workspace }}
+      - name: Upload audit report
         uses: actions/upload-artifact@v3
         with:
-          name: apollo-server-report
+          name: audit-reports
+          # > If multiple paths are provided as input, the least common ancestor of all the search paths will be used as the root directory of the artifact.
+          # https://github.com/actions/upload-artifact#upload-using-multiple-paths-and-exclusions
+          #
+          # Because of this, we include the root README.md to maintain the paths during artifact downloads
           path: |
             README.md
-            report.json
+            implementations/${{ matrix.workspace }}/README.md
+            implementations/${{ matrix.workspace }}/report.json
 
-  mercurius:
+  url:
+    name: URL
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    strategy:
+      matrix:
+        workspace:
+          - name: thegraph
+            url: https://api.thegraph.com/subgraphs/name/sushiswap/exchange/graphql
     env:
-      PORT: 4000
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Set up node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-          cache: yarn
-      - name: Install
-        run: yarn install --immutable
-      - name: Build
-        run: yarn build:esm
-      - name: Start
-        run: yarn workspace mercurius start &
-      - name: Audit
-        run: node scripts/audit-implementation.mjs .
-      - name: Upload report
-        uses: actions/upload-artifact@v3
-        with:
-          name: mercurius-report
-          path: |
-            README.md
-            report.json
-
-  graphql-yoga:
-    runs-on: ubuntu-latest
-    if: "!contains(github.event.head_commit.message, '[skip ci]')"
-    env:
-      PORT: 4000
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Set up node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-          cache: yarn
-      - name: Install
-        run: yarn install --immutable
-      - name: Build
-        run: yarn build:esm
-      - name: Start
-        run: yarn workspace graphql-yoga start &
-      - name: Audit
-        run: node scripts/audit-implementation.mjs .
-      - name: Upload report
-        uses: actions/upload-artifact@v3
-        with:
-          name: graphql-yoga-report
-          path: |
-            README.md
-            report.json
-
-  graphql-helix:
-    runs-on: ubuntu-latest
-    if: "!contains(github.event.head_commit.message, '[skip ci]')"
-    env:
-      PORT: 4000
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Set up node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-          cache: yarn
-      - name: Install
-        run: yarn install --immutable
-      - name: Build
-        run: yarn build:esm
-      - name: Start
-        run: yarn workspace graphql-helix start &
-      - name: Audit
-        run: node scripts/audit-implementation.mjs .
-      - name: Upload report
-        uses: actions/upload-artifact@v3
-        with:
-          name: graphql-helix-report
-          path: |
-            README.md
-            report.json
-
-  graph-client:
-    runs-on: ubuntu-latest
-    if: "!contains(github.event.head_commit.message, '[skip ci]')"
-    env:
-      PORT: 4000
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Set up node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-          cache: yarn
-      - name: Install
-        run: yarn install --immutable
-      - name: Build
-        run: yarn build:esm
-      - name: Start
-        run: yarn workspace graph-client start &
-      - name: Audit
-        run: node scripts/audit-implementation.mjs .
-      - name: Upload report
-        uses: actions/upload-artifact@v3
-        with:
-          name: graph-client-report
-          path: |
-            README.md
-            report.json
-
-  thegraph:
-    runs-on: ubuntu-latest
-    if: "!contains(github.event.head_commit.message, '[skip ci]')"
-    env:
-      URL: https://api.thegraph.com/subgraphs/name/sushiswap/exchange/graphql
+      URL: ${{ matrix.workspace.url }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -202,213 +130,35 @@ jobs:
       - name: Build
         run: yarn build:esm
       - name: Audit
-        run: node scripts/audit-implementation.mjs .
-      - name: Upload report
+        run: node scripts/audit-implementation.mjs implementations/${{ matrix.workspace.name }}
+      - name: Upload audit report
         uses: actions/upload-artifact@v3
         with:
-          name: thegraph-report
+          name: audit-reports
+          # > If multiple paths are provided as input, the least common ancestor of all the search paths will be used as the root directory of the artifact.
+          # https://github.com/actions/upload-artifact#upload-using-multiple-paths-and-exclusions
+          #
+          # Because of this, we include the root README.md to maintain the paths during artifact downloads
           path: |
             README.md
-            report.json
-
-  hotchocolate:
-    runs-on: ubuntu-latest
-    if: "!contains(github.event.head_commit.message, '[skip ci]')"
-    env:
-      PORT: 4000
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Set up node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-          cache: yarn
-      - name: Install
-        run: yarn install --immutable
-      - name: Build
-        run: yarn build:esm
-      - name: Start
-        run: yarn workspace hotchocolate start -d --wait
-      # TODO: cache docker build artifacts
-      - name: Audit
-        run: node scripts/audit-implementation.mjs .
-      - name: Upload report
-        uses: actions/upload-artifact@v3
-        with:
-          name: hotchocolate-report
-          path: |
-            README.md
-            report.json
-
-  postgraphile:
-    runs-on: ubuntu-latest
-    if: "!contains(github.event.head_commit.message, '[skip ci]')"
-    env:
-      PORT: 4000
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Set up node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-          cache: yarn
-      - name: Install
-        run: yarn install --immutable
-      - name: Build
-        run: yarn build:esm
-      - name: Start
-        run: yarn workspace postgraphile start -d --wait
-      # TODO: cache docker build artifacts
-      - name: Audit
-        run: node scripts/audit-implementation.mjs .
-      - name: Upload report
-        uses: actions/upload-artifact@v3
-        with:
-          name: postgraphile-report
-          path: |
-            README.md
-            report.json
-  pioneer:
-    runs-on: ubuntu-latest
-    if: "!contains(github.event.head_commit.message, '[skip ci]')"
-    env:
-      PORT: 4000
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Set up node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-          cache: yarn
-      - name: Install
-        run: yarn install --immutable
-      - name: Build
-        run: yarn build:esm
-      - name: Start
-        run: yarn workspace pioneer start -d --wait
-      # TODO: cache docker build artifacts
-      - name: Audit
-        run: node scripts/audit-implementation.mjs .
-      - name: Upload report
-        uses: actions/upload-artifact@v3
-        with:
-          name: pioneer-report
-          path: |
-            README.md
-            report.json
-
-  deno:
-    runs-on: ubuntu-latest
-    if: "!contains(github.event.head_commit.message, '[skip ci]')"
-    env:
-      PORT: 4000
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Set up node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-          cache: yarn
-      - name: Install
-        run: yarn install --immutable
-      - name: Build
-        run: yarn build:esm
-      - name: Start
-        run: yarn workspace deno start -d --wait
-      # TODO: cache docker build artifacts
-      - name: Audit
-        run: node scripts/audit-implementation.mjs .
-      - name: Upload report
-        uses: actions/upload-artifact@v3
-        with:
-          name: deno-report
-          path: |
-            README.md
-            report.json
+            implementations/${{ matrix.workspace.name }}/README.md
+            implementations/${{ matrix.workspace.name }}/report.json
 
   report:
     name: Report
     runs-on: ubuntu-latest
     if: ${{ !contains(github.event.head_commit.message, '[skip ci]') }}
-    needs:
-      [
-        express-graphql,
-        apollo-server,
-        mercurius,
-        graphql-yoga,
-        graphql-helix,
-        graph-client,
-        thegraph,
-        hotchocolate,
-        postgraphile,
-        pioneer,
-        deno,
-      ]
+    needs: [javascript, docker, url]
     steps:
       - name: Checkout
         uses: actions/checkout@v3
         with:
           repository: ${{ github.event.pull_request.head.repo.full_name }}
           ref: ${{ github.event.pull_request.head.ref || github.ref_name }}
-      - name: Download express-graphql report
+      - name: Download audit reports
         uses: actions/download-artifact@v3
         with:
-          name: express-graphql-report
-          path: implementations/express-graphql
-      - name: Download apollo-server report
-        uses: actions/download-artifact@v3
-        with:
-          name: 'apollo-server-report'
-          path: implementations/apollo-server
-      - name: Download mercurius report
-        uses: actions/download-artifact@v3
-        with:
-          name: mercurius-report
-          path: implementations/mercurius
-      - name: Download graphql-yoga report
-        uses: actions/download-artifact@v3
-        with:
-          name: graphql-yoga-report
-          path: implementations/graphql-yoga
-      - name: Download graphql-helix report
-        uses: actions/download-artifact@v3
-        with:
-          name: graphql-helix-report
-          path: implementations/graphql-helix
-      - name: Download graph-client report
-        uses: actions/download-artifact@v3
-        with:
-          name: graph-client-report
-          path: implementations/graph-client
-      - name: Download thegraph report
-        uses: actions/download-artifact@v3
-        with:
-          name: thegraph-report
-          path: implementations/thegraph
-      - name: Download hotchocolate report
-        uses: actions/download-artifact@v3
-        with:
-          name: hotchocolate-report
-          path: implementations/hotchocolate
-      - name: Download postgraphile report
-        uses: actions/download-artifact@v3
-        with:
-          name: postgraphile-report
-          path: implementations/postgraphile
-      - name: Download pioneer report
-        uses: actions/download-artifact@v3
-        with:
-          name: pioneer-report
-          path: implementations/pioneer
-      - name: Download deno report
-        uses: actions/download-artifact@v3
-        with:
-          name: deno-report
-          path: implementations/deno
+          name: audit-reports
       - name: Diff
         run: git diff --minimal
       - name: Commit
