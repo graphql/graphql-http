@@ -26,6 +26,7 @@ export function audit(
       try {
         await fn();
         return {
+          id,
           name,
           status: 'ok',
         };
@@ -35,6 +36,7 @@ export function audit(
           throw err;
         }
         return {
+          id,
           name,
           status: name.startsWith('MUST')
             ? // only failing MUSTs are considered errors
