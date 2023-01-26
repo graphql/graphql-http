@@ -669,7 +669,7 @@ The server _SHOULD_ support these, but is not required.
       ```
       </details>
       
-  25. `94b0` SHOULD allow null {variables} parameter when accepting application/graphql-response+json<br />
+  25. `94B0` SHOULD allow null {variables} parameter when accepting application/graphql-response+json<br />
 
       <details>
       <summary>Response status code is not 200</summary>
@@ -696,7 +696,7 @@ The server _SHOULD_ support these, but is not required.
       ```
       </details>
       
-  26. `94b1` SHOULD allow null {operationName} parameter when accepting application/graphql-response+json<br />
+  26. `94B1` SHOULD allow null {operationName} parameter when accepting application/graphql-response+json<br />
 
       <details>
       <summary>Response status code is not 200</summary>
@@ -723,7 +723,7 @@ The server _SHOULD_ support these, but is not required.
       ```
       </details>
       
-  27. `94b2` SHOULD allow null {extensions} parameter when accepting application/graphql-response+json<br />
+  27. `94B2` SHOULD allow null {extensions} parameter when accepting application/graphql-response+json<br />
 
       <details>
       <summary>Response status code is not 200</summary>
