@@ -15,12 +15,22 @@ is therefore not compliant.
 
 ### Properties
 
+- [id](audits_common.AuditFail.md#id)
 - [name](audits_common.AuditFail.md#name)
 - [reason](audits_common.AuditFail.md#reason)
 - [response](audits_common.AuditFail.md#response)
 - [status](audits_common.AuditFail.md#status)
 
 ## Properties
+
+### id
+
+• **id**: `string`
+
+Uniquely represents the failing audit. Helps with pinning audits
+without depending on the human readable audit name.
+
+___
 
 ### name
 

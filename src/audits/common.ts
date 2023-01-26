@@ -26,6 +26,11 @@ export type AuditName = `${AuditRequirement} ${string}`;
  * @category Audits
  */
 export interface Audit {
+  /**
+   * Uniquely represents the audit. Helps with pinning audits
+   * without depending on the human readable audit name.
+   */
+  id: string;
   name: AuditName;
   fn: () => Promise<AuditResult>;
 }
@@ -36,6 +41,11 @@ export interface Audit {
  * @category Audits
  */
 export interface AuditOk {
+  /**
+   * Uniquely represents the passing audit. Helps with pinning audits
+   * without depending on the human readable audit name.
+   */
+  id: string;
   name: AuditName;
   status: 'ok';
 }
@@ -51,6 +61,11 @@ export interface AuditOk {
  * @category Audits
  */
 export interface AuditFail {
+  /**
+   * Uniquely represents the failing audit. Helps with pinning audits
+   * without depending on the human readable audit name.
+   */
+  id: string;
   name: AuditName;
   status: 'warn' | 'error';
   reason: string;

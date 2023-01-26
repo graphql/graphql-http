@@ -13,6 +13,7 @@ The test function will throw only if the error is fatal.
 ### Properties
 
 - [fn](audits_common.Audit.md#fn)
+- [id](audits_common.Audit.md#id)
 - [name](audits_common.Audit.md#name)
 
 ## Properties
@@ -28,6 +29,15 @@ The test function will throw only if the error is fatal.
 ##### Returns
 
 `Promise`<[`AuditResult`](../modules/audits_common.md#auditresult)\>
+
+___
+
+### id
+
+• **id**: `string`
+
+Uniquely represents the audit. Helps with pinning audits
+without depending on the human readable audit name.
 
 ___
 

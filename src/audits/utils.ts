@@ -14,13 +14,19 @@ export * from '../utils';
  *
  * @private
  */
-export function audit(name: AuditName, fn: () => Promise<void>): Audit {
+export function audit(
+  id: string,
+  name: AuditName,
+  fn: () => Promise<void>,
+): Audit {
   return {
+    id,
     name,
     fn: async () => {
       try {
         await fn();
         return {
+          id,
           name,
           status: 'ok',
         };
@@ -30,6 +36,7 @@ export function audit(name: AuditName, fn: () => Promise<void>): Audit {
           throw err;
         }
         return {
+          id,
           name,
           status: name.startsWith('MUST')
             ? // only failing MUSTs are considered errors

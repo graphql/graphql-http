@@ -10,10 +10,20 @@ Indicates that the audit was successful.
 
 ### Properties
 
+- [id](audits_common.AuditOk.md#id)
 - [name](audits_common.AuditOk.md#name)
 - [status](audits_common.AuditOk.md#status)
 
 ## Properties
+
+### id
+
+• **id**: `string`
+
+Uniquely represents the passing audit. Helps with pinning audits
+without depending on the human readable audit name.
+
+___
 
 ### name
 
