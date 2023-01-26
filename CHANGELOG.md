@@ -1,3 +1,15 @@
+# [1.13.0](https://github.com/graphql/graphql-http/compare/v1.12.0...v1.13.0) (2023-01-26)
+
+
+### Bug Fixes
+
+* **audits/server:** JSON parsing errors format shouldnt be audited ([#47](https://github.com/graphql/graphql-http/issues/47)) ([fae7e59](https://github.com/graphql/graphql-http/commit/fae7e59de63794f2a1d7f1d017f127571b68662f))
+
+
+### Features
+
+* **audits:** Every audit should have a globally unique ID ([#49](https://github.com/graphql/graphql-http/issues/49)) ([8f6d4f1](https://github.com/graphql/graphql-http/commit/8f6d4f1238f739c818cedcf9d601ef7b39af2386))
+
 # [1.12.0](https://github.com/graphql/graphql-http/compare/v1.11.0...v1.12.0) (2023-01-20)
 
 
