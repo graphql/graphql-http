@@ -412,7 +412,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
     ...['variables', 'operationName', 'extensions'].flatMap(
       (parameter, index) => [
         audit(
-          `94b${index}`,
+          `94B${index}`,
           // TODO: convert to MUST after watershed
           `SHOULD allow null {${parameter}} parameter when accepting application/graphql-response+json`,
           async () => {
