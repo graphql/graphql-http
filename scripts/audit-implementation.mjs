@@ -123,7 +123,7 @@ async function createReport(results) {
   if (grouped.ok.length) {
     report += `## Passing\n`;
     for (const [i, result] of grouped.ok.entries()) {
-      report += `${i + 1}. ${escapeMarkdown(result.name)}\n`;
+      report += `${i + 1}. \`${result.id}\` ${escapeMarkdown(result.name)}\n`;
     }
     report += '\n';
   }
@@ -164,7 +164,9 @@ async function createReport(results) {
 async function printAuditFail(result, i) {
   let indent = '  ';
   let report = '';
-  report += indent + `${i + 1}. ${escapeMarkdown(result.name)}<br />\n\n`;
+  report +=
+    indent +
+    `${i + 1}. \`${result.id}\` ${escapeMarkdown(result.name)}<br />\n\n`;
   indent += indent + '  '; // double the indent for details
   report += indent + '<details>\n';
   report += indent + `<summary>${truncate(result.reason)}</summary>\n`;
