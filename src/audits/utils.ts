@@ -14,8 +14,13 @@ export * from '../utils';
  *
  * @private
  */
-export function audit(name: AuditName, fn: () => Promise<void>): Audit {
+export function audit(
+  id: string,
+  name: AuditName,
+  fn: () => Promise<void>,
+): Audit {
   return {
+    id,
     name,
     fn: async () => {
       try {

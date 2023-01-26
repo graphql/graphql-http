@@ -26,6 +26,11 @@ export type AuditName = `${AuditRequirement} ${string}`;
  * @category Audits
  */
 export interface Audit {
+  /**
+   * Uniquely represents the audit. Helps with pinning audits
+   * without depending on the human readable audit name.
+   */
+  id: string;
   name: AuditName;
   fn: () => Promise<AuditResult>;
 }
