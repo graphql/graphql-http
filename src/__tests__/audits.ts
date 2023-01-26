@@ -24,7 +24,7 @@ it('should not change globally unique audit ids', () => {
     },
   }).forEach(({ fn, ...audit }) => audits.push(audit));
 
-  // update me if new audits are added or deleted,
+  // update snapshot if new audits are added or deleted,
   // but existing ones SHOULD NOT CHANGE semantically
   expect(audits).toMatchSnapshot();
 });
