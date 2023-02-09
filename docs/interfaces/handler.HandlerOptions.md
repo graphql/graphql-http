@@ -25,6 +25,7 @@
 - [rootValue](handler.HandlerOptions.md#rootvalue)
 - [schema](handler.HandlerOptions.md#schema)
 - [validate](handler.HandlerOptions.md#validate)
+- [validationRules](handler.HandlerOptions.md#validationrules)
 
 ## Properties
 
@@ -249,3 +250,20 @@ Will not be used when implementing a custom `onSubscribe`.
 ##### Returns
 
 `ReadonlyArray`<`GraphQLError`\>
+
+___
+
+### validationRules
+
+• `Optional` **validationRules**: readonly `ValidationRule`[] \| (`req`: [`Request`](handler.Request.md)<`RequestRaw`, `RequestContext`\>, `args`: [`OperationArgs`](../modules/handler.md#operationargs)<`Context`\>, `specifiedRules`: readonly `ValidationRule`[]) => readonly `ValidationRule`[] \| `Promise`<readonly `ValidationRule`[]\>
+
+The validation rules for running GraphQL validate.
+
+When providing an array, the rules will be APPENDED to the default
+`specifiedRules` array provided by the graphql-js module.
+
+Alternatively, providing a function instead will OVERWRITE the defaults
+and use exclusively the rules returned by the function. The third (last)
+argument of the function are the default `specifiedRules` array provided
+by the graphql-js module, you're free to prepend/append the defaults to
+your rule set, or omit them altogether.

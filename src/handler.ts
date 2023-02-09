@@ -9,6 +9,8 @@ import {
   ExecutionResult,
   GraphQLSchema,
   validate as graphqlValidate,
+  ValidationRule,
+  specifiedRules,
   execute as graphqlExecute,
   parse as graphqlParse,
   DocumentNode,
@@ -204,6 +206,25 @@ export interface HandlerOptions<
    */
   validate?: typeof graphqlValidate;
   /**
+   * The validation rules for running GraphQL validate.
+   *
+   * When providing an array, the rules will be APPENDED to the default
+   * `specifiedRules` array provided by the graphql-js module.
+   *
+   * Alternatively, providing a function instead will OVERWRITE the defaults
+   * and use exclusively the rules returned by the function. The third (last)
+   * argument of the function are the default `specifiedRules` array provided
+   * by the graphql-js module, you're free to prepend/append the defaults to
+   * your rule set, or omit them altogether.
+   */
+  validationRules?:
+    | readonly ValidationRule[]
+    | ((
+        req: Request<RequestRaw, RequestContext>,
+        args: OperationArgs<Context>,
+        specifiedRules: readonly ValidationRule[],
+      ) => Promise<readonly ValidationRule[]> | readonly ValidationRule[]);
+  /**
    * Is the `execute` function from GraphQL which is
    * used to execute the query and mutation operations.
    */
@@ -373,6 +394,7 @@ export function createHandler<
     schema,
     context,
     validate = graphqlValidate,
+    validationRules = [],
     execute = graphqlExecute,
     parse = graphqlParse,
     getOperationAST = graphqlGetOperationAST,
@@ -545,7 +567,12 @@ export function createHandler<
         };
       }
 
-      const validationErrs = validate(args.schema, args.document);
+      const validationErrs = validate(args.schema, args.document, [
+        ...specifiedRules,
+        ...(typeof validationRules === 'function'
+          ? await validationRules(req, args, specifiedRules)
+          : validationRules),
+      ]);
       if (validationErrs.length) {
         return makeResponse(validationErrs, acceptedMediaType);
       }
