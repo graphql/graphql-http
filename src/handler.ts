@@ -567,12 +567,13 @@ export function createHandler<
         };
       }
 
-      const validationErrs = validate(args.schema, args.document, [
-        ...specifiedRules,
-        ...(typeof validationRules === 'function'
-          ? await validationRules(req, args, specifiedRules)
-          : validationRules),
-      ]);
+      let rules = specifiedRules;
+      if (typeof validationRules === 'function') {
+        rules = await validationRules(req, args, specifiedRules);
+      } else {
+        rules = [...rules, ...validationRules];
+      }
+      const validationErrs = validate(args.schema, args.document, rules);
       if (validationErrs.length) {
         return makeResponse(validationErrs, acceptedMediaType);
       }
