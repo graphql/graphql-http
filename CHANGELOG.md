@@ -1,3 +1,10 @@
+# [1.14.0](https://github.com/graphql/graphql-http/compare/v1.13.0...v1.14.0) (2023-02-09)
+
+
+### Features
+
+* **handler:** Add `validationRules` option for extending or replacing the GraphQL validation rule set ([#51](https://github.com/graphql/graphql-http/issues/51)) ([46c5309](https://github.com/graphql/graphql-http/commit/46c53096cf05b4e4bfa8d140885a615d43042ae1))
+
 # [1.13.0](https://github.com/graphql/graphql-http/compare/v1.12.0...v1.13.0) (2023-01-26)
 
 
