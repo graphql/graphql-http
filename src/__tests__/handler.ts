@@ -120,3 +120,58 @@ it('should correctly serialise execution result errors', async () => {
     }
   `);
 });
+
+it('should append the provided validation rules array', async () => {
+  const server = startTServer({
+    validationRules: [
+      (ctx) => {
+        ctx.reportError(new GraphQLError('Woah!'));
+        return {};
+      },
+    ],
+  });
+  const url = new URL(server.url);
+  url.searchParams.set('query', '{ idontexist }');
+  const result = await fetch(url.toString());
+  await expect(result.json()).resolves.toMatchInlineSnapshot(`
+    {
+      "errors": [
+        {
+          "message": "Woah!",
+        },
+        {
+          "locations": [
+            {
+              "column": 3,
+              "line": 1,
+            },
+          ],
+          "message": "Cannot query field "idontexist" on type "Query".",
+        },
+      ],
+    }
+  `);
+});
+
+it('should replace the validation rules when providing a function', async () => {
+  const server = startTServer({
+    validationRules: () => [
+      (ctx) => {
+        ctx.reportError(new GraphQLError('Woah!'));
+        return {};
+      },
+    ],
+  });
+  const url = new URL(server.url);
+  url.searchParams.set('query', '{ idontexist }');
+  const result = await fetch(url.toString());
+  await expect(result.json()).resolves.toMatchInlineSnapshot(`
+    {
+      "errors": [
+        {
+          "message": "Woah!",
+        },
+      ],
+    }
+  `);
+});
