@@ -6,10 +6,26 @@
     <title>graphql-http</title>
 
     <style>
+      *,
+      *:before,
+      *:after {
+        box-sizing: border-box;
+      }
       body {
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
           Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
           'Segoe UI Symbol';
+      }
+      fieldset {
+        padding: 1em;
+      }
+      input {
+        padding: 0.5em;
+        font-size: 1em;
+        width: 100%;
+      }
+      button {
+        font-size: 1em;
       }
     </style>
 
@@ -22,17 +38,32 @@
   </head>
   <body>
     <main>
-      <h1>graphql-http</h1>
+      <h1 style="text-align: center">graphql-http</h1>
 
       <form name="audit-server">
-        <div>
-          <label for="url">URL of server to audit</label>
+        <fieldset style="max-width: 512px; margin: 0 auto">
+          <legend>
+            Check for
+            <a href="https://graphql.github.io/graphql-over-http/"
+              >GraphQL over HTTP spec</a
+            >
+            compliance
+          </legend>
+          <div>
+            <label for="url">URL of server to audit:</label>
+            <br />
+            <input id="url" type="url" name="url" required />
+            <br />
+            <small
+              >Please make sure that CORS allows this origin on your
+              server.</small
+            >
+          </div>
           <br />
-          <input id="url" type="url" name="url" required />
-        </div>
-        <div>
-          <button type="submit">Audit</button>
-        </div>
+          <div style="text-align: right">
+            <button type="submit">Audit</button>
+          </div>
+        </fieldset>
       </form>
     </main>
 
@@ -41,8 +72,8 @@
       const url = params.get('url');
       if (url) {
         document.getElementById('url').setAttribute('value', url);
-
         graphqlHttpAudits.auditServer({ url }).then((results) => {
+          // TODO: render results
           console.log(results);
         });
       }
