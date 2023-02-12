@@ -76,8 +76,11 @@
 
       footer {
         text-align: center;
-        margin-top: 1.5em;
         margin-bottom: 2em;
+      }
+
+      .tip {
+        color: grey;
       }
     </style>
 
@@ -125,9 +128,14 @@
         </fieldset>
       </form>
 
-      <br />
-
       <div id="report" class="hidden"></div>
+
+      <p style="text-align: center">
+        <small class="tip"
+          ><b>💡 Tip:</b> Save this website and use it as a portable compliance
+          checker.</small
+        >
+      </p>
 
       <footer>
         <small>
@@ -167,7 +175,11 @@
           .catch((err) => {
             console.error('Problem while auditing server', err);
             reportDiv.classList.add('error');
-            reportDiv.innerHTML = `<pre style="border: 0; padding: 0">${
+            reportDiv.innerHTML = `
+            <small class="tip"><b>💡 Tip:</b> Open the console to see more details about the error.</small>
+            <br /><br />
+
+            <pre style="border: 0; padding: 0">${
               err instanceof Error
                 ? err.message + '\n\n' + err.stack
                 : JSON.stringify(err, null, ' ')
