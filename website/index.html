@@ -51,9 +51,14 @@
         background-color: lightgrey;
         text-align: center;
       }
+      #report.error {
+        color: red;
+        border-color: red;
+      }
       pre {
         border: 1px solid grey;
         padding: 1em;
+        white-space: pre-wrap;
       }
       summary {
         cursor: pointer;
@@ -111,20 +116,19 @@
 
         graphqlHttpAudits
           .auditServer({ url })
-          .then((results) => {
+          .then((results) =>
             graphqlHttpAudits
               .renderAuditResultsToHTML(results)
-              .then((html) => {
-                reportDiv.innerHTML = html;
-              })
-              .catch((err) => {
-                console.error('Problem while rendering the report', err);
-                // TODO: report render error
-              });
-          })
+              .then((html) => (reportDiv.innerHTML = html)),
+          )
           .catch((err) => {
-            console.error('Problem while running server audits', err);
-            // TODO: report audit error
+            console.error('Problem while auditing server', err);
+            reportDiv.classList.add('error');
+            reportDiv.innerHTML = `<pre style="border: 0; padding: 0; margin: 0">${
+              err instanceof Error
+                ? err.message + '\n\n' + err.stack
+                : JSON.stringify(err, null, ' ')
+            }</pre>`;
           })
           .finally(() => {
             urlInput.removeAttribute('disabled');
