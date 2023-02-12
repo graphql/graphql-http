@@ -21,12 +21,6 @@ import fs from 'fs/promises';
 import path from 'path';
 import { auditServer, renderAuditResultsToHTML } from '../lib/index.mjs';
 
-/**
- * @typedef { import("../src/audits").AuditResult } AuditResult
- * @typedef { import("../src/audits").AuditOk } AuditOk
- * @typedef { import("../src/audits").AuditFail } AuditFail
- */
-
 async function main() {
   const serverUrl = new URL(
     process.env.URL || `http://localhost:${process.env.PORT}/graphql`,
