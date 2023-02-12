@@ -1,3 +1,12 @@
+# [1.15.0](https://github.com/graphql/graphql-http/compare/v1.14.0...v1.15.0) (2023-02-12)
+
+
+### Features
+
+* **audits/render:**  Render audit results to HTML with `renderAuditResultsToHTML` ([#53](https://github.com/graphql/graphql-http/issues/53)) ([da32059](https://github.com/graphql/graphql-http/commit/da32059c54fd85ff55ea6924c13ed8cc0dee1aa2))
+* Bundle the audits into UMD for browser usage ([a402823](https://github.com/graphql/graphql-http/commit/a40282310f450e48a54fefbebf90518e131d9841))
+* Server compliance audit through a website ([#54](https://github.com/graphql/graphql-http/issues/54)) ([f23a689](https://github.com/graphql/graphql-http/commit/f23a689c7cae716a31ee27d87d7dc9f6624a892b)), closes [#8](https://github.com/graphql/graphql-http/issues/8)
+
 # [1.14.0](https://github.com/graphql/graphql-http/compare/v1.13.0...v1.14.0) (2023-02-09)
 
 
