@@ -7,7 +7,7 @@
 
 [![Continuous integration](https://github.com/graphql/graphql-http/workflows/Continuous%20integration/badge.svg)](https://github.com/graphql/graphql-http/actions?query=workflow%3A%22Continuous+integration%22) [![graphql-http](https://img.shields.io/npm/v/graphql-http.svg?label=graphql-http&logo=npm)](https://www.npmjs.com/package/graphql-http)
 
-<i>Quickly check for compliance? Visit [graphql-http.com](https://graphql-http.com)!</i>
+<i>Quickly check for compliance? Visit <b>[graphql-http.com](https://graphql-http.com)</b>!</i>
 
 <i>Want a full-featured server? See the <b>[servers section](#servers)</b>!</i>
 
