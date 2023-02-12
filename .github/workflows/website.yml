@@ -3,15 +3,12 @@ name: Website
 on:
   push:
     branches:
-      - main
-  pull_request:
-    types: [opened, synchronize, reopened]
-    branches:
-      - main
+      # TODO: replace with "main" once ready
+      - website
 
 jobs:
-  update-audits:
-    name: Update audits
+  inject-audits:
+    name: Inject audits
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, '[skip ci]')"
     steps:
@@ -28,12 +25,30 @@ jobs:
         run: yarn build:umd
       - name: Inject
         run: node scripts/inject-audits-website.mjs
-      - name: Diff
-        run: git diff --minimal
-      - name: Commit
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          [ -z "$(git status --porcelain)" ] \
-            && echo "::notice::Audits didn't change." \
-            || (git add . && git commit -m "chore(website): update audits [skip ci]" && git push)
+      - name: Upload
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: website
+
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    needs: [inject-audits]
+    permissions:
+      pages: write
+      id-token: write
+    concurrency:
+      group: website-deploy
+      cancel-in-progress: true
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Set up pages
+        uses: actions/configure-pages@v3
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v1
