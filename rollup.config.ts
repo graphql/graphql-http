@@ -1,5 +1,6 @@
 import typescript from '@rollup/plugin-typescript';
 import terser from '@rollup/plugin-terser';
+import gzip from 'rollup-plugin-gzip';
 
 export default {
   input: './src/client.ts',
@@ -15,6 +16,12 @@ export default {
       format: 'umd',
       name: 'graphqlHttp',
       plugins: [terser()],
+    },
+    {
+      file: './umd/graphql-http.min.js', // gzip plugin will add the .gz extension
+      format: 'umd',
+      name: 'graphqlHttp',
+      plugins: [terser(), gzip()],
     },
   ],
 };
