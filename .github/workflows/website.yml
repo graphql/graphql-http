@@ -3,8 +3,7 @@ name: Website
 on:
   push:
     branches:
-      # TODO: replace with "main" once ready
-      - website
+      - main
 
 jobs:
   inject-audits:
