@@ -46,7 +46,7 @@
         max-width: 1024px;
         margin: 2em auto;
         padding: 2em;
-        border: 1px solid grey;
+        border: 2px solid grey;
       }
       #report.hidden {
         display: none;
@@ -60,9 +60,13 @@
         color: red;
         border-color: red;
       }
+      li {
+        margin-bottom: 0.5em;
+      }
       pre {
         border: 1px solid grey;
         padding: 1em;
+        margin: 0;
         white-space: pre-wrap;
         word-wrap: break-word;
       }
@@ -161,7 +165,7 @@
           .catch((err) => {
             console.error('Problem while auditing server', err);
             reportDiv.classList.add('error');
-            reportDiv.innerHTML = `<pre style="border: 0; padding: 0; margin: 0">${
+            reportDiv.innerHTML = `<pre style="border: 0; padding: 0">${
               err instanceof Error
                 ? err.message + '\n\n' + err.stack
                 : JSON.stringify(err, null, ' ')
