@@ -18,15 +18,14 @@
           Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
           'Segoe UI Symbol';
       }
-      fieldset {
-        padding: 1em;
-      }
+
       input {
         padding: 0.5em;
         font-size: 1em;
         width: 100%;
       }
       button {
+        cursor: pointer;
         font-size: 1em;
       }
 
@@ -34,25 +33,34 @@
         max-width: 512px;
         margin: 0 auto;
       }
-
-      #result {
-        max-width: 1024px;
-        margin: 50px auto;
+      fieldset {
         padding: 1em;
+      }
+
+      #report {
+        max-width: 1024px;
+        margin: 2em auto;
+        padding: 2em;
         border: 1px solid grey;
       }
-      #result.auditing {
+      #report.hidden {
+        display: none;
+      }
+      #report.auditing {
         color: grey;
         background-color: lightgrey;
         text-align: center;
       }
+      pre {
+        border: 1px solid grey;
+        padding: 1em;
+      }
+      summary {
+        cursor: pointer;
+      }
     </style>
 
     <!-- <graphql-http-audits.min.js> -->
-    <script>
-      // prettier-ignore
-      !function(t,e){"object"==typeof exports&&"undefined"!=typeof module?e(exports,require("graphql")):"function"==typeof define&&define.amd?define(["exports","graphql"],e):e((t="undefined"!=typeof globalThis?globalThis:t||self).graphqlHttpAudits={})}(this,(function(t){"use strict";function e(t){return null===t?"null":Array.isArray(t)?"array":typeof t}function a(t,e,a){return{id:t,name:e,fn:async()=>{try{return await a(),{id:t,name:e,status:"ok"}}catch(a){if(!(a instanceof n))throw a;return{id:t,name:e,status:e.startsWith("MUST")?"error":"warn",reason:a.reason,response:a.response}}}}}class n{constructor(t,e){this.response=t,this.reason=e}}function o(t){return{status:{toBe(e){if(t.status!==e)throw new n(t,`Response status code is not ${e}`)},toBeBetween:(e,a)=>{if(!(e<=t.status&&t.status<=a))throw new n(t,`Response status is not between ${e} and ${a}`)}},header:e=>({toContain(a){var o;if(!(null===(o=t.headers.get(e))||void 0===o?void 0:o.includes(a)))throw new n(t,`Response header ${e} does not contain ${a}`)},notToContain(a){var o;if(null===(o=t.headers.get(e))||void 0===o?void 0:o.includes(a))throw new n(t,`Response header ${e} contains ${a}`)}}),bodyAsExecutionResult:{data:{async toBe(e){if((await s(t)).data!==e)throw new n(t,`Response body execution result data is not "${e}"`)}},async toHaveProperty(e){if(!(e in await s(t)))throw new n(t,`Response body execution result does not have a property "${e}"`)},async notToHaveProperty(e){if(e in await s(t))throw new n(t,`Response body execution result has a property "${e}"`)}}}}async function s(t){let e,a;try{const a=new TextDecoder("utf-8"),n=await t.arrayBuffer();e=a.decode(n)}catch(e){throw new n(t,"Response body is not UTF-8 encoded")}try{a=JSON.parse(e)}catch(e){throw new n(t,"Response body is not valid JSON")}return a}function i(t){const s=t.fetchFn||fetch;return[a("22EB","SHOULD accept application/graphql-response+json and match the content-type",(async()=>{const e=await s(await p(t.url),{method:"POST",headers:{"content-type":"application/json",accept:"application/graphql-response+json"},body:JSON.stringify({query:"{ __typename }"})});o(e).status.toBe(200),o(e).header("content-type").toContain("application/graphql-response+json")})),a("4655","MUST accept application/json and match the content-type",(async()=>{const e=await s(await p(t.url),{method:"POST",headers:{"content-type":"application/json",accept:"application/json"},body:JSON.stringify({query:"{ __typename }"})});o(e).status.toBe(200),o(e).header("content-type").toContain("application/json")})),a("47DE","SHOULD accept */* and use application/json for the content-type",(async()=>{const e=await s(await p(t.url),{method:"POST",headers:{"content-type":"application/json",accept:"*/*"},body:JSON.stringify({query:"{ __typename }"})});o(e).status.toBe(200),o(e).header("content-type").toContain("application/json")})),a("80D8","SHOULD assume application/json content-type when accept is missing",(async()=>{const e=new URL(await p(t.url));e.searchParams.set("query","{ __typename }");const a=await s(e.toString());o(a).status.toBe(200),o(a).header("content-type").toContain("application/json")})),a("82A3","MUST use utf-8 encoding when responding",(async()=>{const e=await s(await p(t.url),{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({query:"{ __typename }"})});o(e).status.toBe(200);try{new TextDecoder("utf-8").decode(await e.arrayBuffer())}catch(t){throw new n(e,"Response body is not UTF-8 encoded")}})),a("BF61","MUST accept utf-8 encoded request",(async()=>{o(await s(await p(t.url),{method:"POST",headers:{"content-type":"application/json; charset=utf-8"},body:JSON.stringify({query:"{ __typename }"})})).status.toBe(200)})),a("78D5","MUST assume utf-8 in request if encoding is unspecified",(async()=>{o(await s(await p(t.url),{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({query:"{ __typename }"})})).status.toBe(200)})),a("2C94","MUST accept POST requests",(async()=>{o(await s(await p(t.url),{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({query:"{ __typename }"})})).status.toBe(200)})),a("5A70","MAY accept application/x-www-form-urlencoded formatted GET requests",(async()=>{const e=new URL(await p(t.url));e.searchParams.set("query","{ __typename }");o(await s(e.toString())).status.toBe(200)})),a("9C48","MAY NOT allow executing mutations on GET requests",(async()=>{const e=new URL(await p(t.url));e.searchParams.set("query","mutation { __typename }");o(await s(e.toString(),{headers:{accept:"application/graphql-response+json"}})).status.toBeBetween(400,499)})),a("9ABE","SHOULD respond with 4xx status code if content-type is not supplied on POST requests",(async()=>{o(await s(await p(t.url),{method:"POST"})).status.toBeBetween(400,499)})),a("03D4","MUST accept application/json POST requests",(async()=>{o(await s(await p(t.url),{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({query:"{ __typename }"})})).status.toBe(200)})),a("7267","MUST require a request body on POST",(async()=>{var e;const a=await s(await p(t.url),{method:"POST",headers:{"content-type":"application/json"}});(null===(e=a.headers.get("content-type"))||void 0===e?void 0:e.includes("application/json"))?await o(a).bodyAsExecutionResult.toHaveProperty("errors"):o(a).status.toBe(400)})),a("6610","SHOULD use 400 status code on missing {query} parameter when accepting application/graphql-response+json",(async()=>{o(await s(await p(t.url),{method:"POST",headers:{"content-type":"application/json",accept:"application/graphql-response+json"},body:JSON.stringify({notquery:"{ __typename }"})})).status.toBe(400)})),a("3715","SHOULD use 200 status code with errors field on missing {query} parameter when accepting application/json",(async()=>{const e=await s(await p(t.url),{method:"POST",headers:{"content-type":"application/json",accept:"application/json"},body:JSON.stringify({notquery:"{ __typename }"})});o(e).status.toBe(200),await o(e).bodyAsExecutionResult.toHaveProperty("errors")})),...[{obj:"ect"},0,!1,["array"]].map(((n,i)=>a(`4F5${i}`,`SHOULD use 400 status code on ${e(n)} {query} parameter when accepting application/graphql-response+json`,(async()=>{o(await s(await p(t.url),{method:"POST",headers:{"content-type":"application/json",accept:"application/graphql-response+json"},body:JSON.stringify({query:n})})).status.toBe(400)})))),...[{obj:"ect"},0,!1,["array"]].map(((n,i)=>a(`9FE${i}`,`SHOULD use 200 status code with errors field on ${e(n)} {query} parameter when accepting application/json`,(async()=>{const e=await s(await p(t.url),{method:"POST",headers:{"content-type":"application/json",accept:"application/json"},body:JSON.stringify({query:n})});o(e).status.toBe(200),await o(e).bodyAsExecutionResult.toHaveProperty("errors")})))),a("34A2","SHOULD allow string {query} parameter when accepting application/graphql-response+json",(async()=>{o(await s(await p(t.url),{method:"POST",headers:{"content-type":"application/json",accept:"application/graphql-response+json"},body:JSON.stringify({query:"{ __typename }"})})).status.toBe(200)})),a("13EE","MUST allow string {query} parameter when accepting application/json",(async()=>{const e=await s(await p(t.url),{method:"POST",headers:{"content-type":"application/json",accept:"application/json"},body:JSON.stringify({query:"{ __typename }"})});o(e).status.toBe(200),await o(e).bodyAsExecutionResult.notToHaveProperty("errors")})),...[{obj:"ect"},0,!1,["array"]].map(((n,i)=>a(`E3E${i}`,`SHOULD use 400 status code on ${e(n)} {operationName} parameter when accepting application/graphql-response+json`,(async()=>{o(await s(await p(t.url),{method:"POST",headers:{"content-type":"application/json",accept:"application/graphql-response+json"},body:JSON.stringify({operationName:n,query:"{ __typename }"})})).status.toBe(400)})))),...[{obj:"ect"},0,!1,["array"]].map(((n,i)=>a(`FB9${i}`,`SHOULD use 200 status code with errors field on ${e(n)} {operationName} parameter when accepting application/json`,(async()=>{const e=await s(await p(t.url),{method:"POST",headers:{"content-type":"application/json",accept:"application/json"},body:JSON.stringify({operationName:n,query:"{ __typename }"})});o(e).status.toBe(200),await o(e).bodyAsExecutionResult.toHaveProperty("errors")})))),a("8161","SHOULD allow string {operationName} parameter when accepting application/graphql-response+json",(async()=>{o(await s(await p(t.url),{method:"POST",headers:{"content-type":"application/json",accept:"application/graphql-response+json"},body:JSON.stringify({operationName:"Query",query:"query Query { __typename }"})})).status.toBe(200)})),a("B8B3","MUST allow string {operationName} parameter when accepting application/json",(async()=>{const e=await s(await p(t.url),{method:"POST",headers:{"content-type":"application/json",accept:"application/json"},body:JSON.stringify({operationName:"Query",query:"query Query { __typename }"})});o(e).status.toBe(200),await o(e).bodyAsExecutionResult.notToHaveProperty("errors")})),...["variables","operationName","extensions"].flatMap(((e,n)=>[a(`94B${n}`,`SHOULD allow null {${e}} parameter when accepting application/graphql-response+json`,(async()=>{const a=await s(await p(t.url),{method:"POST",headers:{"content-type":"application/json",accept:"application/graphql-response+json"},body:JSON.stringify({query:"{ __typename }",[e]:null})});o(a).status.toBe(200),await o(a).bodyAsExecutionResult.notToHaveProperty("errors")})),a(`022${n}`,`MUST allow null {${e}} parameter when accepting application/json`,(async()=>{const a=await s(await p(t.url),{method:"POST",headers:{"content-type":"application/json",accept:"application/json"},body:JSON.stringify({query:"{ __typename }",[e]:null})});o(a).status.toBe(200),await o(a).bodyAsExecutionResult.notToHaveProperty("errors")}))])),...["string",0,!1,["array"]].map(((n,i)=>a(`69B${i}`,`SHOULD use 400 status code on ${e(n)} {variables} parameter when accepting application/graphql-response+json`,(async()=>{o(await s(await p(t.url),{method:"POST",headers:{"content-type":"application/json",accept:"application/graphql-response+json"},body:JSON.stringify({query:"{ __typename }",variables:n})})).status.toBe(400)})))),...["string",0,!1,["array"]].map(((n,i)=>a(`F05${i}`,`SHOULD use 200 status code with errors field on ${e(n)} {variables} parameter when accepting application/json`,(async()=>{const e=await s(await p(t.url),{method:"POST",headers:{"content-type":"application/json",accept:"application/json"},body:JSON.stringify({query:"{ __typename }",variables:n})});o(e).status.toBe(200),await o(e).bodyAsExecutionResult.toHaveProperty("errors")})))),a("2EA1","SHOULD allow map {variables} parameter when accepting application/graphql-response+json",(async()=>{o(await s(await p(t.url),{method:"POST",headers:{"content-type":"application/json",accept:"application/graphql-response+json"},body:JSON.stringify({query:"query Type($name: String!) { __type(name: $name) { name } }",variables:{name:"sometype"}})})).status.toBe(200)})),a("28B9","MUST allow map {variables} parameter when accepting application/json",(async()=>{const e=await s(await p(t.url),{method:"POST",headers:{"content-type":"application/json",accept:"application/json"},body:JSON.stringify({query:"query Type($name: String!) { __type(name: $name) { name } }",variables:{name:"sometype"}})});o(e).status.toBe(200),await o(e).bodyAsExecutionResult.notToHaveProperty("errors")})),a("D6D5","MAY allow URL-encoded JSON string {variables} parameter in GETs when accepting application/graphql-response+json",(async()=>{const e=new URL(await p(t.url));e.searchParams.set("query","query Type($name: String!) { __type(name: $name) { name } }"),e.searchParams.set("variables",JSON.stringify({name:"sometype"}));o(await s(e.toString(),{method:"GET",headers:{accept:"application/graphql-response+json"}})).status.toBe(200)})),a("6A70","MAY allow URL-encoded JSON string {variables} parameter in GETs when accepting application/json",(async()=>{const e=new URL(await p(t.url));e.searchParams.set("query","query Type($name: String!) { __type(name: $name) { name } }"),e.searchParams.set("variables",JSON.stringify({name:"sometype"}));const a=await s(e.toString(),{method:"GET",headers:{accept:"application/json"}});o(a).status.toBe(200),await o(a).bodyAsExecutionResult.notToHaveProperty("errors")})),...["string",0,!1,["array"]].map(((n,i)=>a(`904${i}`,`SHOULD use 400 status code on ${e(n)} {extensions} parameter when accepting application/graphql-response+json`,(async()=>{o(await s(await p(t.url),{method:"POST",headers:{"content-type":"application/json",accept:"application/graphql-response+json"},body:JSON.stringify({query:"{ __typename }",extensions:n})})).status.toBe(400)})))),...["string",0,!1,["array"]].map(((n,i)=>a(`368${i}`,`SHOULD use 200 status code with errors field on ${e(n)} {extensions} parameter when accepting application/json`,(async()=>{const e=await s(await p(t.url),{method:"POST",headers:{"content-type":"application/json",accept:"application/json"},body:JSON.stringify({query:"{ __typename }",extensions:n})});o(e).status.toBe(200),await o(e).bodyAsExecutionResult.toHaveProperty("errors")})))),a("428F","SHOULD allow map {extensions} parameter when accepting application/graphql-response+json",(async()=>{o(await s(await p(t.url),{method:"POST",headers:{"content-type":"application/json",accept:"application/graphql-response+json"},body:JSON.stringify({query:"{ __typename }",extensions:{some:"value"}})})).status.toBe(200)})),a("1B7A","MUST allow map {extensions} parameter when accepting application/json",(async()=>{const e=await s(await p(t.url),{method:"POST",headers:{"content-type":"application/json",accept:"application/json"},body:JSON.stringify({query:"{ __typename }",extensions:{some:"value"}})});o(e).status.toBe(200),await o(e).bodyAsExecutionResult.notToHaveProperty("errors")})),a("D477","SHOULD use 200 status code on JSON parsing failure when accepting application/json",(async()=>{o(await s(await p(t.url),{method:"POST",headers:{"content-type":"application/json",accept:"application/json"},body:'{ "not a JSON'})).status.toBe(200)})),a("F5AF","SHOULD use 200 status code if parameters are invalid when accepting application/json",(async()=>{o(await s(await p(t.url),{method:"POST",headers:{"content-type":"application/json",accept:"application/json"},body:JSON.stringify({qeury:"{ __typename }"})})).status.toBe(200)})),a("572B","SHOULD use 200 status code on document parsing failure when accepting application/json",(async()=>{o(await s(await p(t.url),{method:"POST",headers:{"content-type":"application/json",accept:"application/json"},body:JSON.stringify({query:"{"})})).status.toBe(200)})),a("FDE2","SHOULD use 200 status code on document validation failure when accepting application/json",(async()=>{o(await s(await p(t.url),{method:"POST",headers:{"content-type":"application/json",accept:"application/json"},body:JSON.stringify({query:"{ 8f31403dfe404bccbb0e835f2629c6a7 }"})})).status.toBe(200)})),a("60AA","SHOULD use 4xx or 5xx status codes on JSON parsing failure when accepting application/graphql-response+json",(async()=>{o(await s(await p(t.url),{method:"POST",headers:{"content-type":"application/json",accept:"application/graphql-response+json"},body:'{ "not a JSON'})).status.toBeBetween(400,499)})),a("2163","SHOULD use 400 status code on JSON parsing failure when accepting application/graphql-response+json",(async()=>{o(await s(await p(t.url),{method:"POST",headers:{"content-type":"application/json",accept:"application/graphql-response+json"},body:'{ "not a JSON'})).status.toBe(400)})),a("3E36","SHOULD use 4xx or 5xx status codes if parameters are invalid when accepting application/graphql-response+json",(async()=>{o(await s(await p(t.url),{method:"POST",headers:{"content-type":"application/json",accept:"application/graphql-response+json"},body:JSON.stringify({qeury:"{ __typename }"})})).status.toBeBetween(400,599)})),a("17C5","SHOULD use 400 status code if parameters are invalid when accepting application/graphql-response+json",(async()=>{o(await s(await p(t.url),{method:"POST",headers:{"content-type":"application/json",accept:"application/graphql-response+json"},body:JSON.stringify({qeury:"{ __typename }"})})).status.toBe(400)})),a("34D6","SHOULD not contain the data entry if parameters are invalid when accepting application/graphql-response+json",(async()=>{const e=await s(await p(t.url),{method:"POST",headers:{"content-type":"application/json",accept:"application/graphql-response+json"},body:JSON.stringify({qeury:"{ __typename }"})});await o(e).bodyAsExecutionResult.data.toBe(void 0)})),a("865D","SHOULD use 4xx or 5xx status codes on document parsing failure when accepting application/graphql-response+json",(async()=>{o(await s(await p(t.url),{method:"POST",headers:{"content-type":"application/json",accept:"application/graphql-response+json"},body:JSON.stringify({query:"{"})})).status.toBeBetween(400,599)})),a("556A","SHOULD use 400 status code on document parsing failure when accepting application/graphql-response+json",(async()=>{o(await s(await p(t.url),{method:"POST",headers:{"content-type":"application/json",accept:"application/graphql-response+json"},body:JSON.stringify({query:"{"})})).status.toBe(400)})),a("D586","SHOULD not contain the data entry on document parsing failure when accepting application/graphql-response+json",(async()=>{const e=await s(await p(t.url),{method:"POST",headers:{"content-type":"application/json",accept:"application/graphql-response+json"},body:JSON.stringify({query:"{"})});await o(e).bodyAsExecutionResult.data.toBe(void 0)})),a("51FE","SHOULD use 4xx or 5xx status codes on document validation failure when accepting application/graphql-response+json",(async()=>{o(await s(await p(t.url),{method:"POST",headers:{"content-type":"application/json",accept:"application/graphql-response+json"},body:JSON.stringify({query:"{ 8f31403dfe404bccbb0e835f2629c6a7 }"})})).status.toBeBetween(400,599)})),a("74FF","SHOULD use 400 status code on document validation failure when accepting application/graphql-response+json",(async()=>{o(await s(await p(t.url),{method:"POST",headers:{"content-type":"application/json",accept:"application/graphql-response+json"},body:JSON.stringify({query:"{ 8f31403dfe404bccbb0e835f2629c6a7 }"})})).status.toBe(400)})),a("5E5B","SHOULD not contain the data entry on document validation failure when accepting application/graphql-response+json",(async()=>{const e=await s(await p(t.url),{method:"POST",headers:{"content-type":"application/json",accept:"application/graphql-response+json"},body:JSON.stringify({query:"{ 8f31403dfe404bccbb0e835f2629c6a7 }"})});await o(e).bodyAsExecutionResult.data.toBe(void 0)}))]}async function p(t){return"function"==typeof t?await t():t}t.auditServer=async function(t){const e=i(t);return await Promise.all(e.map((({fn:t})=>t())))},t.serverAudits=i}));
-    </script>
     <!-- </graphql-http-audits.min.js> -->
   </head>
   <body>
@@ -85,7 +93,7 @@
         </fieldset>
       </form>
 
-      <div id="result"></div>
+      <div id="report" class="hidden"></div>
     </main>
 
     <script>
@@ -96,19 +104,31 @@
         urlInput.setAttribute('value', url);
         urlInput.setAttribute('disabled', true);
 
-        const resultDiv = document.getElementById('result');
-        resultDiv.classList.add('auditing');
-        resultDiv.innerHTML = `<i>Auditing...</i>`;
+        const reportDiv = document.getElementById('report');
+        reportDiv.classList.remove('hidden');
+        reportDiv.classList.add('auditing');
+        reportDiv.innerHTML = '⏳ Auditing...';
 
         graphqlHttpAudits
           .auditServer({ url })
           .then((results) => {
-            // TODO: render results
-            console.log(results);
+            graphqlHttpAudits
+              .renderAuditResultsToHTML(results)
+              .then((html) => {
+                reportDiv.innerHTML = html;
+              })
+              .catch((err) => {
+                console.error('Problem while rendering the report', err);
+                // TODO: report render error
+              });
+          })
+          .catch((err) => {
+            console.error('Problem while running server audits', err);
+            // TODO: report audit error
           })
           .finally(() => {
             urlInput.removeAttribute('disabled');
-            resultDiv.classList.remove('auditing');
+            reportDiv.classList.remove('auditing');
           });
       }
     </script>
