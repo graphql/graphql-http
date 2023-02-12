@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>graphql-http</title>
 
     <style>
@@ -12,6 +13,7 @@
         box-sizing: border-box;
       }
       body {
+        /* use system font */
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
           Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
           'Segoe UI Symbol';
@@ -27,6 +29,23 @@
       button {
         font-size: 1em;
       }
+
+      #audit-server-form {
+        max-width: 512px;
+        margin: 0 auto;
+      }
+
+      #result {
+        max-width: 1024px;
+        margin: 50px auto;
+        padding: 1em;
+        border: 1px solid grey;
+      }
+      #result.auditing {
+        color: grey;
+        background-color: lightgrey;
+        text-align: center;
+      }
     </style>
 
     <!-- <graphql-http-audits.min.js> -->
@@ -40,8 +59,8 @@
     <main>
       <h1 style="text-align: center">graphql-http</h1>
 
-      <form name="audit-server">
-        <fieldset style="max-width: 512px; margin: 0 auto">
+      <form id="audit-server-form" name="audit-server">
+        <fieldset>
           <legend>
             Check for
             <a href="https://graphql.github.io/graphql-over-http/"
@@ -65,17 +84,32 @@
           </div>
         </fieldset>
       </form>
+
+      <div id="result"></div>
     </main>
 
     <script>
       const params = new URLSearchParams(window.location.search);
       const url = params.get('url');
       if (url) {
-        document.getElementById('url').setAttribute('value', url);
-        graphqlHttpAudits.auditServer({ url }).then((results) => {
-          // TODO: render results
-          console.log(results);
-        });
+        const urlInput = document.getElementById('url');
+        urlInput.setAttribute('value', url);
+        urlInput.setAttribute('disabled', true);
+
+        const resultDiv = document.getElementById('result');
+        resultDiv.classList.add('auditing');
+        resultDiv.innerHTML = `<i>Auditing...</i>`;
+
+        graphqlHttpAudits
+          .auditServer({ url })
+          .then((results) => {
+            // TODO: render results
+            console.log(results);
+          })
+          .finally(() => {
+            urlInput.removeAttribute('disabled');
+            resultDiv.classList.remove('auditing');
+          });
       }
     </script>
   </body>
