@@ -7,6 +7,7 @@ graphql-http
 ### Modules
 
 - [audits/common](modules/audits_common.md)
+- [audits/render](modules/audits_render.md)
 - [audits/server](modules/audits_server.md)
 - [client](modules/client.md)
 - [common](modules/common.md)
