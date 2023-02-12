@@ -1,0 +1,53 @@
+name: Website
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  inject-audits:
+    name: Inject audits
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Set up node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: yarn
+      - name: Install
+        run: yarn install --immutable
+      - name: Build
+        run: yarn build:umd
+      - name: Inject
+        run: node scripts/inject-audits-website.mjs
+      - name: Upload website
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: website
+
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    needs: [inject-audits]
+    permissions:
+      pages: write
+      id-token: write
+    concurrency:
+      group: website-deploy
+      cancel-in-progress: true
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Set up pages
+        uses: actions/configure-pages@v3
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v1

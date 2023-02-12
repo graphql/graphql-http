@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <title>graphql-http</title>
+    <meta
+      name="description"
+      content="Simple, pluggable, zero-dependency, GraphQL over HTTP spec compliant server, client and audit suite."
+    />
+
+    <style>
+      *,
+      *:before,
+      *:after {
+        box-sizing: border-box;
+      }
+      body {
+        /* use system font */
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+          Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+          'Segoe UI Symbol';
+      }
+
+      input {
+        padding: 0.5em;
+        font-size: 1em;
+        width: 100%;
+      }
+      button {
+        cursor: pointer;
+        font-size: 1em;
+      }
+
+      #audit-server-form {
+        max-width: 512px;
+        margin: 0 auto;
+      }
+      fieldset {
+        padding: 1em;
+      }
+
+      #report {
+        max-width: 1024px;
+        margin: 2em auto;
+        padding: 2em;
+        border: 2px solid grey;
+      }
+      #report.hidden {
+        display: none;
+      }
+      #report.auditing {
+        color: grey;
+        background-color: lightgrey;
+        text-align: center;
+      }
+      #report.error {
+        color: red;
+        border-color: red;
+      }
+      li {
+        margin-bottom: 0.5em;
+      }
+      pre {
+        border: 1px solid grey;
+        padding: 1em;
+        margin: 0;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+      }
+      summary {
+        cursor: pointer;
+      }
+
+      footer {
+        text-align: center;
+        margin-bottom: 2em;
+      }
+
+      .tip {
+        color: grey;
+      }
+    </style>
+
+    <!-- <graphql-http-audits.min.js> -->
+    <!-- the audits script will be injected as a part of the website deployment action -->
+    <!-- </graphql-http-audits.min.js> -->
+  </head>
+  <body>
+    <main>
+      <h1 style="text-align: center">
+        <a href="https://github.com/graphql/graphql-http">graphql-http</a>
+      </h1>
+      <p style="text-align: center; color: grey">
+        Simple, pluggable, zero-dependency, GraphQL over HTTP spec compliant
+        server, client and audit suite.
+      </p>
+
+      <br />
+
+      <form id="audit-server-form" name="audit-server">
+        <fieldset>
+          <legend>
+            Check for
+            <a href="https://graphql.github.io/graphql-over-http/"
+              >GraphQL over HTTP spec</a
+            >
+            compliance
+          </legend>
+          <div>
+            <label for="url">URL of server to audit:</label>
+            <br />
+            <input id="url" type="url" name="url" required autofocus />
+            <br />
+            <small
+              >Please make sure that
+              <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS"
+                >CORS</a
+              >
+              allows this origin on your server.</small
+            >
+          </div>
+          <br />
+          <div style="text-align: right">
+            <button type="submit">Audit</button>
+          </div>
+        </fieldset>
+      </form>
+
+      <div id="report" class="hidden"></div>
+
+      <p style="text-align: center">
+        <small class="tip"
+          ><b>💡 Tip:</b> Save this website and use it as a portable offline
+          compliance checker.</small
+        >
+      </p>
+
+      <footer>
+        <small>
+          <a href="https://roadmap.sh/graphql">Learn GraphQL</a>
+          |
+          <a href="https://graphql.github.io/graphql-over-http/"
+            >GraphQL over HTTP spec</a
+          >
+          |
+          <a href="https://bundlephobia.com/package/graphql-http"
+            >Bundlephobia (package size)</a
+          >
+          |
+          <a href="https://github.com/graphql/graphql-http">GitHub</a>
+          |
+          <a href="https://www.npmjs.com/package/graphql-http">npm</a>
+        </small>
+      </footer>
+    </main>
+
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      const url = params.get('url');
+      if (url) {
+        const urlInput = document.getElementById('url');
+        urlInput.setAttribute('value', url);
+        urlInput.setAttribute('disabled', true);
+
+        const reportDiv = document.getElementById('report');
+        reportDiv.classList.remove('hidden');
+        reportDiv.classList.add('auditing');
+        reportDiv.innerHTML = '⏳ Auditing...';
+
+        graphqlHttpAudits
+          .auditServer({ url })
+          .then((results) =>
+            graphqlHttpAudits
+              .renderAuditResultsToHTML(results)
+              .then((html) => (reportDiv.innerHTML = html)),
+          )
+          .catch((err) => {
+            console.error('Problem while auditing server', err);
+            reportDiv.classList.add('error');
+            reportDiv.innerHTML = `
+            <small class="tip"><b>💡 Tip:</b> Open the console to see more details about the error.</small>
+            <br /><br />
+
+            <pre style="border: 0; padding: 0">${
+              err instanceof Error
+                ? err.message + '\n\n' + err.stack
+                : JSON.stringify(err, null, ' ')
+            }</pre>`;
+          })
+          .finally(() => {
+            urlInput.removeAttribute('disabled');
+            reportDiv.classList.remove('auditing');
+          });
+      }
+    </script>
+  </body>
+</html>
