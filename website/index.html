@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>graphql-http</title>
+    <meta
+      name="description"
+      content="Simple, pluggable, zero-dependency, GraphQL over HTTP spec compliant server, client and audit suite."
+    />
 
     <style>
       *,
@@ -64,6 +68,10 @@
       summary {
         cursor: pointer;
       }
+
+      footer {
+        text-align: center;
+      }
     </style>
 
     <!-- <graphql-http-audits.min.js> -->
@@ -71,7 +79,15 @@
   </head>
   <body>
     <main>
-      <h1 style="text-align: center">graphql-http</h1>
+      <h1 style="text-align: center">
+        <a href="https://github.com/graphql/graphql-http">graphql-http</a>
+      </h1>
+      <p style="text-align: center; color: grey">
+        Simple, pluggable, zero-dependency, GraphQL over HTTP spec compliant
+        server, client and audit suite.
+      </p>
+
+      <br />
 
       <form id="audit-server-form" name="audit-server">
         <fieldset>
@@ -88,8 +104,11 @@
             <input id="url" type="url" name="url" required autofocus />
             <br />
             <small
-              >Please make sure that CORS allows this origin on your
-              server.</small
+              >Please make sure that
+              <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS"
+                >CORS</a
+              >
+              allows this origin on your server.</small
             >
           </div>
           <br />
@@ -99,7 +118,23 @@
         </fieldset>
       </form>
 
+      <br />
+
       <div id="report" class="hidden"></div>
+
+      <footer>
+        <small>
+          <a href="https://roadmap.sh/graphql">Learn GraphQL</a>
+          |
+          <a href="https://graphql.github.io/graphql-over-http/"
+            >GraphQL over HTTP spec</a
+          >
+          |
+          <a href="https://github.com/graphql/graphql-http"
+            >graphql-http on GitHub</a
+          >
+        </small>
+      </footer>
     </main>
 
     <script>
