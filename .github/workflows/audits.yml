@@ -41,6 +41,8 @@ jobs:
         run: yarn workspace ${{ matrix.workspace }} start &
       - name: Audit
         run: node scripts/audit-implementation.mjs implementations/${{ matrix.workspace }}
+      - name: Summary
+        run: cat implementations/${{ matrix.workspace }}/README.md >> $GITHUB_STEP_SUMMARY
       - name: Upload audit report
         uses: actions/upload-artifact@v3
         with:
@@ -93,6 +95,8 @@ jobs:
         run: yarn workspace ${{ matrix.workspace }} start -d --wait
       - name: Audit
         run: node scripts/audit-implementation.mjs implementations/${{ matrix.workspace }}
+      - name: Summary
+        run: cat implementations/${{ matrix.workspace }}/README.md >> $GITHUB_STEP_SUMMARY
       - name: Upload audit report
         uses: actions/upload-artifact@v3
         with:
@@ -131,6 +135,8 @@ jobs:
         run: yarn build:esm
       - name: Audit
         run: node scripts/audit-implementation.mjs implementations/${{ matrix.workspace.name }}
+      - name: Summary
+        run: cat implementations/${{ matrix.workspace }}/README.md >> $GITHUB_STEP_SUMMARY
       - name: Upload audit report
         uses: actions/upload-artifact@v3
         with:
