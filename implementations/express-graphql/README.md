@@ -314,7 +314,11 @@ The server <i>SHOULD</i> support these, but is not required.
     "content-length": "31",
     "connection": "close"
   },
-  "body": null
+  "body": {
+    "data": {
+      "__typename": "Query"
+    }
+  }
 }
 </code></pre>
 </details>
@@ -333,7 +337,11 @@ The server <i>SHOULD</i> support these, but is not required.
     "content-length": "31",
     "connection": "close"
   },
-  "body": null
+  "body": {
+    "data": {
+      "__typename": "Query"
+    }
+  }
 }
 </code></pre>
 </details>
@@ -352,7 +360,11 @@ The server <i>SHOULD</i> support these, but is not required.
     "content-length": "31",
     "connection": "close"
   },
-  "body": null
+  "body": {
+    "data": {
+      "__typename": "Query"
+    }
+  }
 }
 </code></pre>
 </details>
@@ -371,7 +383,11 @@ The server <i>SHOULD</i> support these, but is not required.
     "content-length": "31",
     "connection": "close"
   },
-  "body": null
+  "body": {
+    "data": {
+      "__typename": "Query"
+    }
+  }
 }
 </code></pre>
 </details>
@@ -484,7 +500,11 @@ The server <i>SHOULD</i> support these, but is not required.
     "content-length": "31",
     "connection": "close"
   },
-  "body": null
+  "body": {
+    "data": {
+      "__typename": "Query"
+    }
+  }
 }
 </code></pre>
 </details>
@@ -503,7 +523,11 @@ The server <i>SHOULD</i> support these, but is not required.
     "content-length": "31",
     "connection": "close"
   },
-  "body": null
+  "body": {
+    "data": {
+      "__typename": "Query"
+    }
+  }
 }
 </code></pre>
 </details>
@@ -522,7 +546,11 @@ The server <i>SHOULD</i> support these, but is not required.
     "content-length": "31",
     "connection": "close"
   },
-  "body": null
+  "body": {
+    "data": {
+      "__typename": "Query"
+    }
+  }
 }
 </code></pre>
 </details>
@@ -633,7 +661,11 @@ The server <i>SHOULD</i> support these, but is not required.
     "content-length": "31",
     "connection": "close"
   },
-  "body": null
+  "body": {
+    "data": {
+      "__typename": "Query"
+    }
+  }
 }
 </code></pre>
 </details>
@@ -652,7 +684,11 @@ The server <i>SHOULD</i> support these, but is not required.
     "content-length": "31",
     "connection": "close"
   },
-  "body": null
+  "body": {
+    "data": {
+      "__typename": "Query"
+    }
+  }
 }
 </code></pre>
 </details>
@@ -671,7 +707,11 @@ The server <i>SHOULD</i> support these, but is not required.
     "content-length": "31",
     "connection": "close"
   },
-  "body": null
+  "body": {
+    "data": {
+      "__typename": "Query"
+    }
+  }
 }
 </code></pre>
 </details>
@@ -690,7 +730,11 @@ The server <i>SHOULD</i> support these, but is not required.
     "content-length": "31",
     "connection": "close"
   },
-  "body": null
+  "body": {
+    "data": {
+      "__typename": "Query"
+    }
+  }
 }
 </code></pre>
 </details>

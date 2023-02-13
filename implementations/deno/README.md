@@ -440,7 +440,11 @@ The server <i>SHOULD</i> support these, but is not required.
     "content-length": "59",
     "content-encoding": "gzip"
   },
-  "body": null
+  "body": {
+    "data": {
+      "__typename": "Query"
+    }
+  }
 }
 </code></pre>
 </details>
@@ -492,7 +496,19 @@ The server <i>SHOULD</i> support these, but is not required.
     "content-length": "163",
     "content-encoding": "gzip"
   },
-  "body": null
+  "body": {
+    "errors": [
+      {
+        "message": "Variable \"$name\" of required type \"String!\" was not provided.",
+        "locations": [
+          {
+            "line": 1,
+            "column": 12
+          }
+        ]
+      }
+    ]
+  }
 }
 </code></pre>
 </details>
@@ -578,7 +594,11 @@ The server <i>SHOULD</i> support these, but is not required.
     "content-length": "59",
     "content-encoding": "gzip"
   },
-  "body": null
+  "body": {
+    "data": {
+      "__typename": "Query"
+    }
+  }
 }
 </code></pre>
 </details>
@@ -596,7 +616,11 @@ The server <i>SHOULD</i> support these, but is not required.
     "content-length": "59",
     "content-encoding": "gzip"
   },
-  "body": null
+  "body": {
+    "data": {
+      "__typename": "Query"
+    }
+  }
 }
 </code></pre>
 </details>
@@ -614,7 +638,11 @@ The server <i>SHOULD</i> support these, but is not required.
     "content-length": "59",
     "content-encoding": "gzip"
   },
-  "body": null
+  "body": {
+    "data": {
+      "__typename": "Query"
+    }
+  }
 }
 </code></pre>
 </details>
@@ -632,7 +660,11 @@ The server <i>SHOULD</i> support these, but is not required.
     "content-length": "59",
     "content-encoding": "gzip"
   },
-  "body": null
+  "body": {
+    "data": {
+      "__typename": "Query"
+    }
+  }
 }
 </code></pre>
 </details>
