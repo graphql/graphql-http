@@ -91,7 +91,7 @@
     "lint:prettier": "prettier -c .",
     "lint": "yarn lint:eslint && yarn lint:prettier",
     "type-check": "tsc --noEmit",
-    "test": "NODE_OPTIONS=--experimental-vm-modules jest",
+    "test": "NODE_OPTIONS=--experimental-vm-modules NODE_NO_WARNINGS=1 jest",
     "build:esm": "tsc -b tsconfig.esm.json && node scripts/esm-post-process.mjs",
     "build:cjs": "tsc -b tsconfig.cjs.json",
     "build:umd": "rollup --configPlugin typescript --config rollup.config.ts",
