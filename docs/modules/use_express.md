@@ -4,11 +4,29 @@
 
 ## Table of contents
 
+### Type Aliases
+
+- [HandlerOptions](use_express.md#handleroptions)
+
 ### Functions
 
 - [createHandler](use_express.md#createhandler)
 
 ## Server/express
+
+### HandlerOptions
+
+Ƭ **HandlerOptions**<`Context`\>: [`HandlerOptions`](../interfaces/handler.HandlerOptions.md)<`Request`, `undefined`, `Context`\>
+
+Handler options when using the express adapter.
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `Context` | extends [`OperationContext`](handler.md#operationcontext) = `undefined` |
+
+___
 
 ### createHandler
 
@@ -39,7 +57,7 @@ console.log('Listening to port 4000');
 
 | Name | Type |
 | :------ | :------ |
-| `options` | [`HandlerOptions`](../interfaces/handler.HandlerOptions.md)<`Request`<`ParamsDictionary`, `any`, `any`, `ParsedQs`, `Record`<`string`, `any`\>\>, `undefined`, `Context`\> |
+| `options` | [`HandlerOptions`](use_express.md#handleroptions)<`Context`\> |
 
 #### Returns
 

@@ -2,9 +2,17 @@ import type { Middleware } from 'koa';
 import type { IncomingMessage } from 'http';
 import {
   createHandler as createRawHandler,
-  HandlerOptions,
+  HandlerOptions as RawHandlerOptions,
   OperationContext,
 } from '../handler';
+
+/**
+ * Handler options when using the koa adapter.
+ *
+ * @category Server/koa
+ */
+export type HandlerOptions<Context extends OperationContext = undefined> =
+  RawHandlerOptions<IncomingMessage, undefined, Context>;
 
 /**
  * Create a GraphQL over HTTP Protocol compliant request handler for
@@ -26,7 +34,7 @@ import {
  * @category Server/koa
  */
 export function createHandler<Context extends OperationContext = undefined>(
-  options: HandlerOptions<IncomingMessage, undefined, Context>,
+  options: HandlerOptions<Context>,
 ): Middleware {
   const isProd = process.env.NODE_ENV === 'production';
   const handle = createRawHandler(options);

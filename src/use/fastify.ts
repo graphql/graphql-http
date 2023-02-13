@@ -1,9 +1,17 @@
 import type { FastifyRequest, RouteHandler } from 'fastify';
 import {
   createHandler as createRawHandler,
-  HandlerOptions,
+  HandlerOptions as RawHandlerOptions,
   OperationContext,
 } from '../handler';
+
+/**
+ * Handler options when using the fastify adapter.
+ *
+ * @category Server/fastify
+ */
+export type HandlerOptions<Context extends OperationContext = undefined> =
+  RawHandlerOptions<FastifyRequest, undefined, Context>;
 
 /**
  * Create a GraphQL over HTTP Protocol compliant request handler for
@@ -24,7 +32,7 @@ import {
  * @category Server/fastify
  */
 export function createHandler<Context extends OperationContext = undefined>(
-  options: HandlerOptions<FastifyRequest, undefined, Context>,
+  options: HandlerOptions<Context>,
 ): RouteHandler {
   const isProd = process.env.NODE_ENV === 'production';
   const handle = createRawHandler(options);

@@ -4,11 +4,29 @@
 
 ## Table of contents
 
+### Type Aliases
+
+- [HandlerOptions](use_node.md#handleroptions)
+
 ### Functions
 
 - [createHandler](use_node.md#createhandler)
 
 ## Server/node
+
+### HandlerOptions
+
+Ƭ **HandlerOptions**<`Context`\>: [`HandlerOptions`](../interfaces/handler.HandlerOptions.md)<`IncomingMessage`, `undefined`, `Context`\>
+
+Handler options when using the node adapter.
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `Context` | extends [`OperationContext`](handler.md#operationcontext) = `undefined` |
+
+___
 
 ### createHandler
 
@@ -38,7 +56,7 @@ console.log('Listening to port 4000');
 
 | Name | Type |
 | :------ | :------ |
-| `options` | [`HandlerOptions`](../interfaces/handler.HandlerOptions.md)<`IncomingMessage`, `undefined`, `Context`\> |
+| `options` | [`HandlerOptions`](use_node.md#handleroptions)<`Context`\> |
 
 #### Returns
 

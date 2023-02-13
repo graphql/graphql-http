@@ -1,6 +1,6 @@
 import {
   createHandler as createRawHandler,
-  HandlerOptions,
+  HandlerOptions as RawHandlerOptions,
   OperationContext,
 } from '../handler';
 
@@ -14,6 +14,14 @@ export interface FetchAPI {
   ReadableStream: typeof ReadableStream;
   TextEncoder: typeof TextEncoder;
 }
+
+/**
+ * Handler options when using the fetch adapter.
+ *
+ * @category Server/fetch
+ */
+export type HandlerOptions<Context extends OperationContext = undefined> =
+  RawHandlerOptions<Request, FetchAPI, Context>;
 
 /**
  * Create a GraphQL over HTTP Protocol compliant request handler for
@@ -39,19 +47,19 @@ export interface FetchAPI {
  * console.log('Listening to port 4000');
  * ```
  *
- * @param fetchApi - Custom fetch API engine, will use from global scope if left undefined.
+ * @param reqCtx - Custom fetch API engine, will use from global scope if left undefined.
  *
  * @category Server/fetch
  */
 export function createHandler<Context extends OperationContext = undefined>(
-  options: HandlerOptions<Request, FetchAPI, Context>,
-  fetchApi: Partial<FetchAPI> = {},
+  options: HandlerOptions<Context>,
+  reqCtx: Partial<FetchAPI> = {},
 ): (req: Request) => Promise<Response> {
   const isProd = process.env.NODE_ENV === 'production';
   const api: FetchAPI = {
-    Response: fetchApi.Response || Response,
-    TextEncoder: fetchApi.TextEncoder || TextEncoder,
-    ReadableStream: fetchApi.ReadableStream || ReadableStream,
+    Response: reqCtx.Response || Response,
+    TextEncoder: reqCtx.TextEncoder || TextEncoder,
+    ReadableStream: reqCtx.ReadableStream || ReadableStream,
   };
   const handler = createRawHandler(options);
   return async function handleRequest(req) {

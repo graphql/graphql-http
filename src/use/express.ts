@@ -1,9 +1,17 @@
 import type { Request, Handler } from 'express';
 import {
   createHandler as createRawHandler,
-  HandlerOptions,
+  HandlerOptions as RawHandlerOptions,
   OperationContext,
 } from '../handler';
+
+/**
+ * Handler options when using the express adapter.
+ *
+ * @category Server/express
+ */
+export type HandlerOptions<Context extends OperationContext = undefined> =
+  RawHandlerOptions<Request, undefined, Context>;
 
 /**
  * Create a GraphQL over HTTP Protocol compliant request handler for
@@ -24,7 +32,7 @@ import {
  * @category Server/express
  */
 export function createHandler<Context extends OperationContext = undefined>(
-  options: HandlerOptions<Request, undefined, Context>,
+  options: HandlerOptions<Context>,
 ): Handler {
   const isProd = process.env.NODE_ENV === 'production';
   const handle = createRawHandler(options);

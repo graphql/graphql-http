@@ -1,9 +1,17 @@
 import type { IncomingMessage, RequestListener } from 'http';
 import {
   createHandler as createRawHandler,
-  HandlerOptions,
+  HandlerOptions as RawHandlerOptions,
   OperationContext,
 } from '../handler';
+
+/**
+ * Handler options when using the node adapter.
+ *
+ * @category Server/node
+ */
+export type HandlerOptions<Context extends OperationContext = undefined> =
+  RawHandlerOptions<IncomingMessage, undefined, Context>;
 
 /**
  * Create a GraphQL over HTTP Protocol compliant request handler for
@@ -23,7 +31,7 @@ import {
  * @category Server/node
  */
 export function createHandler<Context extends OperationContext = undefined>(
-  options: HandlerOptions<IncomingMessage, undefined, Context>,
+  options: HandlerOptions<Context>,
 ): RequestListener {
   const isProd = process.env.NODE_ENV === 'production';
   const handle = createRawHandler(options);

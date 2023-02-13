@@ -4,11 +4,29 @@
 
 ## Table of contents
 
+### Type Aliases
+
+- [HandlerOptions](use_fastify.md#handleroptions)
+
 ### Functions
 
 - [createHandler](use_fastify.md#createhandler)
 
 ## Server/fastify
+
+### HandlerOptions
+
+Ƭ **HandlerOptions**<`Context`\>: [`HandlerOptions`](../interfaces/handler.HandlerOptions.md)<`FastifyRequest`, `undefined`, `Context`\>
+
+Handler options when using the fastify adapter.
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `Context` | extends [`OperationContext`](handler.md#operationcontext) = `undefined` |
+
+___
 
 ### createHandler
 
@@ -39,7 +57,7 @@ console.log('Listening to port 4000');
 
 | Name | Type |
 | :------ | :------ |
-| `options` | [`HandlerOptions`](../interfaces/handler.HandlerOptions.md)<`FastifyRequest`<`RouteGenericInterface`, `RawServerDefault`, `IncomingMessage`, `FastifySchema`, `FastifyTypeProviderDefault`, `unknown`, `FastifyBaseLogger`, `ResolveFastifyRequestType`<`FastifyTypeProviderDefault`, `FastifySchema`, `RouteGenericInterface`\>\>, `undefined`, `Context`\> |
+| `options` | [`HandlerOptions`](use_fastify.md#handleroptions)<`Context`\> |
 
 #### Returns
 
