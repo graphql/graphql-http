@@ -1,3 +1,16 @@
+# [1.16.0](https://github.com/graphql/graphql-http/compare/v1.15.0...v1.16.0) (2023-02-13)
+
+
+### Bug Fixes
+
+* **audits/render:** Clone response to allow re-reading the body ([#55](https://github.com/graphql/graphql-http/issues/55)) ([dd4f5f1](https://github.com/graphql/graphql-http/commit/dd4f5f14a140676786397b65336de9fbec2b66c2))
+
+
+### Features
+
+* **use:** Deprecate `node` adapter in favor of `http` and `http2` adapters ([f5b0305](https://github.com/graphql/graphql-http/commit/f5b0305034b4139b5d2dc186b9c35df8f26e6612))
+* **use:** Each adapter has an adapted `HandlerOptions` interface ([f14a821](https://github.com/graphql/graphql-http/commit/f14a821d06fa48515d8b8d0c047e93f79e50fa11))
+
 # [1.15.0](https://github.com/graphql/graphql-http/compare/v1.14.0...v1.15.0) (2023-02-12)
 
 
