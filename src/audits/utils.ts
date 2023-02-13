@@ -120,29 +120,32 @@ export function ressert(res: Response) {
     bodyAsExecutionResult: {
       data: {
         async toBe(val: ExecutionResult['data']) {
+          const clonedRes = res.clone(); // allow the body to be re-read
           const body = await assertBodyAsExecutionResult(res);
           if (body.data !== val) {
             throw new AuditError(
-              res,
+              clonedRes,
               `Response body execution result data is not "${val}"`,
             );
           }
         },
       },
       async toHaveProperty(key: keyof ExecutionResult) {
+        const clonedRes = res.clone(); // allow the body to be re-read
         const body = await assertBodyAsExecutionResult(res);
         if (!(key in body)) {
           throw new AuditError(
-            res,
+            clonedRes,
             `Response body execution result does not have a property "${key}"`,
           );
         }
       },
       async notToHaveProperty(key: keyof ExecutionResult) {
+        const clonedRes = res.clone(); // allow the body to be re-read
         const body = await assertBodyAsExecutionResult(res);
         if (key in body) {
           throw new AuditError(
-            res,
+            clonedRes,
             `Response body execution result has a property "${key}"`,
           );
         }

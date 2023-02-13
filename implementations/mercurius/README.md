@@ -410,7 +410,11 @@ The server <i>SHOULD</i> support these, but is not required.
     "content-length": "31",
     "connection": "close"
   },
-  "body": null
+  "body": {
+    "data": {
+      "__typename": "Query"
+    }
+  }
 }
 </code></pre>
 </details>
@@ -427,7 +431,11 @@ The server <i>SHOULD</i> support these, but is not required.
     "content-length": "31",
     "connection": "close"
   },
-  "body": null
+  "body": {
+    "data": {
+      "__typename": "Query"
+    }
+  }
 }
 </code></pre>
 </details>
@@ -672,7 +680,14 @@ The server <i>SHOULD</i> support these, but is not required.
     "content-length": "52",
     "connection": "close"
   },
-  "body": null
+  "body": {
+    "errors": [
+      {
+        "message": "Unknown query"
+      }
+    ],
+    "data": null
+  }
 }
 </code></pre>
 </details>
@@ -689,7 +704,20 @@ The server <i>SHOULD</i> support these, but is not required.
     "content-length": "116",
     "connection": "close"
   },
-  "body": null
+  "body": {
+    "errors": [
+      {
+        "message": "Syntax Error: Expected Name, found <EOF>.",
+        "locations": [
+          {
+            "line": 1,
+            "column": 2
+          }
+        ]
+      }
+    ],
+    "data": null
+  }
 }
 </code></pre>
 </details>
@@ -706,7 +734,20 @@ The server <i>SHOULD</i> support these, but is not required.
     "content-length": "135",
     "connection": "close"
   },
-  "body": null
+  "body": {
+    "errors": [
+      {
+        "message": "Syntax Error: Invalid number, expected digit but got: \"f\".",
+        "locations": [
+          {
+            "line": 1,
+            "column": 4
+          }
+        ]
+      }
+    ],
+    "data": null
+  }
 }
 </code></pre>
 </details>
