@@ -14,7 +14,7 @@ export type HandlerOptions<Context extends OperationContext = undefined> =
   RawHandlerOptions<Http2ServerRequest, undefined, Context>;
 
 /**
- * Create a GraphQL over HTTP Protocol compliant request handler for
+ * Create a GraphQL over HTTP spec compliant request handler for
  * the Node environment http2 module.
  *
  *  ```shell

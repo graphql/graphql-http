@@ -32,7 +32,7 @@ ___
 
 ▸ **createHandler**<`Context`\>(`options`): `Middleware`
 
-Create a GraphQL over HTTP Protocol compliant request handler for
+Create a GraphQL over HTTP spec compliant request handler for
 the Koa framework.
 
 ```js

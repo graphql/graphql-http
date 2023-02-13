@@ -32,7 +32,7 @@ ___
 
 ▸ **createHandler**<`Context`\>(`options`): (`req`: `IncomingMessage`, `res`: `ServerResponse`) => `Promise`<`void`\>
 
-Create a GraphQL over HTTP Protocol compliant request handler for
+Create a GraphQL over HTTP spec compliant request handler for
 the Node environment http module.
 
 ```js

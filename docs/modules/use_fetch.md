@@ -36,7 +36,7 @@ ___
 
 ▸ **createHandler**<`Context`\>(`options`, `reqCtx?`): (`req`: `Request`) => `Promise`<`Response`\>
 
-Create a GraphQL over HTTP Protocol compliant request handler for
+Create a GraphQL over HTTP spec compliant request handler for
 a fetch environment like Deno, Bun, CloudFlare Workers, Lambdas, etc.
 
 You can use [@whatwg-node/server](https://github.com/ardatan/whatwg-node/tree/master/packages/server) to create a server adapter and

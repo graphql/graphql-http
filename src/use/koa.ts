@@ -15,7 +15,7 @@ export type HandlerOptions<Context extends OperationContext = undefined> =
   RawHandlerOptions<IncomingMessage, undefined, Context>;
 
 /**
- * Create a GraphQL over HTTP Protocol compliant request handler for
+ * Create a GraphQL over HTTP spec compliant request handler for
  * the Koa framework.
  *
  * ```js

@@ -36,7 +36,7 @@ ___
 
 ▸ **createHandler**<`Context`\>(`options`): (`req`: `IncomingMessage`, `res`: `ServerResponse`<`IncomingMessage`\>) => `Promise`<`void`\>
 
-Create a GraphQL over HTTP Protocol compliant request handler for
+Create a GraphQL over HTTP spec compliant request handler for
 the Node environment.
 
 ```js
@@ -72,7 +72,7 @@ Please use [http](use_http.md#createhandler) or [http2](use_http2.md#createhandl
 
 ▸ (`req`, `res`): `Promise`<`void`\>
 
-Create a GraphQL over HTTP Protocol compliant request handler for
+Create a GraphQL over HTTP spec compliant request handler for
 the Node environment http module.
 
 ```js

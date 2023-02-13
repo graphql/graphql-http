@@ -329,7 +329,7 @@ export type Handler<RequestRaw = unknown, RequestContext = unknown> = (
 ) => Promise<Response>;
 
 /**
- * Makes a GraphQL over HTTP Protocol compliant server handler. The handler can
+ * Makes a GraphQL over HTTP spec compliant server handler. The handler can
  * be used with your favourite server library.
  *
  * Beware that the handler resolves only after the whole operation completes.
@@ -653,7 +653,7 @@ export type AcceptableMediaType =
 
 /**
  * Inspects the request and detects the appropriate/acceptable Media-Type
- * looking at the `Accept` header while complying with the GraphQL over HTTP Protocol.
+ * looking at the `Accept` header while complying with the GraphQL over HTTP spec.
  *
  * @category Server
  */
@@ -699,7 +699,7 @@ export function getAcceptableMediaType(
  * If the first argument is an `ExecutionResult`, the operation will be treated as "successful".
  *
  * If the first argument is _any_ object without the `data` field, it will be treated as an error (as per the spec)
- * and the response will be constructed with the help of `acceptedMediaType` complying with the GraphQL over HTTP Protocol.
+ * and the response will be constructed with the help of `acceptedMediaType` complying with the GraphQL over HTTP spec.
  *
  * @category Server
  */
