@@ -3,6 +3,7 @@ import {
   serverAudits,
   AuditResult,
   renderAuditResultsToHTML,
+  AuditFail,
 } from '../audits';
 import htmlValidator from 'html-validator';
 
@@ -33,6 +34,24 @@ it('should not change globally unique audit ids', () => {
   // update snapshot if new audits are added or deleted,
   // but existing ones SHOULD NOT CHANGE semantically
   expect(audits).toMatchSnapshot();
+});
+
+it('should allow re-reading the response body in results', async () => {
+  const body = '{ "errors": [{ "message": "hello" }] }';
+  const audit = serverAudits({
+    url: 'http://localhost',
+    fetchFn: () => new Response(body),
+  }).find(
+    ({ id }) =>
+      // test itself is not important - we just need one that reads the body
+      id === '13EE',
+  );
+  if (!audit) {
+    throw new Error('Expected audit not found');
+  }
+  const result = await audit.fn();
+  expect(result.status).toBe('error');
+  await expect((result as AuditFail).response.text()).resolves.toBe(body);
 });
 
 describe('Render audit results to HTML', () => {
