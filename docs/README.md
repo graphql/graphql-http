@@ -15,5 +15,7 @@ graphql-http
 - [use/express](modules/use_express.md)
 - [use/fastify](modules/use_fastify.md)
 - [use/fetch](modules/use_fetch.md)
+- [use/http](modules/use_http.md)
+- [use/http2](modules/use_http2.md)
 - [use/koa](modules/use_koa.md)
 - [use/node](modules/use_node.md)

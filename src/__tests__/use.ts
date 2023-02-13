@@ -9,15 +9,15 @@ import { startDisposableServer } from './utils/tserver';
 import { serverAudits } from '../audits';
 import { schema } from './fixtures/simple';
 
-import { createHandler as createNodeHandler } from '../use/node';
+import { createHandler as createHttpHandler } from '../use/http';
 import { createHandler as createExpressHandler } from '../use/express';
 import { createHandler as createFastifyHandler } from '../use/fastify';
 import { createHandler as createFetchHandler } from '../use/fetch';
 import { createHandler as createKoaHandler } from '../use/koa';
 
-describe('node', () => {
+describe('http', () => {
   const [url, dispose] = startDisposableServer(
-    http.createServer(createNodeHandler({ schema })),
+    http.createServer(createHttpHandler({ schema })),
   );
   afterAll(dispose);
 
@@ -29,6 +29,10 @@ describe('node', () => {
       }
     });
   }
+});
+
+describe('http2', () => {
+  it.todo('should pass all server audits');
 });
 
 describe('express', () => {

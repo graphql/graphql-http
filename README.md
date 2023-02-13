@@ -55,7 +55,7 @@ const schema = new GraphQLSchema({
 
 ```js
 import http from 'http';
-import { createHandler } from 'graphql-http/lib/use/node';
+import { createHandler } from 'graphql-http/lib/use/http';
 import { schema } from './previous-step';
 
 // Create the GraphQL over HTTP Node request handler
@@ -86,7 +86,7 @@ $ openssl req -x509 -newkey rsa:2048 -nodes -sha256 -subj '/CN=localhost' \
 ```js
 import fs from 'fs';
 import http2 from 'http2';
-import { createHandler } from 'graphql-http/lib/use/node';
+import { createHandler } from 'graphql-http/lib/use/http2';
 import { schema } from './previous-step';
 
 // Create the GraphQL over HTTP Node request handler

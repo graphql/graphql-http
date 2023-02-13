@@ -16,9 +16,13 @@
 
 ### HandlerOptions
 
-Ƭ **HandlerOptions**<`Context`\>: [`HandlerOptions`](../interfaces/handler.HandlerOptions.md)<`IncomingMessage`, `undefined`, `Context`\>
+Ƭ **HandlerOptions**<`Context`\>: [`HandlerOptions`](use_http.md#handleroptions)<`Context`\>
 
 Handler options when using the node adapter.
+
+**`Deprecated`**
+
+Please use [http](use_http.md#handleroptions) or [http2](use_http2.md#handleroptions) adapters instead.
 
 #### Type parameters
 
@@ -30,7 +34,7 @@ ___
 
 ### createHandler
 
-▸ **createHandler**<`Context`\>(`options`): `RequestListener`
+▸ **createHandler**<`Context`\>(`options`): (`req`: `IncomingMessage`, `res`: `ServerResponse`<`IncomingMessage`\>) => `Promise`<`void`\>
 
 Create a GraphQL over HTTP Protocol compliant request handler for
 the Node environment.
@@ -46,6 +50,10 @@ server.listen(4000);
 console.log('Listening to port 4000');
 ```
 
+**`Deprecated`**
+
+Please use [http](use_http.md#createhandler) or [http2](use_http2.md#createhandler) adapters instead.
+
 #### Type parameters
 
 | Name | Type |
@@ -60,4 +68,35 @@ console.log('Listening to port 4000');
 
 #### Returns
 
-`RequestListener`
+`fn`
+
+▸ (`req`, `res`): `Promise`<`void`\>
+
+Create a GraphQL over HTTP Protocol compliant request handler for
+the Node environment http module.
+
+```js
+import http from 'http';
+import { createHandler } from 'graphql-http/lib/use/http';
+import { schema } from './my-graphql-step';
+
+const server = http.createServer(createHandler({ schema }));
+
+server.listen(4000);
+console.log('Listening to port 4000');
+```
+
+**`Category`**
+
+Server/http
+
+##### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `req` | `IncomingMessage` |
+| `res` | `ServerResponse`<`IncomingMessage`\> |
+
+##### Returns
+
+`Promise`<`void`\>

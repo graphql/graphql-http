@@ -45,6 +45,16 @@
       "require": "./lib/use/node.js",
       "import": "./lib/use/node.mjs"
     },
+    "./lib/use/http": {
+      "types": "./lib/use/http.d.ts",
+      "require": "./lib/use/http.js",
+      "import": "./lib/use/http.mjs"
+    },
+    "./lib/use/http2": {
+      "types": "./lib/use/http2.d.ts",
+      "require": "./lib/use/http2.js",
+      "import": "./lib/use/http2.mjs"
+    },
     "./lib/use/express": {
       "types": "./lib/use/express.d.ts",
       "require": "./lib/use/express.js",
