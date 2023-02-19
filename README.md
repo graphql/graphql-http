@@ -27,6 +27,7 @@ yarn add graphql-http
 #### Create a GraphQL schema
 
 ```js
+// filename: schema.js
 import { GraphQLSchema, GraphQLObjectType, GraphQLString } from 'graphql';
 
 /**
@@ -54,9 +55,10 @@ const schema = new GraphQLSchema({
 ##### With [`http`](https://nodejs.org/api/http.html)
 
 ```js
+// filename: server.js
 import http from 'http';
 import { createHandler } from 'graphql-http/lib/use/http';
-import { schema } from './previous-step';
+import { schema } from './schema.js';
 
 // Create the GraphQL over HTTP Node request handler
 const handler = createHandler({ schema });
@@ -71,7 +73,7 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(4000);
-console.log('Listening to port 4000');
+console.log('Listening to port 4000: http://localhost:4000/graphql/?query={hello}');
 ```
 
 ##### With [`http2`](https://nodejs.org/api/http2.html)
