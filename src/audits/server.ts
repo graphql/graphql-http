@@ -919,6 +919,24 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
         await ressert(res).bodyAsExecutionResult.data.toBe(undefined);
       },
     ),
+    audit(
+      '86EE',
+      'SHOULD use a status code of 400 on variable coercion failure when accepting application/graphql-response+json',
+      async () => {
+        const res = await fetchFn(await getUrl(opts.url), {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json',
+            accept: 'application/graphql-response+json',
+          },
+          body: JSON.stringify({
+            query: 'query CoerceFailure($id: ID!){ __typename }',
+            variables: { id: null },
+          }),
+        });
+        ressert(res).status.toBe(400);
+      },
+    )
     // TODO: how to fail and have the data entry?
     // audit('EE52', 'MUST use 2xx status code if response contains the data entry and it is not null when accepting application/graphql-response+json'),
     // TODO: how to make an unauthorized request?

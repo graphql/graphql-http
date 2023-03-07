@@ -314,5 +314,9 @@ exports[`should not change globally unique audit ids 1`] = `
     "id": "5E5B",
     "name": "SHOULD not contain the data entry on document validation failure when accepting application/graphql-response+json",
   },
+  {
+    "id": "86EE",
+    "name": "SHOULD use a status code of 400 on variable coercion failure when accepting application/graphql-response+json",
+  },
 ]
 `;
