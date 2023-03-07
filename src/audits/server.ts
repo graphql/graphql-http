@@ -936,7 +936,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
         });
         ressert(res).status.toBe(400);
       },
-    )
+    ),
     // TODO: how to fail and have the data entry?
     // audit('EE52', 'MUST use 2xx status code if response contains the data entry and it is not null when accepting application/graphql-response+json'),
     // TODO: how to make an unauthorized request?
