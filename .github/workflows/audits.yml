@@ -17,12 +17,12 @@ jobs:
     strategy:
       matrix:
         workspace:
-          - express-graphql
           - apollo-server
-          - mercurius
-          - graphql-yoga
-          - graphql-helix
+          - express-graphql
           - graph-client
+          - graphql-helix
+          - graphql-yoga
+          - mercurius
     env:
       PORT: 4000
     steps:
@@ -63,10 +63,10 @@ jobs:
     strategy:
       matrix:
         workspace:
-          - hotchocolate
-          - postgraphile
-          - pioneer
           - deno
+          - hotchocolate
+          - pioneer
+          - postgraphile
     env:
       PORT: 4000
     steps:
@@ -92,7 +92,7 @@ jobs:
             *.cache-from=type=gha
             *.cache-to=type=gha,mode=max
       - name: Start
-        run: yarn workspace ${{ matrix.workspace }} start -d --wait
+        run: yarn workspace ${{ matrix.workspace }} start --detach --wait
       - name: Audit
         run: node scripts/audit-implementation.mjs implementations/${{ matrix.workspace }}
       - name: Summary
