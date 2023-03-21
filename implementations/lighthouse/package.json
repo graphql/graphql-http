@@ -1,0 +1,9 @@
+{
+  "private": true,
+  "name": "lighthouse",
+  "url": "https://lighthouse-php.com",
+  "packageManager": "yarn@3.2.3",
+  "scripts": {
+    "start": "docker compose up"
+  }
+}

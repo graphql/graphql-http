@@ -9252,6 +9252,12 @@ __metadata:
   languageName: node
   linkType: hard
 
+"lighthouse@workspace:implementations/lighthouse":
+  version: 0.0.0-use.local
+  resolution: "lighthouse@workspace:implementations/lighthouse"
+  languageName: unknown
+  linkType: soft
+
 "lines-and-columns@npm:^1.1.6":
   version: 1.2.4
   resolution: "lines-and-columns@npm:1.2.4"
