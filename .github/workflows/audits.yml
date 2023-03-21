@@ -63,11 +63,11 @@ jobs:
     strategy:
       matrix:
         workspace:
-          - deno
           - hotchocolate
-          - lighthouse
-          - pioneer
           - postgraphile
+          - pioneer
+          - deno
+          - lighthouse
     env:
       PORT: 4000
     steps:
@@ -93,7 +93,7 @@ jobs:
             *.cache-from=type=gha
             *.cache-to=type=gha,mode=max
       - name: Start
-        run: yarn workspace ${{ matrix.workspace }} start --detach --wait
+        run: yarn workspace ${{ matrix.workspace }} start -d --wait
       - name: Audit
         run: node scripts/audit-implementation.mjs implementations/${{ matrix.workspace }}
       - name: Summary
