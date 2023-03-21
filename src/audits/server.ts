@@ -5,7 +5,7 @@
  */
 
 import { Audit, AuditResult } from './common';
-import { ressert, audit, extendedTypeof, AuditError } from './utils';
+import { ressert, audit, AuditError } from './utils';
 
 /**
  * Options for server audits required to check GraphQL over HTTP spec conformance.
