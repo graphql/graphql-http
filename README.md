@@ -740,7 +740,7 @@ for (const audit of serverAudits({
 <summary><a href="#audit-deno">🔗</a> Audit for servers usage in <a href="https://deno.land">Deno</a> environment</summary>
 
 ```ts
-import { serverAudits } from 'https://esm.sh/graphql-http';
+import { serverAudits } from 'npm:graphql-http';
 
 for (const audit of serverAudits({
   url: 'http://localhost:4000/graphql',
@@ -758,6 +758,8 @@ for (const audit of serverAudits({
   });
 }
 ```
+
+Put the above contents in a file and run it with `deno test --allow-net`.
 
 </details>
 
