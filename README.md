@@ -746,8 +746,8 @@ Having said this, graphql-http is mostly aimed for library authors and simple se
 
 If you want a feature-full server with bleeding edge technologies, you're recommended to use one of the following.
 
-<!-- prettier-ignore-start -->
 <!-- <ServersTable> -->
+<!-- prettier-ignore-start -->
 | Name | Audit |
 |------|-------|
 | [apollo-server](https://www.apollographql.com/docs/apollo-server) | [✅ Compliant](/implementations/apollo-server/README.md) |
@@ -756,11 +756,11 @@ If you want a feature-full server with bleeding edge technologies, you're recomm
 | [graphql-helix](https://www.graphql-helix.com) | [✅ Compliant](/implementations/graphql-helix/README.md) |
 | [graphql-yoga](https://www.the-guild.dev/graphql/yoga-server) | [✅ Compliant](/implementations/graphql-yoga/README.md) |
 | [hotchocolate](https://chillicream.com/docs/hotchocolate) | [✅ Compliant](/implementations/hotchocolate/README.md) |
-| [lighthouse](https://lighthouse-php.com) |  [❌ Not compliant](/implementations/lighthouse/README.md) |
 | [pioneer](https://pioneer.dexclaimation.com) | [✅ Compliant](/implementations/pioneer/README.md) |
 | [postgraphile](https://www.graphile.org/postgraphile) | [✅ Compliant](/implementations/postgraphile/README.md) |
-<!-- </ServersTable> -->
 <!-- prettier-ignore-end -->
+
+<!-- </ServersTable> -->
 
 ## [Documentation](docs/)
 
