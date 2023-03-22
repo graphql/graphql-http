@@ -9,12 +9,8 @@ RUN apt-get update && \
         git \
         libzip-dev \
         zip \
-        libicu-dev \
     && docker-php-ext-install \
         zip \
-        mysqli \
-        pdo_mysql \
-        intl \
     && rm -rf /var/lib/apt/lists/*
 RUN composer create-project laravel/laravel /app
 RUN composer require nuwave/lighthouse:dev-master
