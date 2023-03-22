@@ -17,7 +17,7 @@ If you have issues, please email [operations@graphql.org](mailto:operations@grap
 
 Every implementation is expected to contain a `package.json` file with at least the following fields:
 
-````json
+```json
 {
   "private": true, // prevents warnings
   "name": "implementation-name", // should be equivalent to the directory name
@@ -26,12 +26,19 @@ Every implementation is expected to contain a `package.json` file with at least 
     "start": "node ." | "docker-compose up -d" // depending if the server can be run through node or Docker
   }
 }
-````
+```
 
 Depending on how your server is run, add it to the appropriate section of [.github/workflows/audits.yml](.github/workflows/audits.yml):
+
 - `node .`: `jobs.javascript.strategy.matrix.workspace`
 - `docker-compose up -d`: `jobs.docker.strategy.matrix.workspace`
 
 The script run in `start` is expected to bring up an HTTP server that listens to the port defined in the environment variable `$PORT`.
 
 After adding your directory and `package.json`, run `yarn install` to include the workspace.
+
+## Code formatting
+
+Run the following script to ensure the automatic code formatting is applied:
+
+    yarn run lint:fix
