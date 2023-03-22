@@ -736,6 +736,36 @@ for (const audit of serverAudits({
 
 </details>
 
+<details id="audit-deno">
+<summary><a href="#audit-deno">🔗</a> Audit for servers usage in <a href="https://deno.land">Deno</a> environment</summary>
+
+```ts
+import { serverAudits } from 'npm:graphql-http';
+
+for (const audit of serverAudits({
+  url: 'http://localhost:4000/graphql',
+  fetchFn: fetch,
+})) {
+  Deno.test(audit.name, async () => {
+    const result = await audit.fn();
+    if (result.status === 'error') {
+      throw result.reason;
+    }
+    if (result.status === 'warn') {
+      console.warn(result.reason); // or throw if you want full compliance (warnings are not requirements)
+    }
+    // Avoid leaking resources
+    if ('body' in result && result.body instanceof ReadableStream) {
+      await result.body.cancel();
+    }
+  });
+}
+```
+
+Put the above contents in a file and run it with `deno test --allow-net`.
+
+</details>
+
 ## Only [GraphQL over HTTP](https://graphql.github.io/graphql-over-http/)
 
 This is the official [GraphQL over HTTP spec](https://graphql.github.io/graphql-over-http/) reference implementation and as such follows the specification strictly without any additional features (like file uploads, @stream/@defer directives and subscriptions).
