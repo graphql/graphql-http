@@ -774,7 +774,9 @@ Having said this, graphql-http is mostly aimed for library authors and simple se
 
 ## [Servers](/implementations)
 
-If you want a feature-full server with bleeding edge technologies, you're recommended to use one of the following.
+If you want a feature-full server with bleeding edge technologies, you're recommended to use one of the following servers.
+
+Their compliance with the [GraphQL over HTTP spec](https://graphql.github.io/graphql-over-http) is checked automatically and updated regularly.
 
 <!-- <ServersTable> -->
 <!-- prettier-ignore-start -->
@@ -798,16 +800,11 @@ Check the [docs folder](docs/) out for [TypeDoc](https://typedoc.org) generated 
 
 ## [Audits](implementations/)
 
-Inspect audits of other implementations in the [implementations folder](implementations/). Adding your implementation is very welcome!
+Inspect audits of other implementations in the [implementations folder](implementations).
+Adding your implementation is very welcome, [see how](CONTRIBUTING.md#adding-implementations)!
 
 ## Want to help?
 
-File a bug, contribute with code, or improve documentation? Read up on our guidelines below and drive development with `yarn test --watch` away!
-
-This repository is managed by EasyCLA. Project participants must sign the free [GraphQL Specification Membership agreement](https://preview-spec-membership.graphql.org) before making a contribution. You only need to do this one time, and it can be signed by [individual contributors](http://individual-spec-membership.graphql.org/) or their [employers](http://corporate-spec-membership.graphql.org/).
-
-To initiate the signature process please open a PR against this repo. The EasyCLA bot will block the merge if we still need a membership agreement from you.
-
-You can find [detailed information here](https://github.com/graphql/graphql-wg/tree/main/membership). If you have issues, please email [operations@graphql.org](mailto:operations@graphql.org).
+File a bug, contribute with code, or improve documentation? [Read more in CONTRIBUTING.md](CONTRIBUTING.md).
 
 If your company benefits from GraphQL and you would like to provide essential financial support for the systems and people that power our community, please also consider membership in the [GraphQL Foundation](https://foundation.graphql.org/join).
