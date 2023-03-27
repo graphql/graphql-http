@@ -775,6 +775,7 @@ Having said this, graphql-http is mostly aimed for library authors and simple se
 ## [Servers](/implementations)
 
 If you want a feature-full server with bleeding edge technologies, you're recommended to use one of the following servers.
+
 Their compliance with the [GraphQL over HTTP spec](https://graphql.github.io/graphql-over-http) is checked automatically and updated regularly.
 
 <!-- <ServersTable> -->
