@@ -29,10 +29,34 @@ describe('http', () => {
       }
     });
   }
+
+  it('should allow manipulating the response from the request context', async () => {
+    const [url, dispose] = startDisposableServer(
+      http.createServer(
+        createHttpHandler({
+          schema,
+          context(req) {
+            req.context.res.setHeader('x-test', 'test-x');
+            return undefined;
+          },
+        }),
+      ),
+    );
+
+    const res = await fetch(url + '?query={hello}');
+
+    await expect(res.text()).resolves.toMatchInlineSnapshot(
+      `"{"data":{"hello":"world"}}"`,
+    );
+    expect(res.headers.get('x-test')).toBe('test-x');
+
+    await dispose();
+  });
 });
 
 describe('http2', () => {
   it.todo('should pass all server audits');
+  it.todo('should allow manipulating the response from the request context');
 });
 
 describe('express', () => {
