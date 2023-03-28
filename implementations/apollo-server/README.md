@@ -889,11 +889,11 @@ The server <i>SHOULD</i> support these, but is not required.
     "date": "<timestamp>",
     "content-type": "text/html; charset=utf-8",
     "content-security-policy": "default-src 'none'",
-    "content-length": "1108",
+    "content-length": "1164",
     "connection": "close",
     "access-control-allow-origin": "*"
   },
-  "body": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</title>\n</head>\n<body>\n<pre>SyntaxError: Unexpected end of JSON input<br> &nbsp; &nbsp;at JSON.parse (&lt;anonymous&gt;)<br> &nbsp; &nbsp;at parse (/home/runner/work/graphql-http/graphql-http/node_modules/body-parser/lib/types/json.js:89:19)<br> &nbsp; &nbsp;at /home/runner/work/graphql-http/graphql-http/node_modules/body-parser/lib/read.js:128:18<br> &nbsp; &nbsp;at AsyncResource.runInAsyncScope (node:async_hooks:204:9)<br> &nbsp; &nbsp;at invokeCallback (/home/runner/work/graphql-http/graphql-http/node_modules/raw-body/index.js:231:16)<br> &nbsp; &nbsp;at done (/home/runner/work/graphql-http/graphql-http/node_modules/raw-body/index.js:220:7)<br> &nbsp; &nbsp;at IncomingMessage.onEnd (/home/runner/work/graphql-http/graphql-http/node_modules/raw-body/index.js:280:7)<br> &nbsp; &nbsp;at IncomingMessage.emit (node:events:513:28)<br> &nbsp; &nbsp;at endReadableNT (node:internal/streams/readable:1359:12)<br> &nbsp; &nbsp;at process.processTicksAndRejections (node:internal/process/task_queues:82:21)</pre>\n</body>\n</html>\n"
+  "body": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</title>\n</head>\n<body>\n<pre>SyntaxError: Unexpected end of JSON input<br> &nbsp; &nbsp;at JSON.parse (&lt;anonymous&gt;)<br> &nbsp; &nbsp;at parse (/home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/node_modules/body-parser/lib/types/json.js:92:19)<br> &nbsp; &nbsp;at /home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/node_modules/body-parser/lib/read.js:128:18<br> &nbsp; &nbsp;at AsyncResource.runInAsyncScope (node:async_hooks:204:9)<br> &nbsp; &nbsp;at invokeCallback (/home/runner/work/graphql-http/graphql-http/node_modules/raw-body/index.js:238:16)<br> &nbsp; &nbsp;at done (/home/runner/work/graphql-http/graphql-http/node_modules/raw-body/index.js:227:7)<br> &nbsp; &nbsp;at IncomingMessage.onEnd (/home/runner/work/graphql-http/graphql-http/node_modules/raw-body/index.js:287:7)<br> &nbsp; &nbsp;at IncomingMessage.emit (node:events:513:28)<br> &nbsp; &nbsp;at endReadableNT (node:internal/streams/readable:1359:12)<br> &nbsp; &nbsp;at process.processTicksAndRejections (node:internal/process/task_queues:82:21)</pre>\n</body>\n</html>\n"
 }
 </code></pre>
 </details>
