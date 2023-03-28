@@ -1,4 +1,4 @@
-import type { Request, Handler } from 'express';
+import type { Request, Response, Handler } from 'express';
 import {
   createHandler as createRawHandler,
   HandlerOptions as RawHandlerOptions,
@@ -6,12 +6,21 @@ import {
 } from '../handler';
 
 /**
+ * The context in the request for the handler.
+ *
+ * @category Server/express
+ */
+export interface RequestContext {
+  res: Response;
+}
+
+/**
  * Handler options when using the express adapter.
  *
  * @category Server/express
  */
 export type HandlerOptions<Context extends OperationContext = undefined> =
-  RawHandlerOptions<Request, undefined, Context>;
+  RawHandlerOptions<Request, RequestContext, Context>;
 
 /**
  * Create a GraphQL over HTTP spec compliant request handler for
@@ -54,7 +63,7 @@ export function createHandler<Context extends OperationContext = undefined>(
           });
         },
         raw: req,
-        context: undefined,
+        context: { res },
       });
       res.writeHead(init.status, init.statusText, init.headers).end(body);
     } catch (err) {

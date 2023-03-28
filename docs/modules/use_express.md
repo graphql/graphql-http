@@ -4,6 +4,10 @@
 
 ## Table of contents
 
+### Interfaces
+
+- [RequestContext](../interfaces/use_express.RequestContext.md)
+
 ### Type Aliases
 
 - [HandlerOptions](use_express.md#handleroptions)
@@ -16,7 +20,7 @@
 
 ### HandlerOptions
 
-Ƭ **HandlerOptions**<`Context`\>: [`HandlerOptions`](../interfaces/handler.HandlerOptions.md)<`Request`, `undefined`, `Context`\>
+Ƭ **HandlerOptions**<`Context`\>: [`HandlerOptions`](../interfaces/handler.HandlerOptions.md)<`Request`, [`RequestContext`](../interfaces/use_express.RequestContext.md), `Context`\>
 
 Handler options when using the express adapter.
 

@@ -4,6 +4,10 @@
 
 ## Table of contents
 
+### Interfaces
+
+- [RequestContext](../interfaces/use_fastify.RequestContext.md)
+
 ### Type Aliases
 
 - [HandlerOptions](use_fastify.md#handleroptions)
@@ -16,7 +20,7 @@
 
 ### HandlerOptions
 
-Ƭ **HandlerOptions**<`Context`\>: [`HandlerOptions`](../interfaces/handler.HandlerOptions.md)<`FastifyRequest`, `undefined`, `Context`\>
+Ƭ **HandlerOptions**<`Context`\>: [`HandlerOptions`](../interfaces/handler.HandlerOptions.md)<`FastifyRequest`, [`RequestContext`](../interfaces/use_fastify.RequestContext.md), `Context`\>
 
 Handler options when using the fastify adapter.
 

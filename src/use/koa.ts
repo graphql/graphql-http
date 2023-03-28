@@ -1,4 +1,4 @@
-import type { Middleware } from 'koa';
+import type { Middleware, Response } from 'koa';
 import type { IncomingMessage } from 'http';
 import {
   createHandler as createRawHandler,
@@ -7,12 +7,21 @@ import {
 } from '../handler';
 
 /**
+ * The context in the request for the handler.
+ *
+ * @category Server/koa
+ */
+export interface RequestContext {
+  res: Response;
+}
+
+/**
  * Handler options when using the koa adapter.
  *
  * @category Server/koa
  */
 export type HandlerOptions<Context extends OperationContext = undefined> =
-  RawHandlerOptions<IncomingMessage, undefined, Context>;
+  RawHandlerOptions<IncomingMessage, RequestContext, Context>;
 
 /**
  * Create a GraphQL over HTTP spec compliant request handler for
@@ -56,7 +65,7 @@ export function createHandler<Context extends OperationContext = undefined>(
           });
         },
         raw: ctx.req,
-        context: undefined,
+        context: { res: ctx.response },
       });
       ctx.body = body;
       ctx.response.status = init.status;
