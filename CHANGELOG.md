@@ -1,3 +1,11 @@
+# [1.17.0](https://github.com/graphql/graphql-http/compare/v1.16.0...v1.17.0) (2023-03-28)
+
+
+### Features
+
+* **use/express,use/fastify,use/koa:** Request context with the response ([665175e](https://github.com/graphql/graphql-http/commit/665175eb9cd3dcad6b80df0ace9f168de0cfc42d)), closes [#66](https://github.com/graphql/graphql-http/issues/66)
+* **use/http,use/http2:** Request context with the response ([e2cc0cd](https://github.com/graphql/graphql-http/commit/e2cc0cd510383c1626ca2f6fe867a497cb682e52)), closes [#66](https://github.com/graphql/graphql-http/issues/66)
+
 # [1.16.0](https://github.com/graphql/graphql-http/compare/v1.15.0...v1.16.0) (2023-02-13)
 
 
