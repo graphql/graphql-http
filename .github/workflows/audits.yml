@@ -171,9 +171,6 @@ jobs:
       - name: Diff
         run: git diff --minimal
       - name: Commit
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          [ -z "$(git status --porcelain)" ] \
-            && echo "::notice::Nothing new to report." \
-            || (git add . && git commit -m "docs(implementations): audit report [skip ci]" && git push)
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: 'docs(implementations): audit report [skip ci]'
