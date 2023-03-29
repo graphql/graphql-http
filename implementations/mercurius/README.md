@@ -4,9 +4,9 @@
 
 <ul>
 <li><b>80</b> audits in total</li>
-<li><span style="font-family: monospace">✅</span> <b>50</b> pass</li>
+<li><span style="font-family: monospace">✅</span> <b>49</b> pass</li>
 <li><span style="font-family: monospace">⚠️</span> <b>29</b> warnings (optional)</li>
-<li><span style="font-family: monospace">❌</span> <b>1</b> errors (required)</li>
+<li><span style="font-family: monospace">❌</span> <b>2</b> errors (required)</li>
 </ul>
 
 <h2>Passing</h2>
@@ -15,7 +15,6 @@
 <li><code>47DE</code> SHOULD accept */* and use application/json for the content-type</li>
 <li><code>80D8</code> SHOULD assume application/json content-type when accept is missing</li>
 <li><code>82A3</code> MUST use utf-8 encoding when responding</li>
-<li><code>BF61</code> MUST accept utf-8 encoded request</li>
 <li><code>78D5</code> MUST assume utf-8 in request if encoding is unspecified</li>
 <li><code>2C94</code> MUST accept POST requests</li>
 <li><code>5A70</code> MAY accept application/x-www-form-urlencoded formatted GET requests</li>
@@ -797,6 +796,36 @@ The server <i>SHOULD</i> support these, but is not required.
 <h2>Errors</h2>
 The server <b>MUST</b> support these.
 <ol>
+<li><code>BF61</code> MUST accept utf-8 encoded request
+<details>
+<summary>Response status code is not 200</summary>
+<pre><code class="lang-json">{
+  "statusText": "Bad Request",
+  "status": 400,
+  "headers": {
+    "date": "<timestamp>",
+    "content-type": "application/json; charset=utf-8",
+    "content-length": "117",
+    "connection": "close"
+  },
+  "body": {
+    "errors": [
+      {
+        "message": "Syntax Error: Expected Name, found <EOF>.",
+        "locations": [
+          {
+            "line": 1,
+            "column": 40
+          }
+        ]
+      }
+    ],
+    "data": null
+  }
+}
+</code></pre>
+</details>
+</li>
 <li><code>0222</code> MUST allow null {extensions} parameter when accepting application/json
 <details>
 <summary>Response status code is not 200</summary>

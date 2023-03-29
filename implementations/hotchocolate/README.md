@@ -4,8 +4,9 @@
 
 <ul>
 <li><b>80</b> audits in total</li>
-<li><span style="font-family: monospace">✅</span> <b>78</b> pass</li>
+<li><span style="font-family: monospace">✅</span> <b>77</b> pass</li>
 <li><span style="font-family: monospace">⚠️</span> <b>2</b> warnings (optional)</li>
+<li><span style="font-family: monospace">❌</span> <b>1</b> errors (required)</li>
 </ul>
 
 <h2>Passing</h2>
@@ -13,7 +14,6 @@
 <li><code>22EB</code> SHOULD accept application/graphql-response+json and match the content-type</li>
 <li><code>4655</code> MUST accept application/json and match the content-type</li>
 <li><code>82A3</code> MUST use utf-8 encoding when responding</li>
-<li><code>BF61</code> MUST accept utf-8 encoded request</li>
 <li><code>78D5</code> MUST assume utf-8 in request if encoding is unspecified</li>
 <li><code>2C94</code> MUST accept POST requests</li>
 <li><code>5A70</code> MAY accept application/x-www-form-urlencoded formatted GET requests</li>
@@ -139,3 +139,40 @@ The server <i>SHOULD</i> support these, but is not required.
 </li>
 </ol>
 
+<h2>Errors</h2>
+The server <b>MUST</b> support these.
+<ol>
+<li><code>BF61</code> MUST accept utf-8 encoded request
+<details>
+<summary>Response status code is not 200</summary>
+<pre><code class="lang-json">{
+  "statusText": "Bad Request",
+  "status": 400,
+  "headers": {
+    "transfer-encoding": "chunked",
+    "server": "Kestrel",
+    "date": "<timestamp>",
+    "content-type": "application/graphql-response+json;charset=utf-8",
+    "connection": "close"
+  },
+  "body": {
+    "errors": [
+      {
+        "message": "Expected a `Name`-token, but found a `EndOfFile`-token.",
+        "locations": [
+          {
+            "line": 1,
+            "column": 44
+          }
+        ],
+        "extensions": {
+          "code": "HC0011"
+        }
+      }
+    ]
+  }
+}
+</code></pre>
+</details>
+</li>
+</ol>
