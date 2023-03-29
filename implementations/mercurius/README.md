@@ -3,8 +3,8 @@
 <h1>GraphQL over HTTP audit report</h1>
 
 <ul>
-<li><b>79</b> audits in total</li>
-<li><span style="font-family: monospace">✅</span> <b>49</b> pass</li>
+<li><b>80</b> audits in total</li>
+<li><span style="font-family: monospace">✅</span> <b>50</b> pass</li>
 <li><span style="font-family: monospace">⚠️</span> <b>29</b> warnings (optional)</li>
 <li><span style="font-family: monospace">❌</span> <b>1</b> errors (required)</li>
 </ul>
@@ -52,6 +52,7 @@
 <li><code>9043</code> SHOULD use 400 status code on array {extensions} parameter when accepting application/graphql-response+json</li>
 <li><code>428F</code> SHOULD allow map {extensions} parameter when accepting application/graphql-response+json</li>
 <li><code>1B7A</code> MUST allow map {extensions} parameter when accepting application/json</li>
+<li><code>7B9B</code> SHOULD use a status code of 200 on variable coercion failure when accepting application/json</li>
 <li><code>60AA</code> SHOULD use 4xx or 5xx status codes on JSON parsing failure when accepting application/graphql-response+json</li>
 <li><code>2163</code> SHOULD use 400 status code on JSON parsing failure when accepting application/graphql-response+json</li>
 <li><code>3E36</code> SHOULD use 4xx or 5xx status codes if parameters are invalid when accepting application/graphql-response+json</li>

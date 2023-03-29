@@ -3,9 +3,9 @@
 <h1>GraphQL over HTTP audit report</h1>
 
 <ul>
-<li><b>79</b> audits in total</li>
+<li><b>80</b> audits in total</li>
 <li><span style="font-family: monospace">✅</span> <b>50</b> pass</li>
-<li><span style="font-family: monospace">⚠️</span> <b>29</b> warnings (optional)</li>
+<li><span style="font-family: monospace">⚠️</span> <b>30</b> warnings (optional)</li>
 </ul>
 
 <h2>Passing</h2>
@@ -722,6 +722,45 @@ The server <i>SHOULD</i> support these, but is not required.
           {
             "line": 1,
             "column": 4
+          }
+        ]
+      }
+    ]
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>7B9B</code> SHOULD use a status code of 200 on variable coercion failure when accepting application/json
+<details>
+<summary>Response status code is not 200</summary>
+<pre><code class="lang-json">{
+  "statusText": "Bad Request",
+  "status": 400,
+  "headers": {
+    "x-powered-by": "Express",
+    "date": "<timestamp>",
+    "content-type": "application/json",
+    "content-length": "198",
+    "connection": "close"
+  },
+  "body": {
+    "errors": [
+      {
+        "message": "Unknown type \"ID\".",
+        "locations": [
+          {
+            "line": 1,
+            "column": 26
+          }
+        ]
+      },
+      {
+        "message": "Variable \"$id\" is never used in operation \"CoerceFailure\".",
+        "locations": [
+          {
+            "line": 1,
+            "column": 21
           }
         ]
       }

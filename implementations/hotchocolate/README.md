@@ -3,8 +3,8 @@
 <h1>GraphQL over HTTP audit report</h1>
 
 <ul>
-<li><b>79</b> audits in total</li>
-<li><span style="font-family: monospace">✅</span> <b>77</b> pass</li>
+<li><b>80</b> audits in total</li>
+<li><span style="font-family: monospace">✅</span> <b>78</b> pass</li>
 <li><span style="font-family: monospace">⚠️</span> <b>2</b> warnings (optional)</li>
 </ul>
 
@@ -75,6 +75,7 @@
 <li><code>F5AF</code> SHOULD use 200 status code if parameters are invalid when accepting application/json</li>
 <li><code>572B</code> SHOULD use 200 status code on document parsing failure when accepting application/json</li>
 <li><code>FDE2</code> SHOULD use 200 status code on document validation failure when accepting application/json</li>
+<li><code>7B9B</code> SHOULD use a status code of 200 on variable coercion failure when accepting application/json</li>
 <li><code>60AA</code> SHOULD use 4xx or 5xx status codes on JSON parsing failure when accepting application/graphql-response+json</li>
 <li><code>2163</code> SHOULD use 400 status code on JSON parsing failure when accepting application/graphql-response+json</li>
 <li><code>3E36</code> SHOULD use 4xx or 5xx status codes if parameters are invalid when accepting application/graphql-response+json</li>
