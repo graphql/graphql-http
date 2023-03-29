@@ -126,7 +126,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
           'content-type': 'application/json; charset=utf-8',
         },
         body: JSON.stringify({
-          query: '{ __type(name: "Run🏃Swim🏊") { name } ',
+          query: '{ __type(name: "Run🏃Swim🏊") { name } }',
         }),
       });
 
