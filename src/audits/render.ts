@@ -10,6 +10,7 @@ export async function renderAuditResultsToHTML(results: AuditResult[]) {
   const grouped = {
     total: 0,
     ok: [] as AuditOk[],
+    notice: [] as AuditFail[],
     warn: [] as AuditFail[],
     error: [] as AuditFail[],
   };
@@ -34,6 +35,9 @@ export async function renderAuditResultsToHTML(results: AuditResult[]) {
   if (grouped.ok.length) {
     report += `<li><span style="font-family: monospace">✅</span> <b>${grouped.ok.length}</b> pass</li>\n`;
   }
+  if (grouped.notice.length) {
+    report += `<li><span style="font-family: monospace">💡</span> <b>${grouped.notice.length}</b> notices (suggestions)</li>\n`;
+  }
   if (grouped.warn.length) {
     // TODO: warning sign is rendered as "⚠️" in markdown instead of the emoji
     report += `<li><span style="font-family: monospace">⚠️</span> <b>${grouped.warn.length}</b> warnings (optional)</li>\n`;
@@ -49,6 +53,18 @@ export async function renderAuditResultsToHTML(results: AuditResult[]) {
     report += '<ol>\n';
     for (const [, result] of grouped.ok.entries()) {
       report += `<li><code>${result.id}</code> ${result.name}</li>\n`;
+    }
+    report += '</ol>\n';
+    report += '\n';
+  }
+
+  if (grouped.notice.length) {
+    report += `<h2>Notices</h2>\n`;
+    report +=
+      'The server <i>MAY</i> support these, but are truly optional. These are suggestions following recommended conventions.\n';
+    report += '<ol>\n';
+    for (const [, result] of grouped.notice.entries()) {
+      report += await printAuditFail(result);
     }
     report += '</ol>\n';
     report += '\n';

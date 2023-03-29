@@ -9,7 +9,10 @@
  *
  * @category Audits
  */
-export type AuditRequirement = 'MUST' | 'SHOULD' | 'MAY';
+export type AuditRequirement =
+  | 'MUST' // error
+  | 'SHOULD' // warning
+  | 'MAY'; // notice (suggestion)
 
 /**
  * Audit name starting with the audit requirement level.
@@ -67,7 +70,7 @@ export interface AuditFail {
    */
   id: string;
   name: AuditName;
-  status: 'warn' | 'error';
+  status: 'notice' | 'warn' | 'error';
   reason: string;
   response: Response;
 }
