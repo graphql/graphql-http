@@ -3,9 +3,9 @@
 <h1>GraphQL over HTTP audit report</h1>
 
 <ul>
-<li><b>78</b> audits in total</li>
+<li><b>79</b> audits in total</li>
 <li><span style="font-family: monospace">✅</span> <b>75</b> pass</li>
-<li><span style="font-family: monospace">⚠️</span> <b>3</b> warnings (optional)</li>
+<li><span style="font-family: monospace">⚠️</span> <b>4</b> warnings (optional)</li>
 </ul>
 
 <h2>Passing</h2>
@@ -155,6 +155,36 @@ The server <i>SHOULD</i> support these, but is not required.
       {
         "path": [],
         "message": "Operation of this type is not allowed and has been blocked"
+      }
+    ]
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>86EE</code> SHOULD use a status code of 400 on variable coercion failure when accepting application/graphql-response+json
+<details>
+<summary>Response status code is not 400</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "date": "<timestamp>",
+    "content-type": "application/graphql-response+json; charset=utf-8, application/graphql-response+json",
+    "content-length": "136",
+    "connection": "close"
+  },
+  "body": {
+    "errors": [
+      {
+        "path": [],
+        "message": "Variable \"$id\" is never used in operation \"CoerceFailure\".",
+        "locations": [
+          {
+            "line": 1,
+            "column": 21
+          }
+        ]
       }
     ]
   }

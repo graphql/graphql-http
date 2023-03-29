@@ -3,9 +3,9 @@
 <h1>GraphQL over HTTP audit report</h1>
 
 <ul>
-<li><b>78</b> audits in total</li>
+<li><b>79</b> audits in total</li>
 <li><span style="font-family: monospace">✅</span> <b>35</b> pass</li>
-<li><span style="font-family: monospace">⚠️</span> <b>43</b> warnings (optional)</li>
+<li><span style="font-family: monospace">⚠️</span> <b>44</b> warnings (optional)</li>
 </ul>
 
 <h2>Passing</h2>
@@ -819,6 +819,23 @@ The server <i>SHOULD</i> support these, but is not required.
     "content-length": "14"
   },
   "body": null
+}
+</code></pre>
+</details>
+</li>
+<li><code>86EE</code> SHOULD use a status code of 400 on variable coercion failure when accepting application/graphql-response+json
+<details>
+<summary>Response status code is not 400</summary>
+<pre><code class="lang-json">{
+  "statusText": "Not Acceptable",
+  "status": 406,
+  "headers": {
+    "vary": "Accept-Encoding",
+    "date": "<timestamp>",
+    "content-type": "text/plain;charset=UTF-8",
+    "content-length": "14"
+  },
+  "body": "Not Acceptable"
 }
 </code></pre>
 </details>

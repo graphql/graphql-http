@@ -3,9 +3,9 @@
 <h1>GraphQL over HTTP audit report</h1>
 
 <ul>
-<li><b>78</b> audits in total</li>
+<li><b>79</b> audits in total</li>
 <li><span style="font-family: monospace">✅</span> <b>49</b> pass</li>
-<li><span style="font-family: monospace">⚠️</span> <b>28</b> warnings (optional)</li>
+<li><span style="font-family: monospace">⚠️</span> <b>29</b> warnings (optional)</li>
 <li><span style="font-family: monospace">❌</span> <b>1</b> errors (required)</li>
 </ul>
 
@@ -742,6 +742,45 @@ The server <i>SHOULD</i> support these, but is not required.
           {
             "line": 1,
             "column": 4
+          }
+        ]
+      }
+    ],
+    "data": null
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>86EE</code> SHOULD use a status code of 400 on variable coercion failure when accepting application/graphql-response+json
+<details>
+<summary>Response status code is not 400</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "date": "<timestamp>",
+    "content-type": "application/json; charset=utf-8",
+    "content-length": "210",
+    "connection": "close"
+  },
+  "body": {
+    "errors": [
+      {
+        "message": "Unknown type \"ID\".",
+        "locations": [
+          {
+            "line": 1,
+            "column": 26
+          }
+        ]
+      },
+      {
+        "message": "Variable \"$id\" is never used in operation \"CoerceFailure\".",
+        "locations": [
+          {
+            "line": 1,
+            "column": 21
           }
         ]
       }
