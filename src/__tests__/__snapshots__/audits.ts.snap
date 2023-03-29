@@ -271,6 +271,10 @@ exports[`should not change globally unique audit ids 1`] = `
     "name": "SHOULD use 200 status code on document validation failure when accepting application/json",
   },
   {
+    "id": "7B9B",
+    "name": "SHOULD use a status code of 200 on variable coercion failure when accepting application/json",
+  },
+  {
     "id": "60AA",
     "name": "SHOULD use 4xx or 5xx status codes on JSON parsing failure when accepting application/graphql-response+json",
   },
@@ -313,6 +317,10 @@ exports[`should not change globally unique audit ids 1`] = `
   {
     "id": "5E5B",
     "name": "SHOULD not contain the data entry on document validation failure when accepting application/graphql-response+json",
+  },
+  {
+    "id": "86EE",
+    "name": "SHOULD use a status code of 400 on variable coercion failure when accepting application/graphql-response+json",
   },
 ]
 `;

@@ -3,9 +3,9 @@
 <h1>GraphQL over HTTP audit report</h1>
 
 <ul>
-<li><b>78</b> audits in total</li>
-<li><span style="font-family: monospace">✅</span> <b>35</b> pass</li>
-<li><span style="font-family: monospace">⚠️</span> <b>43</b> warnings (optional)</li>
+<li><b>80</b> audits in total</li>
+<li><span style="font-family: monospace">✅</span> <b>36</b> pass</li>
+<li><span style="font-family: monospace">⚠️</span> <b>44</b> warnings (optional)</li>
 </ul>
 
 <h2>Passing</h2>
@@ -41,6 +41,7 @@
 <li><code>F5AF</code> SHOULD use 200 status code if parameters are invalid when accepting application/json</li>
 <li><code>572B</code> SHOULD use 200 status code on document parsing failure when accepting application/json</li>
 <li><code>FDE2</code> SHOULD use 200 status code on document validation failure when accepting application/json</li>
+<li><code>7B9B</code> SHOULD use a status code of 200 on variable coercion failure when accepting application/json</li>
 <li><code>60AA</code> SHOULD use 4xx or 5xx status codes on JSON parsing failure when accepting application/graphql-response+json</li>
 <li><code>3E36</code> SHOULD use 4xx or 5xx status codes if parameters are invalid when accepting application/graphql-response+json</li>
 <li><code>865D</code> SHOULD use 4xx or 5xx status codes on document parsing failure when accepting application/graphql-response+json</li>
@@ -819,6 +820,23 @@ The server <i>SHOULD</i> support these, but is not required.
     "content-length": "14"
   },
   "body": null
+}
+</code></pre>
+</details>
+</li>
+<li><code>86EE</code> SHOULD use a status code of 400 on variable coercion failure when accepting application/graphql-response+json
+<details>
+<summary>Response status code is not 400</summary>
+<pre><code class="lang-json">{
+  "statusText": "Not Acceptable",
+  "status": 406,
+  "headers": {
+    "vary": "Accept-Encoding",
+    "date": "<timestamp>",
+    "content-type": "text/plain;charset=UTF-8",
+    "content-length": "14"
+  },
+  "body": "Not Acceptable"
 }
 </code></pre>
 </details>

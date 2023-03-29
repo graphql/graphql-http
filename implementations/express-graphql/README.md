@@ -3,9 +3,9 @@
 <h1>GraphQL over HTTP audit report</h1>
 
 <ul>
-<li><b>78</b> audits in total</li>
-<li><span style="font-family: monospace">✅</span> <b>45</b> pass</li>
-<li><span style="font-family: monospace">⚠️</span> <b>33</b> warnings (optional)</li>
+<li><b>80</b> audits in total</li>
+<li><span style="font-family: monospace">✅</span> <b>46</b> pass</li>
+<li><span style="font-family: monospace">⚠️</span> <b>34</b> warnings (optional)</li>
 </ul>
 
 <h2>Passing</h2>
@@ -55,6 +55,7 @@
 <li><code>51FE</code> SHOULD use 4xx or 5xx status codes on document validation failure when accepting application/graphql-response+json</li>
 <li><code>74FF</code> SHOULD use 400 status code on document validation failure when accepting application/graphql-response+json</li>
 <li><code>5E5B</code> SHOULD not contain the data entry on document validation failure when accepting application/graphql-response+json</li>
+<li><code>86EE</code> SHOULD use a status code of 400 on variable coercion failure when accepting application/graphql-response+json</li>
 </ol>
 
 <h2>Warnings</h2>
@@ -842,6 +843,46 @@ The server <i>SHOULD</i> support these, but is not required.
           {
             "line": 1,
             "column": 4
+          }
+        ]
+      }
+    ]
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>7B9B</code> SHOULD use a status code of 200 on variable coercion failure when accepting application/json
+<details>
+<summary>Response status code is not 200</summary>
+<pre><code class="lang-json">{
+  "statusText": "Bad Request",
+  "status": 400,
+  "headers": {
+    "x-powered-by": "Express",
+    "etag": "W/\"c6-jKvd+KIdPY2/2i/wYj0ck5PZF20\"",
+    "date": "<timestamp>",
+    "content-type": "application/json; charset=utf-8",
+    "content-length": "198",
+    "connection": "close"
+  },
+  "body": {
+    "errors": [
+      {
+        "message": "Unknown type \"ID\".",
+        "locations": [
+          {
+            "line": 1,
+            "column": 26
+          }
+        ]
+      },
+      {
+        "message": "Variable \"$id\" is never used in operation \"CoerceFailure\".",
+        "locations": [
+          {
+            "line": 1,
+            "column": 21
           }
         ]
       }

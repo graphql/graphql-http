@@ -731,6 +731,24 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
         ressert(res).status.toBe(200);
       },
     ),
+    audit(
+      '7B9B',
+      'SHOULD use a status code of 200 on variable coercion failure when accepting application/json',
+      async () => {
+        const res = await fetchFn(await getUrl(opts.url), {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json',
+            accept: 'application/json',
+          },
+          body: JSON.stringify({
+            query: 'query CoerceFailure($id: ID!){ __typename }',
+            variables: { id: null },
+          }),
+        });
+        ressert(res).status.toBe(200);
+      },
+    ),
     // Response application/graphql-response+json
     audit(
       // TODO: convert to MUST after watershed
@@ -917,6 +935,24 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
           }),
         });
         await ressert(res).bodyAsExecutionResult.data.toBe(undefined);
+      },
+    ),
+    audit(
+      '86EE',
+      'SHOULD use a status code of 400 on variable coercion failure when accepting application/graphql-response+json',
+      async () => {
+        const res = await fetchFn(await getUrl(opts.url), {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json',
+            accept: 'application/graphql-response+json',
+          },
+          body: JSON.stringify({
+            query: 'query CoerceFailure($id: ID!){ __typename }',
+            variables: { id: null },
+          }),
+        });
+        ressert(res).status.toBe(400);
       },
     ),
     // TODO: how to fail and have the data entry?
