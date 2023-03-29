@@ -4,9 +4,8 @@
 
 <ul>
 <li><b>80</b> audits in total</li>
-<li><span style="font-family: monospace">✅</span> <b>53</b> pass</li>
+<li><span style="font-family: monospace">✅</span> <b>54</b> pass</li>
 <li><span style="font-family: monospace">⚠️</span> <b>26</b> warnings (optional)</li>
-<li><span style="font-family: monospace">❌</span> <b>1</b> errors (required)</li>
 </ul>
 
 <h2>Passing</h2>
@@ -15,6 +14,7 @@
 <li><code>4655</code> MUST accept application/json and match the content-type</li>
 <li><code>47DE</code> SHOULD accept */* and use application/json for the content-type</li>
 <li><code>82A3</code> MUST use utf-8 encoding when responding</li>
+<li><code>BF61</code> MUST accept utf-8 encoded request</li>
 <li><code>78D5</code> MUST assume utf-8 in request if encoding is unspecified</li>
 <li><code>2C94</code> MUST accept POST requests</li>
 <li><code>9C48</code> MAY NOT allow executing mutations on GET requests</li>
@@ -1114,56 +1114,3 @@ The server <i>SHOULD</i> support these, but is not required.
 </li>
 </ol>
 
-<h2>Errors</h2>
-The server <b>MUST</b> support these.
-<ol>
-<li><code>BF61</code> MUST accept utf-8 encoded request
-<details>
-<summary>Response status code is not 200</summary>
-<pre><code class="lang-json">{
-  "statusText": "Bad Request",
-  "status": 400,
-  "headers": {
-    "x-powered-by": "Express",
-    "etag": "W/\"5a0-kpydp3r1O/Ny3fpcwJRuZER6zBw\"",
-    "date": "<timestamp>",
-    "content-type": "application/json; charset=utf-8",
-    "content-length": "1440",
-    "connection": "close",
-    "cache-control": "no-store",
-    "access-control-allow-origin": "*"
-  },
-  "body": {
-    "errors": [
-      {
-        "message": "Syntax Error: Expected Name, found <EOF>.",
-        "locations": [
-          {
-            "line": 1,
-            "column": 40
-          }
-        ],
-        "extensions": {
-          "stacktrace": [
-            "GraphQLError: Syntax Error: Expected Name, found <EOF>.",
-            "    at syntaxError (/home/runner/work/graphql-http/graphql-http/node_modules/graphql/error/syntaxError.js:15:10)",
-            "    at Parser.expectToken (/home/runner/work/graphql-http/graphql-http/node_modules/graphql/language/parser.js:1397:40)",
-            "    at Parser.parseName (/home/runner/work/graphql-http/graphql-http/node_modules/graphql/language/parser.js:108:24)",
-            "    at Parser.parseField (/home/runner/work/graphql-http/graphql-http/node_modules/graphql/language/parser.js:347:30)",
-            "    at Parser.parseSelection (/home/runner/work/graphql-http/graphql-http/node_modules/graphql/language/parser.js:337:14)",
-            "    at Parser.many (/home/runner/work/graphql-http/graphql-http/node_modules/graphql/language/parser.js:1511:26)",
-            "    at Parser.parseSelectionSet (/home/runner/work/graphql-http/graphql-http/node_modules/graphql/language/parser.js:320:24)",
-            "    at Parser.parseOperationDefinition (/home/runner/work/graphql-http/graphql-http/node_modules/graphql/language/parser.js:231:28)",
-            "    at Parser.parseDefinition (/home/runner/work/graphql-http/graphql-http/node_modules/graphql/language/parser.js:155:19)",
-            "    at Parser.many (/home/runner/work/graphql-http/graphql-http/node_modules/graphql/language/parser.js:1511:26)"
-          ],
-          "code": "GRAPHQL_PARSE_FAILED"
-        }
-      }
-    ]
-  }
-}
-</code></pre>
-</details>
-</li>
-</ol>
