@@ -3,9 +3,9 @@
 <h1>GraphQL over HTTP audit report</h1>
 
 <ul>
-<li><b>78</b> audits in total</li>
-<li><span style="font-family: monospace">✅</span> <b>49</b> pass</li>
-<li><span style="font-family: monospace">⚠️</span> <b>29</b> warnings (optional)</li>
+<li><b>80</b> audits in total</li>
+<li><span style="font-family: monospace">✅</span> <b>50</b> pass</li>
+<li><span style="font-family: monospace">⚠️</span> <b>30</b> warnings (optional)</li>
 </ul>
 
 <h2>Passing</h2>
@@ -59,6 +59,7 @@
 <li><code>51FE</code> SHOULD use 4xx or 5xx status codes on document validation failure when accepting application/graphql-response+json</li>
 <li><code>74FF</code> SHOULD use 400 status code on document validation failure when accepting application/graphql-response+json</li>
 <li><code>5E5B</code> SHOULD not contain the data entry on document validation failure when accepting application/graphql-response+json</li>
+<li><code>86EE</code> SHOULD use a status code of 400 on variable coercion failure when accepting application/graphql-response+json</li>
 </ol>
 
 <h2>Warnings</h2>
@@ -638,10 +639,10 @@ The server <i>SHOULD</i> support these, but is not required.
     "date": "<timestamp>",
     "content-type": "text/html; charset=utf-8",
     "content-security-policy": "default-src 'none'",
-    "content-length": "1108",
+    "content-length": "1183",
     "connection": "close"
   },
-  "body": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</title>\n</head>\n<body>\n<pre>SyntaxError: Unexpected end of JSON input<br> &nbsp; &nbsp;at JSON.parse (&lt;anonymous&gt;)<br> &nbsp; &nbsp;at parse (/home/runner/work/graphql-http/graphql-http/node_modules/body-parser/lib/types/json.js:89:19)<br> &nbsp; &nbsp;at /home/runner/work/graphql-http/graphql-http/node_modules/body-parser/lib/read.js:128:18<br> &nbsp; &nbsp;at AsyncResource.runInAsyncScope (node:async_hooks:204:9)<br> &nbsp; &nbsp;at invokeCallback (/home/runner/work/graphql-http/graphql-http/node_modules/raw-body/index.js:231:16)<br> &nbsp; &nbsp;at done (/home/runner/work/graphql-http/graphql-http/node_modules/raw-body/index.js:220:7)<br> &nbsp; &nbsp;at IncomingMessage.onEnd (/home/runner/work/graphql-http/graphql-http/node_modules/raw-body/index.js:280:7)<br> &nbsp; &nbsp;at IncomingMessage.emit (node:events:513:28)<br> &nbsp; &nbsp;at endReadableNT (node:internal/streams/readable:1359:12)<br> &nbsp; &nbsp;at process.processTicksAndRejections (node:internal/process/task_queues:82:21)</pre>\n</body>\n</html>\n"
+  "body": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</title>\n</head>\n<body>\n<pre>SyntaxError: Unexpected end of JSON input<br> &nbsp; &nbsp;at JSON.parse (&lt;anonymous&gt;)<br> &nbsp; &nbsp;at parse (/home/runner/work/graphql-http/graphql-http/node_modules/body-parser/lib/types/json.js:89:19)<br> &nbsp; &nbsp;at /home/runner/work/graphql-http/graphql-http/node_modules/body-parser/lib/read.js:128:18<br> &nbsp; &nbsp;at AsyncResource.runInAsyncScope (node:async_hooks:204:9)<br> &nbsp; &nbsp;at invokeCallback (/home/runner/work/graphql-http/graphql-http/node_modules/body-parser/node_modules/raw-body/index.js:231:16)<br> &nbsp; &nbsp;at done (/home/runner/work/graphql-http/graphql-http/node_modules/body-parser/node_modules/raw-body/index.js:220:7)<br> &nbsp; &nbsp;at IncomingMessage.onEnd (/home/runner/work/graphql-http/graphql-http/node_modules/body-parser/node_modules/raw-body/index.js:280:7)<br> &nbsp; &nbsp;at IncomingMessage.emit (node:events:513:28)<br> &nbsp; &nbsp;at endReadableNT (node:internal/streams/readable:1359:12)<br> &nbsp; &nbsp;at process.processTicksAndRejections (node:internal/process/task_queues:82:21)</pre>\n</body>\n</html>\n"
 }
 </code></pre>
 </details>
@@ -721,6 +722,45 @@ The server <i>SHOULD</i> support these, but is not required.
           {
             "line": 1,
             "column": 4
+          }
+        ]
+      }
+    ]
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>7B9B</code> SHOULD use a status code of 200 on variable coercion failure when accepting application/json
+<details>
+<summary>Response status code is not 200</summary>
+<pre><code class="lang-json">{
+  "statusText": "Bad Request",
+  "status": 400,
+  "headers": {
+    "x-powered-by": "Express",
+    "date": "<timestamp>",
+    "content-type": "application/json",
+    "content-length": "198",
+    "connection": "close"
+  },
+  "body": {
+    "errors": [
+      {
+        "message": "Unknown type \"ID\".",
+        "locations": [
+          {
+            "line": 1,
+            "column": 26
+          }
+        ]
+      },
+      {
+        "message": "Variable \"$id\" is never used in operation \"CoerceFailure\".",
+        "locations": [
+          {
+            "line": 1,
+            "column": 21
           }
         ]
       }

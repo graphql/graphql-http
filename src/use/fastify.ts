@@ -1,4 +1,4 @@
-import type { FastifyRequest, RouteHandler } from 'fastify';
+import type { FastifyRequest, FastifyReply, RouteHandler } from 'fastify';
 import {
   createHandler as createRawHandler,
   HandlerOptions as RawHandlerOptions,
@@ -6,12 +6,21 @@ import {
 } from '../handler';
 
 /**
+ * The context in the request for the handler.
+ *
+ * @category Server/fastify
+ */
+export interface RequestContext {
+  reply: FastifyReply;
+}
+
+/**
  * Handler options when using the fastify adapter.
  *
  * @category Server/fastify
  */
 export type HandlerOptions<Context extends OperationContext = undefined> =
-  RawHandlerOptions<FastifyRequest, undefined, Context>;
+  RawHandlerOptions<FastifyRequest, RequestContext, Context>;
 
 /**
  * Create a GraphQL over HTTP spec compliant request handler for
@@ -45,7 +54,7 @@ export function createHandler<Context extends OperationContext = undefined>(
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         body: req.body as any,
         raw: req,
-        context: undefined,
+        context: { reply },
       });
       reply
         .status(init.status)

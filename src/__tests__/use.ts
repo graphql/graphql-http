@@ -29,10 +29,34 @@ describe('http', () => {
       }
     });
   }
+
+  it('should allow manipulating the response from the request context', async () => {
+    const [url, dispose] = startDisposableServer(
+      http.createServer(
+        createHttpHandler({
+          schema,
+          context(req) {
+            req.context.res.setHeader('x-test', 'test-x');
+            return undefined;
+          },
+        }),
+      ),
+    );
+
+    const res = await fetch(url + '?query={hello}');
+
+    await expect(res.text()).resolves.toMatchInlineSnapshot(
+      `"{"data":{"hello":"world"}}"`,
+    );
+    expect(res.headers.get('x-test')).toBe('test-x');
+
+    await dispose();
+  });
 });
 
 describe('http2', () => {
   it.todo('should pass all server audits');
+  it.todo('should allow manipulating the response from the request context');
 });
 
 describe('express', () => {
@@ -50,6 +74,31 @@ describe('express', () => {
       }
     });
   }
+
+  it('should allow manipulating the response from the request context', async () => {
+    const app = express();
+    app.all(
+      '/',
+      createExpressHandler({
+        schema,
+        context(req) {
+          req.context.res.setHeader('x-test', 'test-x');
+          return undefined;
+        },
+      }),
+    );
+
+    const [url, dispose] = startDisposableServer(app.listen(0));
+
+    const res = await fetch(url + '?query={hello}');
+
+    await expect(res.text()).resolves.toMatchInlineSnapshot(
+      `"{"data":{"hello":"world"}}"`,
+    );
+    expect(res.headers.get('x-test')).toBe('test-x');
+
+    await dispose();
+  });
 });
 
 describe('fastify', () => {
@@ -80,6 +129,35 @@ describe('fastify', () => {
       }
     });
   }
+
+  it('should allow manipulating the response from the request context', async () => {
+    const app = fastify();
+
+    app.all(
+      '/',
+      createFastifyHandler({
+        schema,
+        context(req) {
+          req.context.reply.header('x-test', 'test-x');
+          return undefined;
+        },
+      }),
+    );
+
+    // call ready since we're not calling listen
+    app.ready();
+
+    const [url, dispose] = startDisposableServer(app.server);
+
+    const res = await fetch(url + '?query={hello}');
+
+    await expect(res.text()).resolves.toMatchInlineSnapshot(
+      `"{"data":{"hello":"world"}}"`,
+    );
+    expect(res.headers.get('x-test')).toBe('test-x');
+
+    await dispose();
+  });
 });
 
 describe('fetch', () => {
@@ -113,4 +191,31 @@ describe('koa', () => {
       }
     });
   }
+
+  it('should allow manipulating the response from the request context', async () => {
+    const app = new Koa();
+    app.use(
+      mount(
+        '/',
+        createKoaHandler({
+          schema,
+          context(req) {
+            req.context.res.set('x-test', 'test-x');
+            return undefined;
+          },
+        }),
+      ),
+    );
+
+    const [url, dispose] = startDisposableServer(app.listen(0));
+
+    const res = await fetch(url + '?query={hello}');
+
+    await expect(res.text()).resolves.toMatchInlineSnapshot(
+      `"{"data":{"hello":"world"}}"`,
+    );
+    expect(res.headers.get('x-test')).toBe('test-x');
+
+    await dispose();
+  });
 });

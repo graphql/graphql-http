@@ -3,9 +3,9 @@
 <h1>GraphQL over HTTP audit report</h1>
 
 <ul>
-<li><b>78</b> audits in total</li>
-<li><span style="font-family: monospace">✅</span> <b>75</b> pass</li>
-<li><span style="font-family: monospace">⚠️</span> <b>3</b> warnings (optional)</li>
+<li><b>80</b> audits in total</li>
+<li><span style="font-family: monospace">✅</span> <b>76</b> pass</li>
+<li><span style="font-family: monospace">⚠️</span> <b>4</b> warnings (optional)</li>
 </ul>
 
 <h2>Passing</h2>
@@ -74,6 +74,7 @@
 <li><code>428F</code> SHOULD allow map {extensions} parameter when accepting application/graphql-response+json</li>
 <li><code>1B7A</code> MUST allow map {extensions} parameter when accepting application/json</li>
 <li><code>F5AF</code> SHOULD use 200 status code if parameters are invalid when accepting application/json</li>
+<li><code>7B9B</code> SHOULD use a status code of 200 on variable coercion failure when accepting application/json</li>
 <li><code>60AA</code> SHOULD use 4xx or 5xx status codes on JSON parsing failure when accepting application/graphql-response+json</li>
 <li><code>2163</code> SHOULD use 400 status code on JSON parsing failure when accepting application/graphql-response+json</li>
 <li><code>3E36</code> SHOULD use 4xx or 5xx status codes if parameters are invalid when accepting application/graphql-response+json</li>
@@ -155,6 +156,36 @@ The server <i>SHOULD</i> support these, but is not required.
       {
         "path": [],
         "message": "Operation of this type is not allowed and has been blocked"
+      }
+    ]
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>86EE</code> SHOULD use a status code of 400 on variable coercion failure when accepting application/graphql-response+json
+<details>
+<summary>Response status code is not 400</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "date": "<timestamp>",
+    "content-type": "application/graphql-response+json; charset=utf-8, application/graphql-response+json",
+    "content-length": "136",
+    "connection": "close"
+  },
+  "body": {
+    "errors": [
+      {
+        "path": [],
+        "message": "Variable \"$id\" is never used in operation \"CoerceFailure\".",
+        "locations": [
+          {
+            "line": 1,
+            "column": 21
+          }
+        ]
       }
     ]
   }

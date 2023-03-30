@@ -4,6 +4,10 @@
 
 ## Table of contents
 
+### Interfaces
+
+- [RequestContext](../interfaces/use_koa.RequestContext.md)
+
 ### Type Aliases
 
 - [HandlerOptions](use_koa.md#handleroptions)
@@ -16,7 +20,7 @@
 
 ### HandlerOptions
 
-Ƭ **HandlerOptions**<`Context`\>: [`HandlerOptions`](../interfaces/handler.HandlerOptions.md)<`IncomingMessage`, `undefined`, `Context`\>
+Ƭ **HandlerOptions**<`Context`\>: [`HandlerOptions`](../interfaces/handler.HandlerOptions.md)<`IncomingMessage`, [`RequestContext`](../interfaces/use_koa.RequestContext.md), `Context`\>
 
 Handler options when using the koa adapter.
 

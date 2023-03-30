@@ -4,6 +4,10 @@
 
 ## Table of contents
 
+### Interfaces
+
+- [RequestContext](../interfaces/use_http2.RequestContext.md)
+
 ### Type Aliases
 
 - [HandlerOptions](use_http2.md#handleroptions)
@@ -16,7 +20,7 @@
 
 ### HandlerOptions
 
-Ƭ **HandlerOptions**<`Context`\>: [`HandlerOptions`](../interfaces/handler.HandlerOptions.md)<`Http2ServerRequest`, `undefined`, `Context`\>
+Ƭ **HandlerOptions**<`Context`\>: [`HandlerOptions`](../interfaces/handler.HandlerOptions.md)<`Http2ServerRequest`, [`RequestContext`](../interfaces/use_http2.RequestContext.md), `Context`\>
 
 Handler options when using the http adapter.
 

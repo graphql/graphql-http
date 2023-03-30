@@ -6,12 +6,21 @@ import {
 } from '../handler';
 
 /**
+ * The context in the request for the handler.
+ *
+ * @category Server/http2
+ */
+export interface RequestContext {
+  res: Http2ServerResponse;
+}
+
+/**
  * Handler options when using the http adapter.
  *
  * @category Server/http2
  */
 export type HandlerOptions<Context extends OperationContext = undefined> =
-  RawHandlerOptions<Http2ServerRequest, undefined, Context>;
+  RawHandlerOptions<Http2ServerRequest, RequestContext, Context>;
 
 /**
  * Create a GraphQL over HTTP spec compliant request handler for
@@ -66,7 +75,7 @@ export function createHandler<Context extends OperationContext = undefined>(
             req.on('end', () => resolve(body));
           }),
         raw: req,
-        context: undefined,
+        context: { res },
       });
       res.writeHead(init.status, init.statusText, init.headers);
       if (body) {
