@@ -1,0 +1,12 @@
+services:
+  lighthouse:
+    build: .
+    environment:
+      - PORT=${PORT}
+    ports:
+      - ${PORT}:${PORT}
+    entrypoint: 'php artisan serve --host=0.0.0.0 --port=${PORT}'
+    healthcheck:
+      test: curl -f http://localhost:$$PORT/graphql?query=%7B__typename%7D || exit 1
+      interval: 3s
+      timeout: 1s

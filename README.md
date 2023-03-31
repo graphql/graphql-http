@@ -788,6 +788,7 @@ Their compliance with the [GraphQL over HTTP spec](https://graphql.github.io/gra
 | [graphql-helix](https://www.graphql-helix.com) | [✅ Compliant](/implementations/graphql-helix/README.md) |
 | [graphql-yoga](https://www.the-guild.dev/graphql/yoga-server) | [✅ Compliant](/implementations/graphql-yoga/README.md) |
 | [hotchocolate](https://chillicream.com/docs/hotchocolate) | [✅ Compliant](/implementations/hotchocolate/README.md) |
+| [lighthouse](https://lighthouse-php.com) | [✅ Compliant](/implementations/lighthouse/README.md) |
 | [pioneer](https://pioneer.dexclaimation.com) | [✅ Compliant](/implementations/pioneer/README.md) |
 | [postgraphile](https://www.graphile.org/postgraphile) | [✅ Compliant](/implementations/postgraphile/README.md) |
 <!-- prettier-ignore-end -->
