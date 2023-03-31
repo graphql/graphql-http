@@ -43,56 +43,8 @@ exports[`should not change globally unique audit ids 1`] = `
     "name": "MAY NOT allow executing mutations on GET requests",
   },
   {
-    "id": "9ABE",
-    "name": "SHOULD respond with 4xx status code if content-type is not supplied on POST requests",
-  },
-  {
     "id": "03D4",
     "name": "MUST accept application/json POST requests",
-  },
-  {
-    "id": "7267",
-    "name": "MUST require a request body on POST",
-  },
-  {
-    "id": "6610",
-    "name": "SHOULD use 400 status code on missing {query} parameter when accepting application/graphql-response+json",
-  },
-  {
-    "id": "3715",
-    "name": "SHOULD use 200 status code with errors field on missing {query} parameter when accepting application/json",
-  },
-  {
-    "id": "4F50",
-    "name": "SHOULD use 400 status code on object {query} parameter when accepting application/graphql-response+json",
-  },
-  {
-    "id": "4F51",
-    "name": "SHOULD use 400 status code on number {query} parameter when accepting application/graphql-response+json",
-  },
-  {
-    "id": "4F52",
-    "name": "SHOULD use 400 status code on boolean {query} parameter when accepting application/graphql-response+json",
-  },
-  {
-    "id": "4F53",
-    "name": "SHOULD use 400 status code on array {query} parameter when accepting application/graphql-response+json",
-  },
-  {
-    "id": "9FE0",
-    "name": "SHOULD use 200 status code with errors field on object {query} parameter when accepting application/json",
-  },
-  {
-    "id": "9FE1",
-    "name": "SHOULD use 200 status code with errors field on number {query} parameter when accepting application/json",
-  },
-  {
-    "id": "9FE2",
-    "name": "SHOULD use 200 status code with errors field on boolean {query} parameter when accepting application/json",
-  },
-  {
-    "id": "9FE3",
-    "name": "SHOULD use 200 status code with errors field on array {query} parameter when accepting application/json",
   },
   {
     "id": "34A2",
@@ -101,38 +53,6 @@ exports[`should not change globally unique audit ids 1`] = `
   {
     "id": "13EE",
     "name": "MUST allow string {query} parameter when accepting application/json",
-  },
-  {
-    "id": "E3E0",
-    "name": "SHOULD use 400 status code on object {operationName} parameter when accepting application/graphql-response+json",
-  },
-  {
-    "id": "E3E1",
-    "name": "SHOULD use 400 status code on number {operationName} parameter when accepting application/graphql-response+json",
-  },
-  {
-    "id": "E3E2",
-    "name": "SHOULD use 400 status code on boolean {operationName} parameter when accepting application/graphql-response+json",
-  },
-  {
-    "id": "E3E3",
-    "name": "SHOULD use 400 status code on array {operationName} parameter when accepting application/graphql-response+json",
-  },
-  {
-    "id": "FB90",
-    "name": "SHOULD use 200 status code with errors field on object {operationName} parameter when accepting application/json",
-  },
-  {
-    "id": "FB91",
-    "name": "SHOULD use 200 status code with errors field on number {operationName} parameter when accepting application/json",
-  },
-  {
-    "id": "FB92",
-    "name": "SHOULD use 200 status code with errors field on boolean {operationName} parameter when accepting application/json",
-  },
-  {
-    "id": "FB93",
-    "name": "SHOULD use 200 status code with errors field on array {operationName} parameter when accepting application/json",
   },
   {
     "id": "8161",
@@ -167,38 +87,6 @@ exports[`should not change globally unique audit ids 1`] = `
     "name": "MUST allow null {extensions} parameter when accepting application/json",
   },
   {
-    "id": "69B0",
-    "name": "SHOULD use 400 status code on string {variables} parameter when accepting application/graphql-response+json",
-  },
-  {
-    "id": "69B1",
-    "name": "SHOULD use 400 status code on number {variables} parameter when accepting application/graphql-response+json",
-  },
-  {
-    "id": "69B2",
-    "name": "SHOULD use 400 status code on boolean {variables} parameter when accepting application/graphql-response+json",
-  },
-  {
-    "id": "69B3",
-    "name": "SHOULD use 400 status code on array {variables} parameter when accepting application/graphql-response+json",
-  },
-  {
-    "id": "F050",
-    "name": "SHOULD use 200 status code with errors field on string {variables} parameter when accepting application/json",
-  },
-  {
-    "id": "F051",
-    "name": "SHOULD use 200 status code with errors field on number {variables} parameter when accepting application/json",
-  },
-  {
-    "id": "F052",
-    "name": "SHOULD use 200 status code with errors field on boolean {variables} parameter when accepting application/json",
-  },
-  {
-    "id": "F053",
-    "name": "SHOULD use 200 status code with errors field on array {variables} parameter when accepting application/json",
-  },
-  {
     "id": "2EA1",
     "name": "SHOULD allow map {variables} parameter when accepting application/graphql-response+json",
   },
@@ -215,52 +103,12 @@ exports[`should not change globally unique audit ids 1`] = `
     "name": "MAY allow URL-encoded JSON string {variables} parameter in GETs when accepting application/json",
   },
   {
-    "id": "9040",
-    "name": "SHOULD use 400 status code on string {extensions} parameter when accepting application/graphql-response+json",
-  },
-  {
-    "id": "9041",
-    "name": "SHOULD use 400 status code on number {extensions} parameter when accepting application/graphql-response+json",
-  },
-  {
-    "id": "9042",
-    "name": "SHOULD use 400 status code on boolean {extensions} parameter when accepting application/graphql-response+json",
-  },
-  {
-    "id": "9043",
-    "name": "SHOULD use 400 status code on array {extensions} parameter when accepting application/graphql-response+json",
-  },
-  {
-    "id": "3680",
-    "name": "SHOULD use 200 status code with errors field on string {extensions} parameter when accepting application/json",
-  },
-  {
-    "id": "3681",
-    "name": "SHOULD use 200 status code with errors field on number {extensions} parameter when accepting application/json",
-  },
-  {
-    "id": "3682",
-    "name": "SHOULD use 200 status code with errors field on boolean {extensions} parameter when accepting application/json",
-  },
-  {
-    "id": "3683",
-    "name": "SHOULD use 200 status code with errors field on array {extensions} parameter when accepting application/json",
-  },
-  {
     "id": "428F",
     "name": "SHOULD allow map {extensions} parameter when accepting application/graphql-response+json",
   },
   {
     "id": "1B7A",
     "name": "MUST allow map {extensions} parameter when accepting application/json",
-  },
-  {
-    "id": "D477",
-    "name": "SHOULD use 200 status code on JSON parsing failure when accepting application/json",
-  },
-  {
-    "id": "F5AF",
-    "name": "SHOULD use 200 status code if parameters are invalid when accepting application/json",
   },
   {
     "id": "572B",
@@ -273,26 +121,6 @@ exports[`should not change globally unique audit ids 1`] = `
   {
     "id": "7B9B",
     "name": "SHOULD use a status code of 200 on variable coercion failure when accepting application/json",
-  },
-  {
-    "id": "60AA",
-    "name": "SHOULD use 4xx or 5xx status codes on JSON parsing failure when accepting application/graphql-response+json",
-  },
-  {
-    "id": "2163",
-    "name": "SHOULD use 400 status code on JSON parsing failure when accepting application/graphql-response+json",
-  },
-  {
-    "id": "3E36",
-    "name": "SHOULD use 4xx or 5xx status codes if parameters are invalid when accepting application/graphql-response+json",
-  },
-  {
-    "id": "17C5",
-    "name": "SHOULD use 400 status code if parameters are invalid when accepting application/graphql-response+json",
-  },
-  {
-    "id": "34D6",
-    "name": "SHOULD not contain the data entry if parameters are invalid when accepting application/graphql-response+json",
   },
   {
     "id": "865D",
