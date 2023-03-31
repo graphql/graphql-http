@@ -1,11 +1,12 @@
 import fs from 'fs/promises';
 import path from 'path';
-import glob from 'glob';
+import glob, { globIterate } from 'glob';
 
 const rootDir = 'lib';
 
 (async () => {
   const matches = await glob(`${rootDir}/**/*.js`);
+
   for (const path of matches) {
     await buildEsm(path);
   }
@@ -17,8 +18,7 @@ const rootDir = 'lib';
 })();
 
 (async () => {
-  const matches = await glob(`${rootDir}/**/*.d.ts`);
-  for (const path of matches) {
+  for await (const path of globIterate(`${rootDir}/**/*.d.ts`)) {
     await buildEsm(path);
   }
 
