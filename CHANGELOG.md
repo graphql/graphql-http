@@ -1,3 +1,11 @@
+## [1.17.1](https://github.com/graphql/graphql-http/compare/v1.17.0...v1.17.1) (2023-03-31)
+
+
+### Bug Fixes
+
+* Add file extensions to imports/exports in ESM type definitions ([d084a8d](https://github.com/graphql/graphql-http/commit/d084a8d8e83ac65c8fbc07322ca37a2bea8ac372)), closes [#70](https://github.com/graphql/graphql-http/issues/70)
+* **audits/server:** Better "must accept UTF-8" test with emoji ([#69](https://github.com/graphql/graphql-http/issues/69)) ([a322d2c](https://github.com/graphql/graphql-http/commit/a322d2c5f457e864ef303a08e8067d65b828f7d2))
+
 # [1.17.0](https://github.com/graphql/graphql-http/compare/v1.16.0...v1.17.0) (2023-03-28)
 
 
