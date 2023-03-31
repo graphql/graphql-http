@@ -3,9 +3,9 @@
 <h1>GraphQL over HTTP audit report</h1>
 
 <ul>
-<li><b>78</b> audits in total</li>
-<li><span style="font-family: monospace">✅</span> <b>46</b> pass</li>
-<li><span style="font-family: monospace">⚠️</span> <b>31</b> warnings (optional)</li>
+<li><b>80</b> audits in total</li>
+<li><span style="font-family: monospace">✅</span> <b>47</b> pass</li>
+<li><span style="font-family: monospace">⚠️</span> <b>32</b> warnings (optional)</li>
 <li><span style="font-family: monospace">❌</span> <b>1</b> errors (required)</li>
 </ul>
 
@@ -52,6 +52,7 @@
 <li><code>F5AF</code> SHOULD use 200 status code if parameters are invalid when accepting application/json</li>
 <li><code>572B</code> SHOULD use 200 status code on document parsing failure when accepting application/json</li>
 <li><code>FDE2</code> SHOULD use 200 status code on document validation failure when accepting application/json</li>
+<li><code>7B9B</code> SHOULD use a status code of 200 on variable coercion failure when accepting application/json</li>
 <li><code>60AA</code> SHOULD use 4xx or 5xx status codes on JSON parsing failure when accepting application/graphql-response+json</li>
 <li><code>2163</code> SHOULD use 400 status code on JSON parsing failure when accepting application/graphql-response+json</li>
 <li><code>34D6</code> SHOULD not contain the data entry if parameters are invalid when accepting application/graphql-response+json</li>
@@ -70,7 +71,7 @@ The server <i>SHOULD</i> support these, but is not required.
   "status": 200,
   "headers": {
     "x-powered-by": "PHP/8.1.17",
-    "host": "localhost:8123",
+    "host": "localhost:4000",
     "date": "<timestamp>",
     "content-type": "application/json",
     "connection": "close",
@@ -93,7 +94,7 @@ The server <i>SHOULD</i> support these, but is not required.
   "status": 200,
   "headers": {
     "x-powered-by": "PHP/8.1.17",
-    "host": "localhost:8123",
+    "host": "localhost:4000",
     "date": "<timestamp>",
     "content-type": "application/json",
     "connection": "close",
@@ -128,7 +129,7 @@ The server <i>SHOULD</i> support these, but is not required.
   "status": 500,
   "headers": {
     "x-powered-by": "PHP/8.1.17",
-    "host": "localhost:8123",
+    "host": "localhost:4000",
     "date": "<timestamp>",
     "content-type": "application/json",
     "connection": "close",
@@ -416,7 +417,7 @@ The server <i>SHOULD</i> support these, but is not required.
   "status": 200,
   "headers": {
     "x-powered-by": "PHP/8.1.17",
-    "host": "localhost:8123",
+    "host": "localhost:4000",
     "date": "<timestamp>",
     "content-type": "application/json",
     "connection": "close",
@@ -647,7 +648,7 @@ The server <i>SHOULD</i> support these, but is not required.
   "status": 200,
   "headers": {
     "x-powered-by": "PHP/8.1.17",
-    "host": "localhost:8123",
+    "host": "localhost:4000",
     "date": "<timestamp>",
     "content-type": "application/json",
     "connection": "close",
@@ -878,7 +879,7 @@ The server <i>SHOULD</i> support these, but is not required.
   "status": 200,
   "headers": {
     "x-powered-by": "PHP/8.1.17",
-    "host": "localhost:8123",
+    "host": "localhost:4000",
     "date": "<timestamp>",
     "content-type": "application/json",
     "connection": "close",
@@ -1109,7 +1110,7 @@ The server <i>SHOULD</i> support these, but is not required.
   "status": 200,
   "headers": {
     "x-powered-by": "PHP/8.1.17",
-    "host": "localhost:8123",
+    "host": "localhost:4000",
     "date": "<timestamp>",
     "content-type": "application/json",
     "connection": "close",
@@ -1340,7 +1341,7 @@ The server <i>SHOULD</i> support these, but is not required.
   "status": 200,
   "headers": {
     "x-powered-by": "PHP/8.1.17",
-    "host": "localhost:8123",
+    "host": "localhost:4000",
     "date": "<timestamp>",
     "content-type": "application/json",
     "connection": "close",
@@ -1571,7 +1572,7 @@ The server <i>SHOULD</i> support these, but is not required.
   "status": 200,
   "headers": {
     "x-powered-by": "PHP/8.1.17",
-    "host": "localhost:8123",
+    "host": "localhost:4000",
     "date": "<timestamp>",
     "content-type": "application/json",
     "connection": "close",
@@ -1802,7 +1803,7 @@ The server <i>SHOULD</i> support these, but is not required.
   "status": 200,
   "headers": {
     "x-powered-by": "PHP/8.1.17",
-    "host": "localhost:8123",
+    "host": "localhost:4000",
     "date": "<timestamp>",
     "content-type": "application/json",
     "connection": "close",
@@ -2033,7 +2034,7 @@ The server <i>SHOULD</i> support these, but is not required.
   "status": 200,
   "headers": {
     "x-powered-by": "PHP/8.1.17",
-    "host": "localhost:8123",
+    "host": "localhost:4000",
     "date": "<timestamp>",
     "content-type": "application/json",
     "connection": "close",
@@ -2264,7 +2265,7 @@ The server <i>SHOULD</i> support these, but is not required.
   "status": 200,
   "headers": {
     "x-powered-by": "PHP/8.1.17",
-    "host": "localhost:8123",
+    "host": "localhost:4000",
     "date": "<timestamp>",
     "content-type": "application/json",
     "connection": "close",
@@ -2495,7 +2496,7 @@ The server <i>SHOULD</i> support these, but is not required.
   "status": 200,
   "headers": {
     "x-powered-by": "PHP/8.1.17",
-    "host": "localhost:8123",
+    "host": "localhost:4000",
     "date": "<timestamp>",
     "content-type": "application/json",
     "connection": "close",
@@ -2726,7 +2727,7 @@ The server <i>SHOULD</i> support these, but is not required.
   "status": 200,
   "headers": {
     "x-powered-by": "PHP/8.1.17",
-    "host": "localhost:8123",
+    "host": "localhost:4000",
     "date": "<timestamp>",
     "content-type": "application/json",
     "connection": "close",
@@ -2957,7 +2958,7 @@ The server <i>SHOULD</i> support these, but is not required.
   "status": 200,
   "headers": {
     "x-powered-by": "PHP/8.1.17",
-    "host": "localhost:8123",
+    "host": "localhost:4000",
     "date": "<timestamp>",
     "content-type": "application/json",
     "connection": "close",
@@ -3188,7 +3189,7 @@ The server <i>SHOULD</i> support these, but is not required.
   "status": 200,
   "headers": {
     "x-powered-by": "PHP/8.1.17",
-    "host": "localhost:8123",
+    "host": "localhost:4000",
     "date": "<timestamp>",
     "content-type": "application/json",
     "connection": "close",
@@ -3419,7 +3420,7 @@ The server <i>SHOULD</i> support these, but is not required.
   "status": 200,
   "headers": {
     "x-powered-by": "PHP/8.1.17",
-    "host": "localhost:8123",
+    "host": "localhost:4000",
     "date": "<timestamp>",
     "content-type": "application/json",
     "connection": "close",
@@ -3442,7 +3443,7 @@ The server <i>SHOULD</i> support these, but is not required.
   "status": 200,
   "headers": {
     "x-powered-by": "PHP/8.1.17",
-    "host": "localhost:8123",
+    "host": "localhost:4000",
     "date": "<timestamp>",
     "content-type": "application/json",
     "connection": "close",
@@ -3465,7 +3466,7 @@ The server <i>SHOULD</i> support these, but is not required.
   "status": 200,
   "headers": {
     "x-powered-by": "PHP/8.1.17",
-    "host": "localhost:8123",
+    "host": "localhost:4000",
     "date": "<timestamp>",
     "content-type": "application/json",
     "connection": "close",
@@ -3488,7 +3489,7 @@ The server <i>SHOULD</i> support these, but is not required.
   "status": 200,
   "headers": {
     "x-powered-by": "PHP/8.1.17",
-    "host": "localhost:8123",
+    "host": "localhost:4000",
     "date": "<timestamp>",
     "content-type": "application/json",
     "connection": "close",
@@ -3511,7 +3512,7 @@ The server <i>SHOULD</i> support these, but is not required.
   "status": 200,
   "headers": {
     "x-powered-by": "PHP/8.1.17",
-    "host": "localhost:8123",
+    "host": "localhost:4000",
     "date": "<timestamp>",
     "content-type": "application/json",
     "connection": "close",
@@ -3534,7 +3535,7 @@ The server <i>SHOULD</i> support these, but is not required.
   "status": 200,
   "headers": {
     "x-powered-by": "PHP/8.1.17",
-    "host": "localhost:8123",
+    "host": "localhost:4000",
     "date": "<timestamp>",
     "content-type": "application/json",
     "connection": "close",
@@ -3557,7 +3558,7 @@ The server <i>SHOULD</i> support these, but is not required.
   "status": 200,
   "headers": {
     "x-powered-by": "PHP/8.1.17",
-    "host": "localhost:8123",
+    "host": "localhost:4000",
     "date": "<timestamp>",
     "content-type": "application/json",
     "connection": "close",
@@ -3580,7 +3581,7 @@ The server <i>SHOULD</i> support these, but is not required.
   "status": 200,
   "headers": {
     "x-powered-by": "PHP/8.1.17",
-    "host": "localhost:8123",
+    "host": "localhost:4000",
     "date": "<timestamp>",
     "content-type": "application/json",
     "connection": "close",
@@ -3603,7 +3604,7 @@ The server <i>SHOULD</i> support these, but is not required.
   "status": 400,
   "headers": {
     "x-powered-by": "PHP/8.1.17",
-    "host": "localhost:8123",
+    "host": "localhost:4000",
     "date": "<timestamp>",
     "content-type": "application/json",
     "connection": "close",
@@ -3886,7 +3887,7 @@ The server <i>SHOULD</i> support these, but is not required.
   "status": 200,
   "headers": {
     "x-powered-by": "PHP/8.1.17",
-    "host": "localhost:8123",
+    "host": "localhost:4000",
     "date": "<timestamp>",
     "content-type": "application/json",
     "connection": "close",
@@ -4117,7 +4118,7 @@ The server <i>SHOULD</i> support these, but is not required.
   "status": 200,
   "headers": {
     "x-powered-by": "PHP/8.1.17",
-    "host": "localhost:8123",
+    "host": "localhost:4000",
     "date": "<timestamp>",
     "content-type": "application/json",
     "connection": "close",
@@ -4348,7 +4349,7 @@ The server <i>SHOULD</i> support these, but is not required.
   "status": 200,
   "headers": {
     "x-powered-by": "PHP/8.1.17",
-    "host": "localhost:8123",
+    "host": "localhost:4000",
     "date": "<timestamp>",
     "content-type": "application/json",
     "connection": "close",
@@ -4383,7 +4384,7 @@ The server <i>SHOULD</i> support these, but is not required.
   "status": 200,
   "headers": {
     "x-powered-by": "PHP/8.1.17",
-    "host": "localhost:8123",
+    "host": "localhost:4000",
     "date": "<timestamp>",
     "content-type": "application/json",
     "connection": "close",
@@ -4418,7 +4419,7 @@ The server <i>SHOULD</i> support these, but is not required.
   "status": 200,
   "headers": {
     "x-powered-by": "PHP/8.1.17",
-    "host": "localhost:8123",
+    "host": "localhost:4000",
     "date": "<timestamp>",
     "content-type": "application/json",
     "connection": "close",
@@ -4453,7 +4454,7 @@ The server <i>SHOULD</i> support these, but is not required.
   "status": 200,
   "headers": {
     "x-powered-by": "PHP/8.1.17",
-    "host": "localhost:8123",
+    "host": "localhost:4000",
     "date": "<timestamp>",
     "content-type": "application/json",
     "connection": "close",
@@ -4480,6 +4481,41 @@ The server <i>SHOULD</i> support these, but is not required.
 </code></pre>
 </details>
 </li>
+<li><code>86EE</code> SHOULD use a status code of 400 on variable coercion failure when accepting application/graphql-response+json
+<details>
+<summary>Response status code is not 400</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "x-powered-by": "PHP/8.1.17",
+    "host": "localhost:4000",
+    "date": "<timestamp>",
+    "content-type": "application/json",
+    "connection": "close",
+    "cache-control": "no-cache, private"
+  },
+  "body": {
+    "errors": [
+      {
+        "message": "Variable \"$id\" is never used in operation \"CoerceFailure\".",
+        "locations": [
+          {
+            "line": 1,
+            "column": 21
+          }
+        ],
+        "extensions": {
+          "line": 41,
+          "file": "/app/vendor/webonyx/graphql-php/src/Validator/Rules/NoUnusedVariables.php"
+        }
+      }
+    ]
+  }
+}
+</code></pre>
+</details>
+</li>
 </ol>
 
 <h2>Errors</h2>
@@ -4493,7 +4529,7 @@ The server <b>MUST</b> support these.
   "status": 400,
   "headers": {
     "x-powered-by": "PHP/8.1.17",
-    "host": "localhost:8123",
+    "host": "localhost:4000",
     "date": "<timestamp>",
     "content-type": "application/json",
     "connection": "close",
