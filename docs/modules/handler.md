@@ -252,14 +252,17 @@ Creates an appropriate GraphQL over HTTP response following the provided argumen
 
 If the first argument is an `ExecutionResult`, the operation will be treated as "successful".
 
-If the first argument is _any_ object without the `data` field, it will be treated as an error (as per the spec)
-and the response will be constructed with the help of `acceptedMediaType` complying with the GraphQL over HTTP spec.
+If the first argument is (an array of) `GraphQLError`, or an `ExecutionResult` without the `data` field, it will be treated
+the response will be constructed with the help of `acceptedMediaType` complying with the GraphQL over HTTP spec.
+
+If the first argument is an `Error`, the operation will be treated as a bad request responding with `400: Bad Request` and the
+error will be present in the `ExecutionResult` style.
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `resultOrErrors` | readonly `GraphQLError`[] \| `Readonly`<`ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\>\> \| `Readonly`<`GraphQLError`\> |
+| `resultOrErrors` | readonly `GraphQLError`[] \| `Readonly`<`ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\>\> \| `Readonly`<`GraphQLError`\> \| `Readonly`<`Error`\> |
 | `acceptedMediaType` | [`AcceptableMediaType`](handler.md#acceptablemediatype) |
 
 #### Returns
