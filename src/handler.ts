@@ -508,6 +508,12 @@ export function createHandler<
         throw new Error('Invalid variables');
       }
       if (
+        partParams.operationName != null &&
+        typeof partParams.operationName !== 'string'
+      ) {
+        throw new Error('Invalid operationName');
+      }
+      if (
         partParams.extensions != null &&
         (typeof partParams.extensions !== 'object' ||
           Array.isArray(partParams.extensions))
@@ -518,7 +524,7 @@ export function createHandler<
       // request parameters are checked and now complete
       params = partParams as RequestParams;
     } catch (err) {
-      return makeResponse(new GraphQLError(err.message), acceptedMediaType);
+      return makeResponse(err, acceptedMediaType);
     }
 
     let args: OperationArgs<Context>;
@@ -707,9 +713,26 @@ export function makeResponse(
   resultOrErrors:
     | Readonly<ExecutionResult>
     | Readonly<GraphQLError[]>
-    | Readonly<GraphQLError>,
+    | Readonly<GraphQLError>
+    | Readonly<Error>,
   acceptedMediaType: AcceptableMediaType,
 ): Response {
+  if (
+    resultOrErrors instanceof Error &&
+    // because GraphQLError extends the Error class
+    !(resultOrErrors instanceof GraphQLError)
+  ) {
+    return [
+      JSON.stringify({ errors: [resultOrErrors] }),
+      {
+        status: 400,
+        statusText: 'Bad Request',
+        headers: {
+          'content-type': 'application/json; charset=utf-8',
+        },
+      },
+    ];
+  }
   const errors = isGraphQLError(resultOrErrors)
     ? [resultOrErrors]
     : areGraphQLErrors(resultOrErrors)
