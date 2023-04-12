@@ -94,10 +94,14 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
       '80D8',
       'SHOULD assume application/json content-type when accept is missing',
       async () => {
-        const url = new URL(await getUrl(opts.url));
-        url.searchParams.set('query', '{ __typename }');
+        const res = await fetchFn(await getUrl(opts.url), {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json',
+          },
+          body: JSON.stringify({ query: '{ __typename }' }),
+        });
 
-        const res = await fetchFn(url.toString());
         ressert(res).status.toBe(200);
         ressert(res).header('content-type').toContain('application/json');
       },
