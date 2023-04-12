@@ -4,8 +4,8 @@
 
 <ul>
 <li><b>37</b> audits in total</li>
-<li><span style="font-family: monospace">✅</span> <b>30</b> pass</li>
-<li><span style="font-family: monospace">⚠️</span> <b>7</b> warnings (optional)</li>
+<li><span style="font-family: monospace">✅</span> <b>31</b> pass</li>
+<li><span style="font-family: monospace">⚠️</span> <b>6</b> warnings (optional)</li>
 </ul>
 
 <h2>Passing</h2>
@@ -13,6 +13,7 @@
 <li><code>22EB</code> SHOULD accept application/graphql-response+json and match the content-type</li>
 <li><code>4655</code> MUST accept application/json and match the content-type</li>
 <li><code>47DE</code> SHOULD accept */* and use application/json for the content-type</li>
+<li><code>80D8</code> SHOULD assume application/json content-type when accept is missing</li>
 <li><code>82A3</code> MUST use utf-8 encoding when responding</li>
 <li><code>BF61</code> MUST accept utf-8 encoded request</li>
 <li><code>78D5</code> MUST assume utf-8 in request if encoding is unspecified</li>
@@ -45,44 +46,6 @@
 <h2>Warnings</h2>
 The server <i>SHOULD</i> support these, but is not required.
 <ol>
-<li><code>80D8</code> SHOULD assume application/json content-type when accept is missing
-<details>
-<summary>Response status code is not 200</summary>
-<pre><code class="lang-json">{
-  "statusText": "Bad Request",
-  "status": 400,
-  "headers": {
-    "x-powered-by": "Express",
-    "etag": "W/\"5b5-gDRXf8j0lbjWbmQpeY60iENT2cI\"",
-    "date": "<timestamp>",
-    "content-type": "application/json; charset=utf-8",
-    "content-length": "1461",
-    "connection": "close",
-    "access-control-allow-origin": "*"
-  },
-  "body": {
-    "errors": [
-      {
-        "message": "This operation has been blocked as a potential Cross-Site Request Forgery (CSRF). Please either specify a 'content-type' header (with a type that is not one of application/x-www-form-urlencoded, multipart/form-data, text/plain) or provide a non-empty value for one of the following headers: x-apollo-operation-name, apollo-require-preflight\n",
-        "extensions": {
-          "stacktrace": [
-            "BadRequestError: This operation has been blocked as a potential Cross-Site Request Forgery (CSRF). Please either specify a 'content-type' header (with a type that is not one of application/x-www-form-urlencoded, multipart/form-data, text/plain) or provide a non-empty value for one of the following headers: x-apollo-operation-name, apollo-require-preflight",
-            "",
-            "    at new GraphQLErrorWithCode (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/internalErrorClasses.js:7:9)",
-            "    at new BadRequestError (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/internalErrorClasses.js:75:9)",
-            "    at preventCsrf (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/preventCsrf.js:29:11)",
-            "    at ApolloServer.executeHTTPGraphQLRequest (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/ApolloServer.js:478:17)",
-            "    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)"
-          ],
-          "code": "BAD_REQUEST"
-        }
-      }
-    ]
-  }
-}
-</code></pre>
-</details>
-</li>
 <li><code>5A70</code> MAY accept application/x-www-form-urlencoded formatted GET requests
 <details>
 <summary>Response status code is not 200</summary>
