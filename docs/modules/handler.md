@@ -13,6 +13,7 @@
 ### Type Aliases
 
 - [AcceptableMediaType](handler.md#acceptablemediatype)
+- [FormatError](handler.md#formaterror)
 - [Handler](handler.md#handler)
 - [OperationArgs](handler.md#operationargs)
 - [OperationContext](handler.md#operationcontext)
@@ -35,6 +36,28 @@
 Ƭ **AcceptableMediaType**: ``"application/graphql-response+json"`` \| ``"application/json"``
 
 Request's Media-Type that the server accepts.
+
+___
+
+### FormatError
+
+Ƭ **FormatError**: (`err`: `Readonly`<`GraphQLError` \| `Error`\>) => `GraphQLError` \| `Error`
+
+#### Type declaration
+
+▸ (`err`): `GraphQLError` \| `Error`
+
+The (GraphQL) error formatter function.
+
+##### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `err` | `Readonly`<`GraphQLError` \| `Error`\> |
+
+##### Returns
+
+`GraphQLError` \| `Error`
 
 ___
 
@@ -246,7 +269,7 @@ ___
 
 ### makeResponse
 
-▸ **makeResponse**(`resultOrErrors`, `acceptedMediaType`): [`Response`](handler.md#response)
+▸ **makeResponse**(`resultOrErrors`, `acceptedMediaType`, `formatError`): [`Response`](handler.md#response)
 
 Creates an appropriate GraphQL over HTTP response following the provided arguments.
 
@@ -264,6 +287,7 @@ error will be present in the `ExecutionResult` style.
 | :------ | :------ |
 | `resultOrErrors` | readonly `GraphQLError`[] \| `Readonly`<`ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\>\> \| `Readonly`<`GraphQLError`\> \| `Readonly`<`Error`\> |
 | `acceptedMediaType` | [`AcceptableMediaType`](handler.md#acceptablemediatype) |
+| `formatError` | [`FormatError`](handler.md#formaterror) |
 
 #### Returns
 
