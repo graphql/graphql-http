@@ -3,9 +3,10 @@
 <h1>GraphQL over HTTP audit report</h1>
 
 <ul>
-<li><b>37</b> audits in total</li>
-<li><span style="font-family: monospace">✅</span> <b>30</b> pass</li>
-<li><span style="font-family: monospace">⚠️</span> <b>7</b> warnings (optional)</li>
+<li><b>60</b> audits in total</li>
+<li><span style="font-family: monospace">✅</span> <b>33</b> pass</li>
+<li><span style="font-family: monospace">💡</span> <b>21</b> notices (suggestions)</li>
+<li><span style="font-family: monospace">⚠️</span> <b>6</b> warnings (optional)</li>
 </ul>
 
 <h2>Passing</h2>
@@ -19,6 +20,7 @@
 <li><code>2C94</code> MUST accept POST requests</li>
 <li><code>5A70</code> MAY accept application/x-www-form-urlencoded formatted GET requests</li>
 <li><code>03D4</code> MUST accept application/json POST requests</li>
+<li><code>A5BF</code> MAY use 400 status code when request body is missing on POST</li>
 <li><code>34A2</code> SHOULD allow string {query} parameter when accepting application/graphql-response+json</li>
 <li><code>13EE</code> MUST allow string {query} parameter when accepting application/json</li>
 <li><code>8161</code> SHOULD allow string {operationName} parameter when accepting application/graphql-response+json</li>
@@ -35,6 +37,8 @@
 <li><code>6A70</code> MAY allow URL-encoded JSON string {variables} parameter in GETs when accepting application/json</li>
 <li><code>428F</code> SHOULD allow map {extensions} parameter when accepting application/graphql-response+json</li>
 <li><code>1B7A</code> MUST allow map {extensions} parameter when accepting application/json</li>
+<li><code>B6DC</code> MAY use 4xx or 5xx status codes on JSON parsing failure</li>
+<li><code>BCF8</code> MAY use 400 status code on JSON parsing failure</li>
 <li><code>572B</code> SHOULD use 200 status code on document parsing failure when accepting application/json</li>
 <li><code>FDE2</code> SHOULD use 200 status code on document validation failure when accepting application/json</li>
 <li><code>7B9B</code> SHOULD use a status code of 200 on variable coercion failure when accepting application/json</li>
@@ -42,32 +46,9 @@
 <li><code>5E5B</code> SHOULD not contain the data entry on document validation failure when accepting application/graphql-response+json</li>
 </ol>
 
-<h2>Warnings</h2>
-The server <i>SHOULD</i> support these, but is not required.
+<h2>Notices</h2>
+The server <i>MAY</i> support these, but are truly optional. These are suggestions following recommended conventions.
 <ol>
-<li><code>22EB</code> SHOULD accept application/graphql-response+json and match the content-type
-<details>
-<summary>Response header content-type does not contain application/graphql-response+json</summary>
-<pre><code class="lang-json">{
-  "statusText": "OK",
-  "status": 200,
-  "headers": {
-    "x-powered-by": "PHP/8.1.17",
-    "host": "localhost:4000",
-    "date": "<timestamp>",
-    "content-type": "application/json",
-    "connection": "close",
-    "cache-control": "no-cache, private"
-  },
-  "body": {
-    "data": {
-      "__typename": "Query"
-    }
-  }
-}
-</code></pre>
-</details>
-</li>
 <li><code>9C48</code> MAY NOT allow executing mutations on GET requests
 <details>
 <summary>Response status is not between 400 and 499</summary>
@@ -98,6 +79,3879 @@ The server <i>SHOULD</i> support these, but is not required.
         }
       }
     ]
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>9ABE</code> MAY respond with 4xx status code if content-type is not supplied on POST requests
+<details>
+<summary>Response status is not between 400 and 499</summary>
+<pre><code class="lang-json">{
+  "statusText": "Internal Server Error",
+  "status": 500,
+  "headers": {
+    "x-powered-by": "PHP/8.1.17",
+    "host": "localhost:4000",
+    "date": "<timestamp>",
+    "content-type": "application/json",
+    "connection": "close",
+    "cache-control": "no-cache, private"
+  },
+  "body": {
+    "trace": [
+      {
+        "line": 55,
+        "function": "assert",
+        "file": "/app/vendor/laragraph/utils/src/RequestParser.php"
+      },
+      {
+        "type": "->",
+        "line": 39,
+        "function": "bodyParams",
+        "file": "/app/vendor/laragraph/utils/src/RequestParser.php",
+        "class": "Laragraph\\Utils\\RequestParser"
+      },
+      {
+        "type": "->",
+        "line": 29,
+        "function": "parseRequest",
+        "file": "/app/vendor/nuwave/lighthouse/src/Http/GraphQLController.php",
+        "class": "Laragraph\\Utils\\RequestParser"
+      },
+      {
+        "type": "->",
+        "line": 46,
+        "function": "__invoke",
+        "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php",
+        "class": "Nuwave\\Lighthouse\\Http\\GraphQLController"
+      },
+      {
+        "type": "->",
+        "line": 260,
+        "function": "dispatch",
+        "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Route.php",
+        "class": "Illuminate\\Routing\\ControllerDispatcher"
+      },
+      {
+        "type": "->",
+        "line": 205,
+        "function": "runController",
+        "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Route.php",
+        "class": "Illuminate\\Routing\\Route"
+      },
+      {
+        "type": "->",
+        "line": 798,
+        "function": "run",
+        "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+        "class": "Illuminate\\Routing\\Route"
+      },
+      {
+        "type": "->",
+        "line": 141,
+        "function": "Illuminate\\Routing\\{closure}",
+        "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+        "class": "Illuminate\\Routing\\Router"
+      },
+      {
+        "type": "->",
+        "line": 22,
+        "function": "Illuminate\\Pipeline\\{closure}",
+        "file": "/app/vendor/nuwave/lighthouse/src/Http/Middleware/AttemptAuthentication.php",
+        "class": "Illuminate\\Pipeline\\Pipeline"
+      },
+      {
+        "type": "->",
+        "line": 180,
+        "function": "handle",
+        "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+        "class": "Nuwave\\Lighthouse\\Http\\Middleware\\AttemptAuthentication"
+      },
+      {
+        "type": "->",
+        "line": 24,
+        "function": "Illuminate\\Pipeline\\{closure}",
+        "file": "/app/vendor/nuwave/lighthouse/src/Http/Middleware/AcceptJson.php",
+        "class": "Illuminate\\Pipeline\\Pipeline"
+      },
+      {
+        "type": "->",
+        "line": 180,
+        "function": "handle",
+        "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+        "class": "Nuwave\\Lighthouse\\Http\\Middleware\\AcceptJson"
+      },
+      {
+        "type": "->",
+        "line": 116,
+        "function": "Illuminate\\Pipeline\\{closure}",
+        "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+        "class": "Illuminate\\Pipeline\\Pipeline"
+      },
+      {
+        "type": "->",
+        "line": 799,
+        "function": "then",
+        "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+        "class": "Illuminate\\Pipeline\\Pipeline"
+      },
+      {
+        "type": "->",
+        "line": 776,
+        "function": "runRouteWithinStack",
+        "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+        "class": "Illuminate\\Routing\\Router"
+      },
+      {
+        "type": "->",
+        "line": 740,
+        "function": "runRoute",
+        "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+        "class": "Illuminate\\Routing\\Router"
+      },
+      {
+        "type": "->",
+        "line": 729,
+        "function": "dispatchToRoute",
+        "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+        "class": "Illuminate\\Routing\\Router"
+      },
+      {
+        "type": "->",
+        "line": 200,
+        "function": "dispatch",
+        "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php",
+        "class": "Illuminate\\Routing\\Router"
+      },
+      {
+        "type": "->",
+        "line": 141,
+        "function": "Illuminate\\Foundation\\Http\\{closure}",
+        "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+        "class": "Illuminate\\Foundation\\Http\\Kernel"
+      },
+      {
+        "type": "->",
+        "line": 21,
+        "function": "Illuminate\\Pipeline\\{closure}",
+        "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php",
+        "class": "Illuminate\\Pipeline\\Pipeline"
+      },
+      {
+        "type": "->",
+        "line": 31,
+        "function": "handle",
+        "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php",
+        "class": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest"
+      },
+      {
+        "type": "->",
+        "line": 180,
+        "function": "handle",
+        "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+        "class": "Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull"
+      },
+      {
+        "type": "->",
+        "line": 21,
+        "function": "Illuminate\\Pipeline\\{closure}",
+        "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php",
+        "class": "Illuminate\\Pipeline\\Pipeline"
+      },
+      {
+        "type": "->",
+        "line": 40,
+        "function": "handle",
+        "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php",
+        "class": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest"
+      },
+      {
+        "type": "->",
+        "line": 180,
+        "function": "handle",
+        "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+        "class": "Illuminate\\Foundation\\Http\\Middleware\\TrimStrings"
+      },
+      {
+        "type": "->",
+        "line": 27,
+        "function": "Illuminate\\Pipeline\\{closure}",
+        "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php",
+        "class": "Illuminate\\Pipeline\\Pipeline"
+      },
+      {
+        "type": "->",
+        "line": 180,
+        "function": "handle",
+        "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+        "class": "Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize"
+      },
+      {
+        "type": "->",
+        "line": 86,
+        "function": "Illuminate\\Pipeline\\{closure}",
+        "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php",
+        "class": "Illuminate\\Pipeline\\Pipeline"
+      },
+      {
+        "type": "->",
+        "line": 180,
+        "function": "handle",
+        "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+        "class": "Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance"
+      },
+      {
+        "type": "->",
+        "line": 49,
+        "function": "Illuminate\\Pipeline\\{closure}",
+        "file": "/app/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php",
+        "class": "Illuminate\\Pipeline\\Pipeline"
+      },
+      {
+        "type": "->",
+        "line": 180,
+        "function": "handle",
+        "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+        "class": "Illuminate\\Http\\Middleware\\HandleCors"
+      },
+      {
+        "type": "->",
+        "line": 39,
+        "function": "Illuminate\\Pipeline\\{closure}",
+        "file": "/app/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php",
+        "class": "Illuminate\\Pipeline\\Pipeline"
+      },
+      {
+        "type": "->",
+        "line": 180,
+        "function": "handle",
+        "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+        "class": "Illuminate\\Http\\Middleware\\TrustProxies"
+      },
+      {
+        "type": "->",
+        "line": 116,
+        "function": "Illuminate\\Pipeline\\{closure}",
+        "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+        "class": "Illuminate\\Pipeline\\Pipeline"
+      },
+      {
+        "type": "->",
+        "line": 175,
+        "function": "then",
+        "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php",
+        "class": "Illuminate\\Pipeline\\Pipeline"
+      },
+      {
+        "type": "->",
+        "line": 144,
+        "function": "sendRequestThroughRouter",
+        "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php",
+        "class": "Illuminate\\Foundation\\Http\\Kernel"
+      },
+      {
+        "type": "->",
+        "line": 52,
+        "function": "handle",
+        "file": "/app/public/index.php",
+        "class": "Illuminate\\Foundation\\Http\\Kernel"
+      },
+      {
+        "line": 16,
+        "function": "require_once",
+        "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php"
+      }
+    ],
+    "message": "Never null, since Symfony defaults to application/x-www-form-urlencoded.",
+    "line": 55,
+    "file": "/app/vendor/laragraph/utils/src/RequestParser.php",
+    "exception": "AssertionError"
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>423L</code> MAY use 400 status code on missing {query} parameter
+<details>
+<summary>Response status code is not 400</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "x-powered-by": "PHP/8.1.17",
+    "host": "localhost:4000",
+    "date": "<timestamp>",
+    "content-type": "application/json",
+    "connection": "close",
+    "cache-control": "no-cache, private"
+  },
+  "body": {
+    "errors": [
+      {
+        "message": "GraphQL Request must include at least one of those two parameters: \"query\" or \"queryId\"",
+        "extensions": {
+          "trace": [
+            {
+              "line": 197,
+              "file": "/app/vendor/nuwave/lighthouse/src/GraphQL.php",
+              "call": "GraphQL\\Server\\Helper::validateOperationParams(instance of GraphQL\\Server\\OperationParams)"
+            },
+            {
+              "line": 177,
+              "file": "/app/vendor/nuwave/lighthouse/src/GraphQL.php",
+              "call": "Nuwave\\Lighthouse\\GraphQL::executeOperation(instance of GraphQL\\Server\\OperationParams, instance of Nuwave\\Lighthouse\\Execution\\HttpGraphQLContext)"
+            },
+            {
+              "line": 107,
+              "file": "/app/vendor/nuwave/lighthouse/src/Support/Utils.php",
+              "call": "Nuwave\\Lighthouse\\GraphQL::Nuwave\\Lighthouse\\{closure}(instance of GraphQL\\Server\\OperationParams)"
+            },
+            {
+              "line": 177,
+              "file": "/app/vendor/nuwave/lighthouse/src/GraphQL.php",
+              "call": "Nuwave\\Lighthouse\\Support\\Utils::mapEach(instance of Closure, instance of GraphQL\\Server\\OperationParams)"
+            },
+            {
+              "line": 32,
+              "file": "/app/vendor/nuwave/lighthouse/src/Http/GraphQLController.php",
+              "call": "Nuwave\\Lighthouse\\GraphQL::executeOperationOrOperations(instance of GraphQL\\Server\\OperationParams, instance of Nuwave\\Lighthouse\\Execution\\HttpGraphQLContext)"
+            },
+            {
+              "line": 46,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php",
+              "call": "Nuwave\\Lighthouse\\Http\\GraphQLController::__invoke(instance of Illuminate\\Http\\Request, instance of Nuwave\\Lighthouse\\GraphQL, instance of Illuminate\\Events\\Dispatcher, instance of Laragraph\\Utils\\RequestParser, instance of Nuwave\\Lighthouse\\Execution\\SingleResponse, instance of Nuwave\\Lighthouse\\Execution\\ContextFactory)"
+            },
+            {
+              "line": 260,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Route.php",
+              "call": "Illuminate\\Routing\\ControllerDispatcher::dispatch(instance of Illuminate\\Routing\\Route, instance of Nuwave\\Lighthouse\\Http\\GraphQLController, '__invoke')"
+            },
+            {
+              "line": 205,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Route.php",
+              "call": "Illuminate\\Routing\\Route::runController()"
+            },
+            {
+              "line": 798,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+              "call": "Illuminate\\Routing\\Route::run()"
+            },
+            {
+              "line": 141,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Routing\\Router::Illuminate\\Routing\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 22,
+              "file": "/app/vendor/nuwave/lighthouse/src/Http/Middleware/AttemptAuthentication.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Nuwave\\Lighthouse\\Http\\Middleware\\AttemptAuthentication::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 24,
+              "file": "/app/vendor/nuwave/lighthouse/src/Http/Middleware/AcceptJson.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Nuwave\\Lighthouse\\Http\\Middleware\\AcceptJson::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 116,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 799,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::then(instance of Closure)"
+            },
+            {
+              "line": 776,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+              "call": "Illuminate\\Routing\\Router::runRouteWithinStack(instance of Illuminate\\Routing\\Route, instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 740,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+              "call": "Illuminate\\Routing\\Router::runRoute(instance of Illuminate\\Http\\Request, instance of Illuminate\\Routing\\Route)"
+            },
+            {
+              "line": 729,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+              "call": "Illuminate\\Routing\\Router::dispatchToRoute(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 200,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php",
+              "call": "Illuminate\\Routing\\Router::dispatch(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 141,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Foundation\\Http\\Kernel::Illuminate\\Foundation\\Http\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 21,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 31,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 21,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 40,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\TrimStrings::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 27,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 86,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 49,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Http\\Middleware\\HandleCors::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 39,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Http\\Middleware\\TrustProxies::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 116,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 175,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::then(instance of Closure)"
+            },
+            {
+              "line": 144,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php",
+              "call": "Illuminate\\Foundation\\Http\\Kernel::sendRequestThroughRouter(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 52,
+              "file": "/app/public/index.php",
+              "call": "Illuminate\\Foundation\\Http\\Kernel::handle(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 16,
+              "function": "require_once('/app/public/index.php')",
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php"
+            }
+          ],
+          "line": 137,
+          "file": "/app/vendor/webonyx/graphql-php/src/Server/Helper.php"
+        }
+      }
+    ]
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>LKJ0</code> MAY use 400 status code on object {query} parameter
+<details>
+<summary>Response status code is not 400</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "x-powered-by": "PHP/8.1.17",
+    "host": "localhost:4000",
+    "date": "<timestamp>",
+    "content-type": "application/json",
+    "connection": "close",
+    "cache-control": "no-cache, private"
+  },
+  "body": {
+    "errors": [
+      {
+        "message": "GraphQL Request parameter \"query\" must be string, but got {\"obj\":\"ect\"}",
+        "extensions": {
+          "trace": [
+            {
+              "line": 197,
+              "file": "/app/vendor/nuwave/lighthouse/src/GraphQL.php",
+              "call": "GraphQL\\Server\\Helper::validateOperationParams(instance of GraphQL\\Server\\OperationParams)"
+            },
+            {
+              "line": 177,
+              "file": "/app/vendor/nuwave/lighthouse/src/GraphQL.php",
+              "call": "Nuwave\\Lighthouse\\GraphQL::executeOperation(instance of GraphQL\\Server\\OperationParams, instance of Nuwave\\Lighthouse\\Execution\\HttpGraphQLContext)"
+            },
+            {
+              "line": 107,
+              "file": "/app/vendor/nuwave/lighthouse/src/Support/Utils.php",
+              "call": "Nuwave\\Lighthouse\\GraphQL::Nuwave\\Lighthouse\\{closure}(instance of GraphQL\\Server\\OperationParams)"
+            },
+            {
+              "line": 177,
+              "file": "/app/vendor/nuwave/lighthouse/src/GraphQL.php",
+              "call": "Nuwave\\Lighthouse\\Support\\Utils::mapEach(instance of Closure, instance of GraphQL\\Server\\OperationParams)"
+            },
+            {
+              "line": 32,
+              "file": "/app/vendor/nuwave/lighthouse/src/Http/GraphQLController.php",
+              "call": "Nuwave\\Lighthouse\\GraphQL::executeOperationOrOperations(instance of GraphQL\\Server\\OperationParams, instance of Nuwave\\Lighthouse\\Execution\\HttpGraphQLContext)"
+            },
+            {
+              "line": 46,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php",
+              "call": "Nuwave\\Lighthouse\\Http\\GraphQLController::__invoke(instance of Illuminate\\Http\\Request, instance of Nuwave\\Lighthouse\\GraphQL, instance of Illuminate\\Events\\Dispatcher, instance of Laragraph\\Utils\\RequestParser, instance of Nuwave\\Lighthouse\\Execution\\SingleResponse, instance of Nuwave\\Lighthouse\\Execution\\ContextFactory)"
+            },
+            {
+              "line": 260,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Route.php",
+              "call": "Illuminate\\Routing\\ControllerDispatcher::dispatch(instance of Illuminate\\Routing\\Route, instance of Nuwave\\Lighthouse\\Http\\GraphQLController, '__invoke')"
+            },
+            {
+              "line": 205,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Route.php",
+              "call": "Illuminate\\Routing\\Route::runController()"
+            },
+            {
+              "line": 798,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+              "call": "Illuminate\\Routing\\Route::run()"
+            },
+            {
+              "line": 141,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Routing\\Router::Illuminate\\Routing\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 22,
+              "file": "/app/vendor/nuwave/lighthouse/src/Http/Middleware/AttemptAuthentication.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Nuwave\\Lighthouse\\Http\\Middleware\\AttemptAuthentication::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 24,
+              "file": "/app/vendor/nuwave/lighthouse/src/Http/Middleware/AcceptJson.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Nuwave\\Lighthouse\\Http\\Middleware\\AcceptJson::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 116,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 799,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::then(instance of Closure)"
+            },
+            {
+              "line": 776,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+              "call": "Illuminate\\Routing\\Router::runRouteWithinStack(instance of Illuminate\\Routing\\Route, instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 740,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+              "call": "Illuminate\\Routing\\Router::runRoute(instance of Illuminate\\Http\\Request, instance of Illuminate\\Routing\\Route)"
+            },
+            {
+              "line": 729,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+              "call": "Illuminate\\Routing\\Router::dispatchToRoute(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 200,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php",
+              "call": "Illuminate\\Routing\\Router::dispatch(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 141,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Foundation\\Http\\Kernel::Illuminate\\Foundation\\Http\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 21,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 31,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 21,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 40,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\TrimStrings::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 27,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 86,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 49,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Http\\Middleware\\HandleCors::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 39,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Http\\Middleware\\TrustProxies::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 116,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 175,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::then(instance of Closure)"
+            },
+            {
+              "line": 144,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php",
+              "call": "Illuminate\\Foundation\\Http\\Kernel::sendRequestThroughRouter(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 52,
+              "file": "/app/public/index.php",
+              "call": "Illuminate\\Foundation\\Http\\Kernel::handle(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 16,
+              "function": "require_once('/app/public/index.php')",
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php"
+            }
+          ],
+          "line": 141,
+          "file": "/app/vendor/webonyx/graphql-php/src/Server/Helper.php"
+        }
+      }
+    ]
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>LKJ1</code> MAY use 400 status code on number {query} parameter
+<details>
+<summary>Response status code is not 400</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "x-powered-by": "PHP/8.1.17",
+    "host": "localhost:4000",
+    "date": "<timestamp>",
+    "content-type": "application/json",
+    "connection": "close",
+    "cache-control": "no-cache, private"
+  },
+  "body": {
+    "errors": [
+      {
+        "message": "GraphQL Request parameter \"query\" must be string, but got 0",
+        "extensions": {
+          "trace": [
+            {
+              "line": 197,
+              "file": "/app/vendor/nuwave/lighthouse/src/GraphQL.php",
+              "call": "GraphQL\\Server\\Helper::validateOperationParams(instance of GraphQL\\Server\\OperationParams)"
+            },
+            {
+              "line": 177,
+              "file": "/app/vendor/nuwave/lighthouse/src/GraphQL.php",
+              "call": "Nuwave\\Lighthouse\\GraphQL::executeOperation(instance of GraphQL\\Server\\OperationParams, instance of Nuwave\\Lighthouse\\Execution\\HttpGraphQLContext)"
+            },
+            {
+              "line": 107,
+              "file": "/app/vendor/nuwave/lighthouse/src/Support/Utils.php",
+              "call": "Nuwave\\Lighthouse\\GraphQL::Nuwave\\Lighthouse\\{closure}(instance of GraphQL\\Server\\OperationParams)"
+            },
+            {
+              "line": 177,
+              "file": "/app/vendor/nuwave/lighthouse/src/GraphQL.php",
+              "call": "Nuwave\\Lighthouse\\Support\\Utils::mapEach(instance of Closure, instance of GraphQL\\Server\\OperationParams)"
+            },
+            {
+              "line": 32,
+              "file": "/app/vendor/nuwave/lighthouse/src/Http/GraphQLController.php",
+              "call": "Nuwave\\Lighthouse\\GraphQL::executeOperationOrOperations(instance of GraphQL\\Server\\OperationParams, instance of Nuwave\\Lighthouse\\Execution\\HttpGraphQLContext)"
+            },
+            {
+              "line": 46,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php",
+              "call": "Nuwave\\Lighthouse\\Http\\GraphQLController::__invoke(instance of Illuminate\\Http\\Request, instance of Nuwave\\Lighthouse\\GraphQL, instance of Illuminate\\Events\\Dispatcher, instance of Laragraph\\Utils\\RequestParser, instance of Nuwave\\Lighthouse\\Execution\\SingleResponse, instance of Nuwave\\Lighthouse\\Execution\\ContextFactory)"
+            },
+            {
+              "line": 260,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Route.php",
+              "call": "Illuminate\\Routing\\ControllerDispatcher::dispatch(instance of Illuminate\\Routing\\Route, instance of Nuwave\\Lighthouse\\Http\\GraphQLController, '__invoke')"
+            },
+            {
+              "line": 205,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Route.php",
+              "call": "Illuminate\\Routing\\Route::runController()"
+            },
+            {
+              "line": 798,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+              "call": "Illuminate\\Routing\\Route::run()"
+            },
+            {
+              "line": 141,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Routing\\Router::Illuminate\\Routing\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 22,
+              "file": "/app/vendor/nuwave/lighthouse/src/Http/Middleware/AttemptAuthentication.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Nuwave\\Lighthouse\\Http\\Middleware\\AttemptAuthentication::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 24,
+              "file": "/app/vendor/nuwave/lighthouse/src/Http/Middleware/AcceptJson.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Nuwave\\Lighthouse\\Http\\Middleware\\AcceptJson::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 116,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 799,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::then(instance of Closure)"
+            },
+            {
+              "line": 776,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+              "call": "Illuminate\\Routing\\Router::runRouteWithinStack(instance of Illuminate\\Routing\\Route, instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 740,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+              "call": "Illuminate\\Routing\\Router::runRoute(instance of Illuminate\\Http\\Request, instance of Illuminate\\Routing\\Route)"
+            },
+            {
+              "line": 729,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+              "call": "Illuminate\\Routing\\Router::dispatchToRoute(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 200,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php",
+              "call": "Illuminate\\Routing\\Router::dispatch(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 141,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Foundation\\Http\\Kernel::Illuminate\\Foundation\\Http\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 21,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 31,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 21,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 40,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\TrimStrings::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 27,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 86,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 49,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Http\\Middleware\\HandleCors::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 39,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Http\\Middleware\\TrustProxies::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 116,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 175,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::then(instance of Closure)"
+            },
+            {
+              "line": 144,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php",
+              "call": "Illuminate\\Foundation\\Http\\Kernel::sendRequestThroughRouter(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 52,
+              "file": "/app/public/index.php",
+              "call": "Illuminate\\Foundation\\Http\\Kernel::handle(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 16,
+              "function": "require_once('/app/public/index.php')",
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php"
+            }
+          ],
+          "line": 141,
+          "file": "/app/vendor/webonyx/graphql-php/src/Server/Helper.php"
+        }
+      }
+    ]
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>LKJ2</code> MAY use 400 status code on boolean {query} parameter
+<details>
+<summary>Response status code is not 400</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "x-powered-by": "PHP/8.1.17",
+    "host": "localhost:4000",
+    "date": "<timestamp>",
+    "content-type": "application/json",
+    "connection": "close",
+    "cache-control": "no-cache, private"
+  },
+  "body": {
+    "errors": [
+      {
+        "message": "GraphQL Request parameter \"query\" must be string, but got false",
+        "extensions": {
+          "trace": [
+            {
+              "line": 197,
+              "file": "/app/vendor/nuwave/lighthouse/src/GraphQL.php",
+              "call": "GraphQL\\Server\\Helper::validateOperationParams(instance of GraphQL\\Server\\OperationParams)"
+            },
+            {
+              "line": 177,
+              "file": "/app/vendor/nuwave/lighthouse/src/GraphQL.php",
+              "call": "Nuwave\\Lighthouse\\GraphQL::executeOperation(instance of GraphQL\\Server\\OperationParams, instance of Nuwave\\Lighthouse\\Execution\\HttpGraphQLContext)"
+            },
+            {
+              "line": 107,
+              "file": "/app/vendor/nuwave/lighthouse/src/Support/Utils.php",
+              "call": "Nuwave\\Lighthouse\\GraphQL::Nuwave\\Lighthouse\\{closure}(instance of GraphQL\\Server\\OperationParams)"
+            },
+            {
+              "line": 177,
+              "file": "/app/vendor/nuwave/lighthouse/src/GraphQL.php",
+              "call": "Nuwave\\Lighthouse\\Support\\Utils::mapEach(instance of Closure, instance of GraphQL\\Server\\OperationParams)"
+            },
+            {
+              "line": 32,
+              "file": "/app/vendor/nuwave/lighthouse/src/Http/GraphQLController.php",
+              "call": "Nuwave\\Lighthouse\\GraphQL::executeOperationOrOperations(instance of GraphQL\\Server\\OperationParams, instance of Nuwave\\Lighthouse\\Execution\\HttpGraphQLContext)"
+            },
+            {
+              "line": 46,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php",
+              "call": "Nuwave\\Lighthouse\\Http\\GraphQLController::__invoke(instance of Illuminate\\Http\\Request, instance of Nuwave\\Lighthouse\\GraphQL, instance of Illuminate\\Events\\Dispatcher, instance of Laragraph\\Utils\\RequestParser, instance of Nuwave\\Lighthouse\\Execution\\SingleResponse, instance of Nuwave\\Lighthouse\\Execution\\ContextFactory)"
+            },
+            {
+              "line": 260,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Route.php",
+              "call": "Illuminate\\Routing\\ControllerDispatcher::dispatch(instance of Illuminate\\Routing\\Route, instance of Nuwave\\Lighthouse\\Http\\GraphQLController, '__invoke')"
+            },
+            {
+              "line": 205,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Route.php",
+              "call": "Illuminate\\Routing\\Route::runController()"
+            },
+            {
+              "line": 798,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+              "call": "Illuminate\\Routing\\Route::run()"
+            },
+            {
+              "line": 141,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Routing\\Router::Illuminate\\Routing\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 22,
+              "file": "/app/vendor/nuwave/lighthouse/src/Http/Middleware/AttemptAuthentication.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Nuwave\\Lighthouse\\Http\\Middleware\\AttemptAuthentication::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 24,
+              "file": "/app/vendor/nuwave/lighthouse/src/Http/Middleware/AcceptJson.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Nuwave\\Lighthouse\\Http\\Middleware\\AcceptJson::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 116,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 799,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::then(instance of Closure)"
+            },
+            {
+              "line": 776,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+              "call": "Illuminate\\Routing\\Router::runRouteWithinStack(instance of Illuminate\\Routing\\Route, instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 740,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+              "call": "Illuminate\\Routing\\Router::runRoute(instance of Illuminate\\Http\\Request, instance of Illuminate\\Routing\\Route)"
+            },
+            {
+              "line": 729,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+              "call": "Illuminate\\Routing\\Router::dispatchToRoute(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 200,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php",
+              "call": "Illuminate\\Routing\\Router::dispatch(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 141,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Foundation\\Http\\Kernel::Illuminate\\Foundation\\Http\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 21,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 31,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 21,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 40,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\TrimStrings::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 27,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 86,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 49,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Http\\Middleware\\HandleCors::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 39,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Http\\Middleware\\TrustProxies::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 116,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 175,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::then(instance of Closure)"
+            },
+            {
+              "line": 144,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php",
+              "call": "Illuminate\\Foundation\\Http\\Kernel::sendRequestThroughRouter(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 52,
+              "file": "/app/public/index.php",
+              "call": "Illuminate\\Foundation\\Http\\Kernel::handle(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 16,
+              "function": "require_once('/app/public/index.php')",
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php"
+            }
+          ],
+          "line": 141,
+          "file": "/app/vendor/webonyx/graphql-php/src/Server/Helper.php"
+        }
+      }
+    ]
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>LKJ3</code> MAY use 400 status code on array {query} parameter
+<details>
+<summary>Response status code is not 400</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "x-powered-by": "PHP/8.1.17",
+    "host": "localhost:4000",
+    "date": "<timestamp>",
+    "content-type": "application/json",
+    "connection": "close",
+    "cache-control": "no-cache, private"
+  },
+  "body": {
+    "errors": [
+      {
+        "message": "GraphQL Request parameter \"query\" must be string, but got [\"array\"]",
+        "extensions": {
+          "trace": [
+            {
+              "line": 197,
+              "file": "/app/vendor/nuwave/lighthouse/src/GraphQL.php",
+              "call": "GraphQL\\Server\\Helper::validateOperationParams(instance of GraphQL\\Server\\OperationParams)"
+            },
+            {
+              "line": 177,
+              "file": "/app/vendor/nuwave/lighthouse/src/GraphQL.php",
+              "call": "Nuwave\\Lighthouse\\GraphQL::executeOperation(instance of GraphQL\\Server\\OperationParams, instance of Nuwave\\Lighthouse\\Execution\\HttpGraphQLContext)"
+            },
+            {
+              "line": 107,
+              "file": "/app/vendor/nuwave/lighthouse/src/Support/Utils.php",
+              "call": "Nuwave\\Lighthouse\\GraphQL::Nuwave\\Lighthouse\\{closure}(instance of GraphQL\\Server\\OperationParams)"
+            },
+            {
+              "line": 177,
+              "file": "/app/vendor/nuwave/lighthouse/src/GraphQL.php",
+              "call": "Nuwave\\Lighthouse\\Support\\Utils::mapEach(instance of Closure, instance of GraphQL\\Server\\OperationParams)"
+            },
+            {
+              "line": 32,
+              "file": "/app/vendor/nuwave/lighthouse/src/Http/GraphQLController.php",
+              "call": "Nuwave\\Lighthouse\\GraphQL::executeOperationOrOperations(instance of GraphQL\\Server\\OperationParams, instance of Nuwave\\Lighthouse\\Execution\\HttpGraphQLContext)"
+            },
+            {
+              "line": 46,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php",
+              "call": "Nuwave\\Lighthouse\\Http\\GraphQLController::__invoke(instance of Illuminate\\Http\\Request, instance of Nuwave\\Lighthouse\\GraphQL, instance of Illuminate\\Events\\Dispatcher, instance of Laragraph\\Utils\\RequestParser, instance of Nuwave\\Lighthouse\\Execution\\SingleResponse, instance of Nuwave\\Lighthouse\\Execution\\ContextFactory)"
+            },
+            {
+              "line": 260,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Route.php",
+              "call": "Illuminate\\Routing\\ControllerDispatcher::dispatch(instance of Illuminate\\Routing\\Route, instance of Nuwave\\Lighthouse\\Http\\GraphQLController, '__invoke')"
+            },
+            {
+              "line": 205,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Route.php",
+              "call": "Illuminate\\Routing\\Route::runController()"
+            },
+            {
+              "line": 798,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+              "call": "Illuminate\\Routing\\Route::run()"
+            },
+            {
+              "line": 141,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Routing\\Router::Illuminate\\Routing\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 22,
+              "file": "/app/vendor/nuwave/lighthouse/src/Http/Middleware/AttemptAuthentication.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Nuwave\\Lighthouse\\Http\\Middleware\\AttemptAuthentication::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 24,
+              "file": "/app/vendor/nuwave/lighthouse/src/Http/Middleware/AcceptJson.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Nuwave\\Lighthouse\\Http\\Middleware\\AcceptJson::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 116,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 799,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::then(instance of Closure)"
+            },
+            {
+              "line": 776,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+              "call": "Illuminate\\Routing\\Router::runRouteWithinStack(instance of Illuminate\\Routing\\Route, instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 740,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+              "call": "Illuminate\\Routing\\Router::runRoute(instance of Illuminate\\Http\\Request, instance of Illuminate\\Routing\\Route)"
+            },
+            {
+              "line": 729,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+              "call": "Illuminate\\Routing\\Router::dispatchToRoute(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 200,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php",
+              "call": "Illuminate\\Routing\\Router::dispatch(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 141,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Foundation\\Http\\Kernel::Illuminate\\Foundation\\Http\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 21,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 31,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 21,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 40,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\TrimStrings::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 27,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 86,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 49,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Http\\Middleware\\HandleCors::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 39,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Http\\Middleware\\TrustProxies::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 116,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 175,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::then(instance of Closure)"
+            },
+            {
+              "line": 144,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php",
+              "call": "Illuminate\\Foundation\\Http\\Kernel::sendRequestThroughRouter(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 52,
+              "file": "/app/public/index.php",
+              "call": "Illuminate\\Foundation\\Http\\Kernel::handle(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 16,
+              "function": "require_once('/app/public/index.php')",
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php"
+            }
+          ],
+          "line": 141,
+          "file": "/app/vendor/webonyx/graphql-php/src/Server/Helper.php"
+        }
+      }
+    ]
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>6C00</code> MAY use 400 status code on object {operationName} parameter
+<details>
+<summary>Response status code is not 400</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "x-powered-by": "PHP/8.1.17",
+    "host": "localhost:4000",
+    "date": "<timestamp>",
+    "content-type": "application/json",
+    "connection": "close",
+    "cache-control": "no-cache, private"
+  },
+  "body": {
+    "errors": [
+      {
+        "message": "GraphQL Request parameter \"operation\" must be string, but got {\"obj\":\"ect\"}",
+        "extensions": {
+          "trace": [
+            {
+              "line": 197,
+              "file": "/app/vendor/nuwave/lighthouse/src/GraphQL.php",
+              "call": "GraphQL\\Server\\Helper::validateOperationParams(instance of GraphQL\\Server\\OperationParams)"
+            },
+            {
+              "line": 177,
+              "file": "/app/vendor/nuwave/lighthouse/src/GraphQL.php",
+              "call": "Nuwave\\Lighthouse\\GraphQL::executeOperation(instance of GraphQL\\Server\\OperationParams, instance of Nuwave\\Lighthouse\\Execution\\HttpGraphQLContext)"
+            },
+            {
+              "line": 107,
+              "file": "/app/vendor/nuwave/lighthouse/src/Support/Utils.php",
+              "call": "Nuwave\\Lighthouse\\GraphQL::Nuwave\\Lighthouse\\{closure}(instance of GraphQL\\Server\\OperationParams)"
+            },
+            {
+              "line": 177,
+              "file": "/app/vendor/nuwave/lighthouse/src/GraphQL.php",
+              "call": "Nuwave\\Lighthouse\\Support\\Utils::mapEach(instance of Closure, instance of GraphQL\\Server\\OperationParams)"
+            },
+            {
+              "line": 32,
+              "file": "/app/vendor/nuwave/lighthouse/src/Http/GraphQLController.php",
+              "call": "Nuwave\\Lighthouse\\GraphQL::executeOperationOrOperations(instance of GraphQL\\Server\\OperationParams, instance of Nuwave\\Lighthouse\\Execution\\HttpGraphQLContext)"
+            },
+            {
+              "line": 46,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php",
+              "call": "Nuwave\\Lighthouse\\Http\\GraphQLController::__invoke(instance of Illuminate\\Http\\Request, instance of Nuwave\\Lighthouse\\GraphQL, instance of Illuminate\\Events\\Dispatcher, instance of Laragraph\\Utils\\RequestParser, instance of Nuwave\\Lighthouse\\Execution\\SingleResponse, instance of Nuwave\\Lighthouse\\Execution\\ContextFactory)"
+            },
+            {
+              "line": 260,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Route.php",
+              "call": "Illuminate\\Routing\\ControllerDispatcher::dispatch(instance of Illuminate\\Routing\\Route, instance of Nuwave\\Lighthouse\\Http\\GraphQLController, '__invoke')"
+            },
+            {
+              "line": 205,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Route.php",
+              "call": "Illuminate\\Routing\\Route::runController()"
+            },
+            {
+              "line": 798,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+              "call": "Illuminate\\Routing\\Route::run()"
+            },
+            {
+              "line": 141,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Routing\\Router::Illuminate\\Routing\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 22,
+              "file": "/app/vendor/nuwave/lighthouse/src/Http/Middleware/AttemptAuthentication.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Nuwave\\Lighthouse\\Http\\Middleware\\AttemptAuthentication::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 24,
+              "file": "/app/vendor/nuwave/lighthouse/src/Http/Middleware/AcceptJson.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Nuwave\\Lighthouse\\Http\\Middleware\\AcceptJson::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 116,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 799,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::then(instance of Closure)"
+            },
+            {
+              "line": 776,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+              "call": "Illuminate\\Routing\\Router::runRouteWithinStack(instance of Illuminate\\Routing\\Route, instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 740,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+              "call": "Illuminate\\Routing\\Router::runRoute(instance of Illuminate\\Http\\Request, instance of Illuminate\\Routing\\Route)"
+            },
+            {
+              "line": 729,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+              "call": "Illuminate\\Routing\\Router::dispatchToRoute(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 200,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php",
+              "call": "Illuminate\\Routing\\Router::dispatch(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 141,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Foundation\\Http\\Kernel::Illuminate\\Foundation\\Http\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 21,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 31,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 21,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 40,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\TrimStrings::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 27,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 86,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 49,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Http\\Middleware\\HandleCors::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 39,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Http\\Middleware\\TrustProxies::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 116,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 175,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::then(instance of Closure)"
+            },
+            {
+              "line": 144,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php",
+              "call": "Illuminate\\Foundation\\Http\\Kernel::sendRequestThroughRouter(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 52,
+              "file": "/app/public/index.php",
+              "call": "Illuminate\\Foundation\\Http\\Kernel::handle(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 16,
+              "function": "require_once('/app/public/index.php')",
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php"
+            }
+          ],
+          "line": 155,
+          "file": "/app/vendor/webonyx/graphql-php/src/Server/Helper.php"
+        }
+      }
+    ]
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>6C01</code> MAY use 400 status code on number {operationName} parameter
+<details>
+<summary>Response status code is not 400</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "x-powered-by": "PHP/8.1.17",
+    "host": "localhost:4000",
+    "date": "<timestamp>",
+    "content-type": "application/json",
+    "connection": "close",
+    "cache-control": "no-cache, private"
+  },
+  "body": {
+    "errors": [
+      {
+        "message": "GraphQL Request parameter \"operation\" must be string, but got 0",
+        "extensions": {
+          "trace": [
+            {
+              "line": 197,
+              "file": "/app/vendor/nuwave/lighthouse/src/GraphQL.php",
+              "call": "GraphQL\\Server\\Helper::validateOperationParams(instance of GraphQL\\Server\\OperationParams)"
+            },
+            {
+              "line": 177,
+              "file": "/app/vendor/nuwave/lighthouse/src/GraphQL.php",
+              "call": "Nuwave\\Lighthouse\\GraphQL::executeOperation(instance of GraphQL\\Server\\OperationParams, instance of Nuwave\\Lighthouse\\Execution\\HttpGraphQLContext)"
+            },
+            {
+              "line": 107,
+              "file": "/app/vendor/nuwave/lighthouse/src/Support/Utils.php",
+              "call": "Nuwave\\Lighthouse\\GraphQL::Nuwave\\Lighthouse\\{closure}(instance of GraphQL\\Server\\OperationParams)"
+            },
+            {
+              "line": 177,
+              "file": "/app/vendor/nuwave/lighthouse/src/GraphQL.php",
+              "call": "Nuwave\\Lighthouse\\Support\\Utils::mapEach(instance of Closure, instance of GraphQL\\Server\\OperationParams)"
+            },
+            {
+              "line": 32,
+              "file": "/app/vendor/nuwave/lighthouse/src/Http/GraphQLController.php",
+              "call": "Nuwave\\Lighthouse\\GraphQL::executeOperationOrOperations(instance of GraphQL\\Server\\OperationParams, instance of Nuwave\\Lighthouse\\Execution\\HttpGraphQLContext)"
+            },
+            {
+              "line": 46,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php",
+              "call": "Nuwave\\Lighthouse\\Http\\GraphQLController::__invoke(instance of Illuminate\\Http\\Request, instance of Nuwave\\Lighthouse\\GraphQL, instance of Illuminate\\Events\\Dispatcher, instance of Laragraph\\Utils\\RequestParser, instance of Nuwave\\Lighthouse\\Execution\\SingleResponse, instance of Nuwave\\Lighthouse\\Execution\\ContextFactory)"
+            },
+            {
+              "line": 260,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Route.php",
+              "call": "Illuminate\\Routing\\ControllerDispatcher::dispatch(instance of Illuminate\\Routing\\Route, instance of Nuwave\\Lighthouse\\Http\\GraphQLController, '__invoke')"
+            },
+            {
+              "line": 205,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Route.php",
+              "call": "Illuminate\\Routing\\Route::runController()"
+            },
+            {
+              "line": 798,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+              "call": "Illuminate\\Routing\\Route::run()"
+            },
+            {
+              "line": 141,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Routing\\Router::Illuminate\\Routing\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 22,
+              "file": "/app/vendor/nuwave/lighthouse/src/Http/Middleware/AttemptAuthentication.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Nuwave\\Lighthouse\\Http\\Middleware\\AttemptAuthentication::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 24,
+              "file": "/app/vendor/nuwave/lighthouse/src/Http/Middleware/AcceptJson.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Nuwave\\Lighthouse\\Http\\Middleware\\AcceptJson::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 116,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 799,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::then(instance of Closure)"
+            },
+            {
+              "line": 776,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+              "call": "Illuminate\\Routing\\Router::runRouteWithinStack(instance of Illuminate\\Routing\\Route, instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 740,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+              "call": "Illuminate\\Routing\\Router::runRoute(instance of Illuminate\\Http\\Request, instance of Illuminate\\Routing\\Route)"
+            },
+            {
+              "line": 729,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+              "call": "Illuminate\\Routing\\Router::dispatchToRoute(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 200,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php",
+              "call": "Illuminate\\Routing\\Router::dispatch(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 141,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Foundation\\Http\\Kernel::Illuminate\\Foundation\\Http\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 21,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 31,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 21,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 40,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\TrimStrings::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 27,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 86,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 49,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Http\\Middleware\\HandleCors::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 39,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Http\\Middleware\\TrustProxies::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 116,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 175,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::then(instance of Closure)"
+            },
+            {
+              "line": 144,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php",
+              "call": "Illuminate\\Foundation\\Http\\Kernel::sendRequestThroughRouter(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 52,
+              "file": "/app/public/index.php",
+              "call": "Illuminate\\Foundation\\Http\\Kernel::handle(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 16,
+              "function": "require_once('/app/public/index.php')",
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php"
+            }
+          ],
+          "line": 155,
+          "file": "/app/vendor/webonyx/graphql-php/src/Server/Helper.php"
+        }
+      }
+    ]
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>6C02</code> MAY use 400 status code on boolean {operationName} parameter
+<details>
+<summary>Response status code is not 400</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "x-powered-by": "PHP/8.1.17",
+    "host": "localhost:4000",
+    "date": "<timestamp>",
+    "content-type": "application/json",
+    "connection": "close",
+    "cache-control": "no-cache, private"
+  },
+  "body": {
+    "errors": [
+      {
+        "message": "GraphQL Request parameter \"operation\" must be string, but got false",
+        "extensions": {
+          "trace": [
+            {
+              "line": 197,
+              "file": "/app/vendor/nuwave/lighthouse/src/GraphQL.php",
+              "call": "GraphQL\\Server\\Helper::validateOperationParams(instance of GraphQL\\Server\\OperationParams)"
+            },
+            {
+              "line": 177,
+              "file": "/app/vendor/nuwave/lighthouse/src/GraphQL.php",
+              "call": "Nuwave\\Lighthouse\\GraphQL::executeOperation(instance of GraphQL\\Server\\OperationParams, instance of Nuwave\\Lighthouse\\Execution\\HttpGraphQLContext)"
+            },
+            {
+              "line": 107,
+              "file": "/app/vendor/nuwave/lighthouse/src/Support/Utils.php",
+              "call": "Nuwave\\Lighthouse\\GraphQL::Nuwave\\Lighthouse\\{closure}(instance of GraphQL\\Server\\OperationParams)"
+            },
+            {
+              "line": 177,
+              "file": "/app/vendor/nuwave/lighthouse/src/GraphQL.php",
+              "call": "Nuwave\\Lighthouse\\Support\\Utils::mapEach(instance of Closure, instance of GraphQL\\Server\\OperationParams)"
+            },
+            {
+              "line": 32,
+              "file": "/app/vendor/nuwave/lighthouse/src/Http/GraphQLController.php",
+              "call": "Nuwave\\Lighthouse\\GraphQL::executeOperationOrOperations(instance of GraphQL\\Server\\OperationParams, instance of Nuwave\\Lighthouse\\Execution\\HttpGraphQLContext)"
+            },
+            {
+              "line": 46,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php",
+              "call": "Nuwave\\Lighthouse\\Http\\GraphQLController::__invoke(instance of Illuminate\\Http\\Request, instance of Nuwave\\Lighthouse\\GraphQL, instance of Illuminate\\Events\\Dispatcher, instance of Laragraph\\Utils\\RequestParser, instance of Nuwave\\Lighthouse\\Execution\\SingleResponse, instance of Nuwave\\Lighthouse\\Execution\\ContextFactory)"
+            },
+            {
+              "line": 260,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Route.php",
+              "call": "Illuminate\\Routing\\ControllerDispatcher::dispatch(instance of Illuminate\\Routing\\Route, instance of Nuwave\\Lighthouse\\Http\\GraphQLController, '__invoke')"
+            },
+            {
+              "line": 205,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Route.php",
+              "call": "Illuminate\\Routing\\Route::runController()"
+            },
+            {
+              "line": 798,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+              "call": "Illuminate\\Routing\\Route::run()"
+            },
+            {
+              "line": 141,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Routing\\Router::Illuminate\\Routing\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 22,
+              "file": "/app/vendor/nuwave/lighthouse/src/Http/Middleware/AttemptAuthentication.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Nuwave\\Lighthouse\\Http\\Middleware\\AttemptAuthentication::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 24,
+              "file": "/app/vendor/nuwave/lighthouse/src/Http/Middleware/AcceptJson.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Nuwave\\Lighthouse\\Http\\Middleware\\AcceptJson::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 116,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 799,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::then(instance of Closure)"
+            },
+            {
+              "line": 776,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+              "call": "Illuminate\\Routing\\Router::runRouteWithinStack(instance of Illuminate\\Routing\\Route, instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 740,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+              "call": "Illuminate\\Routing\\Router::runRoute(instance of Illuminate\\Http\\Request, instance of Illuminate\\Routing\\Route)"
+            },
+            {
+              "line": 729,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+              "call": "Illuminate\\Routing\\Router::dispatchToRoute(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 200,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php",
+              "call": "Illuminate\\Routing\\Router::dispatch(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 141,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Foundation\\Http\\Kernel::Illuminate\\Foundation\\Http\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 21,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 31,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 21,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 40,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\TrimStrings::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 27,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 86,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 49,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Http\\Middleware\\HandleCors::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 39,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Http\\Middleware\\TrustProxies::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 116,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 175,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::then(instance of Closure)"
+            },
+            {
+              "line": 144,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php",
+              "call": "Illuminate\\Foundation\\Http\\Kernel::sendRequestThroughRouter(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 52,
+              "file": "/app/public/index.php",
+              "call": "Illuminate\\Foundation\\Http\\Kernel::handle(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 16,
+              "function": "require_once('/app/public/index.php')",
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php"
+            }
+          ],
+          "line": 155,
+          "file": "/app/vendor/webonyx/graphql-php/src/Server/Helper.php"
+        }
+      }
+    ]
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>6C03</code> MAY use 400 status code on array {operationName} parameter
+<details>
+<summary>Response status code is not 400</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "x-powered-by": "PHP/8.1.17",
+    "host": "localhost:4000",
+    "date": "<timestamp>",
+    "content-type": "application/json",
+    "connection": "close",
+    "cache-control": "no-cache, private"
+  },
+  "body": {
+    "errors": [
+      {
+        "message": "GraphQL Request parameter \"operation\" must be string, but got [\"array\"]",
+        "extensions": {
+          "trace": [
+            {
+              "line": 197,
+              "file": "/app/vendor/nuwave/lighthouse/src/GraphQL.php",
+              "call": "GraphQL\\Server\\Helper::validateOperationParams(instance of GraphQL\\Server\\OperationParams)"
+            },
+            {
+              "line": 177,
+              "file": "/app/vendor/nuwave/lighthouse/src/GraphQL.php",
+              "call": "Nuwave\\Lighthouse\\GraphQL::executeOperation(instance of GraphQL\\Server\\OperationParams, instance of Nuwave\\Lighthouse\\Execution\\HttpGraphQLContext)"
+            },
+            {
+              "line": 107,
+              "file": "/app/vendor/nuwave/lighthouse/src/Support/Utils.php",
+              "call": "Nuwave\\Lighthouse\\GraphQL::Nuwave\\Lighthouse\\{closure}(instance of GraphQL\\Server\\OperationParams)"
+            },
+            {
+              "line": 177,
+              "file": "/app/vendor/nuwave/lighthouse/src/GraphQL.php",
+              "call": "Nuwave\\Lighthouse\\Support\\Utils::mapEach(instance of Closure, instance of GraphQL\\Server\\OperationParams)"
+            },
+            {
+              "line": 32,
+              "file": "/app/vendor/nuwave/lighthouse/src/Http/GraphQLController.php",
+              "call": "Nuwave\\Lighthouse\\GraphQL::executeOperationOrOperations(instance of GraphQL\\Server\\OperationParams, instance of Nuwave\\Lighthouse\\Execution\\HttpGraphQLContext)"
+            },
+            {
+              "line": 46,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php",
+              "call": "Nuwave\\Lighthouse\\Http\\GraphQLController::__invoke(instance of Illuminate\\Http\\Request, instance of Nuwave\\Lighthouse\\GraphQL, instance of Illuminate\\Events\\Dispatcher, instance of Laragraph\\Utils\\RequestParser, instance of Nuwave\\Lighthouse\\Execution\\SingleResponse, instance of Nuwave\\Lighthouse\\Execution\\ContextFactory)"
+            },
+            {
+              "line": 260,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Route.php",
+              "call": "Illuminate\\Routing\\ControllerDispatcher::dispatch(instance of Illuminate\\Routing\\Route, instance of Nuwave\\Lighthouse\\Http\\GraphQLController, '__invoke')"
+            },
+            {
+              "line": 205,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Route.php",
+              "call": "Illuminate\\Routing\\Route::runController()"
+            },
+            {
+              "line": 798,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+              "call": "Illuminate\\Routing\\Route::run()"
+            },
+            {
+              "line": 141,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Routing\\Router::Illuminate\\Routing\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 22,
+              "file": "/app/vendor/nuwave/lighthouse/src/Http/Middleware/AttemptAuthentication.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Nuwave\\Lighthouse\\Http\\Middleware\\AttemptAuthentication::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 24,
+              "file": "/app/vendor/nuwave/lighthouse/src/Http/Middleware/AcceptJson.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Nuwave\\Lighthouse\\Http\\Middleware\\AcceptJson::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 116,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 799,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::then(instance of Closure)"
+            },
+            {
+              "line": 776,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+              "call": "Illuminate\\Routing\\Router::runRouteWithinStack(instance of Illuminate\\Routing\\Route, instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 740,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+              "call": "Illuminate\\Routing\\Router::runRoute(instance of Illuminate\\Http\\Request, instance of Illuminate\\Routing\\Route)"
+            },
+            {
+              "line": 729,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+              "call": "Illuminate\\Routing\\Router::dispatchToRoute(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 200,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php",
+              "call": "Illuminate\\Routing\\Router::dispatch(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 141,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Foundation\\Http\\Kernel::Illuminate\\Foundation\\Http\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 21,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 31,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 21,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 40,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\TrimStrings::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 27,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 86,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 49,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Http\\Middleware\\HandleCors::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 39,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Http\\Middleware\\TrustProxies::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 116,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 175,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::then(instance of Closure)"
+            },
+            {
+              "line": 144,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php",
+              "call": "Illuminate\\Foundation\\Http\\Kernel::sendRequestThroughRouter(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 52,
+              "file": "/app/public/index.php",
+              "call": "Illuminate\\Foundation\\Http\\Kernel::handle(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 16,
+              "function": "require_once('/app/public/index.php')",
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php"
+            }
+          ],
+          "line": 155,
+          "file": "/app/vendor/webonyx/graphql-php/src/Server/Helper.php"
+        }
+      }
+    ]
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>4760</code> MAY use 400 status code on string {variables} parameter
+<details>
+<summary>Response status code is not 400</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "x-powered-by": "PHP/8.1.17",
+    "host": "localhost:4000",
+    "date": "<timestamp>",
+    "content-type": "application/json",
+    "connection": "close",
+    "cache-control": "no-cache, private"
+  },
+  "body": {
+    "errors": [
+      {
+        "message": "GraphQL Request parameter \"variables\" must be object or JSON string parsed to object, but got \"string\"",
+        "extensions": {
+          "trace": [
+            {
+              "line": 197,
+              "file": "/app/vendor/nuwave/lighthouse/src/GraphQL.php",
+              "call": "GraphQL\\Server\\Helper::validateOperationParams(instance of GraphQL\\Server\\OperationParams)"
+            },
+            {
+              "line": 177,
+              "file": "/app/vendor/nuwave/lighthouse/src/GraphQL.php",
+              "call": "Nuwave\\Lighthouse\\GraphQL::executeOperation(instance of GraphQL\\Server\\OperationParams, instance of Nuwave\\Lighthouse\\Execution\\HttpGraphQLContext)"
+            },
+            {
+              "line": 107,
+              "file": "/app/vendor/nuwave/lighthouse/src/Support/Utils.php",
+              "call": "Nuwave\\Lighthouse\\GraphQL::Nuwave\\Lighthouse\\{closure}(instance of GraphQL\\Server\\OperationParams)"
+            },
+            {
+              "line": 177,
+              "file": "/app/vendor/nuwave/lighthouse/src/GraphQL.php",
+              "call": "Nuwave\\Lighthouse\\Support\\Utils::mapEach(instance of Closure, instance of GraphQL\\Server\\OperationParams)"
+            },
+            {
+              "line": 32,
+              "file": "/app/vendor/nuwave/lighthouse/src/Http/GraphQLController.php",
+              "call": "Nuwave\\Lighthouse\\GraphQL::executeOperationOrOperations(instance of GraphQL\\Server\\OperationParams, instance of Nuwave\\Lighthouse\\Execution\\HttpGraphQLContext)"
+            },
+            {
+              "line": 46,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php",
+              "call": "Nuwave\\Lighthouse\\Http\\GraphQLController::__invoke(instance of Illuminate\\Http\\Request, instance of Nuwave\\Lighthouse\\GraphQL, instance of Illuminate\\Events\\Dispatcher, instance of Laragraph\\Utils\\RequestParser, instance of Nuwave\\Lighthouse\\Execution\\SingleResponse, instance of Nuwave\\Lighthouse\\Execution\\ContextFactory)"
+            },
+            {
+              "line": 260,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Route.php",
+              "call": "Illuminate\\Routing\\ControllerDispatcher::dispatch(instance of Illuminate\\Routing\\Route, instance of Nuwave\\Lighthouse\\Http\\GraphQLController, '__invoke')"
+            },
+            {
+              "line": 205,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Route.php",
+              "call": "Illuminate\\Routing\\Route::runController()"
+            },
+            {
+              "line": 798,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+              "call": "Illuminate\\Routing\\Route::run()"
+            },
+            {
+              "line": 141,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Routing\\Router::Illuminate\\Routing\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 22,
+              "file": "/app/vendor/nuwave/lighthouse/src/Http/Middleware/AttemptAuthentication.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Nuwave\\Lighthouse\\Http\\Middleware\\AttemptAuthentication::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 24,
+              "file": "/app/vendor/nuwave/lighthouse/src/Http/Middleware/AcceptJson.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Nuwave\\Lighthouse\\Http\\Middleware\\AcceptJson::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 116,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 799,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::then(instance of Closure)"
+            },
+            {
+              "line": 776,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+              "call": "Illuminate\\Routing\\Router::runRouteWithinStack(instance of Illuminate\\Routing\\Route, instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 740,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+              "call": "Illuminate\\Routing\\Router::runRoute(instance of Illuminate\\Http\\Request, instance of Illuminate\\Routing\\Route)"
+            },
+            {
+              "line": 729,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+              "call": "Illuminate\\Routing\\Router::dispatchToRoute(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 200,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php",
+              "call": "Illuminate\\Routing\\Router::dispatch(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 141,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Foundation\\Http\\Kernel::Illuminate\\Foundation\\Http\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 21,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 31,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 21,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 40,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\TrimStrings::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 27,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 86,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 49,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Http\\Middleware\\HandleCors::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 39,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Http\\Middleware\\TrustProxies::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 116,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 175,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::then(instance of Closure)"
+            },
+            {
+              "line": 144,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php",
+              "call": "Illuminate\\Foundation\\Http\\Kernel::sendRequestThroughRouter(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 52,
+              "file": "/app/public/index.php",
+              "call": "Illuminate\\Foundation\\Http\\Kernel::handle(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 16,
+              "function": "require_once('/app/public/index.php')",
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php"
+            }
+          ],
+          "line": 162,
+          "file": "/app/vendor/webonyx/graphql-php/src/Server/Helper.php"
+        }
+      }
+    ]
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>4761</code> MAY use 400 status code on number {variables} parameter
+<details>
+<summary>Response status code is not 400</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "x-powered-by": "PHP/8.1.17",
+    "host": "localhost:4000",
+    "date": "<timestamp>",
+    "content-type": "application/json",
+    "connection": "close",
+    "cache-control": "no-cache, private"
+  },
+  "body": {
+    "errors": [
+      {
+        "message": "GraphQL Request parameter \"variables\" must be object or JSON string parsed to object, but got 0",
+        "extensions": {
+          "trace": [
+            {
+              "line": 197,
+              "file": "/app/vendor/nuwave/lighthouse/src/GraphQL.php",
+              "call": "GraphQL\\Server\\Helper::validateOperationParams(instance of GraphQL\\Server\\OperationParams)"
+            },
+            {
+              "line": 177,
+              "file": "/app/vendor/nuwave/lighthouse/src/GraphQL.php",
+              "call": "Nuwave\\Lighthouse\\GraphQL::executeOperation(instance of GraphQL\\Server\\OperationParams, instance of Nuwave\\Lighthouse\\Execution\\HttpGraphQLContext)"
+            },
+            {
+              "line": 107,
+              "file": "/app/vendor/nuwave/lighthouse/src/Support/Utils.php",
+              "call": "Nuwave\\Lighthouse\\GraphQL::Nuwave\\Lighthouse\\{closure}(instance of GraphQL\\Server\\OperationParams)"
+            },
+            {
+              "line": 177,
+              "file": "/app/vendor/nuwave/lighthouse/src/GraphQL.php",
+              "call": "Nuwave\\Lighthouse\\Support\\Utils::mapEach(instance of Closure, instance of GraphQL\\Server\\OperationParams)"
+            },
+            {
+              "line": 32,
+              "file": "/app/vendor/nuwave/lighthouse/src/Http/GraphQLController.php",
+              "call": "Nuwave\\Lighthouse\\GraphQL::executeOperationOrOperations(instance of GraphQL\\Server\\OperationParams, instance of Nuwave\\Lighthouse\\Execution\\HttpGraphQLContext)"
+            },
+            {
+              "line": 46,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php",
+              "call": "Nuwave\\Lighthouse\\Http\\GraphQLController::__invoke(instance of Illuminate\\Http\\Request, instance of Nuwave\\Lighthouse\\GraphQL, instance of Illuminate\\Events\\Dispatcher, instance of Laragraph\\Utils\\RequestParser, instance of Nuwave\\Lighthouse\\Execution\\SingleResponse, instance of Nuwave\\Lighthouse\\Execution\\ContextFactory)"
+            },
+            {
+              "line": 260,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Route.php",
+              "call": "Illuminate\\Routing\\ControllerDispatcher::dispatch(instance of Illuminate\\Routing\\Route, instance of Nuwave\\Lighthouse\\Http\\GraphQLController, '__invoke')"
+            },
+            {
+              "line": 205,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Route.php",
+              "call": "Illuminate\\Routing\\Route::runController()"
+            },
+            {
+              "line": 798,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+              "call": "Illuminate\\Routing\\Route::run()"
+            },
+            {
+              "line": 141,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Routing\\Router::Illuminate\\Routing\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 22,
+              "file": "/app/vendor/nuwave/lighthouse/src/Http/Middleware/AttemptAuthentication.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Nuwave\\Lighthouse\\Http\\Middleware\\AttemptAuthentication::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 24,
+              "file": "/app/vendor/nuwave/lighthouse/src/Http/Middleware/AcceptJson.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Nuwave\\Lighthouse\\Http\\Middleware\\AcceptJson::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 116,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 799,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::then(instance of Closure)"
+            },
+            {
+              "line": 776,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+              "call": "Illuminate\\Routing\\Router::runRouteWithinStack(instance of Illuminate\\Routing\\Route, instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 740,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+              "call": "Illuminate\\Routing\\Router::runRoute(instance of Illuminate\\Http\\Request, instance of Illuminate\\Routing\\Route)"
+            },
+            {
+              "line": 729,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+              "call": "Illuminate\\Routing\\Router::dispatchToRoute(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 200,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php",
+              "call": "Illuminate\\Routing\\Router::dispatch(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 141,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Foundation\\Http\\Kernel::Illuminate\\Foundation\\Http\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 21,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 31,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 21,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 40,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\TrimStrings::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 27,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 86,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 49,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Http\\Middleware\\HandleCors::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 39,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Http\\Middleware\\TrustProxies::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 116,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 175,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::then(instance of Closure)"
+            },
+            {
+              "line": 144,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php",
+              "call": "Illuminate\\Foundation\\Http\\Kernel::sendRequestThroughRouter(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 52,
+              "file": "/app/public/index.php",
+              "call": "Illuminate\\Foundation\\Http\\Kernel::handle(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 16,
+              "function": "require_once('/app/public/index.php')",
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php"
+            }
+          ],
+          "line": 162,
+          "file": "/app/vendor/webonyx/graphql-php/src/Server/Helper.php"
+        }
+      }
+    ]
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>4762</code> MAY use 400 status code on boolean {variables} parameter
+<details>
+<summary>Response status code is not 400</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "x-powered-by": "PHP/8.1.17",
+    "host": "localhost:4000",
+    "date": "<timestamp>",
+    "content-type": "application/json",
+    "connection": "close",
+    "cache-control": "no-cache, private"
+  },
+  "body": {
+    "errors": [
+      {
+        "message": "GraphQL Request parameter \"variables\" must be object or JSON string parsed to object, but got false",
+        "extensions": {
+          "trace": [
+            {
+              "line": 197,
+              "file": "/app/vendor/nuwave/lighthouse/src/GraphQL.php",
+              "call": "GraphQL\\Server\\Helper::validateOperationParams(instance of GraphQL\\Server\\OperationParams)"
+            },
+            {
+              "line": 177,
+              "file": "/app/vendor/nuwave/lighthouse/src/GraphQL.php",
+              "call": "Nuwave\\Lighthouse\\GraphQL::executeOperation(instance of GraphQL\\Server\\OperationParams, instance of Nuwave\\Lighthouse\\Execution\\HttpGraphQLContext)"
+            },
+            {
+              "line": 107,
+              "file": "/app/vendor/nuwave/lighthouse/src/Support/Utils.php",
+              "call": "Nuwave\\Lighthouse\\GraphQL::Nuwave\\Lighthouse\\{closure}(instance of GraphQL\\Server\\OperationParams)"
+            },
+            {
+              "line": 177,
+              "file": "/app/vendor/nuwave/lighthouse/src/GraphQL.php",
+              "call": "Nuwave\\Lighthouse\\Support\\Utils::mapEach(instance of Closure, instance of GraphQL\\Server\\OperationParams)"
+            },
+            {
+              "line": 32,
+              "file": "/app/vendor/nuwave/lighthouse/src/Http/GraphQLController.php",
+              "call": "Nuwave\\Lighthouse\\GraphQL::executeOperationOrOperations(instance of GraphQL\\Server\\OperationParams, instance of Nuwave\\Lighthouse\\Execution\\HttpGraphQLContext)"
+            },
+            {
+              "line": 46,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php",
+              "call": "Nuwave\\Lighthouse\\Http\\GraphQLController::__invoke(instance of Illuminate\\Http\\Request, instance of Nuwave\\Lighthouse\\GraphQL, instance of Illuminate\\Events\\Dispatcher, instance of Laragraph\\Utils\\RequestParser, instance of Nuwave\\Lighthouse\\Execution\\SingleResponse, instance of Nuwave\\Lighthouse\\Execution\\ContextFactory)"
+            },
+            {
+              "line": 260,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Route.php",
+              "call": "Illuminate\\Routing\\ControllerDispatcher::dispatch(instance of Illuminate\\Routing\\Route, instance of Nuwave\\Lighthouse\\Http\\GraphQLController, '__invoke')"
+            },
+            {
+              "line": 205,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Route.php",
+              "call": "Illuminate\\Routing\\Route::runController()"
+            },
+            {
+              "line": 798,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+              "call": "Illuminate\\Routing\\Route::run()"
+            },
+            {
+              "line": 141,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Routing\\Router::Illuminate\\Routing\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 22,
+              "file": "/app/vendor/nuwave/lighthouse/src/Http/Middleware/AttemptAuthentication.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Nuwave\\Lighthouse\\Http\\Middleware\\AttemptAuthentication::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 24,
+              "file": "/app/vendor/nuwave/lighthouse/src/Http/Middleware/AcceptJson.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Nuwave\\Lighthouse\\Http\\Middleware\\AcceptJson::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 116,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 799,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::then(instance of Closure)"
+            },
+            {
+              "line": 776,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+              "call": "Illuminate\\Routing\\Router::runRouteWithinStack(instance of Illuminate\\Routing\\Route, instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 740,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+              "call": "Illuminate\\Routing\\Router::runRoute(instance of Illuminate\\Http\\Request, instance of Illuminate\\Routing\\Route)"
+            },
+            {
+              "line": 729,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+              "call": "Illuminate\\Routing\\Router::dispatchToRoute(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 200,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php",
+              "call": "Illuminate\\Routing\\Router::dispatch(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 141,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Foundation\\Http\\Kernel::Illuminate\\Foundation\\Http\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 21,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 31,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 21,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 40,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\TrimStrings::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 27,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 86,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 49,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Http\\Middleware\\HandleCors::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 39,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Http\\Middleware\\TrustProxies::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 116,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 175,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::then(instance of Closure)"
+            },
+            {
+              "line": 144,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php",
+              "call": "Illuminate\\Foundation\\Http\\Kernel::sendRequestThroughRouter(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 52,
+              "file": "/app/public/index.php",
+              "call": "Illuminate\\Foundation\\Http\\Kernel::handle(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 16,
+              "function": "require_once('/app/public/index.php')",
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php"
+            }
+          ],
+          "line": 162,
+          "file": "/app/vendor/webonyx/graphql-php/src/Server/Helper.php"
+        }
+      }
+    ]
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>4763</code> MAY use 400 status code on array {variables} parameter
+<details>
+<summary>Response status code is not 400</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "x-powered-by": "PHP/8.1.17",
+    "host": "localhost:4000",
+    "date": "<timestamp>",
+    "content-type": "application/json",
+    "connection": "close",
+    "cache-control": "no-cache, private"
+  },
+  "body": {
+    "errors": [
+      {
+        "message": "GraphQL Request parameter \"variables\" must be object or JSON string parsed to object, but got [\"array\"]",
+        "extensions": {
+          "trace": [
+            {
+              "line": 197,
+              "file": "/app/vendor/nuwave/lighthouse/src/GraphQL.php",
+              "call": "GraphQL\\Server\\Helper::validateOperationParams(instance of GraphQL\\Server\\OperationParams)"
+            },
+            {
+              "line": 177,
+              "file": "/app/vendor/nuwave/lighthouse/src/GraphQL.php",
+              "call": "Nuwave\\Lighthouse\\GraphQL::executeOperation(instance of GraphQL\\Server\\OperationParams, instance of Nuwave\\Lighthouse\\Execution\\HttpGraphQLContext)"
+            },
+            {
+              "line": 107,
+              "file": "/app/vendor/nuwave/lighthouse/src/Support/Utils.php",
+              "call": "Nuwave\\Lighthouse\\GraphQL::Nuwave\\Lighthouse\\{closure}(instance of GraphQL\\Server\\OperationParams)"
+            },
+            {
+              "line": 177,
+              "file": "/app/vendor/nuwave/lighthouse/src/GraphQL.php",
+              "call": "Nuwave\\Lighthouse\\Support\\Utils::mapEach(instance of Closure, instance of GraphQL\\Server\\OperationParams)"
+            },
+            {
+              "line": 32,
+              "file": "/app/vendor/nuwave/lighthouse/src/Http/GraphQLController.php",
+              "call": "Nuwave\\Lighthouse\\GraphQL::executeOperationOrOperations(instance of GraphQL\\Server\\OperationParams, instance of Nuwave\\Lighthouse\\Execution\\HttpGraphQLContext)"
+            },
+            {
+              "line": 46,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php",
+              "call": "Nuwave\\Lighthouse\\Http\\GraphQLController::__invoke(instance of Illuminate\\Http\\Request, instance of Nuwave\\Lighthouse\\GraphQL, instance of Illuminate\\Events\\Dispatcher, instance of Laragraph\\Utils\\RequestParser, instance of Nuwave\\Lighthouse\\Execution\\SingleResponse, instance of Nuwave\\Lighthouse\\Execution\\ContextFactory)"
+            },
+            {
+              "line": 260,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Route.php",
+              "call": "Illuminate\\Routing\\ControllerDispatcher::dispatch(instance of Illuminate\\Routing\\Route, instance of Nuwave\\Lighthouse\\Http\\GraphQLController, '__invoke')"
+            },
+            {
+              "line": 205,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Route.php",
+              "call": "Illuminate\\Routing\\Route::runController()"
+            },
+            {
+              "line": 798,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+              "call": "Illuminate\\Routing\\Route::run()"
+            },
+            {
+              "line": 141,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Routing\\Router::Illuminate\\Routing\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 22,
+              "file": "/app/vendor/nuwave/lighthouse/src/Http/Middleware/AttemptAuthentication.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Nuwave\\Lighthouse\\Http\\Middleware\\AttemptAuthentication::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 24,
+              "file": "/app/vendor/nuwave/lighthouse/src/Http/Middleware/AcceptJson.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Nuwave\\Lighthouse\\Http\\Middleware\\AcceptJson::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 116,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 799,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::then(instance of Closure)"
+            },
+            {
+              "line": 776,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+              "call": "Illuminate\\Routing\\Router::runRouteWithinStack(instance of Illuminate\\Routing\\Route, instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 740,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+              "call": "Illuminate\\Routing\\Router::runRoute(instance of Illuminate\\Http\\Request, instance of Illuminate\\Routing\\Route)"
+            },
+            {
+              "line": 729,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+              "call": "Illuminate\\Routing\\Router::dispatchToRoute(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 200,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php",
+              "call": "Illuminate\\Routing\\Router::dispatch(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 141,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Foundation\\Http\\Kernel::Illuminate\\Foundation\\Http\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 21,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 31,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 21,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 40,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\TrimStrings::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 27,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 86,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 49,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Http\\Middleware\\HandleCors::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 39,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Http\\Middleware\\TrustProxies::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 116,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 175,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::then(instance of Closure)"
+            },
+            {
+              "line": 144,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php",
+              "call": "Illuminate\\Foundation\\Http\\Kernel::sendRequestThroughRouter(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 52,
+              "file": "/app/public/index.php",
+              "call": "Illuminate\\Foundation\\Http\\Kernel::handle(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 16,
+              "function": "require_once('/app/public/index.php')",
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php"
+            }
+          ],
+          "line": 162,
+          "file": "/app/vendor/webonyx/graphql-php/src/Server/Helper.php"
+        }
+      }
+    ]
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>58B0</code> MAY use 400 status code on string {extensions} parameter
+<details>
+<summary>Response status code is not 400</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "x-powered-by": "PHP/8.1.17",
+    "host": "localhost:4000",
+    "date": "<timestamp>",
+    "content-type": "application/json",
+    "connection": "close",
+    "cache-control": "no-cache, private"
+  },
+  "body": {
+    "data": {
+      "__typename": "Query"
+    }
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>58B1</code> MAY use 400 status code on number {extensions} parameter
+<details>
+<summary>Response status code is not 400</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "x-powered-by": "PHP/8.1.17",
+    "host": "localhost:4000",
+    "date": "<timestamp>",
+    "content-type": "application/json",
+    "connection": "close",
+    "cache-control": "no-cache, private"
+  },
+  "body": {
+    "data": {
+      "__typename": "Query"
+    }
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>58B2</code> MAY use 400 status code on boolean {extensions} parameter
+<details>
+<summary>Response status code is not 400</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "x-powered-by": "PHP/8.1.17",
+    "host": "localhost:4000",
+    "date": "<timestamp>",
+    "content-type": "application/json",
+    "connection": "close",
+    "cache-control": "no-cache, private"
+  },
+  "body": {
+    "data": {
+      "__typename": "Query"
+    }
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>58B3</code> MAY use 400 status code on array {extensions} parameter
+<details>
+<summary>Response status code is not 400</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "x-powered-by": "PHP/8.1.17",
+    "host": "localhost:4000",
+    "date": "<timestamp>",
+    "content-type": "application/json",
+    "connection": "close",
+    "cache-control": "no-cache, private"
+  },
+  "body": {
+    "data": {
+      "__typename": "Query"
+    }
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>8764</code> MAY use 4xx or 5xx status codes if parameters are invalid
+<details>
+<summary>Response status is not between 400 and 599</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "x-powered-by": "PHP/8.1.17",
+    "host": "localhost:4000",
+    "date": "<timestamp>",
+    "content-type": "application/json",
+    "connection": "close",
+    "cache-control": "no-cache, private"
+  },
+  "body": {
+    "errors": [
+      {
+        "message": "GraphQL Request must include at least one of those two parameters: \"query\" or \"queryId\"",
+        "extensions": {
+          "trace": [
+            {
+              "line": 197,
+              "file": "/app/vendor/nuwave/lighthouse/src/GraphQL.php",
+              "call": "GraphQL\\Server\\Helper::validateOperationParams(instance of GraphQL\\Server\\OperationParams)"
+            },
+            {
+              "line": 177,
+              "file": "/app/vendor/nuwave/lighthouse/src/GraphQL.php",
+              "call": "Nuwave\\Lighthouse\\GraphQL::executeOperation(instance of GraphQL\\Server\\OperationParams, instance of Nuwave\\Lighthouse\\Execution\\HttpGraphQLContext)"
+            },
+            {
+              "line": 107,
+              "file": "/app/vendor/nuwave/lighthouse/src/Support/Utils.php",
+              "call": "Nuwave\\Lighthouse\\GraphQL::Nuwave\\Lighthouse\\{closure}(instance of GraphQL\\Server\\OperationParams)"
+            },
+            {
+              "line": 177,
+              "file": "/app/vendor/nuwave/lighthouse/src/GraphQL.php",
+              "call": "Nuwave\\Lighthouse\\Support\\Utils::mapEach(instance of Closure, instance of GraphQL\\Server\\OperationParams)"
+            },
+            {
+              "line": 32,
+              "file": "/app/vendor/nuwave/lighthouse/src/Http/GraphQLController.php",
+              "call": "Nuwave\\Lighthouse\\GraphQL::executeOperationOrOperations(instance of GraphQL\\Server\\OperationParams, instance of Nuwave\\Lighthouse\\Execution\\HttpGraphQLContext)"
+            },
+            {
+              "line": 46,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php",
+              "call": "Nuwave\\Lighthouse\\Http\\GraphQLController::__invoke(instance of Illuminate\\Http\\Request, instance of Nuwave\\Lighthouse\\GraphQL, instance of Illuminate\\Events\\Dispatcher, instance of Laragraph\\Utils\\RequestParser, instance of Nuwave\\Lighthouse\\Execution\\SingleResponse, instance of Nuwave\\Lighthouse\\Execution\\ContextFactory)"
+            },
+            {
+              "line": 260,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Route.php",
+              "call": "Illuminate\\Routing\\ControllerDispatcher::dispatch(instance of Illuminate\\Routing\\Route, instance of Nuwave\\Lighthouse\\Http\\GraphQLController, '__invoke')"
+            },
+            {
+              "line": 205,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Route.php",
+              "call": "Illuminate\\Routing\\Route::runController()"
+            },
+            {
+              "line": 798,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+              "call": "Illuminate\\Routing\\Route::run()"
+            },
+            {
+              "line": 141,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Routing\\Router::Illuminate\\Routing\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 22,
+              "file": "/app/vendor/nuwave/lighthouse/src/Http/Middleware/AttemptAuthentication.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Nuwave\\Lighthouse\\Http\\Middleware\\AttemptAuthentication::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 24,
+              "file": "/app/vendor/nuwave/lighthouse/src/Http/Middleware/AcceptJson.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Nuwave\\Lighthouse\\Http\\Middleware\\AcceptJson::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 116,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 799,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::then(instance of Closure)"
+            },
+            {
+              "line": 776,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+              "call": "Illuminate\\Routing\\Router::runRouteWithinStack(instance of Illuminate\\Routing\\Route, instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 740,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+              "call": "Illuminate\\Routing\\Router::runRoute(instance of Illuminate\\Http\\Request, instance of Illuminate\\Routing\\Route)"
+            },
+            {
+              "line": 729,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+              "call": "Illuminate\\Routing\\Router::dispatchToRoute(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 200,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php",
+              "call": "Illuminate\\Routing\\Router::dispatch(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 141,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Foundation\\Http\\Kernel::Illuminate\\Foundation\\Http\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 21,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 31,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 21,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 40,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\TrimStrings::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 27,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 86,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 49,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Http\\Middleware\\HandleCors::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 39,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Http\\Middleware\\TrustProxies::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 116,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 175,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::then(instance of Closure)"
+            },
+            {
+              "line": 144,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php",
+              "call": "Illuminate\\Foundation\\Http\\Kernel::sendRequestThroughRouter(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 52,
+              "file": "/app/public/index.php",
+              "call": "Illuminate\\Foundation\\Http\\Kernel::handle(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 16,
+              "function": "require_once('/app/public/index.php')",
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php"
+            }
+          ],
+          "line": 137,
+          "file": "/app/vendor/webonyx/graphql-php/src/Server/Helper.php"
+        }
+      }
+    ]
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>3E3A</code> MAY use 400 status code if parameters are invalid
+<details>
+<summary>Response status code is not 400</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "x-powered-by": "PHP/8.1.17",
+    "host": "localhost:4000",
+    "date": "<timestamp>",
+    "content-type": "application/json",
+    "connection": "close",
+    "cache-control": "no-cache, private"
+  },
+  "body": {
+    "errors": [
+      {
+        "message": "GraphQL Request must include at least one of those two parameters: \"query\" or \"queryId\"",
+        "extensions": {
+          "trace": [
+            {
+              "line": 197,
+              "file": "/app/vendor/nuwave/lighthouse/src/GraphQL.php",
+              "call": "GraphQL\\Server\\Helper::validateOperationParams(instance of GraphQL\\Server\\OperationParams)"
+            },
+            {
+              "line": 177,
+              "file": "/app/vendor/nuwave/lighthouse/src/GraphQL.php",
+              "call": "Nuwave\\Lighthouse\\GraphQL::executeOperation(instance of GraphQL\\Server\\OperationParams, instance of Nuwave\\Lighthouse\\Execution\\HttpGraphQLContext)"
+            },
+            {
+              "line": 107,
+              "file": "/app/vendor/nuwave/lighthouse/src/Support/Utils.php",
+              "call": "Nuwave\\Lighthouse\\GraphQL::Nuwave\\Lighthouse\\{closure}(instance of GraphQL\\Server\\OperationParams)"
+            },
+            {
+              "line": 177,
+              "file": "/app/vendor/nuwave/lighthouse/src/GraphQL.php",
+              "call": "Nuwave\\Lighthouse\\Support\\Utils::mapEach(instance of Closure, instance of GraphQL\\Server\\OperationParams)"
+            },
+            {
+              "line": 32,
+              "file": "/app/vendor/nuwave/lighthouse/src/Http/GraphQLController.php",
+              "call": "Nuwave\\Lighthouse\\GraphQL::executeOperationOrOperations(instance of GraphQL\\Server\\OperationParams, instance of Nuwave\\Lighthouse\\Execution\\HttpGraphQLContext)"
+            },
+            {
+              "line": 46,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php",
+              "call": "Nuwave\\Lighthouse\\Http\\GraphQLController::__invoke(instance of Illuminate\\Http\\Request, instance of Nuwave\\Lighthouse\\GraphQL, instance of Illuminate\\Events\\Dispatcher, instance of Laragraph\\Utils\\RequestParser, instance of Nuwave\\Lighthouse\\Execution\\SingleResponse, instance of Nuwave\\Lighthouse\\Execution\\ContextFactory)"
+            },
+            {
+              "line": 260,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Route.php",
+              "call": "Illuminate\\Routing\\ControllerDispatcher::dispatch(instance of Illuminate\\Routing\\Route, instance of Nuwave\\Lighthouse\\Http\\GraphQLController, '__invoke')"
+            },
+            {
+              "line": 205,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Route.php",
+              "call": "Illuminate\\Routing\\Route::runController()"
+            },
+            {
+              "line": 798,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+              "call": "Illuminate\\Routing\\Route::run()"
+            },
+            {
+              "line": 141,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Routing\\Router::Illuminate\\Routing\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 22,
+              "file": "/app/vendor/nuwave/lighthouse/src/Http/Middleware/AttemptAuthentication.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Nuwave\\Lighthouse\\Http\\Middleware\\AttemptAuthentication::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 24,
+              "file": "/app/vendor/nuwave/lighthouse/src/Http/Middleware/AcceptJson.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Nuwave\\Lighthouse\\Http\\Middleware\\AcceptJson::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 116,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 799,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::then(instance of Closure)"
+            },
+            {
+              "line": 776,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+              "call": "Illuminate\\Routing\\Router::runRouteWithinStack(instance of Illuminate\\Routing\\Route, instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 740,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+              "call": "Illuminate\\Routing\\Router::runRoute(instance of Illuminate\\Http\\Request, instance of Illuminate\\Routing\\Route)"
+            },
+            {
+              "line": 729,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+              "call": "Illuminate\\Routing\\Router::dispatchToRoute(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 200,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php",
+              "call": "Illuminate\\Routing\\Router::dispatch(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 141,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Foundation\\Http\\Kernel::Illuminate\\Foundation\\Http\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 21,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 31,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 21,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 40,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\TrimStrings::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 27,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 86,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 49,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Http\\Middleware\\HandleCors::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 39,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 180,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Http\\Middleware\\TrustProxies::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
+            },
+            {
+              "line": 116,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 175,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php",
+              "call": "Illuminate\\Pipeline\\Pipeline::then(instance of Closure)"
+            },
+            {
+              "line": 144,
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php",
+              "call": "Illuminate\\Foundation\\Http\\Kernel::sendRequestThroughRouter(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 52,
+              "file": "/app/public/index.php",
+              "call": "Illuminate\\Foundation\\Http\\Kernel::handle(instance of Illuminate\\Http\\Request)"
+            },
+            {
+              "line": 16,
+              "function": "require_once('/app/public/index.php')",
+              "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php"
+            }
+          ],
+          "line": 137,
+          "file": "/app/vendor/webonyx/graphql-php/src/Server/Helper.php"
+        }
+      }
+    ]
+  }
+}
+</code></pre>
+</details>
+</li>
+</ol>
+
+<h2>Warnings</h2>
+The server <i>SHOULD</i> support these, but is not required.
+<ol>
+<li><code>22EB</code> SHOULD accept application/graphql-response+json and match the content-type
+<details>
+<summary>Response header content-type does not contain application/graphql-response+json</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "x-powered-by": "PHP/8.1.17",
+    "host": "localhost:4000",
+    "date": "<timestamp>",
+    "content-type": "application/json",
+    "connection": "close",
+    "cache-control": "no-cache, private"
+  },
+  "body": {
+    "data": {
+      "__typename": "Query"
+    }
   }
 }
 </code></pre>
