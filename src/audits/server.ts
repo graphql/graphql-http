@@ -5,7 +5,7 @@
  */
 
 import { Audit, AuditResult } from './common';
-import { ressert, audit, AuditError } from './utils';
+import { ressert, audit, extendedTypeof, AuditError } from './utils';
 
 /**
  * Options for server audits required to check GraphQL over HTTP spec conformance.
@@ -189,6 +189,16 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
       },
     ),
     // Request POST
+    audit(
+      '9ABE',
+      'MAY respond with 4xx status code if content-type is not supplied on POST requests',
+      async () => {
+        const res = await fetchFn(await getUrl(opts.url), {
+          method: 'POST',
+        });
+        ressert(res).status.toBeBetween(400, 499);
+      },
+    ),
     audit('03D4', 'MUST accept application/json POST requests', async () => {
       const res = await fetchFn(await getUrl(opts.url), {
         method: 'POST',
@@ -197,7 +207,53 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
       });
       ressert(res).status.toBe(200);
     }),
+    audit(
+      'A5BF',
+      'MAY use 400 status code when request body is missing on POST',
+      async () => {
+        const res = await fetchFn(await getUrl(opts.url), {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+        });
+        ressert(res).status.toBe(400);
+      },
+    ),
     // Request Parameters
+    audit(
+      '423L',
+      'MAY use 400 status code on missing {query} parameter',
+      async () => {
+        const res = await fetchFn(await getUrl(opts.url), {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json',
+            accept: 'application/graphql-response+json',
+          },
+          body: JSON.stringify({ notquery: '{ __typename }' }),
+        });
+        ressert(res).status.toBe(400);
+      },
+    ),
+    ...[{ obj: 'ect' }, 0, false, ['array']].map((invalid, index) =>
+      audit(
+        `LKJ${index}`,
+        `MAY use 400 status code on ${extendedTypeof(
+          invalid,
+        )} {query} parameter`,
+        async () => {
+          const res = await fetchFn(await getUrl(opts.url), {
+            method: 'POST',
+            headers: {
+              'content-type': 'application/json',
+            },
+            body: JSON.stringify({
+              query: invalid,
+            }),
+          });
+          ressert(res).status.toBe(400);
+        },
+      ),
+    ),
     audit(
       // TODO: convert to MUST after watershed
       '34A2',
@@ -233,6 +289,27 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
         ressert(res).status.toBe(200);
         await ressert(res).bodyAsExecutionResult.notToHaveProperty('errors');
       },
+    ),
+    ...[{ obj: 'ect' }, 0, false, ['array']].map((invalid, index) =>
+      audit(
+        `6C0${index}`,
+        `MAY use 400 status code on ${extendedTypeof(
+          invalid,
+        )} {operationName} parameter`,
+        async () => {
+          const res = await fetchFn(await getUrl(opts.url), {
+            method: 'POST',
+            headers: {
+              'content-type': 'application/json',
+            },
+            body: JSON.stringify({
+              operationName: invalid,
+              query: '{ __typename }',
+            }),
+          });
+          ressert(res).status.toBe(400);
+        },
+      ),
     ),
     audit(
       // TODO: convert to MUST after watershed
@@ -319,6 +396,27 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
         ),
       ],
     ),
+    ...['string', 0, false, ['array']].map((invalid, index) =>
+      audit(
+        `476${index}`,
+        `MAY use 400 status code on ${extendedTypeof(
+          invalid,
+        )} {variables} parameter`,
+        async () => {
+          const res = await fetchFn(await getUrl(opts.url), {
+            method: 'POST',
+            headers: {
+              'content-type': 'application/json',
+            },
+            body: JSON.stringify({
+              query: '{ __typename }',
+              variables: invalid,
+            }),
+          });
+          ressert(res).status.toBe(400);
+        },
+      ),
+    ),
     audit(
       // TODO: convert to MUST after watershed
       '2EA1',
@@ -398,6 +496,28 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
         await ressert(res).bodyAsExecutionResult.notToHaveProperty('errors');
       },
     ),
+    ...['string', 0, false, ['array']].map((invalid, index) =>
+      audit(
+        `58B${index}`,
+        // TODO: convert to MUST after watershed
+        `MAY use 400 status code on ${extendedTypeof(
+          invalid,
+        )} {extensions} parameter`,
+        async () => {
+          const res = await fetchFn(await getUrl(opts.url), {
+            method: 'POST',
+            headers: {
+              'content-type': 'application/json',
+            },
+            body: JSON.stringify({
+              query: '{ __typename }',
+              extensions: invalid,
+            }),
+          });
+          ressert(res).status.toBe(400);
+        },
+      ),
+    ),
     audit(
       // TODO: convert to MUST after watershed
       '428F',
@@ -434,6 +554,66 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
         });
         ressert(res).status.toBe(200);
         await ressert(res).bodyAsExecutionResult.notToHaveProperty('errors');
+      },
+    ),
+    audit(
+      'B6DC',
+      'MAY use 4xx or 5xx status codes on JSON parsing failure',
+      async () => {
+        const res = await fetchFn(await getUrl(opts.url), {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json',
+          },
+          body: '{ "not a JSON',
+        });
+        ressert(res).status.toBeBetween(400, 499);
+      },
+    ),
+    audit(
+      'BCF8',
+      'MAY use 400 status code on JSON parsing failure',
+      async () => {
+        const res = await fetchFn(await getUrl(opts.url), {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json',
+          },
+          body: '{ "not a JSON',
+        });
+        ressert(res).status.toBe(400);
+      },
+    ),
+    audit(
+      '8764',
+      'MAY use 4xx or 5xx status codes if parameters are invalid',
+      async () => {
+        const res = await fetchFn(await getUrl(opts.url), {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json',
+          },
+          body: JSON.stringify({
+            qeury /* typo */: '{ __typename }',
+          }),
+        });
+        ressert(res).status.toBeBetween(400, 599);
+      },
+    ),
+    audit(
+      '3E3A',
+      'MAY use 400 status code if parameters are invalid',
+      async () => {
+        const res = await fetchFn(await getUrl(opts.url), {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json',
+          },
+          body: JSON.stringify({
+            qeury: /* typo */ '{ __typename }',
+          }),
+        });
+        ressert(res).status.toBe(400);
       },
     ),
     // TODO: audit('39AA', 'MUST accept a map for the {extensions} parameter'),

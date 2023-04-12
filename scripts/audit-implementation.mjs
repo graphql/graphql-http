@@ -34,6 +34,7 @@ async function main() {
   const counts = {
     total: 0,
     ok: 0,
+    notice: 0,
     warn: 0,
     error: 0,
   };
@@ -41,6 +42,9 @@ async function main() {
     counts.total++;
     if (result.status === 'ok') {
       counts.ok++;
+    }
+    if (result.status === 'notice') {
+      counts.notice++;
     }
     if (result.status === 'warn') {
       counts.warn++;

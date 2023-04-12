@@ -2581,6 +2581,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@graphql-tools/executor@npm:^0.0.16":
+  version: 0.0.16
+  resolution: "@graphql-tools/executor@npm:0.0.16"
+  dependencies:
+    "@graphql-tools/utils": 9.2.1
+    "@graphql-typed-document-node/core": 3.2.0
+    "@repeaterjs/repeater": 3.0.4
+    tslib: ^2.4.0
+    value-or-promise: 1.0.12
+  peerDependencies:
+    graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
+  checksum: e91dfd6338a137a0e29619723fcf3da2651a70447689869ee77fb951323c4df3d78aecc0e92682893efbba3fabacdb89fe8f65936a6da75a09b885cab6c05a47
+  languageName: node
+  linkType: hard
+
 "@graphql-tools/graphql-file-loader@npm:7.5.16":
   version: 7.5.16
   resolution: "@graphql-tools/graphql-file-loader@npm:7.5.16"
@@ -2840,7 +2855,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graphql-typed-document-node/core@npm:^3.1.1":
+"@graphql-typed-document-node/core@npm:3.2.0, @graphql-typed-document-node/core@npm:^3.1.1":
   version: 3.2.0
   resolution: "@graphql-typed-document-node/core@npm:3.2.0"
   peerDependencies:
@@ -7567,13 +7582,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"graphql-yoga@npm:^3.8.0":
-  version: 3.8.0
-  resolution: "graphql-yoga@npm:3.8.0"
+"graphql-yoga@npm:3.9.0-rc-20230412155818-7a525212":
+  version: 3.9.0-rc-20230412155818-7a525212
+  resolution: "graphql-yoga@npm:3.9.0-rc-20230412155818-7a525212"
   dependencies:
     "@envelop/core": ^3.0.4
     "@envelop/validation-cache": ^5.1.2
-    "@graphql-tools/executor": ^0.0.15
+    "@graphql-tools/executor": ^0.0.16
     "@graphql-tools/schema": ^9.0.0
     "@graphql-tools/utils": ^9.2.1
     "@graphql-yoga/logger": ^0.0.1
@@ -7585,7 +7600,7 @@ __metadata:
     tslib: ^2.3.1
   peerDependencies:
     graphql: ^15.2.0 || ^16.0.0
-  checksum: c409162616ad044728a0e048ffd68cc560d2d56676a27607134bfb3c9d86d294f025544cf821c81d1f450e55e9765edbde26482d9cf1b4d66b3653162dcb899f
+  checksum: 554cdba5f703b85fd3017d04b66f88d10fec31de497287cf3b4cf60f61b039e4ce91c0dd0de6dd50d0ef3c4021881065558e858ac65238ac48c144b5ebc26808
   languageName: node
   linkType: hard
 
@@ -7594,7 +7609,7 @@ __metadata:
   resolution: "graphql-yoga@workspace:implementations/graphql-yoga"
   dependencies:
     graphql: ^16.6.0
-    graphql-yoga: ^3.8.0
+    graphql-yoga: 3.9.0-rc-20230412155818-7a525212
   languageName: unknown
   linkType: soft
 

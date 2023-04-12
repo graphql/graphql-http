@@ -43,8 +43,36 @@ exports[`should not change globally unique audit ids 1`] = `
     "name": "MAY NOT allow executing mutations on GET requests",
   },
   {
+    "id": "9ABE",
+    "name": "MAY respond with 4xx status code if content-type is not supplied on POST requests",
+  },
+  {
     "id": "03D4",
     "name": "MUST accept application/json POST requests",
+  },
+  {
+    "id": "A5BF",
+    "name": "MAY use 400 status code when request body is missing on POST",
+  },
+  {
+    "id": "423L",
+    "name": "MAY use 400 status code on missing {query} parameter",
+  },
+  {
+    "id": "LKJ0",
+    "name": "MAY use 400 status code on object {query} parameter",
+  },
+  {
+    "id": "LKJ1",
+    "name": "MAY use 400 status code on number {query} parameter",
+  },
+  {
+    "id": "LKJ2",
+    "name": "MAY use 400 status code on boolean {query} parameter",
+  },
+  {
+    "id": "LKJ3",
+    "name": "MAY use 400 status code on array {query} parameter",
   },
   {
     "id": "34A2",
@@ -53,6 +81,22 @@ exports[`should not change globally unique audit ids 1`] = `
   {
     "id": "13EE",
     "name": "MUST allow string {query} parameter when accepting application/json",
+  },
+  {
+    "id": "6C00",
+    "name": "MAY use 400 status code on object {operationName} parameter",
+  },
+  {
+    "id": "6C01",
+    "name": "MAY use 400 status code on number {operationName} parameter",
+  },
+  {
+    "id": "6C02",
+    "name": "MAY use 400 status code on boolean {operationName} parameter",
+  },
+  {
+    "id": "6C03",
+    "name": "MAY use 400 status code on array {operationName} parameter",
   },
   {
     "id": "8161",
@@ -87,6 +131,22 @@ exports[`should not change globally unique audit ids 1`] = `
     "name": "MUST allow null {extensions} parameter when accepting application/json",
   },
   {
+    "id": "4760",
+    "name": "MAY use 400 status code on string {variables} parameter",
+  },
+  {
+    "id": "4761",
+    "name": "MAY use 400 status code on number {variables} parameter",
+  },
+  {
+    "id": "4762",
+    "name": "MAY use 400 status code on boolean {variables} parameter",
+  },
+  {
+    "id": "4763",
+    "name": "MAY use 400 status code on array {variables} parameter",
+  },
+  {
     "id": "2EA1",
     "name": "SHOULD allow map {variables} parameter when accepting application/graphql-response+json",
   },
@@ -103,12 +163,44 @@ exports[`should not change globally unique audit ids 1`] = `
     "name": "MAY allow URL-encoded JSON string {variables} parameter in GETs when accepting application/json",
   },
   {
+    "id": "58B0",
+    "name": "MAY use 400 status code on string {extensions} parameter",
+  },
+  {
+    "id": "58B1",
+    "name": "MAY use 400 status code on number {extensions} parameter",
+  },
+  {
+    "id": "58B2",
+    "name": "MAY use 400 status code on boolean {extensions} parameter",
+  },
+  {
+    "id": "58B3",
+    "name": "MAY use 400 status code on array {extensions} parameter",
+  },
+  {
     "id": "428F",
     "name": "SHOULD allow map {extensions} parameter when accepting application/graphql-response+json",
   },
   {
     "id": "1B7A",
     "name": "MUST allow map {extensions} parameter when accepting application/json",
+  },
+  {
+    "id": "B6DC",
+    "name": "MAY use 4xx or 5xx status codes on JSON parsing failure",
+  },
+  {
+    "id": "BCF8",
+    "name": "MAY use 400 status code on JSON parsing failure",
+  },
+  {
+    "id": "8764",
+    "name": "MAY use 4xx or 5xx status codes if parameters are invalid",
+  },
+  {
+    "id": "3E3A",
+    "name": "MAY use 400 status code if parameters are invalid",
   },
   {
     "id": "572B",

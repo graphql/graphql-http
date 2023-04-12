@@ -3,8 +3,9 @@
 <h1>GraphQL over HTTP audit report</h1>
 
 <ul>
-<li><b>37</b> audits in total</li>
-<li><span style="font-family: monospace">✅</span> <b>37</b> pass</li>
+<li><b>60</b> audits in total</li>
+<li><span style="font-family: monospace">✅</span> <b>39</b> pass</li>
+<li><span style="font-family: monospace">💡</span> <b>21</b> notices (suggestions)</li>
 </ul>
 
 <h2>Passing</h2>
@@ -19,7 +20,9 @@
 <li><code>2C94</code> MUST accept POST requests</li>
 <li><code>5A70</code> MAY accept application/x-www-form-urlencoded formatted GET requests</li>
 <li><code>9C48</code> MAY NOT allow executing mutations on GET requests</li>
+<li><code>9ABE</code> MAY respond with 4xx status code if content-type is not supplied on POST requests</li>
 <li><code>03D4</code> MUST accept application/json POST requests</li>
+<li><code>423L</code> MAY use 400 status code on missing {query} parameter</li>
 <li><code>34A2</code> SHOULD allow string {query} parameter when accepting application/graphql-response+json</li>
 <li><code>13EE</code> MUST allow string {query} parameter when accepting application/json</li>
 <li><code>8161</code> SHOULD allow string {operationName} parameter when accepting application/graphql-response+json</li>
@@ -46,5 +49,505 @@
 <li><code>74FF</code> SHOULD use 400 status code on document validation failure when accepting application/graphql-response+json</li>
 <li><code>5E5B</code> SHOULD not contain the data entry on document validation failure when accepting application/graphql-response+json</li>
 <li><code>86EE</code> SHOULD use a status code of 400 on variable coercion failure when accepting application/graphql-response+json</li>
+</ol>
+
+<h2>Notices</h2>
+The server <i>MAY</i> support these, but are truly optional. These are suggestions following recommended conventions.
+<ol>
+<li><code>A5BF</code> MAY use 400 status code when request body is missing on POST
+<details>
+<summary>Response status code is not 400</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "date": "<timestamp>",
+    "content-type": "application/json; charset=utf-8",
+    "content-length": "55",
+    "connection": "close"
+  },
+  "body": {
+    "errors": [
+      {
+        "message": "POST body sent invalid JSON."
+      }
+    ]
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>LKJ0</code> MAY use 400 status code on object {query} parameter
+<details>
+<summary>Response status code is not 400</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "date": "<timestamp>",
+    "content-type": "application/json; charset=utf-8",
+    "content-length": "85",
+    "connection": "close",
+    "allow": "GET, POST"
+  },
+  "body": {
+    "errors": [
+      {
+        "message": "Expected \"query\" param to be a string, but given object."
+      }
+    ]
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>LKJ1</code> MAY use 400 status code on number {query} parameter
+<details>
+<summary>Response status code is not 400</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "date": "<timestamp>",
+    "content-type": "application/json; charset=utf-8",
+    "content-length": "85",
+    "connection": "close",
+    "allow": "GET, POST"
+  },
+  "body": {
+    "errors": [
+      {
+        "message": "Expected \"query\" param to be a string, but given number."
+      }
+    ]
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>LKJ2</code> MAY use 400 status code on boolean {query} parameter
+<details>
+<summary>Response status code is not 400</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "date": "<timestamp>",
+    "content-type": "application/json; charset=utf-8",
+    "content-length": "86",
+    "connection": "close",
+    "allow": "GET, POST"
+  },
+  "body": {
+    "errors": [
+      {
+        "message": "Expected \"query\" param to be a string, but given boolean."
+      }
+    ]
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>LKJ3</code> MAY use 400 status code on array {query} parameter
+<details>
+<summary>Response status code is not 400</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "date": "<timestamp>",
+    "content-type": "application/json; charset=utf-8",
+    "content-length": "84",
+    "connection": "close",
+    "allow": "GET, POST"
+  },
+  "body": {
+    "errors": [
+      {
+        "message": "Expected \"query\" param to be a string, but given array."
+      }
+    ]
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>6C00</code> MAY use 400 status code on object {operationName} parameter
+<details>
+<summary>Response status code is not 400</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "date": "<timestamp>",
+    "content-type": "application/json; charset=utf-8",
+    "content-length": "73",
+    "connection": "close"
+  },
+  "body": {
+    "errors": [
+      {
+        "message": "Could not determine what operation to execute."
+      }
+    ]
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>6C01</code> MAY use 400 status code on number {operationName} parameter
+<details>
+<summary>Response status code is not 400</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "date": "<timestamp>",
+    "content-type": "application/json; charset=utf-8",
+    "content-length": "73",
+    "connection": "close"
+  },
+  "body": {
+    "errors": [
+      {
+        "message": "Could not determine what operation to execute."
+      }
+    ]
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>6C02</code> MAY use 400 status code on boolean {operationName} parameter
+<details>
+<summary>Response status code is not 400</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "date": "<timestamp>",
+    "content-type": "application/json; charset=utf-8",
+    "content-length": "73",
+    "connection": "close"
+  },
+  "body": {
+    "errors": [
+      {
+        "message": "Could not determine what operation to execute."
+      }
+    ]
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>6C03</code> MAY use 400 status code on array {operationName} parameter
+<details>
+<summary>Response status code is not 400</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "date": "<timestamp>",
+    "content-type": "application/json; charset=utf-8",
+    "content-length": "73",
+    "connection": "close"
+  },
+  "body": {
+    "errors": [
+      {
+        "message": "Could not determine what operation to execute."
+      }
+    ]
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>4760</code> MAY use 400 status code on string {variables} parameter
+<details>
+<summary>Response status code is not 400</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "date": "<timestamp>",
+    "content-type": "application/json; charset=utf-8",
+    "content-length": "99",
+    "connection": "close",
+    "allow": "GET, POST"
+  },
+  "body": {
+    "errors": [
+      {
+        "message": "Expected \"variables\" param to be empty or an object, but given string."
+      }
+    ]
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>4761</code> MAY use 400 status code on number {variables} parameter
+<details>
+<summary>Response status code is not 400</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "date": "<timestamp>",
+    "content-type": "application/json; charset=utf-8",
+    "content-length": "99",
+    "connection": "close",
+    "allow": "GET, POST"
+  },
+  "body": {
+    "errors": [
+      {
+        "message": "Expected \"variables\" param to be empty or an object, but given number."
+      }
+    ]
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>4762</code> MAY use 400 status code on boolean {variables} parameter
+<details>
+<summary>Response status code is not 400</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "date": "<timestamp>",
+    "content-type": "application/json; charset=utf-8",
+    "content-length": "100",
+    "connection": "close",
+    "allow": "GET, POST"
+  },
+  "body": {
+    "errors": [
+      {
+        "message": "Expected \"variables\" param to be empty or an object, but given boolean."
+      }
+    ]
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>4763</code> MAY use 400 status code on array {variables} parameter
+<details>
+<summary>Response status code is not 400</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "date": "<timestamp>",
+    "content-type": "application/json; charset=utf-8",
+    "content-length": "98",
+    "connection": "close",
+    "allow": "GET, POST"
+  },
+  "body": {
+    "errors": [
+      {
+        "message": "Expected \"variables\" param to be empty or an object, but given array."
+      }
+    ]
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>58B0</code> MAY use 400 status code on string {extensions} parameter
+<details>
+<summary>Response status code is not 400</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "date": "<timestamp>",
+    "content-type": "application/json; charset=utf-8",
+    "content-length": "100",
+    "connection": "close",
+    "allow": "GET, POST"
+  },
+  "body": {
+    "errors": [
+      {
+        "message": "Expected \"extensions\" param to be empty or an object, but given string."
+      }
+    ]
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>58B1</code> MAY use 400 status code on number {extensions} parameter
+<details>
+<summary>Response status code is not 400</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "date": "<timestamp>",
+    "content-type": "application/json; charset=utf-8",
+    "content-length": "100",
+    "connection": "close",
+    "allow": "GET, POST"
+  },
+  "body": {
+    "errors": [
+      {
+        "message": "Expected \"extensions\" param to be empty or an object, but given number."
+      }
+    ]
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>58B2</code> MAY use 400 status code on boolean {extensions} parameter
+<details>
+<summary>Response status code is not 400</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "date": "<timestamp>",
+    "content-type": "application/json; charset=utf-8",
+    "content-length": "101",
+    "connection": "close",
+    "allow": "GET, POST"
+  },
+  "body": {
+    "errors": [
+      {
+        "message": "Expected \"extensions\" param to be empty or an object, but given boolean."
+      }
+    ]
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>58B3</code> MAY use 400 status code on array {extensions} parameter
+<details>
+<summary>Response status code is not 400</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "date": "<timestamp>",
+    "content-type": "application/json; charset=utf-8",
+    "content-length": "99",
+    "connection": "close",
+    "allow": "GET, POST"
+  },
+  "body": {
+    "errors": [
+      {
+        "message": "Expected \"extensions\" param to be empty or an object, but given array."
+      }
+    ]
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>B6DC</code> MAY use 4xx or 5xx status codes on JSON parsing failure
+<details>
+<summary>Response status is not between 400 and 499</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "date": "<timestamp>",
+    "content-type": "application/json; charset=utf-8",
+    "content-length": "55",
+    "connection": "close"
+  },
+  "body": {
+    "errors": [
+      {
+        "message": "POST body sent invalid JSON."
+      }
+    ]
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>BCF8</code> MAY use 400 status code on JSON parsing failure
+<details>
+<summary>Response status code is not 400</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "date": "<timestamp>",
+    "content-type": "application/json; charset=utf-8",
+    "content-length": "55",
+    "connection": "close"
+  },
+  "body": {
+    "errors": [
+      {
+        "message": "POST body sent invalid JSON."
+      }
+    ]
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>8764</code> MAY use 4xx or 5xx status codes if parameters are invalid
+<details>
+<summary>Response status is not between 400 and 599</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "date": "<timestamp>",
+    "content-type": "application/json; charset=utf-8",
+    "content-length": "78",
+    "connection": "close"
+  },
+  "body": {
+    "errors": [
+      {
+        "message": "Unexpected parameter \"qeury\" in the request body."
+      }
+    ]
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>3E3A</code> MAY use 400 status code if parameters are invalid
+<details>
+<summary>Response status code is not 400</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "date": "<timestamp>",
+    "content-type": "application/json; charset=utf-8",
+    "content-length": "78",
+    "connection": "close"
+  },
+  "body": {
+    "errors": [
+      {
+        "message": "Unexpected parameter \"qeury\" in the request body."
+      }
+    ]
+  }
+}
+</code></pre>
+</details>
+</li>
 </ol>
 

@@ -508,6 +508,12 @@ export function createHandler<
         throw new Error('Invalid variables');
       }
       if (
+        partParams.operationName != null &&
+        typeof partParams.operationName !== 'string'
+      ) {
+        throw new Error('Invalid operationName');
+      }
+      if (
         partParams.extensions != null &&
         (typeof partParams.extensions !== 'object' ||
           Array.isArray(partParams.extensions))
@@ -518,7 +524,7 @@ export function createHandler<
       // request parameters are checked and now complete
       params = partParams as RequestParams;
     } catch (err) {
-      return makeResponse(new GraphQLError(err.message), acceptedMediaType);
+      return makeResponse(err, acceptedMediaType);
     }
 
     let args: OperationArgs<Context>;
@@ -698,8 +704,11 @@ export function getAcceptableMediaType(
  *
  * If the first argument is an `ExecutionResult`, the operation will be treated as "successful".
  *
- * If the first argument is _any_ object without the `data` field, it will be treated as an error (as per the spec)
- * and the response will be constructed with the help of `acceptedMediaType` complying with the GraphQL over HTTP spec.
+ * If the first argument is (an array of) `GraphQLError`, or an `ExecutionResult` without the `data` field, it will be treated
+ * the response will be constructed with the help of `acceptedMediaType` complying with the GraphQL over HTTP spec.
+ *
+ * If the first argument is an `Error`, the operation will be treated as a bad request responding with `400: Bad Request` and the
+ * error will be present in the `ExecutionResult` style.
  *
  * @category Server
  */
@@ -707,9 +716,26 @@ export function makeResponse(
   resultOrErrors:
     | Readonly<ExecutionResult>
     | Readonly<GraphQLError[]>
-    | Readonly<GraphQLError>,
+    | Readonly<GraphQLError>
+    | Readonly<Error>,
   acceptedMediaType: AcceptableMediaType,
 ): Response {
+  if (
+    resultOrErrors instanceof Error &&
+    // because GraphQLError extends the Error class
+    !isGraphQLError(resultOrErrors)
+  ) {
+    return [
+      JSON.stringify({ errors: [resultOrErrors] }),
+      {
+        status: 400,
+        statusText: 'Bad Request',
+        headers: {
+          'content-type': 'application/json; charset=utf-8',
+        },
+      },
+    ];
+  }
   const errors = isGraphQLError(resultOrErrors)
     ? [resultOrErrors]
     : areGraphQLErrors(resultOrErrors)

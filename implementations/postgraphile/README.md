@@ -3,9 +3,10 @@
 <h1>GraphQL over HTTP audit report</h1>
 
 <ul>
-<li><b>37</b> audits in total</li>
-<li><span style="font-family: monospace">✅</span> <b>30</b> pass</li>
-<li><span style="font-family: monospace">⚠️</span> <b>7</b> warnings (optional)</li>
+<li><b>60</b> audits in total</li>
+<li><span style="font-family: monospace">✅</span> <b>46</b> pass</li>
+<li><span style="font-family: monospace">💡</span> <b>10</b> notices (suggestions)</li>
+<li><span style="font-family: monospace">⚠️</span> <b>4</b> warnings (optional)</li>
 </ul>
 
 <h2>Passing</h2>
@@ -18,9 +19,18 @@
 <li><code>78D5</code> MUST assume utf-8 in request if encoding is unspecified</li>
 <li><code>2C94</code> MUST accept POST requests</li>
 <li><code>9C48</code> MAY NOT allow executing mutations on GET requests</li>
+<li><code>9ABE</code> MAY respond with 4xx status code if content-type is not supplied on POST requests</li>
 <li><code>03D4</code> MUST accept application/json POST requests</li>
+<li><code>A5BF</code> MAY use 400 status code when request body is missing on POST</li>
+<li><code>423L</code> MAY use 400 status code on missing {query} parameter</li>
+<li><code>LKJ1</code> MAY use 400 status code on number {query} parameter</li>
+<li><code>LKJ2</code> MAY use 400 status code on boolean {query} parameter</li>
 <li><code>34A2</code> SHOULD allow string {query} parameter when accepting application/graphql-response+json</li>
 <li><code>13EE</code> MUST allow string {query} parameter when accepting application/json</li>
+<li><code>6C00</code> MAY use 400 status code on object {operationName} parameter</li>
+<li><code>6C01</code> MAY use 400 status code on number {operationName} parameter</li>
+<li><code>6C02</code> MAY use 400 status code on boolean {operationName} parameter</li>
+<li><code>6C03</code> MAY use 400 status code on array {operationName} parameter</li>
 <li><code>8161</code> SHOULD allow string {operationName} parameter when accepting application/graphql-response+json</li>
 <li><code>B8B3</code> MUST allow string {operationName} parameter when accepting application/json</li>
 <li><code>94B0</code> SHOULD allow null {variables} parameter when accepting application/graphql-response+json</li>
@@ -29,10 +39,17 @@
 <li><code>0221</code> MUST allow null {operationName} parameter when accepting application/json</li>
 <li><code>94B2</code> SHOULD allow null {extensions} parameter when accepting application/graphql-response+json</li>
 <li><code>0222</code> MUST allow null {extensions} parameter when accepting application/json</li>
+<li><code>4760</code> MAY use 400 status code on string {variables} parameter</li>
+<li><code>4761</code> MAY use 400 status code on number {variables} parameter</li>
+<li><code>4762</code> MAY use 400 status code on boolean {variables} parameter</li>
 <li><code>2EA1</code> SHOULD allow map {variables} parameter when accepting application/graphql-response+json</li>
 <li><code>28B9</code> MUST allow map {variables} parameter when accepting application/json</li>
 <li><code>428F</code> SHOULD allow map {extensions} parameter when accepting application/graphql-response+json</li>
 <li><code>1B7A</code> MUST allow map {extensions} parameter when accepting application/json</li>
+<li><code>B6DC</code> MAY use 4xx or 5xx status codes on JSON parsing failure</li>
+<li><code>BCF8</code> MAY use 400 status code on JSON parsing failure</li>
+<li><code>8764</code> MAY use 4xx or 5xx status codes if parameters are invalid</li>
+<li><code>3E3A</code> MAY use 400 status code if parameters are invalid</li>
 <li><code>865D</code> SHOULD use 4xx or 5xx status codes on document parsing failure when accepting application/graphql-response+json</li>
 <li><code>556A</code> SHOULD use 400 status code on document parsing failure when accepting application/graphql-response+json</li>
 <li><code>D586</code> SHOULD not contain the data entry on document parsing failure when accepting application/graphql-response+json</li>
@@ -42,30 +59,9 @@
 <li><code>86EE</code> SHOULD use a status code of 400 on variable coercion failure when accepting application/graphql-response+json</li>
 </ol>
 
-<h2>Warnings</h2>
-The server <i>SHOULD</i> support these, but is not required.
+<h2>Notices</h2>
+The server <i>MAY</i> support these, but are truly optional. These are suggestions following recommended conventions.
 <ol>
-<li><code>22EB</code> SHOULD accept application/graphql-response+json and match the content-type
-<details>
-<summary>Response header content-type does not contain application/graphql-response+json</summary>
-<pre><code class="lang-json">{
-  "statusText": "OK",
-  "status": 200,
-  "headers": {
-    "date": "<timestamp>",
-    "content-type": "application/json; charset=utf-8",
-    "content-length": "31",
-    "connection": "close"
-  },
-  "body": {
-    "data": {
-      "__typename": "Query"
-    }
-  }
-}
-</code></pre>
-</details>
-</li>
 <li><code>5A70</code> MAY accept application/x-www-form-urlencoded formatted GET requests
 <details>
 <summary>Response status code is not 200</summary>
@@ -85,6 +81,73 @@ The server <i>SHOULD</i> support these, but is not required.
         "message": "Only `POST` requests are allowed."
       }
     ]
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>LKJ0</code> MAY use 400 status code on object {query} parameter
+<details>
+<summary>Response status code is not 400</summary>
+<pre><code class="lang-json">{
+  "statusText": "Internal Server Error",
+  "status": 500,
+  "headers": {
+    "date": "<timestamp>",
+    "content-type": "application/json; charset=utf-8",
+    "content-length": "77",
+    "connection": "close"
+  },
+  "body": {
+    "errors": [
+      {
+        "message": "Body must be a string. Received: { obj: \"ect\" }."
+      }
+    ]
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>LKJ3</code> MAY use 400 status code on array {query} parameter
+<details>
+<summary>Response status code is not 400</summary>
+<pre><code class="lang-json">{
+  "statusText": "Internal Server Error",
+  "status": 500,
+  "headers": {
+    "date": "<timestamp>",
+    "content-type": "application/json; charset=utf-8",
+    "content-length": "152",
+    "connection": "close"
+  },
+  "body": {
+    "errors": [
+      {
+        "message": "The \"data\" argument must be of type string or an instance of Buffer, TypedArray, or DataView. Received an instance of Array"
+      }
+    ]
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>4763</code> MAY use 400 status code on array {variables} parameter
+<details>
+<summary>Response status code is not 400</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "date": "<timestamp>",
+    "content-type": "application/json; charset=utf-8",
+    "content-length": "31",
+    "connection": "close"
+  },
+  "body": {
+    "data": {
+      "__typename": "Query"
+    }
   }
 }
 </code></pre>
@@ -133,6 +196,116 @@ The server <i>SHOULD</i> support these, but is not required.
         "message": "Only `POST` requests are allowed."
       }
     ]
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>58B0</code> MAY use 400 status code on string {extensions} parameter
+<details>
+<summary>Response status code is not 400</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "date": "<timestamp>",
+    "content-type": "application/json; charset=utf-8",
+    "content-length": "31",
+    "connection": "close"
+  },
+  "body": {
+    "data": {
+      "__typename": "Query"
+    }
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>58B1</code> MAY use 400 status code on number {extensions} parameter
+<details>
+<summary>Response status code is not 400</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "date": "<timestamp>",
+    "content-type": "application/json; charset=utf-8",
+    "content-length": "31",
+    "connection": "close"
+  },
+  "body": {
+    "data": {
+      "__typename": "Query"
+    }
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>58B2</code> MAY use 400 status code on boolean {extensions} parameter
+<details>
+<summary>Response status code is not 400</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "date": "<timestamp>",
+    "content-type": "application/json; charset=utf-8",
+    "content-length": "31",
+    "connection": "close"
+  },
+  "body": {
+    "data": {
+      "__typename": "Query"
+    }
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>58B3</code> MAY use 400 status code on array {extensions} parameter
+<details>
+<summary>Response status code is not 400</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "date": "<timestamp>",
+    "content-type": "application/json; charset=utf-8",
+    "content-length": "31",
+    "connection": "close"
+  },
+  "body": {
+    "data": {
+      "__typename": "Query"
+    }
+  }
+}
+</code></pre>
+</details>
+</li>
+</ol>
+
+<h2>Warnings</h2>
+The server <i>SHOULD</i> support these, but is not required.
+<ol>
+<li><code>22EB</code> SHOULD accept application/graphql-response+json and match the content-type
+<details>
+<summary>Response header content-type does not contain application/graphql-response+json</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "date": "<timestamp>",
+    "content-type": "application/json; charset=utf-8",
+    "content-length": "31",
+    "connection": "close"
+  },
+  "body": {
+    "data": {
+      "__typename": "Query"
+    }
   }
 }
 </code></pre>

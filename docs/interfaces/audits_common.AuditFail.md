@@ -52,4 +52,4 @@ ___
 
 ### status
 
-• **status**: ``"warn"`` \| ``"error"``
+• **status**: ``"notice"`` \| ``"warn"`` \| ``"error"``
