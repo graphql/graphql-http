@@ -190,7 +190,7 @@ it('should print plain errors in detail', async () => {
 });
 
 it('should format errors using the formatter', async () => {
-  const formatErrorFn = jest.fn(() => new Error('Formatted'));
+  const formatErrorFn = jest.fn((_err) => new Error('Formatted'));
   const server = startTServer({
     formatError: formatErrorFn,
   });
@@ -207,4 +207,7 @@ it('should format errors using the formatter', async () => {
     }
   `);
   expect(formatErrorFn).toBeCalledTimes(1);
+  expect(formatErrorFn.mock.lastCall?.[0]).toMatchInlineSnapshot(
+    `[GraphQLError: Cannot query field "idontexist" on type "Query".]`,
+  );
 });
