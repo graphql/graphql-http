@@ -723,7 +723,7 @@ export function makeResponse(
   if (
     resultOrErrors instanceof Error &&
     // because GraphQLError extends the Error class
-    !(resultOrErrors instanceof GraphQLError)
+    !isGraphQLError(resultOrErrors)
   ) {
     return [
       JSON.stringify({ errors: [resultOrErrors] }),
