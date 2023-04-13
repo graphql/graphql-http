@@ -175,3 +175,16 @@ it('should replace the validation rules when providing a function', async () => 
     }
   `);
 });
+
+it('should print plain errors in detail', async () => {
+  const server = startTServer({});
+  const url = new URL(server.url);
+  const result = await fetch(url.toString(), {
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    // missing body
+  });
+  await expect(result.text()).resolves.toMatchInlineSnapshot(
+    `"{"errors":[{"message":"Unparsable JSON body"}]}"`,
+  );
+});

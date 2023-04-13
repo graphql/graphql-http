@@ -68,3 +68,19 @@ export function isAsyncIterable<T = unknown>(
 ): val is AsyncIterable<T> {
   return typeof Object(val)[Symbol.asyncIterator] === 'function';
 }
+
+/** @private */
+export function jsonErrorReplacer(_key: string, val: any) {
+  if (
+    val instanceof Error &&
+    // GraphQL errors implement their own stringer
+    !isGraphQLError(val)
+  ) {
+    return {
+      // name: val.name, name is included in message
+      message: val.message,
+      // stack: val.stack, can leak sensitive details
+    };
+  }
+  return val;
+}

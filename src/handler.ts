@@ -25,6 +25,7 @@ import {
   isExecutionResult,
   isGraphQLError,
   isObject,
+  jsonErrorReplacer,
 } from './utils';
 
 /**
@@ -726,7 +727,7 @@ export function makeResponse(
     !isGraphQLError(resultOrErrors)
   ) {
     return [
-      JSON.stringify({ errors: [resultOrErrors] }),
+      JSON.stringify({ errors: [resultOrErrors] }, jsonErrorReplacer),
       {
         status: 400,
         statusText: 'Bad Request',
@@ -743,7 +744,7 @@ export function makeResponse(
     : null;
   if (errors) {
     return [
-      JSON.stringify({ errors }),
+      JSON.stringify({ errors }, jsonErrorReplacer),
       {
         ...(acceptedMediaType === 'application/json'
           ? {
@@ -765,7 +766,7 @@ export function makeResponse(
   }
 
   return [
-    JSON.stringify(resultOrErrors),
+    JSON.stringify(resultOrErrors, jsonErrorReplacer),
     {
       status: 200,
       statusText: 'OK',
