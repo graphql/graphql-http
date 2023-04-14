@@ -1,6 +1,6 @@
 import fs from 'fs/promises';
 import path from 'path';
-import glob, { globIterate } from 'glob';
+import { globIterate, glob } from 'glob';
 
 const rootDir = 'lib';
 

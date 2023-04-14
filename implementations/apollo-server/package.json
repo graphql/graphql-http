@@ -8,7 +8,7 @@
     "start": "node ."
   },
   "dependencies": {
-    "@apollo/server": "^4.5.0",
+    "@apollo/server": "^4.6.0",
     "graphql": "^16.6.0"
   }
 }
