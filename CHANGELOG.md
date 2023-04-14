@@ -1,3 +1,18 @@
+# [1.18.0](https://github.com/graphql/graphql-http/compare/v1.17.1...v1.18.0) (2023-04-14)
+
+
+### Bug Fixes
+
+* **audits/server:** Avoid auditing non well-formatted GraphQL-over-HTTP requests ([#62](https://github.com/graphql/graphql-http/issues/62)) ([d72e344](https://github.com/graphql/graphql-http/commit/d72e3444a719c0a9710b8a96201f3cc3d9324ffb))
+* **audits/server:** Prefer using POST ([#77](https://github.com/graphql/graphql-http/issues/77)) ([8cd7dfb](https://github.com/graphql/graphql-http/commit/8cd7dfb2e571e7660839681a796ab98fe82f652a))
+* **handler:** Stringify errors by exposing only the message ([cabf8a9](https://github.com/graphql/graphql-http/commit/cabf8a98b7e266af15b3e6da1b5d874e8d43a238))
+
+
+### Features
+
+* **audits:** Notices section for optional recommendations ([#76](https://github.com/graphql/graphql-http/issues/76)) ([b8bdc71](https://github.com/graphql/graphql-http/commit/b8bdc71811a5d21a3f8a60b61f61ddf5ee3445ce))
+* **handler:** Error formatter function ([#78](https://github.com/graphql/graphql-http/issues/78)) ([c0eaeb4](https://github.com/graphql/graphql-http/commit/c0eaeb4595abc9d13b624d71a8b72ff22298b706))
+
 ## [1.17.1](https://github.com/graphql/graphql-http/compare/v1.17.0...v1.17.1) (2023-03-31)
 
 
