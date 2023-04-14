@@ -156,6 +156,15 @@ export type OperationContext =
   | undefined
   | null;
 
+/**
+ * The (GraphQL) error formatter function.
+ *
+ * @category Server
+ */
+export type FormatError = (
+  err: Readonly<GraphQLError | Error>,
+) => GraphQLError | Error;
+
 /** @category Server */
 export type OperationArgs<Context extends OperationContext = undefined> =
   ExecutionArgs & { contextValue?: Context };
@@ -313,6 +322,14 @@ export interface HandlerOptions<
     | ExecutionResult
     | Response
     | void;
+  /**
+   * Format handled errors to your satisfaction. Either GraphQL errors
+   * or safe request processing errors are meant by "handleded errors".
+   *
+   * If multiple errors have occured, all of them will be mapped using
+   * this formatter.
+   */
+  formatError?: FormatError;
 }
 
 /**
@@ -402,6 +419,7 @@ export function createHandler<
     rootValue,
     onSubscribe,
     onOperation,
+    formatError = (err) => err,
   } = options;
 
   return async function handler(req) {
@@ -525,7 +543,7 @@ export function createHandler<
       // request parameters are checked and now complete
       params = partParams as RequestParams;
     } catch (err) {
-      return makeResponse(err, acceptedMediaType);
+      return makeResponse(err, acceptedMediaType, formatError);
     }
 
     let args: OperationArgs<Context>;
@@ -535,7 +553,7 @@ export function createHandler<
       isExecutionResult(maybeResErrsOrArgs) ||
       areGraphQLErrors(maybeResErrsOrArgs)
     )
-      return makeResponse(maybeResErrsOrArgs, acceptedMediaType);
+      return makeResponse(maybeResErrsOrArgs, acceptedMediaType, formatError);
     else if (maybeResErrsOrArgs) args = maybeResErrsOrArgs;
     else {
       if (!schema) throw new Error('The GraphQL schema is not provided');
@@ -546,7 +564,7 @@ export function createHandler<
       try {
         document = parse(query);
       } catch (err) {
-        return makeResponse(err, acceptedMediaType);
+        return makeResponse(err, acceptedMediaType, formatError);
       }
 
       const resOrContext =
@@ -582,7 +600,7 @@ export function createHandler<
       }
       const validationErrs = validate(args.schema, args.document, rules);
       if (validationErrs.length) {
-        return makeResponse(validationErrs, acceptedMediaType);
+        return makeResponse(validationErrs, acceptedMediaType, formatError);
       }
     }
 
@@ -595,6 +613,7 @@ export function createHandler<
       return makeResponse(
         new GraphQLError('Unable to detect operation AST'),
         acceptedMediaType,
+        formatError,
       );
     }
 
@@ -602,6 +621,7 @@ export function createHandler<
       return makeResponse(
         new GraphQLError('Subscriptions are not supported'),
         acceptedMediaType,
+        formatError,
       );
     }
 
@@ -642,10 +662,11 @@ export function createHandler<
       return makeResponse(
         new GraphQLError('Subscriptions are not supported'),
         acceptedMediaType,
+        formatError,
       );
     }
 
-    return makeResponse(result, acceptedMediaType);
+    return makeResponse(result, acceptedMediaType, formatError);
   };
 }
 
@@ -720,6 +741,7 @@ export function makeResponse(
     | Readonly<GraphQLError>
     | Readonly<Error>,
   acceptedMediaType: AcceptableMediaType,
+  formatError: FormatError,
 ): Response {
   if (
     resultOrErrors instanceof Error &&
@@ -727,7 +749,10 @@ export function makeResponse(
     !isGraphQLError(resultOrErrors)
   ) {
     return [
-      JSON.stringify({ errors: [resultOrErrors] }, jsonErrorReplacer),
+      JSON.stringify(
+        { errors: [formatError(resultOrErrors)] },
+        jsonErrorReplacer,
+      ),
       {
         status: 400,
         statusText: 'Bad Request',
@@ -744,7 +769,7 @@ export function makeResponse(
     : null;
   if (errors) {
     return [
-      JSON.stringify({ errors }, jsonErrorReplacer),
+      JSON.stringify({ errors: errors.map(formatError) }, jsonErrorReplacer),
       {
         ...(acceptedMediaType === 'application/json'
           ? {
@@ -766,7 +791,15 @@ export function makeResponse(
   }
 
   return [
-    JSON.stringify(resultOrErrors, jsonErrorReplacer),
+    JSON.stringify(
+      'errors' in resultOrErrors && resultOrErrors.errors
+        ? {
+            ...resultOrErrors,
+            errors: resultOrErrors.errors.map(formatError),
+          }
+        : resultOrErrors,
+      jsonErrorReplacer,
+    ),
     {
       status: 200,
       statusText: 'OK',

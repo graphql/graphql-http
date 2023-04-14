@@ -188,3 +188,26 @@ it('should print plain errors in detail', async () => {
     `"{"errors":[{"message":"Unparsable JSON body"}]}"`,
   );
 });
+
+it('should format errors using the formatter', async () => {
+  const formatErrorFn = jest.fn((_err) => new Error('Formatted'));
+  const server = startTServer({
+    formatError: formatErrorFn,
+  });
+  const url = new URL(server.url);
+  url.searchParams.set('query', '{ idontexist }');
+  const res = await fetch(url.toString());
+  expect(res.json()).resolves.toMatchInlineSnapshot(`
+    {
+      "errors": [
+        {
+          "message": "Formatted",
+        },
+      ],
+    }
+  `);
+  expect(formatErrorFn).toBeCalledTimes(1);
+  expect(formatErrorFn.mock.lastCall?.[0]).toMatchInlineSnapshot(
+    `[GraphQLError: Cannot query field "idontexist" on type "Query".]`,
+  );
+});

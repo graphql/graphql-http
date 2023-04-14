@@ -18,6 +18,7 @@
 
 - [context](handler.HandlerOptions.md#context)
 - [execute](handler.HandlerOptions.md#execute)
+- [formatError](handler.HandlerOptions.md#formaterror)
 - [getOperationAST](handler.HandlerOptions.md#getoperationast)
 - [onOperation](handler.HandlerOptions.md#onoperation)
 - [onSubscribe](handler.HandlerOptions.md#onsubscribe)
@@ -59,6 +60,18 @@ used to execute the query and mutation operations.
 ##### Returns
 
 `PromiseOrValue`<`ExecutionResult`\>
+
+___
+
+### formatError
+
+• `Optional` **formatError**: [`FormatError`](../modules/handler.md#formaterror)
+
+Format handled errors to your satisfaction. Either GraphQL errors
+or safe request processing errors are meant by "handleded errors".
+
+If multiple errors have occured, all of them will be mapped using
+this formatter.
 
 ___
 
