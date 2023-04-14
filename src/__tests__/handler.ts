@@ -211,3 +211,34 @@ it('should format errors using the formatter', async () => {
     `[GraphQLError: Cannot query field "idontexist" on type "Query".]`,
   );
 });
+
+it('should respect plain errors toJSON implementation', async () => {
+  class MyError extends Error {
+    constructor(msg: string) {
+      super(msg);
+    }
+    toJSON() {
+      return {
+        message: this.message,
+        toJSON: 'used',
+      };
+    }
+  }
+  const formatErrorFn = jest.fn((_err) => new MyError('Custom toJSON'));
+  const server = startTServer({
+    formatError: formatErrorFn,
+  });
+  const url = new URL(server.url);
+  url.searchParams.set('query', '{ idontexist }');
+  const res = await fetch(url.toString());
+  expect(res.json()).resolves.toMatchInlineSnapshot(`
+    {
+      "errors": [
+        {
+          "message": "Custom toJSON",
+          "toJSON": "used",
+        },
+      ],
+    }
+  `);
+});
