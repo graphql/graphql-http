@@ -78,7 +78,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
   "status": 400,
   "headers": {
     "x-powered-by": "Express",
-    "etag": "W/\"5b5-gDRXf8j0lbjWbmQpeY60iENT2cI\"",
+    "etag": "W/\"5b5-CgCbYgTngCnt8npZGYoJE4I2uKo\"",
     "date": "<timestamp>",
     "content-type": "application/json; charset=utf-8",
     "content-length": "1461",
@@ -96,7 +96,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
             "    at new GraphQLErrorWithCode (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/internalErrorClasses.js:7:9)",
             "    at new BadRequestError (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/internalErrorClasses.js:75:9)",
             "    at preventCsrf (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/preventCsrf.js:29:11)",
-            "    at ApolloServer.executeHTTPGraphQLRequest (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/ApolloServer.js:478:17)",
+            "    at ApolloServer.executeHTTPGraphQLRequest (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/ApolloServer.js:481:17)",
             "    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)"
           ],
           "code": "BAD_REQUEST"
@@ -116,7 +116,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
   "status": 400,
   "headers": {
     "x-powered-by": "Express",
-    "etag": "W/\"5b5-gDRXf8j0lbjWbmQpeY60iENT2cI\"",
+    "etag": "W/\"5b5-CgCbYgTngCnt8npZGYoJE4I2uKo\"",
     "date": "<timestamp>",
     "content-type": "application/graphql-response+json; charset=utf-8",
     "content-length": "1461",
@@ -134,7 +134,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
             "    at new GraphQLErrorWithCode (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/internalErrorClasses.js:7:9)",
             "    at new BadRequestError (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/internalErrorClasses.js:75:9)",
             "    at preventCsrf (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/preventCsrf.js:29:11)",
-            "    at ApolloServer.executeHTTPGraphQLRequest (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/ApolloServer.js:478:17)",
+            "    at ApolloServer.executeHTTPGraphQLRequest (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/ApolloServer.js:481:17)",
             "    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)"
           ],
           "code": "BAD_REQUEST"
@@ -154,7 +154,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
   "status": 400,
   "headers": {
     "x-powered-by": "Express",
-    "etag": "W/\"5b5-gDRXf8j0lbjWbmQpeY60iENT2cI\"",
+    "etag": "W/\"5b5-CgCbYgTngCnt8npZGYoJE4I2uKo\"",
     "date": "<timestamp>",
     "content-type": "application/json; charset=utf-8",
     "content-length": "1461",
@@ -172,7 +172,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
             "    at new GraphQLErrorWithCode (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/internalErrorClasses.js:7:9)",
             "    at new BadRequestError (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/internalErrorClasses.js:75:9)",
             "    at preventCsrf (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/preventCsrf.js:29:11)",
-            "    at ApolloServer.executeHTTPGraphQLRequest (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/ApolloServer.js:478:17)",
+            "    at ApolloServer.executeHTTPGraphQLRequest (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/ApolloServer.js:481:17)",
             "    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)"
           ],
           "code": "BAD_REQUEST"
@@ -295,7 +295,7 @@ The server <i>SHOULD</i> support these, but is not required.
   "status": 400,
   "headers": {
     "x-powered-by": "Express",
-    "etag": "W/\"bb6-gXaURMU/HGIiPsrBiHj0x/xi2Cw\"",
+    "etag": "W/\"bb6-xPbqAQuw2284Y/PyQ3gH1Sbwd1A\"",
     "date": "<timestamp>",
     "content-type": "application/json; charset=utf-8",
     "content-length": "2998",
@@ -323,7 +323,7 @@ The server <i>SHOULD</i> support these, but is not required.
             "    at validate (/home/runner/work/graphql-http/graphql-http/node_modules/graphql/validation/validate.js:91:24)",
             "    at processGraphQLRequest (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/requestPipeline.js:97:34)",
             "    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
-            "    at async internalExecuteOperation (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/ApolloServer.js:585:16)",
+            "    at async internalExecuteOperation (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/ApolloServer.js:588:16)",
             "    at async runHttpQuery (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/runHttpQuery.js:129:29)",
             "    at async runPotentiallyBatchedHttpQuery (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/httpBatching.js:34:16)"
           ],
@@ -348,7 +348,7 @@ The server <i>SHOULD</i> support these, but is not required.
             "    at validate (/home/runner/work/graphql-http/graphql-http/node_modules/graphql/validation/validate.js:91:24)",
             "    at processGraphQLRequest (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/requestPipeline.js:97:34)",
             "    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
-            "    at async internalExecuteOperation (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/ApolloServer.js:585:16)",
+            "    at async internalExecuteOperation (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/ApolloServer.js:588:16)",
             "    at async runHttpQuery (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/runHttpQuery.js:129:29)",
             "    at async runPotentiallyBatchedHttpQuery (file:///home/runner/work/graphql-http/graphql-http/node_modules/@apollo/server/dist/esm/httpBatching.js:34:16)"
           ],
