@@ -35,7 +35,12 @@ jobs:
       - name: Run
         run: node benchmark/servers/http.mjs &
       - name: Benchmark
-        run: ./k6 run benchmark/k6.mjs
+        run: ./k6 run benchmark/k6.mjs --summary-export summary.json
+      - name: Summary
+        run: |
+          echo '```json' >> $GITHUB_STEP_SUMMARY
+          cat summary.json >> $GITHUB_STEP_SUMMARY
+          echo -e '\n```' >> $GITHUB_STEP_SUMMARY
 
   fastify:
     name: fastify
@@ -58,7 +63,12 @@ jobs:
       - name: Run
         run: node benchmark/servers/fastify.mjs &
       - name: Benchmark
-        run: ./k6 run benchmark/k6.mjs
+        run: ./k6 run benchmark/k6.mjs --summary-export summary.json
+      - name: Summary
+        run: |
+          echo '```json' >> $GITHUB_STEP_SUMMARY
+          cat summary.json >> $GITHUB_STEP_SUMMARY
+          echo -e '\n```' >> $GITHUB_STEP_SUMMARY
 
   express:
     name: express
@@ -81,7 +91,12 @@ jobs:
       - name: Run
         run: node benchmark/servers/express.mjs &
       - name: Benchmark
-        run: ./k6 run benchmark/k6.mjs
+        run: ./k6 run benchmark/k6.mjs --summary-export summary.json
+      - name: Summary
+        run: |
+          echo '```json' >> $GITHUB_STEP_SUMMARY
+          cat summary.json >> $GITHUB_STEP_SUMMARY
+          echo -e '\n```' >> $GITHUB_STEP_SUMMARY
 
   bun:
     name: bun
@@ -108,4 +123,9 @@ jobs:
       - name: Run
         run: bun run benchmark/servers/bun.mjs &
       - name: Benchmark
-        run: ./k6 run benchmark/k6.mjs
+        run: ./k6 run benchmark/k6.mjs --summary-export summary.json
+      - name: Summary
+        run: |
+          echo '```json' >> $GITHUB_STEP_SUMMARY
+          cat summary.json >> $GITHUB_STEP_SUMMARY
+          echo -e '\n```' >> $GITHUB_STEP_SUMMARY
