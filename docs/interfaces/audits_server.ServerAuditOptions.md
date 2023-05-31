@@ -25,7 +25,9 @@ For NodeJS environments consider using [`@whatwg-node/fetch`](https://github.com
 
 **`Default`**
 
+```ts
 global.fetch
+```
 
 ___
 

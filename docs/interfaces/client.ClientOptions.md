@@ -29,7 +29,9 @@ For NodeJS environments before v15 consider using [`node-abort-controller`](http
 
 **`Default`**
 
+```ts
 global.AbortController
+```
 
 ___
 
@@ -47,7 +49,9 @@ Possible options are:
 
 **`Default`**
 
+```ts
 same-origin
+```
 
 ___
 
@@ -61,7 +65,9 @@ For NodeJS environments consider using [`node-fetch`](https://github.com/node-fe
 
 **`Default`**
 
+```ts
 global.fetch
+```
 
 ___
 
@@ -88,7 +94,9 @@ A string specifying the referrer of the request. This can be a same-origin URL, 
 
 **`Default`**
 
+```ts
 undefined
+```
 
 ___
 
@@ -110,7 +118,9 @@ Possible options are:
 
 **`Default`**
 
+```ts
 undefined
+```
 
 ___
 
@@ -139,7 +149,9 @@ the `err` argument, will report it instead.
 
 **`Default`**
 
+```ts
 '() => false'
+```
 
 ##### Parameters
 
