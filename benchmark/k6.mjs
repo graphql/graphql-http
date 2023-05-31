@@ -12,16 +12,16 @@ export const options = {
   scenarios: {
     get: {
       executor: 'constant-vus',
-      vus: 1,
-      duration: '3s',
-      gracefulStop: '1s',
+      vus: 20,
+      duration: '10s',
+      gracefulStop: '3s',
       env: { SCENARIO: 'get' },
     },
     post: {
       executor: 'constant-vus',
-      vus: 1,
-      duration: '3s',
-      gracefulStop: '1s',
+      vus: 20,
+      duration: '10s',
+      gracefulStop: '3s',
       env: { SCENARIO: 'post' },
     },
   },
