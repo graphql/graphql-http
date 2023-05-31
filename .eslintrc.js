@@ -13,6 +13,8 @@ const opts = {
     'prettier',
   ],
   rules: {
+    // undefined vars will be handled by the TS compiler
+    'no-undef': 'off',
     // unused vars will be handled by the TS compiler
     '@typescript-eslint/no-unused-vars': 'off',
     '@typescript-eslint/ban-ts-comment': [
