@@ -51,11 +51,11 @@ export default function () {
   let res;
   switch (scenario) {
     case 'get':
-      res = http.get(`http://localhost:${port}?query={hello}`);
+      res = http.get(`http://localhost:${port}/graphql?query={hello}`);
       break;
     case 'post':
       res = http.post(
-        `http://localhost:${port}`,
+        `http://localhost:${port}/graphql`,
         JSON.stringify({ query: '{hello}' }),
         { headers: { 'Content-Type': 'application/json' } },
       );
