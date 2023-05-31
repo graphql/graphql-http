@@ -1,10 +1,10 @@
-**/.DS_Store
-node_modules
-lib
-umd
-dist
+.DS_Store
+node_modules/
+lib/
+umd/
+dist/
 .vscode
 .yarn/*
 !.yarn/releases
 !.yarn/plugins
-.graphclient
+.graphclient/
