@@ -45,7 +45,6 @@ export type HandlerOptions<Context extends OperationContext = undefined> =
 export function createHandler<Context extends OperationContext = undefined>(
   options: HandlerOptions<Context>,
 ): Middleware {
-  const isProd = process.env.NODE_ENV === 'production';
   const handle = createRawHandler(options);
   return async function requestListener(ctx) {
     try {
@@ -84,19 +83,6 @@ export function createHandler<Context extends OperationContext = undefined>(
         err,
       );
       ctx.response.status = 500;
-      if (!isProd) {
-        ctx.response.set('content-type', 'application/json; charset=utf-8');
-        ctx.body = {
-          errors: [
-            err instanceof Error
-              ? {
-                  message: err.message,
-                  stack: err.stack,
-                }
-              : err,
-          ],
-        };
-      }
     }
   };
 }

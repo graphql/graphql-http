@@ -54,7 +54,6 @@ export type HandlerOptions<Context extends OperationContext = undefined> =
 export function createHandler<Context extends OperationContext = undefined>(
   options: HandlerOptions<Context>,
 ): (req: Http2ServerRequest, res: Http2ServerResponse) => Promise<void> {
-  const isProd = process.env.NODE_ENV === 'production';
   const handle = createRawHandler(options);
   return async function requestListener(req, res) {
     try {
@@ -91,24 +90,7 @@ export function createHandler<Context extends OperationContext = undefined>(
           'Please check your implementation.',
         err,
       );
-      if (isProd) {
-        res.writeHead(500).end();
-      } else {
-        res
-          .writeHead(500, { 'content-type': 'application/json; charset=utf-8' })
-          .end(
-            JSON.stringify({
-              errors: [
-                err instanceof Error
-                  ? {
-                      message: err.message,
-                      stack: err.stack,
-                    }
-                  : err,
-              ],
-            }),
-          );
-      }
+      res.writeHead(500).end();
     }
   };
 }

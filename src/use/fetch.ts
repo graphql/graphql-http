@@ -55,7 +55,6 @@ export function createHandler<Context extends OperationContext = undefined>(
   options: HandlerOptions<Context>,
   reqCtx: Partial<FetchAPI> = {},
 ): (req: Request) => Promise<Response> {
-  const isProd = process.env.NODE_ENV === 'production';
   const api: FetchAPI = {
     Response: reqCtx.Response || Response,
     TextEncoder: reqCtx.TextEncoder || TextEncoder,
@@ -81,28 +80,7 @@ export function createHandler<Context extends OperationContext = undefined>(
           'Please check your implementation.',
         err,
       );
-      if (isProd) {
-        return new api.Response(null, { status: 500 });
-      } else {
-        return new api.Response(
-          JSON.stringify({
-            errors: [
-              err instanceof Error
-                ? {
-                    message: err.message,
-                    stack: err.stack,
-                  }
-                : err,
-            ],
-          }),
-          {
-            status: 500,
-            headers: {
-              'content-type': 'application/json; charset=utf-8',
-            },
-          },
-        );
-      }
+      return new api.Response(null, { status: 500 });
     }
   };
 }

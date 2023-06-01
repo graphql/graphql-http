@@ -43,7 +43,6 @@ export type HandlerOptions<Context extends OperationContext = undefined> =
 export function createHandler<Context extends OperationContext = undefined>(
   options: HandlerOptions<Context>,
 ): RouteHandler {
-  const isProd = process.env.NODE_ENV === 'production';
   const handle = createRawHandler(options);
   return async function requestListener(req, reply) {
     try {
@@ -69,23 +68,7 @@ export function createHandler<Context extends OperationContext = undefined>(
           'Please check your implementation.',
         err,
       );
-      if (isProd) {
-        reply.status(500).send();
-      } else {
-        reply
-          .status(500)
-          .header('content-type', 'application/json; charset=utf-8')
-          .send({
-            errors: [
-              err instanceof Error
-                ? {
-                    message: err.message,
-                    stack: err.stack,
-                  }
-                : err,
-            ],
-          });
-      }
+      reply.status(500).send();
     }
   };
 }
