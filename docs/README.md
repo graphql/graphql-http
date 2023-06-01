@@ -19,3 +19,4 @@ graphql-http
 - [use/http2](modules/use_http2.md)
 - [use/koa](modules/use_koa.md)
 - [use/node](modules/use_node.md)
+- [use/uWebSockets](modules/use_uWebSockets.md)

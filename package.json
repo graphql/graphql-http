@@ -70,6 +70,11 @@
       "require": "./lib/use/koa.js",
       "import": "./lib/use/koa.mjs"
     },
+    "./lib/use/uWebSockets": {
+      "types": "./lib/use/uWebSockets.d.ts",
+      "require": "./lib/use/uWebSockets.js",
+      "import": "./lib/use/uWebSockets.mjs"
+    },
     "./package.json": "./package.json"
   },
   "types": "lib/index.d.ts",
@@ -147,7 +152,8 @@
     "tslib": "^2.5.2",
     "typedoc": "^0.24.7",
     "typedoc-plugin-markdown": "^3.15.3",
-    "typescript": "^5.0.4"
+    "typescript": "^5.0.4",
+    "uWebSockets.js": "uNetworking/uWebSockets.js#v20.30.0"
   },
   "resolutions": {
     "npm/libnpmversion": "^3.0.6"
