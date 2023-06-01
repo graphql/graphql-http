@@ -46,33 +46,45 @@ export function createHandler<Context extends OperationContext = undefined>(
 ): (res: HttpResponse, req: HttpRequest) => Promise<void> {
   const handle = createRawHandler(options);
   return async function requestListener(res, req) {
+    let aborted = false;
+    res.onAborted(() => (aborted = true));
     try {
+      let url = req.getUrl();
+      const query = req.getQuery();
+      if (query) {
+        url += '?' + query;
+      }
       const [body, init] = await handle({
-        url: req.getUrl(),
-        method: req.getMethod(),
-        headers: { get: req.getHeader },
+        url,
+        method: req.getMethod().toUpperCase(),
+        headers: { get: (key) => req.getHeader(key) },
         body: () =>
           new Promise<string>((resolve) => {
             let body = '';
-            res.onData((chunk, isLast) => {
-              body += chunk;
-              if (isLast) {
-                resolve(body);
-              }
-            });
+            if (aborted) {
+              resolve(body);
+            } else {
+              res.onData((chunk, isLast) => {
+                body += Buffer.from(chunk, 0, chunk.byteLength).toString();
+                if (isLast) {
+                  resolve(body);
+                }
+              });
+            }
           }),
         raw: req,
         context: { res },
       });
-
-      res.writeStatus(`${init.status} ${init.statusText}`);
-      for (const [key, val] of Object.entries(init.headers || {})) {
-        res.writeHeader(key, val);
-      }
-      if (body) {
-        res.end(body);
-      } else {
-        res.endWithoutBody();
+      if (!aborted) {
+        res.writeStatus(`${init.status} ${init.statusText}`);
+        for (const [key, val] of Object.entries(init.headers || {})) {
+          res.writeHeader(key, val);
+        }
+        if (body) {
+          res.end(body);
+        } else {
+          res.endWithoutBody();
+        }
       }
     } catch (err) {
       // The handler shouldnt throw errors.
@@ -82,7 +94,9 @@ export function createHandler<Context extends OperationContext = undefined>(
           'Please check your implementation.',
         err,
       );
-      res.writeStatus('500 Internal Server Error').endWithoutBody();
+      if (!aborted) {
+        res.writeStatus('500 Internal Server Error').endWithoutBody();
+      }
     }
   };
 }

@@ -5,6 +5,7 @@ import fastify from 'fastify';
 import Koa from 'koa';
 import mount from 'koa-mount';
 import { createServerAdapter } from '@whatwg-node/server';
+import uWS from 'uWebSockets.js';
 import { startDisposableServer } from './utils/tserver';
 import { serverAudits } from '../audits';
 import { schema } from './fixtures/simple';
@@ -14,6 +15,7 @@ import { createHandler as createExpressHandler } from '../use/express';
 import { createHandler as createFastifyHandler } from '../use/fastify';
 import { createHandler as createFetchHandler } from '../use/fetch';
 import { createHandler as createKoaHandler } from '../use/koa';
+import { createHandler as createUWSHandler } from '../use/uWebSockets';
 
 describe('http', () => {
   const [url, , dispose] = startDisposableServer(
@@ -218,4 +220,40 @@ describe('koa', () => {
 
     await dispose();
   });
+});
+
+describe('uWebSockets.js', () => {
+  let url = '';
+  beforeAll(async () => {
+    // get available port by starting a temporary server
+    const [availableUrl, availablePort, dispose] = startDisposableServer(
+      http.createServer(),
+    );
+    await dispose();
+    url = availableUrl;
+
+    new Promise<void>((resolve, reject) => {
+      uWS
+        .App()
+        .any('/', createUWSHandler({ schema }))
+        .listen(availablePort, (listenSocket) => {
+          if (!listenSocket) {
+            reject(new Error('Unavailable uWS listen socket'));
+          } else {
+            resolve();
+          }
+        });
+    });
+  });
+
+  // TODO: dispose of app afterAll
+
+  for (const audit of serverAudits({ url: () => url, fetchFn: fetch })) {
+    it(audit.name, async () => {
+      const result = await audit.fn();
+      if (result.status !== 'ok') {
+        throw result.reason;
+      }
+    });
+  }
 });
