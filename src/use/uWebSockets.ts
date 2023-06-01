@@ -76,15 +76,17 @@ export function createHandler<Context extends OperationContext = undefined>(
         context: { res },
       });
       if (!aborted) {
-        res.writeStatus(`${init.status} ${init.statusText}`);
-        for (const [key, val] of Object.entries(init.headers || {})) {
-          res.writeHeader(key, val);
-        }
-        if (body) {
-          res.end(body);
-        } else {
-          res.endWithoutBody();
-        }
+        res.cork(() => {
+          res.writeStatus(`${init.status} ${init.statusText}`);
+          for (const [key, val] of Object.entries(init.headers || {})) {
+            res.writeHeader(key, val);
+          }
+          if (body) {
+            res.end(body);
+          } else {
+            res.endWithoutBody();
+          }
+        });
       }
     } catch (err) {
       // The handler shouldnt throw errors.
@@ -95,7 +97,9 @@ export function createHandler<Context extends OperationContext = undefined>(
         err,
       );
       if (!aborted) {
-        res.writeStatus('500 Internal Server Error').endWithoutBody();
+        res.cork(() => {
+          res.writeStatus('500 Internal Server Error').endWithoutBody();
+        });
       }
     }
   };
