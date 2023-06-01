@@ -158,6 +158,21 @@ app.listen({ port: 4000 });
 console.log('Listening to port 4000');
 ```
 
+##### With [`uWebSockets.js`](https://github.com/uNetworking/uWebSockets.js)
+
+```js
+import uWS from 'uWebSockets.js'; // yarn add uWebSockets.js@uNetworking/uWebSockets.js#<version>
+import { createHandler } from 'graphql-http/lib/use/uWebSockets';
+import { schema } from './previous-step';
+
+uWS
+  .App()
+  .any('/graphql', createHandler({ schema }))
+  .listen(4000, () => {
+    console.log('Listening to port 4000');
+  });
+```
+
 ##### With [`Deno`](https://deno.land/)
 
 ```ts
