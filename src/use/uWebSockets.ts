@@ -71,6 +71,8 @@ export function createHandler<Context extends OperationContext = undefined>(
       }
       if (body) {
         res.end(body);
+      } else {
+        res.endWithoutBody();
       }
     } catch (err) {
       // The handler shouldnt throw errors.
