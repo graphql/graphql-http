@@ -46,7 +46,7 @@ isomorphically use it in _any_ environment. See an example:
 import http from 'http';
 import { createServerAdapter } from '@whatwg-node/server'; // yarn add @whatwg-node/server
 import { createHandler } from 'graphql-http/lib/use/fetch';
-import { schema } from './my-graphql-step';
+import { schema } from './my-graphql-schema';
 
 // Use this adapter in _any_ environment.
 const adapter = createServerAdapter({

@@ -48,7 +48,7 @@ $ openssl req -x509 -newkey rsa:2048 -nodes -sha256 -subj '/CN=localhost' \
 import fs from 'fs';
 import http2 from 'http2';
 import { createHandler } from 'graphql-http/lib/use/http2';
-import { schema } from './my-graphql-step';
+import { schema } from './my-graphql-schema';
 
 const server = http2.createSecureServer(
   {

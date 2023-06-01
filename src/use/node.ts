@@ -21,7 +21,7 @@ export type HandlerOptions<Context extends OperationContext = undefined> =
  * ```js
  * import http from 'http';
  * import { createHandler } from 'graphql-http/lib/use/node';
- * import { schema } from './my-graphql-step';
+ * import { schema } from './my-graphql-schema';
  *
  * const server = http.createServer(createHandler({ schema }));
  *
