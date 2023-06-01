@@ -28,7 +28,7 @@ export function startTServer(
     schema,
     ...handlerOptions,
   });
-  const [url, dispose] = startDisposableServer(
+  const [url, , dispose] = startDisposableServer(
     http.createServer(async (req, res) => {
       try {
         if (!req.url) {
@@ -78,7 +78,7 @@ export function startTServer(
  */
 export function startDisposableServer(
   server: http.Server,
-): [url: string, dispose: Dispose] {
+): [url: string, port: number, dispose: Dispose] {
   const sockets = new Set<net.Socket>();
   server.on('connection', (socket) => {
     sockets.add(socket);
@@ -100,5 +100,5 @@ export function startDisposableServer(
   const { port } = server.address() as net.AddressInfo;
   const url = `http://localhost:${port}`;
 
-  return [url, dispose];
+  return [url, port, dispose];
 }

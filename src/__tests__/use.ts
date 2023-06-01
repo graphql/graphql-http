@@ -16,7 +16,7 @@ import { createHandler as createFetchHandler } from '../use/fetch';
 import { createHandler as createKoaHandler } from '../use/koa';
 
 describe('http', () => {
-  const [url, dispose] = startDisposableServer(
+  const [url, , dispose] = startDisposableServer(
     http.createServer(createHttpHandler({ schema })),
   );
   afterAll(dispose);
@@ -31,7 +31,7 @@ describe('http', () => {
   }
 
   it('should allow manipulating the response from the request context', async () => {
-    const [url, dispose] = startDisposableServer(
+    const [url, , dispose] = startDisposableServer(
       http.createServer(
         createHttpHandler({
           schema,
@@ -63,7 +63,7 @@ describe('express', () => {
   const app = express();
   app.all('/', createExpressHandler({ schema }));
 
-  const [url, dispose] = startDisposableServer(app.listen(0));
+  const [url, , dispose] = startDisposableServer(app.listen(0));
   afterAll(dispose);
 
   for (const audit of serverAudits({ url, fetchFn: fetch })) {
@@ -88,7 +88,7 @@ describe('express', () => {
       }),
     );
 
-    const [url, dispose] = startDisposableServer(app.listen(0));
+    const [url, , dispose] = startDisposableServer(app.listen(0));
 
     const res = await fetch(url + '?query={hello}');
 
@@ -118,7 +118,7 @@ describe('fastify', () => {
   // call ready since we're not calling listen
   app.ready();
 
-  const [url, dispose] = startDisposableServer(app.server);
+  const [url, , dispose] = startDisposableServer(app.server);
   afterAll(dispose);
 
   for (const audit of serverAudits({ url, fetchFn: fetch })) {
@@ -147,7 +147,7 @@ describe('fastify', () => {
     // call ready since we're not calling listen
     app.ready();
 
-    const [url, dispose] = startDisposableServer(app.server);
+    const [url, , dispose] = startDisposableServer(app.server);
 
     const res = await fetch(url + '?query={hello}');
 
@@ -161,7 +161,7 @@ describe('fastify', () => {
 });
 
 describe('fetch', () => {
-  const [url, dispose] = startDisposableServer(
+  const [url, , dispose] = startDisposableServer(
     http.createServer(createServerAdapter(createFetchHandler({ schema }))),
   );
   afterAll(dispose);
@@ -180,7 +180,7 @@ describe('koa', () => {
   const app = new Koa();
   app.use(mount('/', createKoaHandler({ schema })));
 
-  const [url, dispose] = startDisposableServer(app.listen(0));
+  const [url, , dispose] = startDisposableServer(app.listen(0));
   afterAll(dispose);
 
   for (const audit of serverAudits({ url, fetchFn: fetch })) {
@@ -207,7 +207,7 @@ describe('koa', () => {
       ),
     );
 
-    const [url, dispose] = startDisposableServer(app.listen(0));
+    const [url, , dispose] = startDisposableServer(app.listen(0));
 
     const res = await fetch(url + '?query={hello}');
 
