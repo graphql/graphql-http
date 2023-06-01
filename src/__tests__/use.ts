@@ -224,6 +224,7 @@ describe('koa', () => {
 
 describe('uWebSockets.js', () => {
   let url = '';
+  let appListenSocket: uWS.us_listen_socket;
   beforeAll(async () => {
     // get available port by starting a temporary server
     const [availableUrl, availablePort, dispose] = startDisposableServer(
@@ -240,13 +241,14 @@ describe('uWebSockets.js', () => {
           if (!listenSocket) {
             reject(new Error('Unavailable uWS listen socket'));
           } else {
+            appListenSocket = listenSocket;
             resolve();
           }
         });
     });
   });
 
-  // TODO: dispose of app afterAll
+  afterAll(() => uWS.us_listen_socket_close(appListenSocket));
 
   for (const audit of serverAudits({ url: () => url, fetchFn: fetch })) {
     it(audit.name, async () => {
