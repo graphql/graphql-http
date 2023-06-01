@@ -29,7 +29,7 @@ export type HandlerOptions<Context extends OperationContext = undefined> =
  * ```js
  * import uWS from 'uWebSockets.js'; // yarn add uWebSockets.js@uNetworking/uWebSockets.js#<version>
  * import { createHandler } from 'graphql-http/lib/use/uWebSockets';
- * import { schema } from './my-graphql-step';
+ * import { schema } from './my-graphql-schema';
  *
  * uWS
  *   .App()
