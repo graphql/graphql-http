@@ -27,7 +27,7 @@ export type HandlerOptions<Context extends OperationContext = undefined> =
  * the Node environment [uWebSockets.js module](https://github.com/uNetworking/uWebSockets.js/).
  *
  * ```js
- * import uWS from 'uWebSockets.js'; // yarn add uWebSockets.js@uNetworking/uWebSockets.js#v20.30.0
+ * import uWS from 'uWebSockets.js'; // yarn add uWebSockets.js@uNetworking/uWebSockets.js#<version>
  * import { createHandler } from 'graphql-http/lib/use/uWebSockets';
  * import { schema } from './my-graphql-step';
  *
