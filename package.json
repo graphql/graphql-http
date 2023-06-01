@@ -70,6 +70,11 @@
       "require": "./lib/use/koa.js",
       "import": "./lib/use/koa.mjs"
     },
+    "./lib/use/uWebSockets": {
+      "types": "./lib/use/uWebSockets.d.ts",
+      "require": "./lib/use/uWebSockets.js",
+      "import": "./lib/use/uWebSockets.mjs"
+    },
     "./package.json": "./package.json"
   },
   "types": "lib/index.d.ts",
