@@ -768,7 +768,7 @@ Put the above contents in a file and run it with `deno test --allow-net`.
 
 ## Only [GraphQL over HTTP](https://graphql.github.io/graphql-over-http/)
 
-This is the official [GraphQL over HTTP spec](https://graphql.github.io/graphql-over-http/) reference implementation and as such follows the specification strictly without any additional features (like file uploads, @stream/@defer directives and subscriptions).
+This is the official [GraphQL over HTTP spec](https://graphql.github.io/graphql-over-http/) reference implementation and as such follows the specification strictly without any additional features (like playgrounds or GUIs, file uploads, @stream/@defer directives and subscriptions).
 
 Having said this, graphql-http is mostly aimed for library authors and simple server setups, where the requirements are exact to what the aforementioned spec offers.
 
