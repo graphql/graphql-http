@@ -3,7 +3,7 @@ node_modules/
 lib/
 umd/
 dist/
-.vscode
+.vscode/
 .yarn/*
 !.yarn/releases
 !.yarn/plugins
