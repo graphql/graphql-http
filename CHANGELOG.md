@@ -1,3 +1,15 @@
+# [1.19.0](https://github.com/graphql/graphql-http/compare/v1.18.0...v1.19.0) (2023-06-05)
+
+
+### Bug Fixes
+
+* **use:** `process` global is not available in all environments and `NODE_ENV` doesn't necessarily depict production vs. development ([d08ead3](https://github.com/graphql/graphql-http/commit/d08ead38a75058607f3b92671ef4ac31bc5640d4))
+
+
+### Features
+
+* Use uWebSockets.js ([#91](https://github.com/graphql/graphql-http/issues/91)) ([5089f46](https://github.com/graphql/graphql-http/commit/5089f46ac3756848b0b9ecbcb570b80e92948f71))
+
 # [1.18.0](https://github.com/graphql/graphql-http/compare/v1.17.1...v1.18.0) (2023-04-14)
 
 
