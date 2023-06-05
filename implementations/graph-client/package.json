@@ -8,6 +8,6 @@
     "start": "graphclient serve-dev"
   },
   "dependencies": {
-    "@graphprotocol/client-cli": "^2.2.22"
+    "@graphprotocol/client-cli": "^3.0.0"
   }
 }
