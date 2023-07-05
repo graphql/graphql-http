@@ -12,6 +12,7 @@ graphql-http
 - [client](modules/client.md)
 - [common](modules/common.md)
 - [handler](modules/handler.md)
+- [use/@netlify/functions](modules/use__netlify_functions.md)
 - [use/express](modules/use_express.md)
 - [use/fastify](modules/use_fastify.md)
 - [use/fetch](modules/use_fetch.md)
