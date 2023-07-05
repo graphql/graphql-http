@@ -56,7 +56,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
   "statusText": "OK",
   "status": 200,
   "headers": {
-    "x-powered-by": "PHP/8.1.19",
+    "x-powered-by": "PHP/8.1.20",
     "host": "localhost:4000",
     "date": "<timestamp>",
     "content-type": "application/json",
@@ -91,7 +91,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
   "statusText": "Internal Server Error",
   "status": 500,
   "headers": {
-    "x-powered-by": "PHP/8.1.19",
+    "x-powered-by": "PHP/8.1.20",
     "host": "localhost:4000",
     "date": "<timestamp>",
     "content-type": "application/json",
@@ -379,7 +379,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
   "statusText": "OK",
   "status": 200,
   "headers": {
-    "x-powered-by": "PHP/8.1.19",
+    "x-powered-by": "PHP/8.1.20",
     "host": "localhost:4000",
     "date": "<timestamp>",
     "content-type": "application/json",
@@ -610,7 +610,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
   "statusText": "OK",
   "status": 200,
   "headers": {
-    "x-powered-by": "PHP/8.1.19",
+    "x-powered-by": "PHP/8.1.20",
     "host": "localhost:4000",
     "date": "<timestamp>",
     "content-type": "application/json",
@@ -841,7 +841,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
   "statusText": "OK",
   "status": 200,
   "headers": {
-    "x-powered-by": "PHP/8.1.19",
+    "x-powered-by": "PHP/8.1.20",
     "host": "localhost:4000",
     "date": "<timestamp>",
     "content-type": "application/json",
@@ -1072,7 +1072,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
   "statusText": "OK",
   "status": 200,
   "headers": {
-    "x-powered-by": "PHP/8.1.19",
+    "x-powered-by": "PHP/8.1.20",
     "host": "localhost:4000",
     "date": "<timestamp>",
     "content-type": "application/json",
@@ -1303,7 +1303,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
   "statusText": "OK",
   "status": 200,
   "headers": {
-    "x-powered-by": "PHP/8.1.19",
+    "x-powered-by": "PHP/8.1.20",
     "host": "localhost:4000",
     "date": "<timestamp>",
     "content-type": "application/json",
@@ -1534,7 +1534,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
   "statusText": "OK",
   "status": 200,
   "headers": {
-    "x-powered-by": "PHP/8.1.19",
+    "x-powered-by": "PHP/8.1.20",
     "host": "localhost:4000",
     "date": "<timestamp>",
     "content-type": "application/json",
@@ -1765,7 +1765,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
   "statusText": "OK",
   "status": 200,
   "headers": {
-    "x-powered-by": "PHP/8.1.19",
+    "x-powered-by": "PHP/8.1.20",
     "host": "localhost:4000",
     "date": "<timestamp>",
     "content-type": "application/json",
@@ -1996,7 +1996,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
   "statusText": "OK",
   "status": 200,
   "headers": {
-    "x-powered-by": "PHP/8.1.19",
+    "x-powered-by": "PHP/8.1.20",
     "host": "localhost:4000",
     "date": "<timestamp>",
     "content-type": "application/json",
@@ -2227,7 +2227,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
   "statusText": "OK",
   "status": 200,
   "headers": {
-    "x-powered-by": "PHP/8.1.19",
+    "x-powered-by": "PHP/8.1.20",
     "host": "localhost:4000",
     "date": "<timestamp>",
     "content-type": "application/json",
@@ -2458,7 +2458,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
   "statusText": "OK",
   "status": 200,
   "headers": {
-    "x-powered-by": "PHP/8.1.19",
+    "x-powered-by": "PHP/8.1.20",
     "host": "localhost:4000",
     "date": "<timestamp>",
     "content-type": "application/json",
@@ -2689,7 +2689,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
   "statusText": "OK",
   "status": 200,
   "headers": {
-    "x-powered-by": "PHP/8.1.19",
+    "x-powered-by": "PHP/8.1.20",
     "host": "localhost:4000",
     "date": "<timestamp>",
     "content-type": "application/json",
@@ -2920,7 +2920,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
   "statusText": "OK",
   "status": 200,
   "headers": {
-    "x-powered-by": "PHP/8.1.19",
+    "x-powered-by": "PHP/8.1.20",
     "host": "localhost:4000",
     "date": "<timestamp>",
     "content-type": "application/json",
@@ -3151,7 +3151,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
   "statusText": "OK",
   "status": 200,
   "headers": {
-    "x-powered-by": "PHP/8.1.19",
+    "x-powered-by": "PHP/8.1.20",
     "host": "localhost:4000",
     "date": "<timestamp>",
     "content-type": "application/json",
@@ -3382,7 +3382,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
   "statusText": "OK",
   "status": 200,
   "headers": {
-    "x-powered-by": "PHP/8.1.19",
+    "x-powered-by": "PHP/8.1.20",
     "host": "localhost:4000",
     "date": "<timestamp>",
     "content-type": "application/json",
@@ -3405,7 +3405,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
   "statusText": "OK",
   "status": 200,
   "headers": {
-    "x-powered-by": "PHP/8.1.19",
+    "x-powered-by": "PHP/8.1.20",
     "host": "localhost:4000",
     "date": "<timestamp>",
     "content-type": "application/json",
@@ -3428,7 +3428,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
   "statusText": "OK",
   "status": 200,
   "headers": {
-    "x-powered-by": "PHP/8.1.19",
+    "x-powered-by": "PHP/8.1.20",
     "host": "localhost:4000",
     "date": "<timestamp>",
     "content-type": "application/json",
@@ -3451,7 +3451,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
   "statusText": "OK",
   "status": 200,
   "headers": {
-    "x-powered-by": "PHP/8.1.19",
+    "x-powered-by": "PHP/8.1.20",
     "host": "localhost:4000",
     "date": "<timestamp>",
     "content-type": "application/json",
@@ -3474,7 +3474,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
   "statusText": "OK",
   "status": 200,
   "headers": {
-    "x-powered-by": "PHP/8.1.19",
+    "x-powered-by": "PHP/8.1.20",
     "host": "localhost:4000",
     "date": "<timestamp>",
     "content-type": "application/json",
@@ -3705,7 +3705,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
   "statusText": "OK",
   "status": 200,
   "headers": {
-    "x-powered-by": "PHP/8.1.19",
+    "x-powered-by": "PHP/8.1.20",
     "host": "localhost:4000",
     "date": "<timestamp>",
     "content-type": "application/json",
@@ -3941,7 +3941,7 @@ The server <i>SHOULD</i> support these, but is not required.
   "statusText": "OK",
   "status": 200,
   "headers": {
-    "x-powered-by": "PHP/8.1.19",
+    "x-powered-by": "PHP/8.1.20",
     "host": "localhost:4000",
     "date": "<timestamp>",
     "content-type": "application/json",
@@ -3964,7 +3964,7 @@ The server <i>SHOULD</i> support these, but is not required.
   "statusText": "OK",
   "status": 200,
   "headers": {
-    "x-powered-by": "PHP/8.1.19",
+    "x-powered-by": "PHP/8.1.20",
     "host": "localhost:4000",
     "date": "<timestamp>",
     "content-type": "application/json",
@@ -3982,7 +3982,7 @@ The server <i>SHOULD</i> support these, but is not required.
           }
         ],
         "extensions": {
-          "line": 381,
+          "line": 380,
           "file": "/app/vendor/webonyx/graphql-php/src/Language/Parser.php"
         }
       }
@@ -3999,7 +3999,7 @@ The server <i>SHOULD</i> support these, but is not required.
   "statusText": "OK",
   "status": 200,
   "headers": {
-    "x-powered-by": "PHP/8.1.19",
+    "x-powered-by": "PHP/8.1.20",
     "host": "localhost:4000",
     "date": "<timestamp>",
     "content-type": "application/json",
@@ -4017,7 +4017,7 @@ The server <i>SHOULD</i> support these, but is not required.
           }
         ],
         "extensions": {
-          "line": 381,
+          "line": 380,
           "file": "/app/vendor/webonyx/graphql-php/src/Language/Parser.php"
         }
       }
@@ -4034,7 +4034,7 @@ The server <i>SHOULD</i> support these, but is not required.
   "statusText": "OK",
   "status": 200,
   "headers": {
-    "x-powered-by": "PHP/8.1.19",
+    "x-powered-by": "PHP/8.1.20",
     "host": "localhost:4000",
     "date": "<timestamp>",
     "content-type": "application/json",
@@ -4052,7 +4052,7 @@ The server <i>SHOULD</i> support these, but is not required.
           }
         ],
         "extensions": {
-          "line": 381,
+          "line": 380,
           "file": "/app/vendor/webonyx/graphql-php/src/Language/Parser.php"
         }
       }
@@ -4069,7 +4069,7 @@ The server <i>SHOULD</i> support these, but is not required.
   "statusText": "OK",
   "status": 200,
   "headers": {
-    "x-powered-by": "PHP/8.1.19",
+    "x-powered-by": "PHP/8.1.20",
     "host": "localhost:4000",
     "date": "<timestamp>",
     "content-type": "application/json",
@@ -4087,7 +4087,7 @@ The server <i>SHOULD</i> support these, but is not required.
           }
         ],
         "extensions": {
-          "line": 381,
+          "line": 380,
           "file": "/app/vendor/webonyx/graphql-php/src/Language/Parser.php"
         }
       }
@@ -4104,7 +4104,7 @@ The server <i>SHOULD</i> support these, but is not required.
   "statusText": "OK",
   "status": 200,
   "headers": {
-    "x-powered-by": "PHP/8.1.19",
+    "x-powered-by": "PHP/8.1.20",
     "host": "localhost:4000",
     "date": "<timestamp>",
     "content-type": "application/json",
