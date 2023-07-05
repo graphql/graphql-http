@@ -437,7 +437,37 @@ export function createHandler<
       ];
     }
 
-    const acceptedMediaType = getAcceptableMediaType(getHeader(req, 'accept'));
+    let acceptedMediaType: AcceptableMediaType | null = null;
+    const accepts = (getHeader(req, 'accept') || '*/*')
+      .replace(/\s/g, '')
+      .toLowerCase()
+      .split(',');
+    for (const accept of accepts) {
+      // accept-charset became obsolete, shouldnt be used (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Charset)
+      // TODO: handle the weight parameter "q"
+      const [mediaType, ...params] = accept.split(';');
+      const charset =
+        params?.find((param) => param.includes('charset=')) || 'charset=utf8'; // utf-8 is assumed when not specified;
+
+      if (
+        mediaType === 'application/graphql-response+json' &&
+        charset === 'charset=utf8'
+      ) {
+        acceptedMediaType = 'application/graphql-response+json';
+        break;
+      }
+
+      // application/json should be the default until watershed
+      if (
+        (mediaType === 'application/json' ||
+          mediaType === 'application/*' ||
+          mediaType === '*/*') &&
+        charset === 'charset=utf8'
+      ) {
+        acceptedMediaType = 'application/json';
+        break;
+      }
+    }
     if (!acceptedMediaType) {
       return [
         null,
@@ -670,56 +700,10 @@ export function createHandler<
   };
 }
 
-/**
- * Request's Media-Type that the server accepts.
- *
- * @category Server
- */
-export type AcceptableMediaType =
+/** Request's Media-Type that the server accepted. */
+type AcceptableMediaType =
   | 'application/graphql-response+json'
   | 'application/json';
-
-/**
- * Inspects the request and detects the appropriate/acceptable Media-Type
- * looking at the `Accept` header while complying with the GraphQL over HTTP spec.
- *
- * @category Server
- */
-export function getAcceptableMediaType(
-  acceptHeader: string | null | undefined,
-): AcceptableMediaType | null {
-  let acceptedMediaType: AcceptableMediaType | null = null;
-  const accepts = (acceptHeader || '*/*')
-    .replace(/\s/g, '')
-    .toLowerCase()
-    .split(',');
-  for (const accept of accepts) {
-    // accept-charset became obsolete, shouldnt be used (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Charset)
-    // TODO: handle the weight parameter "q"
-    const [mediaType, ...params] = accept.split(';');
-    const charset =
-      params?.find((param) => param.includes('charset=')) || 'charset=utf8'; // utf-8 is assumed when not specified;
-
-    if (
-      mediaType === 'application/graphql-response+json' &&
-      charset === 'charset=utf8'
-    ) {
-      acceptedMediaType = 'application/graphql-response+json';
-      break;
-    }
-
-    if (
-      (mediaType === 'application/json' ||
-        mediaType === 'application/*' ||
-        mediaType === '*/*') &&
-      charset === 'charset=utf8'
-    ) {
-      acceptedMediaType = 'application/json';
-      break;
-    }
-  }
-  return acceptedMediaType;
-}
 
 /**
  * Creates an appropriate GraphQL over HTTP response following the provided arguments.
@@ -731,10 +715,8 @@ export function getAcceptableMediaType(
  *
  * If the first argument is an `Error`, the operation will be treated as a bad request responding with `400: Bad Request` and the
  * error will be present in the `ExecutionResult` style.
- *
- * @category Server
  */
-export function makeResponse(
+function makeResponse(
   resultOrErrors:
     | Readonly<ExecutionResult>
     | Readonly<GraphQLError[]>
