@@ -123,12 +123,8 @@ export interface ResponseInit {
  */
 export type Response = readonly [body: ResponseBody | null, init: ResponseInit];
 
-/**
- * Checks whether the passed value is the `graphql-http` server agnostic response.
- *
- * @category Server
- */
-export function isResponse(val: unknown): val is Response {
+/** Checks whether the passed value is the `graphql-http` server agnostic response. */
+function isResponse(val: unknown): val is Response {
   // TODO: make sure the contents of init match ResponseInit
   return (
     Array.isArray(val) &&

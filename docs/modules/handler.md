@@ -24,7 +24,6 @@
 ### Functions
 
 - [createHandler](handler.md#createhandler)
-- [isResponse](handler.md#isresponse)
 
 ## Server
 
@@ -216,21 +215,3 @@ console.log('Listening to port 4000');
 #### Returns
 
 [`Handler`](handler.md#handler)<`RequestRaw`, `RequestContext`\>
-
-___
-
-### isResponse
-
-▸ **isResponse**(`val`): val is Response
-
-Checks whether the passed value is the `graphql-http` server agnostic response.
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `val` | `unknown` |
-
-#### Returns
-
-val is Response
