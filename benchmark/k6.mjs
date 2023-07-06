@@ -1,14 +1,14 @@
 import { check, fail } from 'k6';
-import { Options } from 'k6/options';
 import { Counter, Trend } from 'k6/metrics';
-import http, { RefinedResponse } from 'k6/http';
+import http from 'k6/http';
 
 const port = parseInt(__ENV.PORT || '');
 if (isNaN(port)) {
   throw new Error('Missing PORT environment variable!');
 }
 
-export const options: Options = {
+/** @type {import("k6/options").Options} */
+export const options = {
   scenarios: {
     get: {
       executor: 'constant-vus',
@@ -27,10 +27,8 @@ export const options: Options = {
   },
 };
 
-const scenarioMetrics: Record<
-  string,
-  { runs: Counter; oks: Counter; duration: Trend }
-> = {};
+/** @type {Record<string, { runs: Counter, oks: Counter, duration: Trend }>} */
+const scenarioMetrics = {};
 for (const scenario of Object.keys(options.scenarios || {})) {
   scenarioMetrics[scenario] = {
     runs: new Counter(`query_runs(${scenario})`),
@@ -49,7 +47,8 @@ export default function () {
   const begin = Date.now();
   metrics.runs.add(1);
 
-  let res: RefinedResponse<'text'>;
+  /** @type {import("k6/http").RefinedResponse<'text'>} */
+  let res;
   switch (scenario) {
     case 'get':
       res = http.get(`http://localhost:${port}/graphql?query={hello}`);

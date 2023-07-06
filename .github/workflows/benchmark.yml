@@ -33,7 +33,7 @@ jobs:
       - name: Run
         run: yarn tsx benchmark/servers/http.ts &
       - name: Benchmark
-        run: ./k6 run benchmark/k6.ts --summary-export summary.json
+        run: ./k6 run benchmark/k6.mjs --summary-export summary.json
       - name: Summary
         run: |
           echo '```json' >> $GITHUB_STEP_SUMMARY
@@ -59,7 +59,7 @@ jobs:
       - name: Run
         run: yarn tsx benchmark/servers/express.ts &
       - name: Benchmark
-        run: ./k6 run benchmark/k6.ts --summary-export summary.json
+        run: ./k6 run benchmark/k6.mjs --summary-export summary.json
       - name: Summary
         run: |
           echo '```json' >> $GITHUB_STEP_SUMMARY
@@ -85,7 +85,7 @@ jobs:
       - name: Run
         run: yarn tsx benchmark/servers/fastify.ts &
       - name: Benchmark
-        run: ./k6 run benchmark/k6.ts --summary-export summary.json
+        run: ./k6 run benchmark/k6.mjs --summary-export summary.json
       - name: Summary
         run: |
           echo '```json' >> $GITHUB_STEP_SUMMARY
@@ -111,7 +111,7 @@ jobs:
       - name: Run
         run: yarn tsx benchmark/servers/koa.ts &
       - name: Benchmark
-        run: ./k6 run benchmark/k6.ts --summary-export summary.json
+        run: ./k6 run benchmark/k6.mjs --summary-export summary.json
       - name: Summary
         run: |
           echo '```json' >> $GITHUB_STEP_SUMMARY
@@ -137,7 +137,7 @@ jobs:
       - name: Run
         run: yarn tsx benchmark/servers/uWebSockets.ts &
       - name: Benchmark
-        run: ./k6 run benchmark/k6.ts --summary-export summary.json
+        run: ./k6 run benchmark/k6.mjs --summary-export summary.json
       - name: Summary
         run: |
           echo '```json' >> $GITHUB_STEP_SUMMARY
@@ -171,7 +171,7 @@ jobs:
       - name: Run
         run: deno run -A benchmark/servers/deno.ts &
       - name: Benchmark
-        run: ./k6 run benchmark/k6.ts --summary-export summary.json
+        run: ./k6 run benchmark/k6.mjs --summary-export summary.json
       - name: Summary
         run: |
           echo '```json' >> $GITHUB_STEP_SUMMARY
@@ -201,7 +201,7 @@ jobs:
       - name: Run
         run: bun run benchmark/servers/bun.ts &
       - name: Benchmark
-        run: ./k6 run benchmark/k6.ts --summary-export summary.json
+        run: ./k6 run benchmark/k6.mjs --summary-export summary.json
       - name: Summary
         run: |
           echo '```json' >> $GITHUB_STEP_SUMMARY
