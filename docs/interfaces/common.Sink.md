@@ -38,7 +38,7 @@ ___
 
 ▸ **error**(`error`): `void`
 
-An error that has occured. This function "closes" the sink.
+An error that has occurred. This function "closes" the sink.
 
 #### Parameters
 

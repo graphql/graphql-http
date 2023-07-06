@@ -61,7 +61,7 @@ import { schema } from './previous-step';
 // Create the GraphQL over HTTP Node request handler
 const handler = createHandler({ schema });
 
-// Create a HTTP server using the listner on `/graphql`
+// Create a HTTP server using the listener on `/graphql`
 const server = http.createServer((req, res) => {
   if (req.url.startsWith('/graphql')) {
     handler(req, res);
@@ -560,8 +560,8 @@ const client = createClient({
 
 </details>
 
-<details id="migrating-express-grpahql">
-<summary><a href="#migrating-express-grpahql">🔗</a> Server handler migration from <a href="https://github.com/graphql/express-graphql">express-graphql</a></summary>
+<details id="migrating-express-graphql">
+<summary><a href="#migrating-express-graphql">🔗</a> Server handler migration from <a href="https://github.com/graphql/express-graphql">express-graphql</a></summary>
 
 ```diff
 import express from 'express';
@@ -630,7 +630,7 @@ const handler = createHandler({
   context: async (req, args) => {
     return getDynamicContext(req, args);
   },
-  // or static context by supplying the value direcly
+  // or static context by supplying the value directly
 });
 ```
 

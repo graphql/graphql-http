@@ -59,7 +59,7 @@ Error.constructor
 
 • **response**: `undefined` \| `Response`
 
-The underlyig response thats considered an error.
+The underlying response thats considered an error.
 
 Will be undefined when no response is received,
 instead an unexpected network error.

@@ -94,7 +94,7 @@ export interface ClientOptions {
    *
    * You may implement your own waiting strategy by timing the resolution of the returned promise.
    *
-   * Useful for retrying requests that failed because the service is temporarely unavailable.
+   * Useful for retrying requests that failed because the service is temporarily unavailable.
    *
    * `retries` argument counts actual retries, so it will begin with
    * 0 after the first failed request.
@@ -302,7 +302,7 @@ export class NetworkError<
   Response extends ResponseLike = ResponseLike,
 > extends Error {
   /**
-   * The underlyig response thats considered an error.
+   * The underlying response thats considered an error.
    *
    * Will be undefined when no response is received,
    * instead an unexpected network error.

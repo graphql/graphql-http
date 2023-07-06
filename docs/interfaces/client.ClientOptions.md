@@ -139,7 +139,7 @@ errors are considered fatal and will be reported immediately.
 
 You may implement your own waiting strategy by timing the resolution of the returned promise.
 
-Useful for retrying requests that failed because the service is temporarely unavailable.
+Useful for retrying requests that failed because the service is temporarily unavailable.
 
 `retries` argument counts actual retries, so it will begin with
 0 after the first failed request.

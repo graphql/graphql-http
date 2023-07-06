@@ -76,7 +76,7 @@ ___
 
 ▸ (`req`): `Promise`<[`Response`](handler.md#response)\>
 
-The ready-to-use handler. Simply plug it in your favourite HTTP framework
+The ready-to-use handler. Simply plug it in your favorite HTTP framework
 and enjoy.
 
 Errors thrown from **any** of the provided options or callbacks (or even due to
@@ -113,7 +113,7 @@ ___
 
 A concrete GraphQL execution context value type.
 
-Mainly used because TypeScript collapes unions
+Mainly used because TypeScript collapses unions
 with `any` or `unknown` to `any` or `unknown`. So,
 we use a custom type to allow definitions such as
 the `context` server option.
@@ -159,7 +159,7 @@ ___
 ▸ **createHandler**<`RequestRaw`, `RequestContext`, `Context`\>(`options`): [`Handler`](handler.md#handler)<`RequestRaw`, `RequestContext`\>
 
 Makes a GraphQL over HTTP spec compliant server handler. The handler can
-be used with your favourite server library.
+be used with your favorite server library.
 
 Beware that the handler resolves only after the whole operation completes.
 

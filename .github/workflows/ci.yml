@@ -16,6 +16,7 @@ jobs:
         check:
           - format
           - lint
+          - spell
           - type
     name: Check ${{ matrix.check }}
     runs-on: ubuntu-latest

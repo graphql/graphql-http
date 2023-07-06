@@ -68,9 +68,9 @@ ___
 • `Optional` **formatError**: [`FormatError`](../modules/handler.md#formaterror)
 
 Format handled errors to your satisfaction. Either GraphQL errors
-or safe request processing errors are meant by "handleded errors".
+or safe request processing errors are meant by "handled errors".
 
-If multiple errors have occured, all of them will be mapped using
+If multiple errors have occurred, all of them will be mapped using
 this formatter.
 
 ___
