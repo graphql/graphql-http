@@ -170,7 +170,7 @@ jobs:
         with:
           name: audit-reports
       - name: Render servers table
-        run: yarn tsx scripts/render-servers-table.mjs
+        run: yarn tsx scripts/render-servers-table.ts
       - name: Diff
         run: git diff --minimal
       - name: Commit
