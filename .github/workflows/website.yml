@@ -23,7 +23,7 @@ jobs:
       - name: Build
         run: yarn build:umd
       - name: Inject
-        run: node scripts/inject-audits-website.mjs
+        run: yarn tsx scripts/inject-audits-website.ts
       - name: Upload website
         uses: actions/upload-pages-artifact@v1
         with:

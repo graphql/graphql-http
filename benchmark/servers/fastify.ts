@@ -1,6 +1,6 @@
 import Fastify from 'fastify';
-import { createHandler } from '../../lib/use/fastify.mjs';
-import { schema } from '../schema.mjs';
+import { createHandler } from '../../src/use/fastify';
+import { schema } from '../schema';
 
 const port = parseInt(process.env.PORT || '');
 if (isNaN(port)) {

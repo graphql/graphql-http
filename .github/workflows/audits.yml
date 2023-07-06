@@ -38,12 +38,10 @@ jobs:
           cache: yarn
       - name: Install
         run: yarn install --immutable
-      - name: Build
-        run: yarn build:esm
       - name: Start
         run: yarn workspace ${{ matrix.workspace }} start &
       - name: Audit
-        run: node scripts/audit-implementation.mjs implementations/${{ matrix.workspace }}
+        run: yarn tsx scripts/audit-implementation.ts implementations/${{ matrix.workspace }}
       - name: Summary
         run: cat implementations/${{ matrix.workspace }}/README.md >> $GITHUB_STEP_SUMMARY
       - name: Upload audit report
@@ -88,8 +86,6 @@ jobs:
           cache: yarn
       - name: Install
         run: yarn install --immutable
-      - name: Build
-        run: yarn build:esm
       - name: Bake
         uses: docker/bake-action@v2
         with:
@@ -101,7 +97,7 @@ jobs:
       - name: Start
         run: yarn workspace ${{ matrix.workspace }} start --detach --wait
       - name: Audit
-        run: node scripts/audit-implementation.mjs implementations/${{ matrix.workspace }}
+        run: yarn tsx scripts/audit-implementation.ts implementations/${{ matrix.workspace }}
       - name: Summary
         run: cat implementations/${{ matrix.workspace }}/README.md >> $GITHUB_STEP_SUMMARY
       - name: Upload audit report
@@ -141,10 +137,8 @@ jobs:
           cache: yarn
       - name: Install
         run: yarn install --immutable
-      - name: Build
-        run: yarn build:esm
       - name: Audit
-        run: node scripts/audit-implementation.mjs implementations/${{ matrix.workspace.name }}
+        run: yarn tsx scripts/audit-implementation.ts implementations/${{ matrix.workspace.name }}
       - name: Summary
         run: cat implementations/${{ matrix.workspace.name }}/README.md >> $GITHUB_STEP_SUMMARY
       - name: Upload audit report
@@ -176,7 +170,7 @@ jobs:
         with:
           name: audit-reports
       - name: Render servers table
-        run: node scripts/render-servers-table.mjs
+        run: yarn tsx scripts/render-servers-table.mjs
       - name: Diff
         run: git diff --minimal
       - name: Commit

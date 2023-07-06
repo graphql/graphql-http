@@ -1,7 +1,9 @@
 // @ts-expect-error this is deno
 import { serve } from 'https://deno.land/std@0.190.0/http/server.ts';
+// @ts-expect-error this is deno
 import { createHandler } from '../../lib/use/fetch.mjs';
-import { schema } from '../schema.mjs';
+// @ts-expect-error this is deno
+import { schema } from '../schema.ts';
 
 const port = parseInt(
   // @ts-expect-error this is deno

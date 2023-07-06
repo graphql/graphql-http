@@ -1,6 +1,6 @@
 import express from 'express';
-import { createHandler } from '../../lib/use/express.mjs';
-import { schema } from '../schema.mjs';
+import { createHandler } from '../../src/use/express';
+import { schema } from '../schema';
 
 const port = parseInt(process.env.PORT || '');
 if (isNaN(port)) {

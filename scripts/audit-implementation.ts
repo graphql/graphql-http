@@ -7,8 +7,7 @@
  * Usage example from root of project:
  *
  * ```sh
- * yarn build:esm
- * PORT=4000 node scripts/audit-implementation.mjs [reportsDir]
+ * PORT=4000 yarn tsx scripts/audit-implementation.mjs [reportsDir]
  * ```
  *
  * Note that graphql-http has to be built before running this script!
@@ -19,7 +18,7 @@ import os from 'os';
 import fetch from 'node-fetch';
 import fs from 'fs/promises';
 import path from 'path';
-import { auditServer, renderAuditResultsToHTML } from '../lib/index.mjs';
+import { auditServer, renderAuditResultsToHTML } from '../src';
 
 async function main() {
   const serverUrl = new URL(

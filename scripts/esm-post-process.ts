@@ -25,10 +25,7 @@ const rootDir = 'lib';
   // we dont delete raw d.ts files, they're still needed for imports/exports
 })();
 
-/**
- * @param {string} filePath
- */
-async function buildEsm(filePath) {
+async function buildEsm(filePath: string) {
   const pathParts = filePath.split('.');
   const fileExt = pathParts.pop();
 

@@ -1,6 +1,6 @@
 import http from 'http';
-import { schema } from '../schema.mjs';
-import { createHandler } from '../../lib/use/http.mjs';
+import { schema } from '../schema';
+import { createHandler } from '../../src/use/http';
 
 const port = parseInt(process.env.PORT || '');
 if (isNaN(port)) {

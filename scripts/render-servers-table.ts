@@ -23,14 +23,12 @@ main().catch((err) => {
   process.exit(1);
 });
 
-/** @param {string} implsDir */
-async function renderTable(implsDir) {
+async function renderTable(implsDir: string) {
   let out = `<!-- prettier-ignore-start -->
 | Name | Audit |
 |------|-------|`;
   for (const implDir of (await fs.readdir(implsDir)).sort()) {
-    /** @type {{ error: number }} */
-    const report = JSON.parse(
+    const report: { error: number } = JSON.parse(
       (
         await fs.readFile(path.join(implsDir, implDir, 'report.json'))
       ).toString(),
@@ -39,8 +37,7 @@ async function renderTable(implsDir) {
       continue;
     }
 
-    /** @type {Record<string, unknown>} */
-    const pkg = JSON.parse(
+    const pkg: Record<string, unknown> = JSON.parse(
       (
         await fs.readFile(path.join(implsDir, implDir, 'package.json'))
       ).toString(),

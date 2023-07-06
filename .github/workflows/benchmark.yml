@@ -30,12 +30,10 @@ jobs:
       - name: Download k6
         run: |
           curl https://github.com/grafana/k6/releases/download/${{ env.K6_VERSION }}/k6-${{ env.K6_VERSION }}-linux-amd64.tar.gz -L | tar xvz --strip-components 1
-      - name: Build
-        run: yarn run build:esm
       - name: Run
-        run: node benchmark/servers/http.mjs &
+        run: yarn tsx benchmark/servers/http.ts &
       - name: Benchmark
-        run: ./k6 run benchmark/k6.mjs --summary-export summary.json
+        run: ./k6 run benchmark/k6.ts --summary-export summary.json
       - name: Summary
         run: |
           echo '```json' >> $GITHUB_STEP_SUMMARY
@@ -58,12 +56,10 @@ jobs:
       - name: Download k6
         run: |
           curl https://github.com/grafana/k6/releases/download/${{ env.K6_VERSION }}/k6-${{ env.K6_VERSION }}-linux-amd64.tar.gz -L | tar xvz --strip-components 1
-      - name: Build
-        run: yarn run build:esm
       - name: Run
-        run: node benchmark/servers/express.mjs &
+        run: yarn tsx benchmark/servers/express.ts &
       - name: Benchmark
-        run: ./k6 run benchmark/k6.mjs --summary-export summary.json
+        run: ./k6 run benchmark/k6.ts --summary-export summary.json
       - name: Summary
         run: |
           echo '```json' >> $GITHUB_STEP_SUMMARY
@@ -86,12 +82,10 @@ jobs:
       - name: Download k6
         run: |
           curl https://github.com/grafana/k6/releases/download/${{ env.K6_VERSION }}/k6-${{ env.K6_VERSION }}-linux-amd64.tar.gz -L | tar xvz --strip-components 1
-      - name: Build
-        run: yarn run build:esm
       - name: Run
-        run: node benchmark/servers/fastify.mjs &
+        run: yarn tsx benchmark/servers/fastify.ts &
       - name: Benchmark
-        run: ./k6 run benchmark/k6.mjs --summary-export summary.json
+        run: ./k6 run benchmark/k6.ts --summary-export summary.json
       - name: Summary
         run: |
           echo '```json' >> $GITHUB_STEP_SUMMARY
@@ -114,12 +108,10 @@ jobs:
       - name: Download k6
         run: |
           curl https://github.com/grafana/k6/releases/download/${{ env.K6_VERSION }}/k6-${{ env.K6_VERSION }}-linux-amd64.tar.gz -L | tar xvz --strip-components 1
-      - name: Build
-        run: yarn run build:esm
       - name: Run
-        run: node benchmark/servers/koa.mjs &
+        run: yarn tsx benchmark/servers/koa.ts &
       - name: Benchmark
-        run: ./k6 run benchmark/k6.mjs --summary-export summary.json
+        run: ./k6 run benchmark/k6.ts --summary-export summary.json
       - name: Summary
         run: |
           echo '```json' >> $GITHUB_STEP_SUMMARY
@@ -142,12 +134,10 @@ jobs:
       - name: Download k6
         run: |
           curl https://github.com/grafana/k6/releases/download/${{ env.K6_VERSION }}/k6-${{ env.K6_VERSION }}-linux-amd64.tar.gz -L | tar xvz --strip-components 1
-      - name: Build
-        run: yarn run build:esm
       - name: Run
-        run: node benchmark/servers/uWebSockets.mjs &
+        run: yarn tsx benchmark/servers/uWebSockets.ts &
       - name: Benchmark
-        run: ./k6 run benchmark/k6.mjs --summary-export summary.json
+        run: ./k6 run benchmark/k6.ts --summary-export summary.json
       - name: Summary
         run: |
           echo '```json' >> $GITHUB_STEP_SUMMARY
@@ -181,7 +171,7 @@ jobs:
       - name: Run
         run: deno run -A benchmark/servers/deno.ts &
       - name: Benchmark
-        run: ./k6 run benchmark/k6.mjs --summary-export summary.json
+        run: ./k6 run benchmark/k6.ts --summary-export summary.json
       - name: Summary
         run: |
           echo '```json' >> $GITHUB_STEP_SUMMARY
@@ -208,12 +198,10 @@ jobs:
       - name: Download k6
         run: |
           curl https://github.com/grafana/k6/releases/download/${{ env.K6_VERSION }}/k6-${{ env.K6_VERSION }}-linux-amd64.tar.gz -L | tar xvz --strip-components 1
-      - name: Build
-        run: yarn run build:esm
       - name: Run
-        run: bun run benchmark/servers/bun.mjs &
+        run: bun run benchmark/servers/bun.ts &
       - name: Benchmark
-        run: ./k6 run benchmark/k6.mjs --summary-export summary.json
+        run: ./k6 run benchmark/k6.ts --summary-export summary.json
       - name: Summary
         run: |
           echo '```json' >> $GITHUB_STEP_SUMMARY

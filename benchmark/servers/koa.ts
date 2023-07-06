@@ -1,7 +1,7 @@
 import Koa from 'koa';
 import mount from 'koa-mount';
-import { createHandler } from '../../lib/use/koa.mjs';
-import { schema } from '../schema.mjs';
+import { createHandler } from '../../src/use/koa';
+import { schema } from '../schema';
 
 const port = parseInt(process.env.PORT || '');
 if (isNaN(port)) {
