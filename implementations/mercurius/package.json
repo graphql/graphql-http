@@ -8,8 +8,8 @@
     "start": "node ."
   },
   "dependencies": {
-    "fastify": "^4.17.0",
-    "graphql": "^16.6.0",
+    "fastify": "^4.19.2",
+    "graphql": "^16.7.1",
     "mercurius": "^13.0.0"
   }
 }
