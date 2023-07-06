@@ -1,6 +1,7 @@
 // @ts-expect-error this is deno
 import { serve } from 'https://deno.land/std@0.190.0/http/server.ts';
-// @ts-expect-error this is deno
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment -- because sometimes lib/ exists and sometimes it doesnt
+// @ts-ignore this is deno
 import { createHandler } from '../../lib/use/fetch.mjs';
 // @ts-expect-error this is deno
 import { schema } from '../schema.ts';
