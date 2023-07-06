@@ -12,7 +12,6 @@
 
 ### Type Aliases
 
-- [AcceptableMediaType](handler.md#acceptablemediatype)
 - [FormatError](handler.md#formaterror)
 - [Handler](handler.md#handler)
 - [OperationArgs](handler.md#operationargs)
@@ -25,19 +24,8 @@
 ### Functions
 
 - [createHandler](handler.md#createhandler)
-- [getAcceptableMediaType](handler.md#getacceptablemediatype)
-- [isResponse](handler.md#isresponse)
-- [makeResponse](handler.md#makeresponse)
 
 ## Server
-
-### AcceptableMediaType
-
-Ƭ **AcceptableMediaType**: ``"application/graphql-response+json"`` \| ``"application/json"``
-
-Request's Media-Type that the server accepts.
-
-___
 
 ### FormatError
 
@@ -227,68 +215,3 @@ console.log('Listening to port 4000');
 #### Returns
 
 [`Handler`](handler.md#handler)<`RequestRaw`, `RequestContext`\>
-
-___
-
-### getAcceptableMediaType
-
-▸ **getAcceptableMediaType**(`acceptHeader`): [`AcceptableMediaType`](handler.md#acceptablemediatype) \| ``null``
-
-Inspects the request and detects the appropriate/acceptable Media-Type
-looking at the `Accept` header while complying with the GraphQL over HTTP spec.
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `acceptHeader` | `undefined` \| ``null`` \| `string` |
-
-#### Returns
-
-[`AcceptableMediaType`](handler.md#acceptablemediatype) \| ``null``
-
-___
-
-### isResponse
-
-▸ **isResponse**(`val`): val is Response
-
-Checks whether the passed value is the `graphql-http` server agnostic response.
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `val` | `unknown` |
-
-#### Returns
-
-val is Response
-
-___
-
-### makeResponse
-
-▸ **makeResponse**(`resultOrErrors`, `acceptedMediaType`, `formatError`): [`Response`](handler.md#response)
-
-Creates an appropriate GraphQL over HTTP response following the provided arguments.
-
-If the first argument is an `ExecutionResult`, the operation will be treated as "successful".
-
-If the first argument is (an array of) `GraphQLError`, or an `ExecutionResult` without the `data` field, it will be treated
-the response will be constructed with the help of `acceptedMediaType` complying with the GraphQL over HTTP spec.
-
-If the first argument is an `Error`, the operation will be treated as a bad request responding with `400: Bad Request` and the
-error will be present in the `ExecutionResult` style.
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `resultOrErrors` | readonly `GraphQLError`[] \| `Readonly`<`ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\>\> \| `Readonly`<`GraphQLError`\> \| `Readonly`<`Error`\> |
-| `acceptedMediaType` | [`AcceptableMediaType`](handler.md#acceptablemediatype) |
-| `formatError` | [`FormatError`](handler.md#formaterror) |
-
-#### Returns
-
-[`Response`](handler.md#response)
