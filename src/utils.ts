@@ -70,7 +70,11 @@ export function isAsyncIterable<T = unknown>(
 }
 
 /** @private */
-export function jsonErrorReplacer(_key: string, val: any) {
+export function jsonErrorReplacer(
+  _key: string,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  val: any,
+) {
   if (
     val instanceof Error &&
     // GraphQL errors implement their own stringer
