@@ -639,6 +639,8 @@ type AcceptableMediaType =
  * The default request params parser. Used when no custom one is provided or if it
  * returns nothing.
  *
+ * Read more about it in {@link ParseRequestParams}.
+ *
  * TODO: should graphql-http itself care about content-encoding? I'd say unzipping should happen before handler is reached
  */
 async function defaultParseRequestParams(
