@@ -1,6 +1,6 @@
 import { ExecutionResult } from 'graphql';
-import { RequestParams } from '../../common';
-import { Client } from '../../client';
+import { RequestParams } from '../../src/common';
+import { Client } from '../../src/client';
 
 export function texecute<D = unknown, E = unknown>(
   client: Client,

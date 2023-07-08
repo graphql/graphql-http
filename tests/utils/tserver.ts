@@ -1,6 +1,7 @@
-import { Request, createHandler, HandlerOptions } from '../../handler';
+import { afterAll } from 'vitest';
 import http from 'http';
 import net from 'net';
+import { Request, createHandler, HandlerOptions } from '../../src/handler';
 import { schema } from '../fixtures/simple';
 
 type Dispose = () => Promise<void>;

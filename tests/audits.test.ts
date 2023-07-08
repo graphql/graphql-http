@@ -1,10 +1,11 @@
+import { describe, it, expect } from 'vitest';
 import {
   Audit,
   serverAudits,
   AuditResult,
   renderAuditResultsToHTML,
   AuditFail,
-} from '../audits';
+} from '../src/audits';
 import htmlValidator from 'html-validator';
 
 it('should have globally unique audit ids', () => {
@@ -117,9 +118,9 @@ describe('Render audit results to HTML', () => {
 
       <ul>
       <li><b>6</b> audits in total</li>
-      <li><span style="font-family: monospace">✅</span> <b>2</b> pass</li>
-      <li><span style="font-family: monospace">⚠️</span> <b>2</b> warnings (optional)</li>
-      <li><span style="font-family: monospace">❌</span> <b>2</b> errors (required)</li>
+      <li><span style=\\"font-family: monospace\\">✅</span> <b>2</b> pass</li>
+      <li><span style=\\"font-family: monospace\\">⚠️</span> <b>2</b> warnings (optional)</li>
+      <li><span style=\\"font-family: monospace\\">❌</span> <b>2</b> errors (required)</li>
       </ul>
 
       <h2>Passing</h2>
@@ -134,14 +135,14 @@ describe('Render audit results to HTML', () => {
       <li><code>warn1</code> SHOULD warn1
       <details>
       <summary>bad warn1</summary>
-      <pre><code class="lang-json">{
-        "statusText": "",
-        "status": 400,
-        "headers": {
-          "x-id": "warn1",
-          "content-type": "text/plain;charset=UTF-8"
+      <pre><code class=\\"lang-json\\">{
+        \\"statusText\\": \\"\\",
+        \\"status\\": 400,
+        \\"headers\\": {
+          \\"x-id\\": \\"warn1\\",
+          \\"content-type\\": \\"text/plain;charset=UTF-8\\"
         },
-        "body": "Warning!"
+        \\"body\\": \\"Warning!\\"
       }
       </code></pre>
       </details>
@@ -149,14 +150,14 @@ describe('Render audit results to HTML', () => {
       <li><code>warn2</code> SHOULD warn2
       <details>
       <summary>bad warn2</summary>
-      <pre><code class="lang-json">{
-        "statusText": "",
-        "status": 400,
-        "headers": {
-          "x-id": "warn2",
-          "content-type": "text/plain;charset=UTF-8"
+      <pre><code class=\\"lang-json\\">{
+        \\"statusText\\": \\"\\",
+        \\"status\\": 400,
+        \\"headers\\": {
+          \\"x-id\\": \\"warn2\\",
+          \\"content-type\\": \\"text/plain;charset=UTF-8\\"
         },
-        "body": "Warning!"
+        \\"body\\": \\"Warning!\\"
       }
       </code></pre>
       </details>
@@ -169,14 +170,14 @@ describe('Render audit results to HTML', () => {
       <li><code>error1</code> MUST error1
       <details>
       <summary>bad error1</summary>
-      <pre><code class="lang-json">{
-        "statusText": "",
-        "status": 500,
-        "headers": {
-          "x-id": "error1",
-          "content-type": "text/plain;charset=UTF-8"
+      <pre><code class=\\"lang-json\\">{
+        \\"statusText\\": \\"\\",
+        \\"status\\": 500,
+        \\"headers\\": {
+          \\"x-id\\": \\"error1\\",
+          \\"content-type\\": \\"text/plain;charset=UTF-8\\"
         },
-        "body": "Error!"
+        \\"body\\": \\"Error!\\"
       }
       </code></pre>
       </details>
@@ -184,14 +185,14 @@ describe('Render audit results to HTML', () => {
       <li><code>error2</code> MUST error2
       <details>
       <summary>bad error2</summary>
-      <pre><code class="lang-json">{
-        "statusText": "",
-        "status": 500,
-        "headers": {
-          "x-id": "error2",
-          "content-type": "text/plain;charset=UTF-8"
+      <pre><code class=\\"lang-json\\">{
+        \\"statusText\\": \\"\\",
+        \\"status\\": 500,
+        \\"headers\\": {
+          \\"x-id\\": \\"error2\\",
+          \\"content-type\\": \\"text/plain;charset=UTF-8\\"
         },
-        "body": "Error!"
+        \\"body\\": \\"Error!\\"
       }
       </code></pre>
       </details>
