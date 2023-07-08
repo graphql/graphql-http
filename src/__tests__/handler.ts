@@ -336,27 +336,22 @@ it('should report thrown GraphQLError from custom request params parser', async 
   `);
 });
 
-it('should report thrown GraphQLError from custom request params parser', async () => {
+it('should use the default if nothing is returned from the custom request params parser', async () => {
   const server = startTServer({
     parseRequestParams() {
-      throw new GraphQLError('Wronger.');
+      return;
     },
   });
 
   const url = new URL(server.url);
-  url.searchParams.set('query', '{ __typename }');
-  const res = await fetch(url.toString(), {
-    headers: { accept: 'application/json' },
-  });
+  url.searchParams.set('query', '{ hello }');
+  const res = await fetch(url.toString());
 
-  expect(res.status).toBe(200);
   await expect(res.json()).resolves.toMatchInlineSnapshot(`
     {
-      "errors": [
-        {
-          "message": "Wronger.",
-        },
-      ],
+      "data": {
+        "hello": "world",
+      },
     }
   `);
 });
