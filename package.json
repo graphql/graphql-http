@@ -148,7 +148,7 @@
     "koa": "^2.14.2",
     "koa-mount": "^4.0.0",
     "node-fetch": "^3.3.1",
-    "prettier": "^3.0.0",
+    "prettier": "^2.8.8",
     "rollup": "^3.26.2",
     "rollup-plugin-gzip": "^3.1.0",
     "semantic-release": "^21.0.7",

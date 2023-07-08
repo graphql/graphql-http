@@ -487,7 +487,7 @@ const client = createClient({
 <summary><a href="#browser">🔗</a> Client usage in browser</summary>
 
 ```html
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8" />
