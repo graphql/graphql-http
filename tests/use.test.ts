@@ -1,3 +1,4 @@
+import { describe, it, expect, beforeAll, afterAll } from 'vitest';
 import { fetch } from '@whatwg-node/fetch';
 import http from 'http';
 import express from 'express';
@@ -7,15 +8,15 @@ import mount from 'koa-mount';
 import { createServerAdapter } from '@whatwg-node/server';
 import uWS from 'uWebSockets.js';
 import { startDisposableServer } from './utils/tserver';
-import { serverAudits } from '../audits';
+import { serverAudits } from '../src/audits';
 import { schema } from './fixtures/simple';
 
-import { createHandler as createHttpHandler } from '../use/http';
-import { createHandler as createExpressHandler } from '../use/express';
-import { createHandler as createFastifyHandler } from '../use/fastify';
-import { createHandler as createFetchHandler } from '../use/fetch';
-import { createHandler as createKoaHandler } from '../use/koa';
-import { createHandler as createUWSHandler } from '../use/uWebSockets';
+import { createHandler as createHttpHandler } from '../src/use/http';
+import { createHandler as createExpressHandler } from '../src/use/express';
+import { createHandler as createFastifyHandler } from '../src/use/fastify';
+import { createHandler as createFetchHandler } from '../src/use/fetch';
+import { createHandler as createKoaHandler } from '../src/use/koa';
+import { createHandler as createUWSHandler } from '../src/use/uWebSockets';
 
 describe('http', () => {
   const [url, , dispose] = startDisposableServer(
@@ -48,7 +49,7 @@ describe('http', () => {
     const res = await fetch(url + '?query={hello}');
 
     await expect(res.text()).resolves.toMatchInlineSnapshot(
-      `"{"data":{"hello":"world"}}"`,
+      '"{\\"data\\":{\\"hello\\":\\"world\\"}}"',
     );
     expect(res.headers.get('x-test')).toBe('test-x');
 
@@ -95,7 +96,7 @@ describe('express', () => {
     const res = await fetch(url + '?query={hello}');
 
     await expect(res.text()).resolves.toMatchInlineSnapshot(
-      `"{"data":{"hello":"world"}}"`,
+      '"{\\"data\\":{\\"hello\\":\\"world\\"}}"',
     );
     expect(res.headers.get('x-test')).toBe('test-x');
 
@@ -154,7 +155,7 @@ describe('fastify', () => {
     const res = await fetch(url + '?query={hello}');
 
     await expect(res.text()).resolves.toMatchInlineSnapshot(
-      `"{"data":{"hello":"world"}}"`,
+      '"{\\"data\\":{\\"hello\\":\\"world\\"}}"',
     );
     expect(res.headers.get('x-test')).toBe('test-x');
 
@@ -214,7 +215,7 @@ describe('koa', () => {
     const res = await fetch(url + '?query={hello}');
 
     await expect(res.text()).resolves.toMatchInlineSnapshot(
-      `"{"data":{"hello":"world"}}"`,
+      '"{\\"data\\":{\\"hello\\":\\"world\\"}}"',
     );
     expect(res.headers.get('x-test')).toBe('test-x');
 

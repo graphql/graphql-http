@@ -1,5 +1,6 @@
+import { it } from 'vitest';
 import fetch from 'node-fetch';
-import { serverAudits } from '../audits/server';
+import { serverAudits } from '../src/audits/server';
 
 import { schema } from './fixtures/simple';
 import { startTServer } from './utils/tserver';

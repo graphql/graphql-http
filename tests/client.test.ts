@@ -1,6 +1,7 @@
+import { it, expect } from 'vitest';
 import fetch from 'node-fetch';
-import { RequestHeaders } from '../handler';
-import { createClient, NetworkError } from '../client';
+import { RequestHeaders } from '../src/handler';
+import { createClient, NetworkError } from '../src/client';
 import { startTServer } from './utils/tserver';
 import { texecute } from './utils/texecute';
 

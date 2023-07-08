@@ -1,7 +1,7 @@
-import { jest } from '@jest/globals';
+import { vi, it, expect } from 'vitest';
 import { GraphQLError } from 'graphql';
 import fetch from 'node-fetch';
-import { Request } from '../handler';
+import { Request } from '../src/handler';
 import { startTServer } from './utils/tserver';
 
 it.each(['schema', 'context', 'onSubscribe', 'onOperation'])(
@@ -34,7 +34,7 @@ it('should report graphql errors returned from onSubscribe', async () => {
 });
 
 it('should respond with result returned from onSubscribe', async () => {
-  const onOperationFn = jest.fn(() => {
+  const onOperationFn = vi.fn(() => {
     // noop
   });
   const server = startTServer({
@@ -55,7 +55,9 @@ it('should respond with result returned from onSubscribe', async () => {
 it.each(['schema', 'context', 'onSubscribe', 'onOperation'])(
   'should provide the request context to %s',
   async (option) => {
-    const optionFn = jest.fn<(req: Request<unknown, unknown>) => void>();
+    const optionFn = vi.fn((_req: Request<unknown, unknown>) => {
+      // noop
+    });
 
     const context = {};
     const server = startTServer({
@@ -114,7 +116,7 @@ it('should correctly serialise execution result errors', async () => {
               "line": 1,
             },
           ],
-          "message": "Variable "$num" got invalid value "foo"; Int cannot represent non-integer value: "foo"",
+          "message": "Variable \\"$num\\" got invalid value \\"foo\\"; Int cannot represent non-integer value: \\"foo\\"",
         },
       ],
     }
@@ -146,7 +148,7 @@ it('should append the provided validation rules array', async () => {
               "line": 1,
             },
           ],
-          "message": "Cannot query field "idontexist" on type "Query".",
+          "message": "Cannot query field \\"idontexist\\" on type \\"Query\\".",
         },
       ],
     }
@@ -185,12 +187,12 @@ it('should print plain errors in detail', async () => {
     // missing body
   });
   await expect(result.text()).resolves.toMatchInlineSnapshot(
-    `"{"errors":[{"message":"Unparsable JSON body"}]}"`,
+    '"{\\"errors\\":[{\\"message\\":\\"Unparsable JSON body\\"}]}"',
   );
 });
 
 it('should format errors using the formatter', async () => {
-  const formatErrorFn = jest.fn((_err) => new Error('Formatted'));
+  const formatErrorFn = vi.fn((_err) => new Error('Formatted'));
   const server = startTServer({
     formatError: formatErrorFn,
   });
@@ -224,7 +226,7 @@ it('should respect plain errors toJSON implementation', async () => {
       };
     }
   }
-  const formatErrorFn = jest.fn((_err) => new MyError('Custom toJSON'));
+  const formatErrorFn = vi.fn((_err) => new MyError('Custom toJSON'));
   const server = startTServer({
     formatError: formatErrorFn,
   });
