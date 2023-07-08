@@ -1,3 +1,16 @@
+# [1.20.0](https://github.com/graphql/graphql-http/compare/v1.19.0...v1.20.0) (2023-07-08)
+
+
+### Bug Fixes
+
+* **handler:** Don't export `makeResponse`, `getAcceptableMediaType` or `isResponse` ([#98](https://github.com/graphql/graphql-http/issues/98)) ([a638cb4](https://github.com/graphql/graphql-http/commit/a638cb4b13e35ef52d3ef0e1239c232eb8a2f583))
+* **handler:** Request params optional properties can also be null ([10a6f06](https://github.com/graphql/graphql-http/commit/10a6f068b9abcaf7ef741c1b7236d22e8653695d))
+
+
+### Features
+
+* **handler:** Custom request params parser ([#100](https://github.com/graphql/graphql-http/issues/100)) ([b919d7e](https://github.com/graphql/graphql-http/commit/b919d7e096980a876eed729b0f5d0d54c465a438))
+
 # [1.19.0](https://github.com/graphql/graphql-http/compare/v1.18.0...v1.19.0) (2023-06-05)
 
 
