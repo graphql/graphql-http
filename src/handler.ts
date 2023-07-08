@@ -19,14 +19,7 @@ import {
   GraphQLError,
 } from 'graphql';
 import { RequestParams } from './common';
-import {
-  areGraphQLErrors,
-  isAsyncIterable,
-  isExecutionResult,
-  isGraphQLError,
-  isObject,
-  jsonErrorReplacer,
-} from './utils';
+import { isAsyncIterable, isExecutionResult, isObject } from './utils';
 
 /**
  * The incoming request headers the implementing server should provide.
@@ -853,4 +846,36 @@ function getHeader(
     return req.headers.get(key);
   }
   return Object(req.headers)[key];
+}
+
+function areGraphQLErrors(obj: unknown): obj is readonly GraphQLError[] {
+  return (
+    Array.isArray(obj) &&
+    obj.length > 0 &&
+    // if one item in the array is a GraphQLError, we're good
+    obj.some(isGraphQLError)
+  );
+}
+
+function isGraphQLError(obj: unknown): obj is GraphQLError {
+  return obj instanceof GraphQLError;
+}
+
+function jsonErrorReplacer(
+  _key: string,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  val: any,
+) {
+  if (
+    val instanceof Error &&
+    // GraphQL errors implement their own stringer
+    !isGraphQLError(val)
+  ) {
+    return {
+      // name: val.name, name is included in message
+      message: val.message,
+      // stack: val.stack, can leak sensitive details
+    };
+  }
+  return val;
 }
