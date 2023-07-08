@@ -1,64 +1,18 @@
 import { vi, it, expect } from 'vitest';
 import { GraphQLError } from 'graphql';
-import {
-  createHandler,
-  Handler,
-  RequestHeaders,
-  Response,
-} from '../src/handler';
-import { RequestParams } from '../src/common';
+import { createTHandler } from './utils/thandler';
 import { schema } from './fixtures/simple';
-
-function treq(
-  handler: Handler<unknown, unknown>,
-  method: 'GET',
-  search: RequestParams,
-  headers?: RequestHeaders,
-): Promise<Response>;
-function treq(
-  handler: Handler<unknown, unknown>,
-  method: 'POST',
-  body: RequestParams,
-  headers?: RequestHeaders,
-): Promise<Response>;
-function treq(
-  handler: Handler<unknown, unknown>,
-  method: 'GET' | 'POST',
-  params: RequestParams,
-  headers: RequestHeaders = {},
-): Promise<Response> {
-  const search = method === 'GET' ? new URLSearchParams() : null;
-  if (params.operationName) search?.set('operationName', params.operationName);
-  search?.set('query', params.query);
-  if (params.variables)
-    search?.set('variables', JSON.stringify(params.variables));
-  if (params.extensions)
-    search?.set('extensions', JSON.stringify(params.extensions));
-  return handler({
-    method,
-    url: search ? `http://localhost?${search.toString()}` : 'http://localhost',
-    headers: {
-      accept: 'application/graphql-response+json',
-      'content-type': search ? undefined : 'application/json',
-      ...headers,
-    },
-    body: search ? null : JSON.stringify(params),
-    raw: null,
-    context: null,
-  });
-}
 
 it.each(['schema', 'context', 'onSubscribe', 'onOperation'])(
   'should use the response returned from %s',
   async (option) => {
-    const h = createHandler({
-      schema,
+    const { request } = createTHandler({
       [option]: () => {
         return [null, { status: 418 }];
       },
     });
 
-    const [body, init] = await treq(h, 'GET', { query: '{ __typename }' });
+    const [body, init] = await request('GET', { query: '{ __typename }' });
 
     expect(body).toBeNull();
     expect(init.status).toBe(418);
@@ -66,14 +20,13 @@ it.each(['schema', 'context', 'onSubscribe', 'onOperation'])(
 );
 
 it('should report graphql errors returned from onSubscribe', async () => {
-  const h = createHandler({
-    schema,
+  const { request } = createTHandler({
     onSubscribe: () => {
       return [new GraphQLError('Woah!')];
     },
   });
 
-  await expect(treq(h, 'GET', { query: '{ __typename }' })).resolves
+  await expect(request('GET', { query: '{ __typename }' })).resolves
     .toMatchInlineSnapshot(`
     [
       "{\\"errors\\":[{\\"message\\":\\"Woah!\\"}]}",
@@ -90,15 +43,14 @@ it('should report graphql errors returned from onSubscribe', async () => {
 
 it('should respond with result returned from onSubscribe', async () => {
   const onOperationFn = vi.fn();
-  const h = createHandler({
-    schema,
+  const { request } = createTHandler({
     onSubscribe: () => {
       return { data: { __typename: 'Query' } };
     },
     onOperation: onOperationFn,
   });
 
-  await expect(treq(h, 'GET', { query: '{ __typename }' })).resolves
+  await expect(request('GET', { query: '{ __typename }' })).resolves
     .toMatchInlineSnapshot(`
     [
       "{\\"data\\":{\\"__typename\\":\\"Query\\"}}",
@@ -120,12 +72,11 @@ it.each(['schema', 'context', 'onSubscribe', 'onOperation'])(
     const optionFn = vi.fn();
 
     const context = {};
-    const h = createHandler({
-      schema,
+    const { handler } = createTHandler({
       [option]: optionFn,
     });
 
-    await h({
+    await handler({
       method: 'GET',
       url:
         'http://localhost?' +
@@ -143,8 +94,7 @@ it.each(['schema', 'context', 'onSubscribe', 'onOperation'])(
 );
 
 it('should respond with error if execution result is iterable', async () => {
-  const h = createHandler({
-    schema,
+  const { request } = createTHandler({
     execute: () => {
       return {
         [Symbol.asyncIterator]() {
@@ -154,7 +104,7 @@ it('should respond with error if execution result is iterable', async () => {
     },
   });
 
-  await expect(treq(h, 'GET', { query: '{ __typename }' })).resolves
+  await expect(request('GET', { query: '{ __typename }' })).resolves
     .toMatchInlineSnapshot(`
     [
       "{\\"errors\\":[{\\"message\\":\\"Subscriptions are not supported\\"}]}",
@@ -170,10 +120,10 @@ it('should respond with error if execution result is iterable', async () => {
 });
 
 it('should correctly serialise execution result errors', async () => {
-  const h = createHandler({ schema });
+  const { request } = createTHandler({ schema });
 
   await expect(
-    treq(h, 'GET', {
+    request('GET', {
       query: 'query ($num: Int) { num(num: $num) }',
       variables: { num: 'foo' },
     }),
@@ -192,8 +142,7 @@ it('should correctly serialise execution result errors', async () => {
 });
 
 it('should append the provided validation rules array', async () => {
-  const h = createHandler({
-    schema,
+  const { request } = createTHandler({
     validationRules: [
       (ctx) => {
         ctx.reportError(new GraphQLError('Woah!'));
@@ -202,7 +151,7 @@ it('should append the provided validation rules array', async () => {
     ],
   });
 
-  await expect(treq(h, 'GET', { query: '{ idontexist }' })).resolves
+  await expect(request('GET', { query: '{ idontexist }' })).resolves
     .toMatchInlineSnapshot(`
     [
       "{\\"errors\\":[{\\"message\\":\\"Woah!\\"},{\\"message\\":\\"Cannot query field \\\\\\"idontexist\\\\\\" on type \\\\\\"Query\\\\\\".\\",\\"locations\\":[{\\"line\\":1,\\"column\\":3}]}]}",
@@ -218,8 +167,7 @@ it('should append the provided validation rules array', async () => {
 });
 
 it('should replace the validation rules when providing a function', async () => {
-  const h = createHandler({
-    schema,
+  const { request } = createTHandler({
     validationRules: () => [
       (ctx) => {
         ctx.reportError(new GraphQLError('Woah!'));
@@ -228,7 +176,7 @@ it('should replace the validation rules when providing a function', async () => 
     ],
   });
 
-  await expect(treq(h, 'GET', { query: '{ idontexist }' })).resolves
+  await expect(request('GET', { query: '{ idontexist }' })).resolves
     .toMatchInlineSnapshot(`
     [
       "{\\"errors\\":[{\\"message\\":\\"Woah!\\"}]}",
@@ -244,10 +192,10 @@ it('should replace the validation rules when providing a function', async () => 
 });
 
 it('should print plain errors in detail', async () => {
-  const h = createHandler({ schema });
+  const { handler } = createTHandler({ schema });
 
   await expect(
-    h({
+    handler({
       method: 'POST',
       url: 'http://localhost',
       headers: { 'content-type': 'application/json' },
@@ -271,11 +219,10 @@ it('should print plain errors in detail', async () => {
 
 it('should format errors using the formatter', async () => {
   const formatErrorFn = vi.fn((_err) => new Error('Formatted'));
-  const h = createHandler({
-    schema,
+  const { request } = createTHandler({
     formatError: formatErrorFn,
   });
-  await expect(treq(h, 'GET', { query: '{ idontexist }' })).resolves
+  await expect(request('GET', { query: '{ idontexist }' })).resolves
     .toMatchInlineSnapshot(`
     [
       "{\\"errors\\":[{\\"message\\":\\"Formatted\\"}]}",
@@ -307,11 +254,10 @@ it('should respect plain errors toJSON implementation', async () => {
     }
   }
   const formatErrorFn = vi.fn((_err) => new MyError('Custom toJSON'));
-  const h = createHandler({
-    schema,
+  const { request } = createTHandler({
     formatError: formatErrorFn,
   });
-  await expect(treq(h, 'GET', { query: '{ idontexist }' })).resolves
+  await expect(request('GET', { query: '{ idontexist }' })).resolves
     .toMatchInlineSnapshot(`
     [
       "{\\"errors\\":[{\\"message\\":\\"Custom toJSON\\",\\"toJSON\\":\\"used\\"}]}",
@@ -327,8 +273,7 @@ it('should respect plain errors toJSON implementation', async () => {
 });
 
 it('should use the custom request params parser', async () => {
-  const h = createHandler({
-    schema,
+  const { handler } = createTHandler({
     parseRequestParams() {
       return {
         query: '{ hello }',
@@ -337,7 +282,7 @@ it('should use the custom request params parser', async () => {
   });
 
   await expect(
-    h({
+    handler({
       // different methods and content-types are not disallowed by the spec
       method: 'PUT',
       url: 'http://localhost',
@@ -361,8 +306,7 @@ it('should use the custom request params parser', async () => {
 });
 
 it('should use the response returned from the custom request params parser', async () => {
-  const h = createHandler({
-    schema,
+  const { request } = createTHandler({
     parseRequestParams() {
       return [
         'Hello',
@@ -371,7 +315,7 @@ it('should use the response returned from the custom request params parser', asy
     },
   });
 
-  await expect(treq(h, 'GET', { query: '{ __typename }' })).resolves
+  await expect(request('GET', { query: '{ __typename }' })).resolves
     .toMatchInlineSnapshot(`
     [
       "Hello",
@@ -387,14 +331,13 @@ it('should use the response returned from the custom request params parser', asy
 });
 
 it('should report thrown Error from custom request params parser', async () => {
-  const h = createHandler({
-    schema,
+  const { request } = createTHandler({
     parseRequestParams() {
       throw new Error('Wrong.');
     },
   });
 
-  await expect(treq(h, 'GET', { query: '{ __typename }' })).resolves
+  await expect(request('GET', { query: '{ __typename }' })).resolves
     .toMatchInlineSnapshot(`
     [
       "{\\"errors\\":[{\\"message\\":\\"Wrong.\\"}]}",
@@ -410,16 +353,14 @@ it('should report thrown Error from custom request params parser', async () => {
 });
 
 it('should report thrown GraphQLError from custom request params parser', async () => {
-  const h = createHandler({
-    schema,
+  const { request } = createTHandler({
     parseRequestParams() {
       throw new GraphQLError('Wronger.');
     },
   });
 
   await expect(
-    treq(
-      h,
+    request(
       'GET',
       { query: '{ __typename }' },
       { accept: 'application/graphql-response+json' },
@@ -438,7 +379,7 @@ it('should report thrown GraphQLError from custom request params parser', async 
   `);
 
   await expect(
-    treq(h, 'GET', { query: '{ __typename }' }, { accept: 'application/json' }),
+    request('GET', { query: '{ __typename }' }, { accept: 'application/json' }),
   ).resolves.toMatchInlineSnapshot(`
     [
       "{\\"errors\\":[{\\"message\\":\\"Wronger.\\"}]}",
@@ -454,14 +395,13 @@ it('should report thrown GraphQLError from custom request params parser', async 
 });
 
 it('should use the default if nothing is returned from the custom request params parser', async () => {
-  const h = createHandler({
-    schema,
+  const { request } = createTHandler({
     parseRequestParams() {
       return;
     },
   });
 
-  await expect(treq(h, 'GET', { query: '{ __typename }' })).resolves
+  await expect(request('GET', { query: '{ __typename }' })).resolves
     .toMatchInlineSnapshot(`
     [
       "{\\"data\\":{\\"__typename\\":\\"Query\\"}}",
