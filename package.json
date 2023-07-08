@@ -96,7 +96,7 @@
     "check:lint": "eslint 'src'",
     "check:spell": "cspell --gitignore **/*.md",
     "check:type": "tsc --noEmit",
-    "test": "NODE_OPTIONS=--experimental-vm-modules NODE_NO_WARNINGS=1 jest",
+    "test": "vitest",
     "build:esm": "tsc -b tsconfig.esm.json && tsx scripts/esm-post-process.ts",
     "build:cjs": "tsc -b tsconfig.cjs.json",
     "build:umd": "rollup --configPlugin typescript --config rollup.config.ts",
@@ -111,13 +111,6 @@
     "graphql": ">=0.11 <=16"
   },
   "devDependencies": {
-    "@babel/core": "^7.22.8",
-    "@babel/plugin-proposal-class-properties": "^7.18.6",
-    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.18.6",
-    "@babel/plugin-proposal-object-rest-spread": "^7.20.7",
-    "@babel/plugin-proposal-optional-chaining": "^7.21.0",
-    "@babel/preset-env": "^7.22.7",
-    "@babel/preset-typescript": "^7.22.5",
     "@cspell/cspell-types": "^6.31.1",
     "@rollup/plugin-terser": "^0.4.3",
     "@rollup/plugin-typescript": "^11.1.2",
@@ -127,14 +120,12 @@
     "@types/express": "^4.17.17",
     "@types/glob": "^8.1.0",
     "@types/html-validator": "^5.0.3",
-    "@types/jest": "^29.5.2",
     "@types/k6": "^0.45.0",
     "@types/koa": "^2.13.6",
     "@types/koa-mount": "^4.0.2",
     "@typescript-eslint/eslint-plugin": "^5.61.0",
     "@typescript-eslint/parser": "^5.61.0",
     "@whatwg-node/fetch": "^0.9.7",
-    "babel-jest": "^29.6.1",
     "cspell": "^6.31.1",
     "eslint": "^8.44.0",
     "eslint-config-prettier": "^8.8.0",
@@ -143,8 +134,6 @@
     "glob": "^10.3.2",
     "graphql": "^16.7.1",
     "html-validator": "^6.0.1",
-    "jest": "^29.6.1",
-    "jest-jasmine2": "^29.6.1",
     "koa": "^2.14.2",
     "koa-mount": "^4.0.0",
     "node-fetch": "^3.3.1",
@@ -157,6 +146,7 @@
     "typedoc": "^0.24.8",
     "typedoc-plugin-markdown": "^3.15.3",
     "typescript": "^5.1.6",
-    "uWebSockets.js": "uNetworking/uWebSockets.js#v20.30.0"
+    "uWebSockets.js": "uNetworking/uWebSockets.js#v20.30.0",
+    "vitest": "^0.33.0"
   }
 }

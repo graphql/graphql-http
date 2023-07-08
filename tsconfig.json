@@ -16,8 +16,6 @@
     "scripts",
     "benchmark",
     "rollup.config.ts",
-    "babel.config.js",
-    "jest.config.js",
     ".eslintrc.js",
     "typedoc.js",
     "cspell.config.js"
