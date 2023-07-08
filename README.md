@@ -725,6 +725,78 @@ console.log('Listening to port 4000');
 
 </details>
 
+<details id="graphql-upload-http">
+<summary><a href="#graphql-upload-http">🔗</a> Server handler usage with <a href="https://github.com/jaydenseric/graphql-upload">graphql-upload</a> and <a href="https://nodejs.org/api/http.html">http</a></summary>
+
+```js
+import http from 'http';
+import { createHandler } from 'graphql-http/lib/use/http';
+import processRequest from 'graphql-upload/processRequest.mjs'; // yarn add graphql-upload
+import { schema } from './my-graphql';
+
+const handler = createHandler({
+  schema,
+  async parseRequestParams(req) {
+    const params = await processRequest(req.raw, req.context.res);
+    if (Array.isArray(params)) {
+      throw new Error('Batching is not supported');
+    }
+    return {
+      ...params,
+      // variables must be an object as per the GraphQL over HTTP spec
+      variables: Object(params.variables),
+    };
+  },
+});
+
+const server = http.createServer((req, res) => {
+  if (req.url.startsWith('/graphql')) {
+    handler(req, res);
+  } else {
+    res.writeHead(404).end();
+  }
+});
+
+server.listen(4000);
+console.log('Listening to port 4000');
+```
+
+</details>
+
+<details id="graphql-upload-express">
+<summary><a href="#graphql-upload-express">🔗</a> Server handler usage with <a href="https://github.com/jaydenseric/graphql-upload">graphql-upload</a> and <a href="https://expressjs.com/">express</a></summary>
+
+```js
+import express from 'express'; // yarn add express
+import { createHandler } from 'graphql-http/lib/use/express';
+import processRequest from 'graphql-upload/processRequest.mjs'; // yarn add graphql-upload
+import { schema } from './my-graphql';
+
+const app = express();
+app.all(
+  '/graphql',
+  createHandler({
+    schema,
+    async parseRequestParams(req) {
+      const params = await processRequest(req.raw, req.context.res);
+      if (Array.isArray(params)) {
+        throw new Error('Batching is not supported');
+      }
+      return {
+        ...params,
+        // variables must be an object as per the GraphQL over HTTP spec
+        variables: Object(params.variables),
+      };
+    },
+  }),
+);
+
+app.listen({ port: 4000 });
+console.log('Listening to port 4000');
+```
+
+</details>
+
 <details id="audit-jest">
 <summary><a href="#audit-jest">🔗</a> Audit for servers usage in <a href="https://jestjs.io">Jest</a> environment</summary>
 

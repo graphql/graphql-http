@@ -242,3 +242,116 @@ it('should respect plain errors toJSON implementation', async () => {
     }
   `);
 });
+
+it('should use the custom request params parser', async () => {
+  const server = startTServer({
+    parseRequestParams() {
+      return {
+        query: '{ hello }',
+      };
+    },
+  });
+
+  const url = new URL(server.url);
+  url.searchParams.set('query', '{ __typename }');
+  const res = await fetch(url.toString(), {
+    // different methods and content-types are not disallowed by the spec
+    method: 'PUT',
+    headers: { 'content-type': 'application/lol' },
+  });
+
+  await expect(res.json()).resolves.toMatchInlineSnapshot(`
+    {
+      "data": {
+        "hello": "world",
+      },
+    }
+  `);
+});
+
+it('should use the response returned from the custom request params parser', async () => {
+  const server = startTServer({
+    parseRequestParams() {
+      return [
+        'Hello',
+        { status: 200, statusText: 'OK', headers: { 'x-hi': 'there' } },
+      ];
+    },
+  });
+
+  const url = new URL(server.url);
+  url.searchParams.set('query', '{ __typename }');
+  const res = await fetch(url.toString());
+
+  expect(res.ok).toBeTruthy();
+  expect(res.headers.get('x-hi')).toBe('there');
+  await expect(res.text()).resolves.toBe('Hello');
+});
+
+it('should report thrown Error from custom request params parser', async () => {
+  const server = startTServer({
+    parseRequestParams() {
+      throw new Error('Wrong.');
+    },
+  });
+
+  const url = new URL(server.url);
+  url.searchParams.set('query', '{ __typename }');
+  const res = await fetch(url.toString());
+
+  expect(res.status).toBe(400);
+  await expect(res.json()).resolves.toMatchInlineSnapshot(`
+    {
+      "errors": [
+        {
+          "message": "Wrong.",
+        },
+      ],
+    }
+  `);
+});
+
+it('should report thrown GraphQLError from custom request params parser', async () => {
+  const server = startTServer({
+    parseRequestParams() {
+      throw new GraphQLError('Wronger.');
+    },
+  });
+
+  const url = new URL(server.url);
+  url.searchParams.set('query', '{ __typename }');
+  const res = await fetch(url.toString(), {
+    headers: { accept: 'application/json' },
+  });
+
+  expect(res.status).toBe(200);
+  await expect(res.json()).resolves.toMatchInlineSnapshot(`
+    {
+      "errors": [
+        {
+          "message": "Wronger.",
+        },
+      ],
+    }
+  `);
+});
+
+it('should use the default if nothing is returned from the custom request params parser', async () => {
+  const server = startTServer({
+    parseRequestParams() {
+      return;
+    },
+  });
+
+  const url = new URL(server.url);
+  url.searchParams.set('query', '{ hello }');
+  const res = await fetch(url.toString());
+
+  await expect(res.json()).resolves.toMatchInlineSnapshot(`
+    {
+      "data": {
+        "hello": "world",
+      },
+    }
+  `);
+});

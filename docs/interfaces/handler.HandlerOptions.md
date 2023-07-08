@@ -23,6 +23,7 @@
 - [onOperation](handler.HandlerOptions.md#onoperation)
 - [onSubscribe](handler.HandlerOptions.md#onsubscribe)
 - [parse](handler.HandlerOptions.md#parse)
+- [parseRequestParams](handler.HandlerOptions.md#parserequestparams)
 - [rootValue](handler.HandlerOptions.md#rootvalue)
 - [schema](handler.HandlerOptions.md#schema)
 - [validate](handler.HandlerOptions.md#validate)
@@ -200,6 +201,16 @@ GraphQL parse function allowing you to apply a custom parser.
 ##### Returns
 
 `DocumentNode`
+
+___
+
+### parseRequestParams
+
+• `Optional` **parseRequestParams**: [`ParseRequestParams`](../modules/handler.md#parserequestparams)<`RequestRaw`, `RequestContext`\>
+
+The request parser for an incoming GraphQL request.
+
+Read more about it in [ParseRequestParams](../modules/handler.md#parserequestparams).
 
 ___
 

@@ -16,6 +16,7 @@
 - [Handler](handler.md#handler)
 - [OperationArgs](handler.md#operationargs)
 - [OperationContext](handler.md#operationcontext)
+- [ParseRequestParams](handler.md#parserequestparams)
 - [RequestHeaders](handler.md#requestheaders)
 - [Response](handler.md#response)
 - [ResponseBody](handler.md#responsebody)
@@ -105,6 +106,48 @@ Mainly used because TypeScript collapses unions
 with `any` or `unknown` to `any` or `unknown`. So,
 we use a custom type to allow definitions such as
 the `context` server option.
+
+___
+
+### ParseRequestParams
+
+Ƭ **ParseRequestParams**<`RequestRaw`, `RequestContext`\>: (`req`: [`Request`](../interfaces/handler.Request.md)<`RequestRaw`, `RequestContext`\>) => `Promise`<[`RequestParams`](../interfaces/common.RequestParams.md) \| [`Response`](handler.md#response) \| `void`\> \| [`RequestParams`](../interfaces/common.RequestParams.md) \| [`Response`](handler.md#response) \| `void`
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `RequestRaw` | `unknown` |
+| `RequestContext` | `unknown` |
+
+#### Type declaration
+
+▸ (`req`): `Promise`<[`RequestParams`](../interfaces/common.RequestParams.md) \| [`Response`](handler.md#response) \| `void`\> \| [`RequestParams`](../interfaces/common.RequestParams.md) \| [`Response`](handler.md#response) \| `void`
+
+The request parser for an incoming GraphQL request. It parses and validates the
+request itself, including the request method and the content-type of the body.
+
+In case you are extending the server to handle more request types, this is the
+perfect place to do so.
+
+If an error is thrown, it will be formatted using the provided [FormatError](handler.md#formaterror)
+and handled following the spec to be gracefully reported to the client.
+
+Throwing an instance of `Error` will _always_ have the client respond with a `400: Bad Request`
+and the error's message in the response body; however, if an instance of `GraphQLError` is thrown,
+it will be reported depending on the accepted content-type.
+
+If you return nothing, the default parser will be used instead.
+
+##### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `req` | [`Request`](../interfaces/handler.Request.md)<`RequestRaw`, `RequestContext`\> |
+
+##### Returns
+
+`Promise`<[`RequestParams`](../interfaces/common.RequestParams.md) \| [`Response`](handler.md#response) \| `void`\> \| [`RequestParams`](../interfaces/common.RequestParams.md) \| [`Response`](handler.md#response) \| `void`
 
 ___
 
