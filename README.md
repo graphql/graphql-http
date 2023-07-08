@@ -768,7 +768,7 @@ console.log('Listening to port 4000');
 
 ```js
 import express from 'express'; // yarn add express
-import { createHandler } from 'graphql-http/lib/use/http';
+import { createHandler } from 'graphql-http/lib/use/express';
 import processRequest from 'graphql-upload/processRequest.mjs'; // yarn add graphql-upload
 import { schema } from './my-graphql';
 
