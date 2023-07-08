@@ -21,13 +21,13 @@ Reference: https://graphql.github.io/graphql-over-http/draft/#sec-Request-Parame
 
 ### extensions
 
-• `Optional` **extensions**: `Record`<`string`, `unknown`\>
+• `Optional` **extensions**: ``null`` \| `Record`<`string`, `unknown`\>
 
 ___
 
 ### operationName
 
-• `Optional` **operationName**: `string`
+• `Optional` **operationName**: ``null`` \| `string`
 
 ___
 
@@ -39,4 +39,4 @@ ___
 
 ### variables
 
-• `Optional` **variables**: `Record`<`string`, `unknown`\>
+• `Optional` **variables**: ``null`` \| `Record`<`string`, `unknown`\>

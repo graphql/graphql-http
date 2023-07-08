@@ -12,10 +12,10 @@
  * @category Common
  */
 export interface RequestParams {
-  operationName?: string | undefined;
+  operationName?: string | null | undefined;
   query: string;
-  variables?: Record<string, unknown> | undefined;
-  extensions?: Record<string, unknown> | undefined;
+  variables?: Record<string, unknown> | null | undefined;
+  extensions?: Record<string, unknown> | null | undefined;
 }
 
 /**
