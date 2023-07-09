@@ -5,7 +5,6 @@ import express from 'express';
 import fastify from 'fastify';
 import Koa from 'koa';
 import mount from 'koa-mount';
-import { createServerAdapter } from '@whatwg-node/server';
 import uWS from 'uWebSockets.js';
 import { startDisposableServer } from './utils/tserver';
 import { serverAudits } from '../src/audits';
@@ -164,12 +163,12 @@ describe('fastify', () => {
 });
 
 describe('fetch', () => {
-  const [url, , dispose] = startDisposableServer(
-    http.createServer(createServerAdapter(createFetchHandler({ schema }))),
-  );
-  afterAll(dispose);
+  const handler = createFetchHandler({ schema });
 
-  for (const audit of serverAudits({ url, fetchFn: fetch })) {
+  for (const audit of serverAudits({
+    url: 'http://localhost',
+    fetchFn: (input: any, init: any) => handler(new Request(input, init)),
+  })) {
     it(audit.name, async () => {
       const result = await audit.fn();
       if (result.status !== 'ok') {
