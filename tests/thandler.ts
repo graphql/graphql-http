@@ -4,9 +4,9 @@ import {
   RequestHeaders,
   Response,
   Handler,
-} from '../../src/handler';
-import { RequestParams } from '../../src/common';
-import { schema } from '../fixtures/simple';
+} from '../src/handler';
+import { RequestParams } from '../src/common';
+import { schema } from './fixtures/simple';
 
 export interface THandler {
   handler: Handler;
@@ -26,7 +26,7 @@ export interface THandler {
   ): Promise<globalThis.Response>;
 }
 
-export function createTHandler(opts: HandlerOptions): THandler {
+export function createTHandler(opts: HandlerOptions = {}): THandler {
   const handler = createHandler({ schema, ...opts });
   return {
     handler,

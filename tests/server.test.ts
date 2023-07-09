@@ -1,5 +1,5 @@
 import { it } from 'vitest';
-import { createTHandler } from './utils/thandler';
+import { createTHandler } from './thandler';
 import { serverAudits } from '../src/audits/server';
 import { schema } from './fixtures/simple';
 

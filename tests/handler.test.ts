@@ -1,6 +1,6 @@
 import { vi, it, expect } from 'vitest';
 import { GraphQLError } from 'graphql';
-import { createTHandler } from './utils/thandler';
+import { createTHandler } from './thandler';
 import { schema } from './fixtures/simple';
 
 it.each(['schema', 'context', 'onSubscribe', 'onOperation'])(
