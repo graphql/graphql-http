@@ -1,20 +1,37 @@
 import { it, expect } from 'vitest';
-import fetch from 'node-fetch';
+import { createTHandler } from './thandler';
 import { RequestHeaders } from '../src/handler';
 import { createClient, NetworkError } from '../src/client';
-import { startTServer } from './utils/tserver';
-import { texecute } from './utils/texecute';
+import { ExecutionResult } from 'graphql';
+import { RequestParams } from '../src/common';
+import { Client } from '../src/client';
+
+function texecute<D = unknown, E = unknown>(
+  client: Client,
+  params: RequestParams,
+): [request: Promise<ExecutionResult<D, E>>, cancel: () => void] {
+  let cancel!: () => void;
+  const request = new Promise<ExecutionResult<D, E>>((resolve, reject) => {
+    let result: ExecutionResult<D, E>;
+    cancel = client.subscribe<D, E>(params, {
+      next: (data) => (result = data),
+      error: reject,
+      complete: () => resolve(result),
+    });
+  });
+  return [request, cancel];
+}
 
 it('should use the provided headers', async () => {
   let headers: RequestHeaders = {};
-  const server = startTServer({
+  const { fetch } = createTHandler({
     onSubscribe: (req) => {
       headers = req.headers;
     },
   });
 
   const client = createClient({
-    url: server.url,
+    url: 'http://localhost',
     fetchFn: fetch,
     headers: async () => {
       return { 'x-some': 'header' };
@@ -24,14 +41,45 @@ it('should use the provided headers', async () => {
   const [request] = texecute(client, { query: '{ hello }' });
   await request;
 
-  expect(headers['x-some']).toBe('header');
+  expect(headers).toMatchInlineSnapshot(`
+    Headers {
+      Symbol(headers list): HeadersList {
+        "cookies": null,
+        Symbol(headers map): Map {
+          "x-some" => {
+            "name": "x-some",
+            "value": "header",
+          },
+          "content-type" => {
+            "name": "content-type",
+            "value": "application/json; charset=utf-8",
+          },
+          "accept" => {
+            "name": "accept",
+            "value": "application/graphql-response+json, application/json",
+          },
+        },
+        Symbol(headers map sorted): null,
+      },
+      Symbol(guard): "request",
+      Symbol(realm): {
+        "settingsObject": {
+          "baseUrl": undefined,
+          "origin": undefined,
+          "policyContainer": {
+            "referrerPolicy": "strict-origin-when-cross-origin",
+          },
+        },
+      },
+    }
+  `);
 });
 
 it('should execute query, next the result and then complete', async () => {
-  const server = startTServer();
+  const { fetch } = createTHandler();
 
   const client = createClient({
-    url: server.url,
+    url: 'http://localhost',
     fetchFn: fetch,
   });
 
@@ -43,10 +91,10 @@ it('should execute query, next the result and then complete', async () => {
 });
 
 it('should execute mutation, next the result and then complete', async () => {
-  const server = startTServer();
+  const { fetch } = createTHandler();
 
   const client = createClient({
-    url: server.url,
+    url: 'http://localhost',
     fetchFn: fetch,
   });
 
@@ -58,10 +106,10 @@ it('should execute mutation, next the result and then complete', async () => {
 });
 
 it('should report invalid request', async () => {
-  const server = startTServer();
+  const { fetch } = createTHandler();
 
   const client = createClient({
-    url: server.url,
+    url: 'http://localhost',
     fetchFn: fetch,
   });
 

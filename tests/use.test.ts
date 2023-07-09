@@ -1,22 +1,57 @@
 import { describe, it, expect, beforeAll, afterAll } from 'vitest';
+import net from 'net';
 import { fetch } from '@whatwg-node/fetch';
-import http from 'http';
-import express from 'express';
-import fastify from 'fastify';
-import Koa from 'koa';
-import mount from 'koa-mount';
-import { createServerAdapter } from '@whatwg-node/server';
-import uWS from 'uWebSockets.js';
-import { startDisposableServer } from './utils/tserver';
 import { serverAudits } from '../src/audits';
 import { schema } from './fixtures/simple';
 
+import http from 'http';
 import { createHandler as createHttpHandler } from '../src/use/http';
+import express from 'express';
 import { createHandler as createExpressHandler } from '../src/use/express';
+import fastify from 'fastify';
 import { createHandler as createFastifyHandler } from '../src/use/fastify';
-import { createHandler as createFetchHandler } from '../src/use/fetch';
+import Koa from 'koa';
+import mount from 'koa-mount';
 import { createHandler as createKoaHandler } from '../src/use/koa';
+import uWS from 'uWebSockets.js';
 import { createHandler as createUWSHandler } from '../src/use/uWebSockets';
+import { createHandler as createFetchHandler } from '../src/use/fetch';
+
+type Dispose = () => Promise<void>;
+
+const leftovers: Dispose[] = [];
+afterAll(async () => {
+  while (leftovers.length > 0) {
+    await leftovers.pop()?.();
+  }
+});
+
+function startDisposableServer(
+  server: http.Server,
+): [url: string, port: number, dispose: Dispose] {
+  const sockets = new Set<net.Socket>();
+  server.on('connection', (socket) => {
+    sockets.add(socket);
+    socket.once('close', () => sockets.delete(socket));
+  });
+
+  const dispose = async () => {
+    for (const socket of sockets) {
+      socket.destroy();
+    }
+    await new Promise<void>((resolve) => server.close(() => resolve()));
+  };
+  leftovers.push(dispose);
+
+  if (!server.listening) {
+    server.listen(0);
+  }
+
+  const { port } = server.address() as net.AddressInfo;
+  const url = `http://localhost:${port}`;
+
+  return [url, port, dispose];
+}
 
 describe('http', () => {
   const [url, , dispose] = startDisposableServer(
@@ -164,12 +199,12 @@ describe('fastify', () => {
 });
 
 describe('fetch', () => {
-  const [url, , dispose] = startDisposableServer(
-    http.createServer(createServerAdapter(createFetchHandler({ schema }))),
-  );
-  afterAll(dispose);
+  const handler = createFetchHandler({ schema });
 
-  for (const audit of serverAudits({ url, fetchFn: fetch })) {
+  for (const audit of serverAudits({
+    url: 'http://localhost',
+    fetchFn: (input: any, init: any) => handler(new Request(input, init)),
+  })) {
     it(audit.name, async () => {
       const result = await audit.fn();
       if (result.status !== 'ok') {

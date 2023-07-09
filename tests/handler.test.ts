@@ -1,130 +1,148 @@
 import { vi, it, expect } from 'vitest';
 import { GraphQLError } from 'graphql';
-import fetch from 'node-fetch';
-import { Request } from '../src/handler';
-import { startTServer } from './utils/tserver';
+import { createTHandler } from './thandler';
+import { schema } from './fixtures/simple';
 
 it.each(['schema', 'context', 'onSubscribe', 'onOperation'])(
   'should use the response returned from %s',
   async (option) => {
-    const server = startTServer({
+    const { request } = createTHandler({
       [option]: () => {
         return [null, { status: 418 }];
       },
     });
 
-    const url = new URL(server.url);
-    url.searchParams.set('query', '{ __typename }');
-    const res = await fetch(url.toString());
-    expect(res.status).toBe(418);
+    const [body, init] = await request('GET', { query: '{ __typename }' });
+
+    expect(body).toBeNull();
+    expect(init.status).toBe(418);
   },
 );
 
 it('should report graphql errors returned from onSubscribe', async () => {
-  const server = startTServer({
+  const { request } = createTHandler({
     onSubscribe: () => {
       return [new GraphQLError('Woah!')];
     },
   });
 
-  const url = new URL(server.url);
-  url.searchParams.set('query', '{ __typename }');
-  const res = await fetch(url.toString());
-  expect(res.json()).resolves.toEqual({ errors: [{ message: 'Woah!' }] });
+  await expect(request('GET', { query: '{ __typename }' })).resolves
+    .toMatchInlineSnapshot(`
+    [
+      "{\\"errors\\":[{\\"message\\":\\"Woah!\\"}]}",
+      {
+        "headers": {
+          "content-type": "application/graphql-response+json; charset=utf-8",
+        },
+        "status": 400,
+        "statusText": "Bad Request",
+      },
+    ]
+  `);
 });
 
 it('should respond with result returned from onSubscribe', async () => {
-  const onOperationFn = vi.fn(() => {
-    // noop
-  });
-  const server = startTServer({
+  const onOperationFn = vi.fn();
+  const { request } = createTHandler({
     onSubscribe: () => {
       return { data: { __typename: 'Query' } };
     },
     onOperation: onOperationFn,
   });
 
-  const url = new URL(server.url);
-  url.searchParams.set('query', '{ __typename }');
-  const res = await fetch(url.toString());
-  expect(res.status).toBe(200);
-  expect(res.json()).resolves.toEqual({ data: { __typename: 'Query' } });
+  await expect(request('GET', { query: '{ __typename }' })).resolves
+    .toMatchInlineSnapshot(`
+    [
+      "{\\"data\\":{\\"__typename\\":\\"Query\\"}}",
+      {
+        "headers": {
+          "content-type": "application/graphql-response+json; charset=utf-8",
+        },
+        "status": 200,
+        "statusText": "OK",
+      },
+    ]
+  `);
   expect(onOperationFn).not.toBeCalled(); // early result, operation did not happen
 });
 
 it.each(['schema', 'context', 'onSubscribe', 'onOperation'])(
   'should provide the request context to %s',
   async (option) => {
-    const optionFn = vi.fn((_req: Request<unknown, unknown>) => {
-      // noop
-    });
+    const optionFn = vi.fn();
 
     const context = {};
-    const server = startTServer({
-      changeRequest: (req) => ({
-        ...req,
-        context,
-      }),
+    const { handler } = createTHandler({
       [option]: optionFn,
     });
 
-    const url = new URL(server.url);
-    url.searchParams.set('query', '{ __typename }');
-    await fetch(url.toString());
+    await handler({
+      method: 'GET',
+      url:
+        'http://localhost?' +
+        new URLSearchParams({ query: '{ __typename }' }).toString(),
+      headers: {},
+      body: null,
+      raw: null,
+      context,
+    }).catch(() => {
+      // schema option breaks, but we don't care
+    });
 
-    expect(optionFn.mock.calls[0][0]?.context).toBe(context);
+    expect(optionFn.mock.lastCall?.[0].context).toBe(context);
   },
 );
 
 it('should respond with error if execution result is iterable', async () => {
-  const server = startTServer({
-    // @ts-expect-error live queries for example
+  const { request } = createTHandler({
     execute: () => {
       return {
         [Symbol.asyncIterator]() {
           return this;
         },
-      };
+      } as any;
     },
   });
 
-  const url = new URL(server.url);
-  url.searchParams.set('query', '{ __typename }');
-  const result = await fetch(url.toString());
-  expect(result.json()).resolves.toEqual({
-    errors: [
+  await expect(request('GET', { query: '{ __typename }' })).resolves
+    .toMatchInlineSnapshot(`
+    [
+      "{\\"errors\\":[{\\"message\\":\\"Subscriptions are not supported\\"}]}",
       {
-        message: 'Subscriptions are not supported',
+        "headers": {
+          "content-type": "application/graphql-response+json; charset=utf-8",
+        },
+        "status": 400,
+        "statusText": "Bad Request",
       },
-    ],
-  });
+    ]
+  `);
 });
 
 it('should correctly serialise execution result errors', async () => {
-  const server = startTServer();
-  const url = new URL(server.url);
-  url.searchParams.set('query', 'query ($num: Int) { num(num: $num) }');
-  url.searchParams.set('variables', JSON.stringify({ num: 'foo' }));
-  const result = await fetch(url.toString());
-  expect(result.json()).resolves.toMatchInlineSnapshot(`
-    {
-      "errors": [
-        {
-          "locations": [
-            {
-              "column": 8,
-              "line": 1,
-            },
-          ],
-          "message": "Variable \\"$num\\" got invalid value \\"foo\\"; Int cannot represent non-integer value: \\"foo\\"",
+  const { request } = createTHandler({ schema });
+
+  await expect(
+    request('GET', {
+      query: 'query ($num: Int) { num(num: $num) }',
+      variables: { num: 'foo' },
+    }),
+  ).resolves.toMatchInlineSnapshot(`
+    [
+      "{\\"errors\\":[{\\"message\\":\\"Variable \\\\\\"$num\\\\\\" got invalid value \\\\\\"foo\\\\\\"; Int cannot represent non-integer value: \\\\\\"foo\\\\\\"\\",\\"locations\\":[{\\"line\\":1,\\"column\\":8}]}]}",
+      {
+        "headers": {
+          "content-type": "application/graphql-response+json; charset=utf-8",
         },
-      ],
-    }
+        "status": 200,
+        "statusText": "OK",
+      },
+    ]
   `);
 });
 
 it('should append the provided validation rules array', async () => {
-  const server = startTServer({
+  const { request } = createTHandler({
     validationRules: [
       (ctx) => {
         ctx.reportError(new GraphQLError('Woah!'));
@@ -132,31 +150,24 @@ it('should append the provided validation rules array', async () => {
       },
     ],
   });
-  const url = new URL(server.url);
-  url.searchParams.set('query', '{ idontexist }');
-  const result = await fetch(url.toString());
-  await expect(result.json()).resolves.toMatchInlineSnapshot(`
-    {
-      "errors": [
-        {
-          "message": "Woah!",
+
+  await expect(request('GET', { query: '{ idontexist }' })).resolves
+    .toMatchInlineSnapshot(`
+    [
+      "{\\"errors\\":[{\\"message\\":\\"Woah!\\"},{\\"message\\":\\"Cannot query field \\\\\\"idontexist\\\\\\" on type \\\\\\"Query\\\\\\".\\",\\"locations\\":[{\\"line\\":1,\\"column\\":3}]}]}",
+      {
+        "headers": {
+          "content-type": "application/graphql-response+json; charset=utf-8",
         },
-        {
-          "locations": [
-            {
-              "column": 3,
-              "line": 1,
-            },
-          ],
-          "message": "Cannot query field \\"idontexist\\" on type \\"Query\\".",
-        },
-      ],
-    }
+        "status": 400,
+        "statusText": "Bad Request",
+      },
+    ]
   `);
 });
 
 it('should replace the validation rules when providing a function', async () => {
-  const server = startTServer({
+  const { request } = createTHandler({
     validationRules: () => [
       (ctx) => {
         ctx.reportError(new GraphQLError('Woah!'));
@@ -164,49 +175,65 @@ it('should replace the validation rules when providing a function', async () => 
       },
     ],
   });
-  const url = new URL(server.url);
-  url.searchParams.set('query', '{ idontexist }');
-  const result = await fetch(url.toString());
-  await expect(result.json()).resolves.toMatchInlineSnapshot(`
-    {
-      "errors": [
-        {
-          "message": "Woah!",
+
+  await expect(request('GET', { query: '{ idontexist }' })).resolves
+    .toMatchInlineSnapshot(`
+    [
+      "{\\"errors\\":[{\\"message\\":\\"Woah!\\"}]}",
+      {
+        "headers": {
+          "content-type": "application/graphql-response+json; charset=utf-8",
         },
-      ],
-    }
+        "status": 400,
+        "statusText": "Bad Request",
+      },
+    ]
   `);
 });
 
 it('should print plain errors in detail', async () => {
-  const server = startTServer({});
-  const url = new URL(server.url);
-  const result = await fetch(url.toString(), {
-    method: 'POST',
-    headers: { 'content-type': 'application/json' },
-    // missing body
-  });
-  await expect(result.text()).resolves.toMatchInlineSnapshot(
-    '"{\\"errors\\":[{\\"message\\":\\"Unparsable JSON body\\"}]}"',
-  );
+  const { handler } = createTHandler({ schema });
+
+  await expect(
+    handler({
+      method: 'POST',
+      url: 'http://localhost',
+      headers: { 'content-type': 'application/json' },
+      body: null, // missing body
+      raw: null,
+      context: null,
+    }),
+  ).resolves.toMatchInlineSnapshot(`
+    [
+      "{\\"errors\\":[{\\"message\\":\\"Missing body\\"}]}",
+      {
+        "headers": {
+          "content-type": "application/json; charset=utf-8",
+        },
+        "status": 400,
+        "statusText": "Bad Request",
+      },
+    ]
+  `);
 });
 
 it('should format errors using the formatter', async () => {
   const formatErrorFn = vi.fn((_err) => new Error('Formatted'));
-  const server = startTServer({
+  const { request } = createTHandler({
     formatError: formatErrorFn,
   });
-  const url = new URL(server.url);
-  url.searchParams.set('query', '{ idontexist }');
-  const res = await fetch(url.toString());
-  expect(res.json()).resolves.toMatchInlineSnapshot(`
-    {
-      "errors": [
-        {
-          "message": "Formatted",
+  await expect(request('GET', { query: '{ idontexist }' })).resolves
+    .toMatchInlineSnapshot(`
+    [
+      "{\\"errors\\":[{\\"message\\":\\"Formatted\\"}]}",
+      {
+        "headers": {
+          "content-type": "application/graphql-response+json; charset=utf-8",
         },
-      ],
-    }
+        "status": 400,
+        "statusText": "Bad Request",
+      },
+    ]
   `);
   expect(formatErrorFn).toBeCalledTimes(1);
   expect(formatErrorFn.mock.lastCall?.[0]).toMatchInlineSnapshot(
@@ -227,26 +254,26 @@ it('should respect plain errors toJSON implementation', async () => {
     }
   }
   const formatErrorFn = vi.fn((_err) => new MyError('Custom toJSON'));
-  const server = startTServer({
+  const { request } = createTHandler({
     formatError: formatErrorFn,
   });
-  const url = new URL(server.url);
-  url.searchParams.set('query', '{ idontexist }');
-  const res = await fetch(url.toString());
-  expect(res.json()).resolves.toMatchInlineSnapshot(`
-    {
-      "errors": [
-        {
-          "message": "Custom toJSON",
-          "toJSON": "used",
+  await expect(request('GET', { query: '{ idontexist }' })).resolves
+    .toMatchInlineSnapshot(`
+    [
+      "{\\"errors\\":[{\\"message\\":\\"Custom toJSON\\",\\"toJSON\\":\\"used\\"}]}",
+      {
+        "headers": {
+          "content-type": "application/graphql-response+json; charset=utf-8",
         },
-      ],
-    }
+        "status": 400,
+        "statusText": "Bad Request",
+      },
+    ]
   `);
 });
 
 it('should use the custom request params parser', async () => {
-  const server = startTServer({
+  const { handler } = createTHandler({
     parseRequestParams() {
       return {
         query: '{ hello }',
@@ -254,25 +281,32 @@ it('should use the custom request params parser', async () => {
     },
   });
 
-  const url = new URL(server.url);
-  url.searchParams.set('query', '{ __typename }');
-  const res = await fetch(url.toString(), {
-    // different methods and content-types are not disallowed by the spec
-    method: 'PUT',
-    headers: { 'content-type': 'application/lol' },
-  });
-
-  await expect(res.json()).resolves.toMatchInlineSnapshot(`
-    {
-      "data": {
-        "hello": "world",
+  await expect(
+    handler({
+      // different methods and content-types are not disallowed by the spec
+      method: 'PUT',
+      url: 'http://localhost',
+      headers: { 'content-type': 'application/lol' },
+      body: null,
+      raw: null,
+      context: null,
+    }),
+  ).resolves.toMatchInlineSnapshot(`
+    [
+      "{\\"data\\":{\\"hello\\":\\"world\\"}}",
+      {
+        "headers": {
+          "content-type": "application/json; charset=utf-8",
+        },
+        "status": 200,
+        "statusText": "OK",
       },
-    }
+    ]
   `);
 });
 
 it('should use the response returned from the custom request params parser', async () => {
-  const server = startTServer({
+  const { request } = createTHandler({
     parseRequestParams() {
       return [
         'Hello',
@@ -281,79 +315,103 @@ it('should use the response returned from the custom request params parser', asy
     },
   });
 
-  const url = new URL(server.url);
-  url.searchParams.set('query', '{ __typename }');
-  const res = await fetch(url.toString());
-
-  expect(res.ok).toBeTruthy();
-  expect(res.headers.get('x-hi')).toBe('there');
-  await expect(res.text()).resolves.toBe('Hello');
+  await expect(request('GET', { query: '{ __typename }' })).resolves
+    .toMatchInlineSnapshot(`
+    [
+      "Hello",
+      {
+        "headers": {
+          "x-hi": "there",
+        },
+        "status": 200,
+        "statusText": "OK",
+      },
+    ]
+  `);
 });
 
 it('should report thrown Error from custom request params parser', async () => {
-  const server = startTServer({
+  const { request } = createTHandler({
     parseRequestParams() {
       throw new Error('Wrong.');
     },
   });
 
-  const url = new URL(server.url);
-  url.searchParams.set('query', '{ __typename }');
-  const res = await fetch(url.toString());
-
-  expect(res.status).toBe(400);
-  await expect(res.json()).resolves.toMatchInlineSnapshot(`
-    {
-      "errors": [
-        {
-          "message": "Wrong.",
+  await expect(request('GET', { query: '{ __typename }' })).resolves
+    .toMatchInlineSnapshot(`
+    [
+      "{\\"errors\\":[{\\"message\\":\\"Wrong.\\"}]}",
+      {
+        "headers": {
+          "content-type": "application/json; charset=utf-8",
         },
-      ],
-    }
+        "status": 400,
+        "statusText": "Bad Request",
+      },
+    ]
   `);
 });
 
 it('should report thrown GraphQLError from custom request params parser', async () => {
-  const server = startTServer({
+  const { request } = createTHandler({
     parseRequestParams() {
       throw new GraphQLError('Wronger.');
     },
   });
 
-  const url = new URL(server.url);
-  url.searchParams.set('query', '{ __typename }');
-  const res = await fetch(url.toString(), {
-    headers: { accept: 'application/json' },
-  });
-
-  expect(res.status).toBe(200);
-  await expect(res.json()).resolves.toMatchInlineSnapshot(`
-    {
-      "errors": [
-        {
-          "message": "Wronger.",
+  await expect(
+    request(
+      'GET',
+      { query: '{ __typename }' },
+      { accept: 'application/graphql-response+json' },
+    ),
+  ).resolves.toMatchInlineSnapshot(`
+    [
+      "{\\"errors\\":[{\\"message\\":\\"Wronger.\\"}]}",
+      {
+        "headers": {
+          "content-type": "application/graphql-response+json; charset=utf-8",
         },
-      ],
-    }
+        "status": 400,
+        "statusText": "Bad Request",
+      },
+    ]
+  `);
+
+  await expect(
+    request('GET', { query: '{ __typename }' }, { accept: 'application/json' }),
+  ).resolves.toMatchInlineSnapshot(`
+    [
+      "{\\"errors\\":[{\\"message\\":\\"Wronger.\\"}]}",
+      {
+        "headers": {
+          "content-type": "application/json; charset=utf-8",
+        },
+        "status": 200,
+        "statusText": "OK",
+      },
+    ]
   `);
 });
 
 it('should use the default if nothing is returned from the custom request params parser', async () => {
-  const server = startTServer({
+  const { request } = createTHandler({
     parseRequestParams() {
       return;
     },
   });
 
-  const url = new URL(server.url);
-  url.searchParams.set('query', '{ hello }');
-  const res = await fetch(url.toString());
-
-  await expect(res.json()).resolves.toMatchInlineSnapshot(`
-    {
-      "data": {
-        "hello": "world",
+  await expect(request('GET', { query: '{ __typename }' })).resolves
+    .toMatchInlineSnapshot(`
+    [
+      "{\\"data\\":{\\"__typename\\":\\"Query\\"}}",
+      {
+        "headers": {
+          "content-type": "application/graphql-response+json; charset=utf-8",
+        },
+        "status": 200,
+        "statusText": "OK",
       },
-    }
+    ]
   `);
 });
