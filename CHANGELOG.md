@@ -1,3 +1,15 @@
+# [1.21.0](https://github.com/graphql/graphql-http/compare/v1.20.0...v1.21.0) (2023-07-17)
+
+
+### Bug Fixes
+
+* **client:** `graphql` module is not required for runtime ([#102](https://github.com/graphql/graphql-http/issues/102)) ([9049f31](https://github.com/graphql/graphql-http/commit/9049f31c0c9226e3c07f798d8ef01eff95139c87))
+
+
+### Features
+
+* Use Netlify Functions ([#96](https://github.com/graphql/graphql-http/issues/96)) ([2b1ab14](https://github.com/graphql/graphql-http/commit/2b1ab142e32b524f4ac9a81b0a30bf0333f98761))
+
 # [1.20.0](https://github.com/graphql/graphql-http/compare/v1.19.0...v1.20.0) (2023-07-08)
 
 
