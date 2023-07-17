@@ -222,6 +222,16 @@ export default {
 };
 ```
 
+##### With [`Netlify Functions`](https://docs.netlify.com/functions/overview/)
+
+```js
+import { createHandler } from 'graphql-http/lib/use/@netlify/functions'; // yarn add @netlify/functions
+import { schema } from './previous-step';
+
+// Create the GraphQL over HTTP native fetch handler
+export const handler = createHandler({ schema });
+```
+
 #### Use the client
 
 ```js

@@ -65,6 +65,11 @@
       "require": "./lib/use/fastify.js",
       "import": "./lib/use/fastify.mjs"
     },
+    "./lib/use/@netlify/functions": {
+      "types": "./lib/use/@netlify/functions.d.ts",
+      "require": "./lib/use/@netlify/functions.js",
+      "import": "./lib/use/@netlify/functions.mjs"
+    },
     "./lib/use/koa": {
       "types": "./lib/use/koa.d.ts",
       "require": "./lib/use/koa.js",
@@ -112,6 +117,7 @@
   },
   "devDependencies": {
     "@cspell/cspell-types": "^6.31.1",
+    "@netlify/functions": "^1.6.0",
     "@rollup/plugin-terser": "^0.4.3",
     "@rollup/plugin-typescript": "^11.1.2",
     "@semantic-release/changelog": "^6.0.3",
