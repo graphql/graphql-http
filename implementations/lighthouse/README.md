@@ -593,7 +593,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php"
             }
           ],
-          "line": 137,
+          "line": 139,
           "file": "/app/vendor/webonyx/graphql-php/src/Server/Helper.php"
         }
       }
@@ -824,7 +824,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php"
             }
           ],
-          "line": 141,
+          "line": 143,
           "file": "/app/vendor/webonyx/graphql-php/src/Server/Helper.php"
         }
       }
@@ -1055,7 +1055,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php"
             }
           ],
-          "line": 141,
+          "line": 143,
           "file": "/app/vendor/webonyx/graphql-php/src/Server/Helper.php"
         }
       }
@@ -1286,7 +1286,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php"
             }
           ],
-          "line": 141,
+          "line": 143,
           "file": "/app/vendor/webonyx/graphql-php/src/Server/Helper.php"
         }
       }
@@ -1517,7 +1517,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php"
             }
           ],
-          "line": 141,
+          "line": 143,
           "file": "/app/vendor/webonyx/graphql-php/src/Server/Helper.php"
         }
       }
@@ -1748,7 +1748,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php"
             }
           ],
-          "line": 155,
+          "line": 157,
           "file": "/app/vendor/webonyx/graphql-php/src/Server/Helper.php"
         }
       }
@@ -1979,7 +1979,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php"
             }
           ],
-          "line": 155,
+          "line": 157,
           "file": "/app/vendor/webonyx/graphql-php/src/Server/Helper.php"
         }
       }
@@ -2210,7 +2210,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php"
             }
           ],
-          "line": 155,
+          "line": 157,
           "file": "/app/vendor/webonyx/graphql-php/src/Server/Helper.php"
         }
       }
@@ -2441,7 +2441,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php"
             }
           ],
-          "line": 155,
+          "line": 157,
           "file": "/app/vendor/webonyx/graphql-php/src/Server/Helper.php"
         }
       }
@@ -2672,7 +2672,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php"
             }
           ],
-          "line": 162,
+          "line": 164,
           "file": "/app/vendor/webonyx/graphql-php/src/Server/Helper.php"
         }
       }
@@ -2903,7 +2903,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php"
             }
           ],
-          "line": 162,
+          "line": 164,
           "file": "/app/vendor/webonyx/graphql-php/src/Server/Helper.php"
         }
       }
@@ -3134,7 +3134,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php"
             }
           ],
-          "line": 162,
+          "line": 164,
           "file": "/app/vendor/webonyx/graphql-php/src/Server/Helper.php"
         }
       }
@@ -3365,7 +3365,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php"
             }
           ],
-          "line": 162,
+          "line": 164,
           "file": "/app/vendor/webonyx/graphql-php/src/Server/Helper.php"
         }
       }
@@ -3688,7 +3688,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php"
             }
           ],
-          "line": 137,
+          "line": 139,
           "file": "/app/vendor/webonyx/graphql-php/src/Server/Helper.php"
         }
       }
@@ -3919,7 +3919,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php"
             }
           ],
-          "line": 137,
+          "line": 139,
           "file": "/app/vendor/webonyx/graphql-php/src/Server/Helper.php"
         }
       }
@@ -3982,7 +3982,7 @@ The server <i>SHOULD</i> support these, but is not required.
           }
         ],
         "extensions": {
-          "line": 380,
+          "line": 382,
           "file": "/app/vendor/webonyx/graphql-php/src/Language/Parser.php"
         }
       }
@@ -4017,7 +4017,7 @@ The server <i>SHOULD</i> support these, but is not required.
           }
         ],
         "extensions": {
-          "line": 380,
+          "line": 382,
           "file": "/app/vendor/webonyx/graphql-php/src/Language/Parser.php"
         }
       }
@@ -4052,7 +4052,7 @@ The server <i>SHOULD</i> support these, but is not required.
           }
         ],
         "extensions": {
-          "line": 380,
+          "line": 382,
           "file": "/app/vendor/webonyx/graphql-php/src/Language/Parser.php"
         }
       }
@@ -4087,7 +4087,7 @@ The server <i>SHOULD</i> support these, but is not required.
           }
         ],
         "extensions": {
-          "line": 380,
+          "line": 382,
           "file": "/app/vendor/webonyx/graphql-php/src/Language/Parser.php"
         }
       }
