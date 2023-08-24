@@ -636,7 +636,7 @@ type AcceptableMediaType =
  *
  * TODO: should graphql-http itself care about content-encoding? I'd say unzipping should happen before handler is reached
  */
-async function defaultParseRequestParams(
+export async function defaultParseRequestParams(
   req: Request<unknown, unknown>,
 ): Promise<Response | RequestParams> {
   const method = req.method;
