@@ -77,7 +77,7 @@ ___
 The GraphQL over HTTP spec compliant request parser for an incoming GraphQL request.
 
 If the HTTP request _is not_ a [well-formatted GraphQL over HTTP request](https://graphql.github.io/graphql-over-http/draft/#sec-Request), the function will respond
-on the `Response` argument and return `null`.
+on the `FastifyReply` argument and return `null`.
 
 If the HTTP request _is_ a [well-formatted GraphQL over HTTP request](https://graphql.github.io/graphql-over-http/draft/#sec-Request), but is invalid or malformed,
 the function will throw an error and it is up to the user to handle and respond as they see fit.
