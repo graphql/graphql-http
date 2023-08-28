@@ -54,7 +54,7 @@ export interface RequestContext {
  * console.log('Listening to port 4000');
  * ```
  *
- * @category Server/http
+ * @category Server/express
  */
 export async function parseRequestParams(
   req: Request,
