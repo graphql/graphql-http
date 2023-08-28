@@ -2,8 +2,11 @@ import type { Request, Response, Handler } from 'express';
 import {
   createHandler as createRawHandler,
   HandlerOptions as RawHandlerOptions,
+  Request as RawRequest,
+  parseRequestParams as rawParseRequestParams,
   OperationContext,
 } from '../handler';
+import { RequestParams } from '../common';
 
 /**
  * The context in the request for the handler.
@@ -12,6 +15,63 @@ import {
  */
 export interface RequestContext {
   res: Response;
+}
+
+/**
+ * The GraphQL over HTTP spec compliant request parser for an incoming GraphQL request.
+ *
+ * If the HTTP request _is not_ a [well-formatted GraphQL over HTTP request](https://graphql.github.io/graphql-over-http/draft/#sec-Request), the function will respond
+ * on the `Response` argument and return `null`.
+ *
+ * If the HTTP request _is_ a [well-formatted GraphQL over HTTP request](https://graphql.github.io/graphql-over-http/draft/#sec-Request), but is invalid or malformed,
+ * the function will throw an error and it is up to the user to handle and respond as they see fit.
+ *
+ * ```js
+ * import express from 'express'; // yarn add express
+ * import { parseRequestParams } from 'graphql-http/lib/use/express';
+ *
+ * const app = express();
+ * app.all('/graphql', async (req, res) => {
+ *   if (req.url.startsWith('/graphql')) {
+ *     try {
+ *       const maybeParams = await parseRequestParams(req, res);
+ *       if (!maybeParams) {
+ *         // not a well-formatted GraphQL over HTTP request,
+ *         // parser responded and there's nothing else to do
+ *         return;
+ *       }
+ *
+ *       // well-formatted GraphQL over HTTP request,
+ *       // with valid parameters
+ *       res.writeHead(200).end(JSON.stringify(maybeParams, null, '  '));
+ *     } catch (err) {
+ *       // well-formatted GraphQL over HTTP request,
+ *       // but with invalid parameters
+ *       res.writeHead(400).end(err.message);
+ *     }
+ *   } else {
+ *     res.writeHead(404).end();
+ *   }
+ * });
+ *
+ * app.listen({ port: 4000 });
+ * console.log('Listening to port 4000');
+ * ```
+ *
+ * @category Server/http
+ */
+export async function parseRequestParams(
+  req: Request,
+  res: Response,
+): Promise<RequestParams | null> {
+  const rawReq = toRequest(req, res);
+  const paramsOrRes = await rawParseRequestParams(rawReq);
+  if (!('query' in paramsOrRes)) {
+    const [body, init] = paramsOrRes;
+    res.writeHead(init.status, init.statusText, init.headers).end(body);
+    return null;
+  }
+  return paramsOrRes;
 }
 
 /**
@@ -46,24 +106,7 @@ export function createHandler<Context extends OperationContext = undefined>(
   const handle = createRawHandler(options);
   return async function requestListener(req, res) {
     try {
-      const [body, init] = await handle({
-        url: req.url,
-        method: req.method,
-        headers: req.headers,
-        body: () => {
-          if (req.body) {
-            // in case express has a body parser
-            return req.body;
-          }
-          return new Promise<string>((resolve) => {
-            let body = '';
-            req.on('data', (chunk) => (body += chunk));
-            req.on('end', () => resolve(body));
-          });
-        },
-        raw: req,
-        context: { res },
-      });
+      const [body, init] = await handle(toRequest(req, res));
       res.writeHead(init.status, init.statusText, init.headers).end(body);
     } catch (err) {
       // The handler shouldnt throw errors.
@@ -75,5 +118,29 @@ export function createHandler<Context extends OperationContext = undefined>(
       );
       res.writeHead(500).end();
     }
+  };
+}
+
+function toRequest(
+  req: Request,
+  res: Response,
+): RawRequest<Request, RequestContext> {
+  return {
+    url: req.url,
+    method: req.method,
+    headers: req.headers,
+    body: () => {
+      if (req.body) {
+        // in case express has a body parser
+        return req.body;
+      }
+      return new Promise<string>((resolve) => {
+        let body = '';
+        req.on('data', (chunk) => (body += chunk));
+        req.on('end', () => resolve(body));
+      });
+    },
+    raw: req,
+    context: { res },
   };
 }
