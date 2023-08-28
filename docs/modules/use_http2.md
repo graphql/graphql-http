@@ -106,6 +106,11 @@ on the `Http2ServerResponse` argument and return `null`.
 If the HTTP request _is_ a [well-formatted GraphQL over HTTP request](https://graphql.github.io/graphql-over-http/draft/#sec-Request), but is invalid or malformed,
 the function will throw an error and it is up to the user to handle and respond as they see fit.
 
+ ```shell
+$ openssl req -x509 -newkey rsa:2048 -nodes -sha256 -subj '/CN=localhost' \
+  -keyout localhost-privkey.pem -out localhost-cert.pem
+```
+
 ```js
 import fs from 'fs';
 import http2 from 'http2';
