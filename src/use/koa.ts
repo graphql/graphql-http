@@ -164,6 +164,7 @@ function toRequest(
     body: () => {
       if (ctx.body) {
         // in case koa has a body parser
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         return ctx.body as any;
       }
       return new Promise<string>((resolve) => {
