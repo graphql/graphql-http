@@ -1,3 +1,10 @@
+# [1.22.0](https://github.com/graphql/graphql-http/compare/v1.21.0...v1.22.0) (2023-08-28)
+
+
+### Features
+
+* **handler:** Expose `parseRequestParams` from the core and each of the adapters ([#111](https://github.com/graphql/graphql-http/issues/111)) ([2caae00](https://github.com/graphql/graphql-http/commit/2caae009ee88bbe83769ec00885d2c75583e3cfd))
+
 # [1.21.0](https://github.com/graphql/graphql-http/compare/v1.20.0...v1.21.0) (2023-07-17)
 
 
