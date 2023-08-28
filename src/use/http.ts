@@ -42,9 +42,7 @@ export interface RequestContext {
  *
  *       // well-formatted GraphQL over HTTP request,
  *       // with valid parameters
- *       console.log(maybeParams);
- *
- *       res.writeHead(200).end();
+ *       res.writeHead(200).end(JSON.stringify(maybeParams, null, '  '));
  *     } catch (err) {
  *       // well-formatted GraphQL over HTTP request,
  *       // but with invalid parameters
