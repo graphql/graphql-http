@@ -135,11 +135,11 @@ ___
 
 ### onSubscribe
 
-• `Optional` **onSubscribe**: (`req`: [`Request`](handler.Request.md)<`RequestRaw`, `RequestContext`\>, `params`: [`RequestParams`](common.RequestParams.md)) => `void` \| readonly `GraphQLError`[] \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> \| [`Response`](../modules/handler.md#response) \| [`OperationArgs`](../modules/handler.md#operationargs)<`Context`\> \| `Promise`<`void` \| readonly `GraphQLError`[] \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> \| [`Response`](../modules/handler.md#response) \| [`OperationArgs`](../modules/handler.md#operationargs)<`Context`\>\>
+• `Optional` **onSubscribe**: (`req`: [`Request`](handler.Request.md)<`RequestRaw`, `RequestContext`\>, `params`: [`RequestParams`](common.RequestParams.md)) => `void` \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> \| [`Response`](../modules/handler.md#response) \| [`OperationArgs`](../modules/handler.md#operationargs)<`Context`\> \| readonly `GraphQLError`[] \| `Promise`<`void` \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> \| [`Response`](../modules/handler.md#response) \| [`OperationArgs`](../modules/handler.md#operationargs)<`Context`\> \| readonly `GraphQLError`[]\>
 
 #### Type declaration
 
-▸ (`req`, `params`): `void` \| readonly `GraphQLError`[] \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> \| [`Response`](../modules/handler.md#response) \| [`OperationArgs`](../modules/handler.md#operationargs)<`Context`\> \| `Promise`<`void` \| readonly `GraphQLError`[] \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> \| [`Response`](../modules/handler.md#response) \| [`OperationArgs`](../modules/handler.md#operationargs)<`Context`\>\>
+▸ (`req`, `params`): `void` \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> \| [`Response`](../modules/handler.md#response) \| [`OperationArgs`](../modules/handler.md#operationargs)<`Context`\> \| readonly `GraphQLError`[] \| `Promise`<`void` \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> \| [`Response`](../modules/handler.md#response) \| [`OperationArgs`](../modules/handler.md#operationargs)<`Context`\> \| readonly `GraphQLError`[]\>
 
 The subscribe callback executed right after processing the request
 before proceeding with the GraphQL operation execution.
@@ -177,7 +177,7 @@ further execution.
 
 ##### Returns
 
-`void` \| readonly `GraphQLError`[] \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> \| [`Response`](../modules/handler.md#response) \| [`OperationArgs`](../modules/handler.md#operationargs)<`Context`\> \| `Promise`<`void` \| readonly `GraphQLError`[] \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> \| [`Response`](../modules/handler.md#response) \| [`OperationArgs`](../modules/handler.md#operationargs)<`Context`\>\>
+`void` \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> \| [`Response`](../modules/handler.md#response) \| [`OperationArgs`](../modules/handler.md#operationargs)<`Context`\> \| readonly `GraphQLError`[] \| `Promise`<`void` \| `ExecutionResult`<`ObjMap`<`unknown`\>, `ObjMap`<`unknown`\>\> \| [`Response`](../modules/handler.md#response) \| [`OperationArgs`](../modules/handler.md#operationargs)<`Context`\> \| readonly `GraphQLError`[]\>
 
 ___
 

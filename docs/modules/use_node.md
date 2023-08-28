@@ -50,10 +50,6 @@ server.listen(4000);
 console.log('Listening to port 4000');
 ```
 
-**`Deprecated`**
-
-Please use [http](use_http.md#createhandler) or [http2](use_http2.md#createhandler) adapters instead.
-
 #### Type parameters
 
 | Name | Type |
@@ -86,10 +82,6 @@ server.listen(4000);
 console.log('Listening to port 4000');
 ```
 
-**`Category`**
-
-Server/http
-
 ##### Parameters
 
 | Name | Type |
@@ -100,3 +92,11 @@ Server/http
 ##### Returns
 
 `Promise`<`void`\>
+
+**`Category`**
+
+Server/http
+
+**`Deprecated`**
+
+Please use [http](use_http.md#createhandler) or [http2](use_http2.md#createhandler) adapters instead.

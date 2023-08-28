@@ -47,7 +47,7 @@ you should supply the `Response` generic depending on your Fetch implementation.
 
 | Name | Type |
 | :------ | :------ |
-| `msgOrErrOrResponse` | `string` \| `Error` \| `Response` |
+| `msgOrErrOrResponse` | `string` \| `Response` \| `Error` |
 
 #### Overrides
 

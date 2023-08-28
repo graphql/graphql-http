@@ -147,12 +147,6 @@ Useful for retrying requests that failed because the service is temporarily unav
 Returning `false` will report the `err` argument; however, throwing a different error from
 the `err` argument, will report it instead.
 
-**`Default`**
-
-```ts
-'() => false'
-```
-
 ##### Parameters
 
 | Name | Type |
@@ -163,6 +157,12 @@ the `err` argument, will report it instead.
 ##### Returns
 
 `Promise`<`boolean`\>
+
+**`Default`**
+
+```ts
+'() => false'
+```
 
 ___
 
