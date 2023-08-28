@@ -68,7 +68,7 @@ console.log('Listening to port 4000');
 
 `Handler`
 
-## Server/http
+___
 
 ### parseRequestParams
 
@@ -88,25 +88,21 @@ import { parseRequestParams } from 'graphql-http/lib/use/express';
 
 const app = express();
 app.all('/graphql', async (req, res) => {
-  if (req.url.startsWith('/graphql')) {
-    try {
-      const maybeParams = await parseRequestParams(req, res);
-      if (!maybeParams) {
-        // not a well-formatted GraphQL over HTTP request,
-        // parser responded and there's nothing else to do
-        return;
-      }
-
-      // well-formatted GraphQL over HTTP request,
-      // with valid parameters
-      res.writeHead(200).end(JSON.stringify(maybeParams, null, '  '));
-    } catch (err) {
-      // well-formatted GraphQL over HTTP request,
-      // but with invalid parameters
-      res.writeHead(400).end(err.message);
+  try {
+    const maybeParams = await parseRequestParams(req, res);
+    if (!maybeParams) {
+      // not a well-formatted GraphQL over HTTP request,
+      // parser responded and there's nothing else to do
+      return;
     }
-  } else {
-    res.writeHead(404).end();
+
+    // well-formatted GraphQL over HTTP request,
+    // with valid parameters
+    res.writeHead(200).end(JSON.stringify(maybeParams, null, '  '));
+  } catch (err) {
+    // well-formatted GraphQL over HTTP request,
+    // but with invalid parameters
+    res.writeHead(400).end(err.message);
   }
 });
 
