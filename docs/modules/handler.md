@@ -25,6 +25,7 @@
 ### Functions
 
 - [createHandler](handler.md#createhandler)
+- [parseRequestParams](handler.md#parserequestparams-1)
 
 ## Server
 
@@ -124,8 +125,10 @@ ___
 
 ▸ (`req`): `Promise`<[`RequestParams`](../interfaces/common.RequestParams.md) \| [`Response`](handler.md#response) \| `void`\> \| [`RequestParams`](../interfaces/common.RequestParams.md) \| [`Response`](handler.md#response) \| `void`
 
-The request parser for an incoming GraphQL request. It parses and validates the
-request itself, including the request method and the content-type of the body.
+The request parser for an incoming GraphQL request in the handler.
+
+It should parse and validate the request itself, including the request method
+and the content-type of the body.
 
 In case you are extending the server to handle more request types, this is the
 perfect place to do so.
@@ -258,3 +261,37 @@ console.log('Listening to port 4000');
 #### Returns
 
 [`Handler`](handler.md#handler)<`RequestRaw`, `RequestContext`\>
+
+___
+
+### parseRequestParams
+
+▸ **parseRequestParams**<`RequestRaw`, `RequestContext`\>(`req`): `Promise`<[`Response`](handler.md#response) \| [`RequestParams`](../interfaces/common.RequestParams.md)\>
+
+The GraphQL over HTTP spec compliant request parser for an incoming GraphQL request.
+It parses and validates the request itself, including the request method and the
+content-type of the body.
+
+If the HTTP request itself is invalid or malformed, the function will return an
+appropriate [Response](handler.md#response).
+
+If the HTTP request is valid, but is not a well-formatted GraphQL request, the
+function will throw an error and it is up to the user to handle and respond as
+they see fit.
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `RequestRaw` | `unknown` |
+| `RequestContext` | `unknown` |
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `req` | [`Request`](../interfaces/handler.Request.md)<`RequestRaw`, `RequestContext`\> |
+
+#### Returns
+
+`Promise`<[`Response`](handler.md#response) \| [`RequestParams`](../interfaces/common.RequestParams.md)\>
