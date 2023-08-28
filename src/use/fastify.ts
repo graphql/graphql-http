@@ -28,7 +28,7 @@ export type HandlerOptions<Context extends OperationContext = undefined> =
  *
  * ```js
  * import Fastify from 'fastify'; // yarn add fastify
- * import { createHandler } from 'graphql-http/lib/use/express';
+ * import { createHandler } from 'graphql-http/lib/use/fastify';
  * import { schema } from './my-graphql-schema';
  *
  * const fastify = Fastify();
