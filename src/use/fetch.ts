@@ -1,8 +1,11 @@
 import {
   createHandler as createRawHandler,
   HandlerOptions as RawHandlerOptions,
+  Request as RawRequest,
+  parseRequestParams as rawParseRequestParams,
   OperationContext,
 } from '../handler';
+import { RequestParams } from '../common';
 
 /**
  * The necessary API from the fetch environment for the handler.
@@ -13,6 +16,67 @@ export interface FetchAPI {
   Response: typeof Response;
   ReadableStream: typeof ReadableStream;
   TextEncoder: typeof TextEncoder;
+}
+
+/**
+ * The GraphQL over HTTP spec compliant request parser for an incoming GraphQL request.
+ *
+ * It is important to pass in the `abortedRef` so that the parser does not perform any
+ * operations on a disposed request (see example).
+ *
+ * If the HTTP request _is not_ a [well-formatted GraphQL over HTTP request](https://graphql.github.io/graphql-over-http/draft/#sec-Request), the function will return a `Response`.
+ *
+ * If the HTTP request _is_ a [well-formatted GraphQL over HTTP request](https://graphql.github.io/graphql-over-http/draft/#sec-Request), but is invalid or malformed,
+ * the function will throw an error and it is up to the user to handle and respond as they see fit.
+ *
+ * ```js
+ * import http from 'http';
+ * import { createServerAdapter } from '@whatwg-node/server'; // yarn add @whatwg-node/server
+ * import { parseRequestParams } from 'graphql-http/lib/use/fetch';
+ *
+ * // Use this adapter in _any_ environment.
+ * const adapter = createServerAdapter({
+ *   handleRequest: async (req) => {
+ *     try {
+ *       const paramsOrResponse = await parseRequestParams(req);
+ *       if (paramsOrResponse instanceof Response) {
+ *         // not a well-formatted GraphQL over HTTP request,
+ *         // parser created a response object to use
+ *         return paramsOrResponse;
+ *       }
+ *
+ *       // well-formatted GraphQL over HTTP request,
+ *       // with valid parameters
+ *       return new Response(JSON.stringify(paramsOrResponse, null, '  '), {
+ *         status: 200,
+ *       });
+ *     } catch (err) {
+ *       // well-formatted GraphQL over HTTP request,
+ *       // but with invalid parameters
+ *       return new Response(err.message, { status: 400 });
+ *     }
+ *   },
+ * });
+ *
+ * const server = http.createServer(adapter);
+ *
+ * server.listen(4000);
+ * console.log('Listening to port 4000');
+ * ```
+ *
+ * @category Server/fetch
+ */
+export async function parseRequestParams(
+  req: Request,
+  api: Partial<FetchAPI> = {},
+): Promise<RequestParams | Response> {
+  const rawReq = toRequest(req, api);
+  const paramsOrRes = await rawParseRequestParams(rawReq);
+  if (!('query' in paramsOrRes)) {
+    const [body, init] = paramsOrRes;
+    return new (api.Response || Response)(body, init);
+  }
+  return paramsOrRes;
 }
 
 /**
@@ -63,14 +127,7 @@ export function createHandler<Context extends OperationContext = undefined>(
   const handler = createRawHandler(options);
   return async function handleRequest(req) {
     try {
-      const [body, init] = await handler({
-        method: req.method,
-        url: req.url,
-        headers: req.headers,
-        body: () => req.text(),
-        raw: req,
-        context: api,
-      });
+      const [body, init] = await handler(toRequest(req, api));
       return new api.Response(body, init);
     } catch (err) {
       // The handler shouldnt throw errors.
@@ -82,5 +139,23 @@ export function createHandler<Context extends OperationContext = undefined>(
       );
       return new api.Response(null, { status: 500 });
     }
+  };
+}
+
+function toRequest(
+  req: Request,
+  api: Partial<FetchAPI> = {},
+): RawRequest<Request, FetchAPI> {
+  return {
+    method: req.method,
+    url: req.url,
+    headers: req.headers,
+    body: () => req.text(),
+    raw: req,
+    context: {
+      Response: api.Response || Response,
+      TextEncoder: api.TextEncoder || TextEncoder,
+      ReadableStream: api.ReadableStream || ReadableStream,
+    },
   };
 }

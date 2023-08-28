@@ -15,6 +15,7 @@
 ### Functions
 
 - [createHandler](use_fastify.md#createhandler)
+- [parseRequestParams](use_fastify.md#parserequestparams)
 
 ## Server/fastify
 
@@ -66,3 +67,56 @@ console.log('Listening to port 4000');
 #### Returns
 
 `RouteHandler`
+
+___
+
+### parseRequestParams
+
+▸ **parseRequestParams**(`req`, `reply`): `Promise`<[`RequestParams`](../interfaces/common.RequestParams.md) \| ``null``\>
+
+The GraphQL over HTTP spec compliant request parser for an incoming GraphQL request.
+
+If the HTTP request _is not_ a [well-formatted GraphQL over HTTP request](https://graphql.github.io/graphql-over-http/draft/#sec-Request), the function will respond
+on the `FastifyReply` argument and return `null`.
+
+If the HTTP request _is_ a [well-formatted GraphQL over HTTP request](https://graphql.github.io/graphql-over-http/draft/#sec-Request), but is invalid or malformed,
+the function will throw an error and it is up to the user to handle and respond as they see fit.
+
+```js
+import Fastify from 'fastify'; // yarn add fastify
+import { parseRequestParams } from 'graphql-http/lib/use/fastify';
+
+const fastify = Fastify();
+fastify.all('/graphql', async (req, reply) => {
+  try {
+    const maybeParams = await parseRequestParams(req, reply);
+    if (!maybeParams) {
+      // not a well-formatted GraphQL over HTTP request,
+      // parser responded and there's nothing else to do
+      return;
+    }
+
+    // well-formatted GraphQL over HTTP request,
+    // with valid parameters
+    reply.status(200).send(JSON.stringify(maybeParams, null, '  '));
+  } catch (err) {
+    // well-formatted GraphQL over HTTP request,
+    // but with invalid parameters
+    reply.status(400).send(err.message);
+  }
+});
+
+fastify.listen({ port: 4000 });
+console.log('Listening to port 4000');
+```
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `req` | `FastifyRequest`<`RouteGenericInterface`, `RawServerDefault`, `IncomingMessage`, `FastifySchema`, `FastifyTypeProviderDefault`, `unknown`, `FastifyBaseLogger`, `ResolveFastifyRequestType`<`FastifyTypeProviderDefault`, `FastifySchema`, `RouteGenericInterface`\>\> |
+| `reply` | `FastifyReply`<`RawServerDefault`, `IncomingMessage`, `ServerResponse`<`IncomingMessage`\>, `RouteGenericInterface`, `unknown`, `FastifySchema`, `FastifyTypeProviderDefault`, `unknown`\> |
+
+#### Returns
+
+`Promise`<[`RequestParams`](../interfaces/common.RequestParams.md) \| ``null``\>

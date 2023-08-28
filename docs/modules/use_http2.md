@@ -15,6 +15,7 @@
 ### Functions
 
 - [createHandler](use_http2.md#createhandler)
+- [parseRequestParams](use_http2.md#parserequestparams)
 
 ## Server/http2
 
@@ -90,3 +91,71 @@ console.log('Listening to port 4000');
 ##### Returns
 
 `Promise`<`void`\>
+
+___
+
+### parseRequestParams
+
+▸ **parseRequestParams**(`req`, `res`): `Promise`<[`RequestParams`](../interfaces/common.RequestParams.md) \| ``null``\>
+
+The GraphQL over HTTP spec compliant request parser for an incoming GraphQL request.
+
+If the HTTP request _is not_ a [well-formatted GraphQL over HTTP request](https://graphql.github.io/graphql-over-http/draft/#sec-Request), the function will respond
+on the `Http2ServerResponse` argument and return `null`.
+
+If the HTTP request _is_ a [well-formatted GraphQL over HTTP request](https://graphql.github.io/graphql-over-http/draft/#sec-Request), but is invalid or malformed,
+the function will throw an error and it is up to the user to handle and respond as they see fit.
+
+ ```shell
+$ openssl req -x509 -newkey rsa:2048 -nodes -sha256 -subj '/CN=localhost' \
+  -keyout localhost-privkey.pem -out localhost-cert.pem
+```
+
+```js
+import fs from 'fs';
+import http2 from 'http2';
+import { parseRequestParams } from 'graphql-http/lib/use/http2';
+
+const server = http2.createSecureServer(
+  {
+    key: fs.readFileSync('localhost-privkey.pem'),
+    cert: fs.readFileSync('localhost-cert.pem'),
+  },
+  async (req, res) => {
+    if (req.url.startsWith('/graphql')) {
+      try {
+        const maybeParams = await parseRequestParams(req, res);
+        if (!maybeParams) {
+          // not a well-formatted GraphQL over HTTP request,
+          // parser responded and there's nothing else to do
+          return;
+        }
+
+        // well-formatted GraphQL over HTTP request,
+        // with valid parameters
+        res.writeHead(200).end(JSON.stringify(maybeParams, null, '  '));
+      } catch (err) {
+        // well-formatted GraphQL over HTTP request,
+        // but with invalid parameters
+        res.writeHead(400).end(err.message);
+      }
+    } else {
+      res.writeHead(404).end();
+    }
+  },
+);
+
+server.listen(4000);
+console.log('Listening to port 4000');
+```
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `req` | `Http2ServerRequest` |
+| `res` | `Http2ServerResponse` |
+
+#### Returns
+
+`Promise`<[`RequestParams`](../interfaces/common.RequestParams.md) \| ``null``\>

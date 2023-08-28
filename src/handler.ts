@@ -155,8 +155,10 @@ export type FormatError = (
 ) => GraphQLError | Error;
 
 /**
- * The request parser for an incoming GraphQL request. It parses and validates the
- * request itself, including the request method and the content-type of the body.
+ * The request parser for an incoming GraphQL request in the handler.
+ *
+ * It should parse and validate the request itself, including the request method
+ * and the content-type of the body.
  *
  * In case you are extending the server to handle more request types, this is the
  * perfect place to do so.
@@ -178,6 +180,125 @@ export type ParseRequestParams<
 > = (
   req: Request<RequestRaw, RequestContext>,
 ) => Promise<RequestParams | Response | void> | RequestParams | Response | void;
+
+/**
+ * The GraphQL over HTTP spec compliant request parser for an incoming GraphQL request.
+ * It parses and validates the request itself, including the request method and the
+ * content-type of the body.
+ *
+ * If the HTTP request itself is invalid or malformed, the function will return an
+ * appropriate {@link Response}.
+ *
+ * If the HTTP request is valid, but is not a well-formatted GraphQL request, the
+ * function will throw an error and it is up to the user to handle and respond as
+ * they see fit.
+ *
+ * @category Server
+ */
+export async function parseRequestParams<
+  RequestRaw = unknown,
+  RequestContext = unknown,
+>(req: Request<RequestRaw, RequestContext>): Promise<Response | RequestParams> {
+  const method = req.method;
+  if (method !== 'GET' && method !== 'POST') {
+    return [
+      null,
+      {
+        status: 405,
+        statusText: 'Method Not Allowed',
+        headers: {
+          allow: 'GET, POST',
+        },
+      },
+    ];
+  }
+
+  const [
+    mediaType,
+    charset = 'charset=utf-8', // utf-8 is assumed when not specified. this parameter is either "charset" or "boundary" (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Length)
+  ] = (getHeader(req, 'content-type') || '')
+    .replace(/\s/g, '')
+    .toLowerCase()
+    .split(';');
+
+  const partParams: Partial<RequestParams> = {};
+  switch (true) {
+    case method === 'GET': {
+      // TODO: what if content-type is specified and is not application/x-www-form-urlencoded?
+      try {
+        const [, search] = req.url.split('?');
+        const searchParams = new URLSearchParams(search);
+        partParams.operationName =
+          searchParams.get('operationName') ?? undefined;
+        partParams.query = searchParams.get('query') ?? undefined;
+        const variables = searchParams.get('variables');
+        if (variables) partParams.variables = JSON.parse(variables);
+        const extensions = searchParams.get('extensions');
+        if (extensions) partParams.extensions = JSON.parse(extensions);
+      } catch {
+        throw new Error('Unparsable URL');
+      }
+      break;
+    }
+    case method === 'POST' &&
+      mediaType === 'application/json' &&
+      charset === 'charset=utf-8': {
+      if (!req.body) {
+        throw new Error('Missing body');
+      }
+      let data;
+      try {
+        const body =
+          typeof req.body === 'function' ? await req.body() : req.body;
+        data = typeof body === 'string' ? JSON.parse(body) : body;
+      } catch (err) {
+        throw new Error('Unparsable JSON body');
+      }
+      if (!isObject(data)) {
+        throw new Error('JSON body must be an object');
+      }
+      partParams.operationName = data.operationName;
+      partParams.query = data.query;
+      partParams.variables = data.variables;
+      partParams.extensions = data.extensions;
+      break;
+    }
+    default: // graphql-http doesnt support any other content type
+      return [
+        null,
+        {
+          status: 415,
+          statusText: 'Unsupported Media Type',
+        },
+      ];
+  }
+
+  if (partParams.query == null) throw new Error('Missing query');
+  if (typeof partParams.query !== 'string') throw new Error('Invalid query');
+  if (
+    partParams.variables != null &&
+    (typeof partParams.variables !== 'object' ||
+      Array.isArray(partParams.variables))
+  ) {
+    throw new Error('Invalid variables');
+  }
+  if (
+    partParams.operationName != null &&
+    typeof partParams.operationName !== 'string'
+  ) {
+    throw new Error('Invalid operationName');
+  }
+  if (
+    partParams.extensions != null &&
+    (typeof partParams.extensions !== 'object' ||
+      Array.isArray(partParams.extensions))
+  ) {
+    throw new Error('Invalid extensions');
+  }
+
+  // request parameters are checked and now complete
+  return partParams as RequestParams;
+}
 
 /** @category Server */
 export type OperationArgs<Context extends OperationContext = undefined> =
@@ -440,7 +561,7 @@ export function createHandler<
     onSubscribe,
     onOperation,
     formatError = (err) => err,
-    parseRequestParams = defaultParseRequestParams,
+    parseRequestParams: optionsParseRequestParams = parseRequestParams,
   } = options;
 
   return async function handler(req) {
@@ -491,8 +612,8 @@ export function createHandler<
 
     let params: RequestParams;
     try {
-      let paramsOrRes = await parseRequestParams(req);
-      if (!paramsOrRes) paramsOrRes = await defaultParseRequestParams(req);
+      let paramsOrRes = await optionsParseRequestParams(req);
+      if (!paramsOrRes) paramsOrRes = await parseRequestParams(req);
       if (isResponse(paramsOrRes)) return paramsOrRes;
       params = paramsOrRes;
     } catch (err) {
@@ -627,118 +748,6 @@ export function createHandler<
 type AcceptableMediaType =
   | 'application/graphql-response+json'
   | 'application/json';
-
-/**
- * The default request params parser. Used when no custom one is provided or if it
- * returns nothing.
- *
- * Read more about it in {@link ParseRequestParams}.
- *
- * TODO: should graphql-http itself care about content-encoding? I'd say unzipping should happen before handler is reached
- */
-async function defaultParseRequestParams(
-  req: Request<unknown, unknown>,
-): Promise<Response | RequestParams> {
-  const method = req.method;
-  if (method !== 'GET' && method !== 'POST') {
-    return [
-      null,
-      {
-        status: 405,
-        statusText: 'Method Not Allowed',
-        headers: {
-          allow: 'GET, POST',
-        },
-      },
-    ];
-  }
-
-  const [
-    mediaType,
-    charset = 'charset=utf-8', // utf-8 is assumed when not specified. this parameter is either "charset" or "boundary" (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Length)
-  ] = (getHeader(req, 'content-type') || '')
-    .replace(/\s/g, '')
-    .toLowerCase()
-    .split(';');
-
-  const partParams: Partial<RequestParams> = {};
-  switch (true) {
-    case method === 'GET': {
-      // TODO: what if content-type is specified and is not application/x-www-form-urlencoded?
-      try {
-        const [, search] = req.url.split('?');
-        const searchParams = new URLSearchParams(search);
-        partParams.operationName =
-          searchParams.get('operationName') ?? undefined;
-        partParams.query = searchParams.get('query') ?? undefined;
-        const variables = searchParams.get('variables');
-        if (variables) partParams.variables = JSON.parse(variables);
-        const extensions = searchParams.get('extensions');
-        if (extensions) partParams.extensions = JSON.parse(extensions);
-      } catch {
-        throw new Error('Unparsable URL');
-      }
-      break;
-    }
-    case method === 'POST' &&
-      mediaType === 'application/json' &&
-      charset === 'charset=utf-8': {
-      if (!req.body) {
-        throw new Error('Missing body');
-      }
-      let data;
-      try {
-        const body =
-          typeof req.body === 'function' ? await req.body() : req.body;
-        data = typeof body === 'string' ? JSON.parse(body) : body;
-      } catch (err) {
-        throw new Error('Unparsable JSON body');
-      }
-      if (!isObject(data)) {
-        throw new Error('JSON body must be an object');
-      }
-      partParams.operationName = data.operationName;
-      partParams.query = data.query;
-      partParams.variables = data.variables;
-      partParams.extensions = data.extensions;
-      break;
-    }
-    default: // graphql-http doesnt support any other content type
-      return [
-        null,
-        {
-          status: 415,
-          statusText: 'Unsupported Media Type',
-        },
-      ];
-  }
-
-  if (partParams.query == null) throw new Error('Missing query');
-  if (typeof partParams.query !== 'string') throw new Error('Invalid query');
-  if (
-    partParams.variables != null &&
-    (typeof partParams.variables !== 'object' ||
-      Array.isArray(partParams.variables))
-  ) {
-    throw new Error('Invalid variables');
-  }
-  if (
-    partParams.operationName != null &&
-    typeof partParams.operationName !== 'string'
-  ) {
-    throw new Error('Invalid operationName');
-  }
-  if (
-    partParams.extensions != null &&
-    (typeof partParams.extensions !== 'object' ||
-      Array.isArray(partParams.extensions))
-  ) {
-    throw new Error('Invalid extensions');
-  }
-
-  // request parameters are checked and now complete
-  return partParams as RequestParams;
-}
 
 /**
  * Creates an appropriate GraphQL over HTTP response following the provided arguments.

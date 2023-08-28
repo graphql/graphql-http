@@ -2,8 +2,11 @@ import type { HttpRequest, HttpResponse } from 'uWebSockets.js';
 import {
   createHandler as createRawHandler,
   HandlerOptions as RawHandlerOptions,
+  Request as RawRequest,
+  parseRequestParams as rawParseRequestParams,
   OperationContext,
 } from '../handler';
+import { RequestParams } from '../common';
 
 /**
  * The context in the request for the handler.
@@ -12,6 +15,84 @@ import {
  */
 export interface RequestContext {
   res: HttpResponse;
+}
+
+/**
+ * The GraphQL over HTTP spec compliant request parser for an incoming GraphQL request.
+ *
+ * It is important to pass in the `abortedRef` so that the parser does not perform any
+ * operations on a disposed request (see example).
+ *
+ * If the HTTP request _is not_ a [well-formatted GraphQL over HTTP request](https://graphql.github.io/graphql-over-http/draft/#sec-Request), the function will respond
+ * on the `HttpResponse` argument and return `null`.
+ *
+ * If the HTTP request _is_ a [well-formatted GraphQL over HTTP request](https://graphql.github.io/graphql-over-http/draft/#sec-Request), but is invalid or malformed,
+ * the function will throw an error and it is up to the user to handle and respond as they see fit.
+ *
+ * ```js
+ * import uWS from 'uWebSockets.js'; // yarn add uWebSockets.js@uNetworking/uWebSockets.js#<version>
+ * import { parseRequestParams } from 'graphql-http/lib/use/uWebSockets';
+ *
+ * uWS
+ *   .App()
+ *   .any('/graphql', async (res, req) => {
+ *     const abortedRef = { current: false };
+ *     res.onAborted(() => (abortedRef.current = true));
+ *     try {
+ *       const maybeParams = await parseRequestParams(req, res, abortedRef);
+ *       if (!maybeParams) {
+ *         // not a well-formatted GraphQL over HTTP request,
+ *         // parser responded and there's nothing else to do
+ *         return;
+ *       }
+ *
+ *       // well-formatted GraphQL over HTTP request,
+ *       // with valid parameters
+ *       if (!abortedRef.current) {
+ *         res.writeStatus('200 OK');
+ *         res.end(JSON.stringify(maybeParams, null, '  '));
+ *       }
+ *     } catch (err) {
+ *       // well-formatted GraphQL over HTTP request,
+ *       // but with invalid parameters
+ *       if (!abortedRef.current) {
+ *         res.writeStatus('400 Bad Request');
+ *         res.end(err.message);
+ *       }
+ *     }
+ *   })
+ *   .listen(4000, () => {
+ *     console.log('Listening to port 4000');
+ *   });
+ * ```
+ *
+ * @category Server/uWebSockets
+ */
+export async function parseRequestParams(
+  req: HttpRequest,
+  res: HttpResponse,
+  abortedRef: { current: boolean },
+): Promise<RequestParams | null> {
+  const rawReq = toRequest(req, res, abortedRef);
+  const paramsOrRes = await rawParseRequestParams(rawReq);
+  if (!('query' in paramsOrRes)) {
+    if (!abortedRef.current) {
+      const [body, init] = paramsOrRes;
+      res.cork(() => {
+        res.writeStatus(`${init.status} ${init.statusText}`);
+        for (const [key, val] of Object.entries(init.headers || {})) {
+          res.writeHeader(key, val);
+        }
+        if (body) {
+          res.end(body);
+        } else {
+          res.endWithoutBody();
+        }
+      });
+    }
+    return null;
+  }
+  return paramsOrRes;
 }
 
 /**
@@ -46,36 +127,11 @@ export function createHandler<Context extends OperationContext = undefined>(
 ): (res: HttpResponse, req: HttpRequest) => Promise<void> {
   const handle = createRawHandler(options);
   return async function requestListener(res, req) {
-    let aborted = false;
-    res.onAborted(() => (aborted = true));
+    const abortedRef = { current: false };
+    res.onAborted(() => (abortedRef.current = true));
     try {
-      let url = req.getUrl();
-      const query = req.getQuery();
-      if (query) {
-        url += '?' + query;
-      }
-      const [body, init] = await handle({
-        url,
-        method: req.getMethod().toUpperCase(),
-        headers: { get: (key) => req.getHeader(key) },
-        body: () =>
-          new Promise<string>((resolve) => {
-            let body = '';
-            if (aborted) {
-              resolve(body);
-            } else {
-              res.onData((chunk, isLast) => {
-                body += Buffer.from(chunk, 0, chunk.byteLength).toString();
-                if (isLast) {
-                  resolve(body);
-                }
-              });
-            }
-          }),
-        raw: req,
-        context: { res },
-      });
-      if (!aborted) {
+      const [body, init] = await handle(toRequest(req, res, abortedRef));
+      if (!abortedRef.current) {
         res.cork(() => {
           res.writeStatus(`${init.status} ${init.statusText}`);
           for (const [key, val] of Object.entries(init.headers || {})) {
@@ -96,11 +152,44 @@ export function createHandler<Context extends OperationContext = undefined>(
           'Please check your implementation.',
         err,
       );
-      if (!aborted) {
+      if (!abortedRef.current) {
         res.cork(() => {
           res.writeStatus('500 Internal Server Error').endWithoutBody();
         });
       }
     }
+  };
+}
+
+function toRequest(
+  req: HttpRequest,
+  res: HttpResponse,
+  abortedRef: { current: boolean },
+): RawRequest<HttpRequest, RequestContext> {
+  let url = req.getUrl();
+  const query = req.getQuery();
+  if (query) {
+    url += '?' + query;
+  }
+  return {
+    url,
+    method: req.getMethod().toUpperCase(),
+    headers: { get: (key) => req.getHeader(key) },
+    body: () =>
+      new Promise<string>((resolve) => {
+        let body = '';
+        if (abortedRef.current) {
+          resolve(body);
+        } else {
+          res.onData((chunk, isLast) => {
+            body += Buffer.from(chunk, 0, chunk.byteLength).toString();
+            if (isLast) {
+              resolve(body);
+            }
+          });
+        }
+      }),
+    raw: req,
+    context: { res },
   };
 }
