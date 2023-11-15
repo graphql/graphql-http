@@ -791,8 +791,8 @@ function makeResponse(
   const errors = isGraphQLError(resultOrErrors)
     ? [resultOrErrors]
     : areGraphQLErrors(resultOrErrors)
-    ? resultOrErrors
-    : null;
+      ? resultOrErrors
+      : null;
   if (errors) {
     return [
       JSON.stringify({ errors: errors.map(formatError) }, jsonErrorReplacer),
