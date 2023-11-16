@@ -158,6 +158,13 @@ jobs:
         uses: denoland/setup-deno@v1
         with:
           deno-version: 1.x
+      - name: Set up deno cache
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.deno
+            ~/.cache/deno
+          key: ${{ runner.os }}-deno-${{ hashFiles('**/deps.ts') }}
       - name: Install
         run: yarn install --immutable
       - name: Download k6
