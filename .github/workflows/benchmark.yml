@@ -164,7 +164,7 @@ jobs:
           path: |
             ~/.deno
             ~/.cache/deno
-          key: ${{ runner.os }}-deno-${{ hashFiles('**/deps.ts') }}
+          key: ${{ runner.os }}-deno-${{ hashFiles('**/yarn.lock') }}
       - name: Install
         run: yarn install --immutable
       - name: Download k6
