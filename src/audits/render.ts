@@ -106,7 +106,7 @@ async function printAuditFail(result: AuditFail) {
     // some headers change on each run, dont report it
     if (key === 'date') {
       headers[key] = '<timestamp>';
-    } else if (['cf-ray', 'server-timing'].includes(key)) {
+    } else if (['cf-ray', 'server-timing', 'set-cookie'].includes(key)) {
       headers[key] = '<omitted>';
     } else {
       headers[key] = val;
@@ -117,8 +117,12 @@ async function printAuditFail(result: AuditFail) {
   try {
     text = await res.text();
     json = JSON.parse(text);
+    // is json, there shouldnt be nothing to sanitize (hopefully)
   } catch {
-    // noop
+    // is not json, avoid rendering html (rest is allowed)
+    if (res.headers.get('content-type')?.includes('text/html')) {
+      text = '<html omitted>';
+    }
   }
   const stringified = JSON.stringify(
     {
