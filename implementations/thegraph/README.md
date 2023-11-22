@@ -3,99 +3,52 @@
 <h1>GraphQL over HTTP audit report</h1>
 
 <ul>
-<li><b>78</b> audits in total</li>
-<li><span style="font-family: monospace">✅</span> <b>7</b> pass</li>
-<li><span style="font-family: monospace">⚠️</span> <b>57</b> warnings (optional)</li>
-<li><span style="font-family: monospace">❌</span> <b>14</b> errors (required)</li>
+<li><b>60</b> audits in total</li>
+<li><span style="font-family: monospace">✅</span> <b>32</b> pass</li>
+<li><span style="font-family: monospace">💡</span> <b>2</b> notices (suggestions)</li>
+<li><span style="font-family: monospace">⚠️</span> <b>13</b> warnings (optional)</li>
+<li><span style="font-family: monospace">❌</span> <b>13</b> errors (required)</li>
 </ul>
 
 <h2>Passing</h2>
 <ol>
 <li><code>5A70</code> MAY accept application/x-www-form-urlencoded formatted GET requests</li>
-<li><code>9ABE</code> SHOULD respond with 4xx status code if content-type is not supplied on POST requests</li>
+<li><code>9ABE</code> MAY respond with 4xx status code if content-type is not supplied on POST requests</li>
+<li><code>A5BF</code> MAY use 400 status code when request body is missing on POST</li>
+<li><code>423L</code> MAY use 400 status code on missing {query} parameter</li>
+<li><code>LKJ0</code> MAY use 400 status code on object {query} parameter</li>
+<li><code>LKJ1</code> MAY use 400 status code on number {query} parameter</li>
+<li><code>LKJ2</code> MAY use 400 status code on boolean {query} parameter</li>
+<li><code>LKJ3</code> MAY use 400 status code on array {query} parameter</li>
+<li><code>6C00</code> MAY use 400 status code on object {operationName} parameter</li>
+<li><code>6C01</code> MAY use 400 status code on number {operationName} parameter</li>
+<li><code>6C02</code> MAY use 400 status code on boolean {operationName} parameter</li>
+<li><code>6C03</code> MAY use 400 status code on array {operationName} parameter</li>
+<li><code>4760</code> MAY use 400 status code on string {variables} parameter</li>
+<li><code>4761</code> MAY use 400 status code on number {variables} parameter</li>
+<li><code>4762</code> MAY use 400 status code on boolean {variables} parameter</li>
+<li><code>4763</code> MAY use 400 status code on array {variables} parameter</li>
 <li><code>D6D5</code> MAY allow URL-encoded JSON string {variables} parameter in GETs when accepting application/graphql-response+json</li>
-<li><code>60AA</code> SHOULD use 4xx or 5xx status codes on JSON parsing failure when accepting application/graphql-response+json</li>
-<li><code>3E36</code> SHOULD use 4xx or 5xx status codes if parameters are invalid when accepting application/graphql-response+json</li>
+<li><code>58B0</code> MAY use 400 status code on string {extensions} parameter</li>
+<li><code>58B1</code> MAY use 400 status code on number {extensions} parameter</li>
+<li><code>58B2</code> MAY use 400 status code on boolean {extensions} parameter</li>
+<li><code>58B3</code> MAY use 400 status code on array {extensions} parameter</li>
+<li><code>B6DC</code> MAY use 4xx or 5xx status codes on JSON parsing failure</li>
+<li><code>BCF8</code> MAY use 400 status code on JSON parsing failure</li>
+<li><code>8764</code> MAY use 4xx or 5xx status codes if parameters are invalid</li>
+<li><code>3E3A</code> MAY use 400 status code if parameters are invalid</li>
 <li><code>865D</code> SHOULD use 4xx or 5xx status codes on document parsing failure when accepting application/graphql-response+json</li>
+<li><code>556A</code> SHOULD use 400 status code on document parsing failure when accepting application/graphql-response+json</li>
+<li><code>D586</code> SHOULD not contain the data entry on document parsing failure when accepting application/graphql-response+json</li>
 <li><code>51FE</code> SHOULD use 4xx or 5xx status codes on document validation failure when accepting application/graphql-response+json</li>
+<li><code>74FF</code> SHOULD use 400 status code on document validation failure when accepting application/graphql-response+json</li>
+<li><code>5E5B</code> SHOULD not contain the data entry on document validation failure when accepting application/graphql-response+json</li>
+<li><code>86EE</code> SHOULD use a status code of 400 on variable coercion failure when accepting application/graphql-response+json</li>
 </ol>
 
-<h2>Warnings</h2>
-The server <i>SHOULD</i> support these, but is not required.
+<h2>Notices</h2>
+The server <i>MAY</i> support these, but are truly optional. These are suggestions following recommended conventions.
 <ol>
-<li><code>22EB</code> SHOULD accept application/graphql-response+json and match the content-type
-<details>
-<summary>Response status code is not 200</summary>
-<pre><code class="lang-json">{
-  "statusText": "Not Found",
-  "status": 404,
-  "headers": {
-    "vary": "Accept-Encoding",
-    "strict-transport-security": "max-age=15724800; includeSubDomains",
-    "server-timing": "<omitted>",
-    "server": "cloudflare",
-    "date": "<timestamp>",
-    "content-type": "text/plain",
-    "content-length": "9",
-    "connection": "close",
-    "cf-ray": "<omitted>",
-    "cf-cache-status": "DYNAMIC",
-    "access-control-allow-origin": "*"
-  },
-  "body": "Not found"
-}
-</code></pre>
-</details>
-</li>
-<li><code>47DE</code> SHOULD accept */* and use application/json for the content-type
-<details>
-<summary>Response status code is not 200</summary>
-<pre><code class="lang-json">{
-  "statusText": "Not Found",
-  "status": 404,
-  "headers": {
-    "vary": "Accept-Encoding",
-    "strict-transport-security": "max-age=15724800; includeSubDomains",
-    "server-timing": "<omitted>",
-    "server": "cloudflare",
-    "date": "<timestamp>",
-    "content-type": "text/plain",
-    "content-length": "9",
-    "connection": "close",
-    "cf-ray": "<omitted>",
-    "cf-cache-status": "DYNAMIC",
-    "access-control-allow-origin": "*"
-  },
-  "body": "Not found"
-}
-</code></pre>
-</details>
-</li>
-<li><code>80D8</code> SHOULD assume application/json content-type when accept is missing
-<details>
-<summary>Response header content-type does not contain application/json</summary>
-<pre><code class="lang-json">{
-  "statusText": "OK",
-  "status": 200,
-  "headers": {
-    "vary": "Accept-Encoding",
-    "transfer-encoding": "chunked",
-    "strict-transport-security": "max-age=15724800; includeSubDomains",
-    "server-timing": "<omitted>",
-    "server": "cloudflare",
-    "date": "<timestamp>",
-    "content-type": "text/html",
-    "content-encoding": "br",
-    "connection": "close",
-    "cf-ray": "<omitted>",
-    "cf-cache-status": "DYNAMIC",
-    "access-control-allow-origin": "*"
-  },
-  "body": "<body is too long>"
-}
-</code></pre>
-</details>
-</li>
 <li><code>9C48</code> MAY NOT allow executing mutations on GET requests
 <details>
 <summary>Response status is not between 400 and 499</summary>
@@ -106,785 +59,17 @@ The server <i>SHOULD</i> support these, but is not required.
     "vary": "Accept-Encoding",
     "transfer-encoding": "chunked",
     "strict-transport-security": "max-age=15724800; includeSubDomains",
-    "server-timing": "<omitted>",
+    "set-cookie": "<omitted>",
     "server": "cloudflare",
     "date": "<timestamp>",
-    "content-type": "text/html",
+    "content-type": "text/html; charset=utf-8",
     "content-encoding": "br",
     "connection": "close",
     "cf-ray": "<omitted>",
     "cf-cache-status": "DYNAMIC",
     "access-control-allow-origin": "*"
   },
-  "body": "<body is too long>"
-}
-</code></pre>
-</details>
-</li>
-<li><code>6610</code> SHOULD use 400 status code on missing {query} parameter when accepting application/graphql-response+json
-<details>
-<summary>Response status code is not 400</summary>
-<pre><code class="lang-json">{
-  "statusText": "Not Found",
-  "status": 404,
-  "headers": {
-    "vary": "Accept-Encoding",
-    "strict-transport-security": "max-age=15724800; includeSubDomains",
-    "server-timing": "<omitted>",
-    "server": "cloudflare",
-    "date": "<timestamp>",
-    "content-type": "text/plain",
-    "content-length": "9",
-    "connection": "close",
-    "cf-ray": "<omitted>",
-    "cf-cache-status": "DYNAMIC",
-    "access-control-allow-origin": "*"
-  },
-  "body": "Not found"
-}
-</code></pre>
-</details>
-</li>
-<li><code>3715</code> SHOULD use 200 status code with errors field on missing {query} parameter when accepting application/json
-<details>
-<summary>Response status code is not 200</summary>
-<pre><code class="lang-json">{
-  "statusText": "Not Found",
-  "status": 404,
-  "headers": {
-    "vary": "Accept-Encoding",
-    "strict-transport-security": "max-age=15724800; includeSubDomains",
-    "server-timing": "<omitted>",
-    "server": "cloudflare",
-    "date": "<timestamp>",
-    "content-type": "text/plain",
-    "content-length": "9",
-    "connection": "close",
-    "cf-ray": "<omitted>",
-    "cf-cache-status": "DYNAMIC",
-    "access-control-allow-origin": "*"
-  },
-  "body": "Not found"
-}
-</code></pre>
-</details>
-</li>
-<li><code>4F50</code> SHOULD use 400 status code on object {query} parameter when accepting application/graphql-response+json
-<details>
-<summary>Response status code is not 400</summary>
-<pre><code class="lang-json">{
-  "statusText": "Not Found",
-  "status": 404,
-  "headers": {
-    "vary": "Accept-Encoding",
-    "strict-transport-security": "max-age=15724800; includeSubDomains",
-    "server-timing": "<omitted>",
-    "server": "cloudflare",
-    "date": "<timestamp>",
-    "content-type": "text/plain",
-    "content-length": "9",
-    "connection": "close",
-    "cf-ray": "<omitted>",
-    "cf-cache-status": "DYNAMIC",
-    "access-control-allow-origin": "*"
-  },
-  "body": "Not found"
-}
-</code></pre>
-</details>
-</li>
-<li><code>4F51</code> SHOULD use 400 status code on number {query} parameter when accepting application/graphql-response+json
-<details>
-<summary>Response status code is not 400</summary>
-<pre><code class="lang-json">{
-  "statusText": "Not Found",
-  "status": 404,
-  "headers": {
-    "vary": "Accept-Encoding",
-    "strict-transport-security": "max-age=15724800; includeSubDomains",
-    "server-timing": "<omitted>",
-    "server": "cloudflare",
-    "date": "<timestamp>",
-    "content-type": "text/plain",
-    "content-length": "9",
-    "connection": "close",
-    "cf-ray": "<omitted>",
-    "cf-cache-status": "DYNAMIC",
-    "access-control-allow-origin": "*"
-  },
-  "body": "Not found"
-}
-</code></pre>
-</details>
-</li>
-<li><code>4F52</code> SHOULD use 400 status code on boolean {query} parameter when accepting application/graphql-response+json
-<details>
-<summary>Response status code is not 400</summary>
-<pre><code class="lang-json">{
-  "statusText": "Not Found",
-  "status": 404,
-  "headers": {
-    "vary": "Accept-Encoding",
-    "strict-transport-security": "max-age=15724800; includeSubDomains",
-    "server-timing": "<omitted>",
-    "server": "cloudflare",
-    "date": "<timestamp>",
-    "content-type": "text/plain",
-    "content-length": "9",
-    "connection": "close",
-    "cf-ray": "<omitted>",
-    "cf-cache-status": "DYNAMIC",
-    "access-control-allow-origin": "*"
-  },
-  "body": "Not found"
-}
-</code></pre>
-</details>
-</li>
-<li><code>4F53</code> SHOULD use 400 status code on array {query} parameter when accepting application/graphql-response+json
-<details>
-<summary>Response status code is not 400</summary>
-<pre><code class="lang-json">{
-  "statusText": "Not Found",
-  "status": 404,
-  "headers": {
-    "vary": "Accept-Encoding",
-    "strict-transport-security": "max-age=15724800; includeSubDomains",
-    "server-timing": "<omitted>",
-    "server": "cloudflare",
-    "date": "<timestamp>",
-    "content-type": "text/plain",
-    "content-length": "9",
-    "connection": "close",
-    "cf-ray": "<omitted>",
-    "cf-cache-status": "DYNAMIC",
-    "access-control-allow-origin": "*"
-  },
-  "body": "Not found"
-}
-</code></pre>
-</details>
-</li>
-<li><code>9FE0</code> SHOULD use 200 status code with errors field on object {query} parameter when accepting application/json
-<details>
-<summary>Response status code is not 200</summary>
-<pre><code class="lang-json">{
-  "statusText": "Not Found",
-  "status": 404,
-  "headers": {
-    "vary": "Accept-Encoding",
-    "strict-transport-security": "max-age=15724800; includeSubDomains",
-    "server-timing": "<omitted>",
-    "server": "cloudflare",
-    "date": "<timestamp>",
-    "content-type": "text/plain",
-    "content-length": "9",
-    "connection": "close",
-    "cf-ray": "<omitted>",
-    "cf-cache-status": "DYNAMIC",
-    "access-control-allow-origin": "*"
-  },
-  "body": "Not found"
-}
-</code></pre>
-</details>
-</li>
-<li><code>9FE1</code> SHOULD use 200 status code with errors field on number {query} parameter when accepting application/json
-<details>
-<summary>Response status code is not 200</summary>
-<pre><code class="lang-json">{
-  "statusText": "Not Found",
-  "status": 404,
-  "headers": {
-    "vary": "Accept-Encoding",
-    "strict-transport-security": "max-age=15724800; includeSubDomains",
-    "server-timing": "<omitted>",
-    "server": "cloudflare",
-    "date": "<timestamp>",
-    "content-type": "text/plain",
-    "content-length": "9",
-    "connection": "close",
-    "cf-ray": "<omitted>",
-    "cf-cache-status": "DYNAMIC",
-    "access-control-allow-origin": "*"
-  },
-  "body": "Not found"
-}
-</code></pre>
-</details>
-</li>
-<li><code>9FE2</code> SHOULD use 200 status code with errors field on boolean {query} parameter when accepting application/json
-<details>
-<summary>Response status code is not 200</summary>
-<pre><code class="lang-json">{
-  "statusText": "Not Found",
-  "status": 404,
-  "headers": {
-    "vary": "Accept-Encoding",
-    "strict-transport-security": "max-age=15724800; includeSubDomains",
-    "server-timing": "<omitted>",
-    "server": "cloudflare",
-    "date": "<timestamp>",
-    "content-type": "text/plain",
-    "content-length": "9",
-    "connection": "close",
-    "cf-ray": "<omitted>",
-    "cf-cache-status": "DYNAMIC",
-    "access-control-allow-origin": "*"
-  },
-  "body": "Not found"
-}
-</code></pre>
-</details>
-</li>
-<li><code>9FE3</code> SHOULD use 200 status code with errors field on array {query} parameter when accepting application/json
-<details>
-<summary>Response status code is not 200</summary>
-<pre><code class="lang-json">{
-  "statusText": "Not Found",
-  "status": 404,
-  "headers": {
-    "vary": "Accept-Encoding",
-    "strict-transport-security": "max-age=15724800; includeSubDomains",
-    "server-timing": "<omitted>",
-    "server": "cloudflare",
-    "date": "<timestamp>",
-    "content-type": "text/plain",
-    "content-length": "9",
-    "connection": "close",
-    "cf-ray": "<omitted>",
-    "cf-cache-status": "DYNAMIC",
-    "access-control-allow-origin": "*"
-  },
-  "body": "Not found"
-}
-</code></pre>
-</details>
-</li>
-<li><code>34A2</code> SHOULD allow string {query} parameter when accepting application/graphql-response+json
-<details>
-<summary>Response status code is not 200</summary>
-<pre><code class="lang-json">{
-  "statusText": "Not Found",
-  "status": 404,
-  "headers": {
-    "vary": "Accept-Encoding",
-    "strict-transport-security": "max-age=15724800; includeSubDomains",
-    "server-timing": "<omitted>",
-    "server": "cloudflare",
-    "date": "<timestamp>",
-    "content-type": "text/plain",
-    "content-length": "9",
-    "connection": "close",
-    "cf-ray": "<omitted>",
-    "cf-cache-status": "DYNAMIC",
-    "access-control-allow-origin": "*"
-  },
-  "body": "Not found"
-}
-</code></pre>
-</details>
-</li>
-<li><code>E3E0</code> SHOULD use 400 status code on object {operationName} parameter when accepting application/graphql-response+json
-<details>
-<summary>Response status code is not 400</summary>
-<pre><code class="lang-json">{
-  "statusText": "Not Found",
-  "status": 404,
-  "headers": {
-    "vary": "Accept-Encoding",
-    "strict-transport-security": "max-age=15724800; includeSubDomains",
-    "server-timing": "<omitted>",
-    "server": "cloudflare",
-    "date": "<timestamp>",
-    "content-type": "text/plain",
-    "content-length": "9",
-    "connection": "close",
-    "cf-ray": "<omitted>",
-    "cf-cache-status": "DYNAMIC",
-    "access-control-allow-origin": "*"
-  },
-  "body": "Not found"
-}
-</code></pre>
-</details>
-</li>
-<li><code>E3E1</code> SHOULD use 400 status code on number {operationName} parameter when accepting application/graphql-response+json
-<details>
-<summary>Response status code is not 400</summary>
-<pre><code class="lang-json">{
-  "statusText": "Not Found",
-  "status": 404,
-  "headers": {
-    "vary": "Accept-Encoding",
-    "strict-transport-security": "max-age=15724800; includeSubDomains",
-    "server-timing": "<omitted>",
-    "server": "cloudflare",
-    "date": "<timestamp>",
-    "content-type": "text/plain",
-    "content-length": "9",
-    "connection": "close",
-    "cf-ray": "<omitted>",
-    "cf-cache-status": "DYNAMIC",
-    "access-control-allow-origin": "*"
-  },
-  "body": "Not found"
-}
-</code></pre>
-</details>
-</li>
-<li><code>E3E2</code> SHOULD use 400 status code on boolean {operationName} parameter when accepting application/graphql-response+json
-<details>
-<summary>Response status code is not 400</summary>
-<pre><code class="lang-json">{
-  "statusText": "Not Found",
-  "status": 404,
-  "headers": {
-    "vary": "Accept-Encoding",
-    "strict-transport-security": "max-age=15724800; includeSubDomains",
-    "server-timing": "<omitted>",
-    "server": "cloudflare",
-    "date": "<timestamp>",
-    "content-type": "text/plain",
-    "content-length": "9",
-    "connection": "close",
-    "cf-ray": "<omitted>",
-    "cf-cache-status": "DYNAMIC",
-    "access-control-allow-origin": "*"
-  },
-  "body": "Not found"
-}
-</code></pre>
-</details>
-</li>
-<li><code>E3E3</code> SHOULD use 400 status code on array {operationName} parameter when accepting application/graphql-response+json
-<details>
-<summary>Response status code is not 400</summary>
-<pre><code class="lang-json">{
-  "statusText": "Not Found",
-  "status": 404,
-  "headers": {
-    "vary": "Accept-Encoding",
-    "strict-transport-security": "max-age=15724800; includeSubDomains",
-    "server-timing": "<omitted>",
-    "server": "cloudflare",
-    "date": "<timestamp>",
-    "content-type": "text/plain",
-    "content-length": "9",
-    "connection": "close",
-    "cf-ray": "<omitted>",
-    "cf-cache-status": "DYNAMIC",
-    "access-control-allow-origin": "*"
-  },
-  "body": "Not found"
-}
-</code></pre>
-</details>
-</li>
-<li><code>FB90</code> SHOULD use 200 status code with errors field on object {operationName} parameter when accepting application/json
-<details>
-<summary>Response status code is not 200</summary>
-<pre><code class="lang-json">{
-  "statusText": "Not Found",
-  "status": 404,
-  "headers": {
-    "vary": "Accept-Encoding",
-    "strict-transport-security": "max-age=15724800; includeSubDomains",
-    "server-timing": "<omitted>",
-    "server": "cloudflare",
-    "date": "<timestamp>",
-    "content-type": "text/plain",
-    "content-length": "9",
-    "connection": "close",
-    "cf-ray": "<omitted>",
-    "cf-cache-status": "DYNAMIC",
-    "access-control-allow-origin": "*"
-  },
-  "body": "Not found"
-}
-</code></pre>
-</details>
-</li>
-<li><code>FB91</code> SHOULD use 200 status code with errors field on number {operationName} parameter when accepting application/json
-<details>
-<summary>Response status code is not 200</summary>
-<pre><code class="lang-json">{
-  "statusText": "Not Found",
-  "status": 404,
-  "headers": {
-    "vary": "Accept-Encoding",
-    "strict-transport-security": "max-age=15724800; includeSubDomains",
-    "server-timing": "<omitted>",
-    "server": "cloudflare",
-    "date": "<timestamp>",
-    "content-type": "text/plain",
-    "content-length": "9",
-    "connection": "close",
-    "cf-ray": "<omitted>",
-    "cf-cache-status": "DYNAMIC",
-    "access-control-allow-origin": "*"
-  },
-  "body": "Not found"
-}
-</code></pre>
-</details>
-</li>
-<li><code>FB92</code> SHOULD use 200 status code with errors field on boolean {operationName} parameter when accepting application/json
-<details>
-<summary>Response status code is not 200</summary>
-<pre><code class="lang-json">{
-  "statusText": "Not Found",
-  "status": 404,
-  "headers": {
-    "vary": "Accept-Encoding",
-    "strict-transport-security": "max-age=15724800; includeSubDomains",
-    "server-timing": "<omitted>",
-    "server": "cloudflare",
-    "date": "<timestamp>",
-    "content-type": "text/plain",
-    "content-length": "9",
-    "connection": "close",
-    "cf-ray": "<omitted>",
-    "cf-cache-status": "DYNAMIC",
-    "access-control-allow-origin": "*"
-  },
-  "body": "Not found"
-}
-</code></pre>
-</details>
-</li>
-<li><code>FB93</code> SHOULD use 200 status code with errors field on array {operationName} parameter when accepting application/json
-<details>
-<summary>Response status code is not 200</summary>
-<pre><code class="lang-json">{
-  "statusText": "Not Found",
-  "status": 404,
-  "headers": {
-    "vary": "Accept-Encoding",
-    "strict-transport-security": "max-age=15724800; includeSubDomains",
-    "server-timing": "<omitted>",
-    "server": "cloudflare",
-    "date": "<timestamp>",
-    "content-type": "text/plain",
-    "content-length": "9",
-    "connection": "close",
-    "cf-ray": "<omitted>",
-    "cf-cache-status": "DYNAMIC",
-    "access-control-allow-origin": "*"
-  },
-  "body": "Not found"
-}
-</code></pre>
-</details>
-</li>
-<li><code>8161</code> SHOULD allow string {operationName} parameter when accepting application/graphql-response+json
-<details>
-<summary>Response status code is not 200</summary>
-<pre><code class="lang-json">{
-  "statusText": "Not Found",
-  "status": 404,
-  "headers": {
-    "vary": "Accept-Encoding",
-    "strict-transport-security": "max-age=15724800; includeSubDomains",
-    "server-timing": "<omitted>",
-    "server": "cloudflare",
-    "date": "<timestamp>",
-    "content-type": "text/plain",
-    "content-length": "9",
-    "connection": "close",
-    "cf-ray": "<omitted>",
-    "cf-cache-status": "DYNAMIC",
-    "access-control-allow-origin": "*"
-  },
-  "body": "Not found"
-}
-</code></pre>
-</details>
-</li>
-<li><code>94B0</code> SHOULD allow null {variables} parameter when accepting application/graphql-response+json
-<details>
-<summary>Response status code is not 200</summary>
-<pre><code class="lang-json">{
-  "statusText": "Not Found",
-  "status": 404,
-  "headers": {
-    "vary": "Accept-Encoding",
-    "strict-transport-security": "max-age=15724800; includeSubDomains",
-    "server-timing": "<omitted>",
-    "server": "cloudflare",
-    "date": "<timestamp>",
-    "content-type": "text/plain",
-    "content-length": "9",
-    "connection": "close",
-    "cf-ray": "<omitted>",
-    "cf-cache-status": "DYNAMIC",
-    "access-control-allow-origin": "*"
-  },
-  "body": "Not found"
-}
-</code></pre>
-</details>
-</li>
-<li><code>94B1</code> SHOULD allow null {operationName} parameter when accepting application/graphql-response+json
-<details>
-<summary>Response status code is not 200</summary>
-<pre><code class="lang-json">{
-  "statusText": "Not Found",
-  "status": 404,
-  "headers": {
-    "vary": "Accept-Encoding",
-    "strict-transport-security": "max-age=15724800; includeSubDomains",
-    "server-timing": "<omitted>",
-    "server": "cloudflare",
-    "date": "<timestamp>",
-    "content-type": "text/plain",
-    "content-length": "9",
-    "connection": "close",
-    "cf-ray": "<omitted>",
-    "cf-cache-status": "DYNAMIC",
-    "access-control-allow-origin": "*"
-  },
-  "body": "Not found"
-}
-</code></pre>
-</details>
-</li>
-<li><code>94B2</code> SHOULD allow null {extensions} parameter when accepting application/graphql-response+json
-<details>
-<summary>Response status code is not 200</summary>
-<pre><code class="lang-json">{
-  "statusText": "Not Found",
-  "status": 404,
-  "headers": {
-    "vary": "Accept-Encoding",
-    "strict-transport-security": "max-age=15724800; includeSubDomains",
-    "server-timing": "<omitted>",
-    "server": "cloudflare",
-    "date": "<timestamp>",
-    "content-type": "text/plain",
-    "content-length": "9",
-    "connection": "close",
-    "cf-ray": "<omitted>",
-    "cf-cache-status": "DYNAMIC",
-    "access-control-allow-origin": "*"
-  },
-  "body": "Not found"
-}
-</code></pre>
-</details>
-</li>
-<li><code>69B0</code> SHOULD use 400 status code on string {variables} parameter when accepting application/graphql-response+json
-<details>
-<summary>Response status code is not 400</summary>
-<pre><code class="lang-json">{
-  "statusText": "Not Found",
-  "status": 404,
-  "headers": {
-    "vary": "Accept-Encoding",
-    "strict-transport-security": "max-age=15724800; includeSubDomains",
-    "server-timing": "<omitted>",
-    "server": "cloudflare",
-    "date": "<timestamp>",
-    "content-type": "text/plain",
-    "content-length": "9",
-    "connection": "close",
-    "cf-ray": "<omitted>",
-    "cf-cache-status": "DYNAMIC",
-    "access-control-allow-origin": "*"
-  },
-  "body": "Not found"
-}
-</code></pre>
-</details>
-</li>
-<li><code>69B1</code> SHOULD use 400 status code on number {variables} parameter when accepting application/graphql-response+json
-<details>
-<summary>Response status code is not 400</summary>
-<pre><code class="lang-json">{
-  "statusText": "Not Found",
-  "status": 404,
-  "headers": {
-    "vary": "Accept-Encoding",
-    "strict-transport-security": "max-age=15724800; includeSubDomains",
-    "server-timing": "<omitted>",
-    "server": "cloudflare",
-    "date": "<timestamp>",
-    "content-type": "text/plain",
-    "content-length": "9",
-    "connection": "close",
-    "cf-ray": "<omitted>",
-    "cf-cache-status": "DYNAMIC",
-    "access-control-allow-origin": "*"
-  },
-  "body": "Not found"
-}
-</code></pre>
-</details>
-</li>
-<li><code>69B2</code> SHOULD use 400 status code on boolean {variables} parameter when accepting application/graphql-response+json
-<details>
-<summary>Response status code is not 400</summary>
-<pre><code class="lang-json">{
-  "statusText": "Not Found",
-  "status": 404,
-  "headers": {
-    "vary": "Accept-Encoding",
-    "strict-transport-security": "max-age=15724800; includeSubDomains",
-    "server-timing": "<omitted>",
-    "server": "cloudflare",
-    "date": "<timestamp>",
-    "content-type": "text/plain",
-    "content-length": "9",
-    "connection": "close",
-    "cf-ray": "<omitted>",
-    "cf-cache-status": "DYNAMIC",
-    "access-control-allow-origin": "*"
-  },
-  "body": "Not found"
-}
-</code></pre>
-</details>
-</li>
-<li><code>69B3</code> SHOULD use 400 status code on array {variables} parameter when accepting application/graphql-response+json
-<details>
-<summary>Response status code is not 400</summary>
-<pre><code class="lang-json">{
-  "statusText": "Not Found",
-  "status": 404,
-  "headers": {
-    "vary": "Accept-Encoding",
-    "strict-transport-security": "max-age=15724800; includeSubDomains",
-    "server-timing": "<omitted>",
-    "server": "cloudflare",
-    "date": "<timestamp>",
-    "content-type": "text/plain",
-    "content-length": "9",
-    "connection": "close",
-    "cf-ray": "<omitted>",
-    "cf-cache-status": "DYNAMIC",
-    "access-control-allow-origin": "*"
-  },
-  "body": "Not found"
-}
-</code></pre>
-</details>
-</li>
-<li><code>F050</code> SHOULD use 200 status code with errors field on string {variables} parameter when accepting application/json
-<details>
-<summary>Response status code is not 200</summary>
-<pre><code class="lang-json">{
-  "statusText": "Not Found",
-  "status": 404,
-  "headers": {
-    "vary": "Accept-Encoding",
-    "strict-transport-security": "max-age=15724800; includeSubDomains",
-    "server-timing": "<omitted>",
-    "server": "cloudflare",
-    "date": "<timestamp>",
-    "content-type": "text/plain",
-    "content-length": "9",
-    "connection": "close",
-    "cf-ray": "<omitted>",
-    "cf-cache-status": "DYNAMIC",
-    "access-control-allow-origin": "*"
-  },
-  "body": "Not found"
-}
-</code></pre>
-</details>
-</li>
-<li><code>F051</code> SHOULD use 200 status code with errors field on number {variables} parameter when accepting application/json
-<details>
-<summary>Response status code is not 200</summary>
-<pre><code class="lang-json">{
-  "statusText": "Not Found",
-  "status": 404,
-  "headers": {
-    "vary": "Accept-Encoding",
-    "strict-transport-security": "max-age=15724800; includeSubDomains",
-    "server-timing": "<omitted>",
-    "server": "cloudflare",
-    "date": "<timestamp>",
-    "content-type": "text/plain",
-    "content-length": "9",
-    "connection": "close",
-    "cf-ray": "<omitted>",
-    "cf-cache-status": "DYNAMIC",
-    "access-control-allow-origin": "*"
-  },
-  "body": "Not found"
-}
-</code></pre>
-</details>
-</li>
-<li><code>F052</code> SHOULD use 200 status code with errors field on boolean {variables} parameter when accepting application/json
-<details>
-<summary>Response status code is not 200</summary>
-<pre><code class="lang-json">{
-  "statusText": "Not Found",
-  "status": 404,
-  "headers": {
-    "vary": "Accept-Encoding",
-    "strict-transport-security": "max-age=15724800; includeSubDomains",
-    "server-timing": "<omitted>",
-    "server": "cloudflare",
-    "date": "<timestamp>",
-    "content-type": "text/plain",
-    "content-length": "9",
-    "connection": "close",
-    "cf-ray": "<omitted>",
-    "cf-cache-status": "DYNAMIC",
-    "access-control-allow-origin": "*"
-  },
-  "body": "Not found"
-}
-</code></pre>
-</details>
-</li>
-<li><code>F053</code> SHOULD use 200 status code with errors field on array {variables} parameter when accepting application/json
-<details>
-<summary>Response status code is not 200</summary>
-<pre><code class="lang-json">{
-  "statusText": "Not Found",
-  "status": 404,
-  "headers": {
-    "vary": "Accept-Encoding",
-    "strict-transport-security": "max-age=15724800; includeSubDomains",
-    "server-timing": "<omitted>",
-    "server": "cloudflare",
-    "date": "<timestamp>",
-    "content-type": "text/plain",
-    "content-length": "9",
-    "connection": "close",
-    "cf-ray": "<omitted>",
-    "cf-cache-status": "DYNAMIC",
-    "access-control-allow-origin": "*"
-  },
-  "body": "Not found"
-}
-</code></pre>
-</details>
-</li>
-<li><code>2EA1</code> SHOULD allow map {variables} parameter when accepting application/graphql-response+json
-<details>
-<summary>Response status code is not 200</summary>
-<pre><code class="lang-json">{
-  "statusText": "Not Found",
-  "status": 404,
-  "headers": {
-    "vary": "Accept-Encoding",
-    "strict-transport-security": "max-age=15724800; includeSubDomains",
-    "server-timing": "<omitted>",
-    "server": "cloudflare",
-    "date": "<timestamp>",
-    "content-type": "text/plain",
-    "content-length": "9",
-    "connection": "close",
-    "cf-ray": "<omitted>",
-    "cf-cache-status": "DYNAMIC",
-    "access-control-allow-origin": "*"
-  },
-  "body": "Not found"
+  "body": "<html omitted>"
 }
 </code></pre>
 </details>
@@ -899,209 +84,256 @@ The server <i>SHOULD</i> support these, but is not required.
     "vary": "Accept-Encoding",
     "transfer-encoding": "chunked",
     "strict-transport-security": "max-age=15724800; includeSubDomains",
-    "server-timing": "<omitted>",
+    "set-cookie": "<omitted>",
     "server": "cloudflare",
     "date": "<timestamp>",
-    "content-type": "text/html",
+    "content-type": "text/html; charset=utf-8",
     "content-encoding": "br",
     "connection": "close",
     "cf-ray": "<omitted>",
     "cf-cache-status": "DYNAMIC",
     "access-control-allow-origin": "*"
   },
-  "body": null
+  "body": "<html omitted>"
 }
 </code></pre>
 </details>
 </li>
-<li><code>9040</code> SHOULD use 400 status code on string {extensions} parameter when accepting application/graphql-response+json
-<details>
-<summary>Response status code is not 400</summary>
-<pre><code class="lang-json">{
-  "statusText": "Not Found",
-  "status": 404,
-  "headers": {
-    "vary": "Accept-Encoding",
-    "strict-transport-security": "max-age=15724800; includeSubDomains",
-    "server-timing": "<omitted>",
-    "server": "cloudflare",
-    "date": "<timestamp>",
-    "content-type": "text/plain",
-    "content-length": "9",
-    "connection": "close",
-    "cf-ray": "<omitted>",
-    "cf-cache-status": "DYNAMIC",
-    "access-control-allow-origin": "*"
-  },
-  "body": "Not found"
-}
-</code></pre>
-</details>
-</li>
-<li><code>9041</code> SHOULD use 400 status code on number {extensions} parameter when accepting application/graphql-response+json
-<details>
-<summary>Response status code is not 400</summary>
-<pre><code class="lang-json">{
-  "statusText": "Not Found",
-  "status": 404,
-  "headers": {
-    "vary": "Accept-Encoding",
-    "strict-transport-security": "max-age=15724800; includeSubDomains",
-    "server-timing": "<omitted>",
-    "server": "cloudflare",
-    "date": "<timestamp>",
-    "content-type": "text/plain",
-    "content-length": "9",
-    "connection": "close",
-    "cf-ray": "<omitted>",
-    "cf-cache-status": "DYNAMIC",
-    "access-control-allow-origin": "*"
-  },
-  "body": "Not found"
-}
-</code></pre>
-</details>
-</li>
-<li><code>9042</code> SHOULD use 400 status code on boolean {extensions} parameter when accepting application/graphql-response+json
-<details>
-<summary>Response status code is not 400</summary>
-<pre><code class="lang-json">{
-  "statusText": "Not Found",
-  "status": 404,
-  "headers": {
-    "vary": "Accept-Encoding",
-    "strict-transport-security": "max-age=15724800; includeSubDomains",
-    "server-timing": "<omitted>",
-    "server": "cloudflare",
-    "date": "<timestamp>",
-    "content-type": "text/plain",
-    "content-length": "9",
-    "connection": "close",
-    "cf-ray": "<omitted>",
-    "cf-cache-status": "DYNAMIC",
-    "access-control-allow-origin": "*"
-  },
-  "body": "Not found"
-}
-</code></pre>
-</details>
-</li>
-<li><code>9043</code> SHOULD use 400 status code on array {extensions} parameter when accepting application/graphql-response+json
-<details>
-<summary>Response status code is not 400</summary>
-<pre><code class="lang-json">{
-  "statusText": "Not Found",
-  "status": 404,
-  "headers": {
-    "vary": "Accept-Encoding",
-    "strict-transport-security": "max-age=15724800; includeSubDomains",
-    "server-timing": "<omitted>",
-    "server": "cloudflare",
-    "date": "<timestamp>",
-    "content-type": "text/plain",
-    "content-length": "9",
-    "connection": "close",
-    "cf-ray": "<omitted>",
-    "cf-cache-status": "DYNAMIC",
-    "access-control-allow-origin": "*"
-  },
-  "body": "Not found"
-}
-</code></pre>
-</details>
-</li>
-<li><code>3680</code> SHOULD use 200 status code with errors field on string {extensions} parameter when accepting application/json
+</ol>
+
+<h2>Warnings</h2>
+The server <i>SHOULD</i> support these, but is not required.
+<ol>
+<li><code>22EB</code> SHOULD accept application/graphql-response+json and match the content-type
 <details>
 <summary>Response status code is not 200</summary>
 <pre><code class="lang-json">{
-  "statusText": "Not Found",
-  "status": 404,
+  "statusText": "Bad Request",
+  "status": 400,
   "headers": {
     "vary": "Accept-Encoding",
     "strict-transport-security": "max-age=15724800; includeSubDomains",
-    "server-timing": "<omitted>",
+    "set-cookie": "<omitted>",
     "server": "cloudflare",
     "date": "<timestamp>",
-    "content-type": "text/plain",
-    "content-length": "9",
+    "content-type": "application/json",
+    "content-length": "101",
     "connection": "close",
     "cf-ray": "<omitted>",
     "cf-cache-status": "DYNAMIC",
     "access-control-allow-origin": "*"
   },
-  "body": "Not found"
+  "body": {
+    "error": "GraphQL server error (client error): Invalid subgraph name \"sushiswap/exchange/graphql\""
+  }
 }
 </code></pre>
 </details>
 </li>
-<li><code>3681</code> SHOULD use 200 status code with errors field on number {extensions} parameter when accepting application/json
+<li><code>47DE</code> SHOULD accept */* and use application/json for the content-type
 <details>
 <summary>Response status code is not 200</summary>
 <pre><code class="lang-json">{
-  "statusText": "Not Found",
-  "status": 404,
+  "statusText": "Bad Request",
+  "status": 400,
   "headers": {
     "vary": "Accept-Encoding",
     "strict-transport-security": "max-age=15724800; includeSubDomains",
-    "server-timing": "<omitted>",
+    "set-cookie": "<omitted>",
     "server": "cloudflare",
     "date": "<timestamp>",
-    "content-type": "text/plain",
-    "content-length": "9",
+    "content-type": "application/json",
+    "content-length": "101",
     "connection": "close",
     "cf-ray": "<omitted>",
     "cf-cache-status": "DYNAMIC",
     "access-control-allow-origin": "*"
   },
-  "body": "Not found"
+  "body": {
+    "error": "GraphQL server error (client error): Invalid subgraph name \"sushiswap/exchange/graphql\""
+  }
 }
 </code></pre>
 </details>
 </li>
-<li><code>3682</code> SHOULD use 200 status code with errors field on boolean {extensions} parameter when accepting application/json
+<li><code>80D8</code> SHOULD assume application/json content-type when accept is missing
 <details>
 <summary>Response status code is not 200</summary>
 <pre><code class="lang-json">{
-  "statusText": "Not Found",
-  "status": 404,
+  "statusText": "Bad Request",
+  "status": 400,
   "headers": {
     "vary": "Accept-Encoding",
     "strict-transport-security": "max-age=15724800; includeSubDomains",
-    "server-timing": "<omitted>",
+    "set-cookie": "<omitted>",
     "server": "cloudflare",
     "date": "<timestamp>",
-    "content-type": "text/plain",
-    "content-length": "9",
+    "content-type": "application/json",
+    "content-length": "101",
     "connection": "close",
     "cf-ray": "<omitted>",
     "cf-cache-status": "DYNAMIC",
     "access-control-allow-origin": "*"
   },
-  "body": "Not found"
+  "body": {
+    "error": "GraphQL server error (client error): Invalid subgraph name \"sushiswap/exchange/graphql\""
+  }
 }
 </code></pre>
 </details>
 </li>
-<li><code>3683</code> SHOULD use 200 status code with errors field on array {extensions} parameter when accepting application/json
+<li><code>34A2</code> SHOULD allow string {query} parameter when accepting application/graphql-response+json
 <details>
 <summary>Response status code is not 200</summary>
 <pre><code class="lang-json">{
-  "statusText": "Not Found",
-  "status": 404,
+  "statusText": "Bad Request",
+  "status": 400,
   "headers": {
     "vary": "Accept-Encoding",
     "strict-transport-security": "max-age=15724800; includeSubDomains",
-    "server-timing": "<omitted>",
+    "set-cookie": "<omitted>",
     "server": "cloudflare",
     "date": "<timestamp>",
-    "content-type": "text/plain",
-    "content-length": "9",
+    "content-type": "application/json",
+    "content-length": "101",
     "connection": "close",
     "cf-ray": "<omitted>",
     "cf-cache-status": "DYNAMIC",
     "access-control-allow-origin": "*"
   },
-  "body": "Not found"
+  "body": {
+    "error": "GraphQL server error (client error): Invalid subgraph name \"sushiswap/exchange/graphql\""
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>8161</code> SHOULD allow string {operationName} parameter when accepting application/graphql-response+json
+<details>
+<summary>Response status code is not 200</summary>
+<pre><code class="lang-json">{
+  "statusText": "Bad Request",
+  "status": 400,
+  "headers": {
+    "vary": "Accept-Encoding",
+    "strict-transport-security": "max-age=15724800; includeSubDomains",
+    "set-cookie": "<omitted>",
+    "server": "cloudflare",
+    "date": "<timestamp>",
+    "content-type": "application/json",
+    "content-length": "101",
+    "connection": "close",
+    "cf-ray": "<omitted>",
+    "cf-cache-status": "DYNAMIC",
+    "access-control-allow-origin": "*"
+  },
+  "body": {
+    "error": "GraphQL server error (client error): Invalid subgraph name \"sushiswap/exchange/graphql\""
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>94B0</code> SHOULD allow null {variables} parameter when accepting application/graphql-response+json
+<details>
+<summary>Response status code is not 200</summary>
+<pre><code class="lang-json">{
+  "statusText": "Bad Request",
+  "status": 400,
+  "headers": {
+    "vary": "Accept-Encoding",
+    "strict-transport-security": "max-age=15724800; includeSubDomains",
+    "set-cookie": "<omitted>",
+    "server": "cloudflare",
+    "date": "<timestamp>",
+    "content-type": "application/json",
+    "content-length": "101",
+    "connection": "close",
+    "cf-ray": "<omitted>",
+    "cf-cache-status": "DYNAMIC",
+    "access-control-allow-origin": "*"
+  },
+  "body": {
+    "error": "GraphQL server error (client error): Invalid subgraph name \"sushiswap/exchange/graphql\""
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>94B1</code> SHOULD allow null {operationName} parameter when accepting application/graphql-response+json
+<details>
+<summary>Response status code is not 200</summary>
+<pre><code class="lang-json">{
+  "statusText": "Bad Request",
+  "status": 400,
+  "headers": {
+    "vary": "Accept-Encoding",
+    "strict-transport-security": "max-age=15724800; includeSubDomains",
+    "set-cookie": "<omitted>",
+    "server": "cloudflare",
+    "date": "<timestamp>",
+    "content-type": "application/json",
+    "content-length": "101",
+    "connection": "close",
+    "cf-ray": "<omitted>",
+    "cf-cache-status": "DYNAMIC",
+    "access-control-allow-origin": "*"
+  },
+  "body": {
+    "error": "GraphQL server error (client error): Invalid subgraph name \"sushiswap/exchange/graphql\""
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>94B2</code> SHOULD allow null {extensions} parameter when accepting application/graphql-response+json
+<details>
+<summary>Response status code is not 200</summary>
+<pre><code class="lang-json">{
+  "statusText": "Bad Request",
+  "status": 400,
+  "headers": {
+    "vary": "Accept-Encoding",
+    "strict-transport-security": "max-age=15724800; includeSubDomains",
+    "set-cookie": "<omitted>",
+    "server": "cloudflare",
+    "date": "<timestamp>",
+    "content-type": "application/json",
+    "content-length": "101",
+    "connection": "close",
+    "cf-ray": "<omitted>",
+    "cf-cache-status": "DYNAMIC",
+    "access-control-allow-origin": "*"
+  },
+  "body": {
+    "error": "GraphQL server error (client error): Invalid subgraph name \"sushiswap/exchange/graphql\""
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>2EA1</code> SHOULD allow map {variables} parameter when accepting application/graphql-response+json
+<details>
+<summary>Response status code is not 200</summary>
+<pre><code class="lang-json">{
+  "statusText": "Bad Request",
+  "status": 400,
+  "headers": {
+    "vary": "Accept-Encoding",
+    "strict-transport-security": "max-age=15724800; includeSubDomains",
+    "set-cookie": "<omitted>",
+    "server": "cloudflare",
+    "date": "<timestamp>",
+    "content-type": "application/json",
+    "content-length": "101",
+    "connection": "close",
+    "cf-ray": "<omitted>",
+    "cf-cache-status": "DYNAMIC",
+    "access-control-allow-origin": "*"
+  },
+  "body": {
+    "error": "GraphQL server error (client error): Invalid subgraph name \"sushiswap/exchange/graphql\""
+  }
 }
 </code></pre>
 </details>
@@ -1110,70 +342,24 @@ The server <i>SHOULD</i> support these, but is not required.
 <details>
 <summary>Response status code is not 200</summary>
 <pre><code class="lang-json">{
-  "statusText": "Not Found",
-  "status": 404,
+  "statusText": "Bad Request",
+  "status": 400,
   "headers": {
     "vary": "Accept-Encoding",
     "strict-transport-security": "max-age=15724800; includeSubDomains",
-    "server-timing": "<omitted>",
+    "set-cookie": "<omitted>",
     "server": "cloudflare",
     "date": "<timestamp>",
-    "content-type": "text/plain",
-    "content-length": "9",
+    "content-type": "application/json",
+    "content-length": "101",
     "connection": "close",
     "cf-ray": "<omitted>",
     "cf-cache-status": "DYNAMIC",
     "access-control-allow-origin": "*"
   },
-  "body": "Not found"
-}
-</code></pre>
-</details>
-</li>
-<li><code>D477</code> SHOULD use 200 status code on JSON parsing failure when accepting application/json
-<details>
-<summary>Response status code is not 200</summary>
-<pre><code class="lang-json">{
-  "statusText": "Not Found",
-  "status": 404,
-  "headers": {
-    "vary": "Accept-Encoding",
-    "strict-transport-security": "max-age=15724800; includeSubDomains",
-    "server-timing": "<omitted>",
-    "server": "cloudflare",
-    "date": "<timestamp>",
-    "content-type": "text/plain",
-    "content-length": "9",
-    "connection": "close",
-    "cf-ray": "<omitted>",
-    "cf-cache-status": "DYNAMIC",
-    "access-control-allow-origin": "*"
-  },
-  "body": "Not found"
-}
-</code></pre>
-</details>
-</li>
-<li><code>F5AF</code> SHOULD use 200 status code if parameters are invalid when accepting application/json
-<details>
-<summary>Response status code is not 200</summary>
-<pre><code class="lang-json">{
-  "statusText": "Not Found",
-  "status": 404,
-  "headers": {
-    "vary": "Accept-Encoding",
-    "strict-transport-security": "max-age=15724800; includeSubDomains",
-    "server-timing": "<omitted>",
-    "server": "cloudflare",
-    "date": "<timestamp>",
-    "content-type": "text/plain",
-    "content-length": "9",
-    "connection": "close",
-    "cf-ray": "<omitted>",
-    "cf-cache-status": "DYNAMIC",
-    "access-control-allow-origin": "*"
-  },
-  "body": "Not found"
+  "body": {
+    "error": "GraphQL server error (client error): Invalid subgraph name \"sushiswap/exchange/graphql\""
+  }
 }
 </code></pre>
 </details>
@@ -1182,22 +368,24 @@ The server <i>SHOULD</i> support these, but is not required.
 <details>
 <summary>Response status code is not 200</summary>
 <pre><code class="lang-json">{
-  "statusText": "Not Found",
-  "status": 404,
+  "statusText": "Bad Request",
+  "status": 400,
   "headers": {
     "vary": "Accept-Encoding",
     "strict-transport-security": "max-age=15724800; includeSubDomains",
-    "server-timing": "<omitted>",
+    "set-cookie": "<omitted>",
     "server": "cloudflare",
     "date": "<timestamp>",
-    "content-type": "text/plain",
-    "content-length": "9",
+    "content-type": "application/json",
+    "content-length": "101",
     "connection": "close",
     "cf-ray": "<omitted>",
     "cf-cache-status": "DYNAMIC",
     "access-control-allow-origin": "*"
   },
-  "body": "Not found"
+  "body": {
+    "error": "GraphQL server error (client error): Invalid subgraph name \"sushiswap/exchange/graphql\""
+  }
 }
 </code></pre>
 </details>
@@ -1206,190 +394,50 @@ The server <i>SHOULD</i> support these, but is not required.
 <details>
 <summary>Response status code is not 200</summary>
 <pre><code class="lang-json">{
-  "statusText": "Not Found",
-  "status": 404,
+  "statusText": "Bad Request",
+  "status": 400,
   "headers": {
     "vary": "Accept-Encoding",
     "strict-transport-security": "max-age=15724800; includeSubDomains",
-    "server-timing": "<omitted>",
+    "set-cookie": "<omitted>",
     "server": "cloudflare",
     "date": "<timestamp>",
-    "content-type": "text/plain",
-    "content-length": "9",
+    "content-type": "application/json",
+    "content-length": "101",
     "connection": "close",
     "cf-ray": "<omitted>",
     "cf-cache-status": "DYNAMIC",
     "access-control-allow-origin": "*"
   },
-  "body": "Not found"
+  "body": {
+    "error": "GraphQL server error (client error): Invalid subgraph name \"sushiswap/exchange/graphql\""
+  }
 }
 </code></pre>
 </details>
 </li>
-<li><code>2163</code> SHOULD use 400 status code on JSON parsing failure when accepting application/graphql-response+json
+<li><code>7B9B</code> SHOULD use a status code of 200 on variable coercion failure when accepting application/json
 <details>
-<summary>Response status code is not 400</summary>
+<summary>Response status code is not 200</summary>
 <pre><code class="lang-json">{
-  "statusText": "Not Found",
-  "status": 404,
+  "statusText": "Bad Request",
+  "status": 400,
   "headers": {
     "vary": "Accept-Encoding",
     "strict-transport-security": "max-age=15724800; includeSubDomains",
-    "server-timing": "<omitted>",
+    "set-cookie": "<omitted>",
     "server": "cloudflare",
     "date": "<timestamp>",
-    "content-type": "text/plain",
-    "content-length": "9",
+    "content-type": "application/json",
+    "content-length": "101",
     "connection": "close",
     "cf-ray": "<omitted>",
     "cf-cache-status": "DYNAMIC",
     "access-control-allow-origin": "*"
   },
-  "body": "Not found"
-}
-</code></pre>
-</details>
-</li>
-<li><code>17C5</code> SHOULD use 400 status code if parameters are invalid when accepting application/graphql-response+json
-<details>
-<summary>Response status code is not 400</summary>
-<pre><code class="lang-json">{
-  "statusText": "Not Found",
-  "status": 404,
-  "headers": {
-    "vary": "Accept-Encoding",
-    "strict-transport-security": "max-age=15724800; includeSubDomains",
-    "server-timing": "<omitted>",
-    "server": "cloudflare",
-    "date": "<timestamp>",
-    "content-type": "text/plain",
-    "content-length": "9",
-    "connection": "close",
-    "cf-ray": "<omitted>",
-    "cf-cache-status": "DYNAMIC",
-    "access-control-allow-origin": "*"
-  },
-  "body": "Not found"
-}
-</code></pre>
-</details>
-</li>
-<li><code>34D6</code> SHOULD not contain the data entry if parameters are invalid when accepting application/graphql-response+json
-<details>
-<summary>Response body is not valid JSON</summary>
-<pre><code class="lang-json">{
-  "statusText": "Not Found",
-  "status": 404,
-  "headers": {
-    "vary": "Accept-Encoding",
-    "strict-transport-security": "max-age=15724800; includeSubDomains",
-    "server-timing": "<omitted>",
-    "server": "cloudflare",
-    "date": "<timestamp>",
-    "content-type": "text/plain",
-    "content-length": "9",
-    "connection": "close",
-    "cf-ray": "<omitted>",
-    "cf-cache-status": "DYNAMIC",
-    "access-control-allow-origin": "*"
-  },
-  "body": null
-}
-</code></pre>
-</details>
-</li>
-<li><code>556A</code> SHOULD use 400 status code on document parsing failure when accepting application/graphql-response+json
-<details>
-<summary>Response status code is not 400</summary>
-<pre><code class="lang-json">{
-  "statusText": "Not Found",
-  "status": 404,
-  "headers": {
-    "vary": "Accept-Encoding",
-    "strict-transport-security": "max-age=15724800; includeSubDomains",
-    "server-timing": "<omitted>",
-    "server": "cloudflare",
-    "date": "<timestamp>",
-    "content-type": "text/plain",
-    "content-length": "9",
-    "connection": "close",
-    "cf-ray": "<omitted>",
-    "cf-cache-status": "DYNAMIC",
-    "access-control-allow-origin": "*"
-  },
-  "body": "Not found"
-}
-</code></pre>
-</details>
-</li>
-<li><code>D586</code> SHOULD not contain the data entry on document parsing failure when accepting application/graphql-response+json
-<details>
-<summary>Response body is not valid JSON</summary>
-<pre><code class="lang-json">{
-  "statusText": "Not Found",
-  "status": 404,
-  "headers": {
-    "vary": "Accept-Encoding",
-    "strict-transport-security": "max-age=15724800; includeSubDomains",
-    "server-timing": "<omitted>",
-    "server": "cloudflare",
-    "date": "<timestamp>",
-    "content-type": "text/plain",
-    "content-length": "9",
-    "connection": "close",
-    "cf-ray": "<omitted>",
-    "cf-cache-status": "DYNAMIC",
-    "access-control-allow-origin": "*"
-  },
-  "body": null
-}
-</code></pre>
-</details>
-</li>
-<li><code>74FF</code> SHOULD use 400 status code on document validation failure when accepting application/graphql-response+json
-<details>
-<summary>Response status code is not 400</summary>
-<pre><code class="lang-json">{
-  "statusText": "Not Found",
-  "status": 404,
-  "headers": {
-    "vary": "Accept-Encoding",
-    "strict-transport-security": "max-age=15724800; includeSubDomains",
-    "server-timing": "<omitted>",
-    "server": "cloudflare",
-    "date": "<timestamp>",
-    "content-type": "text/plain",
-    "content-length": "9",
-    "connection": "close",
-    "cf-ray": "<omitted>",
-    "cf-cache-status": "DYNAMIC",
-    "access-control-allow-origin": "*"
-  },
-  "body": "Not found"
-}
-</code></pre>
-</details>
-</li>
-<li><code>5E5B</code> SHOULD not contain the data entry on document validation failure when accepting application/graphql-response+json
-<details>
-<summary>Response body is not valid JSON</summary>
-<pre><code class="lang-json">{
-  "statusText": "Not Found",
-  "status": 404,
-  "headers": {
-    "vary": "Accept-Encoding",
-    "strict-transport-security": "max-age=15724800; includeSubDomains",
-    "server-timing": "<omitted>",
-    "server": "cloudflare",
-    "date": "<timestamp>",
-    "content-type": "text/plain",
-    "content-length": "9",
-    "connection": "close",
-    "cf-ray": "<omitted>",
-    "cf-cache-status": "DYNAMIC",
-    "access-control-allow-origin": "*"
-  },
-  "body": null
+  "body": {
+    "error": "GraphQL server error (client error): Invalid subgraph name \"sushiswap/exchange/graphql\""
+  }
 }
 </code></pre>
 </details>
@@ -1403,22 +451,24 @@ The server <b>MUST</b> support these.
 <details>
 <summary>Response status code is not 200</summary>
 <pre><code class="lang-json">{
-  "statusText": "Not Found",
-  "status": 404,
+  "statusText": "Bad Request",
+  "status": 400,
   "headers": {
     "vary": "Accept-Encoding",
     "strict-transport-security": "max-age=15724800; includeSubDomains",
-    "server-timing": "<omitted>",
+    "set-cookie": "<omitted>",
     "server": "cloudflare",
     "date": "<timestamp>",
-    "content-type": "text/plain",
-    "content-length": "9",
+    "content-type": "application/json",
+    "content-length": "101",
     "connection": "close",
     "cf-ray": "<omitted>",
     "cf-cache-status": "DYNAMIC",
     "access-control-allow-origin": "*"
   },
-  "body": "Not found"
+  "body": {
+    "error": "GraphQL server error (client error): Invalid subgraph name \"sushiswap/exchange/graphql\""
+  }
 }
 </code></pre>
 </details>
@@ -1427,22 +477,24 @@ The server <b>MUST</b> support these.
 <details>
 <summary>Response status code is not 200</summary>
 <pre><code class="lang-json">{
-  "statusText": "Not Found",
-  "status": 404,
+  "statusText": "Bad Request",
+  "status": 400,
   "headers": {
     "vary": "Accept-Encoding",
     "strict-transport-security": "max-age=15724800; includeSubDomains",
-    "server-timing": "<omitted>",
+    "set-cookie": "<omitted>",
     "server": "cloudflare",
     "date": "<timestamp>",
-    "content-type": "text/plain",
-    "content-length": "9",
+    "content-type": "application/json",
+    "content-length": "101",
     "connection": "close",
     "cf-ray": "<omitted>",
     "cf-cache-status": "DYNAMIC",
     "access-control-allow-origin": "*"
   },
-  "body": "Not found"
+  "body": {
+    "error": "GraphQL server error (client error): Invalid subgraph name \"sushiswap/exchange/graphql\""
+  }
 }
 </code></pre>
 </details>
@@ -1451,22 +503,24 @@ The server <b>MUST</b> support these.
 <details>
 <summary>Response status code is not 200</summary>
 <pre><code class="lang-json">{
-  "statusText": "Not Found",
-  "status": 404,
+  "statusText": "Bad Request",
+  "status": 400,
   "headers": {
     "vary": "Accept-Encoding",
     "strict-transport-security": "max-age=15724800; includeSubDomains",
-    "server-timing": "<omitted>",
+    "set-cookie": "<omitted>",
     "server": "cloudflare",
     "date": "<timestamp>",
-    "content-type": "text/plain",
-    "content-length": "9",
+    "content-type": "application/json",
+    "content-length": "101",
     "connection": "close",
     "cf-ray": "<omitted>",
     "cf-cache-status": "DYNAMIC",
     "access-control-allow-origin": "*"
   },
-  "body": "Not found"
+  "body": {
+    "error": "GraphQL server error (client error): Invalid subgraph name \"sushiswap/exchange/graphql\""
+  }
 }
 </code></pre>
 </details>
@@ -1475,22 +529,24 @@ The server <b>MUST</b> support these.
 <details>
 <summary>Response status code is not 200</summary>
 <pre><code class="lang-json">{
-  "statusText": "Not Found",
-  "status": 404,
+  "statusText": "Bad Request",
+  "status": 400,
   "headers": {
     "vary": "Accept-Encoding",
     "strict-transport-security": "max-age=15724800; includeSubDomains",
-    "server-timing": "<omitted>",
+    "set-cookie": "<omitted>",
     "server": "cloudflare",
     "date": "<timestamp>",
-    "content-type": "text/plain",
-    "content-length": "9",
+    "content-type": "application/json",
+    "content-length": "101",
     "connection": "close",
     "cf-ray": "<omitted>",
     "cf-cache-status": "DYNAMIC",
     "access-control-allow-origin": "*"
   },
-  "body": "Not found"
+  "body": {
+    "error": "GraphQL server error (client error): Invalid subgraph name \"sushiswap/exchange/graphql\""
+  }
 }
 </code></pre>
 </details>
@@ -1499,22 +555,24 @@ The server <b>MUST</b> support these.
 <details>
 <summary>Response status code is not 200</summary>
 <pre><code class="lang-json">{
-  "statusText": "Not Found",
-  "status": 404,
+  "statusText": "Bad Request",
+  "status": 400,
   "headers": {
     "vary": "Accept-Encoding",
     "strict-transport-security": "max-age=15724800; includeSubDomains",
-    "server-timing": "<omitted>",
+    "set-cookie": "<omitted>",
     "server": "cloudflare",
     "date": "<timestamp>",
-    "content-type": "text/plain",
-    "content-length": "9",
+    "content-type": "application/json",
+    "content-length": "101",
     "connection": "close",
     "cf-ray": "<omitted>",
     "cf-cache-status": "DYNAMIC",
     "access-control-allow-origin": "*"
   },
-  "body": "Not found"
+  "body": {
+    "error": "GraphQL server error (client error): Invalid subgraph name \"sushiswap/exchange/graphql\""
+  }
 }
 </code></pre>
 </details>
@@ -1523,46 +581,24 @@ The server <b>MUST</b> support these.
 <details>
 <summary>Response status code is not 200</summary>
 <pre><code class="lang-json">{
-  "statusText": "Not Found",
-  "status": 404,
+  "statusText": "Bad Request",
+  "status": 400,
   "headers": {
     "vary": "Accept-Encoding",
     "strict-transport-security": "max-age=15724800; includeSubDomains",
-    "server-timing": "<omitted>",
+    "set-cookie": "<omitted>",
     "server": "cloudflare",
     "date": "<timestamp>",
-    "content-type": "text/plain",
-    "content-length": "9",
+    "content-type": "application/json",
+    "content-length": "101",
     "connection": "close",
     "cf-ray": "<omitted>",
     "cf-cache-status": "DYNAMIC",
     "access-control-allow-origin": "*"
   },
-  "body": "Not found"
-}
-</code></pre>
-</details>
-</li>
-<li><code>7267</code> MUST require a request body on POST
-<details>
-<summary>Response status code is not 400</summary>
-<pre><code class="lang-json">{
-  "statusText": "Not Found",
-  "status": 404,
-  "headers": {
-    "vary": "Accept-Encoding",
-    "strict-transport-security": "max-age=15724800; includeSubDomains",
-    "server-timing": "<omitted>",
-    "server": "cloudflare",
-    "date": "<timestamp>",
-    "content-type": "text/plain",
-    "content-length": "9",
-    "connection": "close",
-    "cf-ray": "<omitted>",
-    "cf-cache-status": "DYNAMIC",
-    "access-control-allow-origin": "*"
-  },
-  "body": "Not found"
+  "body": {
+    "error": "GraphQL server error (client error): Invalid subgraph name \"sushiswap/exchange/graphql\""
+  }
 }
 </code></pre>
 </details>
@@ -1571,22 +607,24 @@ The server <b>MUST</b> support these.
 <details>
 <summary>Response status code is not 200</summary>
 <pre><code class="lang-json">{
-  "statusText": "Not Found",
-  "status": 404,
+  "statusText": "Bad Request",
+  "status": 400,
   "headers": {
     "vary": "Accept-Encoding",
     "strict-transport-security": "max-age=15724800; includeSubDomains",
-    "server-timing": "<omitted>",
+    "set-cookie": "<omitted>",
     "server": "cloudflare",
     "date": "<timestamp>",
-    "content-type": "text/plain",
-    "content-length": "9",
+    "content-type": "application/json",
+    "content-length": "101",
     "connection": "close",
     "cf-ray": "<omitted>",
     "cf-cache-status": "DYNAMIC",
     "access-control-allow-origin": "*"
   },
-  "body": "Not found"
+  "body": {
+    "error": "GraphQL server error (client error): Invalid subgraph name \"sushiswap/exchange/graphql\""
+  }
 }
 </code></pre>
 </details>
@@ -1595,22 +633,24 @@ The server <b>MUST</b> support these.
 <details>
 <summary>Response status code is not 200</summary>
 <pre><code class="lang-json">{
-  "statusText": "Not Found",
-  "status": 404,
+  "statusText": "Bad Request",
+  "status": 400,
   "headers": {
     "vary": "Accept-Encoding",
     "strict-transport-security": "max-age=15724800; includeSubDomains",
-    "server-timing": "<omitted>",
+    "set-cookie": "<omitted>",
     "server": "cloudflare",
     "date": "<timestamp>",
-    "content-type": "text/plain",
-    "content-length": "9",
+    "content-type": "application/json",
+    "content-length": "101",
     "connection": "close",
     "cf-ray": "<omitted>",
     "cf-cache-status": "DYNAMIC",
     "access-control-allow-origin": "*"
   },
-  "body": "Not found"
+  "body": {
+    "error": "GraphQL server error (client error): Invalid subgraph name \"sushiswap/exchange/graphql\""
+  }
 }
 </code></pre>
 </details>
@@ -1619,22 +659,24 @@ The server <b>MUST</b> support these.
 <details>
 <summary>Response status code is not 200</summary>
 <pre><code class="lang-json">{
-  "statusText": "Not Found",
-  "status": 404,
+  "statusText": "Bad Request",
+  "status": 400,
   "headers": {
     "vary": "Accept-Encoding",
     "strict-transport-security": "max-age=15724800; includeSubDomains",
-    "server-timing": "<omitted>",
+    "set-cookie": "<omitted>",
     "server": "cloudflare",
     "date": "<timestamp>",
-    "content-type": "text/plain",
-    "content-length": "9",
+    "content-type": "application/json",
+    "content-length": "101",
     "connection": "close",
     "cf-ray": "<omitted>",
     "cf-cache-status": "DYNAMIC",
     "access-control-allow-origin": "*"
   },
-  "body": "Not found"
+  "body": {
+    "error": "GraphQL server error (client error): Invalid subgraph name \"sushiswap/exchange/graphql\""
+  }
 }
 </code></pre>
 </details>
@@ -1643,22 +685,24 @@ The server <b>MUST</b> support these.
 <details>
 <summary>Response status code is not 200</summary>
 <pre><code class="lang-json">{
-  "statusText": "Not Found",
-  "status": 404,
+  "statusText": "Bad Request",
+  "status": 400,
   "headers": {
     "vary": "Accept-Encoding",
     "strict-transport-security": "max-age=15724800; includeSubDomains",
-    "server-timing": "<omitted>",
+    "set-cookie": "<omitted>",
     "server": "cloudflare",
     "date": "<timestamp>",
-    "content-type": "text/plain",
-    "content-length": "9",
+    "content-type": "application/json",
+    "content-length": "101",
     "connection": "close",
     "cf-ray": "<omitted>",
     "cf-cache-status": "DYNAMIC",
     "access-control-allow-origin": "*"
   },
-  "body": "Not found"
+  "body": {
+    "error": "GraphQL server error (client error): Invalid subgraph name \"sushiswap/exchange/graphql\""
+  }
 }
 </code></pre>
 </details>
@@ -1667,22 +711,24 @@ The server <b>MUST</b> support these.
 <details>
 <summary>Response status code is not 200</summary>
 <pre><code class="lang-json">{
-  "statusText": "Not Found",
-  "status": 404,
+  "statusText": "Bad Request",
+  "status": 400,
   "headers": {
     "vary": "Accept-Encoding",
     "strict-transport-security": "max-age=15724800; includeSubDomains",
-    "server-timing": "<omitted>",
+    "set-cookie": "<omitted>",
     "server": "cloudflare",
     "date": "<timestamp>",
-    "content-type": "text/plain",
-    "content-length": "9",
+    "content-type": "application/json",
+    "content-length": "101",
     "connection": "close",
     "cf-ray": "<omitted>",
     "cf-cache-status": "DYNAMIC",
     "access-control-allow-origin": "*"
   },
-  "body": "Not found"
+  "body": {
+    "error": "GraphQL server error (client error): Invalid subgraph name \"sushiswap/exchange/graphql\""
+  }
 }
 </code></pre>
 </details>
@@ -1691,22 +737,24 @@ The server <b>MUST</b> support these.
 <details>
 <summary>Response status code is not 200</summary>
 <pre><code class="lang-json">{
-  "statusText": "Not Found",
-  "status": 404,
+  "statusText": "Bad Request",
+  "status": 400,
   "headers": {
     "vary": "Accept-Encoding",
     "strict-transport-security": "max-age=15724800; includeSubDomains",
-    "server-timing": "<omitted>",
+    "set-cookie": "<omitted>",
     "server": "cloudflare",
     "date": "<timestamp>",
-    "content-type": "text/plain",
-    "content-length": "9",
+    "content-type": "application/json",
+    "content-length": "101",
     "connection": "close",
     "cf-ray": "<omitted>",
     "cf-cache-status": "DYNAMIC",
     "access-control-allow-origin": "*"
   },
-  "body": "Not found"
+  "body": {
+    "error": "GraphQL server error (client error): Invalid subgraph name \"sushiswap/exchange/graphql\""
+  }
 }
 </code></pre>
 </details>
@@ -1715,22 +763,24 @@ The server <b>MUST</b> support these.
 <details>
 <summary>Response status code is not 200</summary>
 <pre><code class="lang-json">{
-  "statusText": "Not Found",
-  "status": 404,
+  "statusText": "Bad Request",
+  "status": 400,
   "headers": {
     "vary": "Accept-Encoding",
     "strict-transport-security": "max-age=15724800; includeSubDomains",
-    "server-timing": "<omitted>",
+    "set-cookie": "<omitted>",
     "server": "cloudflare",
     "date": "<timestamp>",
-    "content-type": "text/plain",
-    "content-length": "9",
+    "content-type": "application/json",
+    "content-length": "101",
     "connection": "close",
     "cf-ray": "<omitted>",
     "cf-cache-status": "DYNAMIC",
     "access-control-allow-origin": "*"
   },
-  "body": "Not found"
+  "body": {
+    "error": "GraphQL server error (client error): Invalid subgraph name \"sushiswap/exchange/graphql\""
+  }
 }
 </code></pre>
 </details>
