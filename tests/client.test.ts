@@ -42,8 +42,8 @@ it('should use the provided headers', async () => {
   await request;
 
   expect(headers).toMatchInlineSnapshot(`
-    Headers {
-      Symbol(headers list): HeadersList {
+    _Headers {
+      Symbol(headers list): _HeadersList {
         "cookies": null,
         Symbol(headers map): Map {
           "x-some" => {
