@@ -10,6 +10,6 @@
   "dependencies": {
     "fastify": "^4.24.3",
     "graphql": "^16.8.1",
-    "mercurius": "^13.3.0"
+    "mercurius": "^13.3.1"
   }
 }
