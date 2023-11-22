@@ -42,10 +42,10 @@ export function audit(
             ? // failing MUSTs are considered errors
               'error'
             : name.startsWith('SHOULD')
-            ? // recommendations are warnings
-              'warn'
-            : // everything else is truly optional
-              'notice',
+              ? // recommendations are warnings
+                'warn'
+              : // everything else is truly optional
+                'notice',
           reason: err.reason,
           response: err.response,
         };

@@ -22,7 +22,7 @@ jobs:
       - name: Set up node
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version-file: .nvmrc
           cache: yarn
       - name: Install
         run: yarn install --immutable
@@ -48,7 +48,7 @@ jobs:
       - name: Set up node
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version-file: .nvmrc
           cache: yarn
       - name: Install
         run: yarn install --immutable
@@ -74,7 +74,7 @@ jobs:
       - name: Set up node
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version-file: .nvmrc
           cache: yarn
       - name: Install
         run: yarn install --immutable
@@ -100,7 +100,7 @@ jobs:
       - name: Set up node
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version-file: .nvmrc
           cache: yarn
       - name: Install
         run: yarn install --immutable
@@ -126,7 +126,7 @@ jobs:
       - name: Set up node
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version-file: .nvmrc
           cache: yarn
       - name: Install
         run: yarn install --immutable
@@ -152,12 +152,19 @@ jobs:
       - name: Set up node
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version-file: .nvmrc
           cache: yarn
       - name: Set up deno
         uses: denoland/setup-deno@v1
         with:
           deno-version: 1.x
+      - name: Set up deno cache
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.deno
+            ~/.cache/deno
+          key: ${{ runner.os }}-deno-${{ hashFiles('**/yarn.lock') }}
       - name: Install
         run: yarn install --immutable
       - name: Download k6
@@ -186,7 +193,7 @@ jobs:
       - name: Set up node
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version-file: .nvmrc
           cache: yarn
       - name: Set up bun
         uses: oven-sh/setup-bun@v1
