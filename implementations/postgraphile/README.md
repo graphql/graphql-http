@@ -69,10 +69,11 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
   "statusText": "Method Not Allowed",
   "status": 405,
   "headers": {
+    "keep-alive": "timeout=5",
     "date": "<timestamp>",
     "content-type": "application/json; charset=utf-8",
     "content-length": "60",
-    "connection": "close",
+    "connection": "keep-alive",
     "allow": "POST, OPTIONS"
   },
   "body": {
@@ -93,10 +94,11 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
   "statusText": "Internal Server Error",
   "status": 500,
   "headers": {
+    "keep-alive": "timeout=5",
     "date": "<timestamp>",
     "content-type": "application/json; charset=utf-8",
     "content-length": "77",
-    "connection": "close"
+    "connection": "keep-alive"
   },
   "body": {
     "errors": [
@@ -116,10 +118,11 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
   "statusText": "Internal Server Error",
   "status": 500,
   "headers": {
+    "keep-alive": "timeout=5",
     "date": "<timestamp>",
     "content-type": "application/json; charset=utf-8",
     "content-length": "152",
-    "connection": "close"
+    "connection": "keep-alive"
   },
   "body": {
     "errors": [
@@ -139,10 +142,11 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
   "statusText": "OK",
   "status": 200,
   "headers": {
+    "keep-alive": "timeout=5",
     "date": "<timestamp>",
     "content-type": "application/json; charset=utf-8",
     "content-length": "31",
-    "connection": "close"
+    "connection": "keep-alive"
   },
   "body": {
     "data": {
@@ -160,10 +164,11 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
   "statusText": "Method Not Allowed",
   "status": 405,
   "headers": {
+    "keep-alive": "timeout=5",
     "date": "<timestamp>",
     "content-type": "application/json; charset=utf-8",
     "content-length": "60",
-    "connection": "close",
+    "connection": "keep-alive",
     "allow": "POST, OPTIONS"
   },
   "body": {
@@ -184,10 +189,11 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
   "statusText": "Method Not Allowed",
   "status": 405,
   "headers": {
+    "keep-alive": "timeout=5",
     "date": "<timestamp>",
     "content-type": "application/json; charset=utf-8",
     "content-length": "60",
-    "connection": "close",
+    "connection": "keep-alive",
     "allow": "POST, OPTIONS"
   },
   "body": {
@@ -208,10 +214,11 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
   "statusText": "OK",
   "status": 200,
   "headers": {
+    "keep-alive": "timeout=5",
     "date": "<timestamp>",
     "content-type": "application/json; charset=utf-8",
     "content-length": "31",
-    "connection": "close"
+    "connection": "keep-alive"
   },
   "body": {
     "data": {
@@ -229,10 +236,11 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
   "statusText": "OK",
   "status": 200,
   "headers": {
+    "keep-alive": "timeout=5",
     "date": "<timestamp>",
     "content-type": "application/json; charset=utf-8",
     "content-length": "31",
-    "connection": "close"
+    "connection": "keep-alive"
   },
   "body": {
     "data": {
@@ -250,10 +258,11 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
   "statusText": "OK",
   "status": 200,
   "headers": {
+    "keep-alive": "timeout=5",
     "date": "<timestamp>",
     "content-type": "application/json; charset=utf-8",
     "content-length": "31",
-    "connection": "close"
+    "connection": "keep-alive"
   },
   "body": {
     "data": {
@@ -271,10 +280,11 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
   "statusText": "OK",
   "status": 200,
   "headers": {
+    "keep-alive": "timeout=5",
     "date": "<timestamp>",
     "content-type": "application/json; charset=utf-8",
     "content-length": "31",
-    "connection": "close"
+    "connection": "keep-alive"
   },
   "body": {
     "data": {
@@ -297,10 +307,11 @@ The server <i>SHOULD</i> support these, but is not required.
   "statusText": "OK",
   "status": 200,
   "headers": {
+    "keep-alive": "timeout=5",
     "date": "<timestamp>",
     "content-type": "application/json; charset=utf-8",
     "content-length": "31",
-    "connection": "close"
+    "connection": "keep-alive"
   },
   "body": {
     "data": {
@@ -318,10 +329,11 @@ The server <i>SHOULD</i> support these, but is not required.
   "statusText": "Bad Request",
   "status": 400,
   "headers": {
+    "keep-alive": "timeout=5",
     "date": "<timestamp>",
     "content-type": "application/json; charset=utf-8",
     "content-length": "104",
-    "connection": "close"
+    "connection": "keep-alive"
   },
   "body": {
     "errors": [
@@ -347,10 +359,11 @@ The server <i>SHOULD</i> support these, but is not required.
   "statusText": "Bad Request",
   "status": 400,
   "headers": {
+    "keep-alive": "timeout=5",
     "date": "<timestamp>",
     "content-type": "application/json; charset=utf-8",
     "content-length": "123",
-    "connection": "close"
+    "connection": "keep-alive"
   },
   "body": {
     "errors": [
@@ -376,10 +389,11 @@ The server <i>SHOULD</i> support these, but is not required.
   "statusText": "Bad Request",
   "status": 400,
   "headers": {
+    "keep-alive": "timeout=5",
     "date": "<timestamp>",
     "content-type": "application/json; charset=utf-8",
     "content-length": "126",
-    "connection": "close"
+    "connection": "keep-alive"
   },
   "body": {
     "errors": [

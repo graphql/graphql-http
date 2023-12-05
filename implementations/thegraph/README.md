@@ -64,7 +64,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
     "date": "<timestamp>",
     "content-type": "text/html; charset=utf-8",
     "content-encoding": "br",
-    "connection": "close",
+    "connection": "keep-alive",
     "cf-ray": "<omitted>",
     "cf-cache-status": "DYNAMIC",
     "access-control-allow-origin": "*"
@@ -89,7 +89,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
     "date": "<timestamp>",
     "content-type": "text/html; charset=utf-8",
     "content-encoding": "br",
-    "connection": "close",
+    "connection": "keep-alive",
     "cf-ray": "<omitted>",
     "cf-cache-status": "DYNAMIC",
     "access-control-allow-origin": "*"
@@ -118,7 +118,7 @@ The server <i>SHOULD</i> support these, but is not required.
     "date": "<timestamp>",
     "content-type": "application/json",
     "content-length": "101",
-    "connection": "close",
+    "connection": "keep-alive",
     "cf-ray": "<omitted>",
     "cf-cache-status": "DYNAMIC",
     "access-control-allow-origin": "*"
@@ -144,7 +144,7 @@ The server <i>SHOULD</i> support these, but is not required.
     "date": "<timestamp>",
     "content-type": "application/json",
     "content-length": "101",
-    "connection": "close",
+    "connection": "keep-alive",
     "cf-ray": "<omitted>",
     "cf-cache-status": "DYNAMIC",
     "access-control-allow-origin": "*"
@@ -170,7 +170,7 @@ The server <i>SHOULD</i> support these, but is not required.
     "date": "<timestamp>",
     "content-type": "application/json",
     "content-length": "101",
-    "connection": "close",
+    "connection": "keep-alive",
     "cf-ray": "<omitted>",
     "cf-cache-status": "DYNAMIC",
     "access-control-allow-origin": "*"
@@ -196,7 +196,7 @@ The server <i>SHOULD</i> support these, but is not required.
     "date": "<timestamp>",
     "content-type": "application/json",
     "content-length": "101",
-    "connection": "close",
+    "connection": "keep-alive",
     "cf-ray": "<omitted>",
     "cf-cache-status": "DYNAMIC",
     "access-control-allow-origin": "*"
@@ -222,7 +222,7 @@ The server <i>SHOULD</i> support these, but is not required.
     "date": "<timestamp>",
     "content-type": "application/json",
     "content-length": "101",
-    "connection": "close",
+    "connection": "keep-alive",
     "cf-ray": "<omitted>",
     "cf-cache-status": "DYNAMIC",
     "access-control-allow-origin": "*"
@@ -248,7 +248,7 @@ The server <i>SHOULD</i> support these, but is not required.
     "date": "<timestamp>",
     "content-type": "application/json",
     "content-length": "101",
-    "connection": "close",
+    "connection": "keep-alive",
     "cf-ray": "<omitted>",
     "cf-cache-status": "DYNAMIC",
     "access-control-allow-origin": "*"
@@ -274,7 +274,7 @@ The server <i>SHOULD</i> support these, but is not required.
     "date": "<timestamp>",
     "content-type": "application/json",
     "content-length": "101",
-    "connection": "close",
+    "connection": "keep-alive",
     "cf-ray": "<omitted>",
     "cf-cache-status": "DYNAMIC",
     "access-control-allow-origin": "*"
@@ -300,7 +300,7 @@ The server <i>SHOULD</i> support these, but is not required.
     "date": "<timestamp>",
     "content-type": "application/json",
     "content-length": "101",
-    "connection": "close",
+    "connection": "keep-alive",
     "cf-ray": "<omitted>",
     "cf-cache-status": "DYNAMIC",
     "access-control-allow-origin": "*"
@@ -326,7 +326,7 @@ The server <i>SHOULD</i> support these, but is not required.
     "date": "<timestamp>",
     "content-type": "application/json",
     "content-length": "101",
-    "connection": "close",
+    "connection": "keep-alive",
     "cf-ray": "<omitted>",
     "cf-cache-status": "DYNAMIC",
     "access-control-allow-origin": "*"
@@ -352,7 +352,7 @@ The server <i>SHOULD</i> support these, but is not required.
     "date": "<timestamp>",
     "content-type": "application/json",
     "content-length": "101",
-    "connection": "close",
+    "connection": "keep-alive",
     "cf-ray": "<omitted>",
     "cf-cache-status": "DYNAMIC",
     "access-control-allow-origin": "*"
@@ -378,7 +378,7 @@ The server <i>SHOULD</i> support these, but is not required.
     "date": "<timestamp>",
     "content-type": "application/json",
     "content-length": "101",
-    "connection": "close",
+    "connection": "keep-alive",
     "cf-ray": "<omitted>",
     "cf-cache-status": "DYNAMIC",
     "access-control-allow-origin": "*"
@@ -404,7 +404,7 @@ The server <i>SHOULD</i> support these, but is not required.
     "date": "<timestamp>",
     "content-type": "application/json",
     "content-length": "101",
-    "connection": "close",
+    "connection": "keep-alive",
     "cf-ray": "<omitted>",
     "cf-cache-status": "DYNAMIC",
     "access-control-allow-origin": "*"
@@ -430,7 +430,7 @@ The server <i>SHOULD</i> support these, but is not required.
     "date": "<timestamp>",
     "content-type": "application/json",
     "content-length": "101",
-    "connection": "close",
+    "connection": "keep-alive",
     "cf-ray": "<omitted>",
     "cf-cache-status": "DYNAMIC",
     "access-control-allow-origin": "*"
@@ -461,7 +461,7 @@ The server <b>MUST</b> support these.
     "date": "<timestamp>",
     "content-type": "application/json",
     "content-length": "101",
-    "connection": "close",
+    "connection": "keep-alive",
     "cf-ray": "<omitted>",
     "cf-cache-status": "DYNAMIC",
     "access-control-allow-origin": "*"
@@ -487,7 +487,7 @@ The server <b>MUST</b> support these.
     "date": "<timestamp>",
     "content-type": "application/json",
     "content-length": "101",
-    "connection": "close",
+    "connection": "keep-alive",
     "cf-ray": "<omitted>",
     "cf-cache-status": "DYNAMIC",
     "access-control-allow-origin": "*"
@@ -513,7 +513,7 @@ The server <b>MUST</b> support these.
     "date": "<timestamp>",
     "content-type": "application/json",
     "content-length": "101",
-    "connection": "close",
+    "connection": "keep-alive",
     "cf-ray": "<omitted>",
     "cf-cache-status": "DYNAMIC",
     "access-control-allow-origin": "*"
@@ -539,7 +539,7 @@ The server <b>MUST</b> support these.
     "date": "<timestamp>",
     "content-type": "application/json",
     "content-length": "101",
-    "connection": "close",
+    "connection": "keep-alive",
     "cf-ray": "<omitted>",
     "cf-cache-status": "DYNAMIC",
     "access-control-allow-origin": "*"
@@ -565,7 +565,7 @@ The server <b>MUST</b> support these.
     "date": "<timestamp>",
     "content-type": "application/json",
     "content-length": "101",
-    "connection": "close",
+    "connection": "keep-alive",
     "cf-ray": "<omitted>",
     "cf-cache-status": "DYNAMIC",
     "access-control-allow-origin": "*"
@@ -591,7 +591,7 @@ The server <b>MUST</b> support these.
     "date": "<timestamp>",
     "content-type": "application/json",
     "content-length": "101",
-    "connection": "close",
+    "connection": "keep-alive",
     "cf-ray": "<omitted>",
     "cf-cache-status": "DYNAMIC",
     "access-control-allow-origin": "*"
@@ -617,7 +617,7 @@ The server <b>MUST</b> support these.
     "date": "<timestamp>",
     "content-type": "application/json",
     "content-length": "101",
-    "connection": "close",
+    "connection": "keep-alive",
     "cf-ray": "<omitted>",
     "cf-cache-status": "DYNAMIC",
     "access-control-allow-origin": "*"
@@ -643,7 +643,7 @@ The server <b>MUST</b> support these.
     "date": "<timestamp>",
     "content-type": "application/json",
     "content-length": "101",
-    "connection": "close",
+    "connection": "keep-alive",
     "cf-ray": "<omitted>",
     "cf-cache-status": "DYNAMIC",
     "access-control-allow-origin": "*"
@@ -669,7 +669,7 @@ The server <b>MUST</b> support these.
     "date": "<timestamp>",
     "content-type": "application/json",
     "content-length": "101",
-    "connection": "close",
+    "connection": "keep-alive",
     "cf-ray": "<omitted>",
     "cf-cache-status": "DYNAMIC",
     "access-control-allow-origin": "*"
@@ -695,7 +695,7 @@ The server <b>MUST</b> support these.
     "date": "<timestamp>",
     "content-type": "application/json",
     "content-length": "101",
-    "connection": "close",
+    "connection": "keep-alive",
     "cf-ray": "<omitted>",
     "cf-cache-status": "DYNAMIC",
     "access-control-allow-origin": "*"
@@ -721,7 +721,7 @@ The server <b>MUST</b> support these.
     "date": "<timestamp>",
     "content-type": "application/json",
     "content-length": "101",
-    "connection": "close",
+    "connection": "keep-alive",
     "cf-ray": "<omitted>",
     "cf-cache-status": "DYNAMIC",
     "access-control-allow-origin": "*"
@@ -747,7 +747,7 @@ The server <b>MUST</b> support these.
     "date": "<timestamp>",
     "content-type": "application/json",
     "content-length": "101",
-    "connection": "close",
+    "connection": "keep-alive",
     "cf-ray": "<omitted>",
     "cf-cache-status": "DYNAMIC",
     "access-control-allow-origin": "*"
@@ -773,7 +773,7 @@ The server <b>MUST</b> support these.
     "date": "<timestamp>",
     "content-type": "application/json",
     "content-length": "101",
-    "connection": "close",
+    "connection": "keep-alive",
     "cf-ray": "<omitted>",
     "cf-cache-status": "DYNAMIC",
     "access-control-allow-origin": "*"

@@ -78,11 +78,12 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
   "status": 400,
   "headers": {
     "x-powered-by": "Express",
+    "keep-alive": "timeout=5",
     "etag": "W/\"5b5-Kk1S3FEKgu+/9bGQEzPmjXrSv1k\"",
     "date": "<timestamp>",
     "content-type": "application/json; charset=utf-8",
     "content-length": "1461",
-    "connection": "close",
+    "connection": "keep-alive",
     "access-control-allow-origin": "*"
   },
   "body": {
@@ -116,11 +117,12 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
   "status": 400,
   "headers": {
     "x-powered-by": "Express",
+    "keep-alive": "timeout=5",
     "etag": "W/\"5b5-Kk1S3FEKgu+/9bGQEzPmjXrSv1k\"",
     "date": "<timestamp>",
     "content-type": "application/graphql-response+json; charset=utf-8",
     "content-length": "1461",
-    "connection": "close",
+    "connection": "keep-alive",
     "access-control-allow-origin": "*"
   },
   "body": {
@@ -154,11 +156,12 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
   "status": 400,
   "headers": {
     "x-powered-by": "Express",
+    "keep-alive": "timeout=5",
     "etag": "W/\"5b5-Kk1S3FEKgu+/9bGQEzPmjXrSv1k\"",
     "date": "<timestamp>",
     "content-type": "application/json; charset=utf-8",
     "content-length": "1461",
-    "connection": "close",
+    "connection": "keep-alive",
     "access-control-allow-origin": "*"
   },
   "body": {
@@ -197,11 +200,12 @@ The server <i>SHOULD</i> support these, but is not required.
   "status": 400,
   "headers": {
     "x-powered-by": "Express",
+    "keep-alive": "timeout=5",
     "etag": "W/\"59f-wZcL/SqdL2p72c+22U9112bt9Sk\"",
     "date": "<timestamp>",
     "content-type": "application/json; charset=utf-8",
     "content-length": "1439",
-    "connection": "close",
+    "connection": "keep-alive",
     "cache-control": "no-store",
     "access-control-allow-origin": "*"
   },
@@ -246,11 +250,12 @@ The server <i>SHOULD</i> support these, but is not required.
   "status": 400,
   "headers": {
     "x-powered-by": "Express",
+    "keep-alive": "timeout=5",
     "etag": "W/\"5ae-cH8StyqXwjsvF8Ml3ZMaXdrpW14\"",
     "date": "<timestamp>",
     "content-type": "application/json; charset=utf-8",
     "content-length": "1454",
-    "connection": "close",
+    "connection": "keep-alive",
     "cache-control": "no-store",
     "access-control-allow-origin": "*"
   },
@@ -295,11 +300,12 @@ The server <i>SHOULD</i> support these, but is not required.
   "status": 400,
   "headers": {
     "x-powered-by": "Express",
+    "keep-alive": "timeout=5",
     "etag": "W/\"bb6-RYqD6OT7vEB5+Qz3CsAplDQcI6k\"",
     "date": "<timestamp>",
     "content-type": "application/json; charset=utf-8",
     "content-length": "2998",
-    "connection": "close",
+    "connection": "keep-alive",
     "cache-control": "no-store",
     "access-control-allow-origin": "*"
   },

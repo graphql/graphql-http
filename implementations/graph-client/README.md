@@ -79,10 +79,11 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
   "statusText": "OK",
   "status": 200,
   "headers": {
+    "keep-alive": "timeout=5",
     "date": "<timestamp>",
     "content-type": "application/json; charset=utf-8",
     "content-length": "55",
-    "connection": "close"
+    "connection": "keep-alive"
   },
   "body": {
     "errors": [
@@ -102,10 +103,11 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
   "statusText": "OK",
   "status": 200,
   "headers": {
+    "keep-alive": "timeout=5",
     "date": "<timestamp>",
     "content-type": "application/json; charset=utf-8",
     "content-length": "55",
-    "connection": "close"
+    "connection": "keep-alive"
   },
   "body": {
     "errors": [
@@ -125,10 +127,11 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
   "statusText": "OK",
   "status": 200,
   "headers": {
+    "keep-alive": "timeout=5",
     "date": "<timestamp>",
     "content-type": "application/json; charset=utf-8",
     "content-length": "55",
-    "connection": "close"
+    "connection": "keep-alive"
   },
   "body": {
     "errors": [
