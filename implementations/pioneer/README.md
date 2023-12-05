@@ -65,7 +65,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
     "date": "<timestamp>",
     "content-type": "application/json; charset=utf-8",
     "content-length": "65",
-    "connection": "close"
+    "connection": "keep-alive"
   },
   "body": {
     "errors": [
@@ -89,7 +89,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
     "date": "<timestamp>",
     "content-type": "application/json; charset=utf-8",
     "content-length": "65",
-    "connection": "close"
+    "connection": "keep-alive"
   },
   "body": {
     "errors": [
@@ -113,7 +113,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
     "date": "<timestamp>",
     "content-type": "application/json; charset=utf-8",
     "content-length": "65",
-    "connection": "close"
+    "connection": "keep-alive"
   },
   "body": {
     "errors": [
@@ -137,7 +137,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
     "date": "<timestamp>",
     "content-type": "application/json; charset=utf-8",
     "content-length": "65",
-    "connection": "close"
+    "connection": "keep-alive"
   },
   "body": {
     "errors": [
@@ -161,7 +161,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
     "date": "<timestamp>",
     "content-type": "application/json; charset=utf-8",
     "content-length": "65",
-    "connection": "close"
+    "connection": "keep-alive"
   },
   "body": {
     "errors": [
@@ -185,7 +185,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
     "date": "<timestamp>",
     "content-type": "application/json; charset=utf-8",
     "content-length": "65",
-    "connection": "close"
+    "connection": "keep-alive"
   },
   "body": {
     "errors": [
@@ -209,7 +209,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
     "date": "<timestamp>",
     "content-type": "application/json; charset=utf-8",
     "content-length": "65",
-    "connection": "close"
+    "connection": "keep-alive"
   },
   "body": {
     "errors": [
@@ -233,7 +233,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
     "date": "<timestamp>",
     "content-type": "application/json; charset=utf-8",
     "content-length": "65",
-    "connection": "close"
+    "connection": "keep-alive"
   },
   "body": {
     "errors": [
@@ -257,7 +257,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
     "date": "<timestamp>",
     "content-type": "application/json; charset=utf-8",
     "content-length": "65",
-    "connection": "close"
+    "connection": "keep-alive"
   },
   "body": {
     "errors": [
@@ -281,7 +281,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
     "date": "<timestamp>",
     "content-type": "application/json; charset=utf-8",
     "content-length": "65",
-    "connection": "close"
+    "connection": "keep-alive"
   },
   "body": {
     "errors": [
@@ -305,7 +305,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
     "date": "<timestamp>",
     "content-type": "application/json; charset=utf-8",
     "content-length": "65",
-    "connection": "close"
+    "connection": "keep-alive"
   },
   "body": {
     "errors": [
@@ -329,7 +329,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
     "date": "<timestamp>",
     "content-type": "application/json; charset=utf-8",
     "content-length": "65",
-    "connection": "close"
+    "connection": "keep-alive"
   },
   "body": {
     "errors": [
@@ -353,7 +353,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
     "date": "<timestamp>",
     "content-type": "application/json; charset=utf-8",
     "content-length": "65",
-    "connection": "close"
+    "connection": "keep-alive"
   },
   "body": {
     "errors": [
@@ -377,7 +377,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
     "date": "<timestamp>",
     "content-type": "application/json; charset=utf-8",
     "content-length": "65",
-    "connection": "close"
+    "connection": "keep-alive"
   },
   "body": {
     "errors": [
@@ -401,7 +401,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
     "date": "<timestamp>",
     "content-type": "application/json; charset=utf-8",
     "content-length": "65",
-    "connection": "close"
+    "connection": "keep-alive"
   },
   "body": {
     "errors": [
@@ -425,7 +425,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
     "date": "<timestamp>",
     "content-type": "application/json; charset=utf-8",
     "content-length": "65",
-    "connection": "close"
+    "connection": "keep-alive"
   },
   "body": {
     "errors": [
@@ -449,7 +449,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
     "date": "<timestamp>",
     "content-type": "application/json; charset=utf-8",
     "content-length": "60",
-    "connection": "close"
+    "connection": "keep-alive"
   },
   "body": {
     "errors": [
@@ -473,7 +473,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
     "date": "<timestamp>",
     "content-type": "application/json; charset=utf-8",
     "content-length": "60",
-    "connection": "close"
+    "connection": "keep-alive"
   },
   "body": {
     "errors": [
@@ -502,7 +502,7 @@ The server <i>SHOULD</i> support these, but is not required.
     "date": "<timestamp>",
     "content-type": "application/json; charset=utf-8",
     "content-length": "95",
-    "connection": "close"
+    "connection": "keep-alive"
   },
   "body": {
     "errors": [
@@ -526,7 +526,7 @@ The server <i>SHOULD</i> support these, but is not required.
     "date": "<timestamp>",
     "content-type": "application/json; charset=utf-8",
     "content-length": "95",
-    "connection": "close"
+    "connection": "keep-alive"
   },
   "body": {
     "errors": [
@@ -550,7 +550,7 @@ The server <i>SHOULD</i> support these, but is not required.
     "date": "<timestamp>",
     "content-type": "application/graphql-response+json; charset=utf-8, application/graphql-response+json",
     "content-length": "136",
-    "connection": "close"
+    "connection": "keep-alive"
   },
   "body": {
     "errors": [

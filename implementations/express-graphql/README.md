@@ -69,11 +69,12 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
   "status": 200,
   "headers": {
     "x-powered-by": "Express",
+    "keep-alive": "timeout=5",
     "etag": "W/\"1f-yOwhVHjWKeagyuteVuktj+6mcMg\"",
     "date": "<timestamp>",
     "content-type": "application/json; charset=utf-8",
     "content-length": "31",
-    "connection": "close"
+    "connection": "keep-alive"
   },
   "body": {
     "data": {
@@ -92,11 +93,12 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
   "status": 200,
   "headers": {
     "x-powered-by": "Express",
+    "keep-alive": "timeout=5",
     "etag": "W/\"1f-yOwhVHjWKeagyuteVuktj+6mcMg\"",
     "date": "<timestamp>",
     "content-type": "application/json; charset=utf-8",
     "content-length": "31",
-    "connection": "close"
+    "connection": "keep-alive"
   },
   "body": {
     "data": {
@@ -115,11 +117,12 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
   "status": 200,
   "headers": {
     "x-powered-by": "Express",
+    "keep-alive": "timeout=5",
     "etag": "W/\"1f-yOwhVHjWKeagyuteVuktj+6mcMg\"",
     "date": "<timestamp>",
     "content-type": "application/json; charset=utf-8",
     "content-length": "31",
-    "connection": "close"
+    "connection": "keep-alive"
   },
   "body": {
     "data": {
@@ -138,11 +141,12 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
   "status": 200,
   "headers": {
     "x-powered-by": "Express",
+    "keep-alive": "timeout=5",
     "etag": "W/\"1f-yOwhVHjWKeagyuteVuktj+6mcMg\"",
     "date": "<timestamp>",
     "content-type": "application/json; charset=utf-8",
     "content-length": "31",
-    "connection": "close"
+    "connection": "keep-alive"
   },
   "body": {
     "data": {
@@ -161,11 +165,12 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
   "status": 200,
   "headers": {
     "x-powered-by": "Express",
+    "keep-alive": "timeout=5",
     "etag": "W/\"1f-yOwhVHjWKeagyuteVuktj+6mcMg\"",
     "date": "<timestamp>",
     "content-type": "application/json; charset=utf-8",
     "content-length": "31",
-    "connection": "close"
+    "connection": "keep-alive"
   },
   "body": {
     "data": {
@@ -184,11 +189,12 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
   "status": 200,
   "headers": {
     "x-powered-by": "Express",
+    "keep-alive": "timeout=5",
     "etag": "W/\"1f-yOwhVHjWKeagyuteVuktj+6mcMg\"",
     "date": "<timestamp>",
     "content-type": "application/json; charset=utf-8",
     "content-length": "31",
-    "connection": "close"
+    "connection": "keep-alive"
   },
   "body": {
     "data": {
@@ -207,11 +213,12 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
   "status": 200,
   "headers": {
     "x-powered-by": "Express",
+    "keep-alive": "timeout=5",
     "etag": "W/\"1f-yOwhVHjWKeagyuteVuktj+6mcMg\"",
     "date": "<timestamp>",
     "content-type": "application/json; charset=utf-8",
     "content-length": "31",
-    "connection": "close"
+    "connection": "keep-alive"
   },
   "body": {
     "data": {
@@ -230,11 +237,12 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
   "status": 200,
   "headers": {
     "x-powered-by": "Express",
+    "keep-alive": "timeout=5",
     "etag": "W/\"1f-yOwhVHjWKeagyuteVuktj+6mcMg\"",
     "date": "<timestamp>",
     "content-type": "application/json; charset=utf-8",
     "content-length": "31",
-    "connection": "close"
+    "connection": "keep-alive"
   },
   "body": {
     "data": {
@@ -253,11 +261,12 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
   "status": 200,
   "headers": {
     "x-powered-by": "Express",
+    "keep-alive": "timeout=5",
     "etag": "W/\"1f-yOwhVHjWKeagyuteVuktj+6mcMg\"",
     "date": "<timestamp>",
     "content-type": "application/json; charset=utf-8",
     "content-length": "31",
-    "connection": "close"
+    "connection": "keep-alive"
   },
   "body": {
     "data": {
@@ -276,11 +285,12 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
   "status": 200,
   "headers": {
     "x-powered-by": "Express",
+    "keep-alive": "timeout=5",
     "etag": "W/\"1f-yOwhVHjWKeagyuteVuktj+6mcMg\"",
     "date": "<timestamp>",
     "content-type": "application/json; charset=utf-8",
     "content-length": "31",
-    "connection": "close"
+    "connection": "keep-alive"
   },
   "body": {
     "data": {
@@ -299,11 +309,12 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
   "status": 200,
   "headers": {
     "x-powered-by": "Express",
+    "keep-alive": "timeout=5",
     "etag": "W/\"1f-yOwhVHjWKeagyuteVuktj+6mcMg\"",
     "date": "<timestamp>",
     "content-type": "application/json; charset=utf-8",
     "content-length": "31",
-    "connection": "close"
+    "connection": "keep-alive"
   },
   "body": {
     "data": {
@@ -327,11 +338,12 @@ The server <i>SHOULD</i> support these, but is not required.
   "status": 200,
   "headers": {
     "x-powered-by": "Express",
+    "keep-alive": "timeout=5",
     "etag": "W/\"1f-yOwhVHjWKeagyuteVuktj+6mcMg\"",
     "date": "<timestamp>",
     "content-type": "application/json; charset=utf-8",
     "content-length": "31",
-    "connection": "close"
+    "connection": "keep-alive"
   },
   "body": {
     "data": {
@@ -350,11 +362,12 @@ The server <i>SHOULD</i> support these, but is not required.
   "status": 400,
   "headers": {
     "x-powered-by": "Express",
+    "keep-alive": "timeout=5",
     "etag": "W/\"68-Xc/MwYKGMF54XYivaA3tsxvGHZM\"",
     "date": "<timestamp>",
     "content-type": "application/json; charset=utf-8",
     "content-length": "104",
-    "connection": "close"
+    "connection": "keep-alive"
   },
   "body": {
     "errors": [
@@ -381,11 +394,12 @@ The server <i>SHOULD</i> support these, but is not required.
   "status": 400,
   "headers": {
     "x-powered-by": "Express",
+    "keep-alive": "timeout=5",
     "etag": "W/\"7b-vh2QJW5nlT/MclH/TbhHlNDXWZE\"",
     "date": "<timestamp>",
     "content-type": "application/json; charset=utf-8",
     "content-length": "123",
-    "connection": "close"
+    "connection": "keep-alive"
   },
   "body": {
     "errors": [
@@ -412,11 +426,12 @@ The server <i>SHOULD</i> support these, but is not required.
   "status": 400,
   "headers": {
     "x-powered-by": "Express",
+    "keep-alive": "timeout=5",
     "etag": "W/\"c6-jKvd+KIdPY2/2i/wYj0ck5PZF20\"",
     "date": "<timestamp>",
     "content-type": "application/json; charset=utf-8",
     "content-length": "198",
-    "connection": "close"
+    "connection": "keep-alive"
   },
   "body": {
     "errors": [

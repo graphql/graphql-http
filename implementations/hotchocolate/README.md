@@ -83,8 +83,7 @@ The server <i>SHOULD</i> support these, but is not required.
     "transfer-encoding": "chunked",
     "server": "Kestrel",
     "date": "<timestamp>",
-    "content-type": "application/graphql-response+json;charset=utf-8",
-    "connection": "close"
+    "content-type": "application/graphql-response+json;charset=utf-8"
   },
   "body": {
     "data": {
@@ -105,8 +104,7 @@ The server <i>SHOULD</i> support these, but is not required.
     "transfer-encoding": "chunked",
     "server": "Kestrel",
     "date": "<timestamp>",
-    "content-type": "application/graphql-response+json;charset=utf-8",
-    "connection": "close"
+    "content-type": "application/graphql-response+json;charset=utf-8"
   },
   "body": {
     "data": {

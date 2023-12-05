@@ -29,7 +29,7 @@ it('should report graphql errors returned from onSubscribe', async () => {
   await expect(request('GET', { query: '{ __typename }' })).resolves
     .toMatchInlineSnapshot(`
     [
-      "{\\"errors\\":[{\\"message\\":\\"Woah!\\"}]}",
+      "{"errors":[{"message":"Woah!"}]}",
       {
         "headers": {
           "content-type": "application/graphql-response+json; charset=utf-8",
@@ -53,7 +53,7 @@ it('should respond with result returned from onSubscribe', async () => {
   await expect(request('GET', { query: '{ __typename }' })).resolves
     .toMatchInlineSnapshot(`
     [
-      "{\\"data\\":{\\"__typename\\":\\"Query\\"}}",
+      "{"data":{"__typename":"Query"}}",
       {
         "headers": {
           "content-type": "application/graphql-response+json; charset=utf-8",
@@ -107,7 +107,7 @@ it('should respond with error if execution result is iterable', async () => {
   await expect(request('GET', { query: '{ __typename }' })).resolves
     .toMatchInlineSnapshot(`
     [
-      "{\\"errors\\":[{\\"message\\":\\"Subscriptions are not supported\\"}]}",
+      "{"errors":[{"message":"Subscriptions are not supported"}]}",
       {
         "headers": {
           "content-type": "application/graphql-response+json; charset=utf-8",
@@ -129,7 +129,7 @@ it('should correctly serialise execution result errors', async () => {
     }),
   ).resolves.toMatchInlineSnapshot(`
     [
-      "{\\"errors\\":[{\\"message\\":\\"Variable \\\\\\"$num\\\\\\" got invalid value \\\\\\"foo\\\\\\"; Int cannot represent non-integer value: \\\\\\"foo\\\\\\"\\",\\"locations\\":[{\\"line\\":1,\\"column\\":8}]}]}",
+      "{"errors":[{"message":"Variable \\"$num\\" got invalid value \\"foo\\"; Int cannot represent non-integer value: \\"foo\\"","locations":[{"line":1,"column":8}]}]}",
       {
         "headers": {
           "content-type": "application/graphql-response+json; charset=utf-8",
@@ -154,7 +154,7 @@ it('should append the provided validation rules array', async () => {
   await expect(request('GET', { query: '{ idontexist }' })).resolves
     .toMatchInlineSnapshot(`
     [
-      "{\\"errors\\":[{\\"message\\":\\"Woah!\\"},{\\"message\\":\\"Cannot query field \\\\\\"idontexist\\\\\\" on type \\\\\\"Query\\\\\\".\\",\\"locations\\":[{\\"line\\":1,\\"column\\":3}]}]}",
+      "{"errors":[{"message":"Woah!"},{"message":"Cannot query field \\"idontexist\\" on type \\"Query\\".","locations":[{"line":1,"column":3}]}]}",
       {
         "headers": {
           "content-type": "application/graphql-response+json; charset=utf-8",
@@ -179,7 +179,7 @@ it('should replace the validation rules when providing a function', async () => 
   await expect(request('GET', { query: '{ idontexist }' })).resolves
     .toMatchInlineSnapshot(`
     [
-      "{\\"errors\\":[{\\"message\\":\\"Woah!\\"}]}",
+      "{"errors":[{"message":"Woah!"}]}",
       {
         "headers": {
           "content-type": "application/graphql-response+json; charset=utf-8",
@@ -205,7 +205,7 @@ it('should print plain errors in detail', async () => {
     }),
   ).resolves.toMatchInlineSnapshot(`
     [
-      "{\\"errors\\":[{\\"message\\":\\"Missing body\\"}]}",
+      "{"errors":[{"message":"Missing body"}]}",
       {
         "headers": {
           "content-type": "application/json; charset=utf-8",
@@ -225,7 +225,7 @@ it('should format errors using the formatter', async () => {
   await expect(request('GET', { query: '{ idontexist }' })).resolves
     .toMatchInlineSnapshot(`
     [
-      "{\\"errors\\":[{\\"message\\":\\"Formatted\\"}]}",
+      "{"errors":[{"message":"Formatted"}]}",
       {
         "headers": {
           "content-type": "application/graphql-response+json; charset=utf-8",
@@ -260,7 +260,7 @@ it('should respect plain errors toJSON implementation', async () => {
   await expect(request('GET', { query: '{ idontexist }' })).resolves
     .toMatchInlineSnapshot(`
     [
-      "{\\"errors\\":[{\\"message\\":\\"Custom toJSON\\",\\"toJSON\\":\\"used\\"}]}",
+      "{"errors":[{"message":"Custom toJSON","toJSON":"used"}]}",
       {
         "headers": {
           "content-type": "application/graphql-response+json; charset=utf-8",
@@ -293,7 +293,7 @@ it('should use the custom request params parser', async () => {
     }),
   ).resolves.toMatchInlineSnapshot(`
     [
-      "{\\"data\\":{\\"hello\\":\\"world\\"}}",
+      "{"data":{"hello":"world"}}",
       {
         "headers": {
           "content-type": "application/json; charset=utf-8",
@@ -340,7 +340,7 @@ it('should report thrown Error from custom request params parser', async () => {
   await expect(request('GET', { query: '{ __typename }' })).resolves
     .toMatchInlineSnapshot(`
     [
-      "{\\"errors\\":[{\\"message\\":\\"Wrong.\\"}]}",
+      "{"errors":[{"message":"Wrong."}]}",
       {
         "headers": {
           "content-type": "application/json; charset=utf-8",
@@ -367,7 +367,7 @@ it('should report thrown GraphQLError from custom request params parser', async 
     ),
   ).resolves.toMatchInlineSnapshot(`
     [
-      "{\\"errors\\":[{\\"message\\":\\"Wronger.\\"}]}",
+      "{"errors":[{"message":"Wronger."}]}",
       {
         "headers": {
           "content-type": "application/graphql-response+json; charset=utf-8",
@@ -382,7 +382,7 @@ it('should report thrown GraphQLError from custom request params parser', async 
     request('GET', { query: '{ __typename }' }, { accept: 'application/json' }),
   ).resolves.toMatchInlineSnapshot(`
     [
-      "{\\"errors\\":[{\\"message\\":\\"Wronger.\\"}]}",
+      "{"errors":[{"message":"Wronger."}]}",
       {
         "headers": {
           "content-type": "application/json; charset=utf-8",
@@ -404,7 +404,7 @@ it('should use the default if nothing is returned from the custom request params
   await expect(request('GET', { query: '{ __typename }' })).resolves
     .toMatchInlineSnapshot(`
     [
-      "{\\"data\\":{\\"__typename\\":\\"Query\\"}}",
+      "{"data":{"__typename":"Query"}}",
       {
         "headers": {
           "content-type": "application/graphql-response+json; charset=utf-8",
