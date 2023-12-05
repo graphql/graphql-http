@@ -84,7 +84,7 @@ describe('http', () => {
     const res = await fetch(url + '?query={hello}');
 
     await expect(res.text()).resolves.toMatchInlineSnapshot(
-      '"{\\"data\\":{\\"hello\\":\\"world\\"}}"',
+      `"{"data":{"hello":"world"}}"`,
     );
     expect(res.headers.get('x-test')).toBe('test-x');
 
@@ -131,7 +131,7 @@ describe('express', () => {
     const res = await fetch(url + '?query={hello}');
 
     await expect(res.text()).resolves.toMatchInlineSnapshot(
-      '"{\\"data\\":{\\"hello\\":\\"world\\"}}"',
+      `"{"data":{"hello":"world"}}"`,
     );
     expect(res.headers.get('x-test')).toBe('test-x');
 
@@ -190,7 +190,7 @@ describe('fastify', () => {
     const res = await fetch(url + '?query={hello}');
 
     await expect(res.text()).resolves.toMatchInlineSnapshot(
-      '"{\\"data\\":{\\"hello\\":\\"world\\"}}"',
+      `"{"data":{"hello":"world"}}"`,
     );
     expect(res.headers.get('x-test')).toBe('test-x');
 
@@ -250,7 +250,7 @@ describe('koa', () => {
     const res = await fetch(url + '?query={hello}');
 
     await expect(res.text()).resolves.toMatchInlineSnapshot(
-      '"{\\"data\\":{\\"hello\\":\\"world\\"}}"',
+      `"{"data":{"hello":"world"}}"`,
     );
     expect(res.headers.get('x-test')).toBe('test-x');
 
