@@ -14,6 +14,8 @@ const config = {
     'keyout',
     'newkey',
     'isomorphically',
+    'graphi',
+    'ruru',
   ],
 };
 module.exports = config;

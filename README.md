@@ -272,7 +272,7 @@ Thanks to [`ruru`](https://github.com/graphile/crystal/tree/main/grafast/ruru), 
 npx ruru -SP -p 4001 -e http://localhost:4000/graphql
 ```
 
-Open [http://localhost:4001](http://localhost:4001) in the borwser to use it.
+Open [http://localhost:4001](http://localhost:4001) in the browser to use it.
 
 ## Recipes
 
