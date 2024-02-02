@@ -264,6 +264,16 @@ const client = createClient({
 })();
 ```
 
+#### Serve [GraphiQL](https://github.com/graphql/graphiql)
+
+Thanks to [`ruru`](https://github.com/graphile/crystal/tree/main/grafast/ruru), serving GraphiQL is as easy as running:
+
+```sh
+npx ruru -SP -p 4001 -e http://localhost:4000/graphql
+```
+
+Open [http://localhost:4001](http://localhost:4001) in the borwser to use it.
+
 ## Recipes
 
 <details id="promise">
