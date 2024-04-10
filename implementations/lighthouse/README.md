@@ -101,13 +101,13 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
   "body": {
     "trace": [
       {
-        "line": 59,
+        "line": 60,
         "function": "assert",
         "file": "/app/vendor/laragraph/utils/src/RequestParser.php"
       },
       {
         "type": "->",
-        "line": 40,
+        "line": 41,
         "function": "bodyParams",
         "file": "/app/vendor/laragraph/utils/src/RequestParser.php",
         "class": "Laragraph\\Utils\\RequestParser"
@@ -142,14 +142,14 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
       },
       {
         "type": "->",
-        "line": 806,
+        "line": 799,
         "function": "run",
         "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
         "class": "Illuminate\\Routing\\Route"
       },
       {
         "type": "->",
-        "line": 144,
+        "line": 141,
         "function": "Illuminate\\Routing\\{closure}",
         "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
         "class": "Illuminate\\Routing\\Router"
@@ -163,7 +163,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
       },
       {
         "type": "->",
-        "line": 183,
+        "line": 180,
         "function": "handle",
         "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
         "class": "Nuwave\\Lighthouse\\Http\\Middleware\\AttemptAuthentication"
@@ -177,42 +177,42 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
       },
       {
         "type": "->",
-        "line": 183,
+        "line": 180,
         "function": "handle",
         "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
         "class": "Nuwave\\Lighthouse\\Http\\Middleware\\AcceptJson"
       },
       {
         "type": "->",
-        "line": 119,
+        "line": 116,
         "function": "Illuminate\\Pipeline\\{closure}",
         "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
         "class": "Illuminate\\Pipeline\\Pipeline"
       },
       {
         "type": "->",
-        "line": 807,
+        "line": 800,
         "function": "then",
         "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
         "class": "Illuminate\\Pipeline\\Pipeline"
       },
       {
         "type": "->",
-        "line": 784,
+        "line": 777,
         "function": "runRouteWithinStack",
         "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
         "class": "Illuminate\\Routing\\Router"
       },
       {
         "type": "->",
-        "line": 748,
+        "line": 741,
         "function": "runRoute",
         "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
         "class": "Illuminate\\Routing\\Router"
       },
       {
         "type": "->",
-        "line": 737,
+        "line": 730,
         "function": "dispatchToRoute",
         "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
         "class": "Illuminate\\Routing\\Router"
@@ -226,7 +226,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
       },
       {
         "type": "->",
-        "line": 144,
+        "line": 141,
         "function": "Illuminate\\Foundation\\Http\\{closure}",
         "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
         "class": "Illuminate\\Foundation\\Http\\Kernel"
@@ -247,7 +247,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
       },
       {
         "type": "->",
-        "line": 183,
+        "line": 180,
         "function": "handle",
         "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
         "class": "Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull"
@@ -268,7 +268,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
       },
       {
         "type": "->",
-        "line": 183,
+        "line": 180,
         "function": "handle",
         "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
         "class": "Illuminate\\Foundation\\Http\\Middleware\\TrimStrings"
@@ -282,7 +282,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
       },
       {
         "type": "->",
-        "line": 183,
+        "line": 180,
         "function": "handle",
         "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
         "class": "Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize"
@@ -296,7 +296,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
       },
       {
         "type": "->",
-        "line": 183,
+        "line": 180,
         "function": "handle",
         "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
         "class": "Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance"
@@ -310,7 +310,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
       },
       {
         "type": "->",
-        "line": 183,
+        "line": 180,
         "function": "handle",
         "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
         "class": "Illuminate\\Http\\Middleware\\HandleCors"
@@ -324,14 +324,14 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
       },
       {
         "type": "->",
-        "line": 183,
+        "line": 180,
         "function": "handle",
         "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
         "class": "Illuminate\\Http\\Middleware\\TrustProxies"
       },
       {
         "type": "->",
-        "line": 119,
+        "line": 116,
         "function": "Illuminate\\Pipeline\\{closure}",
         "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
         "class": "Illuminate\\Pipeline\\Pipeline"
@@ -364,7 +364,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
       }
     ],
     "message": "Never null, since Symfony defaults to application/x-www-form-urlencoded.",
-    "line": 59,
+    "line": 60,
     "file": "/app/vendor/laragraph/utils/src/RequestParser.php",
     "exception": "AssertionError"
   }
@@ -433,12 +433,12 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Routing\\Route::runController()"
             },
             {
-              "line": 806,
+              "line": 799,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
               "call": "Illuminate\\Routing\\Route::run()"
             },
             {
-              "line": 144,
+              "line": 141,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Routing\\Router::Illuminate\\Routing\\{closure}(instance of Illuminate\\Http\\Request)"
             },
@@ -448,7 +448,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Nuwave\\Lighthouse\\Http\\Middleware\\AttemptAuthentication::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -458,32 +458,32 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Nuwave\\Lighthouse\\Http\\Middleware\\AcceptJson::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
             {
-              "line": 119,
+              "line": 116,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 807,
+              "line": 800,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
               "call": "Illuminate\\Pipeline\\Pipeline::then(instance of Closure)"
             },
             {
-              "line": 784,
+              "line": 777,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
               "call": "Illuminate\\Routing\\Router::runRouteWithinStack(instance of Illuminate\\Routing\\Route, instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 748,
+              "line": 741,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
               "call": "Illuminate\\Routing\\Router::runRoute(instance of Illuminate\\Http\\Request, instance of Illuminate\\Routing\\Route)"
             },
             {
-              "line": 737,
+              "line": 730,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
               "call": "Illuminate\\Routing\\Router::dispatchToRoute(instance of Illuminate\\Http\\Request)"
             },
@@ -493,7 +493,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Routing\\Router::dispatch(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 144,
+              "line": 141,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Foundation\\Http\\Kernel::Illuminate\\Foundation\\Http\\{closure}(instance of Illuminate\\Http\\Request)"
             },
@@ -508,7 +508,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -523,7 +523,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Foundation\\Http\\Middleware\\TrimStrings::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -533,7 +533,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -543,7 +543,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -553,7 +553,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Http\\Middleware\\HandleCors::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -563,12 +563,12 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Http\\Middleware\\TrustProxies::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
             {
-              "line": 119,
+              "line": 116,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
@@ -593,7 +593,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php"
             }
           ],
-          "line": 153,
+          "line": 139,
           "file": "/app/vendor/webonyx/graphql-php/src/Server/Helper.php"
         }
       }
@@ -664,12 +664,12 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Routing\\Route::runController()"
             },
             {
-              "line": 806,
+              "line": 799,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
               "call": "Illuminate\\Routing\\Route::run()"
             },
             {
-              "line": 144,
+              "line": 141,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Routing\\Router::Illuminate\\Routing\\{closure}(instance of Illuminate\\Http\\Request)"
             },
@@ -679,7 +679,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Nuwave\\Lighthouse\\Http\\Middleware\\AttemptAuthentication::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -689,32 +689,32 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Nuwave\\Lighthouse\\Http\\Middleware\\AcceptJson::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
             {
-              "line": 119,
+              "line": 116,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 807,
+              "line": 800,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
               "call": "Illuminate\\Pipeline\\Pipeline::then(instance of Closure)"
             },
             {
-              "line": 784,
+              "line": 777,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
               "call": "Illuminate\\Routing\\Router::runRouteWithinStack(instance of Illuminate\\Routing\\Route, instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 748,
+              "line": 741,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
               "call": "Illuminate\\Routing\\Router::runRoute(instance of Illuminate\\Http\\Request, instance of Illuminate\\Routing\\Route)"
             },
             {
-              "line": 737,
+              "line": 730,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
               "call": "Illuminate\\Routing\\Router::dispatchToRoute(instance of Illuminate\\Http\\Request)"
             },
@@ -724,7 +724,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Routing\\Router::dispatch(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 144,
+              "line": 141,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Foundation\\Http\\Kernel::Illuminate\\Foundation\\Http\\{closure}(instance of Illuminate\\Http\\Request)"
             },
@@ -739,7 +739,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -754,7 +754,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Foundation\\Http\\Middleware\\TrimStrings::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -764,7 +764,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -774,7 +774,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -784,7 +784,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Http\\Middleware\\HandleCors::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -794,12 +794,12 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Http\\Middleware\\TrustProxies::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
             {
-              "line": 119,
+              "line": 116,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
@@ -824,7 +824,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php"
             }
           ],
-          "line": 157,
+          "line": 143,
           "file": "/app/vendor/webonyx/graphql-php/src/Server/Helper.php"
         }
       }
@@ -895,12 +895,12 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Routing\\Route::runController()"
             },
             {
-              "line": 806,
+              "line": 799,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
               "call": "Illuminate\\Routing\\Route::run()"
             },
             {
-              "line": 144,
+              "line": 141,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Routing\\Router::Illuminate\\Routing\\{closure}(instance of Illuminate\\Http\\Request)"
             },
@@ -910,7 +910,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Nuwave\\Lighthouse\\Http\\Middleware\\AttemptAuthentication::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -920,32 +920,32 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Nuwave\\Lighthouse\\Http\\Middleware\\AcceptJson::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
             {
-              "line": 119,
+              "line": 116,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 807,
+              "line": 800,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
               "call": "Illuminate\\Pipeline\\Pipeline::then(instance of Closure)"
             },
             {
-              "line": 784,
+              "line": 777,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
               "call": "Illuminate\\Routing\\Router::runRouteWithinStack(instance of Illuminate\\Routing\\Route, instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 748,
+              "line": 741,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
               "call": "Illuminate\\Routing\\Router::runRoute(instance of Illuminate\\Http\\Request, instance of Illuminate\\Routing\\Route)"
             },
             {
-              "line": 737,
+              "line": 730,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
               "call": "Illuminate\\Routing\\Router::dispatchToRoute(instance of Illuminate\\Http\\Request)"
             },
@@ -955,7 +955,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Routing\\Router::dispatch(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 144,
+              "line": 141,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Foundation\\Http\\Kernel::Illuminate\\Foundation\\Http\\{closure}(instance of Illuminate\\Http\\Request)"
             },
@@ -970,7 +970,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -985,7 +985,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Foundation\\Http\\Middleware\\TrimStrings::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -995,7 +995,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -1005,7 +1005,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -1015,7 +1015,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Http\\Middleware\\HandleCors::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -1025,12 +1025,12 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Http\\Middleware\\TrustProxies::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
             {
-              "line": 119,
+              "line": 116,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
@@ -1055,7 +1055,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php"
             }
           ],
-          "line": 157,
+          "line": 143,
           "file": "/app/vendor/webonyx/graphql-php/src/Server/Helper.php"
         }
       }
@@ -1126,12 +1126,12 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Routing\\Route::runController()"
             },
             {
-              "line": 806,
+              "line": 799,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
               "call": "Illuminate\\Routing\\Route::run()"
             },
             {
-              "line": 144,
+              "line": 141,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Routing\\Router::Illuminate\\Routing\\{closure}(instance of Illuminate\\Http\\Request)"
             },
@@ -1141,7 +1141,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Nuwave\\Lighthouse\\Http\\Middleware\\AttemptAuthentication::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -1151,32 +1151,32 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Nuwave\\Lighthouse\\Http\\Middleware\\AcceptJson::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
             {
-              "line": 119,
+              "line": 116,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 807,
+              "line": 800,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
               "call": "Illuminate\\Pipeline\\Pipeline::then(instance of Closure)"
             },
             {
-              "line": 784,
+              "line": 777,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
               "call": "Illuminate\\Routing\\Router::runRouteWithinStack(instance of Illuminate\\Routing\\Route, instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 748,
+              "line": 741,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
               "call": "Illuminate\\Routing\\Router::runRoute(instance of Illuminate\\Http\\Request, instance of Illuminate\\Routing\\Route)"
             },
             {
-              "line": 737,
+              "line": 730,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
               "call": "Illuminate\\Routing\\Router::dispatchToRoute(instance of Illuminate\\Http\\Request)"
             },
@@ -1186,7 +1186,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Routing\\Router::dispatch(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 144,
+              "line": 141,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Foundation\\Http\\Kernel::Illuminate\\Foundation\\Http\\{closure}(instance of Illuminate\\Http\\Request)"
             },
@@ -1201,7 +1201,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -1216,7 +1216,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Foundation\\Http\\Middleware\\TrimStrings::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -1226,7 +1226,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -1236,7 +1236,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -1246,7 +1246,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Http\\Middleware\\HandleCors::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -1256,12 +1256,12 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Http\\Middleware\\TrustProxies::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
             {
-              "line": 119,
+              "line": 116,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
@@ -1286,7 +1286,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php"
             }
           ],
-          "line": 157,
+          "line": 143,
           "file": "/app/vendor/webonyx/graphql-php/src/Server/Helper.php"
         }
       }
@@ -1357,12 +1357,12 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Routing\\Route::runController()"
             },
             {
-              "line": 806,
+              "line": 799,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
               "call": "Illuminate\\Routing\\Route::run()"
             },
             {
-              "line": 144,
+              "line": 141,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Routing\\Router::Illuminate\\Routing\\{closure}(instance of Illuminate\\Http\\Request)"
             },
@@ -1372,7 +1372,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Nuwave\\Lighthouse\\Http\\Middleware\\AttemptAuthentication::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -1382,32 +1382,32 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Nuwave\\Lighthouse\\Http\\Middleware\\AcceptJson::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
             {
-              "line": 119,
+              "line": 116,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 807,
+              "line": 800,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
               "call": "Illuminate\\Pipeline\\Pipeline::then(instance of Closure)"
             },
             {
-              "line": 784,
+              "line": 777,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
               "call": "Illuminate\\Routing\\Router::runRouteWithinStack(instance of Illuminate\\Routing\\Route, instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 748,
+              "line": 741,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
               "call": "Illuminate\\Routing\\Router::runRoute(instance of Illuminate\\Http\\Request, instance of Illuminate\\Routing\\Route)"
             },
             {
-              "line": 737,
+              "line": 730,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
               "call": "Illuminate\\Routing\\Router::dispatchToRoute(instance of Illuminate\\Http\\Request)"
             },
@@ -1417,7 +1417,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Routing\\Router::dispatch(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 144,
+              "line": 141,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Foundation\\Http\\Kernel::Illuminate\\Foundation\\Http\\{closure}(instance of Illuminate\\Http\\Request)"
             },
@@ -1432,7 +1432,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -1447,7 +1447,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Foundation\\Http\\Middleware\\TrimStrings::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -1457,7 +1457,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -1467,7 +1467,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -1477,7 +1477,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Http\\Middleware\\HandleCors::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -1487,12 +1487,12 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Http\\Middleware\\TrustProxies::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
             {
-              "line": 119,
+              "line": 116,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
@@ -1517,7 +1517,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php"
             }
           ],
-          "line": 157,
+          "line": 143,
           "file": "/app/vendor/webonyx/graphql-php/src/Server/Helper.php"
         }
       }
@@ -1588,12 +1588,12 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Routing\\Route::runController()"
             },
             {
-              "line": 806,
+              "line": 799,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
               "call": "Illuminate\\Routing\\Route::run()"
             },
             {
-              "line": 144,
+              "line": 141,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Routing\\Router::Illuminate\\Routing\\{closure}(instance of Illuminate\\Http\\Request)"
             },
@@ -1603,7 +1603,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Nuwave\\Lighthouse\\Http\\Middleware\\AttemptAuthentication::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -1613,32 +1613,32 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Nuwave\\Lighthouse\\Http\\Middleware\\AcceptJson::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
             {
-              "line": 119,
+              "line": 116,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 807,
+              "line": 800,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
               "call": "Illuminate\\Pipeline\\Pipeline::then(instance of Closure)"
             },
             {
-              "line": 784,
+              "line": 777,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
               "call": "Illuminate\\Routing\\Router::runRouteWithinStack(instance of Illuminate\\Routing\\Route, instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 748,
+              "line": 741,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
               "call": "Illuminate\\Routing\\Router::runRoute(instance of Illuminate\\Http\\Request, instance of Illuminate\\Routing\\Route)"
             },
             {
-              "line": 737,
+              "line": 730,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
               "call": "Illuminate\\Routing\\Router::dispatchToRoute(instance of Illuminate\\Http\\Request)"
             },
@@ -1648,7 +1648,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Routing\\Router::dispatch(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 144,
+              "line": 141,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Foundation\\Http\\Kernel::Illuminate\\Foundation\\Http\\{closure}(instance of Illuminate\\Http\\Request)"
             },
@@ -1663,7 +1663,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -1678,7 +1678,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Foundation\\Http\\Middleware\\TrimStrings::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -1688,7 +1688,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -1698,7 +1698,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -1708,7 +1708,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Http\\Middleware\\HandleCors::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -1718,12 +1718,12 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Http\\Middleware\\TrustProxies::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
             {
-              "line": 119,
+              "line": 116,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
@@ -1748,7 +1748,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php"
             }
           ],
-          "line": 171,
+          "line": 157,
           "file": "/app/vendor/webonyx/graphql-php/src/Server/Helper.php"
         }
       }
@@ -1819,12 +1819,12 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Routing\\Route::runController()"
             },
             {
-              "line": 806,
+              "line": 799,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
               "call": "Illuminate\\Routing\\Route::run()"
             },
             {
-              "line": 144,
+              "line": 141,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Routing\\Router::Illuminate\\Routing\\{closure}(instance of Illuminate\\Http\\Request)"
             },
@@ -1834,7 +1834,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Nuwave\\Lighthouse\\Http\\Middleware\\AttemptAuthentication::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -1844,32 +1844,32 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Nuwave\\Lighthouse\\Http\\Middleware\\AcceptJson::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
             {
-              "line": 119,
+              "line": 116,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 807,
+              "line": 800,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
               "call": "Illuminate\\Pipeline\\Pipeline::then(instance of Closure)"
             },
             {
-              "line": 784,
+              "line": 777,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
               "call": "Illuminate\\Routing\\Router::runRouteWithinStack(instance of Illuminate\\Routing\\Route, instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 748,
+              "line": 741,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
               "call": "Illuminate\\Routing\\Router::runRoute(instance of Illuminate\\Http\\Request, instance of Illuminate\\Routing\\Route)"
             },
             {
-              "line": 737,
+              "line": 730,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
               "call": "Illuminate\\Routing\\Router::dispatchToRoute(instance of Illuminate\\Http\\Request)"
             },
@@ -1879,7 +1879,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Routing\\Router::dispatch(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 144,
+              "line": 141,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Foundation\\Http\\Kernel::Illuminate\\Foundation\\Http\\{closure}(instance of Illuminate\\Http\\Request)"
             },
@@ -1894,7 +1894,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -1909,7 +1909,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Foundation\\Http\\Middleware\\TrimStrings::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -1919,7 +1919,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -1929,7 +1929,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -1939,7 +1939,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Http\\Middleware\\HandleCors::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -1949,12 +1949,12 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Http\\Middleware\\TrustProxies::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
             {
-              "line": 119,
+              "line": 116,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
@@ -1979,7 +1979,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php"
             }
           ],
-          "line": 171,
+          "line": 157,
           "file": "/app/vendor/webonyx/graphql-php/src/Server/Helper.php"
         }
       }
@@ -2050,12 +2050,12 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Routing\\Route::runController()"
             },
             {
-              "line": 806,
+              "line": 799,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
               "call": "Illuminate\\Routing\\Route::run()"
             },
             {
-              "line": 144,
+              "line": 141,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Routing\\Router::Illuminate\\Routing\\{closure}(instance of Illuminate\\Http\\Request)"
             },
@@ -2065,7 +2065,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Nuwave\\Lighthouse\\Http\\Middleware\\AttemptAuthentication::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -2075,32 +2075,32 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Nuwave\\Lighthouse\\Http\\Middleware\\AcceptJson::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
             {
-              "line": 119,
+              "line": 116,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 807,
+              "line": 800,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
               "call": "Illuminate\\Pipeline\\Pipeline::then(instance of Closure)"
             },
             {
-              "line": 784,
+              "line": 777,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
               "call": "Illuminate\\Routing\\Router::runRouteWithinStack(instance of Illuminate\\Routing\\Route, instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 748,
+              "line": 741,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
               "call": "Illuminate\\Routing\\Router::runRoute(instance of Illuminate\\Http\\Request, instance of Illuminate\\Routing\\Route)"
             },
             {
-              "line": 737,
+              "line": 730,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
               "call": "Illuminate\\Routing\\Router::dispatchToRoute(instance of Illuminate\\Http\\Request)"
             },
@@ -2110,7 +2110,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Routing\\Router::dispatch(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 144,
+              "line": 141,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Foundation\\Http\\Kernel::Illuminate\\Foundation\\Http\\{closure}(instance of Illuminate\\Http\\Request)"
             },
@@ -2125,7 +2125,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -2140,7 +2140,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Foundation\\Http\\Middleware\\TrimStrings::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -2150,7 +2150,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -2160,7 +2160,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -2170,7 +2170,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Http\\Middleware\\HandleCors::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -2180,12 +2180,12 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Http\\Middleware\\TrustProxies::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
             {
-              "line": 119,
+              "line": 116,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
@@ -2210,7 +2210,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php"
             }
           ],
-          "line": 171,
+          "line": 157,
           "file": "/app/vendor/webonyx/graphql-php/src/Server/Helper.php"
         }
       }
@@ -2281,12 +2281,12 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Routing\\Route::runController()"
             },
             {
-              "line": 806,
+              "line": 799,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
               "call": "Illuminate\\Routing\\Route::run()"
             },
             {
-              "line": 144,
+              "line": 141,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Routing\\Router::Illuminate\\Routing\\{closure}(instance of Illuminate\\Http\\Request)"
             },
@@ -2296,7 +2296,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Nuwave\\Lighthouse\\Http\\Middleware\\AttemptAuthentication::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -2306,32 +2306,32 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Nuwave\\Lighthouse\\Http\\Middleware\\AcceptJson::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
             {
-              "line": 119,
+              "line": 116,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 807,
+              "line": 800,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
               "call": "Illuminate\\Pipeline\\Pipeline::then(instance of Closure)"
             },
             {
-              "line": 784,
+              "line": 777,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
               "call": "Illuminate\\Routing\\Router::runRouteWithinStack(instance of Illuminate\\Routing\\Route, instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 748,
+              "line": 741,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
               "call": "Illuminate\\Routing\\Router::runRoute(instance of Illuminate\\Http\\Request, instance of Illuminate\\Routing\\Route)"
             },
             {
-              "line": 737,
+              "line": 730,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
               "call": "Illuminate\\Routing\\Router::dispatchToRoute(instance of Illuminate\\Http\\Request)"
             },
@@ -2341,7 +2341,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Routing\\Router::dispatch(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 144,
+              "line": 141,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Foundation\\Http\\Kernel::Illuminate\\Foundation\\Http\\{closure}(instance of Illuminate\\Http\\Request)"
             },
@@ -2356,7 +2356,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -2371,7 +2371,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Foundation\\Http\\Middleware\\TrimStrings::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -2381,7 +2381,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -2391,7 +2391,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -2401,7 +2401,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Http\\Middleware\\HandleCors::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -2411,12 +2411,12 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Http\\Middleware\\TrustProxies::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
             {
-              "line": 119,
+              "line": 116,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
@@ -2441,7 +2441,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php"
             }
           ],
-          "line": 171,
+          "line": 157,
           "file": "/app/vendor/webonyx/graphql-php/src/Server/Helper.php"
         }
       }
@@ -2512,12 +2512,12 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Routing\\Route::runController()"
             },
             {
-              "line": 806,
+              "line": 799,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
               "call": "Illuminate\\Routing\\Route::run()"
             },
             {
-              "line": 144,
+              "line": 141,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Routing\\Router::Illuminate\\Routing\\{closure}(instance of Illuminate\\Http\\Request)"
             },
@@ -2527,7 +2527,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Nuwave\\Lighthouse\\Http\\Middleware\\AttemptAuthentication::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -2537,32 +2537,32 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Nuwave\\Lighthouse\\Http\\Middleware\\AcceptJson::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
             {
-              "line": 119,
+              "line": 116,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 807,
+              "line": 800,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
               "call": "Illuminate\\Pipeline\\Pipeline::then(instance of Closure)"
             },
             {
-              "line": 784,
+              "line": 777,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
               "call": "Illuminate\\Routing\\Router::runRouteWithinStack(instance of Illuminate\\Routing\\Route, instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 748,
+              "line": 741,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
               "call": "Illuminate\\Routing\\Router::runRoute(instance of Illuminate\\Http\\Request, instance of Illuminate\\Routing\\Route)"
             },
             {
-              "line": 737,
+              "line": 730,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
               "call": "Illuminate\\Routing\\Router::dispatchToRoute(instance of Illuminate\\Http\\Request)"
             },
@@ -2572,7 +2572,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Routing\\Router::dispatch(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 144,
+              "line": 141,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Foundation\\Http\\Kernel::Illuminate\\Foundation\\Http\\{closure}(instance of Illuminate\\Http\\Request)"
             },
@@ -2587,7 +2587,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -2602,7 +2602,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Foundation\\Http\\Middleware\\TrimStrings::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -2612,7 +2612,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -2622,7 +2622,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -2632,7 +2632,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Http\\Middleware\\HandleCors::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -2642,12 +2642,12 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Http\\Middleware\\TrustProxies::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
             {
-              "line": 119,
+              "line": 116,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
@@ -2672,7 +2672,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php"
             }
           ],
-          "line": 178,
+          "line": 164,
           "file": "/app/vendor/webonyx/graphql-php/src/Server/Helper.php"
         }
       }
@@ -2743,12 +2743,12 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Routing\\Route::runController()"
             },
             {
-              "line": 806,
+              "line": 799,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
               "call": "Illuminate\\Routing\\Route::run()"
             },
             {
-              "line": 144,
+              "line": 141,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Routing\\Router::Illuminate\\Routing\\{closure}(instance of Illuminate\\Http\\Request)"
             },
@@ -2758,7 +2758,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Nuwave\\Lighthouse\\Http\\Middleware\\AttemptAuthentication::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -2768,32 +2768,32 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Nuwave\\Lighthouse\\Http\\Middleware\\AcceptJson::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
             {
-              "line": 119,
+              "line": 116,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 807,
+              "line": 800,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
               "call": "Illuminate\\Pipeline\\Pipeline::then(instance of Closure)"
             },
             {
-              "line": 784,
+              "line": 777,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
               "call": "Illuminate\\Routing\\Router::runRouteWithinStack(instance of Illuminate\\Routing\\Route, instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 748,
+              "line": 741,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
               "call": "Illuminate\\Routing\\Router::runRoute(instance of Illuminate\\Http\\Request, instance of Illuminate\\Routing\\Route)"
             },
             {
-              "line": 737,
+              "line": 730,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
               "call": "Illuminate\\Routing\\Router::dispatchToRoute(instance of Illuminate\\Http\\Request)"
             },
@@ -2803,7 +2803,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Routing\\Router::dispatch(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 144,
+              "line": 141,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Foundation\\Http\\Kernel::Illuminate\\Foundation\\Http\\{closure}(instance of Illuminate\\Http\\Request)"
             },
@@ -2818,7 +2818,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -2833,7 +2833,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Foundation\\Http\\Middleware\\TrimStrings::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -2843,7 +2843,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -2853,7 +2853,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -2863,7 +2863,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Http\\Middleware\\HandleCors::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -2873,12 +2873,12 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Http\\Middleware\\TrustProxies::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
             {
-              "line": 119,
+              "line": 116,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
@@ -2903,7 +2903,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php"
             }
           ],
-          "line": 178,
+          "line": 164,
           "file": "/app/vendor/webonyx/graphql-php/src/Server/Helper.php"
         }
       }
@@ -2974,12 +2974,12 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Routing\\Route::runController()"
             },
             {
-              "line": 806,
+              "line": 799,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
               "call": "Illuminate\\Routing\\Route::run()"
             },
             {
-              "line": 144,
+              "line": 141,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Routing\\Router::Illuminate\\Routing\\{closure}(instance of Illuminate\\Http\\Request)"
             },
@@ -2989,7 +2989,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Nuwave\\Lighthouse\\Http\\Middleware\\AttemptAuthentication::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -2999,32 +2999,32 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Nuwave\\Lighthouse\\Http\\Middleware\\AcceptJson::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
             {
-              "line": 119,
+              "line": 116,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 807,
+              "line": 800,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
               "call": "Illuminate\\Pipeline\\Pipeline::then(instance of Closure)"
             },
             {
-              "line": 784,
+              "line": 777,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
               "call": "Illuminate\\Routing\\Router::runRouteWithinStack(instance of Illuminate\\Routing\\Route, instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 748,
+              "line": 741,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
               "call": "Illuminate\\Routing\\Router::runRoute(instance of Illuminate\\Http\\Request, instance of Illuminate\\Routing\\Route)"
             },
             {
-              "line": 737,
+              "line": 730,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
               "call": "Illuminate\\Routing\\Router::dispatchToRoute(instance of Illuminate\\Http\\Request)"
             },
@@ -3034,7 +3034,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Routing\\Router::dispatch(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 144,
+              "line": 141,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Foundation\\Http\\Kernel::Illuminate\\Foundation\\Http\\{closure}(instance of Illuminate\\Http\\Request)"
             },
@@ -3049,7 +3049,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -3064,7 +3064,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Foundation\\Http\\Middleware\\TrimStrings::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -3074,7 +3074,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -3084,7 +3084,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -3094,7 +3094,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Http\\Middleware\\HandleCors::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -3104,12 +3104,12 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Http\\Middleware\\TrustProxies::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
             {
-              "line": 119,
+              "line": 116,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
@@ -3134,7 +3134,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php"
             }
           ],
-          "line": 178,
+          "line": 164,
           "file": "/app/vendor/webonyx/graphql-php/src/Server/Helper.php"
         }
       }
@@ -3205,12 +3205,12 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Routing\\Route::runController()"
             },
             {
-              "line": 806,
+              "line": 799,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
               "call": "Illuminate\\Routing\\Route::run()"
             },
             {
-              "line": 144,
+              "line": 141,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Routing\\Router::Illuminate\\Routing\\{closure}(instance of Illuminate\\Http\\Request)"
             },
@@ -3220,7 +3220,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Nuwave\\Lighthouse\\Http\\Middleware\\AttemptAuthentication::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -3230,32 +3230,32 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Nuwave\\Lighthouse\\Http\\Middleware\\AcceptJson::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
             {
-              "line": 119,
+              "line": 116,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 807,
+              "line": 800,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
               "call": "Illuminate\\Pipeline\\Pipeline::then(instance of Closure)"
             },
             {
-              "line": 784,
+              "line": 777,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
               "call": "Illuminate\\Routing\\Router::runRouteWithinStack(instance of Illuminate\\Routing\\Route, instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 748,
+              "line": 741,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
               "call": "Illuminate\\Routing\\Router::runRoute(instance of Illuminate\\Http\\Request, instance of Illuminate\\Routing\\Route)"
             },
             {
-              "line": 737,
+              "line": 730,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
               "call": "Illuminate\\Routing\\Router::dispatchToRoute(instance of Illuminate\\Http\\Request)"
             },
@@ -3265,7 +3265,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Routing\\Router::dispatch(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 144,
+              "line": 141,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Foundation\\Http\\Kernel::Illuminate\\Foundation\\Http\\{closure}(instance of Illuminate\\Http\\Request)"
             },
@@ -3280,7 +3280,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -3295,7 +3295,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Foundation\\Http\\Middleware\\TrimStrings::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -3305,7 +3305,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -3315,7 +3315,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -3325,7 +3325,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Http\\Middleware\\HandleCors::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -3335,12 +3335,12 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Http\\Middleware\\TrustProxies::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
             {
-              "line": 119,
+              "line": 116,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
@@ -3365,7 +3365,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php"
             }
           ],
-          "line": 178,
+          "line": 164,
           "file": "/app/vendor/webonyx/graphql-php/src/Server/Helper.php"
         }
       }
@@ -3528,12 +3528,12 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Routing\\Route::runController()"
             },
             {
-              "line": 806,
+              "line": 799,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
               "call": "Illuminate\\Routing\\Route::run()"
             },
             {
-              "line": 144,
+              "line": 141,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Routing\\Router::Illuminate\\Routing\\{closure}(instance of Illuminate\\Http\\Request)"
             },
@@ -3543,7 +3543,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Nuwave\\Lighthouse\\Http\\Middleware\\AttemptAuthentication::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -3553,32 +3553,32 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Nuwave\\Lighthouse\\Http\\Middleware\\AcceptJson::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
             {
-              "line": 119,
+              "line": 116,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 807,
+              "line": 800,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
               "call": "Illuminate\\Pipeline\\Pipeline::then(instance of Closure)"
             },
             {
-              "line": 784,
+              "line": 777,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
               "call": "Illuminate\\Routing\\Router::runRouteWithinStack(instance of Illuminate\\Routing\\Route, instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 748,
+              "line": 741,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
               "call": "Illuminate\\Routing\\Router::runRoute(instance of Illuminate\\Http\\Request, instance of Illuminate\\Routing\\Route)"
             },
             {
-              "line": 737,
+              "line": 730,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
               "call": "Illuminate\\Routing\\Router::dispatchToRoute(instance of Illuminate\\Http\\Request)"
             },
@@ -3588,7 +3588,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Routing\\Router::dispatch(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 144,
+              "line": 141,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Foundation\\Http\\Kernel::Illuminate\\Foundation\\Http\\{closure}(instance of Illuminate\\Http\\Request)"
             },
@@ -3603,7 +3603,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -3618,7 +3618,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Foundation\\Http\\Middleware\\TrimStrings::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -3628,7 +3628,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -3638,7 +3638,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -3648,7 +3648,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Http\\Middleware\\HandleCors::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -3658,12 +3658,12 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Http\\Middleware\\TrustProxies::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
             {
-              "line": 119,
+              "line": 116,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
@@ -3688,7 +3688,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php"
             }
           ],
-          "line": 153,
+          "line": 139,
           "file": "/app/vendor/webonyx/graphql-php/src/Server/Helper.php"
         }
       }
@@ -3759,12 +3759,12 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Routing\\Route::runController()"
             },
             {
-              "line": 806,
+              "line": 799,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
               "call": "Illuminate\\Routing\\Route::run()"
             },
             {
-              "line": 144,
+              "line": 141,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Routing\\Router::Illuminate\\Routing\\{closure}(instance of Illuminate\\Http\\Request)"
             },
@@ -3774,7 +3774,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Nuwave\\Lighthouse\\Http\\Middleware\\AttemptAuthentication::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -3784,32 +3784,32 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Nuwave\\Lighthouse\\Http\\Middleware\\AcceptJson::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
             {
-              "line": 119,
+              "line": 116,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 807,
+              "line": 800,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
               "call": "Illuminate\\Pipeline\\Pipeline::then(instance of Closure)"
             },
             {
-              "line": 784,
+              "line": 777,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
               "call": "Illuminate\\Routing\\Router::runRouteWithinStack(instance of Illuminate\\Routing\\Route, instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 748,
+              "line": 741,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
               "call": "Illuminate\\Routing\\Router::runRoute(instance of Illuminate\\Http\\Request, instance of Illuminate\\Routing\\Route)"
             },
             {
-              "line": 737,
+              "line": 730,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
               "call": "Illuminate\\Routing\\Router::dispatchToRoute(instance of Illuminate\\Http\\Request)"
             },
@@ -3819,7 +3819,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Routing\\Router::dispatch(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 144,
+              "line": 141,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Foundation\\Http\\Kernel::Illuminate\\Foundation\\Http\\{closure}(instance of Illuminate\\Http\\Request)"
             },
@@ -3834,7 +3834,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -3849,7 +3849,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Foundation\\Http\\Middleware\\TrimStrings::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -3859,7 +3859,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -3869,7 +3869,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -3879,7 +3879,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Http\\Middleware\\HandleCors::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
@@ -3889,12 +3889,12 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 183,
+              "line": 180,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Http\\Middleware\\TrustProxies::handle(instance of Illuminate\\Http\\Request, instance of Closure)"
             },
             {
-              "line": 119,
+              "line": 116,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
               "call": "Illuminate\\Pipeline\\Pipeline::Illuminate\\Pipeline\\{closure}(instance of Illuminate\\Http\\Request)"
             },
@@ -3919,7 +3919,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php"
             }
           ],
-          "line": 153,
+          "line": 139,
           "file": "/app/vendor/webonyx/graphql-php/src/Server/Helper.php"
         }
       }
