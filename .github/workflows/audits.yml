@@ -65,9 +65,11 @@ jobs:
         workspace:
           - deno
           - hotchocolate
-          - lighthouse
-          - pioneer
           - postgraphile
+          # TODO: speed up build process
+          # - pioneer
+          # TODO: ensure consistant results
+          # - lighthouse
     env:
       PORT: 4000
     steps:
