@@ -575,11 +575,11 @@ export function createHandler<
       // TODO: handle the weight parameter "q"
       const [mediaType, ...params] = accept.split(';');
       const charset =
-        params?.find((param) => param.includes('charset=')) || 'charset=utf8'; // utf-8 is assumed when not specified;
+        params?.find((param) => param.includes('charset=')) || 'charset=utf-8'; // utf-8 is assumed when not specified;
 
       if (
         mediaType === 'application/graphql-response+json' &&
-        charset === 'charset=utf8'
+        charset === 'charset=utf-8'
       ) {
         acceptedMediaType = 'application/graphql-response+json';
         break;
@@ -590,7 +590,7 @@ export function createHandler<
         (mediaType === 'application/json' ||
           mediaType === 'application/*' ||
           mediaType === '*/*') &&
-        charset === 'charset=utf8'
+        (charset === 'charset=utf-8' || charset === 'charset=utf8')
       ) {
         acceptedMediaType = 'application/json';
         break;

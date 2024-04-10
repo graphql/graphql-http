@@ -415,3 +415,45 @@ it('should use the default if nothing is returned from the custom request params
     ]
   `);
 });
+
+it('should accept both utf-8 and utf8 charsets ', async () => {
+  const { request } = createTHandler();
+
+  await expect(
+    request(
+      'GET',
+      { query: '{ __typename }' },
+      { accept: 'application/json; charset=utf8' },
+    ),
+  ).resolves.toMatchInlineSnapshot(`
+    [
+      "{"data":{"__typename":"Query"}}",
+      {
+        "headers": {
+          "content-type": "application/json; charset=utf-8",
+        },
+        "status": 200,
+        "statusText": "OK",
+      },
+    ]
+  `);
+
+  await expect(
+    request(
+      'GET',
+      { query: '{ __typename }' },
+      { accept: 'application/json; charset=utf-8' },
+    ),
+  ).resolves.toMatchInlineSnapshot(`
+    [
+      "{"data":{"__typename":"Query"}}",
+      {
+        "headers": {
+          "content-type": "application/json; charset=utf-8",
+        },
+        "status": 200,
+        "statusText": "OK",
+      },
+    ]
+  `);
+});
