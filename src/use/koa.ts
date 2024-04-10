@@ -126,6 +126,7 @@ export function createHandler<Context extends OperationContext = undefined>(
           }
           return new Promise<string>((resolve) => {
             let body = '';
+            ctx.req.setEncoding('utf-8');
             ctx.req.on('data', (chunk) => (body += chunk));
             ctx.req.on('end', () => resolve(body));
           });

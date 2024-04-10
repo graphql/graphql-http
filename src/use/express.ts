@@ -132,6 +132,7 @@ function toRequest(
       }
       return new Promise<string>((resolve) => {
         let body = '';
+        req.setEncoding('utf-8');
         req.on('data', (chunk) => (body += chunk));
         req.on('end', () => resolve(body));
       });
