@@ -1,3 +1,12 @@
+## [1.22.1](https://github.com/graphql/graphql-http/compare/v1.22.0...v1.22.1) (2024-04-10)
+
+
+### Bug Fixes
+
+* **audit/render:** Omit `set-cookie` header and html body ([#116](https://github.com/graphql/graphql-http/issues/116)) ([1c5c744](https://github.com/graphql/graphql-http/commit/1c5c7447e4f981905917a1c849eb62142b92cd3d))
+* **handler:** Support both utf-8 and utf8 charsets ([94100d6](https://github.com/graphql/graphql-http/commit/94100d6118301b55f89609019d993935ef31ed7e)), closes [#120](https://github.com/graphql/graphql-http/issues/120)
+* **use:** Set request readable encoding to utf-8 ([50d3bcd](https://github.com/graphql/graphql-http/commit/50d3bcdee22c0b59d7e1bff254445a0b9a779113)), closes [#118](https://github.com/graphql/graphql-http/issues/118)
+
 # [1.22.0](https://github.com/graphql/graphql-http/compare/v1.21.0...v1.22.0) (2023-08-28)
 
 
