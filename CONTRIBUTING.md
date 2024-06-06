@@ -23,22 +23,36 @@ Every implementation is expected to contain a `package.json` file with at least 
   "name": "implementation-name", // should be equivalent to the directory name
   "url": "https://implementation-name.example", // the official project URL
   "scripts": {
-    "start": "node ." | "docker-compose up -d" // depending if the server can be run through node or Docker
+    "start": "node ." | "docker compose up" // depending if the server can be run through Node.js or Docker
   }
 }
 ```
 
 Depending on how your server is run, add it to the appropriate section of [.github/workflows/audits.yml](.github/workflows/audits.yml):
 
-- `node .`: `jobs.javascript.strategy.matrix.workspace`
-- `docker-compose up -d`: `jobs.docker.strategy.matrix.workspace`
+- Node.js: `jobs.javascript.strategy.matrix.workspace`
+- Docker: `jobs.docker.strategy.matrix.workspace`
 
 The script run in `start` is expected to bring up an HTTP server that listens to the port defined in the environment variable `$PORT`.
 
 After adding your directory and `package.json`, run `yarn install` to include the workspace.
 
+You may run the audit on your implementation locally by first bringing up the server:
+
+```shell
+PORT=4000 yarn workspace <implementation> start
+```
+
+Then open another shell or move the prior process to the background and run:
+
+```shell
+PORT=4000 yarn tsx scripts/audit-implementation.ts implementations/<implementation>
+```
+
 ## Code formatting
 
 Run the following script to ensure the automatic code formatting is applied:
 
-    yarn run lint:fix
+```shell
+yarn run lint:fix
+```

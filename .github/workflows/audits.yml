@@ -65,11 +65,10 @@ jobs:
         workspace:
           - deno
           - hotchocolate
+          - lighthouse
           - postgraphile
           # TODO: speed up build process
           # - pioneer
-          # TODO: ensure consistant results
-          # - lighthouse
     env:
       PORT: 4000
     steps:
@@ -96,7 +95,7 @@ jobs:
             *.cache-from=type=gha
             *.cache-to=type=gha,mode=max
       - name: Start
-        run: yarn workspace ${{ matrix.workspace }} start --detach --wait
+        run: yarn workspace ${{ matrix.workspace }} start --wait
       - name: Audit
         run: yarn tsx scripts/audit-implementation.ts implementations/${{ matrix.workspace }}
       - name: Summary
