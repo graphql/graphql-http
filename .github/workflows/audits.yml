@@ -95,7 +95,7 @@ jobs:
             *.cache-from=type=gha
             *.cache-to=type=gha,mode=max
       - name: Start
-        run: yarn workspace ${{ matrix.workspace }} start --wait
+        run: yarn workspace ${{ matrix.workspace }} start --detach --wait
       - name: Audit
         run: yarn tsx scripts/audit-implementation.ts implementations/${{ matrix.workspace }}
       - name: Summary
