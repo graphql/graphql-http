@@ -118,7 +118,7 @@ import express from 'express'; // yarn add express
 import { createHandler } from 'graphql-http/lib/use/express';
 import { schema } from './previous-step';
 
-// Create a express instance serving all methods on `/graphql`
+// Create an express instance serving all methods on `/graphql`
 // where the GraphQL over HTTP express request handler is
 const app = express();
 app.all('/graphql', createHandler({ schema }));
