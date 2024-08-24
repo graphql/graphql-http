@@ -880,10 +880,11 @@ function jsonErrorReplacer(
     // GraphQL errors implement their own stringer
     !isGraphQLError(val)
   ) {
+    const error = val as Error;
     return {
-      // name: val.name, name is included in message
-      message: val.message,
-      // stack: val.stack, can leak sensitive details
+      // name: error.name, name is included in message
+      message: error.message,
+      // stack: error.stack, can leak sensitive details
     };
   }
   return val;
