@@ -118,12 +118,18 @@ export type Response = readonly [body: ResponseBody | null, init: ResponseInit];
 
 /** Checks whether the passed value is the `graphql-http` server agnostic response. */
 function isResponse(val: unknown): val is Response {
-  // TODO: make sure the contents of init match ResponseInit
-  return (
-    Array.isArray(val) &&
-    (typeof val[0] === 'string' || val[0] === null) &&
-    isObject(val[1])
-  );
+  // Make sure the contents of body match string | null
+  if (!Array.isArray(val)) return false;
+  if (typeof val[0] !== 'string' || val[0] !== null) return false;
+  if (!isObject(val[1])) return false;
+
+  // Make sure the contents of init match ResponseInit
+  const init = val[1];
+  if (typeof init.status !== 'number') return false;
+  if (typeof init.statusText !== 'string') return false;
+  if (init.headers && !isObject(init.headers)) return false;
+
+  return true;
 }
 
 /**
