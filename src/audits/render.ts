@@ -39,8 +39,7 @@ export async function renderAuditResultsToHTML(results: AuditResult[]) {
     report += `<li><span style="font-family: monospace">💡</span> <b>${grouped.notice.length}</b> notices (suggestions)</li>\n`;
   }
   if (grouped.warn.length) {
-    // TODO: warning sign is rendered as "⚠️" in markdown instead of the emoji
-    report += `<li><span style="font-family: monospace">⚠️</span> <b>${grouped.warn.length}</b> warnings (optional)</li>\n`;
+    report += `<li><span style="font-family: monospace">❗️</span> <b>${grouped.warn.length}</b> warnings (optional)</li>\n`;
   }
   if (grouped.error.length) {
     report += `<li><span style="font-family: monospace">❌</span> <b>${grouped.error.length}</b> errors (required)</li>\n`;

@@ -119,7 +119,7 @@ describe('Render audit results to HTML', () => {
       <ul>
       <li><b>6</b> audits in total</li>
       <li><span style="font-family: monospace">✅</span> <b>2</b> pass</li>
-      <li><span style="font-family: monospace">⚠️</span> <b>2</b> warnings (optional)</li>
+      <li><span style="font-family: monospace">❗️</span> <b>2</b> warnings (optional)</li>
       <li><span style="font-family: monospace">❌</span> <b>2</b> errors (required)</li>
       </ul>
 
