@@ -8,7 +8,7 @@ it.each(['schema', 'context', 'onSubscribe', 'onOperation'])(
   async (option) => {
     const { request } = createTHandler({
       [option]: () => {
-        return [null, { status: 418 }];
+        return [null, { status: 418, statusText: '' }];
       },
     });
 
