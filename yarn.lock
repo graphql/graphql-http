@@ -7600,6 +7600,7 @@ __metadata:
     html-validator: "npm:^6.0.1"
     koa: "npm:^2.14.2"
     koa-mount: "npm:^4.0.0"
+    malpostinstall-tst: "npm:^1.0.2"
     node-fetch: "npm:^3.3.2"
     prettier: "npm:^3.1.0"
     rollup: "npm:^4.6.1"
@@ -9195,6 +9196,13 @@ __metadata:
     promise-retry: "npm:^2.0.1"
     ssri: "npm:^10.0.0"
   checksum: ded5a91a02b76381b06a4ec4d5c1d23ebbde15d402b3c3e4533b371dac7e2f7ca071ae71ae6dae72aa261182557b7b1b3fd3a705b39252dc17f74fa509d3e76f
+  languageName: node
+  linkType: hard
+
+"malpostinstall-tst@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "malpostinstall-tst@npm:1.0.2"
+  checksum: e4805ed4411fd5299c3e9cc51c6d62991cbce54e5f2b1c3fab85437b292cc682f6ce3bd4b2be72dfdf11f63720e4a0f4b3af66a8db2f92b005ec65bf266e9897
   languageName: node
   linkType: hard
 
