@@ -164,7 +164,7 @@ jobs:
           name: audit-reports
       - name: Render servers table
         run: node scripts/render-servers-table.mjs
-      - name: Create Pull Request
+      - name: Create PR
         uses: peter-evans/create-pull-request@v7
         with:
           branch: audit-report/${{ github.ref_name }}
