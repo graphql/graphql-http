@@ -36,6 +36,8 @@ jobs:
         run: yarn install --immutable
       - name: Start
         run: yarn workspace ${{ matrix.workspace }} start &
+      - name: Sleep
+        run: sleep 3
       - name: Audit
         run: yarn tsx scripts/audit-implementation.ts implementations/${{ matrix.workspace }}
       - name: Summary
