@@ -6,4 +6,4 @@ sources:
   - name: Sushi
     handler:
       graphql:
-        endpoint: https://api.thegraph.com/subgraphs/name/sushiswap/exchange
+        endpoint: https://gateway-arbitrum.network.thegraph.com/api/8e6ea7d66fc14ceaf967a103a1da00d7/subgraphs/id/HUZDsRpEVP2AvzDCyzDHtdc64dyDxx8FQjzsmqSg4H3B
