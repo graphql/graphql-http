@@ -13,6 +13,7 @@ jobs:
     name: JavaScript
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         workspace:
           - apollo-server
@@ -56,6 +57,7 @@ jobs:
     name: Docker
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         workspace:
           - deno
@@ -109,6 +111,7 @@ jobs:
     name: URL
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         workspace:
           - name: thegraph
@@ -148,7 +151,6 @@ jobs:
       pull-requests: write
     name: Report
     runs-on: ubuntu-latest
-    if: ${{ !contains(github.event.head_commit.message, '[skip ci]') }}
     needs: [javascript, docker, url]
     steps:
       - name: Checkout
