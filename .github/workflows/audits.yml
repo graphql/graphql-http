@@ -167,6 +167,7 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v7
         with:
+          branch: audit-report/${{ github.ref_name }}
           title: Audit Report
           body: New audit report available.
           commit-message: 'docs(implementations): audit report'
