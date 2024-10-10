@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-  pull_request_target:
+  pull_request:
     branches:
       - main
 
@@ -12,7 +12,6 @@ jobs:
   javascript:
     name: JavaScript
     runs-on: ubuntu-latest
-    if: "!contains(github.event.head_commit.message, '[skip ci]')"
     strategy:
       matrix:
         workspace:
@@ -27,9 +26,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-        with:
-          repository: ${{ github.event.pull_request.head.repo.full_name }}
-          ref: ${{ github.head_ref }}
       - name: Set up node
         uses: actions/setup-node@v3
         with:
@@ -59,7 +55,6 @@ jobs:
   docker:
     name: Docker
     runs-on: ubuntu-latest
-    if: "!contains(github.event.head_commit.message, '[skip ci]')"
     strategy:
       matrix:
         workspace:
@@ -74,9 +69,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-        with:
-          repository: ${{ github.event.pull_request.head.repo.full_name }}
-          ref: ${{ github.head_ref }}
       - name: Set up docker buildx
         uses: docker/setup-buildx-action@v2
       - name: Set up node
@@ -116,7 +108,6 @@ jobs:
   url:
     name: URL
     runs-on: ubuntu-latest
-    if: "!contains(github.event.head_commit.message, '[skip ci]')"
     strategy:
       matrix:
         workspace:
@@ -127,9 +118,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-        with:
-          repository: ${{ github.event.pull_request.head.repo.full_name }}
-          ref: ${{ github.head_ref }}
       - name: Set up node
         uses: actions/setup-node@v3
         with:
@@ -155,6 +143,9 @@ jobs:
             implementations/${{ matrix.workspace.name }}/report.json
 
   report:
+    permissions:
+      contents: write
+      pull-requests: write
     name: Report
     runs-on: ubuntu-latest
     if: ${{ !contains(github.event.head_commit.message, '[skip ci]') }}
@@ -162,21 +153,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-        with:
-          repository: ${{ github.event.pull_request.head.repo.full_name }}
-          ref: ${{ github.head_ref }}
       - name: Download audit reports
         uses: actions/download-artifact@v3
         with:
           name: audit-reports
       - name: Render servers table
         run: node scripts/render-servers-table.mjs
-      - name: Diff
-        run: git diff --minimal
-      - name: Commit
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          [ -z "$(git status --porcelain)" ] \
-            && echo "::notice::Nothing new to report." \
-            || (git add . && git commit -m "docs(implementations): audit report [skip ci]" && git push)
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          title: Audit Report
+          body: New audit report available.
+          commit-message: 'docs(implementations): audit report'
