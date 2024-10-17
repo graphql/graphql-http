@@ -5,7 +5,7 @@
 <ul>
 <li><b>60</b> audits in total</li>
 <li><span style="font-family: monospace">✅</span> <b>58</b> pass</li>
-<li><span style="font-family: monospace">⚠️</span> <b>2</b> warnings (optional)</li>
+<li><span style="font-family: monospace">❗️</span> <b>2</b> warnings (optional)</li>
 </ul>
 
 <h2>Passing</h2>
@@ -83,7 +83,7 @@ The server <i>SHOULD</i> support these, but is not required.
     "transfer-encoding": "chunked",
     "server": "Kestrel",
     "date": "<timestamp>",
-    "content-type": "application/graphql-response+json;charset=utf-8"
+    "content-type": "application/graphql-response+json; charset=utf-8"
   },
   "body": {
     "data": {
@@ -104,7 +104,7 @@ The server <i>SHOULD</i> support these, but is not required.
     "transfer-encoding": "chunked",
     "server": "Kestrel",
     "date": "<timestamp>",
-    "content-type": "application/graphql-response+json;charset=utf-8"
+    "content-type": "application/graphql-response+json; charset=utf-8"
   },
   "body": {
     "data": {
