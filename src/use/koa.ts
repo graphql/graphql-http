@@ -120,9 +120,9 @@ export function createHandler<Context extends OperationContext = undefined>(
         method: ctx.method,
         headers: ctx.headers,
         body: () => {
-          if (ctx.body) {
+          if ('body' in ctx.request) {
             // in case koa has a body parser
-            return ctx.body;
+            return ctx.request.body as Record<string, unknown>;
           }
           return new Promise<string>((resolve) => {
             let body = '';
