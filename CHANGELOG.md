@@ -1,3 +1,10 @@
+## [1.22.2](https://github.com/graphql/graphql-http/compare/v1.22.1...v1.22.2) (2024-11-07)
+
+
+### Bug Fixes
+
+* **use/koa:** Use the parsed request body rather than ctx.body ([#132](https://github.com/graphql/graphql-http/issues/132)) ([9f8b1f1](https://github.com/graphql/graphql-http/commit/9f8b1f1e3b979d6d57fa5c3033a1ffae0c20d0e8))
+
 ## [1.22.1](https://github.com/graphql/graphql-http/compare/v1.22.0...v1.22.1) (2024-04-10)
 
 
