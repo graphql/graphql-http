@@ -6,7 +6,7 @@
 <li><b>60</b> audits in total</li>
 <li><span style="font-family: monospace">✅</span> <b>54</b> pass</li>
 <li><span style="font-family: monospace">💡</span> <b>3</b> notices (suggestions)</li>
-<li><span style="font-family: monospace">⚠️</span> <b>3</b> warnings (optional)</li>
+<li><span style="font-family: monospace">❗️</span> <b>3</b> warnings (optional)</li>
 </ul>
 
 <h2>Passing</h2>
