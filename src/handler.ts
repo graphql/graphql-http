@@ -125,8 +125,8 @@ function isResponse(val: unknown): val is Response {
 
   // Make sure the contents of init match ResponseInit
   const init = val[1];
-  if (typeof init.status !== 'number') return false;
-  if (typeof init.statusText !== 'string') return false;
+  if (init.status && typeof init.status !== 'number') return false;
+  if (init.statusText && typeof init.statusText !== 'string') return false;
   if (init.headers && !isObject(init.headers)) return false;
 
   return true;
