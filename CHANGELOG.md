@@ -1,3 +1,10 @@
+## [1.22.3](https://github.com/graphql/graphql-http/compare/v1.22.2...v1.22.3) (2024-11-20)
+
+
+### Bug Fixes
+
+* **handler:** Response options `status` and `statusText` are optional ([38a0191](https://github.com/graphql/graphql-http/commit/38a019179e5ee0322344ca6c31103e7bb6643fa0)), closes [#133](https://github.com/graphql/graphql-http/issues/133)
+
 ## [1.22.2](https://github.com/graphql/graphql-http/compare/v1.22.1...v1.22.2) (2024-11-07)
 
 
