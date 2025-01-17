@@ -1,3 +1,10 @@
+## [1.22.4](https://github.com/graphql/graphql-http/compare/v1.22.3...v1.22.4) (2025-01-17)
+
+
+### Bug Fixes
+
+* **use/@netlify/functions:** Pass the headers to netlify handler ([cd1523f](https://github.com/graphql/graphql-http/commit/cd1523f261946b97f0237444802fea760752b767))
+
 ## [1.22.3](https://github.com/graphql/graphql-http/compare/v1.22.2...v1.22.3) (2024-11-20)
 
 

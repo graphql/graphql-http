@@ -1,6 +1,6 @@
 {
   "name": "graphql-http",
-  "version": "1.22.3",
+  "version": "1.22.4",
   "description": "Simple, pluggable, zero-dependency, GraphQL over HTTP spec compliant server, client and audit suite.",
   "keywords": [
     "graphql",
