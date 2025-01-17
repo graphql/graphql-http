@@ -41,6 +41,7 @@ export function createHandler<Context extends OperationContext = undefined>(
         // if body is null, return undefined
         body: body ?? undefined,
         statusCode: init.status,
+        headers: init.headers,
       };
     } catch (err) {
       // The handler shouldnt throw errors.
