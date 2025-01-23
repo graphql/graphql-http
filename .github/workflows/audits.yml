@@ -8,8 +8,28 @@ on:
     branches:
       - main
 
+concurrency:
+  group: examples-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
+  head-commit:
+    name: Inspect head commit
+    runs-on: ubuntu-latest
+    outputs:
+      message: ${{ steps.commit.outputs.message }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{github.event.pull_request.head.sha || github.sha}}
+      - name: Inspect
+        id: commit
+        run: echo "message=$(git show -s --format=%s)" >> "$GITHUB_OUTPUT"
+
   javascript:
+    needs: [head-commit]
+    if: "${{needs.head-commit.outputs.message != 'docs(examples): converted from e2es'}}"
     name: JavaScript
     runs-on: ubuntu-latest
     strategy:
@@ -56,6 +76,8 @@ jobs:
             implementations/${{ matrix.workspace }}/report.json
 
   docker:
+    needs: [head-commit]
+    if: "${{needs.head-commit.outputs.message != 'docs(examples): converted from e2es'}}"
     name: Docker
     runs-on: ubuntu-latest
     strategy:
@@ -111,6 +133,8 @@ jobs:
             implementations/${{ matrix.workspace }}/report.json
 
   url:
+    needs: [head-commit]
+    if: "${{needs.head-commit.outputs.message != 'docs(examples): converted from e2es'}}"
     name: URL
     runs-on: ubuntu-latest
     strategy:
