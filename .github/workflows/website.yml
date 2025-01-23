@@ -25,7 +25,7 @@ jobs:
       - name: Inject
         run: yarn tsx scripts/inject-audits-website.ts
       - name: Upload website
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-pages-artifact@v3
         with:
           path: website
 
@@ -47,7 +47,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Set up pages
-        uses: actions/configure-pages@v3
+        uses: actions/configure-pages@v5
       - name: Deploy
         id: deployment
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v4
