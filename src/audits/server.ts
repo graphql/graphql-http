@@ -87,13 +87,12 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
           body: JSON.stringify({ query: '{ __typename }' }),
         });
         ressert(res).status.toBe(200);
-        try {
-          ressert(res)
-            .header('content-type')
-            .toContain('application/graphql-response+json');
-        } catch {
-          ressert(res).header('content-type').toContain('application/json');
-        }
+        ressert(res)
+          .header('content-type')
+          .toContainEither(
+            'application/graphql-response+json',
+            'application/json',
+          );
       },
     ),
     audit(
@@ -109,13 +108,12 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
         });
 
         ressert(res).status.toBe(200);
-        try {
-          ressert(res)
-            .header('content-type')
-            .toContain('application/graphql-response+json');
-        } catch {
-          ressert(res).header('content-type').toContain('application/json');
-        }
+        ressert(res)
+          .header('content-type')
+          .toContainEither(
+            'application/graphql-response+json',
+            'application/json',
+          );
       },
     ),
     audit('82A3', 'MUST use utf-8 encoding when responding', async () => {

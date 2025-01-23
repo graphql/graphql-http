@@ -110,6 +110,22 @@ export function ressert(res: Response) {
             );
           }
         },
+        toContainEither(
+          thisPart: string,
+          thatPart: string,
+          ...otherParts: string[]
+        ) {
+          const parts = [thisPart, thatPart, ...otherParts];
+          for (const part of parts) {
+            if (res.headers.get(key)?.includes(part)) {
+              return;
+            }
+          }
+          throw new AuditError(
+            res,
+            `Response header ${key} does not contain ${parts.join(' or ')}`,
+          );
+        },
         notToContain(part: string) {
           if (res.headers.get(key)?.includes(part)) {
             throw new AuditError(
