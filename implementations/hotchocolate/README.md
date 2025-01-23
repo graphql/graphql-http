@@ -4,14 +4,16 @@
 
 <ul>
 <li><b>68</b> audits in total</li>
-<li><span style="font-family: monospace">✅</span> <b>62</b> pass</li>
-<li><span style="font-family: monospace">❗️</span> <b>6</b> warnings (optional)</li>
+<li><span style="font-family: monospace">✅</span> <b>64</b> pass</li>
+<li><span style="font-family: monospace">❗️</span> <b>4</b> warnings (optional)</li>
 </ul>
 
 <h2>Passing</h2>
 <ol>
 <li><code>22EB</code> MUST accept application/graphql-response+json and match the content-type</li>
 <li><code>4655</code> MUST accept application/json and match the content-type</li>
+<li><code>47DE</code> SHOULD accept */* and use application/graphql-response+json or application/json for the content-type</li>
+<li><code>80D8</code> SHOULD assume application/json or application/graphql-response+json content-type when accept is missing</li>
 <li><code>82A3</code> MUST use utf-8 encoding when responding</li>
 <li><code>BF61</code> MUST accept utf-8 encoded request</li>
 <li><code>78D5</code> MUST assume utf-8 in request if encoding is unspecified</li>
@@ -77,48 +79,6 @@
 <h2>Warnings</h2>
 The server <i>SHOULD</i> support these, but is not required.
 <ol>
-<li><code>47DE</code> SHOULD accept */* and use application/json for the content-type
-<details>
-<summary>Response header content-type does not contain application/json</summary>
-<pre><code class="lang-json">{
-  "statusText": "OK",
-  "status": 200,
-  "headers": {
-    "transfer-encoding": "chunked",
-    "server": "Kestrel",
-    "date": "<timestamp>",
-    "content-type": "application/graphql-response+json; charset=utf-8"
-  },
-  "body": {
-    "data": {
-      "__typename": "Query"
-    }
-  }
-}
-</code></pre>
-</details>
-</li>
-<li><code>80D8</code> SHOULD assume application/json content-type when accept is missing
-<details>
-<summary>Response header content-type does not contain application/json</summary>
-<pre><code class="lang-json">{
-  "statusText": "OK",
-  "status": 200,
-  "headers": {
-    "transfer-encoding": "chunked",
-    "server": "Kestrel",
-    "date": "<timestamp>",
-    "content-type": "application/graphql-response+json; charset=utf-8"
-  },
-  "body": {
-    "data": {
-      "__typename": "Query"
-    }
-  }
-}
-</code></pre>
-</details>
-</li>
 <li><code>58B0</code> SHOULD use 4xx or 5xx status codes on string {extensions} parameter when accepting application/json
 <details>
 <summary>Response status is not between 400 and 599</summary>

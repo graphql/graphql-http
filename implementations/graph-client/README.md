@@ -12,8 +12,8 @@
 <ol>
 <li><code>22EB</code> MUST accept application/graphql-response+json and match the content-type</li>
 <li><code>4655</code> MUST accept application/json and match the content-type</li>
-<li><code>47DE</code> SHOULD accept */* and use application/json for the content-type</li>
-<li><code>80D8</code> SHOULD assume application/json content-type when accept is missing</li>
+<li><code>47DE</code> SHOULD accept */* and use application/graphql-response+json or application/json for the content-type</li>
+<li><code>80D8</code> SHOULD assume application/json or application/graphql-response+json content-type when accept is missing</li>
 <li><code>82A3</code> MUST use utf-8 encoding when responding</li>
 <li><code>BF61</code> MUST accept utf-8 encoded request</li>
 <li><code>78D5</code> MUST assume utf-8 in request if encoding is unspecified</li>
