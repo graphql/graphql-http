@@ -28,7 +28,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Set up node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
           cache: yarn
@@ -43,7 +43,7 @@ jobs:
       - name: Summary
         run: cat implementations/${{ matrix.workspace }}/README.md >> $GITHUB_STEP_SUMMARY
       - name: Upload audit report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: audit-reports
           # > If multiple paths are provided as input, the least common ancestor of all the search paths will be used as the root directory of the artifact.
@@ -76,14 +76,14 @@ jobs:
       - name: Set up docker buildx
         uses: docker/setup-buildx-action@v2
       - name: Set up node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
           cache: yarn
       - name: Install
         run: yarn install --immutable
       - name: Bake
-        uses: docker/bake-action@v2
+        uses: docker/bake-action@v6
         with:
           workdir: implementations/${{ matrix.workspace }}
           load: true # load image into docker, otherwise `docker compose up` will rebuild
@@ -97,7 +97,7 @@ jobs:
       - name: Summary
         run: cat implementations/${{ matrix.workspace }}/README.md >> $GITHUB_STEP_SUMMARY
       - name: Upload audit report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: audit-reports
           # > If multiple paths are provided as input, the least common ancestor of all the search paths will be used as the root directory of the artifact.
@@ -124,7 +124,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Set up node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
           cache: yarn
@@ -135,7 +135,7 @@ jobs:
       - name: Summary
         run: cat implementations/${{ matrix.workspace.name }}/README.md >> $GITHUB_STEP_SUMMARY
       - name: Upload audit report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: audit-reports
           # > If multiple paths are provided as input, the least common ancestor of all the search paths will be used as the root directory of the artifact.
@@ -158,16 +158,32 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+        with:
+          token: ${{secrets.BOT_GITHUB_TOKEN}}
       - name: Download audit reports
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: audit-reports
       - name: Render servers table
         run: node scripts/render-servers-table.mjs
+      - name: Diff
+        run: git diff --pretty
+      - name: Commit
+        if: github.ref != 'refs/heads/main'
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: 'docs(implementations): audit report'
+          commit_user_name: theguild-bot
+          commit_user_email: bot@the-guild.dev
+          commit_author: theguild-bot <bot@the-guild.dev> # dont use the actor as an author
       - name: Create PR
+        if: github.ref == 'refs/heads/main'
         uses: peter-evans/create-pull-request@v7
         with:
-          branch: audit-report/${{ github.ref_name }}
+          token: ${{secrets.BOT_GITHUB_TOKEN}}
+          branch: audit-report
           title: Audit Report
-          body: New audit report available.
+          body: New audit report available
           commit-message: 'docs(implementations): audit report'
+          committer: theguild-bot <bot@the-guild.dev>
+          author: theguild-bot <bot@the-guild.dev> # dont use the actor as an author
