@@ -103,9 +103,9 @@ async function printAuditFail(result: AuditFail) {
   const headers: Record<string, string> = {};
   for (const [key, val] of res.headers.entries()) {
     // some headers change on each run, dont report it
-    if (key === 'date') {
+    if (['date', 'expires'].includes(key)) {
       headers[key] = '<timestamp>';
-    } else if (['cf-ray', 'server-timing', 'set-cookie'].includes(key)) {
+    } else if (['cf-ray', 'server-timing', 'set-cookie', 'age'].includes(key)) {
       headers[key] = '<omitted>';
     } else {
       headers[key] = val;
