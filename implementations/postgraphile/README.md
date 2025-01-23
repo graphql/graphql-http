@@ -3,10 +3,10 @@
 <h1>GraphQL over HTTP audit report</h1>
 
 <ul>
-<li><b>60</b> audits in total</li>
+<li><b>68</b> audits in total</li>
 <li><span style="font-family: monospace">✅</span> <b>46</b> pass</li>
 <li><span style="font-family: monospace">💡</span> <b>6</b> notices (suggestions)</li>
-<li><span style="font-family: monospace">❗️</span> <b>3</b> warnings (optional)</li>
+<li><span style="font-family: monospace">❗️</span> <b>11</b> warnings (optional)</li>
 <li><span style="font-family: monospace">❌</span> <b>5</b> errors (required)</li>
 </ul>
 
@@ -213,6 +213,182 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
 <h2>Warnings</h2>
 The server <i>SHOULD</i> support these, but is not required.
 <ol>
+<li><code>2330</code> SHOULD use 4xx status code on string {extensions} parameter when accepting application/graphql-response+json
+<details>
+<summary>Response status is not between 400 and 499</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "keep-alive": "timeout=5",
+    "date": "<timestamp>",
+    "content-type": "application/json; charset=utf-8",
+    "content-length": "31",
+    "connection": "keep-alive"
+  },
+  "body": {
+    "data": {
+      "__typename": "Query"
+    }
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>2331</code> SHOULD use 4xx status code on number {extensions} parameter when accepting application/graphql-response+json
+<details>
+<summary>Response status is not between 400 and 499</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "keep-alive": "timeout=5",
+    "date": "<timestamp>",
+    "content-type": "application/json; charset=utf-8",
+    "content-length": "31",
+    "connection": "keep-alive"
+  },
+  "body": {
+    "data": {
+      "__typename": "Query"
+    }
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>2332</code> SHOULD use 4xx status code on boolean {extensions} parameter when accepting application/graphql-response+json
+<details>
+<summary>Response status is not between 400 and 499</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "keep-alive": "timeout=5",
+    "date": "<timestamp>",
+    "content-type": "application/json; charset=utf-8",
+    "content-length": "31",
+    "connection": "keep-alive"
+  },
+  "body": {
+    "data": {
+      "__typename": "Query"
+    }
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>2333</code> SHOULD use 4xx status code on array {extensions} parameter when accepting application/graphql-response+json
+<details>
+<summary>Response status is not between 400 and 499</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "keep-alive": "timeout=5",
+    "date": "<timestamp>",
+    "content-type": "application/json; charset=utf-8",
+    "content-length": "31",
+    "connection": "keep-alive"
+  },
+  "body": {
+    "data": {
+      "__typename": "Query"
+    }
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>58B0</code> SHOULD use 4xx or 5xx status codes on string {extensions} parameter when accepting application/json
+<details>
+<summary>Response status is not between 400 and 599</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "keep-alive": "timeout=5",
+    "date": "<timestamp>",
+    "content-type": "application/json; charset=utf-8",
+    "content-length": "31",
+    "connection": "keep-alive"
+  },
+  "body": {
+    "data": {
+      "__typename": "Query"
+    }
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>58B1</code> SHOULD use 4xx or 5xx status codes on number {extensions} parameter when accepting application/json
+<details>
+<summary>Response status is not between 400 and 599</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "keep-alive": "timeout=5",
+    "date": "<timestamp>",
+    "content-type": "application/json; charset=utf-8",
+    "content-length": "31",
+    "connection": "keep-alive"
+  },
+  "body": {
+    "data": {
+      "__typename": "Query"
+    }
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>58B2</code> SHOULD use 4xx or 5xx status codes on boolean {extensions} parameter when accepting application/json
+<details>
+<summary>Response status is not between 400 and 599</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "keep-alive": "timeout=5",
+    "date": "<timestamp>",
+    "content-type": "application/json; charset=utf-8",
+    "content-length": "31",
+    "connection": "keep-alive"
+  },
+  "body": {
+    "data": {
+      "__typename": "Query"
+    }
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>58B3</code> SHOULD use 4xx or 5xx status codes on array {extensions} parameter when accepting application/json
+<details>
+<summary>Response status is not between 400 and 599</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "keep-alive": "timeout=5",
+    "date": "<timestamp>",
+    "content-type": "application/json; charset=utf-8",
+    "content-length": "31",
+    "connection": "keep-alive"
+  },
+  "body": {
+    "data": {
+      "__typename": "Query"
+    }
+  }
+}
+</code></pre>
+</details>
+</li>
 <li><code>572B</code> SHOULD use 200 status code on document parsing failure when accepting application/json
 <details>
 <summary>Response status code is not 200</summary>
@@ -330,9 +506,9 @@ The server <b>MUST</b> support these.
 </code></pre>
 </details>
 </li>
-<li><code>58B0</code> MUST use 400 status code on string {extensions} parameter
+<li><code>0280</code> MUST use 4xx or 5xx status codes on string {extensions} parameter when accepting application/graphql-response+json
 <details>
-<summary>Response status code is not 400</summary>
+<summary>Response status is not between 400 and 599</summary>
 <pre><code class="lang-json">{
   "statusText": "OK",
   "status": 200,
@@ -352,9 +528,9 @@ The server <b>MUST</b> support these.
 </code></pre>
 </details>
 </li>
-<li><code>58B1</code> MUST use 400 status code on number {extensions} parameter
+<li><code>0281</code> MUST use 4xx or 5xx status codes on number {extensions} parameter when accepting application/graphql-response+json
 <details>
-<summary>Response status code is not 400</summary>
+<summary>Response status is not between 400 and 599</summary>
 <pre><code class="lang-json">{
   "statusText": "OK",
   "status": 200,
@@ -374,9 +550,9 @@ The server <b>MUST</b> support these.
 </code></pre>
 </details>
 </li>
-<li><code>58B2</code> MUST use 400 status code on boolean {extensions} parameter
+<li><code>0282</code> MUST use 4xx or 5xx status codes on boolean {extensions} parameter when accepting application/graphql-response+json
 <details>
-<summary>Response status code is not 400</summary>
+<summary>Response status is not between 400 and 599</summary>
 <pre><code class="lang-json">{
   "statusText": "OK",
   "status": 200,
@@ -396,9 +572,9 @@ The server <b>MUST</b> support these.
 </code></pre>
 </details>
 </li>
-<li><code>58B3</code> MUST use 400 status code on array {extensions} parameter
+<li><code>0283</code> MUST use 4xx or 5xx status codes on array {extensions} parameter when accepting application/graphql-response+json
 <details>
-<summary>Response status code is not 400</summary>
+<summary>Response status is not between 400 and 599</summary>
 <pre><code class="lang-json">{
   "statusText": "OK",
   "status": 200,

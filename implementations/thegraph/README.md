@@ -3,10 +3,10 @@
 <h1>GraphQL over HTTP audit report</h1>
 
 <ul>
-<li><b>60</b> audits in total</li>
+<li><b>68</b> audits in total</li>
 <li><span style="font-family: monospace">✅</span> <b>19</b> pass</li>
 <li><span style="font-family: monospace">💡</span> <b>21</b> notices (suggestions)</li>
-<li><span style="font-family: monospace">❗️</span> <b>3</b> warnings (optional)</li>
+<li><span style="font-family: monospace">❗️</span> <b>11</b> warnings (optional)</li>
 <li><span style="font-family: monospace">❌</span> <b>17</b> errors (required)</li>
 </ul>
 
@@ -755,6 +755,278 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
 <h2>Warnings</h2>
 The server <i>SHOULD</i> support these, but is not required.
 <ol>
+<li><code>2330</code> SHOULD use 4xx status code on string {extensions} parameter when accepting application/graphql-response+json
+<details>
+<summary>Response status is not between 400 and 499</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "vary": "Accept-Encoding",
+    "transfer-encoding": "chunked",
+    "set-cookie": "<omitted>",
+    "server": "cloudflare",
+    "last-modified": "Mon, 02 Dec 2024 20:56:39 GMT",
+    "expires": "<timestamp>",
+    "etag": "W/\"cffa996b9fb9470d034909269c4d8d0f\"",
+    "date": "<timestamp>",
+    "content-type": "application/json",
+    "content-encoding": "br",
+    "connection": "keep-alive",
+    "cf-ray": "<omitted>",
+    "cf-cache-status": "HIT",
+    "cache-control": "public, max-age=3600",
+    "age": "<omitted>"
+  },
+  "body": {
+    "errors": [
+      {
+        "message": "This endpoint has been removed. If you have any questions, reach out to support@thegraph.zendesk.com"
+      }
+    ]
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>2331</code> SHOULD use 4xx status code on number {extensions} parameter when accepting application/graphql-response+json
+<details>
+<summary>Response status is not between 400 and 499</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "vary": "Accept-Encoding",
+    "transfer-encoding": "chunked",
+    "set-cookie": "<omitted>",
+    "server": "cloudflare",
+    "last-modified": "Mon, 02 Dec 2024 20:56:39 GMT",
+    "expires": "<timestamp>",
+    "etag": "W/\"cffa996b9fb9470d034909269c4d8d0f\"",
+    "date": "<timestamp>",
+    "content-type": "application/json",
+    "content-encoding": "br",
+    "connection": "keep-alive",
+    "cf-ray": "<omitted>",
+    "cf-cache-status": "HIT",
+    "cache-control": "public, max-age=3600",
+    "age": "<omitted>"
+  },
+  "body": {
+    "errors": [
+      {
+        "message": "This endpoint has been removed. If you have any questions, reach out to support@thegraph.zendesk.com"
+      }
+    ]
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>2332</code> SHOULD use 4xx status code on boolean {extensions} parameter when accepting application/graphql-response+json
+<details>
+<summary>Response status is not between 400 and 499</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "vary": "Accept-Encoding",
+    "transfer-encoding": "chunked",
+    "set-cookie": "<omitted>",
+    "server": "cloudflare",
+    "last-modified": "Mon, 02 Dec 2024 20:56:39 GMT",
+    "expires": "<timestamp>",
+    "etag": "W/\"cffa996b9fb9470d034909269c4d8d0f\"",
+    "date": "<timestamp>",
+    "content-type": "application/json",
+    "content-encoding": "br",
+    "connection": "keep-alive",
+    "cf-ray": "<omitted>",
+    "cf-cache-status": "HIT",
+    "cache-control": "public, max-age=3600",
+    "age": "<omitted>"
+  },
+  "body": {
+    "errors": [
+      {
+        "message": "This endpoint has been removed. If you have any questions, reach out to support@thegraph.zendesk.com"
+      }
+    ]
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>2333</code> SHOULD use 4xx status code on array {extensions} parameter when accepting application/graphql-response+json
+<details>
+<summary>Response status is not between 400 and 499</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "vary": "Accept-Encoding",
+    "transfer-encoding": "chunked",
+    "set-cookie": "<omitted>",
+    "server": "cloudflare",
+    "last-modified": "Mon, 02 Dec 2024 20:56:39 GMT",
+    "expires": "<timestamp>",
+    "etag": "W/\"cffa996b9fb9470d034909269c4d8d0f\"",
+    "date": "<timestamp>",
+    "content-type": "application/json",
+    "content-encoding": "br",
+    "connection": "keep-alive",
+    "cf-ray": "<omitted>",
+    "cf-cache-status": "HIT",
+    "cache-control": "public, max-age=3600",
+    "age": "<omitted>"
+  },
+  "body": {
+    "errors": [
+      {
+        "message": "This endpoint has been removed. If you have any questions, reach out to support@thegraph.zendesk.com"
+      }
+    ]
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>58B0</code> SHOULD use 4xx or 5xx status codes on string {extensions} parameter when accepting application/json
+<details>
+<summary>Response status is not between 400 and 599</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "vary": "Accept-Encoding",
+    "transfer-encoding": "chunked",
+    "set-cookie": "<omitted>",
+    "server": "cloudflare",
+    "last-modified": "Mon, 02 Dec 2024 20:56:39 GMT",
+    "expires": "<timestamp>",
+    "etag": "W/\"cffa996b9fb9470d034909269c4d8d0f\"",
+    "date": "<timestamp>",
+    "content-type": "application/json",
+    "content-encoding": "br",
+    "connection": "keep-alive",
+    "cf-ray": "<omitted>",
+    "cf-cache-status": "HIT",
+    "cache-control": "public, max-age=3600",
+    "age": "<omitted>"
+  },
+  "body": {
+    "errors": [
+      {
+        "message": "This endpoint has been removed. If you have any questions, reach out to support@thegraph.zendesk.com"
+      }
+    ]
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>58B1</code> SHOULD use 4xx or 5xx status codes on number {extensions} parameter when accepting application/json
+<details>
+<summary>Response status is not between 400 and 599</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "vary": "Accept-Encoding",
+    "transfer-encoding": "chunked",
+    "set-cookie": "<omitted>",
+    "server": "cloudflare",
+    "last-modified": "Mon, 02 Dec 2024 20:56:39 GMT",
+    "expires": "<timestamp>",
+    "etag": "W/\"cffa996b9fb9470d034909269c4d8d0f\"",
+    "date": "<timestamp>",
+    "content-type": "application/json",
+    "content-encoding": "br",
+    "connection": "keep-alive",
+    "cf-ray": "<omitted>",
+    "cf-cache-status": "HIT",
+    "cache-control": "public, max-age=3600",
+    "age": "<omitted>"
+  },
+  "body": {
+    "errors": [
+      {
+        "message": "This endpoint has been removed. If you have any questions, reach out to support@thegraph.zendesk.com"
+      }
+    ]
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>58B2</code> SHOULD use 4xx or 5xx status codes on boolean {extensions} parameter when accepting application/json
+<details>
+<summary>Response status is not between 400 and 599</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "vary": "Accept-Encoding",
+    "transfer-encoding": "chunked",
+    "set-cookie": "<omitted>",
+    "server": "cloudflare",
+    "last-modified": "Mon, 02 Dec 2024 20:56:39 GMT",
+    "expires": "<timestamp>",
+    "etag": "W/\"cffa996b9fb9470d034909269c4d8d0f\"",
+    "date": "<timestamp>",
+    "content-type": "application/json",
+    "content-encoding": "br",
+    "connection": "keep-alive",
+    "cf-ray": "<omitted>",
+    "cf-cache-status": "HIT",
+    "cache-control": "public, max-age=3600",
+    "age": "<omitted>"
+  },
+  "body": {
+    "errors": [
+      {
+        "message": "This endpoint has been removed. If you have any questions, reach out to support@thegraph.zendesk.com"
+      }
+    ]
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>58B3</code> SHOULD use 4xx or 5xx status codes on array {extensions} parameter when accepting application/json
+<details>
+<summary>Response status is not between 400 and 599</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "vary": "Accept-Encoding",
+    "transfer-encoding": "chunked",
+    "set-cookie": "<omitted>",
+    "server": "cloudflare",
+    "last-modified": "Mon, 02 Dec 2024 20:56:39 GMT",
+    "expires": "<timestamp>",
+    "etag": "W/\"cffa996b9fb9470d034909269c4d8d0f\"",
+    "date": "<timestamp>",
+    "content-type": "application/json",
+    "content-encoding": "br",
+    "connection": "keep-alive",
+    "cf-ray": "<omitted>",
+    "cf-cache-status": "HIT",
+    "cache-control": "public, max-age=3600",
+    "age": "<omitted>"
+  },
+  "body": {
+    "errors": [
+      {
+        "message": "This endpoint has been removed. If you have any questions, reach out to support@thegraph.zendesk.com"
+      }
+    ]
+  }
+}
+</code></pre>
+</details>
+</li>
 <li><code>556A</code> SHOULD use 400 status code on document parsing failure when accepting application/graphql-response+json
 <details>
 <summary>Response status code is not 400</summary>
@@ -1202,9 +1474,9 @@ The server <b>MUST</b> support these.
 </code></pre>
 </details>
 </li>
-<li><code>58B0</code> MUST use 400 status code on string {extensions} parameter
+<li><code>0280</code> MUST use 4xx or 5xx status codes on string {extensions} parameter when accepting application/graphql-response+json
 <details>
-<summary>Response status code is not 400</summary>
+<summary>Response status is not between 400 and 599</summary>
 <pre><code class="lang-json">{
   "statusText": "OK",
   "status": 200,
@@ -1236,9 +1508,9 @@ The server <b>MUST</b> support these.
 </code></pre>
 </details>
 </li>
-<li><code>58B1</code> MUST use 400 status code on number {extensions} parameter
+<li><code>0281</code> MUST use 4xx or 5xx status codes on number {extensions} parameter when accepting application/graphql-response+json
 <details>
-<summary>Response status code is not 400</summary>
+<summary>Response status is not between 400 and 599</summary>
 <pre><code class="lang-json">{
   "statusText": "OK",
   "status": 200,
@@ -1270,9 +1542,9 @@ The server <b>MUST</b> support these.
 </code></pre>
 </details>
 </li>
-<li><code>58B2</code> MUST use 400 status code on boolean {extensions} parameter
+<li><code>0282</code> MUST use 4xx or 5xx status codes on boolean {extensions} parameter when accepting application/graphql-response+json
 <details>
-<summary>Response status code is not 400</summary>
+<summary>Response status is not between 400 and 599</summary>
 <pre><code class="lang-json">{
   "statusText": "OK",
   "status": 200,
@@ -1304,9 +1576,9 @@ The server <b>MUST</b> support these.
 </code></pre>
 </details>
 </li>
-<li><code>58B3</code> MUST use 400 status code on array {extensions} parameter
+<li><code>0283</code> MUST use 4xx or 5xx status codes on array {extensions} parameter when accepting application/graphql-response+json
 <details>
-<summary>Response status code is not 400</summary>
+<summary>Response status is not between 400 and 599</summary>
 <pre><code class="lang-json">{
   "statusText": "OK",
   "status": 200,

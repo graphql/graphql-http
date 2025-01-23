@@ -3,8 +3,8 @@
 <h1>GraphQL over HTTP audit report</h1>
 
 <ul>
-<li><b>60</b> audits in total</li>
-<li><span style="font-family: monospace">✅</span> <b>57</b> pass</li>
+<li><b>68</b> audits in total</li>
+<li><span style="font-family: monospace">✅</span> <b>65</b> pass</li>
 <li><span style="font-family: monospace">💡</span> <b>3</b> notices (suggestions)</li>
 </ul>
 
@@ -49,10 +49,18 @@
 <li><code>28B9</code> MUST allow map {variables} parameter when accepting application/json</li>
 <li><code>D6D5</code> MAY allow URL-encoded JSON string {variables} parameter in GETs when accepting application/graphql-response+json</li>
 <li><code>6A70</code> MAY allow URL-encoded JSON string {variables} parameter in GETs when accepting application/json</li>
-<li><code>58B0</code> MUST use 400 status code on string {extensions} parameter</li>
-<li><code>58B1</code> MUST use 400 status code on number {extensions} parameter</li>
-<li><code>58B2</code> MUST use 400 status code on boolean {extensions} parameter</li>
-<li><code>58B3</code> MUST use 400 status code on array {extensions} parameter</li>
+<li><code>0280</code> MUST use 4xx or 5xx status codes on string {extensions} parameter when accepting application/graphql-response+json</li>
+<li><code>0281</code> MUST use 4xx or 5xx status codes on number {extensions} parameter when accepting application/graphql-response+json</li>
+<li><code>0282</code> MUST use 4xx or 5xx status codes on boolean {extensions} parameter when accepting application/graphql-response+json</li>
+<li><code>0283</code> MUST use 4xx or 5xx status codes on array {extensions} parameter when accepting application/graphql-response+json</li>
+<li><code>2330</code> SHOULD use 4xx status code on string {extensions} parameter when accepting application/graphql-response+json</li>
+<li><code>2331</code> SHOULD use 4xx status code on number {extensions} parameter when accepting application/graphql-response+json</li>
+<li><code>2332</code> SHOULD use 4xx status code on boolean {extensions} parameter when accepting application/graphql-response+json</li>
+<li><code>2333</code> SHOULD use 4xx status code on array {extensions} parameter when accepting application/graphql-response+json</li>
+<li><code>58B0</code> SHOULD use 4xx or 5xx status codes on string {extensions} parameter when accepting application/json</li>
+<li><code>58B1</code> SHOULD use 4xx or 5xx status codes on number {extensions} parameter when accepting application/json</li>
+<li><code>58B2</code> SHOULD use 4xx or 5xx status codes on boolean {extensions} parameter when accepting application/json</li>
+<li><code>58B3</code> SHOULD use 4xx or 5xx status codes on array {extensions} parameter when accepting application/json</li>
 <li><code>428F</code> MUST allow map {extensions} parameter when accepting application/graphql-response+json</li>
 <li><code>1B7A</code> MUST allow map {extensions} parameter when accepting application/json</li>
 <li><code>8764</code> MAY use 4xx or 5xx status codes if parameters are invalid</li>

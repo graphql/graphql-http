@@ -3,9 +3,9 @@
 <h1>GraphQL over HTTP audit report</h1>
 
 <ul>
-<li><b>60</b> audits in total</li>
-<li><span style="font-family: monospace">✅</span> <b>58</b> pass</li>
-<li><span style="font-family: monospace">❗️</span> <b>2</b> warnings (optional)</li>
+<li><b>68</b> audits in total</li>
+<li><span style="font-family: monospace">✅</span> <b>62</b> pass</li>
+<li><span style="font-family: monospace">❗️</span> <b>6</b> warnings (optional)</li>
 </ul>
 
 <h2>Passing</h2>
@@ -48,10 +48,14 @@
 <li><code>28B9</code> MUST allow map {variables} parameter when accepting application/json</li>
 <li><code>D6D5</code> MAY allow URL-encoded JSON string {variables} parameter in GETs when accepting application/graphql-response+json</li>
 <li><code>6A70</code> MAY allow URL-encoded JSON string {variables} parameter in GETs when accepting application/json</li>
-<li><code>58B0</code> MUST use 400 status code on string {extensions} parameter</li>
-<li><code>58B1</code> MUST use 400 status code on number {extensions} parameter</li>
-<li><code>58B2</code> MUST use 400 status code on boolean {extensions} parameter</li>
-<li><code>58B3</code> MUST use 400 status code on array {extensions} parameter</li>
+<li><code>0280</code> MUST use 4xx or 5xx status codes on string {extensions} parameter when accepting application/graphql-response+json</li>
+<li><code>0281</code> MUST use 4xx or 5xx status codes on number {extensions} parameter when accepting application/graphql-response+json</li>
+<li><code>0282</code> MUST use 4xx or 5xx status codes on boolean {extensions} parameter when accepting application/graphql-response+json</li>
+<li><code>0283</code> MUST use 4xx or 5xx status codes on array {extensions} parameter when accepting application/graphql-response+json</li>
+<li><code>2330</code> SHOULD use 4xx status code on string {extensions} parameter when accepting application/graphql-response+json</li>
+<li><code>2331</code> SHOULD use 4xx status code on number {extensions} parameter when accepting application/graphql-response+json</li>
+<li><code>2332</code> SHOULD use 4xx status code on boolean {extensions} parameter when accepting application/graphql-response+json</li>
+<li><code>2333</code> SHOULD use 4xx status code on array {extensions} parameter when accepting application/graphql-response+json</li>
 <li><code>428F</code> MUST allow map {extensions} parameter when accepting application/graphql-response+json</li>
 <li><code>1B7A</code> MUST allow map {extensions} parameter when accepting application/json</li>
 <li><code>B6DC</code> MAY use 4xx or 5xx status codes on JSON parsing failure</li>
@@ -110,6 +114,134 @@ The server <i>SHOULD</i> support these, but is not required.
     "data": {
       "__typename": "Query"
     }
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>58B0</code> SHOULD use 4xx or 5xx status codes on string {extensions} parameter when accepting application/json
+<details>
+<summary>Response status is not between 400 and 599</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "transfer-encoding": "chunked",
+    "server": "Kestrel",
+    "date": "<timestamp>",
+    "content-type": "application/json; charset=utf-8"
+  },
+  "body": {
+    "errors": [
+      {
+        "message": "Expected an object or a null-token, but found a String-token with value `string`.",
+        "locations": [
+          {
+            "line": 1,
+            "column": 40
+          }
+        ],
+        "extensions": {
+          "code": "HC0011"
+        }
+      }
+    ]
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>58B1</code> SHOULD use 4xx or 5xx status codes on number {extensions} parameter when accepting application/json
+<details>
+<summary>Response status is not between 400 and 599</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "transfer-encoding": "chunked",
+    "server": "Kestrel",
+    "date": "<timestamp>",
+    "content-type": "application/json; charset=utf-8"
+  },
+  "body": {
+    "errors": [
+      {
+        "message": "Expected an object or a null-token, but found a Integer-token with value `0`.",
+        "locations": [
+          {
+            "line": 1,
+            "column": 40
+          }
+        ],
+        "extensions": {
+          "code": "HC0011"
+        }
+      }
+    ]
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>58B2</code> SHOULD use 4xx or 5xx status codes on boolean {extensions} parameter when accepting application/json
+<details>
+<summary>Response status is not between 400 and 599</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "transfer-encoding": "chunked",
+    "server": "Kestrel",
+    "date": "<timestamp>",
+    "content-type": "application/json; charset=utf-8"
+  },
+  "body": {
+    "errors": [
+      {
+        "message": "Expected an object or a null-token, but found a Name-token with value `false`.",
+        "locations": [
+          {
+            "line": 1,
+            "column": 40
+          }
+        ],
+        "extensions": {
+          "code": "HC0011"
+        }
+      }
+    ]
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>58B3</code> SHOULD use 4xx or 5xx status codes on array {extensions} parameter when accepting application/json
+<details>
+<summary>Response status is not between 400 and 599</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "transfer-encoding": "chunked",
+    "server": "Kestrel",
+    "date": "<timestamp>",
+    "content-type": "application/json; charset=utf-8"
+  },
+  "body": {
+    "errors": [
+      {
+        "message": "Expected an object or a null-token, but found a LeftBracket-token with value ``.",
+        "locations": [
+          {
+            "line": 1,
+            "column": 40
+          }
+        ],
+        "extensions": {
+          "code": "HC0011"
+        }
+      }
+    ]
   }
 }
 </code></pre>
