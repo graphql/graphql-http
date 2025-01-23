@@ -5,7 +5,7 @@
 
   <h6>Simple, pluggable, zero-dependency, <a href="https://graphql.github.io/graphql-over-http">GraphQL over HTTP spec</a> compliant server, client and audit suite.</h6>
 
-[![Continuous integration](https://github.com/graphql/graphql-http/workflows/Continuous%20integration/badge.svg)](https://github.com/graphql/graphql-http/actions?query=workflow%3A%22Continuous+integration%22) [![graphql-http](https://img.shields.io/npm/v/graphql-http.svg?label=graphql-http&logo=npm)](https://www.npmjs.com/package/graphql-http)
+[![CI](https://github.com/graphql/graphql-http/workflows/CI/badge.svg)](https://github.com/graphql/graphql-http/actions?query=workflow%3A%22Continuous+integration%22) [![graphql-http](https://img.shields.io/npm/v/graphql-http.svg?label=graphql-http&logo=npm)](https://www.npmjs.com/package/graphql-http)
 
 <i>Quickly check for compliance? Visit <b>[graphql-http.com](https://graphql-http.com)</b>!</i>
 
