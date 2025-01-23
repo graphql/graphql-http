@@ -4105,13 +4105,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/k6@npm:^0.47.3":
-  version: 0.47.3
-  resolution: "@types/k6@npm:0.47.3"
-  checksum: 6739f36951e7d784a7390be47ea856dbf6c2b01810f9cb99e966f35edb741ec389970e9cdf992c8d0e99b07540156aec1751e8b195fb43cfde997e30533c95cb
-  languageName: node
-  linkType: hard
-
 "@types/keygrip@npm:*":
   version: 1.0.6
   resolution: "@types/keygrip@npm:1.0.6"
@@ -7600,7 +7593,6 @@ __metadata:
     "@types/express": "npm:^4.17.21"
     "@types/glob": "npm:^8.1.0"
     "@types/html-validator": "npm:^5.0.6"
-    "@types/k6": "npm:^0.47.3"
     "@types/koa": "npm:^2.15.0"
     "@types/koa-mount": "npm:^4.0.5"
     "@typescript-eslint/eslint-plugin": "npm:^6.13.2"
