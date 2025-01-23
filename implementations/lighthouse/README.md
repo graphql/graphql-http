@@ -5,8 +5,9 @@
 <ul>
 <li><b>60</b> audits in total</li>
 <li><span style="font-family: monospace">✅</span> <b>33</b> pass</li>
-<li><span style="font-family: monospace">💡</span> <b>21</b> notices (suggestions)</li>
-<li><span style="font-family: monospace">❗️</span> <b>6</b> warnings (optional)</li>
+<li><span style="font-family: monospace">💡</span> <b>17</b> notices (suggestions)</li>
+<li><span style="font-family: monospace">❗️</span> <b>3</b> warnings (optional)</li>
+<li><span style="font-family: monospace">❌</span> <b>7</b> errors (required)</li>
 </ul>
 
 <h2>Passing</h2>
@@ -21,21 +22,21 @@
 <li><code>5A70</code> MAY accept application/x-www-form-urlencoded formatted GET requests</li>
 <li><code>03D4</code> MUST accept application/json POST requests</li>
 <li><code>A5BF</code> MAY use 400 status code when request body is missing on POST</li>
-<li><code>34A2</code> SHOULD allow string {query} parameter when accepting application/graphql-response+json</li>
+<li><code>34A2</code> MUST allow string {query} parameter when accepting application/graphql-response+json</li>
 <li><code>13EE</code> MUST allow string {query} parameter when accepting application/json</li>
-<li><code>8161</code> SHOULD allow string {operationName} parameter when accepting application/graphql-response+json</li>
+<li><code>8161</code> MUST allow string {operationName} parameter when accepting application/graphql-response+json</li>
 <li><code>B8B3</code> MUST allow string {operationName} parameter when accepting application/json</li>
-<li><code>94B0</code> SHOULD allow null {variables} parameter when accepting application/graphql-response+json</li>
+<li><code>94B0</code> MUST allow null {variables} parameter when accepting application/graphql-response+json</li>
 <li><code>0220</code> MUST allow null {variables} parameter when accepting application/json</li>
-<li><code>94B1</code> SHOULD allow null {operationName} parameter when accepting application/graphql-response+json</li>
+<li><code>94B1</code> MUST allow null {operationName} parameter when accepting application/graphql-response+json</li>
 <li><code>0221</code> MUST allow null {operationName} parameter when accepting application/json</li>
-<li><code>94B2</code> SHOULD allow null {extensions} parameter when accepting application/graphql-response+json</li>
+<li><code>94B2</code> MUST allow null {extensions} parameter when accepting application/graphql-response+json</li>
 <li><code>0222</code> MUST allow null {extensions} parameter when accepting application/json</li>
-<li><code>2EA1</code> SHOULD allow map {variables} parameter when accepting application/graphql-response+json</li>
+<li><code>2EA1</code> MUST allow map {variables} parameter when accepting application/graphql-response+json</li>
 <li><code>28B9</code> MUST allow map {variables} parameter when accepting application/json</li>
 <li><code>D6D5</code> MAY allow URL-encoded JSON string {variables} parameter in GETs when accepting application/graphql-response+json</li>
 <li><code>6A70</code> MAY allow URL-encoded JSON string {variables} parameter in GETs when accepting application/json</li>
-<li><code>428F</code> SHOULD allow map {extensions} parameter when accepting application/graphql-response+json</li>
+<li><code>428F</code> MUST allow map {extensions} parameter when accepting application/graphql-response+json</li>
 <li><code>1B7A</code> MUST allow map {extensions} parameter when accepting application/json</li>
 <li><code>B6DC</code> MAY use 4xx or 5xx status codes on JSON parsing failure</li>
 <li><code>BCF8</code> MAY use 400 status code on JSON parsing failure</li>
@@ -3591,98 +3592,6 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
 </code></pre>
 </details>
 </li>
-<li><code>58B0</code> MAY use 400 status code on string {extensions} parameter
-<details>
-<summary>Response status code is not 400</summary>
-<pre><code class="lang-json">{
-  "statusText": "OK",
-  "status": 200,
-  "headers": {
-    "x-powered-by": "PHP/8.2.19",
-    "host": "localhost:4000",
-    "date": "<timestamp>",
-    "content-type": "application/json",
-    "connection": "close",
-    "cache-control": "no-cache, private"
-  },
-  "body": {
-    "data": {
-      "__typename": "Query"
-    }
-  }
-}
-</code></pre>
-</details>
-</li>
-<li><code>58B1</code> MAY use 400 status code on number {extensions} parameter
-<details>
-<summary>Response status code is not 400</summary>
-<pre><code class="lang-json">{
-  "statusText": "OK",
-  "status": 200,
-  "headers": {
-    "x-powered-by": "PHP/8.2.19",
-    "host": "localhost:4000",
-    "date": "<timestamp>",
-    "content-type": "application/json",
-    "connection": "close",
-    "cache-control": "no-cache, private"
-  },
-  "body": {
-    "data": {
-      "__typename": "Query"
-    }
-  }
-}
-</code></pre>
-</details>
-</li>
-<li><code>58B2</code> MAY use 400 status code on boolean {extensions} parameter
-<details>
-<summary>Response status code is not 400</summary>
-<pre><code class="lang-json">{
-  "statusText": "OK",
-  "status": 200,
-  "headers": {
-    "x-powered-by": "PHP/8.2.19",
-    "host": "localhost:4000",
-    "date": "<timestamp>",
-    "content-type": "application/json",
-    "connection": "close",
-    "cache-control": "no-cache, private"
-  },
-  "body": {
-    "data": {
-      "__typename": "Query"
-    }
-  }
-}
-</code></pre>
-</details>
-</li>
-<li><code>58B3</code> MAY use 400 status code on array {extensions} parameter
-<details>
-<summary>Response status code is not 400</summary>
-<pre><code class="lang-json">{
-  "statusText": "OK",
-  "status": 200,
-  "headers": {
-    "x-powered-by": "PHP/8.2.19",
-    "host": "localhost:4000",
-    "date": "<timestamp>",
-    "content-type": "application/json",
-    "connection": "close",
-    "cache-control": "no-cache, private"
-  },
-  "body": {
-    "data": {
-      "__typename": "Query"
-    }
-  }
-}
-</code></pre>
-</details>
-</li>
 <li><code>8764</code> MAY use 4xx or 5xx status codes if parameters are invalid
 <details>
 <summary>Response status is not between 400 and 599</summary>
@@ -4180,64 +4089,6 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
 <h2>Warnings</h2>
 The server <i>SHOULD</i> support these, but is not required.
 <ol>
-<li><code>22EB</code> SHOULD accept application/graphql-response+json and match the content-type
-<details>
-<summary>Response header content-type does not contain application/graphql-response+json</summary>
-<pre><code class="lang-json">{
-  "statusText": "OK",
-  "status": 200,
-  "headers": {
-    "x-powered-by": "PHP/8.2.19",
-    "host": "localhost:4000",
-    "date": "<timestamp>",
-    "content-type": "application/json",
-    "connection": "close",
-    "cache-control": "no-cache, private"
-  },
-  "body": {
-    "data": {
-      "__typename": "Query"
-    }
-  }
-}
-</code></pre>
-</details>
-</li>
-<li><code>865D</code> SHOULD use 4xx or 5xx status codes on document parsing failure when accepting application/graphql-response+json
-<details>
-<summary>Response status is not between 400 and 599</summary>
-<pre><code class="lang-json">{
-  "statusText": "OK",
-  "status": 200,
-  "headers": {
-    "x-powered-by": "PHP/8.2.19",
-    "host": "localhost:4000",
-    "date": "<timestamp>",
-    "content-type": "application/json",
-    "connection": "close",
-    "cache-control": "no-cache, private"
-  },
-  "body": {
-    "errors": [
-      {
-        "message": "Syntax Error: Expected Name, found <EOF>",
-        "locations": [
-          {
-            "line": 1,
-            "column": 2
-          }
-        ],
-        "extensions": {
-          "line": 382,
-          "file": "/app/vendor/webonyx/graphql-php/src/Language/Parser.php"
-        }
-      }
-    ]
-  }
-}
-</code></pre>
-</details>
-</li>
 <li><code>556A</code> SHOULD use 400 status code on document parsing failure when accepting application/graphql-response+json
 <details>
 <summary>Response status code is not 400</summary>
@@ -4260,41 +4111,6 @@ The server <i>SHOULD</i> support these, but is not required.
           {
             "line": 1,
             "column": 2
-          }
-        ],
-        "extensions": {
-          "line": 382,
-          "file": "/app/vendor/webonyx/graphql-php/src/Language/Parser.php"
-        }
-      }
-    ]
-  }
-}
-</code></pre>
-</details>
-</li>
-<li><code>51FE</code> SHOULD use 4xx or 5xx status codes on document validation failure when accepting application/graphql-response+json
-<details>
-<summary>Response status is not between 400 and 599</summary>
-<pre><code class="lang-json">{
-  "statusText": "OK",
-  "status": 200,
-  "headers": {
-    "x-powered-by": "PHP/8.2.19",
-    "host": "localhost:4000",
-    "date": "<timestamp>",
-    "content-type": "application/json",
-    "connection": "close",
-    "cache-control": "no-cache, private"
-  },
-  "body": {
-    "errors": [
-      {
-        "message": "Syntax Error: Expected Name, found Int \"8\"",
-        "locations": [
-          {
-            "line": 1,
-            "column": 3
           }
         ],
         "extensions": {
@@ -4380,3 +4196,192 @@ The server <i>SHOULD</i> support these, but is not required.
 </li>
 </ol>
 
+<h2>Errors</h2>
+The server <b>MUST</b> support these.
+<ol>
+<li><code>22EB</code> MUST accept application/graphql-response+json and match the content-type
+<details>
+<summary>Response header content-type does not contain application/graphql-response+json</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "x-powered-by": "PHP/8.2.19",
+    "host": "localhost:4000",
+    "date": "<timestamp>",
+    "content-type": "application/json",
+    "connection": "close",
+    "cache-control": "no-cache, private"
+  },
+  "body": {
+    "data": {
+      "__typename": "Query"
+    }
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>58B0</code> MUST use 400 status code on string {extensions} parameter
+<details>
+<summary>Response status code is not 400</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "x-powered-by": "PHP/8.2.19",
+    "host": "localhost:4000",
+    "date": "<timestamp>",
+    "content-type": "application/json",
+    "connection": "close",
+    "cache-control": "no-cache, private"
+  },
+  "body": {
+    "data": {
+      "__typename": "Query"
+    }
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>58B1</code> MUST use 400 status code on number {extensions} parameter
+<details>
+<summary>Response status code is not 400</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "x-powered-by": "PHP/8.2.19",
+    "host": "localhost:4000",
+    "date": "<timestamp>",
+    "content-type": "application/json",
+    "connection": "close",
+    "cache-control": "no-cache, private"
+  },
+  "body": {
+    "data": {
+      "__typename": "Query"
+    }
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>58B2</code> MUST use 400 status code on boolean {extensions} parameter
+<details>
+<summary>Response status code is not 400</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "x-powered-by": "PHP/8.2.19",
+    "host": "localhost:4000",
+    "date": "<timestamp>",
+    "content-type": "application/json",
+    "connection": "close",
+    "cache-control": "no-cache, private"
+  },
+  "body": {
+    "data": {
+      "__typename": "Query"
+    }
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>58B3</code> MUST use 400 status code on array {extensions} parameter
+<details>
+<summary>Response status code is not 400</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "x-powered-by": "PHP/8.2.19",
+    "host": "localhost:4000",
+    "date": "<timestamp>",
+    "content-type": "application/json",
+    "connection": "close",
+    "cache-control": "no-cache, private"
+  },
+  "body": {
+    "data": {
+      "__typename": "Query"
+    }
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>865D</code> MUST use 4xx or 5xx status codes on document parsing failure when accepting application/graphql-response+json
+<details>
+<summary>Response status is not between 400 and 599</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "x-powered-by": "PHP/8.2.19",
+    "host": "localhost:4000",
+    "date": "<timestamp>",
+    "content-type": "application/json",
+    "connection": "close",
+    "cache-control": "no-cache, private"
+  },
+  "body": {
+    "errors": [
+      {
+        "message": "Syntax Error: Expected Name, found <EOF>",
+        "locations": [
+          {
+            "line": 1,
+            "column": 2
+          }
+        ],
+        "extensions": {
+          "line": 382,
+          "file": "/app/vendor/webonyx/graphql-php/src/Language/Parser.php"
+        }
+      }
+    ]
+  }
+}
+</code></pre>
+</details>
+</li>
+<li><code>51FE</code> MUST use 4xx or 5xx status codes on document validation failure when accepting application/graphql-response+json
+<details>
+<summary>Response status is not between 400 and 599</summary>
+<pre><code class="lang-json">{
+  "statusText": "OK",
+  "status": 200,
+  "headers": {
+    "x-powered-by": "PHP/8.2.19",
+    "host": "localhost:4000",
+    "date": "<timestamp>",
+    "content-type": "application/json",
+    "connection": "close",
+    "cache-control": "no-cache, private"
+  },
+  "body": {
+    "errors": [
+      {
+        "message": "Syntax Error: Expected Name, found Int \"8\"",
+        "locations": [
+          {
+            "line": 1,
+            "column": 3
+          }
+        ],
+        "extensions": {
+          "line": 382,
+          "file": "/app/vendor/webonyx/graphql-php/src/Language/Parser.php"
+        }
+      }
+    ]
+  }
+}
+</code></pre>
+</details>
+</li>
+</ol>
