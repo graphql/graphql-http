@@ -149,9 +149,6 @@ jobs:
             implementations/${{ matrix.workspace.name }}/report.json
 
   report:
-    permissions:
-      contents: write
-      pull-requests: write
     name: Report
     runs-on: ubuntu-latest
     needs: [javascript, docker, url]
