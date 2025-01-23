@@ -76,7 +76,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
     ),
     audit(
       '47DE',
-      'SHOULD accept */* and use application/json for the content-type',
+      'SHOULD accept */* and use application/graphql-response+json or application/json for the content-type',
       async () => {
         const res = await fetchFn(await getUrl(opts.url), {
           method: 'POST',
@@ -87,12 +87,18 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
           body: JSON.stringify({ query: '{ __typename }' }),
         });
         ressert(res).status.toBe(200);
-        ressert(res).header('content-type').toContain('application/json');
+        try {
+          ressert(res)
+            .header('content-type')
+            .toContain('application/graphql-response+json');
+        } catch {
+          ressert(res).header('content-type').toContain('application/json');
+        }
       },
     ),
     audit(
       '80D8',
-      'SHOULD assume application/json content-type when accept is missing',
+      'SHOULD assume application/graphql-response+json or application/json content-type when accept is missing',
       async () => {
         const res = await fetchFn(await getUrl(opts.url), {
           method: 'POST',
@@ -103,7 +109,13 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
         });
 
         ressert(res).status.toBe(200);
-        ressert(res).header('content-type').toContain('application/json');
+        try {
+          ressert(res)
+            .header('content-type')
+            .toContain('application/graphql-response+json');
+        } catch {
+          ressert(res).header('content-type').toContain('application/json');
+        }
       },
     ),
     audit('82A3', 'MUST use utf-8 encoding when responding', async () => {
@@ -498,23 +510,46 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
     ),
     ...['string', 0, false, ['array']].map((invalid, index) =>
       audit(
-        `58B${index}`,
         // TODO: convert to MUST after watershed
-        `MAY use 400 status code on ${extendedTypeof(
+        `028${index}`,
+        `SHOULD use 4xx or 5xx status codes on ${extendedTypeof(
           invalid,
-        )} {extensions} parameter`,
+        )} {extensions} parameter when accepting application/graphql-response+json`,
         async () => {
           const res = await fetchFn(await getUrl(opts.url), {
             method: 'POST',
             headers: {
               'content-type': 'application/json',
+              accept: 'application/graphql-response+json',
             },
             body: JSON.stringify({
               query: '{ __typename }',
               extensions: invalid,
             }),
           });
-          ressert(res).status.toBe(400);
+          ressert(res).status.toBeBetween(400, 599);
+        },
+      ),
+    ),
+    ...['string', 0, false, ['array']].map((invalid, index) =>
+      audit(
+        `58B${index}`,
+        `MAY use 4xx or 5xx status codes on ${extendedTypeof(
+          invalid,
+        )} {extensions} parameter when accepting application/json`,
+        async () => {
+          const res = await fetchFn(await getUrl(opts.url), {
+            method: 'POST',
+            headers: {
+              'content-type': 'application/json',
+              accept: 'application/json',
+            },
+            body: JSON.stringify({
+              query: '{ __typename }',
+              extensions: invalid,
+            }),
+          });
+          ressert(res).status.toBeBetween(400, 599);
         },
       ),
     ),
