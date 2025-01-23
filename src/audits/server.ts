@@ -75,7 +75,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
     ),
     audit(
       '47DE',
-      'SHOULD accept */* and use application/json for the content-type',
+      'SHOULD accept */* and use application/graphql-response+json or application/json for the content-type',
       async () => {
         const res = await fetchFn(await getUrl(opts.url), {
           method: 'POST',
@@ -86,12 +86,18 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
           body: JSON.stringify({ query: '{ __typename }' }),
         });
         ressert(res).status.toBe(200);
-        ressert(res).header('content-type').toContain('application/json');
+        try {
+          ressert(res)
+            .header('content-type')
+            .toContain('application/graphql-response+json');
+        } catch {
+          ressert(res).header('content-type').toContain('application/json');
+        }
       },
     ),
     audit(
       '80D8',
-      'SHOULD assume application/json content-type when accept is missing',
+      'SHOULD assume application/json or application/graphql-response+json content-type when accept is missing',
       async () => {
         const res = await fetchFn(await getUrl(opts.url), {
           method: 'POST',
@@ -102,7 +108,13 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
         });
 
         ressert(res).status.toBe(200);
-        ressert(res).header('content-type').toContain('application/json');
+        try {
+          ressert(res)
+            .header('content-type')
+            .toContain('application/graphql-response+json');
+        } catch {
+          ressert(res).header('content-type').toContain('application/json');
+        }
       },
     ),
     audit('82A3', 'MUST use utf-8 encoding when responding', async () => {
