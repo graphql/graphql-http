@@ -86,6 +86,7 @@ jobs:
         uses: docker/bake-action@v6
         with:
           workdir: implementations/${{ matrix.workspace }}
+          source: .
           load: true # load image into docker, otherwise `docker compose up` will rebuild
           set: |
             *.cache-from=type=gha
