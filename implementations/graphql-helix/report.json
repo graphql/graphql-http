@@ -1,7 +1,7 @@
 {
-  "total": 60,
+  "total": 68,
   "ok": 49,
-  "notice": 7,
-  "warn": 4,
-  "error": 0
+  "notice": 3,
+  "warn": 11,
+  "error": 5
 }

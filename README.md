@@ -890,14 +890,10 @@ Their compliance with the [GraphQL over HTTP spec](https://graphql.github.io/gra
 | Name | Audit |
 |------|-------|
 | [apollo-server](https://www.apollographql.com/docs/apollo-server) | [✅ Compliant](/implementations/apollo-server/README.md) |
-| [deno](https://deno.com/blog/build-a-graphql-server-with-deno) | [✅ Compliant](/implementations/deno/README.md) |
 | [graph-client](https://github.com/graphprotocol/graph-client) | [✅ Compliant](/implementations/graph-client/README.md) |
-| [graphql-helix](https://www.graphql-helix.com) | [✅ Compliant](/implementations/graphql-helix/README.md) |
 | [graphql-yoga](https://www.the-guild.dev/graphql/yoga-server) | [✅ Compliant](/implementations/graphql-yoga/README.md) |
 | [hotchocolate](https://chillicream.com/docs/hotchocolate) | [✅ Compliant](/implementations/hotchocolate/README.md) |
-| [lighthouse](https://lighthouse-php.com) | [✅ Compliant](/implementations/lighthouse/README.md) |
 | [pioneer](https://pioneer.dexclaimation.com) | [✅ Compliant](/implementations/pioneer/README.md) |
-| [postgraphile](https://www.graphile.org/postgraphile) | [✅ Compliant](/implementations/postgraphile/README.md) |
 <!-- prettier-ignore-end -->
 
 <!-- </ServersTable> -->

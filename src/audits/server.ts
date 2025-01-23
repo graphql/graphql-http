@@ -40,9 +40,8 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
   return [
     // Media Types
     audit(
-      // TODO: convert to MUST after watershed
       '22EB',
-      'SHOULD accept application/graphql-response+json and match the content-type',
+      'MUST accept application/graphql-response+json and match the content-type',
       async () => {
         const res = await fetchFn(await getUrl(opts.url), {
           method: 'POST',
@@ -76,7 +75,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
     ),
     audit(
       '47DE',
-      'SHOULD accept */* and use application/json for the content-type',
+      'SHOULD accept */* and use application/graphql-response+json or application/json for the content-type',
       async () => {
         const res = await fetchFn(await getUrl(opts.url), {
           method: 'POST',
@@ -87,12 +86,18 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
           body: JSON.stringify({ query: '{ __typename }' }),
         });
         ressert(res).status.toBe(200);
-        ressert(res).header('content-type').toContain('application/json');
+        try {
+          ressert(res)
+            .header('content-type')
+            .toContain('application/graphql-response+json');
+        } catch {
+          ressert(res).header('content-type').toContain('application/json');
+        }
       },
     ),
     audit(
       '80D8',
-      'SHOULD assume application/json content-type when accept is missing',
+      'SHOULD assume application/json or application/graphql-response+json content-type when accept is missing',
       async () => {
         const res = await fetchFn(await getUrl(opts.url), {
           method: 'POST',
@@ -103,7 +108,13 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
         });
 
         ressert(res).status.toBe(200);
-        ressert(res).header('content-type').toContain('application/json');
+        try {
+          ressert(res)
+            .header('content-type')
+            .toContain('application/graphql-response+json');
+        } catch {
+          ressert(res).header('content-type').toContain('application/json');
+        }
       },
     ),
     audit('82A3', 'MUST use utf-8 encoding when responding', async () => {
@@ -255,9 +266,8 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
       ),
     ),
     audit(
-      // TODO: convert to MUST after watershed
       '34A2',
-      'SHOULD allow string {query} parameter when accepting application/graphql-response+json',
+      'MUST allow string {query} parameter when accepting application/graphql-response+json',
       async () => {
         const res = await fetchFn(await getUrl(opts.url), {
           method: 'POST',
@@ -312,9 +322,8 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
       ),
     ),
     audit(
-      // TODO: convert to MUST after watershed
       '8161',
-      'SHOULD allow string {operationName} parameter when accepting application/graphql-response+json',
+      'MUST allow string {operationName} parameter when accepting application/graphql-response+json',
       async () => {
         const res = await fetchFn(await getUrl(opts.url), {
           method: 'POST',
@@ -353,8 +362,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
       (parameter, index) => [
         audit(
           `94B${index}`,
-          // TODO: convert to MUST after watershed
-          `SHOULD allow null {${parameter}} parameter when accepting application/graphql-response+json`,
+          `MUST allow null {${parameter}} parameter when accepting application/graphql-response+json`,
           async () => {
             const res = await fetchFn(await getUrl(opts.url), {
               method: 'POST',
@@ -418,9 +426,8 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
       ),
     ),
     audit(
-      // TODO: convert to MUST after watershed
       '2EA1',
-      'SHOULD allow map {variables} parameter when accepting application/graphql-response+json',
+      'MUST allow map {variables} parameter when accepting application/graphql-response+json',
       async () => {
         const res = await fetchFn(await getUrl(opts.url), {
           method: 'POST',
@@ -498,30 +505,73 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
     ),
     ...['string', 0, false, ['array']].map((invalid, index) =>
       audit(
-        `58B${index}`,
-        // TODO: convert to MUST after watershed
-        `MAY use 400 status code on ${extendedTypeof(
+        `028${index}`,
+        `MUST use 4xx or 5xx status codes on ${extendedTypeof(
           invalid,
-        )} {extensions} parameter`,
+        )} {extensions} parameter when accepting application/graphql-response+json`,
         async () => {
           const res = await fetchFn(await getUrl(opts.url), {
             method: 'POST',
             headers: {
               'content-type': 'application/json',
+              accept: 'application/graphql-response+json',
             },
             body: JSON.stringify({
               query: '{ __typename }',
               extensions: invalid,
             }),
           });
-          ressert(res).status.toBe(400);
+          ressert(res).status.toBeBetween(400, 599);
+        },
+      ),
+    ),
+    ...['string', 0, false, ['array']].map((invalid, index) =>
+      audit(
+        `233${index}`,
+        `SHOULD use 4xx status code on ${extendedTypeof(
+          invalid,
+        )} {extensions} parameter when accepting application/graphql-response+json`,
+        async () => {
+          const res = await fetchFn(await getUrl(opts.url), {
+            method: 'POST',
+            headers: {
+              'content-type': 'application/json',
+              accept: 'application/graphql-response+json',
+            },
+            body: JSON.stringify({
+              query: '{ __typename }',
+              extensions: invalid,
+            }),
+          });
+          ressert(res).status.toBeBetween(400, 499);
+        },
+      ),
+    ),
+    ...['string', 0, false, ['array']].map((invalid, index) =>
+      audit(
+        `58B${index}`,
+        `SHOULD use 4xx or 5xx status codes on ${extendedTypeof(
+          invalid,
+        )} {extensions} parameter when accepting application/json`,
+        async () => {
+          const res = await fetchFn(await getUrl(opts.url), {
+            method: 'POST',
+            headers: {
+              'content-type': 'application/json',
+              accept: 'application/json',
+            },
+            body: JSON.stringify({
+              query: '{ __typename }',
+              extensions: invalid,
+            }),
+          });
+          ressert(res).status.toBeBetween(400, 599);
         },
       ),
     ),
     audit(
-      // TODO: convert to MUST after watershed
       '428F',
-      'SHOULD allow map {extensions} parameter when accepting application/graphql-response+json',
+      'MUST allow map {extensions} parameter when accepting application/graphql-response+json',
       async () => {
         const res = await fetchFn(await getUrl(opts.url), {
           method: 'POST',
@@ -670,9 +720,8 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
     ),
     // Response application/graphql-response+json
     audit(
-      // TODO: convert to MUST after watershed
       '865D',
-      'SHOULD use 4xx or 5xx status codes on document parsing failure when accepting application/graphql-response+json',
+      'MUST use 4xx or 5xx status codes on document parsing failure when accepting application/graphql-response+json',
       async () => {
         const res = await fetchFn(await getUrl(opts.url), {
           method: 'POST',
@@ -722,9 +771,8 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
       },
     ),
     audit(
-      // TODO: convert to MUST after watershed
       '51FE',
-      'SHOULD use 4xx or 5xx status codes on document validation failure when accepting application/graphql-response+json',
+      'MUST use 4xx or 5xx status codes on document validation failure when accepting application/graphql-response+json',
       async () => {
         const res = await fetchFn(await getUrl(opts.url), {
           method: 'POST',
