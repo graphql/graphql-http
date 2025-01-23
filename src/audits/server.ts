@@ -40,9 +40,8 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
   return [
     // Media Types
     audit(
-      // TODO: convert to MUST after watershed
       '22EB',
-      'SHOULD accept application/graphql-response+json and match the content-type',
+      'MUST accept application/graphql-response+json and match the content-type',
       async () => {
         const res = await fetchFn(await getUrl(opts.url), {
           method: 'POST',
@@ -255,9 +254,8 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
       ),
     ),
     audit(
-      // TODO: convert to MUST after watershed
       '34A2',
-      'SHOULD allow string {query} parameter when accepting application/graphql-response+json',
+      'MUST allow string {query} parameter when accepting application/graphql-response+json',
       async () => {
         const res = await fetchFn(await getUrl(opts.url), {
           method: 'POST',
@@ -312,9 +310,8 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
       ),
     ),
     audit(
-      // TODO: convert to MUST after watershed
       '8161',
-      'SHOULD allow string {operationName} parameter when accepting application/graphql-response+json',
+      'MUST allow string {operationName} parameter when accepting application/graphql-response+json',
       async () => {
         const res = await fetchFn(await getUrl(opts.url), {
           method: 'POST',
@@ -353,8 +350,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
       (parameter, index) => [
         audit(
           `94B${index}`,
-          // TODO: convert to MUST after watershed
-          `SHOULD allow null {${parameter}} parameter when accepting application/graphql-response+json`,
+          `MUST allow null {${parameter}} parameter when accepting application/graphql-response+json`,
           async () => {
             const res = await fetchFn(await getUrl(opts.url), {
               method: 'POST',
@@ -418,9 +414,8 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
       ),
     ),
     audit(
-      // TODO: convert to MUST after watershed
       '2EA1',
-      'SHOULD allow map {variables} parameter when accepting application/graphql-response+json',
+      'MUST allow map {variables} parameter when accepting application/graphql-response+json',
       async () => {
         const res = await fetchFn(await getUrl(opts.url), {
           method: 'POST',
@@ -499,8 +494,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
     ...['string', 0, false, ['array']].map((invalid, index) =>
       audit(
         `58B${index}`,
-        // TODO: convert to MUST after watershed
-        `MAY use 400 status code on ${extendedTypeof(
+        `MUST use 400 status code on ${extendedTypeof(
           invalid,
         )} {extensions} parameter`,
         async () => {
@@ -519,9 +513,8 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
       ),
     ),
     audit(
-      // TODO: convert to MUST after watershed
       '428F',
-      'SHOULD allow map {extensions} parameter when accepting application/graphql-response+json',
+      'MUST allow map {extensions} parameter when accepting application/graphql-response+json',
       async () => {
         const res = await fetchFn(await getUrl(opts.url), {
           method: 'POST',
@@ -670,9 +663,8 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
     ),
     // Response application/graphql-response+json
     audit(
-      // TODO: convert to MUST after watershed
       '865D',
-      'SHOULD use 4xx or 5xx status codes on document parsing failure when accepting application/graphql-response+json',
+      'MUST use 4xx or 5xx status codes on document parsing failure when accepting application/graphql-response+json',
       async () => {
         const res = await fetchFn(await getUrl(opts.url), {
           method: 'POST',
@@ -722,9 +714,8 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
       },
     ),
     audit(
-      // TODO: convert to MUST after watershed
       '51FE',
-      'SHOULD use 4xx or 5xx status codes on document validation failure when accepting application/graphql-response+json',
+      'MUST use 4xx or 5xx status codes on document validation failure when accepting application/graphql-response+json',
       async () => {
         const res = await fetchFn(await getUrl(opts.url), {
           method: 'POST',
