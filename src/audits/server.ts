@@ -796,7 +796,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
     ),
     audit(
       '74FF',
-      'SHOULD use 400 status code on document validation failure when accepting application/graphql-response+json',
+      'MAY use 4xx status codes on document validation failure when accepting application/graphql-response+json',
       async () => {
         const res = await fetchFn(await getUrl(opts.url), {
           method: 'POST',
@@ -808,7 +808,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
             query: '{ 8f31403dfe404bccbb0e835f2629c6a7 }', // making sure the field doesnt exist
           }),
         });
-        ressert(res).status.toBe(400);
+        ressert(res).status.toBeBetween(400, 499);
       },
     ),
     audit(
