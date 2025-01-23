@@ -45,7 +45,7 @@ jobs:
       - name: Upload audit report
         uses: actions/upload-artifact@v4
         with:
-          name: audit-reports
+          name: audit-report-${{ matrix.workspace.name }}
           # > If multiple paths are provided as input, the least common ancestor of all the search paths will be used as the root directory of the artifact.
           # https://github.com/actions/upload-artifact#upload-using-multiple-paths-and-exclusions
           #
@@ -99,7 +99,7 @@ jobs:
       - name: Upload audit report
         uses: actions/upload-artifact@v4
         with:
-          name: audit-reports
+          name: audit-report-${{ matrix.workspace.name }}
           # > If multiple paths are provided as input, the least common ancestor of all the search paths will be used as the root directory of the artifact.
           # https://github.com/actions/upload-artifact#upload-using-multiple-paths-and-exclusions
           #
