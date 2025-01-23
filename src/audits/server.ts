@@ -531,8 +531,30 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
     ),
     ...['string', 0, false, ['array']].map((invalid, index) =>
       audit(
+        `028${index}`,
+        `MAY use 4xx status codes on ${extendedTypeof(
+          invalid,
+        )} {extensions} parameter when accepting application/graphql-response+json`,
+        async () => {
+          const res = await fetchFn(await getUrl(opts.url), {
+            method: 'POST',
+            headers: {
+              'content-type': 'application/json',
+              accept: 'application/graphql-response+json',
+            },
+            body: JSON.stringify({
+              query: '{ __typename }',
+              extensions: invalid,
+            }),
+          });
+          ressert(res).status.toBeBetween(400, 499);
+        },
+      ),
+    ),
+    ...['string', 0, false, ['array']].map((invalid, index) =>
+      audit(
         `58B${index}`,
-        `MAY use 4xx or 5xx status codes on ${extendedTypeof(
+        `MAY use 4xx status codes on ${extendedTypeof(
           invalid,
         )} {extensions} parameter when accepting application/json`,
         async () => {
@@ -547,7 +569,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
               extensions: invalid,
             }),
           });
-          ressert(res).status.toBeBetween(400, 599);
+          ressert(res).status.toBeBetween(400, 499);
         },
       ),
     ),
