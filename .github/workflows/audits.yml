@@ -206,7 +206,7 @@ jobs:
           token: ${{secrets.BOT_GITHUB_TOKEN}}
           branch: audit-report
           title: Audit Report
-          body: New audit report available
+          body: The audit report has changed in ${{github.event.pull_request.head.sha || github.sha}}.
           commit-message: 'docs(implementations): audit report'
           committer: theguild-bot <bot@the-guild.dev>
           author: theguild-bot <bot@the-guild.dev> # dont use the actor as an author
