@@ -390,7 +390,7 @@ export interface HandlerOptions<
   getOperationAST?: typeof graphqlGetOperationAST;
   /**
    * The GraphQL root value or resolvers to go alongside the execution.
-   * Learn more about them here: https://graphql.org/learn/execution/#root-fields-resolvers.
+   * Learn more about them here: https://graphql.org/learn/execution/#root-fields-and-resolvers.
    *
    * If you return from `onSubscribe`, and the returned value is
    * missing the `rootValue` field, the relevant operation root
@@ -706,7 +706,7 @@ export function createHandler<
     }
 
     // mutations cannot happen over GETs
-    // https://graphql.github.io/graphql-over-http/draft/#sel-CALFJRPAAELBAAxwP
+    // https://graphql.github.io/graphql-over-http/draft/#sel-GALJTPABABgCzsd
     if (operation === 'mutation' && req.method === 'GET') {
       return [
         JSON.stringify({
