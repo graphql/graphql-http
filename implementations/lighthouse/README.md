@@ -101,13 +101,13 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
   "body": {
     "trace": [
       {
-        "line": 59,
+        "line": 56,
         "function": "assert",
         "file": "/app/vendor/laragraph/utils/src/RequestParser.php"
       },
       {
         "type": "->",
-        "line": 40,
+        "line": 37,
         "function": "bodyParams",
         "file": "/app/vendor/laragraph/utils/src/RequestParser.php",
         "class": "Laragraph\\Utils\\RequestParser"
@@ -366,7 +366,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
       },
       {
         "type": "->",
-        "line": 1193,
+        "line": 1220,
         "function": "handle",
         "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Application.php",
         "class": "Illuminate\\Foundation\\Http\\Kernel"
@@ -385,7 +385,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
       }
     ],
     "message": "Never null, since Symfony defaults to application/x-www-form-urlencoded.",
-    "line": 59,
+    "line": 56,
     "file": "/app/vendor/laragraph/utils/src/RequestParser.php",
     "exception": "AssertionError"
   }
@@ -614,7 +614,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Foundation\\Http\\Kernel::sendRequestThroughRouter(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 1193,
+              "line": 1220,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Application.php",
               "call": "Illuminate\\Foundation\\Http\\Kernel::handle(instance of Illuminate\\Http\\Request)"
             },
@@ -860,7 +860,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Foundation\\Http\\Kernel::sendRequestThroughRouter(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 1193,
+              "line": 1220,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Application.php",
               "call": "Illuminate\\Foundation\\Http\\Kernel::handle(instance of Illuminate\\Http\\Request)"
             },
@@ -1106,7 +1106,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Foundation\\Http\\Kernel::sendRequestThroughRouter(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 1193,
+              "line": 1220,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Application.php",
               "call": "Illuminate\\Foundation\\Http\\Kernel::handle(instance of Illuminate\\Http\\Request)"
             },
@@ -1352,7 +1352,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Foundation\\Http\\Kernel::sendRequestThroughRouter(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 1193,
+              "line": 1220,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Application.php",
               "call": "Illuminate\\Foundation\\Http\\Kernel::handle(instance of Illuminate\\Http\\Request)"
             },
@@ -1598,7 +1598,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Foundation\\Http\\Kernel::sendRequestThroughRouter(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 1193,
+              "line": 1220,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Application.php",
               "call": "Illuminate\\Foundation\\Http\\Kernel::handle(instance of Illuminate\\Http\\Request)"
             },
@@ -1844,7 +1844,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Foundation\\Http\\Kernel::sendRequestThroughRouter(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 1193,
+              "line": 1220,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Application.php",
               "call": "Illuminate\\Foundation\\Http\\Kernel::handle(instance of Illuminate\\Http\\Request)"
             },
@@ -2090,7 +2090,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Foundation\\Http\\Kernel::sendRequestThroughRouter(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 1193,
+              "line": 1220,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Application.php",
               "call": "Illuminate\\Foundation\\Http\\Kernel::handle(instance of Illuminate\\Http\\Request)"
             },
@@ -2336,7 +2336,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Foundation\\Http\\Kernel::sendRequestThroughRouter(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 1193,
+              "line": 1220,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Application.php",
               "call": "Illuminate\\Foundation\\Http\\Kernel::handle(instance of Illuminate\\Http\\Request)"
             },
@@ -2582,7 +2582,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Foundation\\Http\\Kernel::sendRequestThroughRouter(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 1193,
+              "line": 1220,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Application.php",
               "call": "Illuminate\\Foundation\\Http\\Kernel::handle(instance of Illuminate\\Http\\Request)"
             },
@@ -2828,7 +2828,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Foundation\\Http\\Kernel::sendRequestThroughRouter(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 1193,
+              "line": 1220,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Application.php",
               "call": "Illuminate\\Foundation\\Http\\Kernel::handle(instance of Illuminate\\Http\\Request)"
             },
@@ -3074,7 +3074,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Foundation\\Http\\Kernel::sendRequestThroughRouter(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 1193,
+              "line": 1220,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Application.php",
               "call": "Illuminate\\Foundation\\Http\\Kernel::handle(instance of Illuminate\\Http\\Request)"
             },
@@ -3320,7 +3320,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Foundation\\Http\\Kernel::sendRequestThroughRouter(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 1193,
+              "line": 1220,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Application.php",
               "call": "Illuminate\\Foundation\\Http\\Kernel::handle(instance of Illuminate\\Http\\Request)"
             },
@@ -3566,7 +3566,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Foundation\\Http\\Kernel::sendRequestThroughRouter(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 1193,
+              "line": 1220,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Application.php",
               "call": "Illuminate\\Foundation\\Http\\Kernel::handle(instance of Illuminate\\Http\\Request)"
             },
@@ -3904,7 +3904,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Foundation\\Http\\Kernel::sendRequestThroughRouter(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 1193,
+              "line": 1220,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Application.php",
               "call": "Illuminate\\Foundation\\Http\\Kernel::handle(instance of Illuminate\\Http\\Request)"
             },
@@ -4150,7 +4150,7 @@ The server <i>MAY</i> support these, but are truly optional. These are suggestio
               "call": "Illuminate\\Foundation\\Http\\Kernel::sendRequestThroughRouter(instance of Illuminate\\Http\\Request)"
             },
             {
-              "line": 1193,
+              "line": 1220,
               "file": "/app/vendor/laravel/framework/src/Illuminate/Foundation/Application.php",
               "call": "Illuminate\\Foundation\\Http\\Kernel::handle(instance of Illuminate\\Http\\Request)"
             },
