@@ -195,6 +195,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
       async () => {
         const res = await fetchFn(await getUrl(opts.url), {
           method: 'POST',
+          body: JSON.stringify({ query: '{ __typename }' }),
         });
         ressert(res).status.toBeBetween(400, 499);
       },
