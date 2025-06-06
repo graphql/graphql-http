@@ -191,7 +191,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
     // Request POST
     audit(
       '9ABE',
-      'MAY respond with 4xx status code if content-type is not supplied on POST requests',
+      'SHOULD respond with 4xx status code if content-type is not supplied on POST requests',
       async () => {
         const res = await fetchFn(await getUrl(opts.url), {
           method: 'POST',
