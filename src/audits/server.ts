@@ -474,6 +474,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
           },
         });
         ressert(res).status.toBe(200);
+        await ressert(res).bodyAsExecutionResult.notToHaveProperty('errors');
       },
     ),
     audit(
