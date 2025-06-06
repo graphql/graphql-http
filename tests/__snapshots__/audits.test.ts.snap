@@ -44,7 +44,7 @@ exports[`should not change globally unique audit ids 1`] = `
   },
   {
     "id": "9ABE",
-    "name": "MAY respond with 4xx status code if content-type is not supplied on POST requests",
+    "name": "SHOULD respond with 4xx status code if content-type is not supplied on POST requests",
   },
   {
     "id": "03D4",
