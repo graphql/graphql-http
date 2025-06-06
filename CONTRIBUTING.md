@@ -54,5 +54,5 @@ PORT=4000 yarn tsx scripts/audit-implementation.ts implementations/<implementati
 Run the following script to ensure the automatic code formatting is applied:
 
 ```shell
-yarn run lint:fix
+yarn run format
 ```
