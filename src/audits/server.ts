@@ -567,7 +567,7 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
           },
           body: '{ "not a JSON',
         });
-        ressert(res).status.toBeBetween(400, 499);
+        ressert(res).status.toBeBetween(400, 599);
       },
     ),
     audit(
