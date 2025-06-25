@@ -579,12 +579,13 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
     ),
     audit(
       'BCF8',
-      'MAY use 400 status code on JSON parsing failure',
+      'SHOULD use 400 status code on JSON parsing failure when accepting application/json',
       async () => {
         const res = await fetchFn(await getUrl(opts.url), {
           method: 'POST',
           headers: {
             'content-type': 'application/json',
+            accept: 'application/json',
           },
           body: '{ "not a JSON',
         });
