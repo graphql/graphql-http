@@ -188,7 +188,7 @@ exports[`should not change globally unique audit ids 1`] = `
   },
   {
     "id": "B6DC",
-    "name": "MAY use 4xx or 5xx status codes on JSON parsing failure",
+    "name": "MAY use 2xx, 4xx, or 5xx status codes on JSON parsing failure when accepting application/json",
   },
   {
     "id": "BCF8",

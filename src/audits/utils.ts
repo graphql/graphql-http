@@ -99,6 +99,19 @@ export function ressert(res: Response) {
           );
         }
       },
+      toBeBetweenMultiple: (ranges: Array<[number, number]>) => {
+        const isInRange = ranges.some(
+          ([min, max]) => min <= res.status && res.status <= max,
+        );
+        if (!isInRange) {
+          throw new AuditError(
+            res,
+            `Response status is not between any of the provided ranges: ${ranges
+              .map(([min, max]) => `[${min}, ${max}]`)
+              .join(', ')}`,
+          );
+        }
+      },
     },
     header(key: 'content-type') {
       return {
