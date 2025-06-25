@@ -587,6 +587,21 @@ export function serverAudits(opts: ServerAuditOptions): Audit[] {
       },
     ),
     audit(
+      'B7N8',
+      'SHOULD use 400 status code on JSON parsing failure when accepting application/graphql-response+json',
+      async () => {
+        const res = await fetchFn(await getUrl(opts.url), {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json',
+            accept: 'application/graphql-response+json',
+          },
+          body: '{ "not a JSON',
+        });
+        ressert(res).status.toBe(400);
+      },
+    ),
+    audit(
       '8764',
       'MAY use 4xx or 5xx status codes if parameters are invalid',
       async () => {
