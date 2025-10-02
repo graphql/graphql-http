@@ -916,3 +916,5 @@ Adding your implementation is very welcome, [see how](CONTRIBUTING.md#adding-imp
 File a bug, contribute with code, or improve documentation? [Read more in CONTRIBUTING.md](CONTRIBUTING.md).
 
 If your company benefits from GraphQL and you would like to provide essential financial support for the systems and people that power our community, please also consider membership in the [GraphQL Foundation](https://foundation.graphql.org/join).
+
+.
