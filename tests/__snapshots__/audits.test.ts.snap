@@ -195,6 +195,10 @@ exports[`should not change globally unique audit ids 1`] = `
     "name": "MAY use 400 status code on JSON parsing failure",
   },
   {
+    "id": "B7N8",
+    "name": "SHOULD use 400 status code on JSON parsing failure when accepting application/graphql-response+json",
+  },
+  {
     "id": "8764",
     "name": "MAY use 4xx or 5xx status codes if parameters are invalid",
   },
