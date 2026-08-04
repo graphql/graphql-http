@@ -41,38 +41,15 @@ it('should use the provided headers', async () => {
   const [request] = texecute(client, { query: '{ hello }' });
   await request;
 
-  expect(headers).toMatchInlineSnapshot(`
-    Headers {
-      Symbol(headers list): HeadersList {
-        "cookies": null,
-        Symbol(headers map): Map {
-          "x-some" => {
-            "name": "x-some",
-            "value": "header",
-          },
-          "content-type" => {
-            "name": "content-type",
-            "value": "application/json; charset=utf-8",
-          },
-          "accept" => {
-            "name": "accept",
-            "value": "application/graphql-response+json, application/json",
-          },
-        },
-        Symbol(headers map sorted): null,
-      },
-      Symbol(guard): "request",
-      Symbol(realm): {
-        "settingsObject": {
-          "baseUrl": undefined,
-          "origin": undefined,
-          "policyContainer": {
-            "referrerPolicy": "strict-origin-when-cross-origin",
-          },
-        },
-      },
-    }
-  `);
+  expect(headers).toBeInstanceOf(Headers);
+  const actualHeaders = headers as unknown as Headers;
+  expect(actualHeaders.get('x-some')).toBe('header');
+  expect(actualHeaders.get('content-type')).toBe(
+    'application/json; charset=utf-8',
+  );
+  expect(actualHeaders.get('accept')).toBe(
+    'application/graphql-response+json, application/json',
+  );
 });
 
 it('should execute query, next the result and then complete', async () => {

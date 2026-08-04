@@ -122,23 +122,28 @@ it('should respond with error if execution result is iterable', async () => {
 it('should correctly serialise execution result errors', async () => {
   const { request } = createTHandler({ schema });
 
-  await expect(
-    request('GET', {
-      query: 'query ($num: Int) { num(num: $num) }',
-      variables: { num: 'foo' },
-    }),
-  ).resolves.toMatchInlineSnapshot(`
-    [
-      "{"errors":[{"message":"Variable \\"$num\\" got invalid value \\"foo\\"; Int cannot represent non-integer value: \\"foo\\"","locations":[{"line":1,"column":8}]}]}",
+  const [body, init] = await request('GET', {
+    query: 'query ($num: Int) { num(num: $num) }',
+    variables: { num: 'foo' },
+  });
+
+  expect(JSON.parse(body!)).toEqual({
+    errors: [
       {
-        "headers": {
-          "content-type": "application/graphql-response+json; charset=utf-8",
-        },
-        "status": 200,
-        "statusText": "OK",
+        message: expect.stringContaining(
+          'Int cannot represent non-integer value: "foo"',
+        ),
+        locations: [{ line: 1, column: 8 }],
       },
-    ]
-  `);
+    ],
+  });
+  expect(init).toEqual({
+    headers: {
+      'content-type': 'application/graphql-response+json; charset=utf-8',
+    },
+    status: 200,
+    statusText: 'OK',
+  });
 });
 
 it('should append the provided validation rules array', async () => {

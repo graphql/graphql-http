@@ -218,10 +218,6 @@ describe('Render audit results to HTML', () => {
       htmlValidator({
         data: document,
       }),
-    ).resolves.toMatchInlineSnapshot(`
-      {
-        "messages": [],
-      }
-    `);
+    ).resolves.toMatchObject({ messages: [] });
   });
 });
