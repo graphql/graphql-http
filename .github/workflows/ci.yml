@@ -35,7 +35,15 @@ jobs:
         run: yarn check:${{ matrix.check }}
 
   test:
-    name: Test
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - graphql: 17
+            node: 24
+          - graphql: 16
+            node: 22
+    name: Test GraphQL ${{ matrix.graphql }} on Node ${{ matrix.node }}
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, '[skip ci]')"
     steps:
@@ -44,9 +52,15 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
-          node-version-file: .nvmrc
+          node-version: ${{ matrix.node }}
           cache: yarn
-      - name: Install
+      - name: Install GraphQL 17 baseline
+        if: matrix.graphql == 17
         run: yarn install --immutable
+      - name: Install GraphQL 16 compatibility baseline
+        if: matrix.graphql == 16
+        run: yarn add --dev graphql@^16.8.1
+      - name: Check types
+        run: yarn check:type
       - name: Test
-        run: yarn test
+        run: yarn test --run
