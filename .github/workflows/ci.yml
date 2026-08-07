@@ -40,10 +40,8 @@ jobs:
       matrix:
         include:
           - graphql: 17
-            node: 24
           - graphql: 16
-            node: 22
-    name: Test GraphQL ${{ matrix.graphql }} on Node ${{ matrix.node }}
+    name: Test GraphQL v${{ matrix.graphql }}
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, '[skip ci]')"
     steps:
@@ -52,7 +50,7 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node }}
+          node-version-file: .nvmrc
           cache: yarn
       - name: Install GraphQL 17 baseline
         if: matrix.graphql == 17
