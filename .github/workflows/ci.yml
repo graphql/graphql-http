@@ -35,7 +35,13 @@ jobs:
         run: yarn check:${{ matrix.check }}
 
   test:
-    name: Test
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - graphql: 17
+          - graphql: 16
+    name: Test GraphQL v${{ matrix.graphql }}
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, '[skip ci]')"
     steps:
@@ -46,7 +52,15 @@ jobs:
         with:
           node-version-file: .nvmrc
           cache: yarn
-      - name: Install
+      - name: Install GraphQL 17 baseline
+        if: matrix.graphql == 17
         run: yarn install --immutable
+      - name: Install GraphQL 16 compatibility baseline
+        if: matrix.graphql == 16
+        run: yarn add --dev graphql@^16
+      # we default to v17 but support v16, so we want to also make sure the types fit
+      - if: matrix.graphql == 16
+        name: Check types
+        run: yarn check:type
       - name: Test
         run: yarn test

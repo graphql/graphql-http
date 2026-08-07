@@ -7604,7 +7604,7 @@ __metadata:
     express: "npm:^4.18.2"
     fastify: "npm:^4.24.3"
     glob: "npm:^10.3.10"
-    graphql: "npm:^16.8.1"
+    graphql: "npm:^17.0.0"
     html-validator: "npm:^6.0.1"
     koa: "npm:^2.15.3"
     koa-mount: "npm:^4.0.0"
@@ -7618,10 +7618,10 @@ __metadata:
     typedoc: "npm:^0.25.4"
     typedoc-plugin-markdown: "npm:^3.17.1"
     typescript: "npm:^5.3.2"
-    uWebSockets.js: "uNetworking/uWebSockets.js#v20.34.0"
+    uWebSockets.js: "uNetworking/uWebSockets.js#v20.69.0"
     vitest: "npm:^1.0.1"
   peerDependencies:
-    graphql: ">=0.11 <=16"
+    graphql: ">=0.11 <=17"
   languageName: unknown
   linkType: soft
 
@@ -7735,6 +7735,13 @@ __metadata:
   version: 16.8.1
   resolution: "graphql@npm:16.8.1"
   checksum: 7a09d3ec5f75061afe2bd2421a2d53cf37273d2ecaad8f34febea1f1ac205dfec2834aec3419fa0a10fcc9fb345863b2f893562fb07ea825da2ae82f6392893c
+  languageName: node
+  linkType: hard
+
+"graphql@npm:^17.0.0":
+  version: 17.0.2
+  resolution: "graphql@npm:17.0.2"
+  checksum: e3760187b08cafd0755cc504bf272623cba8a05c29671c9ec5709fe634aaf62011a98e7831f67add3775261a0617e1b0d548da99ab70532b72d6dd5e1f0915ca
   languageName: node
   linkType: hard
 
@@ -12349,10 +12356,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"uWebSockets.js@uNetworking/uWebSockets.js#v20.34.0":
-  version: 20.34.0
-  resolution: "uWebSockets.js@https://github.com/uNetworking/uWebSockets.js.git#commit=fca27c05066342b01951782248640c8013b37196"
-  checksum: 589d8de66f66f260396efdcecd712e1d1a4427ec58210d83632afe9ef689eccb43aa5c7b67f99ef3e88cabbdf51c0518e10aff99071cef0883b00dd795a85aa9
+"uWebSockets.js@uNetworking/uWebSockets.js#v20.69.0":
+  version: 20.69.0
+  resolution: "uWebSockets.js@https://github.com/uNetworking/uWebSockets.js.git#commit=dddd8ffd1b2c28a66022160923ca92f064cdacb4"
+  checksum: 1b7798d06990a034316a2d46590b478b43fb8011aabd845b467399de4de9399f6e9c4fc0d43e07a4fffdc98c2f05b0e9f6a4912ba8048eb390f77da673739dca
   languageName: node
   linkType: hard
 
