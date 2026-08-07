@@ -57,7 +57,7 @@ jobs:
         run: yarn install --immutable
       - name: Install GraphQL 16 compatibility baseline
         if: matrix.graphql == 16
-        run: yarn add --dev graphql@^16.8.1
+        run: yarn add --dev graphql@^16
       # we default to v17 but support v16, so we want to also make sure the types fit
       - if: matrix.graphql == 16
         name: Check types
