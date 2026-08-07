@@ -1,3 +1,18 @@
+# [1.23.0](https://github.com/graphql/graphql-http/compare/v1.22.4...v1.23.0) (2026-08-07)
+
+
+### Bug Fixes
+
+* add support for GraphQL v17 ([#156](https://github.com/graphql/graphql-http/issues/156)) ([ae03a11](https://github.com/graphql/graphql-http/commit/ae03a1189af5a1b4d22c331d4031d02cb72a066b)), closes [#155](https://github.com/graphql/graphql-http/issues/155)
+* **audits:** avoid false positives in 9ABE ([#148](https://github.com/graphql/graphql-http/issues/148)) ([5587c03](https://github.com/graphql/graphql-http/commit/5587c034bcf8a9d13079c0e7cdf4572588fa45ed))
+* **audits:** inconsistency between D6D5 and 6A70 ([#147](https://github.com/graphql/graphql-http/issues/147)) ([eac6dc8](https://github.com/graphql/graphql-http/commit/eac6dc89a5606fefc5dceff6fa9201a0fc1727c2))
+* **audits:** incorrect status code range ([#145](https://github.com/graphql/graphql-http/issues/145)) ([08b4ed2](https://github.com/graphql/graphql-http/commit/08b4ed2cb320d9bc78d96c3801f1f6bed5c61553))
+
+
+### Features
+
+* **audit:** graphql-response+json parsing failure handling ([#149](https://github.com/graphql/graphql-http/issues/149)) ([81e6a07](https://github.com/graphql/graphql-http/commit/81e6a070f2dd198194cd3e7f1bab51bf2e04c13f))
+
 ## [1.22.4](https://github.com/graphql/graphql-http/compare/v1.22.3...v1.22.4) (2025-01-17)
 
 
