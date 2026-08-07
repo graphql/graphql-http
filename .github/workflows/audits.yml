@@ -20,7 +20,7 @@ jobs:
       message: ${{ steps.commit.outputs.message }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           ref: ${{github.event.pull_request.head.sha || github.sha}}
       - name: Inspect
@@ -46,7 +46,7 @@ jobs:
       PORT: 4000
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v7
       - name: Set up node
         uses: actions/setup-node@v4
         with:
@@ -94,7 +94,7 @@ jobs:
       PORT: 4000
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v7
       - name: Set up docker buildx
         uses: docker/setup-buildx-action@v2
       - name: Set up node
@@ -147,7 +147,7 @@ jobs:
       URL: ${{ matrix.workspace.url }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v7
       - name: Set up node
         uses: actions/setup-node@v4
         with:
@@ -179,7 +179,7 @@ jobs:
     if: always()
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v7
         with:
           token: ${{secrets.BOT_GITHUB_TOKEN}}
       - name: Download audit reports
