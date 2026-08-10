@@ -3,8 +3,8 @@
 <h1>GraphQL over HTTP audit report</h1>
 
 <ul>
-<li><b>60</b> audits in total</li>
-<li><span style="font-family: monospace">✅</span> <b>58</b> pass</li>
+<li><b>61</b> audits in total</li>
+<li><span style="font-family: monospace">✅</span> <b>59</b> pass</li>
 <li><span style="font-family: monospace">❗️</span> <b>2</b> warnings (optional)</li>
 </ul>
 
@@ -18,7 +18,7 @@
 <li><code>2C94</code> MUST accept POST requests</li>
 <li><code>5A70</code> MAY accept application/x-www-form-urlencoded formatted GET requests</li>
 <li><code>9C48</code> MAY NOT allow executing mutations on GET requests</li>
-<li><code>9ABE</code> MAY respond with 4xx status code if content-type is not supplied on POST requests</li>
+<li><code>9ABE</code> SHOULD respond with 4xx status code if content-type is not supplied on POST requests</li>
 <li><code>03D4</code> MUST accept application/json POST requests</li>
 <li><code>A5BF</code> MAY use 400 status code when request body is missing on POST</li>
 <li><code>423L</code> MAY use 400 status code on missing {query} parameter</li>
@@ -54,8 +54,9 @@
 <li><code>58B3</code> MAY use 400 status code on array {extensions} parameter</li>
 <li><code>428F</code> SHOULD allow map {extensions} parameter when accepting application/graphql-response+json</li>
 <li><code>1B7A</code> MUST allow map {extensions} parameter when accepting application/json</li>
-<li><code>B6DC</code> MAY use 4xx or 5xx status codes on JSON parsing failure</li>
-<li><code>BCF8</code> MAY use 400 status code on JSON parsing failure</li>
+<li><code>B6DC</code> MAY use 2xx, 4xx, or 5xx status codes on JSON parsing failure when accepting application/json</li>
+<li><code>BCF8</code> SHOULD use 400 status code on JSON parsing failure when accepting application/json</li>
+<li><code>B7N8</code> SHOULD use 400 status code on JSON parsing failure when accepting application/graphql-response+json</li>
 <li><code>8764</code> MAY use 4xx or 5xx status codes if parameters are invalid</li>
 <li><code>3E3A</code> MAY use 400 status code if parameters are invalid</li>
 <li><code>572B</code> SHOULD use 200 status code on document parsing failure when accepting application/json</li>
