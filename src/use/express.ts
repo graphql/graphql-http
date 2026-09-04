@@ -11,13 +11,15 @@ import { RequestParams } from '../common';
 /**
  * The context in the request for the handler.
  *
- * The `res` property is the Express response object for the current request.
- * It can be used to manipulate the HTTP response from the `context` option
- * or from GraphQL resolvers, for example to set response headers or cookies.
- *
  * @category Server/express
  */
 export interface RequestContext {
+  /**
+   * The Express response object for the current request.
+   *
+   * This can be used to manipulate the HTTP response, for example to set
+   * response headers or cookies.
+   */
   res: Response;
 }
 
@@ -86,9 +88,10 @@ export type HandlerOptions<Context extends OperationContext = undefined> =
  * Create a GraphQL over HTTP spec compliant request handler for
  * the express framework.
  *
- * The Express response is available to GraphQL resolvers through
- * `req.context.res`. This can be used to manipulate the HTTP response,
- * for example to set response headers or cookies.
+ * The Express response is available through `req.context.res`. To expose it
+ * to GraphQL resolvers, return it from the `context` option. This can be used
+ * to manipulate the HTTP response, for example to set response headers or
+ * cookies.
  *
  * ```js
  * import express from 'express'; // yarn add express
