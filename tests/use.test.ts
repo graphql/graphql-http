@@ -1,4 +1,5 @@
 import { describe, it, expect, beforeAll, afterAll } from 'vitest';
+import { GraphQLBoolean, GraphQLObjectType, GraphQLSchema } from 'graphql';
 import net from 'net';
 import { fetch } from '@whatwg-node/fetch';
 import { serverAudits } from '../src/audits';
@@ -133,6 +134,66 @@ describe('express', () => {
     await expect(res.text()).resolves.toMatchInlineSnapshot(
       `"{"data":{"hello":"world"}}"`,
     );
+    expect(res.headers.get('x-test')).toBe('test-x');
+
+    await dispose();
+  });
+
+  it('should allow manipulating the response from a resolver', async () => {
+    const responseSchema = new GraphQLSchema({
+      query: new GraphQLObjectType({
+        name: 'Query',
+        fields: {
+          hello: {
+            type: GraphQLBoolean,
+            resolve: () => true,
+          },
+        },
+      }),
+      mutation: new GraphQLObjectType({
+        name: 'Mutation',
+        fields: {
+          logout: {
+            type: GraphQLBoolean,
+            resolve: (_, __, context) => {
+              context.res.setHeader('x-test', 'test-x');
+              return true;
+            },
+          },
+        },
+      }),
+    });
+
+    const app = express();
+
+    app.all(
+      '/',
+      createExpressHandler({
+        schema: responseSchema,
+        context(req) {
+          return {
+            res: req.context.res,
+          };
+        },
+      }),
+    );
+
+    const [url, , dispose] = startDisposableServer(app.listen(0));
+
+    const res = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify({
+        query: 'mutation { logout }',
+      }),
+    });
+
+    await expect(res.text()).resolves.toMatchInlineSnapshot(
+      `"{\"data\":{\"logout\":true}}"`,
+    );
+
     expect(res.headers.get('x-test')).toBe('test-x');
 
     await dispose();
