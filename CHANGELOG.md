@@ -1,3 +1,10 @@
+## [1.23.1](https://github.com/graphql/graphql-http/compare/v1.23.0...v1.23.1) (2026-09-28)
+
+
+### Bug Fixes
+
+* **express:** document resolver response manipulation ([#157](https://github.com/graphql/graphql-http/issues/157)) ([0441e4f](https://github.com/graphql/graphql-http/commit/0441e4fe8dd520b553221a587c2ccf03babaf82d))
+
 # [1.23.0](https://github.com/graphql/graphql-http/compare/v1.22.4...v1.23.0) (2026-08-07)
 
 
