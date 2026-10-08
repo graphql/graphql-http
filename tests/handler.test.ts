@@ -462,3 +462,72 @@ it('should accept both utf-8 and utf8 charsets ', async () => {
     ]
   `);
 });
+
+it('should reject media types with q=0', async () => {
+  const { request } = createTHandler();
+
+  await expect(
+    request(
+      'GET',
+      { query: '{ __typename }' },
+      { accept: 'application/json;q=0' },
+    ),
+  ).resolves.toMatchInlineSnapshot(`
+    [
+      null,
+      {
+        "headers": {
+          "accept": "application/graphql-response+json; charset=utf-8, application/json; charset=utf-8",
+        },
+        "status": 406,
+        "statusText": "Not Acceptable",
+      },
+    ]
+  `);
+});
+
+it('should prefer the accepted media type with the highest q value', async () => {
+  const { request } = createTHandler();
+
+  await expect(
+    request(
+      'GET',
+      { query: '{ __typename }' },
+      {
+        accept: 'application/json;q=0, application/graphql-response+json;q=1',
+      },
+    ),
+  ).resolves.toMatchInlineSnapshot(`
+    [
+      "{"data":{"__typename":"Query"}}",
+      {
+        "headers": {
+          "content-type": "application/graphql-response+json; charset=utf-8",
+        },
+        "status": 200,
+        "statusText": "OK",
+      },
+    ]
+  `);
+
+  await expect(
+    request(
+      'GET',
+      { query: '{ __typename }' },
+      {
+        accept: 'application/graphql-response+json;q=0.1, application/json;q=1',
+      },
+    ),
+  ).resolves.toMatchInlineSnapshot(`
+    [
+      "{"data":{"__typename":"Query"}}",
+      {
+        "headers": {
+          "content-type": "application/json; charset=utf-8",
+        },
+        "status": 200,
+        "statusText": "OK",
+      },
+    ]
+  `);
+});

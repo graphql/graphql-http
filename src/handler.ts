@@ -572,23 +572,28 @@ export function createHandler<
 
   return async function handler(req) {
     let acceptedMediaType: AcceptableMediaType | null = null;
+    let acceptedMediaTypeQuality = 0;
     const accepts = (getHeader(req, 'accept') || '*/*')
       .replace(/\s/g, '')
       .toLowerCase()
       .split(',');
     for (const accept of accepts) {
       // accept-charset became obsolete, shouldnt be used (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Charset)
-      // TODO: handle the weight parameter "q"
       const [mediaType, ...params] = accept.split(';');
+      const q = params.find((param) => param.startsWith('q='));
+      const quality = q ? Number(q.substring(2)) : 1;
+      if (!Number.isFinite(quality) || quality <= 0 || quality > 1) {
+        continue;
+      }
       const charset =
         params?.find((param) => param.includes('charset=')) || 'charset=utf-8'; // utf-8 is assumed when not specified;
 
+      let acceptableMediaType: AcceptableMediaType | null = null;
       if (
         mediaType === 'application/graphql-response+json' &&
         charset === 'charset=utf-8'
       ) {
-        acceptedMediaType = 'application/graphql-response+json';
-        break;
+        acceptableMediaType = 'application/graphql-response+json';
       }
 
       // application/json should be the default until watershed
@@ -598,8 +603,12 @@ export function createHandler<
           mediaType === '*/*') &&
         (charset === 'charset=utf-8' || charset === 'charset=utf8')
       ) {
-        acceptedMediaType = 'application/json';
-        break;
+        acceptableMediaType = 'application/json';
+      }
+
+      if (acceptableMediaType && quality > acceptedMediaTypeQuality) {
+        acceptedMediaType = acceptableMediaType;
+        acceptedMediaTypeQuality = quality;
       }
     }
     if (!acceptedMediaType) {
